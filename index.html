@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div id="elm-container">
+    </div>
+
+    <script src="Main.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      var node = document.getElementById('elm-container');
+      var app = Elm.Main.embed(node)
+
+      app.ports.decodeElm.subscribe(function(node) {
+        var neco = node;
+        console.log(neco);
+      });
+    </script>
+  </body>
+</html>
