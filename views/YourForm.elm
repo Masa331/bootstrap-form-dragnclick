@@ -4,9 +4,12 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 
 view model =
-  [ heading
-  , form model
-  ]
+  -- [ heading
+  -- , form model
+  -- ]
+  -- append heading (form model)
+  List.append [heading] (form model)
+
 
 -------------
 -- Private --
@@ -20,4 +23,11 @@ heading =
   ]
 
 form model =
-  text "form"
+  [debug model
+  , text "neco"
+  ]
+
+debug model =
+  div
+    []
+    [text (toString model)]

@@ -1,5 +1,20 @@
+var _user$project$YourForm$debug = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text(
+				_elm_lang$core$Basics$toString(model))
+			]));
+};
 var _user$project$YourForm$form = function (model) {
-	return _elm_lang$html$Html$text('form');
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			_user$project$YourForm$debug(model),
+			_elm_lang$html$Html$text('neco')
+		]);
 };
 var _user$project$YourForm$heading = A2(
 	_elm_lang$html$Html$h1,
@@ -20,9 +35,9 @@ var _user$project$YourForm$heading = A2(
 				]))
 		]));
 var _user$project$YourForm$view = function (model) {
-	return _elm_lang$core$Native_List.fromArray(
-		[
-			_user$project$YourForm$heading,
-			_user$project$YourForm$form(model)
-		]);
+	return A2(
+		_elm_lang$core$List$append,
+		_elm_lang$core$Native_List.fromArray(
+			[_user$project$YourForm$heading]),
+		_user$project$YourForm$form(model));
 };

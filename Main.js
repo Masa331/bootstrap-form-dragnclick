@@ -7818,8 +7818,23 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 			]))
 	]);
 
+var _user$project$YourForm$debug = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text(
+				_elm_lang$core$Basics$toString(model))
+			]));
+};
 var _user$project$YourForm$form = function (model) {
-	return _elm_lang$html$Html$text('form');
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			_user$project$YourForm$debug(model),
+			_elm_lang$html$Html$text('neco')
+		]);
 };
 var _user$project$YourForm$heading = A2(
 	_elm_lang$html$Html$h1,
@@ -7840,11 +7855,11 @@ var _user$project$YourForm$heading = A2(
 				]))
 		]));
 var _user$project$YourForm$view = function (model) {
-	return _elm_lang$core$Native_List.fromArray(
-		[
-			_user$project$YourForm$heading,
-			_user$project$YourForm$form(model)
-		]);
+	return A2(
+		_elm_lang$core$List$append,
+		_elm_lang$core$Native_List.fromArray(
+			[_user$project$YourForm$heading]),
+		_user$project$YourForm$form(model));
 };
 
 var _user$project$Markup$view = _elm_lang$core$Native_List.fromArray(
@@ -7875,7 +7890,21 @@ var _user$project$Views$yourForm = function (model) {
 };
 var _user$project$Views$templatesView = _user$project$TemplatesView$view;
 
-var _user$project$Models$initialModel = '';
+var _user$project$Models$Attribute = F2(
+	function (a, b) {
+		return {name: a, value: b};
+	});
+var _user$project$Models$Model = function (a) {
+	return {ctor: 'Model', _0: a};
+};
+var _user$project$Models$initialModel = _user$project$Models$Model(
+	{
+		tag: 'input',
+		attributes: _elm_lang$core$Native_List.fromArray(
+			[]),
+		children: _elm_lang$core$Native_List.fromArray(
+			[])
+	});
 
 var _user$project$Messages$nic = '';
 
@@ -7934,8 +7963,7 @@ var _user$project$Main$view = function (model) {
 					]))
 			]));
 };
-var _user$project$Main$initialModel = '';
-var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Main$initialModel, _1: _elm_lang$core$Platform_Cmd$none};
+var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Models$initialModel, _1: _elm_lang$core$Platform_Cmd$none};
 var _user$project$Main$main = {
 	main: _elm_lang$html$Html_App$program(
 		{init: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions})

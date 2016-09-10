@@ -1,1 +1,15 @@
-var _user$project$Models$initialModel = '';
+var _user$project$Models$Attribute = F2(
+	function (a, b) {
+		return {name: a, value: b};
+	});
+var _user$project$Models$Model = function (a) {
+	return {ctor: 'Model', _0: a};
+};
+var _user$project$Models$initialModel = _user$project$Models$Model(
+	{
+		tag: 'input',
+		attributes: _elm_lang$core$Native_List.fromArray(
+			[]),
+		children: _elm_lang$core$Native_List.fromArray(
+			[])
+	});
