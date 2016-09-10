@@ -8,7 +8,7 @@ import Views
 import Models
 import Messages
 
-init = (Models.initialModel, Cmd.none)
+init = (Models.initialModel2, Cmd.none)
 
 view model =
   div

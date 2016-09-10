@@ -7905,6 +7905,71 @@ var _user$project$Models$initialModel = _user$project$Models$Model(
 		children: _elm_lang$core$Native_List.fromArray(
 			[])
 	});
+var _user$project$Models$initialChildren = function () {
+	var submit = _user$project$Models$Model(
+		{
+			tag: 'button',
+			attributes: _elm_lang$core$Native_List.fromArray(
+				[
+					{name: 'type', value: 'submit'},
+					{name: 'class', value: 'btn btn-primary'}
+				]),
+			children: _elm_lang$core$Native_List.fromArray(
+				[
+					_user$project$Models$Model(
+					{
+						tag: '_rawText',
+						attributes: _elm_lang$core$Native_List.fromArray(
+							[
+								{name: 'value', value: 'Submit'}
+							]),
+						children: _elm_lang$core$Native_List.fromArray(
+							[])
+					})
+				])
+		});
+	var input = _user$project$Models$Model(
+		{
+			tag: 'input',
+			attributes: _elm_lang$core$Native_List.fromArray(
+				[
+					{name: 'type', value: 'text'},
+					{name: 'class', value: 'form-control'},
+					{name: 'id', value: 'input1'}
+				]),
+			children: _elm_lang$core$Native_List.fromArray(
+				[])
+		});
+	var label = _user$project$Models$Model(
+		{
+			tag: 'label',
+			attributes: _elm_lang$core$Native_List.fromArray(
+				[
+					{name: 'for', value: 'input1'}
+				]),
+			children: _elm_lang$core$Native_List.fromArray(
+				[])
+		});
+	var wholeInput = _user$project$Models$Model(
+		{
+			tag: 'div',
+			attributes: _elm_lang$core$Native_List.fromArray(
+				[
+					{name: 'class', value: 'form-group'}
+				]),
+			children: _elm_lang$core$Native_List.fromArray(
+				[label, input])
+		});
+	return _elm_lang$core$Native_List.fromArray(
+		[wholeInput, submit]);
+}();
+var _user$project$Models$initialModel2 = _user$project$Models$Model(
+	{
+		tag: 'form',
+		attributes: _elm_lang$core$Native_List.fromArray(
+			[]),
+		children: _user$project$Models$initialChildren
+	});
 
 var _user$project$Messages$nic = '';
 
@@ -7963,7 +8028,7 @@ var _user$project$Main$view = function (model) {
 					]))
 			]));
 };
-var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Models$initialModel, _1: _elm_lang$core$Platform_Cmd$none};
+var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Models$initialModel2, _1: _elm_lang$core$Platform_Cmd$none};
 var _user$project$Main$main = {
 	main: _elm_lang$html$Html_App$program(
 		{init: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions})
