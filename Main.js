@@ -7796,6 +7796,89 @@ var _elm_lang$html$Html_Attributes$classList = function (list) {
 };
 var _elm_lang$html$Html_Attributes$style = _elm_lang$virtual_dom$VirtualDom$style;
 
+var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
+	[
+		A2(
+		_elm_lang$html$Html$h1,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Form elements'),
+				A2(
+				_elm_lang$html$Html$small,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('text-muted')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Grab n drag to your form')
+					]))
+			]))
+	]);
+
+var _user$project$YourForm$form = function (model) {
+	return _elm_lang$html$Html$text('form');
+};
+var _user$project$YourForm$heading = A2(
+	_elm_lang$html$Html$h1,
+	_elm_lang$core$Native_List.fromArray(
+		[]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html$text('Your Form'),
+			A2(
+			_elm_lang$html$Html$small,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('text-muted')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Drag to move, Right click to edit')
+				]))
+		]));
+var _user$project$YourForm$view = function (model) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			_user$project$YourForm$heading,
+			_user$project$YourForm$form(model)
+		]);
+};
+
+var _user$project$Markup$view = _elm_lang$core$Native_List.fromArray(
+	[
+		A2(
+		_elm_lang$html$Html$h1,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Markup'),
+				A2(
+				_elm_lang$html$Html$small,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('text-muted')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Copy and paste to your page')
+					]))
+			]))
+	]);
+
+var _user$project$Views$markup = _user$project$Markup$view;
+var _user$project$Views$yourForm = function (model) {
+	return _user$project$YourForm$view(model);
+};
+var _user$project$Views$templatesView = _user$project$TemplatesView$view;
+
+var _user$project$Models$initialModel = '';
+
+var _user$project$Messages$nic = '';
+
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
@@ -7804,31 +7887,55 @@ var _user$project$Main$update = F2(
 		return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 	});
 var _user$project$Main$view = function (model) {
-	return _elm_lang$html$Html$text('Ahoj svete!');
-};
-var _user$project$Main$initialModel = _elm_lang$core$Basics$toString(
-	A3(
-		_elm_lang$html$Html$node,
-		'boo',
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html_Attributes$class('class_a'),
-				_elm_lang$html$Html_Attributes$id('unique_id')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('nejaky text')
-			])));
-var _user$project$Main$decodeElm = _elm_lang$core$Native_Platform.outgoingPort(
-	'decodeElm',
-	function (v) {
-		return v;
-	});
-var _user$project$Main$init = {
-	ctor: '_Tuple2',
-	_0: _user$project$Main$initialModel,
-	_1: _user$project$Main$decodeElm(_user$project$Main$initialModel)
+				A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('row')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$div,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$class('col-sm-4')
+							]),
+						_user$project$Views$templatesView),
+						A2(
+						_elm_lang$html$Html$div,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$class('col-sm-8')
+							]),
+						_user$project$Views$yourForm(model))
+					])),
+				A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('row')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$div,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$class('col-sm-12')
+							]),
+						_user$project$Views$markup)
+					]))
+			]));
 };
+var _user$project$Main$initialModel = '';
+var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Main$initialModel, _1: _elm_lang$core$Platform_Cmd$none};
 var _user$project$Main$main = {
 	main: _elm_lang$html$Html_App$program(
 		{init: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions})

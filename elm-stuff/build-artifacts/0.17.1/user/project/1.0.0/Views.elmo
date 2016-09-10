@@ -1,0 +1,5 @@
+var _user$project$Views$markup = _user$project$Markup$view;
+var _user$project$Views$yourForm = function (model) {
+	return _user$project$YourForm$view(model);
+};
+var _user$project$Views$templatesView = _user$project$TemplatesView$view;

@@ -1,0 +1,28 @@
+var _user$project$YourForm$form = function (model) {
+	return _elm_lang$html$Html$text('form');
+};
+var _user$project$YourForm$heading = A2(
+	_elm_lang$html$Html$h1,
+	_elm_lang$core$Native_List.fromArray(
+		[]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html$text('Your Form'),
+			A2(
+			_elm_lang$html$Html$small,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('text-muted')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Drag to move, Right click to edit')
+				]))
+		]));
+var _user$project$YourForm$view = function (model) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			_user$project$YourForm$heading,
+			_user$project$YourForm$form(model)
+		]);
+};
