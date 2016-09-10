@@ -2,79 +2,63 @@ var _user$project$Models$Attribute = F2(
 	function (a, b) {
 		return {name: a, value: b};
 	});
-var _user$project$Models$Model = function (a) {
-	return {ctor: 'Model', _0: a};
-};
-var _user$project$Models$initialModel = _user$project$Models$Model(
-	{
+var _user$project$Models$initialChildren = function () {
+	var submit = {
+		tag: 'button',
+		attributes: _elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'type', 'submit'),
+				A2(_user$project$Models$Attribute, 'class', 'btn btn-primary')
+			]),
+		children: _elm_lang$core$Native_List.fromArray(
+			[]),
+		value: 'Submit'
+	};
+	var input = {
 		tag: 'input',
 		attributes: _elm_lang$core$Native_List.fromArray(
-			[]),
+			[
+				A2(_user$project$Models$Attribute, 'type', 'text'),
+				A2(_user$project$Models$Attribute, 'class', 'form-control'),
+				A2(_user$project$Models$Attribute, 'id', 'input1')
+			]),
 		children: _elm_lang$core$Native_List.fromArray(
-			[])
-	});
-var _user$project$Models$initialChildren = function () {
-	var submit = _user$project$Models$Model(
-		{
-			tag: 'button',
-			attributes: _elm_lang$core$Native_List.fromArray(
-				[
-					{name: 'type', value: 'submit'},
-					{name: 'class', value: 'btn btn-primary'}
-				]),
-			children: _elm_lang$core$Native_List.fromArray(
-				[
-					_user$project$Models$Model(
-					{
-						tag: '_rawText',
-						attributes: _elm_lang$core$Native_List.fromArray(
-							[
-								{name: 'value', value: 'Submit'}
-							]),
-						children: _elm_lang$core$Native_List.fromArray(
-							[])
-					})
-				])
-		});
-	var input = _user$project$Models$Model(
-		{
-			tag: 'input',
-			attributes: _elm_lang$core$Native_List.fromArray(
-				[
-					{name: 'type', value: 'text'},
-					{name: 'class', value: 'form-control'},
-					{name: 'id', value: 'input1'}
-				]),
-			children: _elm_lang$core$Native_List.fromArray(
-				[])
-		});
-	var label = _user$project$Models$Model(
-		{
-			tag: 'label',
-			attributes: _elm_lang$core$Native_List.fromArray(
-				[
-					{name: 'for', value: 'input1'}
-				]),
-			children: _elm_lang$core$Native_List.fromArray(
-				[])
-		});
-	var wholeInput = _user$project$Models$Model(
-		{
-			tag: 'div',
-			attributes: _elm_lang$core$Native_List.fromArray(
-				[
-					{name: 'class', value: 'form-group'}
-				]),
-			children: _elm_lang$core$Native_List.fromArray(
-				[label, input])
-		});
+			[]),
+		value: ''
+	};
+	var label = {
+		tag: 'label',
+		attributes: _elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'for', 'input1')
+			]),
+		children: _elm_lang$core$Native_List.fromArray(
+			[]),
+		value: ''
+	};
+	var wholeInput = {
+		tag: 'div',
+		attributes: _elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-group')
+			]),
+		children: _elm_lang$core$Native_List.fromArray(
+			[label, input]),
+		value: ''
+	};
 	return _elm_lang$core$Native_List.fromArray(
 		[wholeInput, submit]);
 }();
-var _user$project$Models$initialModel2 = _user$project$Models$Model(
-	{
-		tag: 'form',
-		attributes: _elm_lang$core$Native_List.fromArray(
-			[]),
-		children: _user$project$Models$initialChildren
+var _user$project$Models$initialModel2 = {
+	tag: 'form',
+	attributes: _elm_lang$core$Native_List.fromArray(
+		[]),
+	children: _user$project$Models$initialChildren
+};
+var _user$project$Models$Model = F4(
+	function (a, b, c, d) {
+		return {tag: a, attributes: b, children: c, value: d};
 	});
+var _user$project$Models$Children = function (a) {
+	return {ctor: 'Children', _0: a};
+};
