@@ -18,8 +18,11 @@
       var app = Elm.Main.embed(node)
 
       app.ports.decodeElm.subscribe(function(node) {
-        var neco = node;
-        console.log(neco);
+        // var res = "(" + "{ type = \"node\", tag = \"brk\" }".replace(/ =/gi, ":").replace(/"/gi, "'") + ")"
+        var res = node.replace(/ =/gi, ":").replace(/"/gi, "'").replace(/</, "\"<").replace(/>/, ">\"")
+        var evaled = eval("(" + res + ")")
+
+        console.log(eval(res));
       });
     </script>
   </body>
