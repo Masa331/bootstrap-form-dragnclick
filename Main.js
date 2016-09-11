@@ -7935,48 +7935,58 @@ var _user$project$Models$initialModel2 = A4(
 	_user$project$Models$initialChildren,
 	'');
 
-var _user$project$Markup$element = function (model) {
-	var childs = function (_p0) {
-		var _p1 = _p0;
-		return _p1._0;
-	}(model.children);
-	var _p2 = childs;
-	if (_p2.ctor === '[]') {
-		return A2(
-			_elm_lang$core$Basics_ops['++'],
-			'<',
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				model.tag,
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'>',
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						model.value,
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							'</',
-							A2(_elm_lang$core$Basics_ops['++'], model.tag, '>'))))));
-	} else {
-		return A2(
-			_elm_lang$core$Basics_ops['++'],
-			'<',
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				model.tag,
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'>',
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						_user$project$Markup$element(_p2._0),
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							'</',
-							A2(_elm_lang$core$Basics_ops['++'], model.tag, '>'))))));
-	}
+var _user$project$Markup$closingTag = function (model) {
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		'</',
+		A2(_elm_lang$core$Basics_ops['++'], model.tag, '>'));
 };
+var _user$project$Markup$openingTag = function (model) {
+	return A2(
+		_elm_lang$core$Basics_ops['++'],
+		'<',
+		A2(_elm_lang$core$Basics_ops['++'], model.tag, '>'));
+};
+var _user$project$Markup$element = F2(
+	function (nestingLevel, model) {
+		var childs = function (_p0) {
+			var _p1 = _p0;
+			return _p1._0;
+		}(model.children);
+		var _p2 = childs;
+		if (_p2.ctor === '[]') {
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				_user$project$Markup$openingTag(model),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					model.value,
+					_user$project$Markup$closingTag(model)));
+		} else {
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				_user$project$Markup$openingTag(model),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'\n',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'  ',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							A2(
+								_elm_lang$core$String$join,
+								'\n',
+								A2(
+									_elm_lang$core$List$map,
+									_user$project$Markup$element(nestingLevel + 1),
+									childs)),
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								'\n',
+								_user$project$Markup$closingTag(model))))));
+		}
+	});
 var _user$project$Markup$form = function (model) {
 	var children = model.children;
 	var attributes = model.attributes;
@@ -7987,7 +7997,7 @@ var _user$project$Markup$form = function (model) {
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html$text(
-				_user$project$Markup$element(model))
+				A2(_user$project$Markup$element, 0, model))
 			]));
 };
 var _user$project$Markup$heading = A2(

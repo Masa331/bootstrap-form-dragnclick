@@ -23,47 +23,23 @@ form model =
   in
     pre
       []
-      [text (element model)]
+      [text (element 0 model)]
 
-element model =
+element nestingLevel model =
   let
     childs = (\ (Children childs) -> childs) model.children
-    -- children = List.map element model.children
   in
     case childs of
       [] ->
-        "<" ++ model.tag ++ ">"  ++ model.value  ++ "</" ++ model.tag ++ ">"
+        (openingTag model)  ++ model.value  ++ (closingTag model)
       x::xs ->
-        "<" ++ model.tag ++ ">"  ++ (element x)  ++ "</" ++ model.tag ++ ">"
+        (openingTag model)  ++ "\n" ++ "  " ++ (String.join "\n" (List.map (element (nestingLevel + 1)) childs)) ++ "\n" ++ (closingTag model)
 
--- element model =
---   case model.children of
---     [] ->
---       "<" ++ model.tag ++ ">"  ++ model.value  ++ "</" ++ model.tag ++ ">"
---     x::xs ->
---       "<" ++ model.tag ++ ">"  ++ (element x)  ++ "</" ++ model.tag ++ ">"
+openingTag model =
+  "<" ++ model.tag ++ ">"
 
--- element model =
---   let
---     childs = (\ (Children childs) -> childs) model.children
---   in
---     String.join "-" (List.map (\child -> child.tag) childs)
-
--- element model =
---   if (List.length model.children) <= 0 then
---     model.tag ++ model.value ++ model.tag
---   else
-    -- model.tag ++ String.join "-" (List.map (\child -> child.value) model.children) ++ model.tag
---     String.join "-" (List.map (\child -> child.tag) model.children)
-
--- element model =
---   if (List.length model.children) <= 0 then
---     "<" ++ model.tag ++ ">"  ++ model.value  ++ "</" ++ model.tag ++ ">"
---   else
---     "<" ++ model.tag ++ ">"  ++ model.value  ++ "</" ++ model.tag ++ ">"
-
-
-
+closingTag model =
+  "</" ++ model.tag ++ ">"
 
 -- element model =
 --   let
