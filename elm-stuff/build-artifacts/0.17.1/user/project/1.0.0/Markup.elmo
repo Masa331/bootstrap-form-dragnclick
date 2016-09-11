@@ -1,15 +1,49 @@
 var _user$project$Markup$closingTag = function (model) {
-	return A2(
+	return _user$project$Models$isVoid(model) ? '' : A2(
 		_elm_lang$core$Basics_ops['++'],
 		'</',
 		A2(_elm_lang$core$Basics_ops['++'], model.tag, '>'));
 };
-var _user$project$Markup$openingTag = function (model) {
-	return A2(
+var _user$project$Markup$htmlAttributeString = function (attribute) {
+	return _elm_lang$core$Native_Utils.eq(attribute.value, '') ? attribute.name : A2(
 		_elm_lang$core$Basics_ops['++'],
-		'<',
-		A2(_elm_lang$core$Basics_ops['++'], model.tag, '>'));
+		attribute.name,
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			'=',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				'\"',
+				A2(_elm_lang$core$Basics_ops['++'], attribute.value, '\"'))));
 };
+var _user$project$Markup$htmlAttributesString = function (attributes) {
+	var stringifiedAttributes = A2(_elm_lang$core$List$map, _user$project$Markup$htmlAttributeString, attributes);
+	return (_elm_lang$core$Native_Utils.cmp(
+		_elm_lang$core$List$length(stringifiedAttributes),
+		0) > 0) ? A2(
+		_elm_lang$core$Basics_ops['++'],
+		' ',
+		A2(_elm_lang$core$String$join, ' ', stringifiedAttributes)) : '';
+};
+var _user$project$Markup$openingTag = function (model) {
+	var attributes = _user$project$Markup$htmlAttributesString(model.attributes);
+	var tag = model.tag;
+	return A2(
+		_elm_lang$core$String$join,
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			['<', tag, attributes, '>']));
+};
+var _user$project$Markup$valuePresence = F2(
+	function (nestingLevel, model) {
+		return (!_elm_lang$core$Native_Utils.eq(model.value, '')) ? A2(
+			_elm_lang$core$Basics_ops['++'],
+			'\n',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
+				model.value)) : '';
+	});
 var _user$project$Markup$element = F2(
 	function (nestingLevel, model) {
 		var childs = function (_p0) {
@@ -20,21 +54,24 @@ var _user$project$Markup$element = F2(
 		if (_p2.ctor === '[]') {
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
-				_user$project$Markup$openingTag(model),
+				A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
 				A2(
 					_elm_lang$core$Basics_ops['++'],
-					model.value,
-					_user$project$Markup$closingTag(model)));
+					_user$project$Markup$openingTag(model),
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						model.value,
+						_user$project$Markup$closingTag(model))));
 		} else {
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
-				_user$project$Markup$openingTag(model),
+				A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
 				A2(
 					_elm_lang$core$Basics_ops['++'],
-					'\n',
+					_user$project$Markup$openingTag(model),
 					A2(
 						_elm_lang$core$Basics_ops['++'],
-						'  ',
+						'\n',
 						A2(
 							_elm_lang$core$Basics_ops['++'],
 							A2(
@@ -46,8 +83,14 @@ var _user$project$Markup$element = F2(
 									childs)),
 							A2(
 								_elm_lang$core$Basics_ops['++'],
-								'\n',
-								_user$project$Markup$closingTag(model))))));
+								A2(_user$project$Markup$valuePresence, nestingLevel + 1, model),
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									'\n',
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
+										_user$project$Markup$closingTag(model))))))));
 		}
 	});
 var _user$project$Markup$form = function (model) {

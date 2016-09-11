@@ -7862,6 +7862,11 @@ var _user$project$YourForm$view = function (model) {
 		_user$project$YourForm$form(model));
 };
 
+var _user$project$Models$voidElementsList = _elm_lang$core$Native_List.fromArray(
+	['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']);
+var _user$project$Models$isVoid = function (model) {
+	return A2(_elm_lang$core$List$member, model.tag, _user$project$Models$voidElementsList);
+};
 var _user$project$Models$Attribute = F2(
 	function (a, b) {
 		return {name: a, value: b};
@@ -7887,11 +7892,46 @@ var _user$project$Models$initialChildren = function () {
 			_elm_lang$core$Native_List.fromArray(
 				[])),
 		'Submit');
+	var checkInput = A4(
+		_user$project$Models$Model,
+		'input',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'type', 'checkbox'),
+				A2(_user$project$Models$Attribute, 'class', 'form-check-input')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'');
+	var checkLabel = A4(
+		_user$project$Models$Model,
+		'label',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-check-label')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[checkInput])),
+		'Check me out');
+	var wholeCheck = A4(
+		_user$project$Models$Model,
+		'div',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-check')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[checkLabel])),
+		'');
 	var inputAttrs = _elm_lang$core$Native_List.fromArray(
 		[
 			A2(_user$project$Models$Attribute, 'type', 'text'),
 			A2(_user$project$Models$Attribute, 'class', 'form-control'),
-			A2(_user$project$Models$Attribute, 'id', 'input1')
+			A2(_user$project$Models$Attribute, 'id', 'input1'),
+			A2(_user$project$Models$Attribute, 'disabled', '')
 		]);
 	var input = A4(
 		_user$project$Models$Model,
@@ -7925,7 +7965,7 @@ var _user$project$Models$initialChildren = function () {
 		'');
 	return _user$project$Models$Children(
 		_elm_lang$core$Native_List.fromArray(
-			[wholeInput, submit]));
+			[wholeInput, wholeCheck, submit]));
 }();
 var _user$project$Models$initialModel2 = A4(
 	_user$project$Models$Model,
@@ -7936,17 +7976,51 @@ var _user$project$Models$initialModel2 = A4(
 	'');
 
 var _user$project$Markup$closingTag = function (model) {
-	return A2(
+	return _user$project$Models$isVoid(model) ? '' : A2(
 		_elm_lang$core$Basics_ops['++'],
 		'</',
 		A2(_elm_lang$core$Basics_ops['++'], model.tag, '>'));
 };
-var _user$project$Markup$openingTag = function (model) {
-	return A2(
+var _user$project$Markup$htmlAttributeString = function (attribute) {
+	return _elm_lang$core$Native_Utils.eq(attribute.value, '') ? attribute.name : A2(
 		_elm_lang$core$Basics_ops['++'],
-		'<',
-		A2(_elm_lang$core$Basics_ops['++'], model.tag, '>'));
+		attribute.name,
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			'=',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				'\"',
+				A2(_elm_lang$core$Basics_ops['++'], attribute.value, '\"'))));
 };
+var _user$project$Markup$htmlAttributesString = function (attributes) {
+	var stringifiedAttributes = A2(_elm_lang$core$List$map, _user$project$Markup$htmlAttributeString, attributes);
+	return (_elm_lang$core$Native_Utils.cmp(
+		_elm_lang$core$List$length(stringifiedAttributes),
+		0) > 0) ? A2(
+		_elm_lang$core$Basics_ops['++'],
+		' ',
+		A2(_elm_lang$core$String$join, ' ', stringifiedAttributes)) : '';
+};
+var _user$project$Markup$openingTag = function (model) {
+	var attributes = _user$project$Markup$htmlAttributesString(model.attributes);
+	var tag = model.tag;
+	return A2(
+		_elm_lang$core$String$join,
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			['<', tag, attributes, '>']));
+};
+var _user$project$Markup$valuePresence = F2(
+	function (nestingLevel, model) {
+		return (!_elm_lang$core$Native_Utils.eq(model.value, '')) ? A2(
+			_elm_lang$core$Basics_ops['++'],
+			'\n',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
+				model.value)) : '';
+	});
 var _user$project$Markup$element = F2(
 	function (nestingLevel, model) {
 		var childs = function (_p0) {
@@ -7957,21 +8031,24 @@ var _user$project$Markup$element = F2(
 		if (_p2.ctor === '[]') {
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
-				_user$project$Markup$openingTag(model),
+				A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
 				A2(
 					_elm_lang$core$Basics_ops['++'],
-					model.value,
-					_user$project$Markup$closingTag(model)));
+					_user$project$Markup$openingTag(model),
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						model.value,
+						_user$project$Markup$closingTag(model))));
 		} else {
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
-				_user$project$Markup$openingTag(model),
+				A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
 				A2(
 					_elm_lang$core$Basics_ops['++'],
-					'\n',
+					_user$project$Markup$openingTag(model),
 					A2(
 						_elm_lang$core$Basics_ops['++'],
-						'  ',
+						'\n',
 						A2(
 							_elm_lang$core$Basics_ops['++'],
 							A2(
@@ -7983,8 +8060,14 @@ var _user$project$Markup$element = F2(
 									childs)),
 							A2(
 								_elm_lang$core$Basics_ops['++'],
-								'\n',
-								_user$project$Markup$closingTag(model))))));
+								A2(_user$project$Markup$valuePresence, nestingLevel + 1, model),
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									'\n',
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
+										_user$project$Markup$closingTag(model))))))));
 		}
 	});
 var _user$project$Markup$form = function (model) {

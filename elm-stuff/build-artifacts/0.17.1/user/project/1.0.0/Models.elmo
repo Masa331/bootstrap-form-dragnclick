@@ -1,3 +1,8 @@
+var _user$project$Models$voidElementsList = _elm_lang$core$Native_List.fromArray(
+	['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']);
+var _user$project$Models$isVoid = function (model) {
+	return A2(_elm_lang$core$List$member, model.tag, _user$project$Models$voidElementsList);
+};
 var _user$project$Models$Attribute = F2(
 	function (a, b) {
 		return {name: a, value: b};
@@ -23,11 +28,46 @@ var _user$project$Models$initialChildren = function () {
 			_elm_lang$core$Native_List.fromArray(
 				[])),
 		'Submit');
+	var checkInput = A4(
+		_user$project$Models$Model,
+		'input',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'type', 'checkbox'),
+				A2(_user$project$Models$Attribute, 'class', 'form-check-input')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'');
+	var checkLabel = A4(
+		_user$project$Models$Model,
+		'label',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-check-label')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[checkInput])),
+		'Check me out');
+	var wholeCheck = A4(
+		_user$project$Models$Model,
+		'div',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-check')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[checkLabel])),
+		'');
 	var inputAttrs = _elm_lang$core$Native_List.fromArray(
 		[
 			A2(_user$project$Models$Attribute, 'type', 'text'),
 			A2(_user$project$Models$Attribute, 'class', 'form-control'),
-			A2(_user$project$Models$Attribute, 'id', 'input1')
+			A2(_user$project$Models$Attribute, 'id', 'input1'),
+			A2(_user$project$Models$Attribute, 'disabled', '')
 		]);
 	var input = A4(
 		_user$project$Models$Model,
@@ -61,7 +101,7 @@ var _user$project$Models$initialChildren = function () {
 		'');
 	return _user$project$Models$Children(
 		_elm_lang$core$Native_List.fromArray(
-			[wholeInput, submit]));
+			[wholeInput, wholeCheck, submit]));
 }();
 var _user$project$Models$initialModel2 = A4(
 	_user$project$Models$Model,

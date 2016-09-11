@@ -31,22 +31,40 @@ element nestingLevel model =
   in
     case childs of
       [] ->
-        (openingTag model)  ++ model.value  ++ (closingTag model)
+       (String.repeat nestingLevel "  ") ++ (openingTag model)  ++ model.value  ++ (closingTag model)
       x::xs ->
-        (openingTag model)  ++ "\n" ++ "  " ++ (String.join "\n" (List.map (element (nestingLevel + 1)) childs)) ++ "\n" ++ (closingTag model)
+        (String.repeat nestingLevel "  ") ++ (openingTag model)  ++ "\n" ++ (String.join "\n" (List.map (element (nestingLevel + 1)) childs)) ++ (valuePresence (nestingLevel + 1) model) ++ "\n" ++ (String.repeat nestingLevel "  ") ++ (closingTag model)
+
+valuePresence nestingLevel model =
+  if model.value /= "" then
+    "\n" ++ (String.repeat nestingLevel "  ") ++ model.value
+  else
+    ""
 
 openingTag model =
-  "<" ++ model.tag ++ ">"
+  let
+    tag = model.tag
+    attributes = htmlAttributesString model.attributes
+  in
+    String.join "" ["<", tag, attributes, ">"]
+
+htmlAttributesString attributes =
+  let
+    stringifiedAttributes = (List.map htmlAttributeString attributes)
+  in
+    if List.length stringifiedAttributes > 0 then
+      " " ++ (String.join " " stringifiedAttributes)
+    else
+      ""
+
+htmlAttributeString attribute =
+  if attribute.value == "" then
+    attribute.name
+  else
+    attribute.name ++ "=" ++ "\"" ++ attribute.value ++ "\""
 
 closingTag model =
-  "</" ++ model.tag ++ ">"
-
--- element model =
---   let
---     children =
---       if (List.length model.children) < 1 then
---         [""]
---       else
---         List.map element model.children
---   in
---     "<" ++ model.tag ++ ">"  ++ (String.join "\n" children)  ++ "</" ++ model.tag ++ ">"
+  if Models.isVoid model then
+     ""
+  else
+    "</" ++ model.tag ++ ">"
