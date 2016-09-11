@@ -26,7 +26,7 @@ view model =
       [class "row"]
       [div
         [class "col-sm-12"]
-        Views.markup
+        (Views.markup model)
       ]
     ]
 

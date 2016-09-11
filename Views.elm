@@ -12,5 +12,5 @@ templatesView =
 yourForm model =
   YourForm.view model
 
-markup =
-  Markup.view
+markup model =
+  Markup.view model

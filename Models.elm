@@ -1,23 +1,26 @@
--- module Models exposing (Model, initialModel)
-module Models exposing (Model, initialModel2)
+-- module Models exposing (Model, Children, initialModel2)
+module Models exposing (..)
 
 type alias Attribute = { name: String, value: String }
 
 type alias Model = { tag: String, attributes: List Attribute, children: Children, value: String }
 type Children = Children (List Model)
 
--- initialModel2 =
---   { tag = "input", attributes = [], children = [] }
-
 initialModel2 =
-  { tag = "form", attributes = [], children = initialChildren }
+  Model "form" [] initialChildren ""
+  -- { tag = "form", attributes = [], children = initialChildren, value = "" }
+  -- { tag = "form", attributes = [], children = Children initialChildren, value = "" }
+  -- Model "form" [] (Children initialChildren) ""
+  -- Model "form" [] initialChildren ""
 
 initialChildren =
   let
-    label = { tag = "label", attributes = [Attribute "for" "input1"], children = [], value = "" }
-    input = { tag = "input", attributes = [Attribute "type" "text", Attribute "class" "form-control", Attribute "id" "input1"], children = [], value = "" }
-    wholeInput = { tag = "div", attributes = [Attribute "class" "form-group"], children = [label, input], value = "" }
+    label = Model "label" [Attribute "for" "input1"] (Children []) ""
+    inputAttrs = [Attribute "type" "text", Attribute "class" "form-control", Attribute "id" "input1"]
+    input = Model "input" inputAttrs (Children []) ""
+    wholeInput = Model "div" [Attribute "class" "form-group"] (Children [label, input]) ""
 
-    submit = { tag = "button", attributes = [Attribute "type" "submit", Attribute "class" "btn btn-primary"], children = [], value = "Submit"}
+    submitAttrs = [Attribute "type" "submit", Attribute "class" "btn btn-primary"]
+    submit = Model "button" submitAttrs (Children []) "Submit"
   in
-    [wholeInput, submit]
+    Children [wholeInput, submit]

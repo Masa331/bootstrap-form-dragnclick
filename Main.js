@@ -7862,91 +7862,10 @@ var _user$project$YourForm$view = function (model) {
 		_user$project$YourForm$form(model));
 };
 
-var _user$project$Markup$view = _elm_lang$core$Native_List.fromArray(
-	[
-		A2(
-		_elm_lang$html$Html$h1,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Markup'),
-				A2(
-				_elm_lang$html$Html$small,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('text-muted')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('Copy and paste to your page')
-					]))
-			]))
-	]);
-
-var _user$project$Views$markup = _user$project$Markup$view;
-var _user$project$Views$yourForm = function (model) {
-	return _user$project$YourForm$view(model);
-};
-var _user$project$Views$templatesView = _user$project$TemplatesView$view;
-
 var _user$project$Models$Attribute = F2(
 	function (a, b) {
 		return {name: a, value: b};
 	});
-var _user$project$Models$initialChildren = function () {
-	var submit = {
-		tag: 'button',
-		attributes: _elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'type', 'submit'),
-				A2(_user$project$Models$Attribute, 'class', 'btn btn-primary')
-			]),
-		children: _elm_lang$core$Native_List.fromArray(
-			[]),
-		value: 'Submit'
-	};
-	var input = {
-		tag: 'input',
-		attributes: _elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'type', 'text'),
-				A2(_user$project$Models$Attribute, 'class', 'form-control'),
-				A2(_user$project$Models$Attribute, 'id', 'input1')
-			]),
-		children: _elm_lang$core$Native_List.fromArray(
-			[]),
-		value: ''
-	};
-	var label = {
-		tag: 'label',
-		attributes: _elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'for', 'input1')
-			]),
-		children: _elm_lang$core$Native_List.fromArray(
-			[]),
-		value: ''
-	};
-	var wholeInput = {
-		tag: 'div',
-		attributes: _elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'class', 'form-group')
-			]),
-		children: _elm_lang$core$Native_List.fromArray(
-			[label, input]),
-		value: ''
-	};
-	return _elm_lang$core$Native_List.fromArray(
-		[wholeInput, submit]);
-}();
-var _user$project$Models$initialModel2 = {
-	tag: 'form',
-	attributes: _elm_lang$core$Native_List.fromArray(
-		[]),
-	children: _user$project$Models$initialChildren
-};
 var _user$project$Models$Model = F4(
 	function (a, b, c, d) {
 		return {tag: a, attributes: b, children: c, value: d};
@@ -7954,6 +7873,159 @@ var _user$project$Models$Model = F4(
 var _user$project$Models$Children = function (a) {
 	return {ctor: 'Children', _0: a};
 };
+var _user$project$Models$initialChildren = function () {
+	var submitAttrs = _elm_lang$core$Native_List.fromArray(
+		[
+			A2(_user$project$Models$Attribute, 'type', 'submit'),
+			A2(_user$project$Models$Attribute, 'class', 'btn btn-primary')
+		]);
+	var submit = A4(
+		_user$project$Models$Model,
+		'button',
+		submitAttrs,
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'Submit');
+	var inputAttrs = _elm_lang$core$Native_List.fromArray(
+		[
+			A2(_user$project$Models$Attribute, 'type', 'text'),
+			A2(_user$project$Models$Attribute, 'class', 'form-control'),
+			A2(_user$project$Models$Attribute, 'id', 'input1')
+		]);
+	var input = A4(
+		_user$project$Models$Model,
+		'input',
+		inputAttrs,
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'');
+	var label = A4(
+		_user$project$Models$Model,
+		'label',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'for', 'input1')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'');
+	var wholeInput = A4(
+		_user$project$Models$Model,
+		'div',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-group')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[label, input])),
+		'');
+	return _user$project$Models$Children(
+		_elm_lang$core$Native_List.fromArray(
+			[wholeInput, submit]));
+}();
+var _user$project$Models$initialModel2 = A4(
+	_user$project$Models$Model,
+	'form',
+	_elm_lang$core$Native_List.fromArray(
+		[]),
+	_user$project$Models$initialChildren,
+	'');
+
+var _user$project$Markup$element = function (model) {
+	var childs = function (_p0) {
+		var _p1 = _p0;
+		return _p1._0;
+	}(model.children);
+	var _p2 = childs;
+	if (_p2.ctor === '[]') {
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			'<',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				model.tag,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'>',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						model.value,
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'</',
+							A2(_elm_lang$core$Basics_ops['++'], model.tag, '>'))))));
+	} else {
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			'<',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				model.tag,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'>',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_user$project$Markup$element(_p2._0),
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'</',
+							A2(_elm_lang$core$Basics_ops['++'], model.tag, '>'))))));
+	}
+};
+var _user$project$Markup$form = function (model) {
+	var children = model.children;
+	var attributes = model.attributes;
+	return A2(
+		_elm_lang$html$Html$pre,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text(
+				_user$project$Markup$element(model))
+			]));
+};
+var _user$project$Markup$heading = A2(
+	_elm_lang$html$Html$h1,
+	_elm_lang$core$Native_List.fromArray(
+		[]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html$text('Markup'),
+			A2(
+			_elm_lang$html$Html$small,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('text-muted')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Copy and paste to your page')
+				]))
+		]));
+var _user$project$Markup$view = function (model) {
+	return A2(
+		_elm_lang$core$List$append,
+		_elm_lang$core$Native_List.fromArray(
+			[_user$project$Markup$heading]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Markup$form(model)
+			]));
+};
+
+var _user$project$Views$markup = function (model) {
+	return _user$project$Markup$view(model);
+};
+var _user$project$Views$yourForm = function (model) {
+	return _user$project$YourForm$view(model);
+};
+var _user$project$Views$templatesView = _user$project$TemplatesView$view;
 
 var _user$project$Messages$nic = '';
 
@@ -8008,7 +8080,7 @@ var _user$project$Main$view = function (model) {
 							[
 								_elm_lang$html$Html_Attributes$class('col-sm-12')
 							]),
-						_user$project$Views$markup)
+						_user$project$Views$markup(model))
 					]))
 			]));
 };

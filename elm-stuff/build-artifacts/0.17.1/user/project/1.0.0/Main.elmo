@@ -49,7 +49,7 @@ var _user$project$Main$view = function (model) {
 							[
 								_elm_lang$html$Html_Attributes$class('col-sm-12')
 							]),
-						_user$project$Views$markup)
+						_user$project$Views$markup(model))
 					]))
 			]));
 };
