@@ -55,11 +55,9 @@ editAndRemoveLink element =
   div [class "edit-and-remove-link"] [editLink element, removeLink element]
 
 editLink element =
-  -- a [href "#"] [text "Edit"]
   a [href "#", onClick (EditInput element.id)] [text "Edit"]
 
 removeLink element =
-  -- a [href "#"] [text "Remove"]
   a [href "#", onClick (RemoveInput element.id)] [text "Remove"]
 
 createAttributes model =

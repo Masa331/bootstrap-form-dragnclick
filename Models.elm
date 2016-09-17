@@ -23,17 +23,9 @@ removeElementsRecursive model id =
   let
     element = model.element
     childs = (\ (Children childs) -> childs) element.children
-    -- removeFunc = (\child -> Just child)
     removeFunc = (\child -> if child.id == id then Nothing else Just child)
   in
     { element | children = Children (List.filterMap removeFunc childs) }
-    -- { element | children = Children childs }
-    -- case childs of
-    --   [] ->
-    --    model
-    --   x::xs ->
-    --    -- Html.node model.tag attributes (List.append (List.map element childs) value)
-    --    { model | children = List.filterMap removeFunc childs }
 
 -------------
 -- Private --
@@ -41,8 +33,6 @@ removeElementsRecursive model id =
 
 generateNextId model =
   model.currentId + 1
-
-  -- model.currentId
 
 initialElement =
   Element "form" [] (Children [initialTextInput, initialCheckbox, initialSubmit]) "" 0
