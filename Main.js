@@ -7796,40 +7796,219 @@ var _elm_lang$html$Html_Attributes$classList = function (list) {
 };
 var _elm_lang$html$Html_Attributes$style = _elm_lang$virtual_dom$VirtualDom$style;
 
-var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
-	[
-		A2(
-		_elm_lang$html$Html$h1,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Form elements'),
-				A2(
-				_elm_lang$html$Html$small,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('text-muted')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('Grab n drag to your form')
-					]))
-			]))
-	]);
+var _elm_lang$html$Html_Events$keyCode = A2(_elm_lang$core$Json_Decode_ops[':='], 'keyCode', _elm_lang$core$Json_Decode$int);
+var _elm_lang$html$Html_Events$targetChecked = A2(
+	_elm_lang$core$Json_Decode$at,
+	_elm_lang$core$Native_List.fromArray(
+		['target', 'checked']),
+	_elm_lang$core$Json_Decode$bool);
+var _elm_lang$html$Html_Events$targetValue = A2(
+	_elm_lang$core$Json_Decode$at,
+	_elm_lang$core$Native_List.fromArray(
+		['target', 'value']),
+	_elm_lang$core$Json_Decode$string);
+var _elm_lang$html$Html_Events$defaultOptions = _elm_lang$virtual_dom$VirtualDom$defaultOptions;
+var _elm_lang$html$Html_Events$onWithOptions = _elm_lang$virtual_dom$VirtualDom$onWithOptions;
+var _elm_lang$html$Html_Events$on = _elm_lang$virtual_dom$VirtualDom$on;
+var _elm_lang$html$Html_Events$onFocus = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'focus',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onBlur = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'blur',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onSubmitOptions = _elm_lang$core$Native_Utils.update(
+	_elm_lang$html$Html_Events$defaultOptions,
+	{preventDefault: true});
+var _elm_lang$html$Html_Events$onSubmit = function (msg) {
+	return A3(
+		_elm_lang$html$Html_Events$onWithOptions,
+		'submit',
+		_elm_lang$html$Html_Events$onSubmitOptions,
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onCheck = function (tagger) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'change',
+		A2(_elm_lang$core$Json_Decode$map, tagger, _elm_lang$html$Html_Events$targetChecked));
+};
+var _elm_lang$html$Html_Events$onInput = function (tagger) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'input',
+		A2(_elm_lang$core$Json_Decode$map, tagger, _elm_lang$html$Html_Events$targetValue));
+};
+var _elm_lang$html$Html_Events$onMouseOut = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseout',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseOver = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseover',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseLeave = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseleave',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseEnter = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseenter',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseUp = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseup',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseDown = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mousedown',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onDoubleClick = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'dblclick',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onClick = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'click',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$Options = F2(
+	function (a, b) {
+		return {stopPropagation: a, preventDefault: b};
+	});
+
+var _user$project$Messages$AddTextInput = {ctor: 'AddTextInput'};
+
+var _user$project$TemplatesView$submit = A2(
+	_elm_lang$html$Html$div,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html_Attributes$class('form-group')
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$button,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('btn btn-primary')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Submit button')
+				])),
+			A2(
+			_elm_lang$html$Html$hr,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[]))
+		]));
+var _user$project$TemplatesView$textInput = A2(
+	_elm_lang$html$Html$div,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html_Attributes$class('form-group')
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$label,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Textove pole')
+				])),
+			A2(
+			_elm_lang$html$Html$input,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('form-control')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+			A2(
+			_elm_lang$html$Html$a,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$href('#'),
+					_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput)
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('add')
+				])),
+			A2(
+			_elm_lang$html$Html$hr,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[]))
+		]));
+var _user$project$TemplatesView$heading = A2(
+	_elm_lang$html$Html$h1,
+	_elm_lang$core$Native_List.fromArray(
+		[]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html$text('Form elements'),
+			A2(
+			_elm_lang$html$Html$small,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('text-muted')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Grab n drag to your form')
+				]))
+		]));
+var _user$project$TemplatesView$view = A2(
+	_elm_lang$core$List$append,
+	_elm_lang$core$Native_List.fromArray(
+		[_user$project$TemplatesView$heading]),
+	_elm_lang$core$Native_List.fromArray(
+		[_user$project$TemplatesView$textInput, _user$project$TemplatesView$submit]));
 
 var _user$project$Models$voidElementsList = _elm_lang$core$Native_List.fromArray(
 	['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']);
-var _user$project$Models$isVoid = function (model) {
-	return A2(_elm_lang$core$List$member, model.tag, _user$project$Models$voidElementsList);
+var _user$project$Models$isVoid = function (element) {
+	return A2(_elm_lang$core$List$member, element.tag, _user$project$Models$voidElementsList);
 };
+var _user$project$Models$textInput = _elm_lang$core$Native_List.fromArray(
+	[]);
 var _user$project$Models$Attribute = F2(
 	function (a, b) {
 		return {name: a, value: b};
 	});
-var _user$project$Models$Model = F4(
-	function (a, b, c, d) {
-		return {tag: a, attributes: b, children: c, value: d};
+var _user$project$Models$Element = F5(
+	function (a, b, c, d, e) {
+		return {tag: a, attributes: b, children: c, value: d, id: e};
+	});
+var _user$project$Models$Model = F2(
+	function (a, b) {
+		return {currentId: a, element: b};
 	});
 var _user$project$Models$Children = function (a) {
 	return {ctor: 'Children', _0: a};
@@ -7840,16 +8019,17 @@ var _user$project$Models$initialChildren = function () {
 			A2(_user$project$Models$Attribute, 'type', 'submit'),
 			A2(_user$project$Models$Attribute, 'class', 'btn btn-primary')
 		]);
-	var submit = A4(
-		_user$project$Models$Model,
+	var submit = A5(
+		_user$project$Models$Element,
 		'button',
 		submitAttrs,
 		_user$project$Models$Children(
 			_elm_lang$core$Native_List.fromArray(
 				[])),
-		'Submit');
-	var checkInput = A4(
-		_user$project$Models$Model,
+		'Submit',
+		7);
+	var checkInput = A5(
+		_user$project$Models$Element,
 		'input',
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -7859,9 +8039,10 @@ var _user$project$Models$initialChildren = function () {
 		_user$project$Models$Children(
 			_elm_lang$core$Native_List.fromArray(
 				[])),
-		'');
-	var checkLabel = A4(
-		_user$project$Models$Model,
+		'',
+		4);
+	var checkLabel = A5(
+		_user$project$Models$Element,
 		'label',
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -7870,9 +8051,10 @@ var _user$project$Models$initialChildren = function () {
 		_user$project$Models$Children(
 			_elm_lang$core$Native_List.fromArray(
 				[checkInput])),
-		'Check me out');
-	var wholeCheck = A4(
-		_user$project$Models$Model,
+		'Check me out',
+		5);
+	var wholeCheck = A5(
+		_user$project$Models$Element,
 		'div',
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -7881,7 +8063,8 @@ var _user$project$Models$initialChildren = function () {
 		_user$project$Models$Children(
 			_elm_lang$core$Native_List.fromArray(
 				[checkLabel])),
-		'');
+		'',
+		6);
 	var inputAttrs = _elm_lang$core$Native_List.fromArray(
 		[
 			A2(_user$project$Models$Attribute, 'type', 'text'),
@@ -7889,16 +8072,17 @@ var _user$project$Models$initialChildren = function () {
 			A2(_user$project$Models$Attribute, 'id', 'input1'),
 			A2(_user$project$Models$Attribute, 'disabled', '')
 		]);
-	var input = A4(
-		_user$project$Models$Model,
+	var input = A5(
+		_user$project$Models$Element,
 		'input',
 		inputAttrs,
 		_user$project$Models$Children(
 			_elm_lang$core$Native_List.fromArray(
 				[])),
-		'');
-	var label = A4(
-		_user$project$Models$Model,
+		'',
+		2);
+	var label = A5(
+		_user$project$Models$Element,
 		'label',
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -7907,9 +8091,10 @@ var _user$project$Models$initialChildren = function () {
 		_user$project$Models$Children(
 			_elm_lang$core$Native_List.fromArray(
 				[])),
-		'Input1');
-	var wholeInput = A4(
-		_user$project$Models$Model,
+		'Input1',
+		1);
+	var wholeInput = A5(
+		_user$project$Models$Element,
 		'div',
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -7918,18 +8103,21 @@ var _user$project$Models$initialChildren = function () {
 		_user$project$Models$Children(
 			_elm_lang$core$Native_List.fromArray(
 				[label, input])),
-		'');
+		'',
+		3);
 	return _user$project$Models$Children(
 		_elm_lang$core$Native_List.fromArray(
 			[wholeInput, wholeCheck, submit]));
 }();
-var _user$project$Models$initialModel2 = A4(
-	_user$project$Models$Model,
+var _user$project$Models$initialElement = A5(
+	_user$project$Models$Element,
 	'form',
 	_elm_lang$core$Native_List.fromArray(
 		[]),
 	_user$project$Models$initialChildren,
-	'');
+	'',
+	0);
+var _user$project$Models$initialModel = {currentId: 6, element: _user$project$Models$initialElement};
 
 var _user$project$YourForm$createAttribute = function (attribute) {
 	return A2(_elm_lang$html$Html_Attributes$attribute, attribute.name, attribute.value);
@@ -7964,6 +8152,18 @@ var _user$project$YourForm$element = function (model) {
 					[value])));
 	}
 };
+var _user$project$YourForm$form = function (model) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$hr,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+			_user$project$YourForm$element(model)
+		]);
+};
 var _user$project$YourForm$heading = A2(
 	_elm_lang$html$Html$h1,
 	_elm_lang$core$Native_List.fromArray(
@@ -7993,135 +8193,14 @@ var _user$project$YourForm$debug = function (model) {
 				_elm_lang$core$Basics$toString(model))
 			]));
 };
-var _user$project$YourForm$form = function (model) {
-	return _elm_lang$core$Native_List.fromArray(
-		[
-			_user$project$YourForm$debug(model),
-			A2(
-			_elm_lang$html$Html$hr,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-			_user$project$YourForm$element(model)
-		]);
-};
 var _user$project$YourForm$view = function (model) {
 	return A2(
 		_elm_lang$core$List$append,
 		_elm_lang$core$Native_List.fromArray(
 			[_user$project$YourForm$heading]),
-		_user$project$YourForm$form(model));
+		_user$project$YourForm$form(model.element));
 };
 
-var _user$project$Markup$closingTag = function (model) {
-	return _user$project$Models$isVoid(model) ? '' : A2(
-		_elm_lang$core$Basics_ops['++'],
-		'</',
-		A2(_elm_lang$core$Basics_ops['++'], model.tag, '>'));
-};
-var _user$project$Markup$htmlAttributeString = function (attribute) {
-	return _elm_lang$core$Native_Utils.eq(attribute.value, '') ? attribute.name : A2(
-		_elm_lang$core$Basics_ops['++'],
-		attribute.name,
-		A2(
-			_elm_lang$core$Basics_ops['++'],
-			'=',
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				'\"',
-				A2(_elm_lang$core$Basics_ops['++'], attribute.value, '\"'))));
-};
-var _user$project$Markup$htmlAttributesString = function (attributes) {
-	var stringifiedAttributes = A2(_elm_lang$core$List$map, _user$project$Markup$htmlAttributeString, attributes);
-	return (_elm_lang$core$Native_Utils.cmp(
-		_elm_lang$core$List$length(stringifiedAttributes),
-		0) > 0) ? A2(
-		_elm_lang$core$Basics_ops['++'],
-		' ',
-		A2(_elm_lang$core$String$join, ' ', stringifiedAttributes)) : '';
-};
-var _user$project$Markup$openingTag = function (model) {
-	var attributes = _user$project$Markup$htmlAttributesString(model.attributes);
-	var tag = model.tag;
-	return A2(
-		_elm_lang$core$String$join,
-		'',
-		_elm_lang$core$Native_List.fromArray(
-			['<', tag, attributes, '>']));
-};
-var _user$project$Markup$valuePresence = F2(
-	function (nestingLevel, model) {
-		return (!_elm_lang$core$Native_Utils.eq(model.value, '')) ? A2(
-			_elm_lang$core$Basics_ops['++'],
-			'\n',
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
-				model.value)) : '';
-	});
-var _user$project$Markup$element = F2(
-	function (nestingLevel, model) {
-		var childs = function (_p0) {
-			var _p1 = _p0;
-			return _p1._0;
-		}(model.children);
-		var _p2 = childs;
-		if (_p2.ctor === '[]') {
-			return A2(
-				_elm_lang$core$Basics_ops['++'],
-				A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_user$project$Markup$openingTag(model),
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						model.value,
-						_user$project$Markup$closingTag(model))));
-		} else {
-			return A2(
-				_elm_lang$core$Basics_ops['++'],
-				A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_user$project$Markup$openingTag(model),
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						'\n',
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							A2(
-								_elm_lang$core$String$join,
-								'\n',
-								A2(
-									_elm_lang$core$List$map,
-									_user$project$Markup$element(nestingLevel + 1),
-									childs)),
-							A2(
-								_elm_lang$core$Basics_ops['++'],
-								A2(_user$project$Markup$valuePresence, nestingLevel + 1, model),
-								A2(
-									_elm_lang$core$Basics_ops['++'],
-									'\n',
-									A2(
-										_elm_lang$core$Basics_ops['++'],
-										A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
-										_user$project$Markup$closingTag(model))))))));
-		}
-	});
-var _user$project$Markup$form = function (model) {
-	var children = model.children;
-	var attributes = model.attributes;
-	return A2(
-		_elm_lang$html$Html$pre,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text(
-				A2(_user$project$Markup$element, 0, model))
-			]));
-};
 var _user$project$Markup$heading = A2(
 	_elm_lang$html$Html$h1,
 	_elm_lang$core$Native_List.fromArray(
@@ -8141,14 +8220,8 @@ var _user$project$Markup$heading = A2(
 				]))
 		]));
 var _user$project$Markup$view = function (model) {
-	return A2(
-		_elm_lang$core$List$append,
-		_elm_lang$core$Native_List.fromArray(
-			[_user$project$Markup$heading]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$Markup$form(model)
-			]));
+	return _elm_lang$core$Native_List.fromArray(
+		[_user$project$Markup$heading]);
 };
 
 var _user$project$Views$markup = function (model) {
@@ -8159,14 +8232,22 @@ var _user$project$Views$yourForm = function (model) {
 };
 var _user$project$Views$templatesView = _user$project$TemplatesView$view;
 
-var _user$project$Messages$nic = '';
+var _user$project$Updates$addInputToForm = F2(
+	function (model, input) {
+		return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+	});
+var _user$project$Updates$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		return A2(_user$project$Updates$addInputToForm, model, _user$project$Models$textInput);
+	});
 
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		return A2(_user$project$Updates$update, msg, model);
 	});
 var _user$project$Main$view = function (model) {
 	return A2(
@@ -8187,14 +8268,14 @@ var _user$project$Main$view = function (model) {
 						_elm_lang$html$Html$div,
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html_Attributes$class('col-sm-4')
+								_elm_lang$html$Html_Attributes$class('col-sm-5')
 							]),
 						_user$project$Views$templatesView),
 						A2(
 						_elm_lang$html$Html$div,
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html_Attributes$class('col-sm-8')
+								_elm_lang$html$Html_Attributes$class('col-sm-7')
 							]),
 						_user$project$Views$yourForm(model))
 					])),
@@ -8216,7 +8297,7 @@ var _user$project$Main$view = function (model) {
 					]))
 			]));
 };
-var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Models$initialModel2, _1: _elm_lang$core$Platform_Cmd$none};
+var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Models$initialModel, _1: _elm_lang$core$Platform_Cmd$none};
 var _user$project$Main$main = {
 	main: _elm_lang$html$Html_App$program(
 		{init: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions})

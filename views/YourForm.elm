@@ -6,8 +6,7 @@ import Html.Attributes exposing (..)
 import Models exposing (..)
 
 view model =
-  List.append [heading] (form model)
-
+  List.append [heading] (form model.element)
 
 -------------
 -- Private --
@@ -26,8 +25,7 @@ heading =
   ]
 
 form model =
-  [debug model
-  , hr [] []
+  [ hr [] []
   , element model
   ]
 

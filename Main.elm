@@ -7,8 +7,9 @@ import Html.Attributes exposing (class)
 import Views
 import Models
 import Messages
+import Updates
 
-init = (Models.initialModel2, Cmd.none)
+init = (Models.initialModel, Cmd.none)
 
 view model =
   div
@@ -16,10 +17,10 @@ view model =
     [div
       [class "row"]
       [ div
-         [class "col-sm-4"]
+         [class "col-sm-5"]
          Views.templatesView
       , div
-         [class "col-sm-8"]
+         [class "col-sm-7"]
          (Views.yourForm model)
       ]
     ,div
@@ -31,7 +32,7 @@ view model =
     ]
 
 update msg model =
-  (model, Cmd.none)
+  Updates.update msg model
 
 subscriptions model =
   Sub.none

@@ -31,6 +31,18 @@ var _user$project$YourForm$element = function (model) {
 					[value])));
 	}
 };
+var _user$project$YourForm$form = function (model) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$hr,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+			_user$project$YourForm$element(model)
+		]);
+};
 var _user$project$YourForm$heading = A2(
 	_elm_lang$html$Html$h1,
 	_elm_lang$core$Native_List.fromArray(
@@ -60,23 +72,10 @@ var _user$project$YourForm$debug = function (model) {
 				_elm_lang$core$Basics$toString(model))
 			]));
 };
-var _user$project$YourForm$form = function (model) {
-	return _elm_lang$core$Native_List.fromArray(
-		[
-			_user$project$YourForm$debug(model),
-			A2(
-			_elm_lang$html$Html$hr,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-			_user$project$YourForm$element(model)
-		]);
-};
 var _user$project$YourForm$view = function (model) {
 	return A2(
 		_elm_lang$core$List$append,
 		_elm_lang$core$Native_List.fromArray(
 			[_user$project$YourForm$heading]),
-		_user$project$YourForm$form(model));
+		_user$project$YourForm$form(model.element));
 };

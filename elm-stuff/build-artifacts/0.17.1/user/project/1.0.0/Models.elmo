@@ -1,15 +1,21 @@
 var _user$project$Models$voidElementsList = _elm_lang$core$Native_List.fromArray(
 	['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']);
-var _user$project$Models$isVoid = function (model) {
-	return A2(_elm_lang$core$List$member, model.tag, _user$project$Models$voidElementsList);
+var _user$project$Models$isVoid = function (element) {
+	return A2(_elm_lang$core$List$member, element.tag, _user$project$Models$voidElementsList);
 };
+var _user$project$Models$textInput = _elm_lang$core$Native_List.fromArray(
+	[]);
 var _user$project$Models$Attribute = F2(
 	function (a, b) {
 		return {name: a, value: b};
 	});
-var _user$project$Models$Model = F4(
-	function (a, b, c, d) {
-		return {tag: a, attributes: b, children: c, value: d};
+var _user$project$Models$Element = F5(
+	function (a, b, c, d, e) {
+		return {tag: a, attributes: b, children: c, value: d, id: e};
+	});
+var _user$project$Models$Model = F2(
+	function (a, b) {
+		return {currentId: a, element: b};
 	});
 var _user$project$Models$Children = function (a) {
 	return {ctor: 'Children', _0: a};
@@ -20,16 +26,17 @@ var _user$project$Models$initialChildren = function () {
 			A2(_user$project$Models$Attribute, 'type', 'submit'),
 			A2(_user$project$Models$Attribute, 'class', 'btn btn-primary')
 		]);
-	var submit = A4(
-		_user$project$Models$Model,
+	var submit = A5(
+		_user$project$Models$Element,
 		'button',
 		submitAttrs,
 		_user$project$Models$Children(
 			_elm_lang$core$Native_List.fromArray(
 				[])),
-		'Submit');
-	var checkInput = A4(
-		_user$project$Models$Model,
+		'Submit',
+		7);
+	var checkInput = A5(
+		_user$project$Models$Element,
 		'input',
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -39,9 +46,10 @@ var _user$project$Models$initialChildren = function () {
 		_user$project$Models$Children(
 			_elm_lang$core$Native_List.fromArray(
 				[])),
-		'');
-	var checkLabel = A4(
-		_user$project$Models$Model,
+		'',
+		4);
+	var checkLabel = A5(
+		_user$project$Models$Element,
 		'label',
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -50,9 +58,10 @@ var _user$project$Models$initialChildren = function () {
 		_user$project$Models$Children(
 			_elm_lang$core$Native_List.fromArray(
 				[checkInput])),
-		'Check me out');
-	var wholeCheck = A4(
-		_user$project$Models$Model,
+		'Check me out',
+		5);
+	var wholeCheck = A5(
+		_user$project$Models$Element,
 		'div',
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -61,7 +70,8 @@ var _user$project$Models$initialChildren = function () {
 		_user$project$Models$Children(
 			_elm_lang$core$Native_List.fromArray(
 				[checkLabel])),
-		'');
+		'',
+		6);
 	var inputAttrs = _elm_lang$core$Native_List.fromArray(
 		[
 			A2(_user$project$Models$Attribute, 'type', 'text'),
@@ -69,16 +79,17 @@ var _user$project$Models$initialChildren = function () {
 			A2(_user$project$Models$Attribute, 'id', 'input1'),
 			A2(_user$project$Models$Attribute, 'disabled', '')
 		]);
-	var input = A4(
-		_user$project$Models$Model,
+	var input = A5(
+		_user$project$Models$Element,
 		'input',
 		inputAttrs,
 		_user$project$Models$Children(
 			_elm_lang$core$Native_List.fromArray(
 				[])),
-		'');
-	var label = A4(
-		_user$project$Models$Model,
+		'',
+		2);
+	var label = A5(
+		_user$project$Models$Element,
 		'label',
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -87,9 +98,10 @@ var _user$project$Models$initialChildren = function () {
 		_user$project$Models$Children(
 			_elm_lang$core$Native_List.fromArray(
 				[])),
-		'Input1');
-	var wholeInput = A4(
-		_user$project$Models$Model,
+		'Input1',
+		1);
+	var wholeInput = A5(
+		_user$project$Models$Element,
 		'div',
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -98,15 +110,18 @@ var _user$project$Models$initialChildren = function () {
 		_user$project$Models$Children(
 			_elm_lang$core$Native_List.fromArray(
 				[label, input])),
-		'');
+		'',
+		3);
 	return _user$project$Models$Children(
 		_elm_lang$core$Native_List.fromArray(
 			[wholeInput, wholeCheck, submit]));
 }();
-var _user$project$Models$initialModel2 = A4(
-	_user$project$Models$Model,
+var _user$project$Models$initialElement = A5(
+	_user$project$Models$Element,
 	'form',
 	_elm_lang$core$Native_List.fromArray(
 		[]),
 	_user$project$Models$initialChildren,
-	'');
+	'',
+	0);
+var _user$project$Models$initialModel = {currentId: 6, element: _user$project$Models$initialElement};

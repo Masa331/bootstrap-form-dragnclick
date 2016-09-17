@@ -1,3 +1,3 @@
 module Messages exposing (..)
 
-nic = ""
+type Msg = AddTextInput
