@@ -79,3 +79,9 @@ body {
     border-bottom: 0;
   }
 }
+
+.edit-and-remove-link {
+  position: relative;
+  bottom: 90%;
+  left: 90%;
+}

@@ -1,9 +1,52 @@
 var _user$project$Updates$addInputToForm = F2(
 	function (model, input) {
-		return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		var childs = function (_p0) {
+			var _p1 = _p0;
+			return _p1._0;
+		}(model.element.children);
+		var oldElement = model.element;
+		var element = _elm_lang$core$Native_Utils.update(
+			oldElement,
+			{
+				children: _user$project$Models$Children(
+					A2(
+						_elm_lang$core$List$append,
+						_elm_lang$core$Native_List.fromArray(
+							[input]),
+						childs))
+			});
+		return {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Native_Utils.update(
+				model,
+				{element: element, currentId: input.id}),
+			_1: _elm_lang$core$Platform_Cmd$none
+		};
+	});
+var _user$project$Updates$removeInput = F2(
+	function (model, inputId) {
+		var newElement = A2(_user$project$Models$removeElementsRecursive, model, inputId);
+		return {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Native_Utils.update(
+				model,
+				{element: newElement}),
+			_1: _elm_lang$core$Platform_Cmd$none
+		};
 	});
 var _user$project$Updates$update = F2(
 	function (msg, model) {
-		var _p0 = msg;
-		return A2(_user$project$Updates$addInputToForm, model, _user$project$Models$textInput);
+		var _p2 = msg;
+		switch (_p2.ctor) {
+			case 'AddTextInput':
+				return A2(
+					_user$project$Updates$addInputToForm,
+					model,
+					_user$project$Models$textInput(
+						_user$project$Models$generateNextId(model)));
+			case 'RemoveInput':
+				return A2(_user$project$Updates$removeInput, model, _p2._0);
+			default:
+				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		}
 	});

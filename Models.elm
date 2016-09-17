@@ -9,34 +9,64 @@ type alias Model = { currentId: Int, element: Element }
 type Children = Children (List Element)
 
 initialModel =
-  { currentId = 6, element = initialElement }
+  { currentId = 7, element = initialElement }
 
-textInput =
-  []
+textInput id =
+  let
+    label = Element "label" [Attribute "for" "input1"] (Children []) "Input1" id
+    inputAttrs = [Attribute "type" "text", Attribute "class" "form-control", Attribute "id" "input1", Attribute "disabled" ""]
+    input = Element "input" inputAttrs (Children []) "" id
+  in
+    Element "div" [Attribute "class" "form-group"] (Children [label, input]) "" id
+
+removeElementsRecursive model id =
+  let
+    element = model.element
+    childs = (\ (Children childs) -> childs) element.children
+    -- removeFunc = (\child -> Just child)
+    removeFunc = (\child -> if child.id == id then Nothing else Just child)
+  in
+    { element | children = Children (List.filterMap removeFunc childs) }
+    -- { element | children = Children childs }
+    -- case childs of
+    --   [] ->
+    --    model
+    --   x::xs ->
+    --    -- Html.node model.tag attributes (List.append (List.map element childs) value)
+    --    { model | children = List.filterMap removeFunc childs }
 
 -------------
 -- Private --
 -------------
 
-initialElement =
-  Element "form" [] initialChildren "" 0
+generateNextId model =
+  model.currentId + 1
 
-initialChildren =
+  -- model.currentId
+
+initialElement =
+  Element "form" [] (Children [initialTextInput, initialCheckbox, initialSubmit]) "" 0
+
+initialTextInput =
   let
     label = Element "label" [Attribute "for" "input1"] (Children []) "Input1" 1
     inputAttrs = [Attribute "type" "text", Attribute "class" "form-control", Attribute "id" "input1", Attribute "disabled" ""]
     input = Element "input" inputAttrs (Children []) "" 2
-    wholeInput = Element "div" [Attribute "class" "form-group"] (Children [label, input]) "" 3
+  in
+    Element "div" [Attribute "class" "form-group"] (Children [label, input]) "" 3
 
+initialCheckbox =
+  let
     checkInput = Element "input" [Attribute "type" "checkbox", Attribute "class" "form-check-input"] (Children []) "" 4
     checkLabel = Element "label" [Attribute "class" "form-check-label"] (Children [checkInput]) "Check me out" 5
-    wholeCheck = Element "div" [Attribute "class" "form-check"] (Children [checkLabel]) "" 6
-
-    submitAttrs = [Attribute "type" "submit", Attribute "class" "btn btn-primary"]
-    submit = Element "button" submitAttrs (Children []) "Submit" 7
   in
-    Children [wholeInput, wholeCheck, submit]
+    Element "div" [Attribute "class" "form-check"] (Children [checkLabel]) "" 6
 
+initialSubmit =
+  let
+    submitAttrs = [Attribute "type" "submit", Attribute "class" "btn btn-primary"]
+  in
+    Element "button" submitAttrs (Children []) "Submit" 7
 
 isVoid element =
   List.member element.tag voidElementsList

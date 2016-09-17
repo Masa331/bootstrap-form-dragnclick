@@ -2,8 +2,10 @@ module YourForm exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (..)
 
 import Models exposing (..)
+import Messages exposing (..)
 
 view model =
   List.append [heading] (form model.element)
@@ -33,13 +35,32 @@ element model =
   let
     attributes = createAttributes model
     childs = (\ (Children childs) -> childs) model.children
-    value = Html.text model.value
+    value = valueForElement model
   in
     case childs of
       [] ->
-       Html.node model.tag attributes [value]
+       Html.node model.tag attributes value
       x::xs ->
-       Html.node model.tag attributes (List.append (List.map element childs) [value])
+       Html.node model.tag attributes (List.append (List.map element childs) value)
+
+valueForElement element =
+  if element.tag == "div" then
+    [Html.text element.value
+    , editAndRemoveLink element
+    ]
+  else
+    [Html.text element.value]
+
+editAndRemoveLink element =
+  div [class "edit-and-remove-link"] [editLink element, removeLink element]
+
+editLink element =
+  -- a [href "#"] [text "Edit"]
+  a [href "#", onClick (EditInput element.id)] [text "Edit"]
+
+removeLink element =
+  -- a [href "#"] [text "Remove"]
+  a [href "#", onClick (RemoveInput element.id)] [text "Remove"]
 
 createAttributes model =
   List.map createAttribute model.attributes

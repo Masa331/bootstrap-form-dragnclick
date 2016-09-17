@@ -1,1 +1,7 @@
+var _user$project$Messages$EditInput = function (a) {
+	return {ctor: 'EditInput', _0: a};
+};
+var _user$project$Messages$RemoveInput = function (a) {
+	return {ctor: 'RemoveInput', _0: a};
+};
 var _user$project$Messages$AddTextInput = {ctor: 'AddTextInput'};

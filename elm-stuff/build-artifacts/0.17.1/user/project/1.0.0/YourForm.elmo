@@ -4,8 +4,59 @@ var _user$project$YourForm$createAttribute = function (attribute) {
 var _user$project$YourForm$createAttributes = function (model) {
 	return A2(_elm_lang$core$List$map, _user$project$YourForm$createAttribute, model.attributes);
 };
+var _user$project$YourForm$removeLink = function (element) {
+	return A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href('#'),
+				_elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$RemoveInput(element.id))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Remove')
+			]));
+};
+var _user$project$YourForm$editLink = function (element) {
+	return A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href('#'),
+				_elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$EditInput(element.id))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Edit')
+			]));
+};
+var _user$project$YourForm$editAndRemoveLink = function (element) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('edit-and-remove-link')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$YourForm$editLink(element),
+				_user$project$YourForm$removeLink(element)
+			]));
+};
+var _user$project$YourForm$valueForElement = function (element) {
+	return _elm_lang$core$Native_Utils.eq(element.tag, 'div') ? _elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html$text(element.value),
+			_user$project$YourForm$editAndRemoveLink(element)
+		]) : _elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html$text(element.value)
+		]);
+};
 var _user$project$YourForm$element = function (model) {
-	var value = _elm_lang$html$Html$text(model.value);
+	var value = _user$project$YourForm$valueForElement(model);
 	var childs = function (_p0) {
 		var _p1 = _p0;
 		return _p1._0;
@@ -13,12 +64,7 @@ var _user$project$YourForm$element = function (model) {
 	var attributes = _user$project$YourForm$createAttributes(model);
 	var _p2 = childs;
 	if (_p2.ctor === '[]') {
-		return A3(
-			_elm_lang$html$Html$node,
-			model.tag,
-			attributes,
-			_elm_lang$core$Native_List.fromArray(
-				[value]));
+		return A3(_elm_lang$html$Html$node, model.tag, attributes, value);
 	} else {
 		return A3(
 			_elm_lang$html$Html$node,
@@ -27,8 +73,7 @@ var _user$project$YourForm$element = function (model) {
 			A2(
 				_elm_lang$core$List$append,
 				A2(_elm_lang$core$List$map, _user$project$YourForm$element, childs),
-				_elm_lang$core$Native_List.fromArray(
-					[value])));
+				value));
 	}
 };
 var _user$project$YourForm$form = function (model) {

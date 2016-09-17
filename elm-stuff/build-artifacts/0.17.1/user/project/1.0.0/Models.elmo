@@ -3,8 +3,9 @@ var _user$project$Models$voidElementsList = _elm_lang$core$Native_List.fromArray
 var _user$project$Models$isVoid = function (element) {
 	return A2(_elm_lang$core$List$member, element.tag, _user$project$Models$voidElementsList);
 };
-var _user$project$Models$textInput = _elm_lang$core$Native_List.fromArray(
-	[]);
+var _user$project$Models$generateNextId = function (model) {
+	return model.currentId + 1;
+};
 var _user$project$Models$Attribute = F2(
 	function (a, b) {
 		return {name: a, value: b};
@@ -20,58 +21,66 @@ var _user$project$Models$Model = F2(
 var _user$project$Models$Children = function (a) {
 	return {ctor: 'Children', _0: a};
 };
-var _user$project$Models$initialChildren = function () {
-	var submitAttrs = _elm_lang$core$Native_List.fromArray(
+var _user$project$Models$textInput = function (id) {
+	var inputAttrs = _elm_lang$core$Native_List.fromArray(
 		[
-			A2(_user$project$Models$Attribute, 'type', 'submit'),
-			A2(_user$project$Models$Attribute, 'class', 'btn btn-primary')
+			A2(_user$project$Models$Attribute, 'type', 'text'),
+			A2(_user$project$Models$Attribute, 'class', 'form-control'),
+			A2(_user$project$Models$Attribute, 'id', 'input1'),
+			A2(_user$project$Models$Attribute, 'disabled', '')
 		]);
-	var submit = A5(
-		_user$project$Models$Element,
-		'button',
-		submitAttrs,
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'Submit',
-		7);
-	var checkInput = A5(
+	var input = A5(
 		_user$project$Models$Element,
 		'input',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'type', 'checkbox'),
-				A2(_user$project$Models$Attribute, 'class', 'form-check-input')
-			]),
+		inputAttrs,
 		_user$project$Models$Children(
 			_elm_lang$core$Native_List.fromArray(
 				[])),
 		'',
-		4);
-	var checkLabel = A5(
+		id);
+	var label = A5(
 		_user$project$Models$Element,
 		'label',
 		_elm_lang$core$Native_List.fromArray(
 			[
-				A2(_user$project$Models$Attribute, 'class', 'form-check-label')
+				A2(_user$project$Models$Attribute, 'for', 'input1')
 			]),
 		_user$project$Models$Children(
 			_elm_lang$core$Native_List.fromArray(
-				[checkInput])),
-		'Check me out',
-		5);
-	var wholeCheck = A5(
+				[])),
+		'Input1',
+		id);
+	return A5(
 		_user$project$Models$Element,
 		'div',
 		_elm_lang$core$Native_List.fromArray(
 			[
-				A2(_user$project$Models$Attribute, 'class', 'form-check')
+				A2(_user$project$Models$Attribute, 'class', 'form-group')
 			]),
 		_user$project$Models$Children(
 			_elm_lang$core$Native_List.fromArray(
-				[checkLabel])),
+				[label, input])),
 		'',
-		6);
+		id);
+};
+var _user$project$Models$removeElementsRecursive = F2(
+	function (model, id) {
+		var removeFunc = function (child) {
+			return _elm_lang$core$Native_Utils.eq(child.id, id) ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(child);
+		};
+		var element = model.element;
+		var childs = function (_p0) {
+			var _p1 = _p0;
+			return _p1._0;
+		}(element.children);
+		return _elm_lang$core$Native_Utils.update(
+			element,
+			{
+				children: _user$project$Models$Children(
+					A2(_elm_lang$core$List$filterMap, removeFunc, childs))
+			});
+	});
+var _user$project$Models$initialTextInput = function () {
 	var inputAttrs = _elm_lang$core$Native_List.fromArray(
 		[
 			A2(_user$project$Models$Attribute, 'type', 'text'),
@@ -100,7 +109,7 @@ var _user$project$Models$initialChildren = function () {
 				[])),
 		'Input1',
 		1);
-	var wholeInput = A5(
+	return A5(
 		_user$project$Models$Element,
 		'div',
 		_elm_lang$core$Native_List.fromArray(
@@ -112,16 +121,70 @@ var _user$project$Models$initialChildren = function () {
 				[label, input])),
 		'',
 		3);
-	return _user$project$Models$Children(
+}();
+var _user$project$Models$initialCheckbox = function () {
+	var checkInput = A5(
+		_user$project$Models$Element,
+		'input',
 		_elm_lang$core$Native_List.fromArray(
-			[wholeInput, wholeCheck, submit]));
+			[
+				A2(_user$project$Models$Attribute, 'type', 'checkbox'),
+				A2(_user$project$Models$Attribute, 'class', 'form-check-input')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'',
+		4);
+	var checkLabel = A5(
+		_user$project$Models$Element,
+		'label',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-check-label')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[checkInput])),
+		'Check me out',
+		5);
+	return A5(
+		_user$project$Models$Element,
+		'div',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-check')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[checkLabel])),
+		'',
+		6);
+}();
+var _user$project$Models$initialSubmit = function () {
+	var submitAttrs = _elm_lang$core$Native_List.fromArray(
+		[
+			A2(_user$project$Models$Attribute, 'type', 'submit'),
+			A2(_user$project$Models$Attribute, 'class', 'btn btn-primary')
+		]);
+	return A5(
+		_user$project$Models$Element,
+		'button',
+		submitAttrs,
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'Submit',
+		7);
 }();
 var _user$project$Models$initialElement = A5(
 	_user$project$Models$Element,
 	'form',
 	_elm_lang$core$Native_List.fromArray(
 		[]),
-	_user$project$Models$initialChildren,
+	_user$project$Models$Children(
+		_elm_lang$core$Native_List.fromArray(
+			[_user$project$Models$initialTextInput, _user$project$Models$initialCheckbox, _user$project$Models$initialSubmit])),
 	'',
 	0);
-var _user$project$Models$initialModel = {currentId: 6, element: _user$project$Models$initialElement};
+var _user$project$Models$initialModel = {currentId: 7, element: _user$project$Models$initialElement};
