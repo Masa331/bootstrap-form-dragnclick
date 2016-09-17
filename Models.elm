@@ -11,7 +11,7 @@ initialModel2 =
 
 initialChildren =
   let
-    label = Model "label" [Attribute "for" "input1"] (Children []) ""
+    label = Model "label" [Attribute "for" "input1"] (Children []) "Input1"
     inputAttrs = [Attribute "type" "text", Attribute "class" "form-control", Attribute "id" "input1", Attribute "disabled" ""]
     input = Model "input" inputAttrs (Children []) ""
     wholeInput = Model "div" [Attribute "class" "form-group"] (Children [label, input]) ""

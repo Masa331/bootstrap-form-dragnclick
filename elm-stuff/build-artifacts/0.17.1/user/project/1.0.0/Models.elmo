@@ -87,7 +87,7 @@ var _user$project$Models$initialChildren = function () {
 		_user$project$Models$Children(
 			_elm_lang$core$Native_List.fromArray(
 				[])),
-		'');
+		'Input1');
 	var wholeInput = A4(
 		_user$project$Models$Model,
 		'div',

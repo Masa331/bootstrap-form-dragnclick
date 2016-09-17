@@ -7818,50 +7818,6 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 			]))
 	]);
 
-var _user$project$YourForm$debug = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text(
-				_elm_lang$core$Basics$toString(model))
-			]));
-};
-var _user$project$YourForm$form = function (model) {
-	return _elm_lang$core$Native_List.fromArray(
-		[
-			_user$project$YourForm$debug(model),
-			_elm_lang$html$Html$text('neco')
-		]);
-};
-var _user$project$YourForm$heading = A2(
-	_elm_lang$html$Html$h1,
-	_elm_lang$core$Native_List.fromArray(
-		[]),
-	_elm_lang$core$Native_List.fromArray(
-		[
-			_elm_lang$html$Html$text('Your Form'),
-			A2(
-			_elm_lang$html$Html$small,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$class('text-muted')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Drag to move, Right click to edit')
-				]))
-		]));
-var _user$project$YourForm$view = function (model) {
-	return A2(
-		_elm_lang$core$List$append,
-		_elm_lang$core$Native_List.fromArray(
-			[_user$project$YourForm$heading]),
-		_user$project$YourForm$form(model));
-};
-
 var _user$project$Models$voidElementsList = _elm_lang$core$Native_List.fromArray(
 	['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']);
 var _user$project$Models$isVoid = function (model) {
@@ -7951,7 +7907,7 @@ var _user$project$Models$initialChildren = function () {
 		_user$project$Models$Children(
 			_elm_lang$core$Native_List.fromArray(
 				[])),
-		'');
+		'Input1');
 	var wholeInput = A4(
 		_user$project$Models$Model,
 		'div',
@@ -7974,6 +7930,89 @@ var _user$project$Models$initialModel2 = A4(
 		[]),
 	_user$project$Models$initialChildren,
 	'');
+
+var _user$project$YourForm$createAttribute = function (attribute) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, attribute.name, attribute.value);
+};
+var _user$project$YourForm$createAttributes = function (model) {
+	return A2(_elm_lang$core$List$map, _user$project$YourForm$createAttribute, model.attributes);
+};
+var _user$project$YourForm$element = function (model) {
+	var value = _elm_lang$html$Html$text(model.value);
+	var childs = function (_p0) {
+		var _p1 = _p0;
+		return _p1._0;
+	}(model.children);
+	var attributes = _user$project$YourForm$createAttributes(model);
+	var _p2 = childs;
+	if (_p2.ctor === '[]') {
+		return A3(
+			_elm_lang$html$Html$node,
+			model.tag,
+			attributes,
+			_elm_lang$core$Native_List.fromArray(
+				[value]));
+	} else {
+		return A3(
+			_elm_lang$html$Html$node,
+			model.tag,
+			attributes,
+			A2(
+				_elm_lang$core$List$append,
+				A2(_elm_lang$core$List$map, _user$project$YourForm$element, childs),
+				_elm_lang$core$Native_List.fromArray(
+					[value])));
+	}
+};
+var _user$project$YourForm$heading = A2(
+	_elm_lang$html$Html$h1,
+	_elm_lang$core$Native_List.fromArray(
+		[]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html$text('Your Form'),
+			A2(
+			_elm_lang$html$Html$small,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('text-muted')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Drag to move, Right click to edit')
+				]))
+		]));
+var _user$project$YourForm$debug = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text(
+				_elm_lang$core$Basics$toString(model))
+			]));
+};
+var _user$project$YourForm$form = function (model) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			_user$project$YourForm$debug(model),
+			A2(
+			_elm_lang$html$Html$hr,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+			_user$project$YourForm$element(model)
+		]);
+};
+var _user$project$YourForm$view = function (model) {
+	return A2(
+		_elm_lang$core$List$append,
+		_elm_lang$core$Native_List.fromArray(
+			[_user$project$YourForm$heading]),
+		_user$project$YourForm$form(model));
+};
 
 var _user$project$Markup$closingTag = function (model) {
 	return _user$project$Models$isVoid(model) ? '' : A2(
