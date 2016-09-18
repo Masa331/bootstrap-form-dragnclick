@@ -38,9 +38,9 @@ var _user$project$Models$Element = F5(
 	function (a, b, c, d, e) {
 		return {tag: a, attributes: b, children: c, value: d, id: e};
 	});
-var _user$project$Models$Model = F2(
-	function (a, b) {
-		return {currentId: a, element: b};
+var _user$project$Models$Model = F3(
+	function (a, b, c) {
+		return {currentId: a, currentlyEddited: b, element: c};
 	});
 var _user$project$Models$Children = function (a) {
 	return {ctor: 'Children', _0: a};
@@ -740,4 +740,4 @@ var _user$project$Models$initialElement = A5(
 			[_user$project$Models$initialTextInput, _user$project$Models$initialCheckbox, _user$project$Models$initialSubmit])),
 	'',
 	0);
-var _user$project$Models$initialModel = {currentId: 7, element: _user$project$Models$initialElement};
+var _user$project$Models$initialModel = {currentId: 7, element: _user$project$Models$initialElement, currentlyEddited: _elm_lang$core$Maybe$Nothing};

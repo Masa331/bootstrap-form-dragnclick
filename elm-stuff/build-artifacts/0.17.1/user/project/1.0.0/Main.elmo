@@ -11,7 +11,7 @@ var _user$project$Main$update = F2(
 		}
 	});
 var _user$project$Main$view = function (model) {
-	return _user$project$Views$formCreator(model);
+	return _user$project$Views$view(model);
 };
 var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Models$initialModel, _1: _elm_lang$core$Platform_Cmd$none};
 var _user$project$Main$main = {

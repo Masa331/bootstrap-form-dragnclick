@@ -7,7 +7,7 @@ import String
 import Models exposing (..)
 
 view model =
-  [form model.element]
+  [form model]
 
 -------------
 -- Private --

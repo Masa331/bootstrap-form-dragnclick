@@ -13,6 +13,7 @@ type FormMsg =
 type InputMsg =
   RemoveInput Int
   | EditInput Int
+  | StopEditing
 
 type Msg =
   FormMessage FormMsg

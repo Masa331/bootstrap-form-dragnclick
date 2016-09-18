@@ -6,6 +6,7 @@ var _user$project$Messages$AddTextarea = {ctor: 'AddTextarea'};
 var _user$project$Messages$AddMultiselect = {ctor: 'AddMultiselect'};
 var _user$project$Messages$AddSelect = {ctor: 'AddSelect'};
 var _user$project$Messages$AddTextInput = {ctor: 'AddTextInput'};
+var _user$project$Messages$StopEditing = {ctor: 'StopEditing'};
 var _user$project$Messages$EditInput = function (a) {
 	return {ctor: 'EditInput', _0: a};
 };

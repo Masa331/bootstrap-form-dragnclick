@@ -6,12 +6,12 @@ import String exposing (..)
 type alias Attribute = { name: String, value: String }
 
 type alias Element = { tag: String, attributes: List Attribute, children: Children, value: String, id: Int }
-type alias Model = { currentId: Int, element: Element }
+type alias Model = { currentId: Int, currentlyEddited: Maybe Int, element: Element }
 
 type Children = Children (List Element)
 
 initialModel =
-  { currentId = 7, element = initialElement }
+  { currentId = 7, element = initialElement, currentlyEddited = Nothing }
 
 textInput id =
   let

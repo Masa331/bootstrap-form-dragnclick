@@ -1,10 +1,10 @@
-var _user$project$Markup$closingTag = function (element) {
+var _user$project$InputMarkup$closingTag = function (element) {
 	return _user$project$Models$isVoid(element) ? '' : A2(
 		_elm_lang$core$Basics_ops['++'],
 		'</',
 		A2(_elm_lang$core$Basics_ops['++'], element.tag, '>'));
 };
-var _user$project$Markup$htmlAttributeString = function (attribute) {
+var _user$project$InputMarkup$htmlAttributeString = function (attribute) {
 	return _elm_lang$core$Native_Utils.eq(attribute.value, '') ? attribute.name : A2(
 		_elm_lang$core$Basics_ops['++'],
 		attribute.name,
@@ -16,8 +16,8 @@ var _user$project$Markup$htmlAttributeString = function (attribute) {
 				'\"',
 				A2(_elm_lang$core$Basics_ops['++'], attribute.value, '\"'))));
 };
-var _user$project$Markup$htmlAttributesString = function (attributes) {
-	var stringifiedAttributes = A2(_elm_lang$core$List$map, _user$project$Markup$htmlAttributeString, attributes);
+var _user$project$InputMarkup$htmlAttributesString = function (attributes) {
+	var stringifiedAttributes = A2(_elm_lang$core$List$map, _user$project$InputMarkup$htmlAttributeString, attributes);
 	return (_elm_lang$core$Native_Utils.cmp(
 		_elm_lang$core$List$length(stringifiedAttributes),
 		0) > 0) ? A2(
@@ -25,8 +25,8 @@ var _user$project$Markup$htmlAttributesString = function (attributes) {
 		' ',
 		A2(_elm_lang$core$String$join, ' ', stringifiedAttributes)) : '';
 };
-var _user$project$Markup$openingTag = function (model) {
-	var attributes = _user$project$Markup$htmlAttributesString(model.attributes);
+var _user$project$InputMarkup$openingTag = function (model) {
+	var attributes = _user$project$InputMarkup$htmlAttributesString(model.attributes);
 	var tag = model.tag;
 	return A2(
 		_elm_lang$core$String$join,
@@ -34,7 +34,7 @@ var _user$project$Markup$openingTag = function (model) {
 		_elm_lang$core$Native_List.fromArray(
 			['<', tag, attributes, '>']));
 };
-var _user$project$Markup$valuePresence = F2(
+var _user$project$InputMarkup$valuePresence = F2(
 	function (nestingLevel, model) {
 		return (!_elm_lang$core$Native_Utils.eq(model.value, '')) ? A2(
 			_elm_lang$core$Basics_ops['++'],
@@ -44,7 +44,7 @@ var _user$project$Markup$valuePresence = F2(
 				A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
 				model.value)) : '';
 	});
-var _user$project$Markup$element = F2(
+var _user$project$InputMarkup$element = F2(
 	function (nestingLevel, model) {
 		var childs = function (_p0) {
 			var _p1 = _p0;
@@ -57,18 +57,18 @@ var _user$project$Markup$element = F2(
 				A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
 				A2(
 					_elm_lang$core$Basics_ops['++'],
-					_user$project$Markup$openingTag(model),
+					_user$project$InputMarkup$openingTag(model),
 					A2(
 						_elm_lang$core$Basics_ops['++'],
 						model.value,
-						_user$project$Markup$closingTag(model))));
+						_user$project$InputMarkup$closingTag(model))));
 		} else {
 			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
 				A2(
 					_elm_lang$core$Basics_ops['++'],
-					_user$project$Markup$openingTag(model),
+					_user$project$InputMarkup$openingTag(model),
 					A2(
 						_elm_lang$core$Basics_ops['++'],
 						'\n',
@@ -79,21 +79,21 @@ var _user$project$Markup$element = F2(
 								'\n',
 								A2(
 									_elm_lang$core$List$map,
-									_user$project$Markup$element(nestingLevel + 1),
+									_user$project$InputMarkup$element(nestingLevel + 1),
 									childs)),
 							A2(
 								_elm_lang$core$Basics_ops['++'],
-								A2(_user$project$Markup$valuePresence, nestingLevel + 1, model),
+								A2(_user$project$InputMarkup$valuePresence, nestingLevel + 1, model),
 								A2(
 									_elm_lang$core$Basics_ops['++'],
 									'\n',
 									A2(
 										_elm_lang$core$Basics_ops['++'],
 										A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
-										_user$project$Markup$closingTag(model))))))));
+										_user$project$InputMarkup$closingTag(model))))))));
 		}
 	});
-var _user$project$Markup$form = function (model) {
+var _user$project$InputMarkup$form = function (model) {
 	var children = model.children;
 	var attributes = model.attributes;
 	return A2(
@@ -103,12 +103,12 @@ var _user$project$Markup$form = function (model) {
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html$text(
-				A2(_user$project$Markup$element, 0, model))
+				A2(_user$project$InputMarkup$element, 0, model))
 			]));
 };
-var _user$project$Markup$view = function (model) {
+var _user$project$InputMarkup$view = function (model) {
 	return _elm_lang$core$Native_List.fromArray(
 		[
-			_user$project$Markup$form(model)
+			_user$project$InputMarkup$form(model.element)
 		]);
 };

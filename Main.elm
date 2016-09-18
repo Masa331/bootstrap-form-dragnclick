@@ -11,7 +11,7 @@ import Updates
 init = (Models.initialModel, Cmd.none)
 
 view model =
-  Views.formCreator model
+  Views.view model
 
 update msg model =
   case msg of

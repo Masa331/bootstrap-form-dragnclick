@@ -7897,27 +7897,6 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
-var _user$project$Messages$AddButton = {ctor: 'AddButton'};
-var _user$project$Messages$AddCheckbox = {ctor: 'AddCheckbox'};
-var _user$project$Messages$AddRadioButtons = {ctor: 'AddRadioButtons'};
-var _user$project$Messages$AddFileUpload = {ctor: 'AddFileUpload'};
-var _user$project$Messages$AddTextarea = {ctor: 'AddTextarea'};
-var _user$project$Messages$AddMultiselect = {ctor: 'AddMultiselect'};
-var _user$project$Messages$AddSelect = {ctor: 'AddSelect'};
-var _user$project$Messages$AddTextInput = {ctor: 'AddTextInput'};
-var _user$project$Messages$EditInput = function (a) {
-	return {ctor: 'EditInput', _0: a};
-};
-var _user$project$Messages$RemoveInput = function (a) {
-	return {ctor: 'RemoveInput', _0: a};
-};
-var _user$project$Messages$InputMessage = function (a) {
-	return {ctor: 'InputMessage', _0: a};
-};
-var _user$project$Messages$FormMessage = function (a) {
-	return {ctor: 'FormMessage', _0: a};
-};
-
 var _user$project$Models$voidElementsList = _elm_lang$core$Native_List.fromArray(
 	['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']);
 var _user$project$Models$isVoid = function (element) {
@@ -7958,9 +7937,9 @@ var _user$project$Models$Element = F5(
 	function (a, b, c, d, e) {
 		return {tag: a, attributes: b, children: c, value: d, id: e};
 	});
-var _user$project$Models$Model = F2(
-	function (a, b) {
-		return {currentId: a, element: b};
+var _user$project$Models$Model = F3(
+	function (a, b, c) {
+		return {currentId: a, currentlyEddited: b, element: c};
 	});
 var _user$project$Models$Children = function (a) {
 	return {ctor: 'Children', _0: a};
@@ -8660,7 +8639,141 @@ var _user$project$Models$initialElement = A5(
 			[_user$project$Models$initialTextInput, _user$project$Models$initialCheckbox, _user$project$Models$initialSubmit])),
 	'',
 	0);
-var _user$project$Models$initialModel = {currentId: 7, element: _user$project$Models$initialElement};
+var _user$project$Models$initialModel = {currentId: 7, element: _user$project$Models$initialElement, currentlyEddited: _elm_lang$core$Maybe$Nothing};
+
+var _user$project$Messages$AddButton = {ctor: 'AddButton'};
+var _user$project$Messages$AddCheckbox = {ctor: 'AddCheckbox'};
+var _user$project$Messages$AddRadioButtons = {ctor: 'AddRadioButtons'};
+var _user$project$Messages$AddFileUpload = {ctor: 'AddFileUpload'};
+var _user$project$Messages$AddTextarea = {ctor: 'AddTextarea'};
+var _user$project$Messages$AddMultiselect = {ctor: 'AddMultiselect'};
+var _user$project$Messages$AddSelect = {ctor: 'AddSelect'};
+var _user$project$Messages$AddTextInput = {ctor: 'AddTextInput'};
+var _user$project$Messages$StopEditing = {ctor: 'StopEditing'};
+var _user$project$Messages$EditInput = function (a) {
+	return {ctor: 'EditInput', _0: a};
+};
+var _user$project$Messages$RemoveInput = function (a) {
+	return {ctor: 'RemoveInput', _0: a};
+};
+var _user$project$Messages$InputMessage = function (a) {
+	return {ctor: 'InputMessage', _0: a};
+};
+var _user$project$Messages$FormMessage = function (a) {
+	return {ctor: 'FormMessage', _0: a};
+};
+
+var _user$project$FormEdit$createAttribute = function (attribute) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, attribute.name, attribute.value);
+};
+var _user$project$FormEdit$createAttributes = function (model) {
+	return A2(_elm_lang$core$List$map, _user$project$FormEdit$createAttribute, model.attributes);
+};
+var _user$project$FormEdit$removeLink = function (element) {
+	return A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
+				_elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$InputMessage(
+					_user$project$Messages$RemoveInput(element.id)))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Remove')
+			]));
+};
+var _user$project$FormEdit$editLink = function (element) {
+	return A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
+				_elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$InputMessage(
+					_user$project$Messages$EditInput(element.id)))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Edit')
+			]));
+};
+var _user$project$FormEdit$editAndRemoveLink = function (element) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('edit-and-remove-link')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$FormEdit$editLink(element),
+				_user$project$FormEdit$removeLink(element)
+			]));
+};
+var _user$project$FormEdit$element = function (model) {
+	var value = _elm_lang$html$Html$text(model.value);
+	var childs = function (_p0) {
+		var _p1 = _p0;
+		return _p1._0;
+	}(model.children);
+	var attributes = _user$project$FormEdit$createAttributes(model);
+	var _p2 = childs;
+	if (_p2.ctor === '[]') {
+		return _user$project$Models$isDeletable(model) ? _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				_elm_lang$core$Native_List.fromArray(
+					[value])),
+				_user$project$FormEdit$editAndRemoveLink(model)
+			]) : _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				_elm_lang$core$Native_List.fromArray(
+					[value]))
+			]);
+	} else {
+		return _user$project$Models$isDeletable(model) ? _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$List$concat(
+						A2(_elm_lang$core$List$map, _user$project$FormEdit$element, childs)),
+					_elm_lang$core$Native_List.fromArray(
+						[value]))),
+				_user$project$FormEdit$editAndRemoveLink(model)
+			]) : _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$List$concat(
+						A2(_elm_lang$core$List$map, _user$project$FormEdit$element, childs)),
+					_elm_lang$core$Native_List.fromArray(
+						[value])))
+			]);
+	}
+};
+var _user$project$FormEdit$form = function (model) {
+	return _user$project$FormEdit$element(model);
+};
+var _user$project$FormEdit$view = function (model) {
+	return _user$project$FormEdit$form(model.element);
+};
 
 var _user$project$FormUpdate$addInputToForm = F2(
 	function (model, input) {
@@ -8742,6 +8855,189 @@ var _user$project$FormUpdate$update = F2(
 		}
 	});
 
+var _user$project$InputEdit$createAttribute = function (attribute) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, attribute.name, attribute.value);
+};
+var _user$project$InputEdit$createAttributes = function (model) {
+	return A2(_elm_lang$core$List$map, _user$project$InputEdit$createAttribute, model.attributes);
+};
+var _user$project$InputEdit$element = function (model) {
+	var value = _elm_lang$html$Html$text(model.value);
+	var childs = function (_p0) {
+		var _p1 = _p0;
+		return _p1._0;
+	}(model.children);
+	var attributes = _user$project$InputEdit$createAttributes(model);
+	var _p2 = childs;
+	if (_p2.ctor === '[]') {
+		return _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				_elm_lang$core$Native_List.fromArray(
+					[value]))
+			]);
+	} else {
+		return _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$List$concat(
+						A2(_elm_lang$core$List$map, _user$project$InputEdit$element, childs)),
+					_elm_lang$core$Native_List.fromArray(
+						[value])))
+			]);
+	}
+};
+var _user$project$InputEdit$view = function (model) {
+	var childs = function (_p3) {
+		var _p4 = _p3;
+		return _p4._0;
+	}(model.element.children);
+	var input = _elm_lang$core$List$head(
+		A2(
+			_elm_lang$core$List$filter,
+			function (el) {
+				return _elm_lang$core$Native_Utils.eq(
+					_elm_lang$core$Maybe$Just(el.id),
+					model.currentlyEddited);
+			},
+			childs));
+	var _p5 = input;
+	if (_p5.ctor === 'Nothing') {
+		return _elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[]))
+			]);
+	} else {
+		return _user$project$InputEdit$element(_p5._0);
+	}
+};
+
+var _user$project$InputOptions$createAttribute = function (attribute) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, attribute.name, attribute.value);
+};
+var _user$project$InputOptions$createAttributes = function (model) {
+	return A2(_elm_lang$core$List$map, _user$project$InputOptions$createAttribute, model.attributes);
+};
+var _user$project$InputOptions$removeLink = function (element) {
+	return A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
+				_elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$InputMessage(
+					_user$project$Messages$RemoveInput(element.id)))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Remove')
+			]));
+};
+var _user$project$InputOptions$editLink = function (element) {
+	return A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
+				_elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$InputMessage(
+					_user$project$Messages$EditInput(element.id)))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Edit')
+			]));
+};
+var _user$project$InputOptions$editAndRemoveLink = function (element) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('edit-and-remove-link')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$InputOptions$editLink(element),
+				_user$project$InputOptions$removeLink(element)
+			]));
+};
+var _user$project$InputOptions$element = function (model) {
+	var value = _elm_lang$html$Html$text(model.value);
+	var childs = function (_p0) {
+		var _p1 = _p0;
+		return _p1._0;
+	}(model.children);
+	var attributes = _user$project$InputOptions$createAttributes(model);
+	var _p2 = childs;
+	if (_p2.ctor === '[]') {
+		return _user$project$Models$isDeletable(model) ? _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				_elm_lang$core$Native_List.fromArray(
+					[value])),
+				_user$project$InputOptions$editAndRemoveLink(model)
+			]) : _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				_elm_lang$core$Native_List.fromArray(
+					[value]))
+			]);
+	} else {
+		return _user$project$Models$isDeletable(model) ? _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$List$concat(
+						A2(_elm_lang$core$List$map, _user$project$InputOptions$element, childs)),
+					_elm_lang$core$Native_List.fromArray(
+						[value]))),
+				_user$project$InputOptions$editAndRemoveLink(model)
+			]) : _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$List$concat(
+						A2(_elm_lang$core$List$map, _user$project$InputOptions$element, childs)),
+					_elm_lang$core$Native_List.fromArray(
+						[value])))
+			]);
+	}
+};
+var _user$project$InputOptions$form = function (model) {
+	return _user$project$InputOptions$element(model);
+};
+var _user$project$InputOptions$view = function (model) {
+	return _elm_lang$core$Native_List.fromArray(
+		[]);
+};
+
 var _user$project$InputUpdate$removeInput = F2(
 	function (model, inputId) {
 		var newElement = A2(_user$project$Models$removeElement, model, inputId);
@@ -8756,10 +9052,27 @@ var _user$project$InputUpdate$removeInput = F2(
 var _user$project$InputUpdate$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
-		if (_p0.ctor === 'RemoveInput') {
-			return A2(_user$project$InputUpdate$removeInput, model, _p0._0);
-		} else {
-			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		switch (_p0.ctor) {
+			case 'RemoveInput':
+				return A2(_user$project$InputUpdate$removeInput, model, _p0._0);
+			case 'EditInput':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							currentlyEddited: _elm_lang$core$Maybe$Just(_p0._0)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{currentlyEddited: _elm_lang$core$Maybe$Nothing}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 		}
 	});
 
@@ -9296,118 +9609,6 @@ var _user$project$Templates$view = _elm_lang$core$Native_List.fromArray(
 		_user$project$Templates$submit
 	]);
 
-var _user$project$YourForm$createAttribute = function (attribute) {
-	return A2(_elm_lang$html$Html_Attributes$attribute, attribute.name, attribute.value);
-};
-var _user$project$YourForm$createAttributes = function (model) {
-	return A2(_elm_lang$core$List$map, _user$project$YourForm$createAttribute, model.attributes);
-};
-var _user$project$YourForm$removeLink = function (element) {
-	return A2(
-		_elm_lang$html$Html$a,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$InputMessage(
-					_user$project$Messages$RemoveInput(element.id)))
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Remove')
-			]));
-};
-var _user$project$YourForm$editLink = function (element) {
-	return A2(
-		_elm_lang$html$Html$a,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$InputMessage(
-					_user$project$Messages$EditInput(element.id)))
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Edit')
-			]));
-};
-var _user$project$YourForm$editAndRemoveLink = function (element) {
-	return A2(
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$class('edit-and-remove-link')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$YourForm$editLink(element),
-				_user$project$YourForm$removeLink(element)
-			]));
-};
-var _user$project$YourForm$element = function (model) {
-	var value = _elm_lang$html$Html$text(model.value);
-	var childs = function (_p0) {
-		var _p1 = _p0;
-		return _p1._0;
-	}(model.children);
-	var attributes = _user$project$YourForm$createAttributes(model);
-	var _p2 = childs;
-	if (_p2.ctor === '[]') {
-		return _user$project$Models$isDeletable(model) ? _elm_lang$core$Native_List.fromArray(
-			[
-				A3(
-				_elm_lang$html$Html$node,
-				model.tag,
-				attributes,
-				_elm_lang$core$Native_List.fromArray(
-					[value])),
-				_user$project$YourForm$editAndRemoveLink(model)
-			]) : _elm_lang$core$Native_List.fromArray(
-			[
-				A3(
-				_elm_lang$html$Html$node,
-				model.tag,
-				attributes,
-				_elm_lang$core$Native_List.fromArray(
-					[value]))
-			]);
-	} else {
-		return _user$project$Models$isDeletable(model) ? _elm_lang$core$Native_List.fromArray(
-			[
-				A3(
-				_elm_lang$html$Html$node,
-				model.tag,
-				attributes,
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_elm_lang$core$List$concat(
-						A2(_elm_lang$core$List$map, _user$project$YourForm$element, childs)),
-					_elm_lang$core$Native_List.fromArray(
-						[value]))),
-				_user$project$YourForm$editAndRemoveLink(model)
-			]) : _elm_lang$core$Native_List.fromArray(
-			[
-				A3(
-				_elm_lang$html$Html$node,
-				model.tag,
-				attributes,
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_elm_lang$core$List$concat(
-						A2(_elm_lang$core$List$map, _user$project$YourForm$element, childs)),
-					_elm_lang$core$Native_List.fromArray(
-						[value])))
-			]);
-	}
-};
-var _user$project$YourForm$form = function (model) {
-	return _user$project$YourForm$element(model);
-};
-var _user$project$YourForm$view = function (model) {
-	return _user$project$YourForm$form(model.element);
-};
-
 var _user$project$Markup$closingTag = function (element) {
 	return _user$project$Models$isVoid(element) ? '' : A2(
 		_elm_lang$core$Basics_ops['++'],
@@ -9519,64 +9720,107 @@ var _user$project$Markup$form = function (model) {
 var _user$project$Markup$view = function (model) {
 	return _elm_lang$core$Native_List.fromArray(
 		[
-			_user$project$Markup$form(model.element)
+			_user$project$Markup$form(model)
 		]);
 };
 
+var _user$project$Views$inputOptions = function (model) {
+	return _user$project$InputOptions$view(model);
+};
+var _user$project$Views$inputEdit = function (model) {
+	return _user$project$InputEdit$view(model);
+};
 var _user$project$Views$markup = function (model) {
 	return _user$project$Markup$view(model);
 };
-var _user$project$Views$yourForm = function (model) {
-	return _user$project$YourForm$view(model);
+var _user$project$Views$formEdit = function (model) {
+	return _user$project$FormEdit$view(model);
 };
 var _user$project$Views$templates = _user$project$Templates$view;
-var _user$project$Views$inputEdit = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_elm_lang$html$Html$div,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('row')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(
-						_elm_lang$html$Html$div,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html_Attributes$class('col-sm-8')
-							]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								A2(
-								_elm_lang$html$Html$div,
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html_Attributes$class('bd-example')
-									]),
-								_user$project$Views$yourForm(model)),
-								A2(
-								_elm_lang$html$Html$div,
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html_Attributes$class('highlight')
-									]),
-								_user$project$Views$markup(model))
-							])),
-						A2(
-						_elm_lang$html$Html$div,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html_Attributes$class('col-sm-4')
-							]),
-						_user$project$Views$templates)
-					]))
-			]));
+var _user$project$Views$inputEditLayout = function (model) {
+	var childs = function (_p0) {
+		var _p1 = _p0;
+		return _p1._0;
+	}(model.element.children);
+	var input = _elm_lang$core$List$head(
+		A2(
+			_elm_lang$core$List$filter,
+			function (el) {
+				return _elm_lang$core$Native_Utils.eq(
+					_elm_lang$core$Maybe$Just(el.id),
+					model.currentlyEddited);
+			},
+			childs));
+	var _p2 = input;
+	if (_p2.ctor === 'Nothing') {
+		return A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Nothing to edit')
+				]));
+	} else {
+		return A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$a,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$href('javascript:void(0)'),
+							_elm_lang$html$Html_Events$onClick(
+							_user$project$Messages$InputMessage(_user$project$Messages$StopEditing))
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('Back to form')
+						])),
+					A2(
+					_elm_lang$html$Html$div,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$class('row')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_elm_lang$html$Html$div,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$class('col-sm-8')
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									A2(
+									_elm_lang$html$Html$div,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html_Attributes$class('bd-example')
+										]),
+									_user$project$Views$inputEdit(model)),
+									A2(
+									_elm_lang$html$Html$div,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html_Attributes$class('highlight')
+										]),
+									_user$project$Views$markup(_p2._0))
+								])),
+							A2(
+							_elm_lang$html$Html$div,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$class('col-sm-4')
+								]),
+							_user$project$Views$inputOptions(model))
+						]))
+				]));
+	}
 };
 var _user$project$Views$formCreator = function (model) {
 	return A2(
@@ -9607,14 +9851,14 @@ var _user$project$Views$formCreator = function (model) {
 									[
 										_elm_lang$html$Html_Attributes$class('bd-example')
 									]),
-								_user$project$Views$yourForm(model)),
+								_user$project$Views$formEdit(model)),
 								A2(
 								_elm_lang$html$Html$div,
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html_Attributes$class('highlight')
 									]),
-								_user$project$Views$markup(model))
+								_user$project$Views$markup(model.element))
 							])),
 						A2(
 						_elm_lang$html$Html$div,
@@ -9625,6 +9869,14 @@ var _user$project$Views$formCreator = function (model) {
 						_user$project$Views$templates)
 					]))
 			]));
+};
+var _user$project$Views$view = function (model) {
+	var _p3 = model.currentlyEddited;
+	if (_p3.ctor === 'Nothing') {
+		return _user$project$Views$formCreator(model);
+	} else {
+		return _user$project$Views$inputEditLayout(model);
+	}
 };
 
 var _user$project$Updates$inputUpdate = F2(
@@ -9649,7 +9901,7 @@ var _user$project$Main$update = F2(
 		}
 	});
 var _user$project$Main$view = function (model) {
-	return _user$project$Views$formCreator(model);
+	return _user$project$Views$view(model);
 };
 var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Models$initialModel, _1: _elm_lang$core$Platform_Cmd$none};
 var _user$project$Main$main = {

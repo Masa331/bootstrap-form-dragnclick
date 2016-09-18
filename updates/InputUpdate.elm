@@ -8,7 +8,9 @@ update msg model =
     RemoveInput id ->
       removeInput model id
     EditInput id ->
-      (model, Cmd.none)
+      ({ model | currentlyEddited = Just id }, Cmd.none)
+    StopEditing ->
+      ({ model | currentlyEddited = Nothing }, Cmd.none)
 
 -------------
 -- Private --

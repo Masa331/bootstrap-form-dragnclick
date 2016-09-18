@@ -1,4 +1,4 @@
-module YourForm exposing (view)
+module InputOptions exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -9,7 +9,9 @@ import Models exposing (..)
 import Messages exposing (..)
 
 view model =
-  (form model.element)
+  []
+  -- [div [] []]
+  -- (form model.element)
 
 -------------
 -- Private --

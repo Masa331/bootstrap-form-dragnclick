@@ -1,0 +1,69 @@
+var _user$project$InputEdit$createAttribute = function (attribute) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, attribute.name, attribute.value);
+};
+var _user$project$InputEdit$createAttributes = function (model) {
+	return A2(_elm_lang$core$List$map, _user$project$InputEdit$createAttribute, model.attributes);
+};
+var _user$project$InputEdit$element = function (model) {
+	var value = _elm_lang$html$Html$text(model.value);
+	var childs = function (_p0) {
+		var _p1 = _p0;
+		return _p1._0;
+	}(model.children);
+	var attributes = _user$project$InputEdit$createAttributes(model);
+	var _p2 = childs;
+	if (_p2.ctor === '[]') {
+		return _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				_elm_lang$core$Native_List.fromArray(
+					[value]))
+			]);
+	} else {
+		return _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$List$concat(
+						A2(_elm_lang$core$List$map, _user$project$InputEdit$element, childs)),
+					_elm_lang$core$Native_List.fromArray(
+						[value])))
+			]);
+	}
+};
+var _user$project$InputEdit$view = function (model) {
+	var childs = function (_p3) {
+		var _p4 = _p3;
+		return _p4._0;
+	}(model.element.children);
+	var input = _elm_lang$core$List$head(
+		A2(
+			_elm_lang$core$List$filter,
+			function (el) {
+				return _elm_lang$core$Native_Utils.eq(
+					_elm_lang$core$Maybe$Just(el.id),
+					model.currentlyEddited);
+			},
+			childs));
+	var _p5 = input;
+	if (_p5.ctor === 'Nothing') {
+		return _elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[]))
+			]);
+	} else {
+		return _user$project$InputEdit$element(_p5._0);
+	}
+};
