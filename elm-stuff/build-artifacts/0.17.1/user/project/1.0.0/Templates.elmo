@@ -1,4 +1,4 @@
-var _user$project$TemplatesView$submit = A2(
+var _user$project$Templates$submit = A2(
 	_elm_lang$html$Html$div,
 	_elm_lang$core$Native_List.fromArray(
 		[
@@ -17,7 +17,7 @@ var _user$project$TemplatesView$submit = A2(
 					_elm_lang$html$Html$text('Submit button')
 				]))
 		]));
-var _user$project$TemplatesView$checkbox = A2(
+var _user$project$Templates$checkbox = A2(
 	_elm_lang$html$Html$div,
 	_elm_lang$core$Native_List.fromArray(
 		[
@@ -45,7 +45,7 @@ var _user$project$TemplatesView$checkbox = A2(
 					_elm_lang$html$Html$text('Check me out')
 				]))
 		]));
-var _user$project$TemplatesView$radioButtons = A2(
+var _user$project$Templates$radioButtons = A2(
 	_elm_lang$html$Html$fieldset,
 	_elm_lang$core$Native_List.fromArray(
 		[
@@ -148,7 +148,7 @@ var _user$project$TemplatesView$radioButtons = A2(
 						]))
 				]))
 		]));
-var _user$project$TemplatesView$fileUpload = A2(
+var _user$project$Templates$fileUpload = A2(
 	_elm_lang$html$Html$div,
 	_elm_lang$core$Native_List.fromArray(
 		[
@@ -167,7 +167,7 @@ var _user$project$TemplatesView$fileUpload = A2(
 			_elm_lang$core$Native_List.fromArray(
 				[]))
 		]));
-var _user$project$TemplatesView$textarea = A2(
+var _user$project$Templates$textarea = A2(
 	_elm_lang$html$Html$div,
 	_elm_lang$core$Native_List.fromArray(
 		[
@@ -185,7 +185,7 @@ var _user$project$TemplatesView$textarea = A2(
 			_elm_lang$core$Native_List.fromArray(
 				[]))
 		]));
-var _user$project$TemplatesView$multiSelect = A2(
+var _user$project$Templates$multiSelect = A2(
 	_elm_lang$html$Html$div,
 	_elm_lang$core$Native_List.fromArray(
 		[
@@ -244,7 +244,7 @@ var _user$project$TemplatesView$multiSelect = A2(
 						]))
 				]))
 		]));
-var _user$project$TemplatesView$select = A2(
+var _user$project$Templates$select = A2(
 	_elm_lang$html$Html$div,
 	_elm_lang$core$Native_List.fromArray(
 		[
@@ -286,7 +286,7 @@ var _user$project$TemplatesView$select = A2(
 						]))
 				]))
 		]));
-var _user$project$TemplatesView$textInput = A2(
+var _user$project$Templates$textInput = A2(
 	_elm_lang$html$Html$div,
 	_elm_lang$core$Native_List.fromArray(
 		[
@@ -303,7 +303,7 @@ var _user$project$TemplatesView$textInput = A2(
 			_elm_lang$core$Native_List.fromArray(
 				[]))
 		]));
-var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
+var _user$project$Templates$view = _elm_lang$core$Native_List.fromArray(
 	[
 		A2(
 		_elm_lang$html$Html$b,
@@ -332,7 +332,7 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 			[]),
 		_elm_lang$core$Native_List.fromArray(
 			[])),
-		_user$project$TemplatesView$textInput,
+		_user$project$Templates$textInput,
 		A2(
 		_elm_lang$html$Html$b,
 		_elm_lang$core$Native_List.fromArray(
@@ -360,7 +360,7 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 			[]),
 		_elm_lang$core$Native_List.fromArray(
 			[])),
-		_user$project$TemplatesView$select,
+		_user$project$Templates$select,
 		A2(
 		_elm_lang$html$Html$b,
 		_elm_lang$core$Native_List.fromArray(
@@ -388,7 +388,7 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 			[]),
 		_elm_lang$core$Native_List.fromArray(
 			[])),
-		_user$project$TemplatesView$multiSelect,
+		_user$project$Templates$multiSelect,
 		A2(
 		_elm_lang$html$Html$b,
 		_elm_lang$core$Native_List.fromArray(
@@ -416,7 +416,7 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 			[]),
 		_elm_lang$core$Native_List.fromArray(
 			[])),
-		_user$project$TemplatesView$textarea,
+		_user$project$Templates$textarea,
 		A2(
 		_elm_lang$html$Html$b,
 		_elm_lang$core$Native_List.fromArray(
@@ -444,7 +444,7 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 			[]),
 		_elm_lang$core$Native_List.fromArray(
 			[])),
-		_user$project$TemplatesView$fileUpload,
+		_user$project$Templates$fileUpload,
 		A2(
 		_elm_lang$html$Html$b,
 		_elm_lang$core$Native_List.fromArray(
@@ -472,7 +472,7 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 			[]),
 		_elm_lang$core$Native_List.fromArray(
 			[])),
-		_user$project$TemplatesView$radioButtons,
+		_user$project$Templates$radioButtons,
 		A2(
 		_elm_lang$html$Html$b,
 		_elm_lang$core$Native_List.fromArray(
@@ -500,7 +500,7 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 			[]),
 		_elm_lang$core$Native_List.fromArray(
 			[])),
-		_user$project$TemplatesView$checkbox,
+		_user$project$Templates$checkbox,
 		A2(
 		_elm_lang$html$Html$b,
 		_elm_lang$core$Native_List.fromArray(
@@ -528,5 +528,5 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 			[]),
 		_elm_lang$core$Native_List.fromArray(
 			[])),
-		_user$project$TemplatesView$submit
+		_user$project$Templates$submit
 	]);

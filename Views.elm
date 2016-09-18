@@ -2,12 +2,12 @@ module Views exposing (..)
 
 import Html exposing (..)
 
-import TemplatesView exposing (..)
+import Templates exposing (..)
 import YourForm exposing (..)
 import Markup exposing (..)
 
-templatesView =
-  TemplatesView.view
+templates =
+  Templates.view
 
 yourForm model =
   YourForm.view model

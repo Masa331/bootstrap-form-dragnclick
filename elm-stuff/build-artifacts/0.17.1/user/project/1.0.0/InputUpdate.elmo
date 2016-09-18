@@ -1,0 +1,20 @@
+var _user$project$InputUpdate$removeInput = F2(
+	function (model, inputId) {
+		var newElement = A2(_user$project$Models$removeElementsRecursive, model, inputId);
+		return {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Native_Utils.update(
+				model,
+				{element: newElement}),
+			_1: _elm_lang$core$Platform_Cmd$none
+		};
+	});
+var _user$project$InputUpdate$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		if (_p0.ctor === 'RemoveInput') {
+			return A2(_user$project$InputUpdate$removeInput, model, _p0._0);
+		} else {
+			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		}
+	});

@@ -1,4 +1,4 @@
-module TemplatesView exposing (view)
+module Templates exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -8,42 +8,42 @@ import Messages exposing (..)
 
 view =
   [ b [] [text "Text input"]
-  , a [href "javascript:void(0);", onClick AddTextInput, class "pull-xs-right"] [text "add"]
+  , a [href "javascript:void(0);", onClick (FormMessage AddTextInput), class "pull-xs-right"] [text "add"]
   , hr [] []
   , textInput
 
   , b [] [text "Select"]
-  , a [href "javascript:void(0);", onClick AddSelect, class "pull-xs-right"] [text "add"]
+  , a [href "javascript:void(0);", onClick (FormMessage AddSelect), class "pull-xs-right"] [text "add"]
   , hr [] []
   , select
 
   , b [] [text "Multiselect"]
-  , a [href "javascript:void(0);", onClick AddMultiselect, class "pull-xs-right"] [text "add"]
+  , a [href "javascript:void(0);", onClick (FormMessage AddMultiselect), class "pull-xs-right"] [text "add"]
   , hr [] []
   , multiSelect
 
   , b [] [text "Textarea"]
-  , a [href "javascript:void(0);", onClick AddTextarea, class "pull-xs-right"] [text "add"]
+  , a [href "javascript:void(0);", onClick (FormMessage AddTextarea), class "pull-xs-right"] [text "add"]
   , hr [] []
   , textarea
 
   , b [] [text "File upload"]
-  , a [href "javascript:void(0);", onClick AddFileUpload, class "pull-xs-right"] [text "add"]
+  , a [href "javascript:void(0);", onClick (FormMessage AddFileUpload), class "pull-xs-right"] [text "add"]
   , hr [] []
   , fileUpload
 
   , b [] [text "Radio buttons"]
-  , a [href "javascript:void(0);", onClick AddRadioButtons, class "pull-xs-right"] [text "add"]
+  , a [href "javascript:void(0);", onClick (FormMessage AddRadioButtons), class "pull-xs-right"] [text "add"]
   , hr [] []
   , radioButtons
 
   , b [] [text "Checkbox"]
-  , a [href "javascript:void(0);", onClick AddCheckbox, class "pull-xs-right"] [text "add"]
+  , a [href "javascript:void(0);", onClick (FormMessage AddCheckbox), class "pull-xs-right"] [text "add"]
   , hr [] []
   , checkbox
 
   , b [] [text "Button"]
-  , a [href "javascript:void(0);", onClick AddButton, class "pull-xs-right"] [text "add"]
+  , a [href "javascript:void(0);", onClick (FormMessage AddButton), class "pull-xs-right"] [text "add"]
   , hr [] []
   , submit ]
 

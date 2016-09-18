@@ -1,6 +1,6 @@
 module Messages exposing (..)
 
-type Msg =
+type FormMsg =
   AddTextInput
   | AddSelect
   | AddMultiselect
@@ -9,5 +9,11 @@ type Msg =
   | AddRadioButtons
   | AddCheckbox
   | AddButton
-  | RemoveInput Int
+
+type InputMsg =
+  RemoveInput Int
   | EditInput Int
+
+type Msg =
+  FormMessage FormMsg
+  | InputMessage InputMsg

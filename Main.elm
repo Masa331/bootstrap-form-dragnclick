@@ -22,12 +22,16 @@ view model =
          , div [class "highlight"] (Views.markup model)]
       , div
          [ class "col-sm-4"]
-         Views.templatesView
+         Views.templates
       ]
     ]
 
 update msg model =
-  Updates.update msg model
+  case msg of
+    Messages.InputMessage inputMsg ->
+      Updates.inputUpdate inputMsg model
+    Messages.FormMessage formMsg ->
+      Updates.formUpdate formMsg model
 
 subscriptions model =
   Sub.none

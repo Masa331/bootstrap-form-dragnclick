@@ -42,10 +42,10 @@ editAndRemoveLink element =
   div [class "edit-and-remove-link"] [editLink element, removeLink element]
 
 editLink element =
-  a [href "javascript:void(0);", onClick (EditInput element.id)] [text "Edit"]
+  a [href "javascript:void(0);", onClick (InputMessage (EditInput element.id))] [text "Edit"]
 
 removeLink element =
-  a [href "javascript:void(0);", onClick (RemoveInput element.id)] [text "Remove"]
+  a [href "javascript:void(0);", onClick (InputMessage (RemoveInput element.id))] [text "Remove"]
 
 createAttributes model =
   List.map createAttribute model.attributes

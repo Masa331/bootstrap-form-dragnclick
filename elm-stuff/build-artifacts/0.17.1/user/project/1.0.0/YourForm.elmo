@@ -11,7 +11,8 @@ var _user$project$YourForm$removeLink = function (element) {
 			[
 				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
 				_elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$RemoveInput(element.id))
+				_user$project$Messages$InputMessage(
+					_user$project$Messages$RemoveInput(element.id)))
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -25,7 +26,8 @@ var _user$project$YourForm$editLink = function (element) {
 			[
 				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
 				_elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$EditInput(element.id))
+				_user$project$Messages$InputMessage(
+					_user$project$Messages$EditInput(element.id)))
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
