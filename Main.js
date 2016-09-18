@@ -7903,6 +7903,13 @@ var _user$project$Messages$EditInput = function (a) {
 var _user$project$Messages$RemoveInput = function (a) {
 	return {ctor: 'RemoveInput', _0: a};
 };
+var _user$project$Messages$AddButton = {ctor: 'AddButton'};
+var _user$project$Messages$AddCheckbox = {ctor: 'AddCheckbox'};
+var _user$project$Messages$AddRadioButtons = {ctor: 'AddRadioButtons'};
+var _user$project$Messages$AddFileUpload = {ctor: 'AddFileUpload'};
+var _user$project$Messages$AddTextarea = {ctor: 'AddTextarea'};
+var _user$project$Messages$AddMultiselect = {ctor: 'AddMultiselect'};
+var _user$project$Messages$AddSelect = {ctor: 'AddSelect'};
 var _user$project$Messages$AddTextInput = {ctor: 'AddTextInput'};
 
 var _user$project$TemplatesView$submit = A2(
@@ -8252,7 +8259,7 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput),
+				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddSelect),
 				_elm_lang$html$Html_Attributes$class('pull-xs-right')
 			]),
 		_elm_lang$core$Native_List.fromArray(
@@ -8279,7 +8286,7 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput),
+				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddMultiselect),
 				_elm_lang$html$Html_Attributes$class('pull-xs-right')
 			]),
 		_elm_lang$core$Native_List.fromArray(
@@ -8306,7 +8313,7 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput),
+				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextarea),
 				_elm_lang$html$Html_Attributes$class('pull-xs-right')
 			]),
 		_elm_lang$core$Native_List.fromArray(
@@ -8333,7 +8340,7 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput),
+				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddFileUpload),
 				_elm_lang$html$Html_Attributes$class('pull-xs-right')
 			]),
 		_elm_lang$core$Native_List.fromArray(
@@ -8360,7 +8367,7 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput),
+				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddRadioButtons),
 				_elm_lang$html$Html_Attributes$class('pull-xs-right')
 			]),
 		_elm_lang$core$Native_List.fromArray(
@@ -8387,7 +8394,7 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput),
+				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddCheckbox),
 				_elm_lang$html$Html_Attributes$class('pull-xs-right')
 			]),
 		_elm_lang$core$Native_List.fromArray(
@@ -8414,7 +8421,7 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput),
+				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddButton),
 				_elm_lang$html$Html_Attributes$class('pull-xs-right')
 			]),
 		_elm_lang$core$Native_List.fromArray(
@@ -8575,6 +8582,456 @@ var _user$project$Models$select = function (id) {
 		'',
 		id);
 };
+var _user$project$Models$multiselect = function (id) {
+	var option5 = A5(
+		_user$project$Models$Element,
+		'option',
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'5',
+		id);
+	var option4 = A5(
+		_user$project$Models$Element,
+		'option',
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'4',
+		id);
+	var option3 = A5(
+		_user$project$Models$Element,
+		'option',
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'3',
+		id);
+	var option2 = A5(
+		_user$project$Models$Element,
+		'option',
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'2',
+		id);
+	var option1 = A5(
+		_user$project$Models$Element,
+		'option',
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'1',
+		id);
+	var selectx = A5(
+		_user$project$Models$Element,
+		'select',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-control'),
+				A2(
+				_user$project$Models$Attribute,
+				'id',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'input',
+					_elm_lang$core$Basics$toString(id))),
+				A2(_user$project$Models$Attribute, 'multiple', '')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[option1, option2, option3, option4, option5])),
+		'',
+		id);
+	var label = A5(
+		_user$project$Models$Element,
+		'label',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_user$project$Models$Attribute,
+				'for',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'input',
+					_elm_lang$core$Basics$toString(id)))
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'Example select',
+		id);
+	return A5(
+		_user$project$Models$Element,
+		'div',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-group')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[label, selectx])),
+		'',
+		id);
+};
+var _user$project$Models$textarea = function (id) {
+	var textareax = A5(
+		_user$project$Models$Element,
+		'textarea',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-control'),
+				A2(
+				_user$project$Models$Attribute,
+				'id',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'input',
+					_elm_lang$core$Basics$toString(id))),
+				A2(_user$project$Models$Attribute, 'rows', '3')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'',
+		id);
+	var label = A5(
+		_user$project$Models$Element,
+		'label',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_user$project$Models$Attribute,
+				'for',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'input',
+					_elm_lang$core$Basics$toString(id)))
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'Example textarea',
+		id);
+	return A5(
+		_user$project$Models$Element,
+		'div',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-group')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[label, textareax])),
+		'',
+		id);
+};
+var _user$project$Models$fileUpload = function (id) {
+	var upload = A5(
+		_user$project$Models$Element,
+		'input',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-control-file'),
+				A2(
+				_user$project$Models$Attribute,
+				'id',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'input',
+					_elm_lang$core$Basics$toString(id))),
+				A2(_user$project$Models$Attribute, 'type', 'file'),
+				A2(_user$project$Models$Attribute, 'aria-describedby', 'fileHelp')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'',
+		id);
+	var label = A5(
+		_user$project$Models$Element,
+		'label',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_user$project$Models$Attribute,
+				'for',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'input',
+					_elm_lang$core$Basics$toString(id)))
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'Example file upload',
+		id);
+	return A5(
+		_user$project$Models$Element,
+		'div',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-group')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[label, upload])),
+		'',
+		id);
+};
+var _user$project$Models$radioButtons = function (id) {
+	var input3 = A5(
+		_user$project$Models$Element,
+		'input',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'type', 'radio'),
+				A2(_user$project$Models$Attribute, 'class', 'form-check-input'),
+				A2(
+				_user$project$Models$Attribute,
+				'name',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'optionsRadio',
+					_elm_lang$core$Basics$toString(id))),
+				A2(
+				_user$project$Models$Attribute,
+				'id',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'optionsRadio',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_elm_lang$core$Basics$toString(id),
+						'3'))),
+				A2(_user$project$Models$Attribute, 'value', 'option3')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'',
+		id);
+	var label3 = A5(
+		_user$project$Models$Element,
+		'label',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-check-label')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[input3])),
+		'Option 2',
+		id);
+	var div3 = A5(
+		_user$project$Models$Element,
+		'div',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-check')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[label3])),
+		'',
+		id);
+	var input2 = A5(
+		_user$project$Models$Element,
+		'input',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'type', 'radio'),
+				A2(_user$project$Models$Attribute, 'class', 'form-check-input'),
+				A2(
+				_user$project$Models$Attribute,
+				'name',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'optionsRadio',
+					_elm_lang$core$Basics$toString(id))),
+				A2(
+				_user$project$Models$Attribute,
+				'id',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'optionsRadio',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_elm_lang$core$Basics$toString(id),
+						'2'))),
+				A2(_user$project$Models$Attribute, 'value', 'option2')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'',
+		id);
+	var label2 = A5(
+		_user$project$Models$Element,
+		'label',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-check-label')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[input2])),
+		'Option 2',
+		id);
+	var div2 = A5(
+		_user$project$Models$Element,
+		'div',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-check')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[label2])),
+		'',
+		id);
+	var input1 = A5(
+		_user$project$Models$Element,
+		'input',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'type', 'radio'),
+				A2(_user$project$Models$Attribute, 'class', 'form-check-input'),
+				A2(
+				_user$project$Models$Attribute,
+				'name',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'optionsRadio',
+					_elm_lang$core$Basics$toString(id))),
+				A2(
+				_user$project$Models$Attribute,
+				'id',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'optionsRadio',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_elm_lang$core$Basics$toString(id),
+						'1'))),
+				A2(_user$project$Models$Attribute, 'value', 'option1')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'',
+		id);
+	var label1 = A5(
+		_user$project$Models$Element,
+		'label',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-check-label')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[input1])),
+		'Option 1',
+		id);
+	var div1 = A5(
+		_user$project$Models$Element,
+		'div',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-check')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[label1])),
+		'',
+		id);
+	var legend = A5(
+		_user$project$Models$Element,
+		'legend',
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'Radio buttons',
+		id);
+	return A5(
+		_user$project$Models$Element,
+		'fieldset',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-group')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[legend, div1, div2, div3])),
+		'',
+		id);
+};
+var _user$project$Models$checkbox = function (id) {
+	var input = A5(
+		_user$project$Models$Element,
+		'input',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'type', 'checkbox'),
+				A2(_user$project$Models$Attribute, 'class', 'form-check-input')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'',
+		id);
+	var label = A5(
+		_user$project$Models$Element,
+		'label',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-check-label')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[input])),
+		'Check me out',
+		id);
+	return A5(
+		_user$project$Models$Element,
+		'div',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-check')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[label])),
+		'',
+		id);
+};
+var _user$project$Models$button = function (id) {
+	return A5(
+		_user$project$Models$Element,
+		'button',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'type', 'submit'),
+				A2(_user$project$Models$Attribute, 'class', 'btn btn-primary')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'Submit button',
+		id);
+};
 var _user$project$Models$removeElementsRecursive = F2(
 	function (model, id) {
 		var removeFunc = function (child) {
@@ -8597,8 +9054,7 @@ var _user$project$Models$initialTextInput = function () {
 		[
 			A2(_user$project$Models$Attribute, 'type', 'text'),
 			A2(_user$project$Models$Attribute, 'class', 'form-control'),
-			A2(_user$project$Models$Attribute, 'id', 'input1'),
-			A2(_user$project$Models$Attribute, 'disabled', '')
+			A2(_user$project$Models$Attribute, 'id', 'input1')
 		]);
 	var input = A5(
 		_user$project$Models$Element,
@@ -8957,6 +9413,48 @@ var _user$project$Updates$update = F2(
 					_user$project$Updates$addInputToForm,
 					model,
 					_user$project$Models$textInput(
+						_user$project$Models$generateNextId(model)));
+			case 'AddSelect':
+				return A2(
+					_user$project$Updates$addInputToForm,
+					model,
+					_user$project$Models$select(
+						_user$project$Models$generateNextId(model)));
+			case 'AddMultiselect':
+				return A2(
+					_user$project$Updates$addInputToForm,
+					model,
+					_user$project$Models$multiselect(
+						_user$project$Models$generateNextId(model)));
+			case 'AddTextarea':
+				return A2(
+					_user$project$Updates$addInputToForm,
+					model,
+					_user$project$Models$textarea(
+						_user$project$Models$generateNextId(model)));
+			case 'AddFileUpload':
+				return A2(
+					_user$project$Updates$addInputToForm,
+					model,
+					_user$project$Models$fileUpload(
+						_user$project$Models$generateNextId(model)));
+			case 'AddRadioButtons':
+				return A2(
+					_user$project$Updates$addInputToForm,
+					model,
+					_user$project$Models$radioButtons(
+						_user$project$Models$generateNextId(model)));
+			case 'AddCheckbox':
+				return A2(
+					_user$project$Updates$addInputToForm,
+					model,
+					_user$project$Models$checkbox(
+						_user$project$Models$generateNextId(model)));
+			case 'AddButton':
+				return A2(
+					_user$project$Updates$addInputToForm,
+					model,
+					_user$project$Models$button(
 						_user$project$Models$generateNextId(model)));
 			case 'RemoveInput':
 				return A2(_user$project$Updates$removeInput, model, _p2._0);

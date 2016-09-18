@@ -4,4 +4,11 @@ var _user$project$Messages$EditInput = function (a) {
 var _user$project$Messages$RemoveInput = function (a) {
 	return {ctor: 'RemoveInput', _0: a};
 };
+var _user$project$Messages$AddButton = {ctor: 'AddButton'};
+var _user$project$Messages$AddCheckbox = {ctor: 'AddCheckbox'};
+var _user$project$Messages$AddRadioButtons = {ctor: 'AddRadioButtons'};
+var _user$project$Messages$AddFileUpload = {ctor: 'AddFileUpload'};
+var _user$project$Messages$AddTextarea = {ctor: 'AddTextarea'};
+var _user$project$Messages$AddMultiselect = {ctor: 'AddMultiselect'};
+var _user$project$Messages$AddSelect = {ctor: 'AddSelect'};
 var _user$project$Messages$AddTextInput = {ctor: 'AddTextInput'};

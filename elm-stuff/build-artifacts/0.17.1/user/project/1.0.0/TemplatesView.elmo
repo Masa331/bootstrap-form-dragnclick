@@ -345,7 +345,7 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput),
+				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddSelect),
 				_elm_lang$html$Html_Attributes$class('pull-xs-right')
 			]),
 		_elm_lang$core$Native_List.fromArray(
@@ -372,7 +372,7 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput),
+				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddMultiselect),
 				_elm_lang$html$Html_Attributes$class('pull-xs-right')
 			]),
 		_elm_lang$core$Native_List.fromArray(
@@ -399,7 +399,7 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput),
+				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextarea),
 				_elm_lang$html$Html_Attributes$class('pull-xs-right')
 			]),
 		_elm_lang$core$Native_List.fromArray(
@@ -426,7 +426,7 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput),
+				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddFileUpload),
 				_elm_lang$html$Html_Attributes$class('pull-xs-right')
 			]),
 		_elm_lang$core$Native_List.fromArray(
@@ -453,7 +453,7 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput),
+				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddRadioButtons),
 				_elm_lang$html$Html_Attributes$class('pull-xs-right')
 			]),
 		_elm_lang$core$Native_List.fromArray(
@@ -480,7 +480,7 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput),
+				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddCheckbox),
 				_elm_lang$html$Html_Attributes$class('pull-xs-right')
 			]),
 		_elm_lang$core$Native_List.fromArray(
@@ -507,7 +507,7 @@ var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput),
+				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddButton),
 				_elm_lang$html$Html_Attributes$class('pull-xs-right')
 			]),
 		_elm_lang$core$Native_List.fromArray(

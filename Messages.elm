@@ -1,3 +1,13 @@
 module Messages exposing (..)
 
-type Msg = AddTextInput | RemoveInput Int | EditInput Int
+type Msg =
+  AddTextInput
+  | AddSelect
+  | AddMultiselect
+  | AddTextarea
+  | AddFileUpload
+  | AddRadioButtons
+  | AddCheckbox
+  | AddButton
+  | RemoveInput Int
+  | EditInput Int
