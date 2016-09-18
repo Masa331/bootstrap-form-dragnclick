@@ -8442,6 +8442,30 @@ var _user$project$Models$voidElementsList = _elm_lang$core$Native_List.fromArray
 var _user$project$Models$isVoid = function (element) {
 	return A2(_elm_lang$core$List$member, element.tag, _user$project$Models$voidElementsList);
 };
+var _user$project$Models$isDeletable = function (model) {
+	var classAttr = _elm_lang$core$List$head(
+		A2(
+			_elm_lang$core$List$filter,
+			function (attr) {
+				return _elm_lang$core$Native_Utils.eq(attr.name, 'class');
+			},
+			model.attributes));
+	var _p0 = classAttr;
+	if (_p0.ctor === 'Nothing') {
+		return false;
+	} else {
+		return A2(
+			_elm_lang$core$List$any,
+			function (className) {
+				return A2(
+					_elm_lang$core$List$member,
+					className,
+					A2(_elm_lang$core$String$split, ' ', _p0._0.value));
+			},
+			_elm_lang$core$Native_List.fromArray(
+				['form-group', 'btn', 'form-check']));
+	}
+};
 var _user$project$Models$generateNextId = function (model) {
 	return model.currentId + 1;
 };
@@ -9038,9 +9062,9 @@ var _user$project$Models$removeElementsRecursive = F2(
 			return _elm_lang$core$Native_Utils.eq(child.id, id) ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(child);
 		};
 		var element = model.element;
-		var childs = function (_p0) {
-			var _p1 = _p0;
-			return _p1._0;
+		var childs = function (_p1) {
+			var _p2 = _p1;
+			return _p2._0;
 		}(element.children);
 		return _elm_lang$core$Native_Utils.update(
 			element,
@@ -9204,18 +9228,8 @@ var _user$project$YourForm$editAndRemoveLink = function (element) {
 				_user$project$YourForm$removeLink(element)
 			]));
 };
-var _user$project$YourForm$valueForElement = function (element) {
-	return _elm_lang$core$Native_Utils.eq(element.tag, 'div') ? _elm_lang$core$Native_List.fromArray(
-		[
-			_elm_lang$html$Html$text(element.value),
-			_user$project$YourForm$editAndRemoveLink(element)
-		]) : _elm_lang$core$Native_List.fromArray(
-		[
-			_elm_lang$html$Html$text(element.value)
-		]);
-};
 var _user$project$YourForm$element = function (model) {
-	var value = _user$project$YourForm$valueForElement(model);
+	var value = _elm_lang$html$Html$text(model.value);
 	var childs = function (_p0) {
 		var _p1 = _p0;
 		return _p1._0;
@@ -9223,23 +9237,55 @@ var _user$project$YourForm$element = function (model) {
 	var attributes = _user$project$YourForm$createAttributes(model);
 	var _p2 = childs;
 	if (_p2.ctor === '[]') {
-		return A3(_elm_lang$html$Html$node, model.tag, attributes, value);
+		return _user$project$Models$isDeletable(model) ? _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				_elm_lang$core$Native_List.fromArray(
+					[value])),
+				_user$project$YourForm$editAndRemoveLink(model)
+			]) : _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				_elm_lang$core$Native_List.fromArray(
+					[value]))
+			]);
 	} else {
-		return A3(
-			_elm_lang$html$Html$node,
-			model.tag,
-			attributes,
-			A2(
-				_elm_lang$core$List$append,
-				A2(_elm_lang$core$List$map, _user$project$YourForm$element, childs),
-				value));
+		return _user$project$Models$isDeletable(model) ? _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$List$concat(
+						A2(_elm_lang$core$List$map, _user$project$YourForm$element, childs)),
+					_elm_lang$core$Native_List.fromArray(
+						[value]))),
+				_user$project$YourForm$editAndRemoveLink(model)
+			]) : _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$List$concat(
+						A2(_elm_lang$core$List$map, _user$project$YourForm$element, childs)),
+					_elm_lang$core$Native_List.fromArray(
+						[value])))
+			]);
 	}
 };
 var _user$project$YourForm$form = function (model) {
-	return _elm_lang$core$Native_List.fromArray(
-		[
-			_user$project$YourForm$element(model)
-		]);
+	return _user$project$YourForm$element(model);
 };
 var _user$project$YourForm$view = function (model) {
 	return _user$project$YourForm$form(model.element);
@@ -9381,9 +9427,9 @@ var _user$project$Updates$addInputToForm = F2(
 				children: _user$project$Models$Children(
 					A2(
 						_elm_lang$core$List$append,
+						childs,
 						_elm_lang$core$Native_List.fromArray(
-							[input]),
-						childs))
+							[input])))
 			});
 		return {
 			ctor: '_Tuple2',

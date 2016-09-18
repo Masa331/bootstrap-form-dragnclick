@@ -82,9 +82,11 @@ body {
 }
 
 .edit-and-remove-link {
-  position: relative;
-  bottom: 90%;
-  left: 90%;
+  display: none;
+}
+
+.bd-example:hover .edit-and-remove-link {
+  display: block;
 }
 
 .bd-example {

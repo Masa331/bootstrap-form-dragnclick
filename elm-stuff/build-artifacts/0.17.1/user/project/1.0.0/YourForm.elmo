@@ -45,18 +45,8 @@ var _user$project$YourForm$editAndRemoveLink = function (element) {
 				_user$project$YourForm$removeLink(element)
 			]));
 };
-var _user$project$YourForm$valueForElement = function (element) {
-	return _elm_lang$core$Native_Utils.eq(element.tag, 'div') ? _elm_lang$core$Native_List.fromArray(
-		[
-			_elm_lang$html$Html$text(element.value),
-			_user$project$YourForm$editAndRemoveLink(element)
-		]) : _elm_lang$core$Native_List.fromArray(
-		[
-			_elm_lang$html$Html$text(element.value)
-		]);
-};
 var _user$project$YourForm$element = function (model) {
-	var value = _user$project$YourForm$valueForElement(model);
+	var value = _elm_lang$html$Html$text(model.value);
 	var childs = function (_p0) {
 		var _p1 = _p0;
 		return _p1._0;
@@ -64,23 +54,55 @@ var _user$project$YourForm$element = function (model) {
 	var attributes = _user$project$YourForm$createAttributes(model);
 	var _p2 = childs;
 	if (_p2.ctor === '[]') {
-		return A3(_elm_lang$html$Html$node, model.tag, attributes, value);
+		return _user$project$Models$isDeletable(model) ? _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				_elm_lang$core$Native_List.fromArray(
+					[value])),
+				_user$project$YourForm$editAndRemoveLink(model)
+			]) : _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				_elm_lang$core$Native_List.fromArray(
+					[value]))
+			]);
 	} else {
-		return A3(
-			_elm_lang$html$Html$node,
-			model.tag,
-			attributes,
-			A2(
-				_elm_lang$core$List$append,
-				A2(_elm_lang$core$List$map, _user$project$YourForm$element, childs),
-				value));
+		return _user$project$Models$isDeletable(model) ? _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$List$concat(
+						A2(_elm_lang$core$List$map, _user$project$YourForm$element, childs)),
+					_elm_lang$core$Native_List.fromArray(
+						[value]))),
+				_user$project$YourForm$editAndRemoveLink(model)
+			]) : _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$List$concat(
+						A2(_elm_lang$core$List$map, _user$project$YourForm$element, childs)),
+					_elm_lang$core$Native_List.fromArray(
+						[value])))
+			]);
 	}
 };
 var _user$project$YourForm$form = function (model) {
-	return _elm_lang$core$Native_List.fromArray(
-		[
-			_user$project$YourForm$element(model)
-		]);
+	return _user$project$YourForm$element(model);
 };
 var _user$project$YourForm$view = function (model) {
 	return _user$project$YourForm$form(model.element);

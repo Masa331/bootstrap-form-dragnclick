@@ -1,6 +1,8 @@
 -- module Models exposing (Model, Children, initialModel2)
 module Models exposing (..)
 
+import String exposing (..)
+
 type alias Attribute = { name: String, value: String }
 
 type alias Element = { tag: String, attributes: List Attribute, children: Children, value: String, id: Int }
@@ -121,6 +123,33 @@ initialSubmit =
     submitAttrs = [Attribute "type" "submit", Attribute "class" "btn btn-primary"]
   in
     Element "button" submitAttrs (Children []) "Submit" 7
+
+isDeletable model =
+  let
+    classAttr = List.head (List.filter (\attr -> attr.name == "class") model.attributes)
+  in
+    case classAttr of
+      Nothing ->
+        False
+      Just a ->
+        List.any (\className -> List.member className (String.split " " a.value)) ["form-group", "btn", "form-check"]
+        -- List.any (\className -> String.contains className a.value) ["form-group", "btn"]
+    -- True
+    -- List.any (\className -> String.contains className classAttr.value) ["form-group", "btn"]
+    -- List.any (\className -> String.contains className classAttr.value) ["form-group", "btn"]
+    -- (List.any (\attr -> attr.name == "class") attributes)
+    -- && (List.any (\attr -> String.contains attr.value == "class") attributes)
+    -- List.any (\attr -> attr.value == "btn btn-primary") attributes
+    -- String.contains "div" model.tag
+    -- "div" == "div"
+    -- model.tag == "button"
+  -- True
+
+
+-- isDeletable attribute =
+--   -- (attribute.name == "class" && (List.any (\className -> String.contains className attribute.value) ["form-group", "btn"]))
+--   -- True
+--   attribute.name == "class"
 
 isVoid element =
   List.member element.tag voidElementsList

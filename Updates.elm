@@ -41,7 +41,7 @@ addInputToForm model input =
   let
     oldElement = model.element
     childs = (\ (Children childs) -> childs) model.element.children
-    element = { oldElement | children = Children (List.append [input] childs) }
+    element = { oldElement | children = Children (List.append childs [input] ) }
   in
     ({ model | element = element, currentId = input.id }, Cmd.none)
 

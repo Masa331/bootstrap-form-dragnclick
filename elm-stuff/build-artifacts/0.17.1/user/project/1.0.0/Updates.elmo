@@ -11,9 +11,9 @@ var _user$project$Updates$addInputToForm = F2(
 				children: _user$project$Models$Children(
 					A2(
 						_elm_lang$core$List$append,
+						childs,
 						_elm_lang$core$Native_List.fromArray(
-							[input]),
-						childs))
+							[input])))
 			});
 		return {
 			ctor: '_Tuple2',

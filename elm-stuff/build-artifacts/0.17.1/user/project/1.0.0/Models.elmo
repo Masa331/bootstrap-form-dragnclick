@@ -3,6 +3,30 @@ var _user$project$Models$voidElementsList = _elm_lang$core$Native_List.fromArray
 var _user$project$Models$isVoid = function (element) {
 	return A2(_elm_lang$core$List$member, element.tag, _user$project$Models$voidElementsList);
 };
+var _user$project$Models$isDeletable = function (model) {
+	var classAttr = _elm_lang$core$List$head(
+		A2(
+			_elm_lang$core$List$filter,
+			function (attr) {
+				return _elm_lang$core$Native_Utils.eq(attr.name, 'class');
+			},
+			model.attributes));
+	var _p0 = classAttr;
+	if (_p0.ctor === 'Nothing') {
+		return false;
+	} else {
+		return A2(
+			_elm_lang$core$List$any,
+			function (className) {
+				return A2(
+					_elm_lang$core$List$member,
+					className,
+					A2(_elm_lang$core$String$split, ' ', _p0._0.value));
+			},
+			_elm_lang$core$Native_List.fromArray(
+				['form-group', 'btn', 'form-check']));
+	}
+};
 var _user$project$Models$generateNextId = function (model) {
 	return model.currentId + 1;
 };
@@ -599,9 +623,9 @@ var _user$project$Models$removeElementsRecursive = F2(
 			return _elm_lang$core$Native_Utils.eq(child.id, id) ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(child);
 		};
 		var element = model.element;
-		var childs = function (_p0) {
-			var _p1 = _p0;
-			return _p1._0;
+		var childs = function (_p1) {
+			var _p2 = _p1;
+			return _p2._0;
 		}(element.children);
 		return _elm_lang$core$Native_Utils.update(
 			element,
