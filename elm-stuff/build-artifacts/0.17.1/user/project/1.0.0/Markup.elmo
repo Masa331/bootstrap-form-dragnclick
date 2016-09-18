@@ -106,31 +106,9 @@ var _user$project$Markup$form = function (model) {
 				A2(_user$project$Markup$element, 0, model))
 			]));
 };
-var _user$project$Markup$heading = A2(
-	_elm_lang$html$Html$h1,
-	_elm_lang$core$Native_List.fromArray(
-		[]),
-	_elm_lang$core$Native_List.fromArray(
-		[
-			_elm_lang$html$Html$text('Markup'),
-			A2(
-			_elm_lang$html$Html$small,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$class('text-muted')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Copy and paste to your page')
-				]))
-		]));
 var _user$project$Markup$view = function (model) {
-	return A2(
-		_elm_lang$core$List$append,
-		_elm_lang$core$Native_List.fromArray(
-			[_user$project$Markup$heading]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$Markup$form(model.element)
-			]));
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			_user$project$Markup$form(model.element)
+		]);
 };

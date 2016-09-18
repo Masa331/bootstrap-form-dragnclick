@@ -14,20 +14,15 @@ init = (Models.initialModel, Cmd.none)
 view model =
   div
     []
-    [div
-      [class "row"]
+    [ div
+      [ class "row"]
       [ div
-         [class "col-sm-5"]
-         Views.templatesView
+         [ class "col-sm-8"]
+         [ div [class "bd-example"] (Views.yourForm model)
+         , div [class "highlight"] (Views.markup model)]
       , div
-         [class "col-sm-7"]
-         (Views.yourForm model)
-      ]
-    ,div
-      [class "row"]
-      [div
-        [class "col-sm-12"]
-        (Views.markup model)
+         [ class "col-sm-4"]
+         Views.templatesView
       ]
     ]
 

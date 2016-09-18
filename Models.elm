@@ -14,10 +14,20 @@ initialModel =
 textInput id =
   let
     label = Element "label" [Attribute "for" "input1"] (Children []) "Input1" id
-    inputAttrs = [Attribute "type" "text", Attribute "class" "form-control", Attribute "id" "input1", Attribute "disabled" ""]
+    inputAttrs = [Attribute "type" "text", Attribute "class" "form-control", Attribute "id" "input1"]
     input = Element "input" inputAttrs (Children []) "" id
   in
     Element "div" [Attribute "class" "form-group"] (Children [label, input]) "" id
+
+select id =
+  let
+    label = Element "label" [Attribute "for" ("input" ++ (toString id))] (Children []) "Example select" id
+    option1 = Element "option" [] (Children []) "1" id
+    option2 = Element "option" [] (Children []) "2" id
+    option3 = Element "option" [] (Children []) "3" id
+    selectx = Element "select" [Attribute "class" "form-control", Attribute "id" ("input" ++ (toString id))] (Children [option1, option2, option3]) "" id
+  in
+    Element "div" [Attribute "class" "form-group"] (Children [label, selectx]) "" id
 
 removeElementsRecursive model id =
   let

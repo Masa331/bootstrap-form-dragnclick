@@ -8,6 +8,7 @@ body {
 .header,
 .marketing,
 .footer {
+  margin-top: 10px;
   padding-right: 1rem;
   padding-left: 1rem;
 }
@@ -84,4 +85,24 @@ body {
   position: relative;
   bottom: 90%;
   left: 90%;
+}
+
+.bd-example {
+  position: relative;
+  padding: 1rem;
+  margin: 1rem -1rem;
+  border: solid #f7f7f9;
+  padding: 1.5rem;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  border-width: .2rem;
+}
+.highlight {
+  padding: 1.5rem;
+  margin-right: 0;
+  margin-left: 0;
+  margin-top 0;
+  padding: 1rem;
+  background-color: #f7f7f9;
 }

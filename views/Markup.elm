@@ -7,18 +7,11 @@ import String
 import Models exposing (..)
 
 view model =
-  List.append [heading] [form model.element]
+  [form model.element]
 
 -------------
 -- Private --
 -------------
-
-heading =
-  h1
-   []
-   [ text "Markup"
-   , small [ class "text-muted" ] [ text "Copy and paste to your page" ]
-   ]
 
 form model =
   let

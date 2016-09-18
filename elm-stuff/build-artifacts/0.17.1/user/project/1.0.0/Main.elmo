@@ -24,32 +24,32 @@ var _user$project$Main$view = function (model) {
 						_elm_lang$html$Html$div,
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html_Attributes$class('col-sm-5')
+								_elm_lang$html$Html_Attributes$class('col-sm-8')
 							]),
-						_user$project$Views$templatesView),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$div,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('bd-example')
+									]),
+								_user$project$Views$yourForm(model)),
+								A2(
+								_elm_lang$html$Html$div,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('highlight')
+									]),
+								_user$project$Views$markup(model))
+							])),
 						A2(
 						_elm_lang$html$Html$div,
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html_Attributes$class('col-sm-7')
+								_elm_lang$html$Html_Attributes$class('col-sm-4')
 							]),
-						_user$project$Views$yourForm(model))
-					])),
-				A2(
-				_elm_lang$html$Html$div,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('row')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(
-						_elm_lang$html$Html$div,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html_Attributes$class('col-sm-12')
-							]),
-						_user$project$Views$markup(model))
+						_user$project$Views$templatesView)
 					]))
 			]));
 };

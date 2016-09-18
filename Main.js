@@ -7922,13 +7922,276 @@ var _user$project$TemplatesView$submit = A2(
 			_elm_lang$core$Native_List.fromArray(
 				[
 					_elm_lang$html$Html$text('Submit button')
+				]))
+		]));
+var _user$project$TemplatesView$checkbox = A2(
+	_elm_lang$html$Html$div,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html_Attributes$class('form-check')
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$label,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('form-check-label')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$input,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$type$('checkbox'),
+							_elm_lang$html$Html_Attributes$class('form-check-input')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[])),
+					_elm_lang$html$Html$text('Check me out')
+				]))
+		]));
+var _user$project$TemplatesView$radioButtons = A2(
+	_elm_lang$html$Html$fieldset,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html_Attributes$class('form-group')
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('form-check')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$label,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$class('form-check-label')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_elm_lang$html$Html$input,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$type$('radio'),
+									_elm_lang$html$Html_Attributes$class('form-check-input'),
+									_elm_lang$html$Html_Attributes$name('optionsRadio'),
+									_elm_lang$html$Html_Attributes$id('optionsRadio1'),
+									_elm_lang$html$Html_Attributes$value('option1'),
+									_elm_lang$html$Html_Attributes$checked(true)
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[])),
+							_elm_lang$html$Html$text('Option 1')
+						]))
 				])),
 			A2(
-			_elm_lang$html$Html$hr,
+			_elm_lang$html$Html$div,
 			_elm_lang$core$Native_List.fromArray(
-				[]),
+				[
+					_elm_lang$html$Html_Attributes$class('form-check')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$label,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$class('form-check-label')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_elm_lang$html$Html$input,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$type$('radio'),
+									_elm_lang$html$Html_Attributes$class('form-check-input'),
+									_elm_lang$html$Html_Attributes$name('optionsRadio'),
+									_elm_lang$html$Html_Attributes$id('optionsRadio2'),
+									_elm_lang$html$Html_Attributes$value('option2')
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[])),
+							_elm_lang$html$Html$text('Option 2')
+						]))
+				])),
+			A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('form-check')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$label,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$class('form-check-label')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_elm_lang$html$Html$input,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$type$('radio'),
+									_elm_lang$html$Html_Attributes$class('form-check-input'),
+									_elm_lang$html$Html_Attributes$name('optionsRadio'),
+									_elm_lang$html$Html_Attributes$id('optionsRadio3'),
+									_elm_lang$html$Html_Attributes$value('option3')
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[])),
+							_elm_lang$html$Html$text('Option 3')
+						]))
+				]))
+		]));
+var _user$project$TemplatesView$fileUpload = A2(
+	_elm_lang$html$Html$div,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html_Attributes$class('form-group')
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$input,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$type$('file'),
+					_elm_lang$html$Html_Attributes$class('form-control-file'),
+					A2(_elm_lang$html$Html_Attributes$attribute, 'aria-describedby', 'fileHelp')
+				]),
 			_elm_lang$core$Native_List.fromArray(
 				[]))
+		]));
+var _user$project$TemplatesView$textarea = A2(
+	_elm_lang$html$Html$div,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html_Attributes$class('form-group')
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$textarea,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('form-control'),
+					_elm_lang$html$Html_Attributes$rows(3)
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[]))
+		]));
+var _user$project$TemplatesView$multiSelect = A2(
+	_elm_lang$html$Html$div,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html_Attributes$class('form-group')
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$select,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('form-control'),
+					_elm_lang$html$Html_Attributes$multiple(true)
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$option,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('1')
+						])),
+					A2(
+					_elm_lang$html$Html$option,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('2')
+						])),
+					A2(
+					_elm_lang$html$Html$option,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('3')
+						])),
+					A2(
+					_elm_lang$html$Html$option,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('4')
+						])),
+					A2(
+					_elm_lang$html$Html$option,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('5')
+						]))
+				]))
+		]));
+var _user$project$TemplatesView$select = A2(
+	_elm_lang$html$Html$div,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html_Attributes$class('form-group')
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$select,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('form-control')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$option,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('1')
+						])),
+					A2(
+					_elm_lang$html$Html$option,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('2')
+						])),
+					A2(
+					_elm_lang$html$Html$option,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('3')
+						]))
+				]))
 		]));
 var _user$project$TemplatesView$textInput = A2(
 	_elm_lang$html$Html$div,
@@ -7939,63 +8202,233 @@ var _user$project$TemplatesView$textInput = A2(
 	_elm_lang$core$Native_List.fromArray(
 		[
 			A2(
-			_elm_lang$html$Html$label,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Textove pole')
-				])),
-			A2(
 			_elm_lang$html$Html$input,
 			_elm_lang$core$Native_List.fromArray(
 				[
 					_elm_lang$html$Html_Attributes$class('form-control')
 				]),
 			_elm_lang$core$Native_List.fromArray(
-				[])),
-			A2(
-			_elm_lang$html$Html$a,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$href('#'),
-					_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput)
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('add')
-				])),
-			A2(
-			_elm_lang$html$Html$hr,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
 				[]))
 		]));
-var _user$project$TemplatesView$heading = A2(
-	_elm_lang$html$Html$h1,
-	_elm_lang$core$Native_List.fromArray(
-		[]),
-	_elm_lang$core$Native_List.fromArray(
-		[
-			_elm_lang$html$Html$text('Form elements'),
-			A2(
-			_elm_lang$html$Html$small,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$class('text-muted')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Grab n drag to your form')
-				]))
-		]));
-var _user$project$TemplatesView$view = A2(
-	_elm_lang$core$List$append,
-	_elm_lang$core$Native_List.fromArray(
-		[_user$project$TemplatesView$heading]),
-	_elm_lang$core$Native_List.fromArray(
-		[_user$project$TemplatesView$textInput, _user$project$TemplatesView$submit]));
+var _user$project$TemplatesView$view = _elm_lang$core$Native_List.fromArray(
+	[
+		A2(
+		_elm_lang$html$Html$b,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Text input')
+			])),
+		A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
+				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput),
+				_elm_lang$html$Html_Attributes$class('pull-xs-right')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('add')
+			])),
+		A2(
+		_elm_lang$html$Html$hr,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[])),
+		_user$project$TemplatesView$textInput,
+		A2(
+		_elm_lang$html$Html$b,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Select')
+			])),
+		A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
+				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput),
+				_elm_lang$html$Html_Attributes$class('pull-xs-right')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('add')
+			])),
+		A2(
+		_elm_lang$html$Html$hr,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[])),
+		_user$project$TemplatesView$select,
+		A2(
+		_elm_lang$html$Html$b,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Multiselect')
+			])),
+		A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
+				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput),
+				_elm_lang$html$Html_Attributes$class('pull-xs-right')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('add')
+			])),
+		A2(
+		_elm_lang$html$Html$hr,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[])),
+		_user$project$TemplatesView$multiSelect,
+		A2(
+		_elm_lang$html$Html$b,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Textarea')
+			])),
+		A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
+				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput),
+				_elm_lang$html$Html_Attributes$class('pull-xs-right')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('add')
+			])),
+		A2(
+		_elm_lang$html$Html$hr,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[])),
+		_user$project$TemplatesView$textarea,
+		A2(
+		_elm_lang$html$Html$b,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('File upload')
+			])),
+		A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
+				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput),
+				_elm_lang$html$Html_Attributes$class('pull-xs-right')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('add')
+			])),
+		A2(
+		_elm_lang$html$Html$hr,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[])),
+		_user$project$TemplatesView$fileUpload,
+		A2(
+		_elm_lang$html$Html$b,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Radio buttons')
+			])),
+		A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
+				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput),
+				_elm_lang$html$Html_Attributes$class('pull-xs-right')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('add')
+			])),
+		A2(
+		_elm_lang$html$Html$hr,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[])),
+		_user$project$TemplatesView$radioButtons,
+		A2(
+		_elm_lang$html$Html$b,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Checkbox')
+			])),
+		A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
+				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput),
+				_elm_lang$html$Html_Attributes$class('pull-xs-right')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('add')
+			])),
+		A2(
+		_elm_lang$html$Html$hr,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[])),
+		_user$project$TemplatesView$checkbox,
+		A2(
+		_elm_lang$html$Html$b,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Button')
+			])),
+		A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
+				_elm_lang$html$Html_Events$onClick(_user$project$Messages$AddTextInput),
+				_elm_lang$html$Html_Attributes$class('pull-xs-right')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('add')
+			])),
+		A2(
+		_elm_lang$html$Html$hr,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[])),
+		_user$project$TemplatesView$submit
+	]);
 
 var _user$project$Models$voidElementsList = _elm_lang$core$Native_List.fromArray(
 	['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']);
@@ -8025,8 +8458,7 @@ var _user$project$Models$textInput = function (id) {
 		[
 			A2(_user$project$Models$Attribute, 'type', 'text'),
 			A2(_user$project$Models$Attribute, 'class', 'form-control'),
-			A2(_user$project$Models$Attribute, 'id', 'input1'),
-			A2(_user$project$Models$Attribute, 'disabled', '')
+			A2(_user$project$Models$Attribute, 'id', 'input1')
 		]);
 	var input = A5(
 		_user$project$Models$Element,
@@ -8059,6 +8491,87 @@ var _user$project$Models$textInput = function (id) {
 		_user$project$Models$Children(
 			_elm_lang$core$Native_List.fromArray(
 				[label, input])),
+		'',
+		id);
+};
+var _user$project$Models$select = function (id) {
+	var option3 = A5(
+		_user$project$Models$Element,
+		'option',
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'3',
+		id);
+	var option2 = A5(
+		_user$project$Models$Element,
+		'option',
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'2',
+		id);
+	var option1 = A5(
+		_user$project$Models$Element,
+		'option',
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'1',
+		id);
+	var selectx = A5(
+		_user$project$Models$Element,
+		'select',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-control'),
+				A2(
+				_user$project$Models$Attribute,
+				'id',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'input',
+					_elm_lang$core$Basics$toString(id)))
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[option1, option2, option3])),
+		'',
+		id);
+	var label = A5(
+		_user$project$Models$Element,
+		'label',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_user$project$Models$Attribute,
+				'for',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'input',
+					_elm_lang$core$Basics$toString(id)))
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'Example select',
+		id);
+	return A5(
+		_user$project$Models$Element,
+		'div',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-group')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[label, selectx])),
 		'',
 		id);
 };
@@ -8199,7 +8712,7 @@ var _user$project$YourForm$removeLink = function (element) {
 		_elm_lang$html$Html$a,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html_Attributes$href('#'),
+				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
 				_elm_lang$html$Html_Events$onClick(
 				_user$project$Messages$RemoveInput(element.id))
 			]),
@@ -8213,7 +8726,7 @@ var _user$project$YourForm$editLink = function (element) {
 		_elm_lang$html$Html$a,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html_Attributes$href('#'),
+				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
 				_elm_lang$html$Html_Events$onClick(
 				_user$project$Messages$EditInput(element.id))
 			]),
@@ -8269,50 +8782,11 @@ var _user$project$YourForm$element = function (model) {
 var _user$project$YourForm$form = function (model) {
 	return _elm_lang$core$Native_List.fromArray(
 		[
-			A2(
-			_elm_lang$html$Html$hr,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[])),
 			_user$project$YourForm$element(model)
 		]);
 };
-var _user$project$YourForm$heading = A2(
-	_elm_lang$html$Html$h1,
-	_elm_lang$core$Native_List.fromArray(
-		[]),
-	_elm_lang$core$Native_List.fromArray(
-		[
-			_elm_lang$html$Html$text('Your Form'),
-			A2(
-			_elm_lang$html$Html$small,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$class('text-muted')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Drag to move, Right click to edit')
-				]))
-		]));
-var _user$project$YourForm$debug = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text(
-				_elm_lang$core$Basics$toString(model))
-			]));
-};
 var _user$project$YourForm$view = function (model) {
-	return A2(
-		_elm_lang$core$List$append,
-		_elm_lang$core$Native_List.fromArray(
-			[_user$project$YourForm$heading]),
-		_user$project$YourForm$form(model.element));
+	return _user$project$YourForm$form(model.element);
 };
 
 var _user$project$Markup$closingTag = function (element) {
@@ -8423,33 +8897,11 @@ var _user$project$Markup$form = function (model) {
 				A2(_user$project$Markup$element, 0, model))
 			]));
 };
-var _user$project$Markup$heading = A2(
-	_elm_lang$html$Html$h1,
-	_elm_lang$core$Native_List.fromArray(
-		[]),
-	_elm_lang$core$Native_List.fromArray(
-		[
-			_elm_lang$html$Html$text('Markup'),
-			A2(
-			_elm_lang$html$Html$small,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$class('text-muted')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Copy and paste to your page')
-				]))
-		]));
 var _user$project$Markup$view = function (model) {
-	return A2(
-		_elm_lang$core$List$append,
-		_elm_lang$core$Native_List.fromArray(
-			[_user$project$Markup$heading]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$Markup$form(model.element)
-			]));
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			_user$project$Markup$form(model.element)
+		]);
 };
 
 var _user$project$Views$markup = function (model) {
@@ -8539,32 +8991,32 @@ var _user$project$Main$view = function (model) {
 						_elm_lang$html$Html$div,
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html_Attributes$class('col-sm-5')
+								_elm_lang$html$Html_Attributes$class('col-sm-8')
 							]),
-						_user$project$Views$templatesView),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$div,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('bd-example')
+									]),
+								_user$project$Views$yourForm(model)),
+								A2(
+								_elm_lang$html$Html$div,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('highlight')
+									]),
+								_user$project$Views$markup(model))
+							])),
 						A2(
 						_elm_lang$html$Html$div,
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html_Attributes$class('col-sm-7')
+								_elm_lang$html$Html_Attributes$class('col-sm-4')
 							]),
-						_user$project$Views$yourForm(model))
-					])),
-				A2(
-				_elm_lang$html$Html$div,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('row')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(
-						_elm_lang$html$Html$div,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html_Attributes$class('col-sm-12')
-							]),
-						_user$project$Views$markup(model))
+						_user$project$Views$templatesView)
 					]))
 			]));
 };

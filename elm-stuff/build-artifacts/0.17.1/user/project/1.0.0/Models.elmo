@@ -26,8 +26,7 @@ var _user$project$Models$textInput = function (id) {
 		[
 			A2(_user$project$Models$Attribute, 'type', 'text'),
 			A2(_user$project$Models$Attribute, 'class', 'form-control'),
-			A2(_user$project$Models$Attribute, 'id', 'input1'),
-			A2(_user$project$Models$Attribute, 'disabled', '')
+			A2(_user$project$Models$Attribute, 'id', 'input1')
 		]);
 	var input = A5(
 		_user$project$Models$Element,
@@ -60,6 +59,87 @@ var _user$project$Models$textInput = function (id) {
 		_user$project$Models$Children(
 			_elm_lang$core$Native_List.fromArray(
 				[label, input])),
+		'',
+		id);
+};
+var _user$project$Models$select = function (id) {
+	var option3 = A5(
+		_user$project$Models$Element,
+		'option',
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'3',
+		id);
+	var option2 = A5(
+		_user$project$Models$Element,
+		'option',
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'2',
+		id);
+	var option1 = A5(
+		_user$project$Models$Element,
+		'option',
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'1',
+		id);
+	var selectx = A5(
+		_user$project$Models$Element,
+		'select',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-control'),
+				A2(
+				_user$project$Models$Attribute,
+				'id',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'input',
+					_elm_lang$core$Basics$toString(id)))
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[option1, option2, option3])),
+		'',
+		id);
+	var label = A5(
+		_user$project$Models$Element,
+		'label',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_user$project$Models$Attribute,
+				'for',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'input',
+					_elm_lang$core$Basics$toString(id)))
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'Example select',
+		id);
+	return A5(
+		_user$project$Models$Element,
+		'div',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-group')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[label, selectx])),
 		'',
 		id);
 };

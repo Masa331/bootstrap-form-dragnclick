@@ -8,28 +8,14 @@ import Models exposing (..)
 import Messages exposing (..)
 
 view model =
-  List.append [heading] (form model.element)
+  (form model.element)
 
 -------------
 -- Private --
 -------------
 
-debug model =
-  div
-    []
-    [text (toString model)]
-
-heading =
-  h1
-  []
-  [ text "Your Form"
-  , small [ class "text-muted" ] [ text "Drag to move, Right click to edit" ]
-  ]
-
 form model =
-  [ hr [] []
-  , element model
-  ]
+  [ element model ]
 
 element model =
   let
@@ -55,10 +41,10 @@ editAndRemoveLink element =
   div [class "edit-and-remove-link"] [editLink element, removeLink element]
 
 editLink element =
-  a [href "#", onClick (EditInput element.id)] [text "Edit"]
+  a [href "javascript:void(0);", onClick (EditInput element.id)] [text "Edit"]
 
 removeLink element =
-  a [href "#", onClick (RemoveInput element.id)] [text "Remove"]
+  a [href "javascript:void(0);", onClick (RemoveInput element.id)] [text "Remove"]
 
 createAttributes model =
   List.map createAttribute model.attributes
