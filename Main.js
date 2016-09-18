@@ -8537,7 +8537,7 @@ var _user$project$Models$button = function (id) {
 		'Submit button',
 		id);
 };
-var _user$project$Models$removeElementsRecursive = F2(
+var _user$project$Models$removeElement = F2(
 	function (model, id) {
 		var removeFunc = function (child) {
 			return _elm_lang$core$Native_Utils.eq(child.id, id) ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(child);
@@ -8744,7 +8744,7 @@ var _user$project$FormUpdate$update = F2(
 
 var _user$project$InputUpdate$removeInput = F2(
 	function (model, inputId) {
-		var newElement = A2(_user$project$Models$removeElementsRecursive, model, inputId);
+		var newElement = A2(_user$project$Models$removeElement, model, inputId);
 		return {
 			ctor: '_Tuple2',
 			_0: _elm_lang$core$Native_Utils.update(
@@ -9530,29 +9530,7 @@ var _user$project$Views$yourForm = function (model) {
 	return _user$project$YourForm$view(model);
 };
 var _user$project$Views$templates = _user$project$Templates$view;
-
-var _user$project$Updates$inputUpdate = F2(
-	function (msg, model) {
-		return A2(_user$project$InputUpdate$update, msg, model);
-	});
-var _user$project$Updates$formUpdate = F2(
-	function (msg, model) {
-		return A2(_user$project$FormUpdate$update, msg, model);
-	});
-
-var _user$project$Main$subscriptions = function (model) {
-	return _elm_lang$core$Platform_Sub$none;
-};
-var _user$project$Main$update = F2(
-	function (msg, model) {
-		var _p0 = msg;
-		if (_p0.ctor === 'InputMessage') {
-			return A2(_user$project$Updates$inputUpdate, _p0._0, model);
-		} else {
-			return A2(_user$project$Updates$formUpdate, _p0._0, model);
-		}
-	});
-var _user$project$Main$view = function (model) {
+var _user$project$Views$inputEdit = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
@@ -9599,6 +9577,79 @@ var _user$project$Main$view = function (model) {
 						_user$project$Views$templates)
 					]))
 			]));
+};
+var _user$project$Views$formCreator = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('row')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$div,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$class('col-sm-8')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$div,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('bd-example')
+									]),
+								_user$project$Views$yourForm(model)),
+								A2(
+								_elm_lang$html$Html$div,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('highlight')
+									]),
+								_user$project$Views$markup(model))
+							])),
+						A2(
+						_elm_lang$html$Html$div,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$class('col-sm-4')
+							]),
+						_user$project$Views$templates)
+					]))
+			]));
+};
+
+var _user$project$Updates$inputUpdate = F2(
+	function (msg, model) {
+		return A2(_user$project$InputUpdate$update, msg, model);
+	});
+var _user$project$Updates$formUpdate = F2(
+	function (msg, model) {
+		return A2(_user$project$FormUpdate$update, msg, model);
+	});
+
+var _user$project$Main$subscriptions = function (model) {
+	return _elm_lang$core$Platform_Sub$none;
+};
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		if (_p0.ctor === 'InputMessage') {
+			return A2(_user$project$Updates$inputUpdate, _p0._0, model);
+		} else {
+			return A2(_user$project$Updates$formUpdate, _p0._0, model);
+		}
+	});
+var _user$project$Main$view = function (model) {
+	return _user$project$Views$formCreator(model);
 };
 var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Models$initialModel, _1: _elm_lang$core$Platform_Cmd$none};
 var _user$project$Main$main = {

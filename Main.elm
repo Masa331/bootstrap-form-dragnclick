@@ -2,7 +2,6 @@ module Main exposing (..)
 
 import Html exposing (div)
 import Html.App
-import Html.Attributes exposing (class)
 
 import Views
 import Models
@@ -12,19 +11,7 @@ import Updates
 init = (Models.initialModel, Cmd.none)
 
 view model =
-  div
-    []
-    [ div
-      [ class "row"]
-      [ div
-         [ class "col-sm-8"]
-         [ div [class "bd-example"] (Views.yourForm model)
-         , div [class "highlight"] (Views.markup model)]
-      , div
-         [ class "col-sm-4"]
-         Views.templates
-      ]
-    ]
+  Views.formCreator model
 
 update msg model =
   case msg of

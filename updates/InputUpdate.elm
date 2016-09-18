@@ -16,6 +16,6 @@ update msg model =
 
 removeInput model inputId =
   let
-    newElement = removeElementsRecursive model inputId
+    newElement = removeElement model inputId
   in
     ({ model | element = newElement }, Cmd.none)

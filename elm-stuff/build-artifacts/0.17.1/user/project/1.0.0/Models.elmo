@@ -617,7 +617,7 @@ var _user$project$Models$button = function (id) {
 		'Submit button',
 		id);
 };
-var _user$project$Models$removeElementsRecursive = F2(
+var _user$project$Models$removeElement = F2(
 	function (model, id) {
 		var removeFunc = function (child) {
 			return _elm_lang$core$Native_Utils.eq(child.id, id) ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(child);

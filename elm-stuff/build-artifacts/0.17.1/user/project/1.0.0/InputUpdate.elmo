@@ -1,6 +1,6 @@
 var _user$project$InputUpdate$removeInput = F2(
 	function (model, inputId) {
-		var newElement = A2(_user$project$Models$removeElementsRecursive, model, inputId);
+		var newElement = A2(_user$project$Models$removeElement, model, inputId);
 		return {
 			ctor: '_Tuple2',
 			_0: _elm_lang$core$Native_Utils.update(

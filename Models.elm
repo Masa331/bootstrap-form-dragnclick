@@ -85,7 +85,7 @@ checkbox id =
 button id =
   Element "button" [Attribute "type" "submit", Attribute "class" "btn btn-primary"] (Children []) "Submit button" id
 
-removeElementsRecursive model id =
+removeElement model id =
   let
     element = model.element
     childs = (\ (Children childs) -> childs) element.children
