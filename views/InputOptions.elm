@@ -11,8 +11,6 @@ import Messages exposing (..)
 view model =
   [ b [] [text "Placeholder"]
   , hr [] []
-  -- , div [ class "form-group", onInput (InputMessage PlaceholderEdit) ] [ input [class "form-control"] [] ]
-  -- , div [ onInput (InputMessage PlaceholderEdit) ] [ input [class "form-control"] [] ]
   , div [] [ input [class "form-control", onInput (InputMessage << PlaceholderEdit)] [] ]
 
   , b [] [text "Placeholder"]
