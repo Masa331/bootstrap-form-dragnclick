@@ -15,12 +15,19 @@ update msg model =
       case model.currentlyEddited of
         Nothing ->
           (model, Cmd.none)
-        Just id ->
-          updatePlaceholder id model placeholder
+        Just elementID ->
+          updatePlaceholder elementID model placeholder
 
 -------------
 -- Private --
 -------------
+
+updatePlaceholder elementId model newPlaceholder =
+  let
+    element = model.element
+    elementsToUpdate = List.filter (\element -> element.id == id) childs
+  in
+    (model, Cmd.none)
 
 removeInput model inputId =
   let
@@ -28,7 +35,7 @@ removeInput model inputId =
   in
     ({ model | element = newElement }, Cmd.none)
 
-updatePlaceholder id model placeholder =
+updatePlaceholders id model placeholder =
   let
     element = model.element
     childs = (\ (Children childs) -> childs) element.children

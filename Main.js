@@ -8989,7 +8989,7 @@ var _user$project$InputUpdate$updateAttributes = F2(
 				},
 				attributes));
 	});
-var _user$project$InputUpdate$updatePlaceholder = F3(
+var _user$project$InputUpdate$updatePlaceholders = F3(
 	function (id, model, placeholder) {
 		var placeholderAttibute = A2(_user$project$Models$Attribute, 'placeholder', placeholder);
 		var element = model.element;
@@ -9044,6 +9044,11 @@ var _user$project$InputUpdate$removeInput = F2(
 				{element: newElement}),
 			_1: _elm_lang$core$Platform_Cmd$none
 		};
+	});
+var _user$project$InputUpdate$updatePlaceholder = F3(
+	function (elementId, model, newPlaceholder) {
+		var element = model.element;
+		return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 	});
 var _user$project$InputUpdate$update = F2(
 	function (msg, model) {
