@@ -8964,39 +8964,32 @@ var _user$project$InputOptions$view = function (model) {
 						]),
 					_elm_lang$core$Native_List.fromArray(
 						[]))
-				])),
-			A2(
-			_elm_lang$html$Html$b,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Placeholder')
-				])),
-			A2(
-			_elm_lang$html$Html$hr,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-			A2(
-			_elm_lang$html$Html$div,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$input,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$class('form-control')
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[]))
 				]))
 		]);
 };
 
+var _user$project$InputUpdate$updatePlaceholder = F3(
+	function (id, model, placeholder) {
+		var placeholderAttibute = A2(_user$project$Models$Attribute, 'placeholder', placeholder);
+		var element = model.element;
+		var childs = function (_p0) {
+			var _p1 = _p0;
+			return _p1._0;
+		}(element.children);
+		var elementToUpdate = _elm_lang$core$List$head(
+			A2(
+				_elm_lang$core$List$filter,
+				function (element) {
+					return _elm_lang$core$Native_Utils.eq(element.id, id);
+				},
+				childs));
+		var _p2 = elementToUpdate;
+		if (_p2.ctor === 'Nothing') {
+			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		} else {
+			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		}
+	});
 var _user$project$InputUpdate$removeInput = F2(
 	function (model, inputId) {
 		var newElement = A2(_user$project$Models$removeElement, model, inputId);
@@ -9010,17 +9003,17 @@ var _user$project$InputUpdate$removeInput = F2(
 	});
 var _user$project$InputUpdate$update = F2(
 	function (msg, model) {
-		var _p0 = msg;
-		switch (_p0.ctor) {
+		var _p3 = msg;
+		switch (_p3.ctor) {
 			case 'RemoveInput':
-				return A2(_user$project$InputUpdate$removeInput, model, _p0._0);
+				return A2(_user$project$InputUpdate$removeInput, model, _p3._0);
 			case 'EditInput':
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							currentlyEddited: _elm_lang$core$Maybe$Just(_p0._0)
+							currentlyEddited: _elm_lang$core$Maybe$Just(_p3._0)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -9033,7 +9026,12 @@ var _user$project$InputUpdate$update = F2(
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			default:
-				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+				var _p4 = model.currentlyEddited;
+				if (_p4.ctor === 'Nothing') {
+					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+				} else {
+					return A3(_user$project$InputUpdate$updatePlaceholder, _p4._0, model, _p3._0);
+				}
 		}
 	});
 
