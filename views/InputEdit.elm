@@ -31,9 +31,9 @@ element model =
   in
   case childs of
     [] ->
-        [Html.node model.tag attributes [value]]
+      [Html.node model.tag attributes [value]]
     x::xs ->
-        [Html.node model.tag attributes ((List.concat (List.map element childs)) ++ [value])]
+      [Html.node model.tag attributes ((List.concat (List.map element childs)) ++ [value])]
 
 createAttributes model =
   List.map createAttribute model.attributes

@@ -32,11 +32,21 @@ updatePlaceholder id model placeholder =
   let
     element = model.element
     childs = (\ (Children childs) -> childs) element.children
-    elementToUpdate = List.filter (\element -> element.id == id) childs |> List.head
     placeholderAttibute = Attribute "placeholder" placeholder
+    elementsToUpdate = List.filter (\element -> element.id == id) childs
+    updatedElements = List.map (\element -> { element | attributes = (updateAttributes element.attributes placeholderAttibute) }) elementsToUpdate
+
+    newChilds = List.filter (\child -> child.id /= id) childs
+      |> List.append updatedElements
+      |> Children
+
+    updatedElement = { element | children = newChilds }
   in
-    case elementToUpdate of
-      Nothing ->
-        (model, Cmd.none)
-      Just element ->
-        (model, Cmd.none)
+    ({ model | element = updatedElement }, Cmd.none)
+
+updateAttributes attributes newAttributes =
+  let
+    toUpdate = List.filter (\attr -> attr.value /= "") [newAttributes]
+  in
+    List.filter (\attr -> attr.name /= "placeholder") attributes
+      |> List.append toUpdate

@@ -8964,10 +8964,31 @@ var _user$project$InputOptions$view = function (model) {
 						]),
 					_elm_lang$core$Native_List.fromArray(
 						[]))
-				]))
+				])),
+			_elm_lang$html$Html$text(
+			_elm_lang$core$Basics$toString(model))
 		]);
 };
 
+var _user$project$InputUpdate$updateAttributes = F2(
+	function (attributes, newAttributes) {
+		var toUpdate = A2(
+			_elm_lang$core$List$filter,
+			function (attr) {
+				return !_elm_lang$core$Native_Utils.eq(attr.value, '');
+			},
+			_elm_lang$core$Native_List.fromArray(
+				[newAttributes]));
+		return A2(
+			_elm_lang$core$List$append,
+			toUpdate,
+			A2(
+				_elm_lang$core$List$filter,
+				function (attr) {
+					return !_elm_lang$core$Native_Utils.eq(attr.name, 'placeholder');
+				},
+				attributes));
+	});
 var _user$project$InputUpdate$updatePlaceholder = F3(
 	function (id, model, placeholder) {
 		var placeholderAttibute = A2(_user$project$Models$Attribute, 'placeholder', placeholder);
@@ -8976,19 +8997,42 @@ var _user$project$InputUpdate$updatePlaceholder = F3(
 			var _p1 = _p0;
 			return _p1._0;
 		}(element.children);
-		var elementToUpdate = _elm_lang$core$List$head(
+		var elementsToUpdate = A2(
+			_elm_lang$core$List$filter,
+			function (element) {
+				return _elm_lang$core$Native_Utils.eq(element.id, id);
+			},
+			childs);
+		var updatedElements = A2(
+			_elm_lang$core$List$map,
+			function (element) {
+				return _elm_lang$core$Native_Utils.update(
+					element,
+					{
+						attributes: A2(_user$project$InputUpdate$updateAttributes, element.attributes, placeholderAttibute)
+					});
+			},
+			elementsToUpdate);
+		var newChilds = _user$project$Models$Children(
 			A2(
-				_elm_lang$core$List$filter,
-				function (element) {
-					return _elm_lang$core$Native_Utils.eq(element.id, id);
-				},
-				childs));
-		var _p2 = elementToUpdate;
-		if (_p2.ctor === 'Nothing') {
-			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-		} else {
-			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-		}
+				_elm_lang$core$List$append,
+				updatedElements,
+				A2(
+					_elm_lang$core$List$filter,
+					function (child) {
+						return !_elm_lang$core$Native_Utils.eq(child.id, id);
+					},
+					childs)));
+		var updatedElement = _elm_lang$core$Native_Utils.update(
+			element,
+			{children: newChilds});
+		return {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Native_Utils.update(
+				model,
+				{element: updatedElement}),
+			_1: _elm_lang$core$Platform_Cmd$none
+		};
 	});
 var _user$project$InputUpdate$removeInput = F2(
 	function (model, inputId) {
@@ -9003,17 +9047,17 @@ var _user$project$InputUpdate$removeInput = F2(
 	});
 var _user$project$InputUpdate$update = F2(
 	function (msg, model) {
-		var _p3 = msg;
-		switch (_p3.ctor) {
+		var _p2 = msg;
+		switch (_p2.ctor) {
 			case 'RemoveInput':
-				return A2(_user$project$InputUpdate$removeInput, model, _p3._0);
+				return A2(_user$project$InputUpdate$removeInput, model, _p2._0);
 			case 'EditInput':
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							currentlyEddited: _elm_lang$core$Maybe$Just(_p3._0)
+							currentlyEddited: _elm_lang$core$Maybe$Just(_p2._0)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -9026,11 +9070,11 @@ var _user$project$InputUpdate$update = F2(
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			default:
-				var _p4 = model.currentlyEddited;
-				if (_p4.ctor === 'Nothing') {
+				var _p3 = model.currentlyEddited;
+				if (_p3.ctor === 'Nothing') {
 					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 				} else {
-					return A3(_user$project$InputUpdate$updatePlaceholder, _p4._0, model, _p3._0);
+					return A3(_user$project$InputUpdate$updatePlaceholder, _p3._0, model, _p2._0);
 				}
 		}
 	});
