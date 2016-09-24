@@ -45,7 +45,8 @@ view =
   , b [] [text "Button"]
   , a [href "javascript:void(0);", onClick (FormMessage AddButton), class "pull-xs-right"] [text "add"]
   , hr [] []
-  , submit ]
+  , submit
+  ]
 
 -------------
 -- Private --
@@ -59,8 +60,7 @@ textInput =
 select =
   div
     [ class "form-group" ]
-    [
-     Html.select
+    [ Html.select
       [class "form-control"]
       [ option [] [text "1"]
       , option [] [text "2"]
@@ -71,8 +71,7 @@ select =
 multiSelect =
   div
     [ class "form-group" ]
-    [
-     Html.select
+    [ Html.select
       [class "form-control", multiple True]
       [ option [] [text "1"]
       , option [] [text "2"]

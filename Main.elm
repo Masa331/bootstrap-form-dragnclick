@@ -8,17 +8,18 @@ import Models
 import Messages
 import Updates
 
-init = (Models.initialModel, Cmd.none)
+init = (Models.new, Cmd.none)
 
 view model =
   Views.view model
 
 update msg model =
-  case msg of
-    Messages.InputMessage inputMsg ->
-      Updates.inputUpdate inputMsg model
-    Messages.FormMessage formMsg ->
-      Updates.formUpdate formMsg model
+  (model, Cmd.none)
+  -- case msg of
+  --   Messages.InputMessage inputMsg ->
+  --     Updates.inputUpdate inputMsg model
+  --   Messages.FormMessage formMsg ->
+  --     Updates.formUpdate formMsg model
 
 subscriptions model =
   Sub.none

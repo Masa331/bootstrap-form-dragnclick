@@ -13,11 +13,12 @@ import Messages exposing (..)
 import Models exposing (..)
 
 view model =
-  case model.currentlyEddited of
+  case model.currentlyEdditedInputId of
     Nothing ->
       formCreator model
     Just id ->
-      inputEditLayout model
+      formCreator model
+      -- inputEditLayout model
 
 -------------
 -- Private --
@@ -31,48 +32,51 @@ formCreator model =
       [ div
          [ class "col-sm-8"]
          [ div [class "bd-example"] (formEdit model)
-         , div [class "highlight"] (markup model.element)]
+         , div [class "highlight"] (markup model)]
+         -- [ div [class "bd-example"] [ (text "ahoj") ]
+         -- , div [class "highlight"] [ (text "ahoj") ] ]
       , div
-         [ class "col-sm-4"]
+         [ class "col-sm-4" ]
          templates
+         -- [ text "ho" ]
       ]
     ]
 
-inputEditLayout model =
-  let
-    childs = (\ (Children childs) -> childs) model.element.children
-    input = List.head (List.filter (\el -> (Just el.id) == model.currentlyEddited) childs)
-  in
-    case input of
-      Nothing ->
-        div [] [text "Nothing to edit"]
-      Just b ->
-        div
-          []
-          [ a [href "javascript:void(0)", onClick (InputMessage StopEditing)] [text "Back to form"]
-          , div
-              [ class "row"]
-              [ div
-                 [ class "col-sm-8"]
-                 [ div [class "bd-example"] (inputEdit model)
-                 , div [class "highlight"] (markup b)]
-              , div
-                 [ class "col-sm-4"]
-                 (inputOptions model)
-              ]
-          ]
-
+-- inputEditLayout model =
+--   let
+--     childs = (\ (Children childs) -> childs) model.element.children
+--     input = List.head (List.filter (\el -> (Just el.id) == model.currentlyEddited) childs)
+--   in
+--     case input of
+--       Nothing ->
+--         div [] [text "Nothing to edit"]
+--       Just b ->
+--         div
+--           []
+--           [ a [href "javascript:void(0)", onClick (InputMessage StopEditing)] [text "Back to form"]
+--           , div
+--               [ class "row"]
+--               [ div
+--                  [ class "col-sm-8"]
+--                  [ div [class "bd-example"] (inputEdit model)
+--                  , div [class "highlight"] (markup b)]
+--               , div
+--                  [ class "col-sm-4"]
+--                  (inputOptions model)
+--               ]
+--           ]
+--
 templates =
   Templates.view
 
 formEdit model =
-  FormEdit.view model
-
+  [FormEdit.view model]
+--
 markup model =
-  Markup.view model
-
-inputEdit model =
-  InputEdit.view model
-
-inputOptions model =
-  InputOptions.view model
+  [Markup.view model]
+--
+-- inputEdit model =
+--   InputEdit.view model
+--
+-- inputOptions model =
+--   InputOptions.view model

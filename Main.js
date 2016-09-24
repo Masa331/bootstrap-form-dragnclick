@@ -7897,749 +7897,45 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
-var _user$project$Models$voidElementsList = _elm_lang$core$Native_List.fromArray(
-	['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']);
-var _user$project$Models$isVoid = function (element) {
-	return A2(_elm_lang$core$List$member, element.tag, _user$project$Models$voidElementsList);
-};
-var _user$project$Models$isDeletable = function (model) {
-	var classAttr = _elm_lang$core$List$head(
-		A2(
-			_elm_lang$core$List$filter,
-			function (attr) {
-				return _elm_lang$core$Native_Utils.eq(attr.name, 'class');
-			},
-			model.attributes));
-	var _p0 = classAttr;
-	if (_p0.ctor === 'Nothing') {
-		return false;
-	} else {
-		return A2(
-			_elm_lang$core$List$any,
-			function (className) {
-				return A2(
-					_elm_lang$core$List$member,
-					className,
-					A2(_elm_lang$core$String$split, ' ', _p0._0.value));
-			},
-			_elm_lang$core$Native_List.fromArray(
-				['form-group', 'btn', 'form-check']));
-	}
-};
-var _user$project$Models$generateNextId = function (model) {
-	return model.currentId + 1;
-};
-var _user$project$Models$Attribute = F2(
+var _user$project$Models$Model = F2(
 	function (a, b) {
-		return {name: a, value: b};
+		return {form: a, currentlyEdditedInputId: b};
 	});
-var _user$project$Models$Element = F5(
-	function (a, b, c, d, e) {
-		return {tag: a, attributes: b, children: c, value: d, id: e};
-	});
-var _user$project$Models$Model = F3(
-	function (a, b, c) {
-		return {currentId: a, currentlyEddited: b, element: c};
-	});
-var _user$project$Models$Children = function (a) {
-	return {ctor: 'Children', _0: a};
+var _user$project$Models$Button = {ctor: 'Button'};
+var _user$project$Models$Checkbox = {ctor: 'Checkbox'};
+var _user$project$Models$Radio = {ctor: 'Radio'};
+var _user$project$Models$FileUpload = {ctor: 'FileUpload'};
+var _user$project$Models$Multiselect = {ctor: 'Multiselect'};
+var _user$project$Models$Select = {ctor: 'Select'};
+var _user$project$Models$TextArea = function (a) {
+	return {ctor: 'TextArea', _0: a};
 };
-var _user$project$Models$textInput = function (id) {
-	var inputAttrs = _elm_lang$core$Native_List.fromArray(
-		[
-			A2(_user$project$Models$Attribute, 'type', 'text'),
-			A2(_user$project$Models$Attribute, 'class', 'form-control'),
-			A2(_user$project$Models$Attribute, 'id', 'input1')
-		]);
-	var input = A5(
-		_user$project$Models$Element,
-		'input',
-		inputAttrs,
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'',
-		id);
-	var label = A5(
-		_user$project$Models$Element,
-		'label',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'for', 'input1')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'Input1',
-		id);
-	return A5(
-		_user$project$Models$Element,
-		'div',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'class', 'form-group')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[label, input])),
-		'',
-		id);
+var _user$project$Models$TextInput = function (a) {
+	return {ctor: 'TextInput', _0: a};
 };
-var _user$project$Models$select = function (id) {
-	var option3 = A5(
-		_user$project$Models$Element,
-		'option',
+var _user$project$Models$new = function () {
+	var textInput2 = _user$project$Models$TextArea(
+		{
+			ctor: '_Tuple3',
+			_0: 2,
+			_1: _elm_lang$core$Native_List.fromArray(
+				[]),
+			_2: _elm_lang$core$Maybe$Just('Some placeholder...')
+		});
+	var textInput = _user$project$Models$TextInput(
+		{
+			ctor: '_Tuple3',
+			_0: 1,
+			_1: _elm_lang$core$Native_List.fromArray(
+				[]),
+			_2: _elm_lang$core$Maybe$Nothing
+		});
+	return A2(
+		_user$project$Models$Model,
 		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'3',
-		id);
-	var option2 = A5(
-		_user$project$Models$Element,
-		'option',
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'2',
-		id);
-	var option1 = A5(
-		_user$project$Models$Element,
-		'option',
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'1',
-		id);
-	var selectx = A5(
-		_user$project$Models$Element,
-		'select',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'class', 'form-control'),
-				A2(
-				_user$project$Models$Attribute,
-				'id',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'input',
-					_elm_lang$core$Basics$toString(id)))
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[option1, option2, option3])),
-		'',
-		id);
-	var label = A5(
-		_user$project$Models$Element,
-		'label',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_user$project$Models$Attribute,
-				'for',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'input',
-					_elm_lang$core$Basics$toString(id)))
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'Example select',
-		id);
-	return A5(
-		_user$project$Models$Element,
-		'div',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'class', 'form-group')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[label, selectx])),
-		'',
-		id);
-};
-var _user$project$Models$multiselect = function (id) {
-	var option5 = A5(
-		_user$project$Models$Element,
-		'option',
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'5',
-		id);
-	var option4 = A5(
-		_user$project$Models$Element,
-		'option',
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'4',
-		id);
-	var option3 = A5(
-		_user$project$Models$Element,
-		'option',
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'3',
-		id);
-	var option2 = A5(
-		_user$project$Models$Element,
-		'option',
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'2',
-		id);
-	var option1 = A5(
-		_user$project$Models$Element,
-		'option',
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'1',
-		id);
-	var selectx = A5(
-		_user$project$Models$Element,
-		'select',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'class', 'form-control'),
-				A2(
-				_user$project$Models$Attribute,
-				'id',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'input',
-					_elm_lang$core$Basics$toString(id))),
-				A2(_user$project$Models$Attribute, 'multiple', '')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[option1, option2, option3, option4, option5])),
-		'',
-		id);
-	var label = A5(
-		_user$project$Models$Element,
-		'label',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_user$project$Models$Attribute,
-				'for',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'input',
-					_elm_lang$core$Basics$toString(id)))
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'Example select',
-		id);
-	return A5(
-		_user$project$Models$Element,
-		'div',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'class', 'form-group')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[label, selectx])),
-		'',
-		id);
-};
-var _user$project$Models$textarea = function (id) {
-	var textareax = A5(
-		_user$project$Models$Element,
-		'textarea',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'class', 'form-control'),
-				A2(
-				_user$project$Models$Attribute,
-				'id',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'input',
-					_elm_lang$core$Basics$toString(id))),
-				A2(_user$project$Models$Attribute, 'rows', '3')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'',
-		id);
-	var label = A5(
-		_user$project$Models$Element,
-		'label',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_user$project$Models$Attribute,
-				'for',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'input',
-					_elm_lang$core$Basics$toString(id)))
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'Example textarea',
-		id);
-	return A5(
-		_user$project$Models$Element,
-		'div',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'class', 'form-group')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[label, textareax])),
-		'',
-		id);
-};
-var _user$project$Models$fileUpload = function (id) {
-	var upload = A5(
-		_user$project$Models$Element,
-		'input',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'class', 'form-control-file'),
-				A2(
-				_user$project$Models$Attribute,
-				'id',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'input',
-					_elm_lang$core$Basics$toString(id))),
-				A2(_user$project$Models$Attribute, 'type', 'file'),
-				A2(_user$project$Models$Attribute, 'aria-describedby', 'fileHelp')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'',
-		id);
-	var label = A5(
-		_user$project$Models$Element,
-		'label',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_user$project$Models$Attribute,
-				'for',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'input',
-					_elm_lang$core$Basics$toString(id)))
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'Example file upload',
-		id);
-	return A5(
-		_user$project$Models$Element,
-		'div',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'class', 'form-group')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[label, upload])),
-		'',
-		id);
-};
-var _user$project$Models$radioButtons = function (id) {
-	var input3 = A5(
-		_user$project$Models$Element,
-		'input',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'type', 'radio'),
-				A2(_user$project$Models$Attribute, 'class', 'form-check-input'),
-				A2(
-				_user$project$Models$Attribute,
-				'name',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'optionsRadio',
-					_elm_lang$core$Basics$toString(id))),
-				A2(
-				_user$project$Models$Attribute,
-				'id',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'optionsRadio',
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						_elm_lang$core$Basics$toString(id),
-						'3'))),
-				A2(_user$project$Models$Attribute, 'value', 'option3')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'',
-		id);
-	var label3 = A5(
-		_user$project$Models$Element,
-		'label',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'class', 'form-check-label')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[input3])),
-		'Option 2',
-		id);
-	var div3 = A5(
-		_user$project$Models$Element,
-		'div',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'class', 'form-check')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[label3])),
-		'',
-		id);
-	var input2 = A5(
-		_user$project$Models$Element,
-		'input',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'type', 'radio'),
-				A2(_user$project$Models$Attribute, 'class', 'form-check-input'),
-				A2(
-				_user$project$Models$Attribute,
-				'name',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'optionsRadio',
-					_elm_lang$core$Basics$toString(id))),
-				A2(
-				_user$project$Models$Attribute,
-				'id',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'optionsRadio',
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						_elm_lang$core$Basics$toString(id),
-						'2'))),
-				A2(_user$project$Models$Attribute, 'value', 'option2')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'',
-		id);
-	var label2 = A5(
-		_user$project$Models$Element,
-		'label',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'class', 'form-check-label')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[input2])),
-		'Option 2',
-		id);
-	var div2 = A5(
-		_user$project$Models$Element,
-		'div',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'class', 'form-check')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[label2])),
-		'',
-		id);
-	var input1 = A5(
-		_user$project$Models$Element,
-		'input',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'type', 'radio'),
-				A2(_user$project$Models$Attribute, 'class', 'form-check-input'),
-				A2(
-				_user$project$Models$Attribute,
-				'name',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'optionsRadio',
-					_elm_lang$core$Basics$toString(id))),
-				A2(
-				_user$project$Models$Attribute,
-				'id',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'optionsRadio',
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						_elm_lang$core$Basics$toString(id),
-						'1'))),
-				A2(_user$project$Models$Attribute, 'value', 'option1')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'',
-		id);
-	var label1 = A5(
-		_user$project$Models$Element,
-		'label',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'class', 'form-check-label')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[input1])),
-		'Option 1',
-		id);
-	var div1 = A5(
-		_user$project$Models$Element,
-		'div',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'class', 'form-check')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[label1])),
-		'',
-		id);
-	var legend = A5(
-		_user$project$Models$Element,
-		'legend',
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'Radio buttons',
-		id);
-	return A5(
-		_user$project$Models$Element,
-		'fieldset',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'class', 'form-group')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[legend, div1, div2, div3])),
-		'',
-		id);
-};
-var _user$project$Models$checkbox = function (id) {
-	var input = A5(
-		_user$project$Models$Element,
-		'input',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'type', 'checkbox'),
-				A2(_user$project$Models$Attribute, 'class', 'form-check-input')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'',
-		id);
-	var label = A5(
-		_user$project$Models$Element,
-		'label',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'class', 'form-check-label')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[input])),
-		'Check me out',
-		id);
-	return A5(
-		_user$project$Models$Element,
-		'div',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'class', 'form-check')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[label])),
-		'',
-		id);
-};
-var _user$project$Models$button = function (id) {
-	return A5(
-		_user$project$Models$Element,
-		'button',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'type', 'submit'),
-				A2(_user$project$Models$Attribute, 'class', 'btn btn-primary')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'Submit button',
-		id);
-};
-var _user$project$Models$removeElement = F2(
-	function (model, id) {
-		var removeFunc = function (child) {
-			return _elm_lang$core$Native_Utils.eq(child.id, id) ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(child);
-		};
-		var element = model.element;
-		var childs = function (_p1) {
-			var _p2 = _p1;
-			return _p2._0;
-		}(element.children);
-		return _elm_lang$core$Native_Utils.update(
-			element,
-			{
-				children: _user$project$Models$Children(
-					A2(_elm_lang$core$List$filterMap, removeFunc, childs))
-			});
-	});
-var _user$project$Models$initialTextInput = function () {
-	var inputAttrs = _elm_lang$core$Native_List.fromArray(
-		[
-			A2(_user$project$Models$Attribute, 'type', 'text'),
-			A2(_user$project$Models$Attribute, 'class', 'form-control'),
-			A2(_user$project$Models$Attribute, 'id', 'input1')
-		]);
-	var input = A5(
-		_user$project$Models$Element,
-		'input',
-		inputAttrs,
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'',
-		2);
-	var label = A5(
-		_user$project$Models$Element,
-		'label',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'for', 'input1')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'Input1',
-		1);
-	return A5(
-		_user$project$Models$Element,
-		'div',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'class', 'form-group')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[label, input])),
-		'',
-		3);
+			[textInput, textInput2]),
+		_elm_lang$core$Maybe$Nothing);
 }();
-var _user$project$Models$initialCheckbox = function () {
-	var checkInput = A5(
-		_user$project$Models$Element,
-		'input',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'type', 'checkbox'),
-				A2(_user$project$Models$Attribute, 'class', 'form-check-input')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'',
-		4);
-	var checkLabel = A5(
-		_user$project$Models$Element,
-		'label',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'class', 'form-check-label')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[checkInput])),
-		'Check me out',
-		5);
-	return A5(
-		_user$project$Models$Element,
-		'div',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'class', 'form-check')
-			]),
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[checkLabel])),
-		'',
-		6);
-}();
-var _user$project$Models$initialSubmit = function () {
-	var submitAttrs = _elm_lang$core$Native_List.fromArray(
-		[
-			A2(_user$project$Models$Attribute, 'type', 'submit'),
-			A2(_user$project$Models$Attribute, 'class', 'btn btn-primary')
-		]);
-	return A5(
-		_user$project$Models$Element,
-		'button',
-		submitAttrs,
-		_user$project$Models$Children(
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-		'Submit',
-		7);
-}();
-var _user$project$Models$initialElement = A5(
-	_user$project$Models$Element,
-	'form',
-	_elm_lang$core$Native_List.fromArray(
-		[]),
-	_user$project$Models$Children(
-		_elm_lang$core$Native_List.fromArray(
-			[_user$project$Models$initialTextInput, _user$project$Models$initialCheckbox, _user$project$Models$initialSubmit])),
-	'',
-	0);
-var _user$project$Models$initialModel = {currentId: 7, element: _user$project$Models$initialElement, currentlyEddited: _elm_lang$core$Maybe$Nothing};
 
 var _user$project$Messages$AddButton = {ctor: 'AddButton'};
 var _user$project$Messages$AddCheckbox = {ctor: 'AddCheckbox'};
@@ -8666,423 +7962,124 @@ var _user$project$Messages$FormMessage = function (a) {
 	return {ctor: 'FormMessage', _0: a};
 };
 
-var _user$project$FormEdit$createAttribute = function (attribute) {
-	return A2(_elm_lang$html$Html_Attributes$attribute, attribute.name, attribute.value);
+var _user$project$FormEdit$buttonHtml = function (inp) {
+	return _elm_lang$html$Html$text('ho');
 };
-var _user$project$FormEdit$createAttributes = function (model) {
-	return A2(_elm_lang$core$List$map, _user$project$FormEdit$createAttribute, model.attributes);
+var _user$project$FormEdit$checkboxHtml = function (inp) {
+	return _elm_lang$html$Html$text('ho');
 };
-var _user$project$FormEdit$removeLink = function (element) {
-	return A2(
-		_elm_lang$html$Html$a,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$InputMessage(
-					_user$project$Messages$RemoveInput(element.id)))
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Remove')
-			]));
+var _user$project$FormEdit$radioHtml = function (inp) {
+	return _elm_lang$html$Html$text('ho');
 };
-var _user$project$FormEdit$editLink = function (element) {
-	return A2(
-		_elm_lang$html$Html$a,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$InputMessage(
-					_user$project$Messages$EditInput(element.id)))
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Edit')
-			]));
+var _user$project$FormEdit$fileUploadHtml = function (inp) {
+	return _elm_lang$html$Html$text('ho');
 };
-var _user$project$FormEdit$editAndRemoveLink = function (element) {
+var _user$project$FormEdit$multiselectHtml = function (inp) {
+	return _elm_lang$html$Html$text('ho');
+};
+var _user$project$FormEdit$selectHtml = function (inp) {
+	return _elm_lang$html$Html$text('ho');
+};
+var _user$project$FormEdit$textAreaHtml = function (inp) {
 	return A2(
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html_Attributes$class('edit-and-remove-link')
+				_elm_lang$html$Html_Attributes$class('form-group')
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_user$project$FormEdit$editLink(element),
-				_user$project$FormEdit$removeLink(element)
-			]));
-};
-var _user$project$FormEdit$element = function (model) {
-	var value = _elm_lang$html$Html$text(model.value);
-	var childs = function (_p0) {
-		var _p1 = _p0;
-		return _p1._0;
-	}(model.children);
-	var attributes = _user$project$FormEdit$createAttributes(model);
-	var _p2 = childs;
-	if (_p2.ctor === '[]') {
-		return _user$project$Models$isDeletable(model) ? _elm_lang$core$Native_List.fromArray(
-			[
-				A3(
-				_elm_lang$html$Html$node,
-				model.tag,
-				attributes,
-				_elm_lang$core$Native_List.fromArray(
-					[value])),
-				_user$project$FormEdit$editAndRemoveLink(model)
-			]) : _elm_lang$core$Native_List.fromArray(
-			[
-				A3(
-				_elm_lang$html$Html$node,
-				model.tag,
-				attributes,
-				_elm_lang$core$Native_List.fromArray(
-					[value]))
-			]);
-	} else {
-		return _user$project$Models$isDeletable(model) ? _elm_lang$core$Native_List.fromArray(
-			[
-				A3(
-				_elm_lang$html$Html$node,
-				model.tag,
-				attributes,
 				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_elm_lang$core$List$concat(
-						A2(_elm_lang$core$List$map, _user$project$FormEdit$element, childs)),
-					_elm_lang$core$Native_List.fromArray(
-						[value]))),
-				_user$project$FormEdit$editAndRemoveLink(model)
-			]) : _elm_lang$core$Native_List.fromArray(
-			[
-				A3(
-				_elm_lang$html$Html$node,
-				model.tag,
-				attributes,
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_elm_lang$core$List$concat(
-						A2(_elm_lang$core$List$map, _user$project$FormEdit$element, childs)),
-					_elm_lang$core$Native_List.fromArray(
-						[value])))
-			]);
-	}
-};
-var _user$project$FormEdit$form = function (model) {
-	return _user$project$FormEdit$element(model);
-};
-var _user$project$FormEdit$view = function (model) {
-	return _user$project$FormEdit$form(model.element);
-};
-
-var _user$project$FormUpdate$addInputToForm = F2(
-	function (model, input) {
-		var childs = function (_p0) {
-			var _p1 = _p0;
-			return _p1._0;
-		}(model.element.children);
-		var oldElement = model.element;
-		var element = _elm_lang$core$Native_Utils.update(
-			oldElement,
-			{
-				children: _user$project$Models$Children(
-					A2(
-						_elm_lang$core$List$append,
-						childs,
-						_elm_lang$core$Native_List.fromArray(
-							[input])))
-			});
-		return {
-			ctor: '_Tuple2',
-			_0: _elm_lang$core$Native_Utils.update(
-				model,
-				{element: element, currentId: input.id}),
-			_1: _elm_lang$core$Platform_Cmd$none
-		};
-	});
-var _user$project$FormUpdate$update = F2(
-	function (msg, model) {
-		var _p2 = msg;
-		switch (_p2.ctor) {
-			case 'AddTextInput':
-				return A2(
-					_user$project$FormUpdate$addInputToForm,
-					model,
-					_user$project$Models$textInput(
-						_user$project$Models$generateNextId(model)));
-			case 'AddSelect':
-				return A2(
-					_user$project$FormUpdate$addInputToForm,
-					model,
-					_user$project$Models$select(
-						_user$project$Models$generateNextId(model)));
-			case 'AddMultiselect':
-				return A2(
-					_user$project$FormUpdate$addInputToForm,
-					model,
-					_user$project$Models$multiselect(
-						_user$project$Models$generateNextId(model)));
-			case 'AddTextarea':
-				return A2(
-					_user$project$FormUpdate$addInputToForm,
-					model,
-					_user$project$Models$textarea(
-						_user$project$Models$generateNextId(model)));
-			case 'AddFileUpload':
-				return A2(
-					_user$project$FormUpdate$addInputToForm,
-					model,
-					_user$project$Models$fileUpload(
-						_user$project$Models$generateNextId(model)));
-			case 'AddRadioButtons':
-				return A2(
-					_user$project$FormUpdate$addInputToForm,
-					model,
-					_user$project$Models$radioButtons(
-						_user$project$Models$generateNextId(model)));
-			case 'AddCheckbox':
-				return A2(
-					_user$project$FormUpdate$addInputToForm,
-					model,
-					_user$project$Models$checkbox(
-						_user$project$Models$generateNextId(model)));
-			default:
-				return A2(
-					_user$project$FormUpdate$addInputToForm,
-					model,
-					_user$project$Models$button(
-						_user$project$Models$generateNextId(model)));
-		}
-	});
-
-var _user$project$InputEdit$createAttribute = function (attribute) {
-	return A2(_elm_lang$html$Html_Attributes$attribute, attribute.name, attribute.value);
-};
-var _user$project$InputEdit$createAttributes = function (model) {
-	return A2(_elm_lang$core$List$map, _user$project$InputEdit$createAttribute, model.attributes);
-};
-var _user$project$InputEdit$element = function (model) {
-	var value = _elm_lang$html$Html$text(model.value);
-	var childs = function (_p0) {
-		var _p1 = _p0;
-		return _p1._0;
-	}(model.children);
-	var attributes = _user$project$InputEdit$createAttributes(model);
-	var _p2 = childs;
-	if (_p2.ctor === '[]') {
-		return _elm_lang$core$Native_List.fromArray(
-			[
-				A3(
-				_elm_lang$html$Html$node,
-				model.tag,
-				attributes,
+				_elm_lang$html$Html$label,
 				_elm_lang$core$Native_List.fromArray(
-					[value]))
-			]);
-	} else {
-		return _elm_lang$core$Native_List.fromArray(
-			[
-				A3(
-				_elm_lang$html$Html$node,
-				model.tag,
-				attributes,
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_elm_lang$core$List$concat(
-						A2(_elm_lang$core$List$map, _user$project$InputEdit$element, childs)),
-					_elm_lang$core$Native_List.fromArray(
-						[value])))
-			]);
-	}
-};
-var _user$project$InputEdit$view = function (model) {
-	var childs = function (_p3) {
-		var _p4 = _p3;
-		return _p4._0;
-	}(model.element.children);
-	var input = _elm_lang$core$List$head(
-		A2(
-			_elm_lang$core$List$filter,
-			function (el) {
-				return _elm_lang$core$Native_Utils.eq(
-					_elm_lang$core$Maybe$Just(el.id),
-					model.currentlyEddited);
-			},
-			childs));
-	var _p5 = input;
-	if (_p5.ctor === 'Nothing') {
-		return _elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_elm_lang$html$Html$div,
+					[
+						_elm_lang$html$Html_Attributes$for('input2')
+					]),
 				_elm_lang$core$Native_List.fromArray(
-					[]),
+					[
+						_elm_lang$html$Html$text('lable')
+					])),
+				A2(
+				_elm_lang$html$Html$textarea,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('form-control'),
+						_elm_lang$html$Html_Attributes$id('input2'),
+						_elm_lang$html$Html_Attributes$rows(3)
+					]),
 				_elm_lang$core$Native_List.fromArray(
 					[]))
-			]);
-	} else {
-		return _user$project$InputEdit$element(_p5._0);
+			]));
+};
+var _user$project$FormEdit$textInputHtml = function (inp) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('form-group')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$label,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$for('input1')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('lable')
+					])),
+				A2(
+				_elm_lang$html$Html$input,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$type$('text'),
+						_elm_lang$html$Html_Attributes$class('form-control'),
+						_elm_lang$html$Html_Attributes$id('input1'),
+						_elm_lang$html$Html_Attributes$placeholder('hovno')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[]))
+			]));
+};
+var _user$project$FormEdit$inputHtml = function (input) {
+	var _p0 = input;
+	switch (_p0.ctor) {
+		case 'TextInput':
+			return _user$project$FormEdit$textInputHtml(input);
+		case 'TextArea':
+			return _user$project$FormEdit$textAreaHtml(input);
+		case 'Select':
+			return _user$project$FormEdit$selectHtml(input);
+		case 'Multiselect':
+			return _user$project$FormEdit$multiselectHtml(input);
+		case 'FileUpload':
+			return _user$project$FormEdit$fileUploadHtml(input);
+		case 'Radio':
+			return _user$project$FormEdit$radioHtml(input);
+		case 'Checkbox':
+			return _user$project$FormEdit$checkboxHtml(input);
+		default:
+			return _user$project$FormEdit$buttonHtml(input);
 	}
 };
-
-var _user$project$InputOptions$view = function (model) {
-	return _elm_lang$core$Native_List.fromArray(
-		[
-			A2(
-			_elm_lang$html$Html$b,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Placeholder')
-				])),
-			A2(
-			_elm_lang$html$Html$hr,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-			A2(
-			_elm_lang$html$Html$div,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$input,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$class('form-control'),
-							_elm_lang$html$Html_Events$onInput(
-							function (_p0) {
-								return _user$project$Messages$InputMessage(
-									_user$project$Messages$PlaceholderEdit(_p0));
-							})
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[]))
-				])),
-			_elm_lang$html$Html$text(
-			_elm_lang$core$Basics$toString(model))
-		]);
+var _user$project$FormEdit$view = function (model) {
+	var elements = A2(_elm_lang$core$List$map, _user$project$FormEdit$inputHtml, model.form);
+	return A2(
+		_elm_lang$html$Html$form,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		elements);
 };
 
-var _user$project$InputUpdate$updateAttributes = F2(
-	function (attributes, newAttributes) {
-		var toUpdate = A2(
-			_elm_lang$core$List$filter,
-			function (attr) {
-				return !_elm_lang$core$Native_Utils.eq(attr.value, '');
-			},
-			_elm_lang$core$Native_List.fromArray(
-				[newAttributes]));
-		return A2(
-			_elm_lang$core$List$append,
-			toUpdate,
-			A2(
-				_elm_lang$core$List$filter,
-				function (attr) {
-					return !_elm_lang$core$Native_Utils.eq(attr.name, 'placeholder');
-				},
-				attributes));
-	});
-var _user$project$InputUpdate$updatePlaceholders = F3(
-	function (id, model, placeholder) {
-		var placeholderAttibute = A2(_user$project$Models$Attribute, 'placeholder', placeholder);
-		var element = model.element;
-		var childs = function (_p0) {
-			var _p1 = _p0;
-			return _p1._0;
-		}(element.children);
-		var elementsToUpdate = A2(
-			_elm_lang$core$List$filter,
-			function (element) {
-				return _elm_lang$core$Native_Utils.eq(element.id, id);
-			},
-			childs);
-		var updatedElements = A2(
-			_elm_lang$core$List$map,
-			function (element) {
-				return _elm_lang$core$Native_Utils.update(
-					element,
-					{
-						attributes: A2(_user$project$InputUpdate$updateAttributes, element.attributes, placeholderAttibute)
-					});
-			},
-			elementsToUpdate);
-		var newChilds = _user$project$Models$Children(
-			A2(
-				_elm_lang$core$List$append,
-				updatedElements,
-				A2(
-					_elm_lang$core$List$filter,
-					function (child) {
-						return !_elm_lang$core$Native_Utils.eq(child.id, id);
-					},
-					childs)));
-		var updatedElement = _elm_lang$core$Native_Utils.update(
-			element,
-			{children: newChilds});
-		return {
-			ctor: '_Tuple2',
-			_0: _elm_lang$core$Native_Utils.update(
-				model,
-				{element: updatedElement}),
-			_1: _elm_lang$core$Platform_Cmd$none
-		};
-	});
-var _user$project$InputUpdate$removeInput = F2(
-	function (model, inputId) {
-		var newElement = A2(_user$project$Models$removeElement, model, inputId);
-		return {
-			ctor: '_Tuple2',
-			_0: _elm_lang$core$Native_Utils.update(
-				model,
-				{element: newElement}),
-			_1: _elm_lang$core$Platform_Cmd$none
-		};
-	});
-var _user$project$InputUpdate$updatePlaceholder = F3(
-	function (elementId, model, newPlaceholder) {
-		var element = model.element;
-		return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-	});
-var _user$project$InputUpdate$update = F2(
-	function (msg, model) {
-		var _p2 = msg;
-		switch (_p2.ctor) {
-			case 'RemoveInput':
-				return A2(_user$project$InputUpdate$removeInput, model, _p2._0);
-			case 'EditInput':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{
-							currentlyEddited: _elm_lang$core$Maybe$Just(_p2._0)
-						}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			case 'StopEditing':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{currentlyEddited: _elm_lang$core$Maybe$Nothing}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			default:
-				var _p3 = model.currentlyEddited;
-				if (_p3.ctor === 'Nothing') {
-					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-				} else {
-					return A3(_user$project$InputUpdate$updatePlaceholder, _p3._0, model, _p2._0);
-				}
-		}
-	});
+var _user$project$FormUpdate$ahoj = '';
+
+var _user$project$InputEdit$view = '';
+
+var _user$project$InputOptions$view = '';
+
+var _user$project$InputUpdate$ahoj = '';
 
 var _user$project$Templates$submit = A2(
 	_elm_lang$html$Html$div,
@@ -9617,104 +8614,12 @@ var _user$project$Templates$view = _elm_lang$core$Native_List.fromArray(
 		_user$project$Templates$submit
 	]);
 
-var _user$project$Markup$closingTag = function (element) {
-	return _user$project$Models$isVoid(element) ? '' : A2(
-		_elm_lang$core$Basics_ops['++'],
-		'</',
-		A2(_elm_lang$core$Basics_ops['++'], element.tag, '>'));
+var _user$project$Markup$inputMarkup = function (el) {
+	return '  hovno';
 };
-var _user$project$Markup$htmlAttributeString = function (attribute) {
-	return _elm_lang$core$Native_Utils.eq(attribute.value, '') ? attribute.name : A2(
-		_elm_lang$core$Basics_ops['++'],
-		attribute.name,
-		A2(
-			_elm_lang$core$Basics_ops['++'],
-			'=',
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				'\"',
-				A2(_elm_lang$core$Basics_ops['++'], attribute.value, '\"'))));
-};
-var _user$project$Markup$htmlAttributesString = function (attributes) {
-	var stringifiedAttributes = A2(_elm_lang$core$List$map, _user$project$Markup$htmlAttributeString, attributes);
-	return (_elm_lang$core$Native_Utils.cmp(
-		_elm_lang$core$List$length(stringifiedAttributes),
-		0) > 0) ? A2(
-		_elm_lang$core$Basics_ops['++'],
-		' ',
-		A2(_elm_lang$core$String$join, ' ', stringifiedAttributes)) : '';
-};
-var _user$project$Markup$openingTag = function (model) {
-	var attributes = _user$project$Markup$htmlAttributesString(model.attributes);
-	var tag = model.tag;
-	return A2(
-		_elm_lang$core$String$join,
-		'',
-		_elm_lang$core$Native_List.fromArray(
-			['<', tag, attributes, '>']));
-};
-var _user$project$Markup$valuePresence = F2(
-	function (nestingLevel, model) {
-		return (!_elm_lang$core$Native_Utils.eq(model.value, '')) ? A2(
-			_elm_lang$core$Basics_ops['++'],
-			'\n',
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
-				model.value)) : '';
-	});
-var _user$project$Markup$element = F2(
-	function (nestingLevel, model) {
-		var childs = function (_p0) {
-			var _p1 = _p0;
-			return _p1._0;
-		}(model.children);
-		var _p2 = childs;
-		if (_p2.ctor === '[]') {
-			return A2(
-				_elm_lang$core$Basics_ops['++'],
-				A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_user$project$Markup$openingTag(model),
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						model.value,
-						_user$project$Markup$closingTag(model))));
-		} else {
-			return A2(
-				_elm_lang$core$Basics_ops['++'],
-				A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_user$project$Markup$openingTag(model),
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						'\n',
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							A2(
-								_elm_lang$core$String$join,
-								'\n',
-								A2(
-									_elm_lang$core$List$map,
-									_user$project$Markup$element(nestingLevel + 1),
-									childs)),
-							A2(
-								_elm_lang$core$Basics_ops['++'],
-								A2(_user$project$Markup$valuePresence, nestingLevel + 1, model),
-								A2(
-									_elm_lang$core$Basics_ops['++'],
-									'\n',
-									A2(
-										_elm_lang$core$Basics_ops['++'],
-										A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
-										_user$project$Markup$closingTag(model))))))));
-		}
-	});
-var _user$project$Markup$form = function (model) {
-	var children = model.children;
-	var attributes = model.attributes;
+var _user$project$Markup$view = function (model) {
+	var inputs = A2(_elm_lang$core$List$map, _user$project$Markup$inputMarkup, model.form);
+	var inputsString = _elm_lang$core$String$concat(inputs);
 	return A2(
 		_elm_lang$html$Html$pre,
 		_elm_lang$core$Native_List.fromArray(
@@ -9722,114 +8627,26 @@ var _user$project$Markup$form = function (model) {
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html$text(
-				A2(_user$project$Markup$element, 0, model))
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'<form>\n',
+					A2(_elm_lang$core$Basics_ops['++'], inputsString, '\n</form>')))
 			]));
 };
-var _user$project$Markup$view = function (model) {
+
+var _user$project$Views$markup = function (model) {
 	return _elm_lang$core$Native_List.fromArray(
 		[
-			_user$project$Markup$form(model)
+			_user$project$Markup$view(model)
 		]);
 };
-
-var _user$project$Views$inputOptions = function (model) {
-	return _user$project$InputOptions$view(model);
-};
-var _user$project$Views$inputEdit = function (model) {
-	return _user$project$InputEdit$view(model);
-};
-var _user$project$Views$markup = function (model) {
-	return _user$project$Markup$view(model);
-};
 var _user$project$Views$formEdit = function (model) {
-	return _user$project$FormEdit$view(model);
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			_user$project$FormEdit$view(model)
+		]);
 };
 var _user$project$Views$templates = _user$project$Templates$view;
-var _user$project$Views$inputEditLayout = function (model) {
-	var childs = function (_p0) {
-		var _p1 = _p0;
-		return _p1._0;
-	}(model.element.children);
-	var input = _elm_lang$core$List$head(
-		A2(
-			_elm_lang$core$List$filter,
-			function (el) {
-				return _elm_lang$core$Native_Utils.eq(
-					_elm_lang$core$Maybe$Just(el.id),
-					model.currentlyEddited);
-			},
-			childs));
-	var _p2 = input;
-	if (_p2.ctor === 'Nothing') {
-		return A2(
-			_elm_lang$html$Html$div,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Nothing to edit')
-				]));
-	} else {
-		return A2(
-			_elm_lang$html$Html$div,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$a,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$href('javascript:void(0)'),
-							_elm_lang$html$Html_Events$onClick(
-							_user$project$Messages$InputMessage(_user$project$Messages$StopEditing))
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text('Back to form')
-						])),
-					A2(
-					_elm_lang$html$Html$div,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$class('row')
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$div,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$class('col-sm-8')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									A2(
-									_elm_lang$html$Html$div,
-									_elm_lang$core$Native_List.fromArray(
-										[
-											_elm_lang$html$Html_Attributes$class('bd-example')
-										]),
-									_user$project$Views$inputEdit(model)),
-									A2(
-									_elm_lang$html$Html$div,
-									_elm_lang$core$Native_List.fromArray(
-										[
-											_elm_lang$html$Html_Attributes$class('highlight')
-										]),
-									_user$project$Views$markup(_p2._0))
-								])),
-							A2(
-							_elm_lang$html$Html$div,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$class('col-sm-4')
-								]),
-							_user$project$Views$inputOptions(model))
-						]))
-				]));
-	}
-};
 var _user$project$Views$formCreator = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
@@ -9866,7 +8683,7 @@ var _user$project$Views$formCreator = function (model) {
 									[
 										_elm_lang$html$Html_Attributes$class('highlight')
 									]),
-								_user$project$Views$markup(model.element))
+								_user$project$Views$markup(model))
 							])),
 						A2(
 						_elm_lang$html$Html$div,
@@ -9879,39 +8696,27 @@ var _user$project$Views$formCreator = function (model) {
 			]));
 };
 var _user$project$Views$view = function (model) {
-	var _p3 = model.currentlyEddited;
-	if (_p3.ctor === 'Nothing') {
+	var _p0 = model.currentlyEdditedInputId;
+	if (_p0.ctor === 'Nothing') {
 		return _user$project$Views$formCreator(model);
 	} else {
-		return _user$project$Views$inputEditLayout(model);
+		return _user$project$Views$formCreator(model);
 	}
 };
 
-var _user$project$Updates$inputUpdate = F2(
-	function (msg, model) {
-		return A2(_user$project$InputUpdate$update, msg, model);
-	});
-var _user$project$Updates$formUpdate = F2(
-	function (msg, model) {
-		return A2(_user$project$FormUpdate$update, msg, model);
-	});
+var _user$project$Updates$ahoj = '';
 
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		var _p0 = msg;
-		if (_p0.ctor === 'InputMessage') {
-			return A2(_user$project$Updates$inputUpdate, _p0._0, model);
-		} else {
-			return A2(_user$project$Updates$formUpdate, _p0._0, model);
-		}
+		return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 	});
 var _user$project$Main$view = function (model) {
 	return _user$project$Views$view(model);
 };
-var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Models$initialModel, _1: _elm_lang$core$Platform_Cmd$none};
+var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Models$new, _1: _elm_lang$core$Platform_Cmd$none};
 var _user$project$Main$main = {
 	main: _elm_lang$html$Html_App$program(
 		{init: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions})

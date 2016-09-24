@@ -1,101 +1,16 @@
-var _user$project$Views$inputOptions = function (model) {
-	return _user$project$InputOptions$view(model);
-};
-var _user$project$Views$inputEdit = function (model) {
-	return _user$project$InputEdit$view(model);
-};
 var _user$project$Views$markup = function (model) {
-	return _user$project$Markup$view(model);
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			_user$project$Markup$view(model)
+		]);
 };
 var _user$project$Views$formEdit = function (model) {
-	return _user$project$FormEdit$view(model);
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			_user$project$FormEdit$view(model)
+		]);
 };
 var _user$project$Views$templates = _user$project$Templates$view;
-var _user$project$Views$inputEditLayout = function (model) {
-	var childs = function (_p0) {
-		var _p1 = _p0;
-		return _p1._0;
-	}(model.element.children);
-	var input = _elm_lang$core$List$head(
-		A2(
-			_elm_lang$core$List$filter,
-			function (el) {
-				return _elm_lang$core$Native_Utils.eq(
-					_elm_lang$core$Maybe$Just(el.id),
-					model.currentlyEddited);
-			},
-			childs));
-	var _p2 = input;
-	if (_p2.ctor === 'Nothing') {
-		return A2(
-			_elm_lang$html$Html$div,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Nothing to edit')
-				]));
-	} else {
-		return A2(
-			_elm_lang$html$Html$div,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$a,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$href('javascript:void(0)'),
-							_elm_lang$html$Html_Events$onClick(
-							_user$project$Messages$InputMessage(_user$project$Messages$StopEditing))
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text('Back to form')
-						])),
-					A2(
-					_elm_lang$html$Html$div,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$class('row')
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$div,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$class('col-sm-8')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									A2(
-									_elm_lang$html$Html$div,
-									_elm_lang$core$Native_List.fromArray(
-										[
-											_elm_lang$html$Html_Attributes$class('bd-example')
-										]),
-									_user$project$Views$inputEdit(model)),
-									A2(
-									_elm_lang$html$Html$div,
-									_elm_lang$core$Native_List.fromArray(
-										[
-											_elm_lang$html$Html_Attributes$class('highlight')
-										]),
-									_user$project$Views$markup(_p2._0))
-								])),
-							A2(
-							_elm_lang$html$Html$div,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$class('col-sm-4')
-								]),
-							_user$project$Views$inputOptions(model))
-						]))
-				]));
-	}
-};
 var _user$project$Views$formCreator = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
@@ -132,7 +47,7 @@ var _user$project$Views$formCreator = function (model) {
 									[
 										_elm_lang$html$Html_Attributes$class('highlight')
 									]),
-								_user$project$Views$markup(model.element))
+								_user$project$Views$markup(model))
 							])),
 						A2(
 						_elm_lang$html$Html$div,
@@ -145,10 +60,10 @@ var _user$project$Views$formCreator = function (model) {
 			]));
 };
 var _user$project$Views$view = function (model) {
-	var _p3 = model.currentlyEddited;
-	if (_p3.ctor === 'Nothing') {
+	var _p0 = model.currentlyEdditedInputId;
+	if (_p0.ctor === 'Nothing') {
 		return _user$project$Views$formCreator(model);
 	} else {
-		return _user$project$Views$inputEditLayout(model);
+		return _user$project$Views$formCreator(model);
 	}
 };

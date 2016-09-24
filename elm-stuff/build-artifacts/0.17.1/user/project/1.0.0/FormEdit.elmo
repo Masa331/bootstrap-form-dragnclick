@@ -1,111 +1,110 @@
-var _user$project$FormEdit$createAttribute = function (attribute) {
-	return A2(_elm_lang$html$Html_Attributes$attribute, attribute.name, attribute.value);
+var _user$project$FormEdit$buttonHtml = function (inp) {
+	return _elm_lang$html$Html$text('ho');
 };
-var _user$project$FormEdit$createAttributes = function (model) {
-	return A2(_elm_lang$core$List$map, _user$project$FormEdit$createAttribute, model.attributes);
+var _user$project$FormEdit$checkboxHtml = function (inp) {
+	return _elm_lang$html$Html$text('ho');
 };
-var _user$project$FormEdit$removeLink = function (element) {
-	return A2(
-		_elm_lang$html$Html$a,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$InputMessage(
-					_user$project$Messages$RemoveInput(element.id)))
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Remove')
-			]));
+var _user$project$FormEdit$radioHtml = function (inp) {
+	return _elm_lang$html$Html$text('ho');
 };
-var _user$project$FormEdit$editLink = function (element) {
-	return A2(
-		_elm_lang$html$Html$a,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$InputMessage(
-					_user$project$Messages$EditInput(element.id)))
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Edit')
-			]));
+var _user$project$FormEdit$fileUploadHtml = function (inp) {
+	return _elm_lang$html$Html$text('ho');
 };
-var _user$project$FormEdit$editAndRemoveLink = function (element) {
+var _user$project$FormEdit$multiselectHtml = function (inp) {
+	return _elm_lang$html$Html$text('ho');
+};
+var _user$project$FormEdit$selectHtml = function (inp) {
+	return _elm_lang$html$Html$text('ho');
+};
+var _user$project$FormEdit$textAreaHtml = function (inp) {
 	return A2(
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html_Attributes$class('edit-and-remove-link')
+				_elm_lang$html$Html_Attributes$class('form-group')
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_user$project$FormEdit$editLink(element),
-				_user$project$FormEdit$removeLink(element)
+				A2(
+				_elm_lang$html$Html$label,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$for('input2')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('lable')
+					])),
+				A2(
+				_elm_lang$html$Html$textarea,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('form-control'),
+						_elm_lang$html$Html_Attributes$id('input2'),
+						_elm_lang$html$Html_Attributes$rows(3)
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[]))
 			]));
 };
-var _user$project$FormEdit$element = function (model) {
-	var value = _elm_lang$html$Html$text(model.value);
-	var childs = function (_p0) {
-		var _p1 = _p0;
-		return _p1._0;
-	}(model.children);
-	var attributes = _user$project$FormEdit$createAttributes(model);
-	var _p2 = childs;
-	if (_p2.ctor === '[]') {
-		return _user$project$Models$isDeletable(model) ? _elm_lang$core$Native_List.fromArray(
+var _user$project$FormEdit$textInputHtml = function (inp) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
 			[
-				A3(
-				_elm_lang$html$Html$node,
-				model.tag,
-				attributes,
-				_elm_lang$core$Native_List.fromArray(
-					[value])),
-				_user$project$FormEdit$editAndRemoveLink(model)
-			]) : _elm_lang$core$Native_List.fromArray(
+				_elm_lang$html$Html_Attributes$class('form-group')
+			]),
+		_elm_lang$core$Native_List.fromArray(
 			[
-				A3(
-				_elm_lang$html$Html$node,
-				model.tag,
-				attributes,
-				_elm_lang$core$Native_List.fromArray(
-					[value]))
-			]);
-	} else {
-		return _user$project$Models$isDeletable(model) ? _elm_lang$core$Native_List.fromArray(
-			[
-				A3(
-				_elm_lang$html$Html$node,
-				model.tag,
-				attributes,
 				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_elm_lang$core$List$concat(
-						A2(_elm_lang$core$List$map, _user$project$FormEdit$element, childs)),
-					_elm_lang$core$Native_List.fromArray(
-						[value]))),
-				_user$project$FormEdit$editAndRemoveLink(model)
-			]) : _elm_lang$core$Native_List.fromArray(
-			[
-				A3(
-				_elm_lang$html$Html$node,
-				model.tag,
-				attributes,
+				_elm_lang$html$Html$label,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$for('input1')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('lable')
+					])),
 				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_elm_lang$core$List$concat(
-						A2(_elm_lang$core$List$map, _user$project$FormEdit$element, childs)),
-					_elm_lang$core$Native_List.fromArray(
-						[value])))
-			]);
+				_elm_lang$html$Html$input,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$type$('text'),
+						_elm_lang$html$Html_Attributes$class('form-control'),
+						_elm_lang$html$Html_Attributes$id('input1'),
+						_elm_lang$html$Html_Attributes$placeholder('hovno')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[]))
+			]));
+};
+var _user$project$FormEdit$inputHtml = function (input) {
+	var _p0 = input;
+	switch (_p0.ctor) {
+		case 'TextInput':
+			return _user$project$FormEdit$textInputHtml(input);
+		case 'TextArea':
+			return _user$project$FormEdit$textAreaHtml(input);
+		case 'Select':
+			return _user$project$FormEdit$selectHtml(input);
+		case 'Multiselect':
+			return _user$project$FormEdit$multiselectHtml(input);
+		case 'FileUpload':
+			return _user$project$FormEdit$fileUploadHtml(input);
+		case 'Radio':
+			return _user$project$FormEdit$radioHtml(input);
+		case 'Checkbox':
+			return _user$project$FormEdit$checkboxHtml(input);
+		default:
+			return _user$project$FormEdit$buttonHtml(input);
 	}
 };
-var _user$project$FormEdit$form = function (model) {
-	return _user$project$FormEdit$element(model);
-};
 var _user$project$FormEdit$view = function (model) {
-	return _user$project$FormEdit$form(model.element);
+	var elements = A2(_elm_lang$core$List$map, _user$project$FormEdit$inputHtml, model.form);
+	return A2(
+		_elm_lang$html$Html$form,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		elements);
 };
