@@ -62,7 +62,6 @@ inputEditLayout model id =
               ]
           ]
 
-
 templates =
   Templates.view
 
