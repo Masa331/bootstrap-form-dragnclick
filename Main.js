@@ -7901,7 +7901,7 @@ var _user$project$Models$extractId = function (inp) {
 	var _p0 = inp;
 	switch (_p0.ctor) {
 		case 'TextInput':
-			return _p0._0._0;
+			return _p0._0.id;
 		case 'TextArea':
 			return _p0._0._0;
 		case 'Select':
@@ -7959,12 +7959,11 @@ var _user$project$Models$new = function () {
 		});
 	var textInput = _user$project$Models$TextInput(
 		{
-			ctor: '_Tuple4',
-			_0: 1,
-			_1: _elm_lang$core$Native_List.fromArray(
+			id: 1,
+			classList: _elm_lang$core$Native_List.fromArray(
 				['form-control']),
-			_2: _elm_lang$core$Maybe$Nothing,
-			_3: _elm_lang$core$Maybe$Just('Some input')
+			placeholder: _elm_lang$core$Maybe$Nothing,
+			label: _elm_lang$core$Maybe$Just('Some input')
 		});
 	return A2(
 		_user$project$Models$Model,
@@ -8079,11 +8078,8 @@ var _user$project$Inputs$inputAttributes = function (inp) {
 	do {
 		switch (_p2.ctor) {
 			case 'TextInput':
-				if (_p2._0.ctor === '_Tuple4') {
-					return A3(_user$project$Inputs$textInputAttributes, _p2._0._0, _p2._0._1, _p2._0._2);
-				} else {
-					break _v2_2;
-				}
+				var _p3 = _p2._0;
+				return A3(_user$project$Inputs$textInputAttributes, _p3.id, _p3.classList, _p3.placeholder);
 			case 'TextArea':
 				if (_p2._0.ctor === '_Tuple5') {
 					return A4(_user$project$Inputs$textAreaAttributes, _p2._0._0, _p2._0._1, _p2._0._2, _p2._0._3);
@@ -8098,33 +8094,30 @@ var _user$project$Inputs$inputAttributes = function (inp) {
 		[]);
 };
 var _user$project$Inputs$label = function (inp) {
-	var _p3 = function () {
-		var _p4 = inp;
+	var _p4 = function () {
+		var _p5 = inp;
 		_v3_2:
 		do {
-			switch (_p4.ctor) {
+			switch (_p5.ctor) {
 				case 'TextInput':
-					if (_p4._0.ctor === '_Tuple4') {
-						return {
-							ctor: '_Tuple2',
-							_0: A2(_elm_lang$core$Maybe$withDefault, 'default', _p4._0._3),
-							_1: A2(
-								_elm_lang$core$Basics_ops['++'],
-								'input',
-								_elm_lang$core$Basics$toString(_p4._0._0))
-						};
-					} else {
-						break _v3_2;
-					}
+					var _p6 = _p5._0;
+					return {
+						ctor: '_Tuple2',
+						_0: A2(_elm_lang$core$Maybe$withDefault, 'default', _p6.label),
+						_1: A2(
+							_elm_lang$core$Basics_ops['++'],
+							'input',
+							_elm_lang$core$Basics$toString(_p6.id))
+					};
 				case 'TextArea':
-					if (_p4._0.ctor === '_Tuple5') {
+					if (_p5._0.ctor === '_Tuple5') {
 						return {
 							ctor: '_Tuple2',
-							_0: A2(_elm_lang$core$Maybe$withDefault, 'default', _p4._0._4),
+							_0: A2(_elm_lang$core$Maybe$withDefault, 'default', _p5._0._4),
 							_1: A2(
 								_elm_lang$core$Basics_ops['++'],
 								'input',
-								_elm_lang$core$Basics$toString(_p4._0._0))
+								_elm_lang$core$Basics$toString(_p5._0._0))
 						};
 					} else {
 						break _v3_2;
@@ -8135,8 +8128,8 @@ var _user$project$Inputs$label = function (inp) {
 		} while(false);
 		return {ctor: '_Tuple2', _0: 'ahoj', _1: 'input2'};
 	}();
-	var txt = _p3._0;
-	var forx = _p3._1;
+	var txt = _p4._0;
+	var forx = _p4._1;
 	return A2(
 		_elm_lang$html$Html$label,
 		_elm_lang$core$Native_List.fromArray(
@@ -8241,8 +8234,8 @@ var _user$project$Inputs$textInputHtml = function (inp) {
 		id);
 };
 var _user$project$Inputs$inputHtml = function (input) {
-	var _p5 = input;
-	switch (_p5.ctor) {
+	var _p7 = input;
+	switch (_p7.ctor) {
 		case 'TextInput':
 			return _user$project$Inputs$textInputHtml(input);
 		case 'TextArea':
@@ -8440,24 +8433,20 @@ var _user$project$InputOptions$view = function (model) {
 						]),
 					_elm_lang$core$Native_List.fromArray(
 						[]))
-				])),
-			_elm_lang$html$Html$text(
-			_elm_lang$core$Basics$toString(model))
+				]))
 		]);
 };
 
 var _user$project$InputUpdate$updateInputPlaceholder = F2(
 	function (inp, newPlaceholder) {
 		var _p0 = inp;
-		if ((_p0.ctor === 'TextInput') && (_p0._0.ctor === '_Tuple4')) {
+		if (_p0.ctor === 'TextInput') {
 			return _user$project$Models$TextInput(
-				{
-					ctor: '_Tuple4',
-					_0: _p0._0._0,
-					_1: _p0._0._1,
-					_2: _elm_lang$core$Maybe$Just(newPlaceholder),
-					_3: _p0._0._3
-				});
+				_elm_lang$core$Native_Utils.update(
+					_p0._0,
+					{
+						placeholder: _elm_lang$core$Maybe$Just(newPlaceholder)
+					}));
 		} else {
 			return inp;
 		}
@@ -9065,11 +9054,7 @@ var _user$project$Markup$inputMarkup = function (el) {
 	do {
 		switch (_p0.ctor) {
 			case 'TextInput':
-				if (_p0._0.ctor === '_Tuple4') {
-					return _user$project$Markup$textInputCode(el);
-				} else {
-					break _v0_2;
-				}
+				return _user$project$Markup$textInputCode(el);
 			case 'TextArea':
 				if (_p0._0.ctor === '_Tuple5') {
 					return _user$project$Markup$textAreaCode(el);
@@ -9116,31 +9101,6 @@ var _user$project$Markup$view = function (model) {
 			]));
 };
 
-var _user$project$Views$inputOptions = function (model) {
-	return _user$project$InputOptions$view(model);
-};
-var _user$project$Views$inputEdit = function (inp) {
-	return _user$project$InputEdit$view(inp);
-};
-var _user$project$Views$inputMarkup = function (model) {
-	return _elm_lang$core$Native_List.fromArray(
-		[
-			_user$project$Markup$inputView(model)
-		]);
-};
-var _user$project$Views$markup = function (model) {
-	return _elm_lang$core$Native_List.fromArray(
-		[
-			_user$project$Markup$view(model)
-		]);
-};
-var _user$project$Views$formEdit = function (model) {
-	return _elm_lang$core$Native_List.fromArray(
-		[
-			_user$project$FormEdit$view(model)
-		]);
-};
-var _user$project$Views$templates = _user$project$Templates$view;
 var _user$project$Views$inputEditLayout = F2(
 	function (model, id) {
 		var input = _elm_lang$core$List$head(
@@ -9206,7 +9166,7 @@ var _user$project$Views$inputEditLayout = F2(
 											]),
 										_elm_lang$core$Native_List.fromArray(
 											[
-												_user$project$Views$inputEdit(_p1)
+												_user$project$InputEdit$view(_p1)
 											])),
 										A2(
 										_elm_lang$html$Html$div,
@@ -9214,7 +9174,10 @@ var _user$project$Views$inputEditLayout = F2(
 											[
 												_elm_lang$html$Html_Attributes$class('highlight')
 											]),
-										_user$project$Views$inputMarkup(_p1))
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_user$project$Markup$inputView(_p1)
+											]))
 									])),
 								A2(
 								_elm_lang$html$Html$div,
@@ -9222,7 +9185,7 @@ var _user$project$Views$inputEditLayout = F2(
 									[
 										_elm_lang$html$Html_Attributes$class('col-sm-4')
 									]),
-								_user$project$Views$inputOptions(_p1))
+								_user$project$InputOptions$view(_p1))
 							]))
 					]));
 		}
@@ -9256,14 +9219,20 @@ var _user$project$Views$formCreator = function (model) {
 									[
 										_elm_lang$html$Html_Attributes$class('bd-example')
 									]),
-								_user$project$Views$formEdit(model)),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_user$project$FormEdit$view(model)
+									])),
 								A2(
 								_elm_lang$html$Html$div,
 								_elm_lang$core$Native_List.fromArray(
 									[
 										_elm_lang$html$Html_Attributes$class('highlight')
 									]),
-								_user$project$Views$markup(model))
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_user$project$Markup$view(model)
+									]))
 							])),
 						A2(
 						_elm_lang$html$Html$div,
@@ -9271,16 +9240,7 @@ var _user$project$Views$formCreator = function (model) {
 							[
 								_elm_lang$html$Html_Attributes$class('col-sm-4')
 							]),
-						_user$project$Views$templates),
-						A2(
-						_elm_lang$html$Html$div,
-						_elm_lang$core$Native_List.fromArray(
-							[]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html$text(
-								_elm_lang$core$Basics$toString(model))
-							]))
+						_user$project$Templates$view)
 					]))
 			]));
 };

@@ -12,9 +12,4 @@ view model =
   [ b [] [text "Placeholder"]
   , hr [] []
   , div [] [ input [class "form-control", onInput (InputMessage << PlaceholderEdit)] [] ]
-  , text <| toString model
   ]
-
--------------
--- Private --
--------------

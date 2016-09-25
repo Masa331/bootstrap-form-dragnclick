@@ -34,8 +34,6 @@ var _user$project$InputOptions$view = function (model) {
 						]),
 					_elm_lang$core$Native_List.fromArray(
 						[]))
-				])),
-			_elm_lang$html$Html$text(
-			_elm_lang$core$Basics$toString(model))
+				]))
 		]);
 };

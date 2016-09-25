@@ -78,11 +78,8 @@ var _user$project$Inputs$inputAttributes = function (inp) {
 	do {
 		switch (_p2.ctor) {
 			case 'TextInput':
-				if (_p2._0.ctor === '_Tuple4') {
-					return A3(_user$project$Inputs$textInputAttributes, _p2._0._0, _p2._0._1, _p2._0._2);
-				} else {
-					break _v2_2;
-				}
+				var _p3 = _p2._0;
+				return A3(_user$project$Inputs$textInputAttributes, _p3.id, _p3.classList, _p3.placeholder);
 			case 'TextArea':
 				if (_p2._0.ctor === '_Tuple5') {
 					return A4(_user$project$Inputs$textAreaAttributes, _p2._0._0, _p2._0._1, _p2._0._2, _p2._0._3);
@@ -97,33 +94,30 @@ var _user$project$Inputs$inputAttributes = function (inp) {
 		[]);
 };
 var _user$project$Inputs$label = function (inp) {
-	var _p3 = function () {
-		var _p4 = inp;
+	var _p4 = function () {
+		var _p5 = inp;
 		_v3_2:
 		do {
-			switch (_p4.ctor) {
+			switch (_p5.ctor) {
 				case 'TextInput':
-					if (_p4._0.ctor === '_Tuple4') {
-						return {
-							ctor: '_Tuple2',
-							_0: A2(_elm_lang$core$Maybe$withDefault, 'default', _p4._0._3),
-							_1: A2(
-								_elm_lang$core$Basics_ops['++'],
-								'input',
-								_elm_lang$core$Basics$toString(_p4._0._0))
-						};
-					} else {
-						break _v3_2;
-					}
+					var _p6 = _p5._0;
+					return {
+						ctor: '_Tuple2',
+						_0: A2(_elm_lang$core$Maybe$withDefault, 'default', _p6.label),
+						_1: A2(
+							_elm_lang$core$Basics_ops['++'],
+							'input',
+							_elm_lang$core$Basics$toString(_p6.id))
+					};
 				case 'TextArea':
-					if (_p4._0.ctor === '_Tuple5') {
+					if (_p5._0.ctor === '_Tuple5') {
 						return {
 							ctor: '_Tuple2',
-							_0: A2(_elm_lang$core$Maybe$withDefault, 'default', _p4._0._4),
+							_0: A2(_elm_lang$core$Maybe$withDefault, 'default', _p5._0._4),
 							_1: A2(
 								_elm_lang$core$Basics_ops['++'],
 								'input',
-								_elm_lang$core$Basics$toString(_p4._0._0))
+								_elm_lang$core$Basics$toString(_p5._0._0))
 						};
 					} else {
 						break _v3_2;
@@ -134,8 +128,8 @@ var _user$project$Inputs$label = function (inp) {
 		} while(false);
 		return {ctor: '_Tuple2', _0: 'ahoj', _1: 'input2'};
 	}();
-	var txt = _p3._0;
-	var forx = _p3._1;
+	var txt = _p4._0;
+	var forx = _p4._1;
 	return A2(
 		_elm_lang$html$Html$label,
 		_elm_lang$core$Native_List.fromArray(
@@ -240,8 +234,8 @@ var _user$project$Inputs$textInputHtml = function (inp) {
 		id);
 };
 var _user$project$Inputs$inputHtml = function (input) {
-	var _p5 = input;
-	switch (_p5.ctor) {
+	var _p7 = input;
+	switch (_p7.ctor) {
 		case 'TextInput':
 			return _user$project$Inputs$textInputHtml(input);
 		case 'TextArea':

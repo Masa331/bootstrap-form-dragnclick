@@ -11,7 +11,7 @@ import Messages exposing (..)
 inputHtml : Input -> Html Msg
 inputHtml input =
   case input of
-    TextInput (a, b, c, _) ->
+    TextInput attrs ->
       textInputHtml input
     TextArea (a, b, c, d, _) ->
       textAreaHtml input
@@ -43,7 +43,6 @@ textAreaHtml inp =
     area = textarea (inputAttributes inp) []
     id = extractId inp
   in
-    -- formGroup [ label inp, area ]
     formGroup [ label inp, area ] id
 
 -------------
@@ -72,7 +71,7 @@ label inp =
   let
     (txt, forx) =
       case inp of
-        TextInput (a, _, _, d) -> (Maybe.withDefault "default" d, "input" ++ toString a)
+        TextInput attrs -> (Maybe.withDefault "default" attrs.label, "input" ++ toString attrs.id)
         TextArea (a, _, _, _, e) -> (Maybe.withDefault "default" e, "input" ++ toString a)
         _ -> ("ahoj", "input2")
   in
@@ -81,8 +80,8 @@ label inp =
 inputAttributes : Input -> List (Html.Attribute a)
 inputAttributes inp =
   case inp of
-    TextInput (a, b, c, d) ->
-      textInputAttributes a b c
+    TextInput attrs ->
+      textInputAttributes attrs.id attrs.classList attrs.placeholder
     TextArea (a, b, c, d, e) ->
       textAreaAttributes a b c d
     _ ->
@@ -104,7 +103,6 @@ textInputAttributes inputId classList plac =
 textAreaAttributes : Id -> ClassList -> Placeholder -> RowNumber -> List (Html.Attribute a)
 textAreaAttributes inputId classList plac rowNo =
   let
-    -- idx = Just (Html.Attributes.id inputId)
     idx = Just (Html.Attributes.id ("input" ++ toString inputId))
     classes = Just (class (String.join " " classList))
     placeholderx =

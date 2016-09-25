@@ -26,7 +26,7 @@ inputView inp =
 inputMarkup : Input -> String
 inputMarkup el =
   case el of
-    TextInput (a, b, c, _) ->
+    TextInput _ ->
       textInputCode el
     TextArea (_, _, _, _, _) ->
       textAreaCode el

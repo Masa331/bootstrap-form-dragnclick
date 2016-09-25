@@ -1,15 +1,13 @@
 var _user$project$InputUpdate$updateInputPlaceholder = F2(
 	function (inp, newPlaceholder) {
 		var _p0 = inp;
-		if ((_p0.ctor === 'TextInput') && (_p0._0.ctor === '_Tuple4')) {
+		if (_p0.ctor === 'TextInput') {
 			return _user$project$Models$TextInput(
-				{
-					ctor: '_Tuple4',
-					_0: _p0._0._0,
-					_1: _p0._0._1,
-					_2: _elm_lang$core$Maybe$Just(newPlaceholder),
-					_3: _p0._0._3
-				});
+				_elm_lang$core$Native_Utils.update(
+					_p0._0,
+					{
+						placeholder: _elm_lang$core$Maybe$Just(newPlaceholder)
+					}));
 		} else {
 			return inp;
 		}

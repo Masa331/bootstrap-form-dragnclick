@@ -27,6 +27,6 @@ updatePlaceholder id model newPlaceholder =
 
 updateInputPlaceholder inp newPlaceholder =
   case inp of
-    TextInput (a, b, c, d) ->
-      TextInput (a, b, Just newPlaceholder, d)
+    TextInput attrs ->
+      TextInput { attrs | placeholder = Just newPlaceholder }
     _ -> inp

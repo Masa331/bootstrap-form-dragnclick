@@ -2,7 +2,7 @@ var _user$project$Models$extractId = function (inp) {
 	var _p0 = inp;
 	switch (_p0.ctor) {
 		case 'TextInput':
-			return _p0._0._0;
+			return _p0._0.id;
 		case 'TextArea':
 			return _p0._0._0;
 		case 'Select':
@@ -60,12 +60,11 @@ var _user$project$Models$new = function () {
 		});
 	var textInput = _user$project$Models$TextInput(
 		{
-			ctor: '_Tuple4',
-			_0: 1,
-			_1: _elm_lang$core$Native_List.fromArray(
+			id: 1,
+			classList: _elm_lang$core$Native_List.fromArray(
 				['form-control']),
-			_2: _elm_lang$core$Maybe$Nothing,
-			_3: _elm_lang$core$Maybe$Just('Some input')
+			placeholder: _elm_lang$core$Maybe$Nothing,
+			label: _elm_lang$core$Maybe$Just('Some input')
 		});
 	return A2(
 		_user$project$Models$Model,
