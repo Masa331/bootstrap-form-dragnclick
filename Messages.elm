@@ -10,13 +10,15 @@ type FormMsg =
   | AddCheckbox
   | AddButton
   | RemoveInput Int
+  | EditInput Int
+  | StopEditing
 
-type InputMsg =
+type InputMsg 
+  = PlaceholderEdit String
+  | Something
   -- RemoveInput Int
   -- | EditInput (Int)
-  EditInput (Int)
-  | StopEditing
-  | PlaceholderEdit String
+  -- EditInput (Int)
 
 type Msg =
   FormMessage FormMsg

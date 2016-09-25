@@ -17,8 +17,7 @@ view model =
     Nothing ->
       formCreator model
     Just id ->
-      formCreator model
-      -- inputEditLayout model
+      inputEditLayout model id
 
 -------------
 -- Private --
@@ -40,41 +39,45 @@ formCreator model =
       ]
     ]
 
--- inputEditLayout model =
---   let
---     childs = (\ (Children childs) -> childs) model.element.children
---     input = List.head (List.filter (\el -> (Just el.id) == model.currentlyEddited) childs)
---   in
---     case input of
---       Nothing ->
---         div [] [text "Nothing to edit"]
---       Just b ->
---         div
---           []
---           [ a [href "javascript:void(0)", onClick (InputMessage StopEditing)] [text "Back to form"]
---           , div
---               [ class "row"]
---               [ div
---                  [ class "col-sm-8"]
---                  [ div [class "bd-example"] (inputEdit model)
---                  , div [class "highlight"] (markup b)]
---               , div
---                  [ class "col-sm-4"]
---                  (inputOptions model)
---               ]
---           ]
---
+inputEditLayout model id =
+  let
+    -- childs = (\ (Children childs) -> childs) model.element.children
+    input = List.head (List.filter (\el -> extractId el == id) model.form)
+  in
+    case input of
+      Nothing ->
+        div [] [text "Nothing to edit"]
+      Just b ->
+        div
+          []
+          [ a [href "javascript:void(0)", onClick (FormMessage StopEditing)] [text "Back to form"]
+          , div
+              [ class "row"]
+              [ div
+                 [ class "col-sm-8"]
+                 [ div [class "bd-example"] (inputEdit b)
+                 , div [class "highlight"] (inputMarkup b)]
+              , div
+                 [ class "col-sm-4"]
+                 (inputOptions b)
+              ]
+          ]
+
+
 templates =
   Templates.view
 
 formEdit model =
   [FormEdit.view model]
---
+
 markup model =
   [Markup.view model]
---
--- inputEdit model =
---   InputEdit.view model
---
--- inputOptions model =
---   InputOptions.view model
+
+inputMarkup model =
+  [Markup.inputView model]
+
+inputEdit model =
+  InputEdit.view model
+
+inputOptions model =
+  InputOptions.view model

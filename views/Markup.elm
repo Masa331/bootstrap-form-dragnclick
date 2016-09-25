@@ -1,4 +1,4 @@
-module Markup exposing (view)
+module Markup exposing (view, inputView)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -16,6 +16,10 @@ view model =
     pre
       []
       [ text ("<form>\n" ++ inputsString ++ "\n</form>") ]
+
+inputView : Input -> Html Msg
+inputView inp =
+  pre [] []
 
 inputMarkup : Input -> String
 inputMarkup el =

@@ -169,7 +169,7 @@ var _user$project$FormEdit$editLink = function (id) {
 			[
 				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
 				_elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$InputMessage(
+				_user$project$Messages$FormMessage(
 					_user$project$Messages$EditInput(id)))
 			]),
 		_elm_lang$core$Native_List.fromArray(

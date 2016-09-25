@@ -8,16 +8,13 @@ import String exposing (..)
 import Models exposing (..)
 import Messages exposing (..)
 
-view = ""
+view model =
+  [ b [] [text "Placeholder"]
+  , hr [] []
+  , div [] [ input [class "form-control", onInput (InputMessage << PlaceholderEdit)] [] ]
+  , text <| toString model
+  ]
 
--- view model =
---   [ b [] [text "Placeholder"]
---   , hr [] []
---   , div [] [ input [class "form-control", onInput (InputMessage << PlaceholderEdit)] [] ]
---   , text <| toString model
---
---   ]
---
--- -------------
--- -- Private --
--- -------------
+-------------
+-- Private --
+-------------

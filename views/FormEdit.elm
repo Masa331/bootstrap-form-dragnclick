@@ -62,7 +62,7 @@ editAndRemoveLink id =
   div [class "edit-and-remove-link"] [editLink id, removeLink id]
 
 editLink id =
-  a [href "javascript:void(0);", onClick (InputMessage (EditInput id))] [text "Edit"]
+  a [href "javascript:void(0);", onClick (FormMessage (EditInput id))] [text "Edit"]
 
 removeLink id =
   a [href "javascript:void(0);", onClick (FormMessage (RemoveInput id))] [text "Remove"]

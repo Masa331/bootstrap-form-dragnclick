@@ -8,9 +8,8 @@ import String exposing (..)
 import Models exposing (..)
 import Messages exposing (..)
 
-view = ""
-
--- view model =
+view model =
+  [div [] [text "ahoj"]]
 --   let
 --     childs = (\ (Children childs) -> childs) model.element.children
 --     input = List.head (List.filter (\el -> (Just el.id) == model.currentlyEddited) childs)

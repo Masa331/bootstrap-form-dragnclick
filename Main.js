@@ -7973,6 +7973,10 @@ var _user$project$Models$new = function () {
 		_elm_lang$core$Maybe$Nothing);
 }();
 
+var _user$project$Messages$StopEditing = {ctor: 'StopEditing'};
+var _user$project$Messages$EditInput = function (a) {
+	return {ctor: 'EditInput', _0: a};
+};
 var _user$project$Messages$RemoveInput = function (a) {
 	return {ctor: 'RemoveInput', _0: a};
 };
@@ -7984,12 +7988,9 @@ var _user$project$Messages$AddTextarea = {ctor: 'AddTextarea'};
 var _user$project$Messages$AddMultiselect = {ctor: 'AddMultiselect'};
 var _user$project$Messages$AddSelect = {ctor: 'AddSelect'};
 var _user$project$Messages$AddTextInput = {ctor: 'AddTextInput'};
+var _user$project$Messages$Something = {ctor: 'Something'};
 var _user$project$Messages$PlaceholderEdit = function (a) {
 	return {ctor: 'PlaceholderEdit', _0: a};
-};
-var _user$project$Messages$StopEditing = {ctor: 'StopEditing'};
-var _user$project$Messages$EditInput = function (a) {
-	return {ctor: 'EditInput', _0: a};
 };
 var _user$project$Messages$InputMessage = function (a) {
 	return {ctor: 'InputMessage', _0: a};
@@ -8169,7 +8170,7 @@ var _user$project$FormEdit$editLink = function (id) {
 			[
 				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
 				_elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$InputMessage(
+				_user$project$Messages$FormMessage(
 					_user$project$Messages$EditInput(id)))
 			]),
 		_elm_lang$core$Native_List.fromArray(
@@ -8368,14 +8369,84 @@ var _user$project$FormUpdate$update = F2(
 					_user$project$FormUpdate$addInputToForm,
 					model,
 					_user$project$FormUpdate$newTextInput(model));
-			default:
+			case 'RemoveInput':
 				return A2(_user$project$FormUpdate$removeInput, model, _p0._0);
+			case 'EditInput':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							currentlyEdditedInputId: _elm_lang$core$Maybe$Just(_p0._0)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{currentlyEdditedInputId: _elm_lang$core$Maybe$Nothing}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 		}
 	});
 
-var _user$project$InputEdit$view = '';
+var _user$project$InputEdit$view = function (model) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('ahoj')
+				]))
+		]);
+};
 
-var _user$project$InputOptions$view = '';
+var _user$project$InputOptions$view = function (model) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$b,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Placeholder')
+				])),
+			A2(
+			_elm_lang$html$Html$hr,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+			A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$input,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$class('form-control'),
+							_elm_lang$html$Html_Events$onInput(
+							function (_p0) {
+								return _user$project$Messages$InputMessage(
+									_user$project$Messages$PlaceholderEdit(_p0));
+							})
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[]))
+				])),
+			_elm_lang$html$Html$text(
+			_elm_lang$core$Basics$toString(model))
+		]);
+};
 
 var _user$project$InputUpdate$update = F2(
 	function (msg, model) {
@@ -8960,6 +9031,14 @@ var _user$project$Markup$inputMarkup = function (el) {
 	} while(false);
 	return _user$project$Markup$textInputCode(el);
 };
+var _user$project$Markup$inputView = function (inp) {
+	return A2(
+		_elm_lang$html$Html$pre,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+};
 var _user$project$Markup$view = function (model) {
 	var inputs = A2(_elm_lang$core$List$map, _user$project$Markup$inputMarkup, model.form);
 	var inputsString = A2(_elm_lang$core$String$join, '\n', inputs);
@@ -8977,6 +9056,18 @@ var _user$project$Markup$view = function (model) {
 			]));
 };
 
+var _user$project$Views$inputOptions = function (model) {
+	return _user$project$InputOptions$view(model);
+};
+var _user$project$Views$inputEdit = function (model) {
+	return _user$project$InputEdit$view(model);
+};
+var _user$project$Views$inputMarkup = function (model) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			_user$project$Markup$inputView(model)
+		]);
+};
 var _user$project$Views$markup = function (model) {
 	return _elm_lang$core$Native_List.fromArray(
 		[
@@ -8990,6 +9081,89 @@ var _user$project$Views$formEdit = function (model) {
 		]);
 };
 var _user$project$Views$templates = _user$project$Templates$view;
+var _user$project$Views$inputEditLayout = F2(
+	function (model, id) {
+		var input = _elm_lang$core$List$head(
+			A2(
+				_elm_lang$core$List$filter,
+				function (el) {
+					return _elm_lang$core$Native_Utils.eq(
+						_user$project$Models$extractId(el),
+						id);
+				},
+				model.form));
+		var _p0 = input;
+		if (_p0.ctor === 'Nothing') {
+			return A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Nothing to edit')
+					]));
+		} else {
+			var _p1 = _p0._0;
+			return A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$a,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$href('javascript:void(0)'),
+								_elm_lang$html$Html_Events$onClick(
+								_user$project$Messages$FormMessage(_user$project$Messages$StopEditing))
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('Back to form')
+							])),
+						A2(
+						_elm_lang$html$Html$div,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$class('row')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$div,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('col-sm-8')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A2(
+										_elm_lang$html$Html$div,
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html_Attributes$class('bd-example')
+											]),
+										_user$project$Views$inputEdit(_p1)),
+										A2(
+										_elm_lang$html$Html$div,
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html_Attributes$class('highlight')
+											]),
+										_user$project$Views$inputMarkup(_p1))
+									])),
+								A2(
+								_elm_lang$html$Html$div,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('col-sm-4')
+									]),
+								_user$project$Views$inputOptions(_p1))
+							]))
+					]));
+		}
+	});
 var _user$project$Views$formCreator = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
@@ -9048,11 +9222,11 @@ var _user$project$Views$formCreator = function (model) {
 			]));
 };
 var _user$project$Views$view = function (model) {
-	var _p0 = model.currentlyEdditedInputId;
-	if (_p0.ctor === 'Nothing') {
+	var _p2 = model.currentlyEdditedInputId;
+	if (_p2.ctor === 'Nothing') {
 		return _user$project$Views$formCreator(model);
 	} else {
-		return _user$project$Views$formCreator(model);
+		return A2(_user$project$Views$inputEditLayout, model, _p2._0);
 	}
 };
 

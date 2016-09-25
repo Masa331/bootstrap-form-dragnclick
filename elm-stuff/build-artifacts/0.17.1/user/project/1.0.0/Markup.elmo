@@ -43,6 +43,14 @@ var _user$project$Markup$inputMarkup = function (el) {
 	} while(false);
 	return _user$project$Markup$textInputCode(el);
 };
+var _user$project$Markup$inputView = function (inp) {
+	return A2(
+		_elm_lang$html$Html$pre,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+};
 var _user$project$Markup$view = function (model) {
 	var inputs = A2(_elm_lang$core$List$map, _user$project$Markup$inputMarkup, model.form);
 	var inputsString = A2(_elm_lang$core$String$join, '\n', inputs);

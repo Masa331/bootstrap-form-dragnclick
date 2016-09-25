@@ -23,12 +23,16 @@ update msg model =
       addInputToForm model (newTextInput model)
     RemoveInput id ->
       removeInput model id
+    EditInput id ->
+      ({ model | currentlyEdditedInputId = Just id }, Cmd.none)
+    StopEditing ->
+      ({ model | currentlyEdditedInputId = Nothing }, Cmd.none)
 
 removeInput model id =
   let
     filteredForm = List.filter (\input -> (extractId input) /= id) model.form
   in
-  ({ model | form = filteredForm }, Cmd.none)
+    ({ model | form = filteredForm }, Cmd.none)
 
 newTextInput : Model -> Input
 newTextInput model =

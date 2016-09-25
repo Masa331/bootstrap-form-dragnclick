@@ -97,7 +97,25 @@ var _user$project$FormUpdate$update = F2(
 					_user$project$FormUpdate$addInputToForm,
 					model,
 					_user$project$FormUpdate$newTextInput(model));
-			default:
+			case 'RemoveInput':
 				return A2(_user$project$FormUpdate$removeInput, model, _p0._0);
+			case 'EditInput':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							currentlyEdditedInputId: _elm_lang$core$Maybe$Just(_p0._0)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{currentlyEdditedInputId: _elm_lang$core$Maybe$Nothing}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 		}
 	});
