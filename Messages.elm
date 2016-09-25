@@ -15,7 +15,7 @@ type FormMsg =
 
 type InputMsg 
   = PlaceholderEdit String
-  | Something
+  | NoOp
   -- RemoveInput Int
   -- | EditInput (Int)
   -- EditInput (Int)

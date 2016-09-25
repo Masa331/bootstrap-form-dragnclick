@@ -7988,7 +7988,7 @@ var _user$project$Messages$AddTextarea = {ctor: 'AddTextarea'};
 var _user$project$Messages$AddMultiselect = {ctor: 'AddMultiselect'};
 var _user$project$Messages$AddSelect = {ctor: 'AddSelect'};
 var _user$project$Messages$AddTextInput = {ctor: 'AddTextInput'};
-var _user$project$Messages$Something = {ctor: 'Something'};
+var _user$project$Messages$NoOp = {ctor: 'NoOp'};
 var _user$project$Messages$PlaceholderEdit = function (a) {
 	return {ctor: 'PlaceholderEdit', _0: a};
 };
@@ -8446,9 +8446,62 @@ var _user$project$InputOptions$view = function (model) {
 		]);
 };
 
+var _user$project$InputUpdate$updateInputPlaceholder = F2(
+	function (inp, newPlaceholder) {
+		var _p0 = inp;
+		if ((_p0.ctor === 'TextInput') && (_p0._0.ctor === '_Tuple4')) {
+			return _user$project$Models$TextInput(
+				{
+					ctor: '_Tuple4',
+					_0: _p0._0._0,
+					_1: _p0._0._1,
+					_2: _elm_lang$core$Maybe$Just(newPlaceholder),
+					_3: _p0._0._3
+				});
+		} else {
+			return inp;
+		}
+	});
+var _user$project$InputUpdate$updatePlaceholder = F3(
+	function (id, model, newPlaceholder) {
+		var newInputs = A2(
+			_elm_lang$core$List$map,
+			function (inp) {
+				return _elm_lang$core$Native_Utils.eq(
+					_user$project$Models$extractId(inp),
+					id) ? A2(_user$project$InputUpdate$updateInputPlaceholder, inp, newPlaceholder) : inp;
+			},
+			model.form);
+		var input = _elm_lang$core$List$head(
+			A2(
+				_elm_lang$core$List$filter,
+				function (el) {
+					return _elm_lang$core$Native_Utils.eq(
+						_user$project$Models$extractId(el),
+						id);
+				},
+				model.form));
+		return {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Native_Utils.update(
+				model,
+				{form: newInputs}),
+			_1: _elm_lang$core$Platform_Cmd$none
+		};
+	});
 var _user$project$InputUpdate$update = F2(
 	function (msg, model) {
-		return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		var _p1 = msg;
+		if (_p1.ctor === 'PlaceholderEdit') {
+			var _p2 = model.currentlyEdditedInputId;
+			if (_p2.ctor === 'Nothing') {
+				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+			} else {
+				return A3(_user$project$InputUpdate$updatePlaceholder, _p2._0, model, _p1._0);
+			}
+		} else {
+			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		}
 	});
 
 var _user$project$Templates$submit = A2(
