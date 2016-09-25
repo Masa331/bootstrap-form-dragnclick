@@ -33,7 +33,7 @@ view =
   , fileUpload
 
   , b [] [text "Radio buttons"]
-  , a [href "javascript:void(0);", onClick (FormMessage AddRadioButtons), class "pull-xs-right"] [text "add"]
+  , a [href "javascript:void(0);", onClick (FormMessage AddRadio), class "pull-xs-right"] [text "add"]
   , hr [] []
   , radioButtons
 

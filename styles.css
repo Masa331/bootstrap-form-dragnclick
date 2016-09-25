@@ -82,15 +82,23 @@ body {
 }
 
 .edit-and-remove-link {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+
   display: none;
+
+  background-color: lightgrey;
 }
 
-.bd-example:hover .edit-and-remove-link {
+/* .bd-example:hover .edit-and-remove-link { */
+.form-group:hover .edit-and-remove-link {
   display: block;
 }
 
 .bd-example {
   position: relative;
+
   padding: 1rem;
   margin: 1rem -1rem;
   border: solid #f7f7f9;

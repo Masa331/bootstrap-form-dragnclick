@@ -7,20 +7,20 @@ update msg model =
   case msg of
     AddTextInput ->
       addInputToForm model (newTextInput model)
-    AddSelect ->
-      addInputToForm model (newTextInput model)
-    AddMultiselect ->
-      addInputToForm model (newTextInput model)
     AddTextarea ->
-      addInputToForm model (newTextInput model)
+      addInputToForm model (newTextArea model)
+    AddSelect ->
+      addInputToForm model (newSelect model)
+    AddMultiselect ->
+      addInputToForm model (newMultiselect model)
     AddFileUpload ->
-      addInputToForm model (newTextInput model)
-    AddRadioButtons ->
-      addInputToForm model (newTextInput model)
+      addInputToForm model (newFileUpload model)
+    AddRadio ->
+      addInputToForm model (newRadio model)
     AddCheckbox ->
-      addInputToForm model (newTextInput model)
+      addInputToForm model (newCheckbox model)
     AddButton ->
-      addInputToForm model (newTextInput model)
+      addInputToForm model (newButton model)
     RemoveInput id ->
       removeInput model id
     EditInput id ->
@@ -37,6 +37,34 @@ removeInput model id =
 newTextInput : Model -> Input
 newTextInput model =
   TextInput { id = countNewInputId model, classList = [ "form-control" ], placeholder = Nothing, label = Just "New input" }
+
+newTextArea : Model -> Input
+newTextArea model =
+  TextArea { id = countNewInputId model, classList = [ "form-control" ], placeholder = Nothing, label = Just "New input", rowNumber = 3 }
+
+newSelect : Model -> Input
+newSelect model =
+  Select { id = countNewInputId model, classList = [ "form-control" ], label = Just "New radio" }
+
+newMultiselect : Model -> Input
+newMultiselect model =
+  Multiselect { id = countNewInputId model, classList = [ "form-control" ], label = Just "New input" }
+
+newFileUpload : Model -> Input
+newFileUpload model =
+  FileUpload { id = countNewInputId model, classList = [ "form-control" ], label = Just "New input" }
+
+newRadio : Model -> Input
+newRadio model =
+  Radio { id = countNewInputId model, classList = [ "form-control" ], label = Just "New input" }
+
+newCheckbox : Model -> Input
+newCheckbox model =
+  Checkbox { id = countNewInputId model, classList = [ "form-control" ], label = Just "New input" }
+
+newButton : Model -> Input
+newButton model =
+  Button { id = countNewInputId model, classList = [ "form-control" ], label = Just "New input" }
 
 -------------
 -- Private --

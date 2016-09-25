@@ -6,7 +6,7 @@ type FormMsg =
   | AddMultiselect
   | AddTextarea
   | AddFileUpload
-  | AddRadioButtons
+  | AddRadio
   | AddCheckbox
   | AddButton
   | RemoveInput Int

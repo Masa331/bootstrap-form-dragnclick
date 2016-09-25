@@ -31,19 +31,18 @@ inputHtml input =
 textInputHtml : Input -> Html Msg
 textInputHtml inp =
   let
+    inputLabel = label inp
     input = Html.input (inputAttributes inp) []
-    links = []
-    id = extractId inp
   in
-    formGroup [ label inp, input ] id
+    -- div [ class "form-group" ] [ inputLabel, input, editAndRemoveLink inp ]
+    div [ class "form-group" ] [ inputLabel, input ]
 
 textAreaHtml : Input -> Html Msg
 textAreaHtml inp =
   let
     area = textarea (inputAttributes inp) []
-    id = extractId inp
   in
-    formGroup [ label inp, area ] id
+    div [ class "form-group" ] [ label inp, area, editAndRemoveLink inp ]
 
 selectHtml : Input -> Html Msg
 selectHtml inp =
@@ -51,31 +50,69 @@ selectHtml inp =
     s1 = option [] [text "1"]
     s2 = option [] [text "2"]
     s3 = option [] [text "3"]
-    select = Html.select [] [s1, s2, s3]
-    id = extractId inp
+    select = Html.select [class "form-control"] [s1, s2, s3]
   in
-    formGroup [ label inp, select ] id
+    div [ class "form-group" ] [ label inp, select, editAndRemoveLink inp ]
+
+multiselectHtml : Input -> Html Msg
+multiselectHtml inp =
+  let
+    s1 = option [] [text "1"]
+    s2 = option [] [text "2"]
+    s3 = option [] [text "3"]
+    select = Html.select [class "form-control", multiple True] [s1, s2, s3]
+  in
+    div [ class "form-group" ] [ label inp, select, editAndRemoveLink inp ]
+
+fileUploadHtml : Input -> Html Msg
+fileUploadHtml inp =
+  let
+    input = Html.input [type' "file"] []
+  in
+    div [ class "form-group" ] [ label inp, input, editAndRemoveLink inp ]
+
+radioHtml : Input -> Html Msg
+radioHtml inp =
+  let
+    leg = legend [] [ text "Radios" ]
+    r1 = div [] [Html.label [] [input [type' "radio", name "radioOption", Html.Attributes.id "radioOption1", value "option1"] [], text "Option 1"]]
+    r2 = div [] [Html.label [] [input [type' "radio", name "radioOption", Html.Attributes.id "radioOption2", value "option2"] [], text "Option 2"]]
+  in
+    fieldset [ class "form-group" ] [ leg, r1, r2, editAndRemoveLink inp ]
+
+checkboxHtml : Input -> Html Msg
+checkboxHtml inp =
+  let
+    input = Html.input [type' "checkbox"] []
+    label = Html.label [] [input, text "Check me out"]
+  in
+    div [ class "form-check" ] [ label, editAndRemoveLink inp ]
+
+buttonHtml : Input -> Html Msg
+buttonHtml inp =
+  button [type' "submit"] [text "Submit"]
 
 -------------
 -- Helpers --
 -------------
 
-editAndRemoveLink id =
-  div [class "edit-and-remove-link"] [editLink id, removeLink id]
+editAndRemoveLink inp =
+  div
+    [class "edit-and-remove-link"]
+    -- [ p [] [editLink inp], p [] [removeLink inp]]
+    [ editLink inp, text " | ", removeLink inp, text " | ", moveUpLink inp, text " | ", moveDownLink inp]
 
 editLink id =
-  a [href "javascript:void(0);", onClick (FormMessage (EditInput id))] [text "Edit"]
+  a [href "javascript:void(0);", onClick (FormMessage (EditInput (extractId id)))] [text "Edit"]
 
 removeLink id =
-  a [href "javascript:void(0);", onClick (FormMessage (RemoveInput id))] [text "Remove"]
+  a [href "javascript:void(0);", onClick (FormMessage (RemoveInput (extractId id)))] [text "Remove"]
 
-formGroup : List (Html Msg) -> Id -> Html Msg
-formGroup els id =
-  let
-    links = [editAndRemoveLink id]
-    elementsAndLinks = List.append els links
-  in
-    div [ class "form-group" ] elementsAndLinks
+moveUpLink id =
+  a [href "javascript:void(0);"] [text "Move up"]
+
+moveDownLink id =
+  a [href "javascript:void(0);"] [text "Move Down"]
 
 label : Input -> Html Msg
 label inp =
@@ -91,7 +128,7 @@ label inp =
         Checkbox attrs -> (Maybe.withDefault "default" attrs.label, "input" ++ toString attrs.id)
         Button attrs -> (Maybe.withDefault "default" attrs.label, "input" ++ toString attrs.id)
   in
-    Html.label [ for labelText ] [ text forValue ]
+    Html.label [ for forValue ] [ text labelText ]
 
 inputAttributes : Input -> List (Html.Attribute a)
 inputAttributes inp =
@@ -159,25 +196,3 @@ classesToAttr classList =
 placeholderToAttr : Placeholder -> Maybe (Html.Attribute a)
 placeholderToAttr plac =
   Maybe.map placeholder plac
------------
-
-
-multiselectHtml : Input -> Html Msg
-multiselectHtml inp =
-  text "ho"
-
-fileUploadHtml : Input -> Html Msg
-fileUploadHtml inp =
-  text "ho"
-
-radioHtml : Input -> Html Msg
-radioHtml inp =
-  text "ho"
-
-checkboxHtml : Input -> Html Msg
-checkboxHtml inp =
-  text "ho"
-
-buttonHtml : Input -> Html Msg
-buttonHtml inp =
-  text "ho"

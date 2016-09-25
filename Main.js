@@ -7980,7 +7980,7 @@ var _user$project$Messages$RemoveInput = function (a) {
 };
 var _user$project$Messages$AddButton = {ctor: 'AddButton'};
 var _user$project$Messages$AddCheckbox = {ctor: 'AddCheckbox'};
-var _user$project$Messages$AddRadioButtons = {ctor: 'AddRadioButtons'};
+var _user$project$Messages$AddRadio = {ctor: 'AddRadio'};
 var _user$project$Messages$AddFileUpload = {ctor: 'AddFileUpload'};
 var _user$project$Messages$AddTextarea = {ctor: 'AddTextarea'};
 var _user$project$Messages$AddMultiselect = {ctor: 'AddMultiselect'};
@@ -7997,21 +7997,6 @@ var _user$project$Messages$FormMessage = function (a) {
 	return {ctor: 'FormMessage', _0: a};
 };
 
-var _user$project$Inputs$buttonHtml = function (inp) {
-	return _elm_lang$html$Html$text('ho');
-};
-var _user$project$Inputs$checkboxHtml = function (inp) {
-	return _elm_lang$html$Html$text('ho');
-};
-var _user$project$Inputs$radioHtml = function (inp) {
-	return _elm_lang$html$Html$text('ho');
-};
-var _user$project$Inputs$fileUploadHtml = function (inp) {
-	return _elm_lang$html$Html$text('ho');
-};
-var _user$project$Inputs$multiselectHtml = function (inp) {
-	return _elm_lang$html$Html$text('ho');
-};
 var _user$project$Inputs$placeholderToAttr = function (plac) {
 	return A2(_elm_lang$core$Maybe$map, _elm_lang$html$Html_Attributes$placeholder, plac);
 };
@@ -8239,11 +8224,35 @@ var _user$project$Inputs$label = function (inp) {
 		_elm_lang$html$Html$label,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html_Attributes$for(labelText)
+				_elm_lang$html$Html_Attributes$for(forValue)
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html$text(forValue)
+				_elm_lang$html$Html$text(labelText)
+			]));
+};
+var _user$project$Inputs$moveDownLink = function (id) {
+	return A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href('javascript:void(0);')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Move Down')
+			]));
+};
+var _user$project$Inputs$moveUpLink = function (id) {
+	return A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href('javascript:void(0);')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Move up')
 			]));
 };
 var _user$project$Inputs$removeLink = function (id) {
@@ -8254,7 +8263,8 @@ var _user$project$Inputs$removeLink = function (id) {
 				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
 				_elm_lang$html$Html_Events$onClick(
 				_user$project$Messages$FormMessage(
-					_user$project$Messages$RemoveInput(id)))
+					_user$project$Messages$RemoveInput(
+						_user$project$Models$extractId(id))))
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -8269,14 +8279,15 @@ var _user$project$Inputs$editLink = function (id) {
 				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
 				_elm_lang$html$Html_Events$onClick(
 				_user$project$Messages$FormMessage(
-					_user$project$Messages$EditInput(id)))
+					_user$project$Messages$EditInput(
+						_user$project$Models$extractId(id))))
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html$text('Edit')
 			]));
 };
-var _user$project$Inputs$editAndRemoveLink = function (id) {
+var _user$project$Inputs$editAndRemoveLink = function (inp) {
 	return A2(
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
@@ -8285,27 +8296,155 @@ var _user$project$Inputs$editAndRemoveLink = function (id) {
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_user$project$Inputs$editLink(id),
-				_user$project$Inputs$removeLink(id)
+				_user$project$Inputs$editLink(inp),
+				_elm_lang$html$Html$text(' | '),
+				_user$project$Inputs$removeLink(inp),
+				_elm_lang$html$Html$text(' | '),
+				_user$project$Inputs$moveUpLink(inp),
+				_elm_lang$html$Html$text(' | '),
+				_user$project$Inputs$moveDownLink(inp)
 			]));
 };
-var _user$project$Inputs$formGroup = F2(
-	function (els, id) {
-		var links = _elm_lang$core$Native_List.fromArray(
+var _user$project$Inputs$buttonHtml = function (inp) {
+	return A2(
+		_elm_lang$html$Html$button,
+		_elm_lang$core$Native_List.fromArray(
 			[
-				_user$project$Inputs$editAndRemoveLink(id)
-			]);
-		var elementsAndLinks = A2(_elm_lang$core$List$append, els, links);
-		return A2(
-			_elm_lang$html$Html$div,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$class('form-group')
-				]),
-			elementsAndLinks);
-	});
-var _user$project$Inputs$selectHtml = function (inp) {
-	var id = _user$project$Models$extractId(inp);
+				_elm_lang$html$Html_Attributes$type$('submit')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Submit')
+			]));
+};
+var _user$project$Inputs$checkboxHtml = function (inp) {
+	var input = A2(
+		_elm_lang$html$Html$input,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$type$('checkbox')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+	var label = A2(
+		_elm_lang$html$Html$label,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				input,
+				_elm_lang$html$Html$text('Check me out')
+			]));
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('form-check')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				label,
+				_user$project$Inputs$editAndRemoveLink(inp)
+			]));
+};
+var _user$project$Inputs$radioHtml = function (inp) {
+	var r2 = A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$label,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$input,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$type$('radio'),
+								_elm_lang$html$Html_Attributes$name('radioOption'),
+								_elm_lang$html$Html_Attributes$id('radioOption2'),
+								_elm_lang$html$Html_Attributes$value('option2')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[])),
+						_elm_lang$html$Html$text('Option 2')
+					]))
+			]));
+	var r1 = A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$label,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$input,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$type$('radio'),
+								_elm_lang$html$Html_Attributes$name('radioOption'),
+								_elm_lang$html$Html_Attributes$id('radioOption1'),
+								_elm_lang$html$Html_Attributes$value('option1')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[])),
+						_elm_lang$html$Html$text('Option 1')
+					]))
+			]));
+	var leg = A2(
+		_elm_lang$html$Html$legend,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Radios')
+			]));
+	return A2(
+		_elm_lang$html$Html$fieldset,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('form-group')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				leg,
+				r1,
+				r2,
+				_user$project$Inputs$editAndRemoveLink(inp)
+			]));
+};
+var _user$project$Inputs$fileUploadHtml = function (inp) {
+	var input = A2(
+		_elm_lang$html$Html$input,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$type$('file')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('form-group')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Inputs$label(inp),
+				input,
+				_user$project$Inputs$editAndRemoveLink(inp)
+			]));
+};
+var _user$project$Inputs$multiselectHtml = function (inp) {
 	var s3 = A2(
 		_elm_lang$html$Html$option,
 		_elm_lang$core$Native_List.fromArray(
@@ -8333,51 +8472,105 @@ var _user$project$Inputs$selectHtml = function (inp) {
 	var select = A2(
 		_elm_lang$html$Html$select,
 		_elm_lang$core$Native_List.fromArray(
-			[]),
+			[
+				_elm_lang$html$Html_Attributes$class('form-control'),
+				_elm_lang$html$Html_Attributes$multiple(true)
+			]),
 		_elm_lang$core$Native_List.fromArray(
 			[s1, s2, s3]));
 	return A2(
-		_user$project$Inputs$formGroup,
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('form-group')
+			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_user$project$Inputs$label(inp),
-				select
+				select,
+				_user$project$Inputs$editAndRemoveLink(inp)
+			]));
+};
+var _user$project$Inputs$selectHtml = function (inp) {
+	var s3 = A2(
+		_elm_lang$html$Html$option,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('3')
+			]));
+	var s2 = A2(
+		_elm_lang$html$Html$option,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('2')
+			]));
+	var s1 = A2(
+		_elm_lang$html$Html$option,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('1')
+			]));
+	var select = A2(
+		_elm_lang$html$Html$select,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('form-control')
 			]),
-		id);
+		_elm_lang$core$Native_List.fromArray(
+			[s1, s2, s3]));
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('form-group')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Inputs$label(inp),
+				select,
+				_user$project$Inputs$editAndRemoveLink(inp)
+			]));
 };
 var _user$project$Inputs$textAreaHtml = function (inp) {
-	var id = _user$project$Models$extractId(inp);
 	var area = A2(
 		_elm_lang$html$Html$textarea,
 		_user$project$Inputs$inputAttributes(inp),
 		_elm_lang$core$Native_List.fromArray(
 			[]));
 	return A2(
-		_user$project$Inputs$formGroup,
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('form-group')
+			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_user$project$Inputs$label(inp),
-				area
-			]),
-		id);
+				area,
+				_user$project$Inputs$editAndRemoveLink(inp)
+			]));
 };
 var _user$project$Inputs$textInputHtml = function (inp) {
-	var id = _user$project$Models$extractId(inp);
-	var links = _elm_lang$core$Native_List.fromArray(
-		[]);
 	var input = A2(
 		_elm_lang$html$Html$input,
 		_user$project$Inputs$inputAttributes(inp),
 		_elm_lang$core$Native_List.fromArray(
 			[]));
+	var inputLabel = _user$project$Inputs$label(inp);
 	return A2(
-		_user$project$Inputs$formGroup,
+		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_user$project$Inputs$label(inp),
-				input
+				_elm_lang$html$Html_Attributes$class('form-group')
 			]),
-		id);
+		_elm_lang$core$Native_List.fromArray(
+			[inputLabel, input]));
 };
 var _user$project$Inputs$inputHtml = function (input) {
 	var _p11 = input;
@@ -8436,6 +8629,71 @@ var _user$project$FormUpdate$countNewInputId = function (model) {
 	var actuall = _user$project$FormUpdate$extractMaxId(model.form);
 	return actuall + 1;
 };
+var _user$project$FormUpdate$newButton = function (model) {
+	return _user$project$Models$Button(
+		{
+			id: _user$project$FormUpdate$countNewInputId(model),
+			classList: _elm_lang$core$Native_List.fromArray(
+				['form-control']),
+			label: _elm_lang$core$Maybe$Just('New input')
+		});
+};
+var _user$project$FormUpdate$newCheckbox = function (model) {
+	return _user$project$Models$Checkbox(
+		{
+			id: _user$project$FormUpdate$countNewInputId(model),
+			classList: _elm_lang$core$Native_List.fromArray(
+				['form-control']),
+			label: _elm_lang$core$Maybe$Just('New input')
+		});
+};
+var _user$project$FormUpdate$newRadio = function (model) {
+	return _user$project$Models$Radio(
+		{
+			id: _user$project$FormUpdate$countNewInputId(model),
+			classList: _elm_lang$core$Native_List.fromArray(
+				['form-control']),
+			label: _elm_lang$core$Maybe$Just('New input')
+		});
+};
+var _user$project$FormUpdate$newFileUpload = function (model) {
+	return _user$project$Models$FileUpload(
+		{
+			id: _user$project$FormUpdate$countNewInputId(model),
+			classList: _elm_lang$core$Native_List.fromArray(
+				['form-control']),
+			label: _elm_lang$core$Maybe$Just('New input')
+		});
+};
+var _user$project$FormUpdate$newMultiselect = function (model) {
+	return _user$project$Models$Multiselect(
+		{
+			id: _user$project$FormUpdate$countNewInputId(model),
+			classList: _elm_lang$core$Native_List.fromArray(
+				['form-control']),
+			label: _elm_lang$core$Maybe$Just('New input')
+		});
+};
+var _user$project$FormUpdate$newSelect = function (model) {
+	return _user$project$Models$Select(
+		{
+			id: _user$project$FormUpdate$countNewInputId(model),
+			classList: _elm_lang$core$Native_List.fromArray(
+				['form-control']),
+			label: _elm_lang$core$Maybe$Just('New radio')
+		});
+};
+var _user$project$FormUpdate$newTextArea = function (model) {
+	return _user$project$Models$TextArea(
+		{
+			id: _user$project$FormUpdate$countNewInputId(model),
+			classList: _elm_lang$core$Native_List.fromArray(
+				['form-control']),
+			placeholder: _elm_lang$core$Maybe$Nothing,
+			label: _elm_lang$core$Maybe$Just('New input'),
+			rowNumber: 3
+		});
+};
 var _user$project$FormUpdate$newTextInput = function (model) {
 	return _user$project$Models$TextInput(
 		{
@@ -8473,41 +8731,41 @@ var _user$project$FormUpdate$update = F2(
 					_user$project$FormUpdate$addInputToForm,
 					model,
 					_user$project$FormUpdate$newTextInput(model));
-			case 'AddSelect':
-				return A2(
-					_user$project$FormUpdate$addInputToForm,
-					model,
-					_user$project$FormUpdate$newTextInput(model));
-			case 'AddMultiselect':
-				return A2(
-					_user$project$FormUpdate$addInputToForm,
-					model,
-					_user$project$FormUpdate$newTextInput(model));
 			case 'AddTextarea':
 				return A2(
 					_user$project$FormUpdate$addInputToForm,
 					model,
-					_user$project$FormUpdate$newTextInput(model));
+					_user$project$FormUpdate$newTextArea(model));
+			case 'AddSelect':
+				return A2(
+					_user$project$FormUpdate$addInputToForm,
+					model,
+					_user$project$FormUpdate$newSelect(model));
+			case 'AddMultiselect':
+				return A2(
+					_user$project$FormUpdate$addInputToForm,
+					model,
+					_user$project$FormUpdate$newMultiselect(model));
 			case 'AddFileUpload':
 				return A2(
 					_user$project$FormUpdate$addInputToForm,
 					model,
-					_user$project$FormUpdate$newTextInput(model));
-			case 'AddRadioButtons':
+					_user$project$FormUpdate$newFileUpload(model));
+			case 'AddRadio':
 				return A2(
 					_user$project$FormUpdate$addInputToForm,
 					model,
-					_user$project$FormUpdate$newTextInput(model));
+					_user$project$FormUpdate$newRadio(model));
 			case 'AddCheckbox':
 				return A2(
 					_user$project$FormUpdate$addInputToForm,
 					model,
-					_user$project$FormUpdate$newTextInput(model));
+					_user$project$FormUpdate$newCheckbox(model));
 			case 'AddButton':
 				return A2(
 					_user$project$FormUpdate$addInputToForm,
 					model,
-					_user$project$FormUpdate$newTextInput(model));
+					_user$project$FormUpdate$newButton(model));
 			case 'RemoveInput':
 				return A2(_user$project$FormUpdate$removeInput, model, _p0._0);
 			case 'EditInput':
@@ -9099,7 +9357,7 @@ var _user$project$Templates$view = _elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
 				_elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$FormMessage(_user$project$Messages$AddRadioButtons)),
+				_user$project$Messages$FormMessage(_user$project$Messages$AddRadio)),
 				_elm_lang$html$Html_Attributes$class('pull-xs-right')
 			]),
 		_elm_lang$core$Native_List.fromArray(
