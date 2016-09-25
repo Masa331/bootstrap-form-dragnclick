@@ -7999,25 +7999,25 @@ var _user$project$Messages$FormMessage = function (a) {
 	return {ctor: 'FormMessage', _0: a};
 };
 
-var _user$project$FormEdit$buttonHtml = function (inp) {
+var _user$project$Inputs$buttonHtml = function (inp) {
 	return _elm_lang$html$Html$text('ho');
 };
-var _user$project$FormEdit$checkboxHtml = function (inp) {
+var _user$project$Inputs$checkboxHtml = function (inp) {
 	return _elm_lang$html$Html$text('ho');
 };
-var _user$project$FormEdit$radioHtml = function (inp) {
+var _user$project$Inputs$radioHtml = function (inp) {
 	return _elm_lang$html$Html$text('ho');
 };
-var _user$project$FormEdit$fileUploadHtml = function (inp) {
+var _user$project$Inputs$fileUploadHtml = function (inp) {
 	return _elm_lang$html$Html$text('ho');
 };
-var _user$project$FormEdit$multiselectHtml = function (inp) {
+var _user$project$Inputs$multiselectHtml = function (inp) {
 	return _elm_lang$html$Html$text('ho');
 };
-var _user$project$FormEdit$selectHtml = function (inp) {
+var _user$project$Inputs$selectHtml = function (inp) {
 	return _elm_lang$html$Html$text('ho');
 };
-var _user$project$FormEdit$textAreaAttributes = F4(
+var _user$project$Inputs$textAreaAttributes = F4(
 	function (inputId, classList, plac, rowNo) {
 		var rowNox = _elm_lang$core$Maybe$Just(
 			_elm_lang$html$Html_Attributes$rows(rowNo));
@@ -8045,7 +8045,7 @@ var _user$project$FormEdit$textAreaAttributes = F4(
 			_elm_lang$core$Native_List.fromArray(
 				[idx, classes, placeholderx, rowNox]));
 	});
-var _user$project$FormEdit$textInputAttributes = F3(
+var _user$project$Inputs$textInputAttributes = F3(
 	function (inputId, classList, plac) {
 		var placeholderx = function () {
 			var _p1 = plac;
@@ -8073,20 +8073,20 @@ var _user$project$FormEdit$textInputAttributes = F3(
 			_elm_lang$core$Native_List.fromArray(
 				[idx, typex, classes, placeholderx]));
 	});
-var _user$project$FormEdit$inputAttributes = function (inp) {
+var _user$project$Inputs$inputAttributes = function (inp) {
 	var _p2 = inp;
 	_v2_2:
 	do {
 		switch (_p2.ctor) {
 			case 'TextInput':
 				if (_p2._0.ctor === '_Tuple4') {
-					return A3(_user$project$FormEdit$textInputAttributes, _p2._0._0, _p2._0._1, _p2._0._2);
+					return A3(_user$project$Inputs$textInputAttributes, _p2._0._0, _p2._0._1, _p2._0._2);
 				} else {
 					break _v2_2;
 				}
 			case 'TextArea':
 				if (_p2._0.ctor === '_Tuple5') {
-					return A4(_user$project$FormEdit$textAreaAttributes, _p2._0._0, _p2._0._1, _p2._0._2, _p2._0._3);
+					return A4(_user$project$Inputs$textAreaAttributes, _p2._0._0, _p2._0._1, _p2._0._2, _p2._0._3);
 				} else {
 					break _v2_2;
 				}
@@ -8097,7 +8097,7 @@ var _user$project$FormEdit$inputAttributes = function (inp) {
 	return _elm_lang$core$Native_List.fromArray(
 		[]);
 };
-var _user$project$FormEdit$label = function (inp) {
+var _user$project$Inputs$label = function (inp) {
 	var _p3 = function () {
 		var _p4 = inp;
 		_v3_2:
@@ -8148,7 +8148,7 @@ var _user$project$FormEdit$label = function (inp) {
 				_elm_lang$html$Html$text(txt)
 			]));
 };
-var _user$project$FormEdit$removeLink = function (id) {
+var _user$project$Inputs$removeLink = function (id) {
 	return A2(
 		_elm_lang$html$Html$a,
 		_elm_lang$core$Native_List.fromArray(
@@ -8163,7 +8163,7 @@ var _user$project$FormEdit$removeLink = function (id) {
 				_elm_lang$html$Html$text('Remove')
 			]));
 };
-var _user$project$FormEdit$editLink = function (id) {
+var _user$project$Inputs$editLink = function (id) {
 	return A2(
 		_elm_lang$html$Html$a,
 		_elm_lang$core$Native_List.fromArray(
@@ -8178,7 +8178,7 @@ var _user$project$FormEdit$editLink = function (id) {
 				_elm_lang$html$Html$text('Edit')
 			]));
 };
-var _user$project$FormEdit$editAndRemoveLink = function (id) {
+var _user$project$Inputs$editAndRemoveLink = function (id) {
 	return A2(
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
@@ -8187,15 +8187,15 @@ var _user$project$FormEdit$editAndRemoveLink = function (id) {
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_user$project$FormEdit$editLink(id),
-				_user$project$FormEdit$removeLink(id)
+				_user$project$Inputs$editLink(id),
+				_user$project$Inputs$removeLink(id)
 			]));
 };
-var _user$project$FormEdit$formGroup = F2(
+var _user$project$Inputs$formGroup = F2(
 	function (els, id) {
 		var links = _elm_lang$core$Native_List.fromArray(
 			[
-				_user$project$FormEdit$editAndRemoveLink(id)
+				_user$project$Inputs$editAndRemoveLink(id)
 			]);
 		var elementsAndLinks = A2(_elm_lang$core$List$append, els, links);
 		return A2(
@@ -8206,63 +8206,64 @@ var _user$project$FormEdit$formGroup = F2(
 				]),
 			elementsAndLinks);
 	});
-var _user$project$FormEdit$textAreaHtml = function (inp) {
+var _user$project$Inputs$textAreaHtml = function (inp) {
 	var id = _user$project$Models$extractId(inp);
 	var area = A2(
 		_elm_lang$html$Html$textarea,
-		_user$project$FormEdit$inputAttributes(inp),
+		_user$project$Inputs$inputAttributes(inp),
 		_elm_lang$core$Native_List.fromArray(
 			[]));
 	return A2(
-		_user$project$FormEdit$formGroup,
+		_user$project$Inputs$formGroup,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_user$project$FormEdit$label(inp),
+				_user$project$Inputs$label(inp),
 				area
 			]),
 		id);
 };
-var _user$project$FormEdit$textInputHtml = function (inp) {
+var _user$project$Inputs$textInputHtml = function (inp) {
 	var id = _user$project$Models$extractId(inp);
 	var links = _elm_lang$core$Native_List.fromArray(
 		[]);
 	var input = A2(
 		_elm_lang$html$Html$input,
-		_user$project$FormEdit$inputAttributes(inp),
+		_user$project$Inputs$inputAttributes(inp),
 		_elm_lang$core$Native_List.fromArray(
 			[]));
 	return A2(
-		_user$project$FormEdit$formGroup,
+		_user$project$Inputs$formGroup,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_user$project$FormEdit$label(inp),
+				_user$project$Inputs$label(inp),
 				input
 			]),
 		id);
 };
-var _user$project$FormEdit$inputHtml = function (input) {
+var _user$project$Inputs$inputHtml = function (input) {
 	var _p5 = input;
 	switch (_p5.ctor) {
 		case 'TextInput':
-			return _user$project$FormEdit$textInputHtml(input);
+			return _user$project$Inputs$textInputHtml(input);
 		case 'TextArea':
-			return _user$project$FormEdit$textAreaHtml(input);
+			return _user$project$Inputs$textAreaHtml(input);
 		case 'Select':
-			return _user$project$FormEdit$selectHtml(input);
+			return _user$project$Inputs$selectHtml(input);
 		case 'Multiselect':
-			return _user$project$FormEdit$multiselectHtml(input);
+			return _user$project$Inputs$multiselectHtml(input);
 		case 'FileUpload':
-			return _user$project$FormEdit$fileUploadHtml(input);
+			return _user$project$Inputs$fileUploadHtml(input);
 		case 'Radio':
-			return _user$project$FormEdit$radioHtml(input);
+			return _user$project$Inputs$radioHtml(input);
 		case 'Checkbox':
-			return _user$project$FormEdit$checkboxHtml(input);
+			return _user$project$Inputs$checkboxHtml(input);
 		default:
-			return _user$project$FormEdit$buttonHtml(input);
+			return _user$project$Inputs$buttonHtml(input);
 	}
 };
+
 var _user$project$FormEdit$view = function (model) {
-	var elements = A2(_elm_lang$core$List$map, _user$project$FormEdit$inputHtml, model.form);
+	var elements = A2(_elm_lang$core$List$map, _user$project$Inputs$inputHtml, model.form);
 	return A2(
 		_elm_lang$html$Html$form,
 		_elm_lang$core$Native_List.fromArray(
@@ -8392,18 +8393,15 @@ var _user$project$FormUpdate$update = F2(
 		}
 	});
 
-var _user$project$InputEdit$view = function (model) {
-	return _elm_lang$core$Native_List.fromArray(
-		[
-			A2(
-			_elm_lang$html$Html$div,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('ahoj')
-				]))
-		]);
+var _user$project$InputEdit$view = function (inp) {
+	return A2(
+		_elm_lang$html$Html$form,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Inputs$inputHtml(inp)
+			]));
 };
 
 var _user$project$InputOptions$view = function (model) {
@@ -9037,7 +9035,16 @@ var _user$project$Markup$inputView = function (inp) {
 		_elm_lang$core$Native_List.fromArray(
 			[]),
 		_elm_lang$core$Native_List.fromArray(
-			[]));
+			[
+				_elm_lang$html$Html$text(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'<form>\n',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_user$project$Markup$inputMarkup(inp),
+						'\n</form>')))
+			]));
 };
 var _user$project$Markup$view = function (model) {
 	var inputs = A2(_elm_lang$core$List$map, _user$project$Markup$inputMarkup, model.form);
@@ -9059,8 +9066,8 @@ var _user$project$Markup$view = function (model) {
 var _user$project$Views$inputOptions = function (model) {
 	return _user$project$InputOptions$view(model);
 };
-var _user$project$Views$inputEdit = function (model) {
-	return _user$project$InputEdit$view(model);
+var _user$project$Views$inputEdit = function (inp) {
+	return _user$project$InputEdit$view(inp);
 };
 var _user$project$Views$inputMarkup = function (model) {
 	return _elm_lang$core$Native_List.fromArray(
@@ -9144,7 +9151,10 @@ var _user$project$Views$inputEditLayout = F2(
 											[
 												_elm_lang$html$Html_Attributes$class('bd-example')
 											]),
-										_user$project$Views$inputEdit(_p1)),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_user$project$Views$inputEdit(_p1)
+											])),
 										A2(
 										_elm_lang$html$Html$div,
 										_elm_lang$core$Native_List.fromArray(

@@ -41,7 +41,6 @@ formCreator model =
 
 inputEditLayout model id =
   let
-    -- childs = (\ (Children childs) -> childs) model.element.children
     input = List.head (List.filter (\el -> extractId el == id) model.form)
   in
     case input of
@@ -55,7 +54,7 @@ inputEditLayout model id =
               [ class "row"]
               [ div
                  [ class "col-sm-8"]
-                 [ div [class "bd-example"] (inputEdit b)
+                 [ div [class "bd-example"] [(inputEdit b)]
                  , div [class "highlight"] (inputMarkup b)]
               , div
                  [ class "col-sm-4"]
@@ -76,8 +75,8 @@ markup model =
 inputMarkup model =
   [Markup.inputView model]
 
-inputEdit model =
-  InputEdit.view model
+inputEdit inp =
+  InputEdit.view inp
 
 inputOptions model =
   InputOptions.view model

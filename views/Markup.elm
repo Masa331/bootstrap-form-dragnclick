@@ -19,7 +19,9 @@ view model =
 
 inputView : Input -> Html Msg
 inputView inp =
-  pre [] []
+  pre
+    []
+    [ text ("<form>\n" ++ inputMarkup inp ++ "\n</form>") ]
 
 inputMarkup : Input -> String
 inputMarkup el =

@@ -1,8 +1,8 @@
 var _user$project$Views$inputOptions = function (model) {
 	return _user$project$InputOptions$view(model);
 };
-var _user$project$Views$inputEdit = function (model) {
-	return _user$project$InputEdit$view(model);
+var _user$project$Views$inputEdit = function (inp) {
+	return _user$project$InputEdit$view(inp);
 };
 var _user$project$Views$inputMarkup = function (model) {
 	return _elm_lang$core$Native_List.fromArray(
@@ -86,7 +86,10 @@ var _user$project$Views$inputEditLayout = F2(
 											[
 												_elm_lang$html$Html_Attributes$class('bd-example')
 											]),
-										_user$project$Views$inputEdit(_p1)),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_user$project$Views$inputEdit(_p1)
+											])),
 										A2(
 										_elm_lang$html$Html$div,
 										_elm_lang$core$Native_List.fromArray(

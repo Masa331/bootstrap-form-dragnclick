@@ -49,7 +49,16 @@ var _user$project$Markup$inputView = function (inp) {
 		_elm_lang$core$Native_List.fromArray(
 			[]),
 		_elm_lang$core$Native_List.fromArray(
-			[]));
+			[
+				_elm_lang$html$Html$text(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'<form>\n',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_user$project$Markup$inputMarkup(inp),
+						'\n</form>')))
+			]));
 };
 var _user$project$Markup$view = function (model) {
 	var inputs = A2(_elm_lang$core$List$map, _user$project$Markup$inputMarkup, model.form);
