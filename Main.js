@@ -7905,17 +7905,17 @@ var _user$project$Models$extractId = function (inp) {
 		case 'TextArea':
 			return _p0._0.id;
 		case 'Select':
-			return _p0._0;
+			return _p0._0.id;
 		case 'Multiselect':
-			return _p0._0;
+			return _p0._0.id;
 		case 'FileUpload':
-			return _p0._0;
+			return _p0._0.id;
 		case 'Radio':
-			return _p0._0;
+			return _p0._0.id;
 		case 'Checkbox':
-			return _p0._0;
+			return _p0._0.id;
 		default:
-			return _p0._0;
+			return _p0._0.id;
 	}
 };
 var _user$project$Models$Model = F2(
@@ -8012,85 +8012,187 @@ var _user$project$Inputs$fileUploadHtml = function (inp) {
 var _user$project$Inputs$multiselectHtml = function (inp) {
 	return _elm_lang$html$Html$text('ho');
 };
-var _user$project$Inputs$selectHtml = function (inp) {
-	return _elm_lang$html$Html$text('ho');
+var _user$project$Inputs$placeholderToAttr = function (plac) {
+	return A2(_elm_lang$core$Maybe$map, _elm_lang$html$Html_Attributes$placeholder, plac);
 };
-var _user$project$Inputs$textAreaAttributes = F4(
-	function (inputId, classList, plac, rowNo) {
-		var rowNox = _elm_lang$core$Maybe$Just(
-			_elm_lang$html$Html_Attributes$rows(rowNo));
-		var placeholderx = function () {
-			var _p0 = plac;
-			if (_p0.ctor === 'Just') {
-				return _elm_lang$core$Maybe$Just(
-					_elm_lang$html$Html_Attributes$placeholder(_p0._0));
-			} else {
-				return _elm_lang$core$Maybe$Nothing;
-			}
-		}();
-		var classes = _elm_lang$core$Maybe$Just(
-			_elm_lang$html$Html_Attributes$class(
-				A2(_elm_lang$core$String$join, ' ', classList)));
-		var idx = _elm_lang$core$Maybe$Just(
-			_elm_lang$html$Html_Attributes$id(
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'input',
-					_elm_lang$core$Basics$toString(inputId))));
-		return A2(
-			_elm_lang$core$List$filterMap,
-			_elm_lang$core$Basics$identity,
-			_elm_lang$core$Native_List.fromArray(
-				[idx, classes, placeholderx, rowNox]));
-	});
-var _user$project$Inputs$textInputAttributes = F3(
-	function (inputId, classList, plac) {
-		var placeholderx = function () {
-			var _p1 = plac;
-			if (_p1.ctor === 'Just') {
-				return _elm_lang$core$Maybe$Just(
-					_elm_lang$html$Html_Attributes$placeholder(_p1._0));
-			} else {
-				return _elm_lang$core$Maybe$Nothing;
-			}
-		}();
-		var classes = _elm_lang$core$Maybe$Just(
-			_elm_lang$html$Html_Attributes$class(
-				A2(_elm_lang$core$String$join, ' ', classList)));
-		var typex = _elm_lang$core$Maybe$Just(
-			_elm_lang$html$Html_Attributes$type$('text'));
-		var idx = _elm_lang$core$Maybe$Just(
-			_elm_lang$html$Html_Attributes$id(
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'input',
-					_elm_lang$core$Basics$toString(inputId))));
-		return A2(
-			_elm_lang$core$List$filterMap,
-			_elm_lang$core$Basics$identity,
-			_elm_lang$core$Native_List.fromArray(
-				[idx, typex, classes, placeholderx]));
-	});
+var _user$project$Inputs$classesToAttr = function (classList) {
+	return _elm_lang$core$Maybe$Just(
+		_elm_lang$html$Html_Attributes$class(
+			A2(_elm_lang$core$String$join, ' ', classList)));
+};
+var _user$project$Inputs$idToAttr = function (id) {
+	return _elm_lang$core$Maybe$Just(
+		_elm_lang$html$Html_Attributes$id(
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				'input',
+				_elm_lang$core$Basics$toString(id))));
+};
+var _user$project$Inputs$buttonAttrs = function (attrs) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			_user$project$Inputs$idToAttr(attrs.id),
+			_user$project$Inputs$classesToAttr(attrs.classList),
+			_elm_lang$core$Maybe$Just(
+			_elm_lang$html$Html_Attributes$type$('text'))
+		]);
+};
+var _user$project$Inputs$checkboxAttrs = function (attrs) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			_user$project$Inputs$idToAttr(attrs.id),
+			_user$project$Inputs$classesToAttr(attrs.classList),
+			_elm_lang$core$Maybe$Just(
+			_elm_lang$html$Html_Attributes$type$('text'))
+		]);
+};
+var _user$project$Inputs$radioAttrs = function (attrs) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			_user$project$Inputs$idToAttr(attrs.id),
+			_user$project$Inputs$classesToAttr(attrs.classList),
+			_elm_lang$core$Maybe$Just(
+			_elm_lang$html$Html_Attributes$type$('text'))
+		]);
+};
+var _user$project$Inputs$fileUploadAttrs = function (attrs) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			_user$project$Inputs$idToAttr(attrs.id),
+			_user$project$Inputs$classesToAttr(attrs.classList),
+			_elm_lang$core$Maybe$Just(
+			_elm_lang$html$Html_Attributes$type$('text'))
+		]);
+};
+var _user$project$Inputs$multiselectAttrs = function (attrs) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			_user$project$Inputs$idToAttr(attrs.id),
+			_user$project$Inputs$classesToAttr(attrs.classList),
+			_elm_lang$core$Maybe$Just(
+			_elm_lang$html$Html_Attributes$type$('text'))
+		]);
+};
+var _user$project$Inputs$selectAttrs = function (attrs) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			_user$project$Inputs$idToAttr(attrs.id),
+			_user$project$Inputs$classesToAttr(attrs.classList),
+			_elm_lang$core$Maybe$Just(
+			_elm_lang$html$Html_Attributes$type$('text'))
+		]);
+};
+var _user$project$Inputs$textAreaAttrs = function (attrs) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			_user$project$Inputs$idToAttr(attrs.id),
+			_user$project$Inputs$classesToAttr(attrs.classList),
+			_user$project$Inputs$placeholderToAttr(attrs.placeholder),
+			_elm_lang$core$Maybe$Just(
+			_elm_lang$html$Html_Attributes$rows(attrs.rowNumber))
+		]);
+};
+var _user$project$Inputs$textInputAttrs = function (attrs) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			_user$project$Inputs$idToAttr(attrs.id),
+			_user$project$Inputs$classesToAttr(attrs.classList),
+			_user$project$Inputs$placeholderToAttr(attrs.placeholder),
+			_elm_lang$core$Maybe$Just(
+			_elm_lang$html$Html_Attributes$type$('text'))
+		]);
+};
 var _user$project$Inputs$inputAttributes = function (inp) {
-	var _p2 = inp;
-	switch (_p2.ctor) {
+	var _p0 = inp;
+	switch (_p0.ctor) {
 		case 'TextInput':
-			var _p3 = _p2._0;
-			return A3(_user$project$Inputs$textInputAttributes, _p3.id, _p3.classList, _p3.placeholder);
+			return A2(
+				_elm_lang$core$List$filterMap,
+				_elm_lang$core$Basics$identity,
+				_user$project$Inputs$textInputAttrs(_p0._0));
 		case 'TextArea':
-			var _p4 = _p2._0;
-			return A4(_user$project$Inputs$textAreaAttributes, _p4.id, _p4.classList, _p4.placeholder, _p4.rowNumber);
+			return A2(
+				_elm_lang$core$List$filterMap,
+				_elm_lang$core$Basics$identity,
+				_user$project$Inputs$textAreaAttrs(_p0._0));
+		case 'Select':
+			return A2(
+				_elm_lang$core$List$filterMap,
+				_elm_lang$core$Basics$identity,
+				_user$project$Inputs$selectAttrs(_p0._0));
+		case 'Multiselect':
+			return A2(
+				_elm_lang$core$List$filterMap,
+				_elm_lang$core$Basics$identity,
+				_user$project$Inputs$multiselectAttrs(_p0._0));
+		case 'FileUpload':
+			return A2(
+				_elm_lang$core$List$filterMap,
+				_elm_lang$core$Basics$identity,
+				_user$project$Inputs$fileUploadAttrs(_p0._0));
+		case 'Radio':
+			return A2(
+				_elm_lang$core$List$filterMap,
+				_elm_lang$core$Basics$identity,
+				_user$project$Inputs$radioAttrs(_p0._0));
+		case 'Checkbox':
+			return A2(
+				_elm_lang$core$List$filterMap,
+				_elm_lang$core$Basics$identity,
+				_user$project$Inputs$checkboxAttrs(_p0._0));
 		default:
-			return _elm_lang$core$Native_List.fromArray(
-				[]);
+			return A2(
+				_elm_lang$core$List$filterMap,
+				_elm_lang$core$Basics$identity,
+				_user$project$Inputs$buttonAttrs(_p0._0));
 	}
 };
 var _user$project$Inputs$label = function (inp) {
-	var _p5 = function () {
-		var _p6 = inp;
-		switch (_p6.ctor) {
+	var _p1 = function () {
+		var _p2 = inp;
+		switch (_p2.ctor) {
 			case 'TextInput':
-				var _p7 = _p6._0;
+				var _p3 = _p2._0;
+				return {
+					ctor: '_Tuple2',
+					_0: A2(_elm_lang$core$Maybe$withDefault, 'default', _p3.label),
+					_1: A2(
+						_elm_lang$core$Basics_ops['++'],
+						'input',
+						_elm_lang$core$Basics$toString(_p3.id))
+				};
+			case 'TextArea':
+				var _p4 = _p2._0;
+				return {
+					ctor: '_Tuple2',
+					_0: A2(_elm_lang$core$Maybe$withDefault, 'default', _p4.label),
+					_1: A2(
+						_elm_lang$core$Basics_ops['++'],
+						'input',
+						_elm_lang$core$Basics$toString(_p4.id))
+				};
+			case 'Select':
+				var _p5 = _p2._0;
+				return {
+					ctor: '_Tuple2',
+					_0: A2(_elm_lang$core$Maybe$withDefault, 'default', _p5.label),
+					_1: A2(
+						_elm_lang$core$Basics_ops['++'],
+						'input',
+						_elm_lang$core$Basics$toString(_p5.id))
+				};
+			case 'Multiselect':
+				var _p6 = _p2._0;
+				return {
+					ctor: '_Tuple2',
+					_0: A2(_elm_lang$core$Maybe$withDefault, 'default', _p6.label),
+					_1: A2(
+						_elm_lang$core$Basics_ops['++'],
+						'input',
+						_elm_lang$core$Basics$toString(_p6.id))
+				};
+			case 'FileUpload':
+				var _p7 = _p2._0;
 				return {
 					ctor: '_Tuple2',
 					_0: A2(_elm_lang$core$Maybe$withDefault, 'default', _p7.label),
@@ -8099,8 +8201,8 @@ var _user$project$Inputs$label = function (inp) {
 						'input',
 						_elm_lang$core$Basics$toString(_p7.id))
 				};
-			case 'TextArea':
-				var _p8 = _p6._0;
+			case 'Radio':
+				var _p8 = _p2._0;
 				return {
 					ctor: '_Tuple2',
 					_0: A2(_elm_lang$core$Maybe$withDefault, 'default', _p8.label),
@@ -8109,21 +8211,39 @@ var _user$project$Inputs$label = function (inp) {
 						'input',
 						_elm_lang$core$Basics$toString(_p8.id))
 				};
+			case 'Checkbox':
+				var _p9 = _p2._0;
+				return {
+					ctor: '_Tuple2',
+					_0: A2(_elm_lang$core$Maybe$withDefault, 'default', _p9.label),
+					_1: A2(
+						_elm_lang$core$Basics_ops['++'],
+						'input',
+						_elm_lang$core$Basics$toString(_p9.id))
+				};
 			default:
-				return {ctor: '_Tuple2', _0: 'ahoj', _1: 'input2'};
+				var _p10 = _p2._0;
+				return {
+					ctor: '_Tuple2',
+					_0: A2(_elm_lang$core$Maybe$withDefault, 'default', _p10.label),
+					_1: A2(
+						_elm_lang$core$Basics_ops['++'],
+						'input',
+						_elm_lang$core$Basics$toString(_p10.id))
+				};
 		}
 	}();
-	var txt = _p5._0;
-	var forx = _p5._1;
+	var labelText = _p1._0;
+	var forValue = _p1._1;
 	return A2(
 		_elm_lang$html$Html$label,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html_Attributes$for(forx)
+				_elm_lang$html$Html_Attributes$for(labelText)
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html$text(txt)
+				_elm_lang$html$Html$text(forValue)
 			]));
 };
 var _user$project$Inputs$removeLink = function (id) {
@@ -8184,6 +8304,47 @@ var _user$project$Inputs$formGroup = F2(
 				]),
 			elementsAndLinks);
 	});
+var _user$project$Inputs$selectHtml = function (inp) {
+	var id = _user$project$Models$extractId(inp);
+	var s3 = A2(
+		_elm_lang$html$Html$option,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('3')
+			]));
+	var s2 = A2(
+		_elm_lang$html$Html$option,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('2')
+			]));
+	var s1 = A2(
+		_elm_lang$html$Html$option,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('1')
+			]));
+	var select = A2(
+		_elm_lang$html$Html$select,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[s1, s2, s3]));
+	return A2(
+		_user$project$Inputs$formGroup,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Inputs$label(inp),
+				select
+			]),
+		id);
+};
 var _user$project$Inputs$textAreaHtml = function (inp) {
 	var id = _user$project$Models$extractId(inp);
 	var area = A2(
@@ -8219,8 +8380,8 @@ var _user$project$Inputs$textInputHtml = function (inp) {
 		id);
 };
 var _user$project$Inputs$inputHtml = function (input) {
-	var _p9 = input;
-	switch (_p9.ctor) {
+	var _p11 = input;
+	switch (_p11.ctor) {
 		case 'TextInput':
 			return _user$project$Inputs$textInputHtml(input);
 		case 'TextArea':

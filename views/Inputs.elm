@@ -15,17 +15,17 @@ inputHtml input =
       textInputHtml input
     TextArea _ ->
       textAreaHtml input
-    Select (a) ->
+    Select _ ->
       selectHtml input
-    Multiselect (a) ->
+    Multiselect _ ->
       multiselectHtml input
-    FileUpload (a) ->
+    FileUpload _ ->
       fileUploadHtml input
-    Radio (a) ->
+    Radio _ ->
       radioHtml input
-    Checkbox (a) ->
+    Checkbox _ ->
       checkboxHtml input
-    Button (a) ->
+    Button _ ->
       buttonHtml input
 
 textInputHtml : Input -> Html Msg
@@ -44,6 +44,17 @@ textAreaHtml inp =
     id = extractId inp
   in
     formGroup [ label inp, area ] id
+
+selectHtml : Input -> Html Msg
+selectHtml inp =
+  let
+    s1 = option [] [text "1"]
+    s2 = option [] [text "2"]
+    s3 = option [] [text "3"]
+    select = Html.select [] [s1, s2, s3]
+    id = extractId inp
+  in
+    formGroup [ label inp, select ] id
 
 -------------
 -- Helpers --
@@ -69,55 +80,87 @@ formGroup els id =
 label : Input -> Html Msg
 label inp =
   let
-    (txt, forx) =
+    (labelText, forValue) =
       case inp of
         TextInput attrs -> (Maybe.withDefault "default" attrs.label, "input" ++ toString attrs.id)
         TextArea attrs -> (Maybe.withDefault "default" attrs.label, "input" ++ toString attrs.id)
-        _ -> ("ahoj", "input2")
+        Select attrs -> (Maybe.withDefault "default" attrs.label, "input" ++ toString attrs.id)
+        Multiselect attrs -> (Maybe.withDefault "default" attrs.label, "input" ++ toString attrs.id)
+        FileUpload attrs -> (Maybe.withDefault "default" attrs.label, "input" ++ toString attrs.id)
+        Radio attrs -> (Maybe.withDefault "default" attrs.label, "input" ++ toString attrs.id)
+        Checkbox attrs -> (Maybe.withDefault "default" attrs.label, "input" ++ toString attrs.id)
+        Button attrs -> (Maybe.withDefault "default" attrs.label, "input" ++ toString attrs.id)
   in
-    Html.label [ for forx ] [ text txt ]
+    Html.label [ for labelText ] [ text forValue ]
 
 inputAttributes : Input -> List (Html.Attribute a)
 inputAttributes inp =
   case inp of
     TextInput attrs ->
-      textInputAttributes attrs.id attrs.classList attrs.placeholder
+      textInputAttrs attrs
+      |> List.filterMap identity
     TextArea attrs ->
-      textAreaAttributes attrs.id attrs.classList attrs.placeholder attrs.rowNumber
-    _ ->
-      []
+      textAreaAttrs attrs
+      |> List.filterMap identity
+    Select attrs ->
+      selectAttrs attrs
+      |> List.filterMap identity
+    Multiselect attrs ->
+      multiselectAttrs attrs
+      |> List.filterMap identity
+    FileUpload attrs ->
+      fileUploadAttrs attrs
+      |> List.filterMap identity
+    Radio attrs ->
+      radioAttrs attrs
+      |> List.filterMap identity
+    Checkbox attrs ->
+      checkboxAttrs attrs
+      |> List.filterMap identity
+    Button attrs ->
+      buttonAttrs attrs
+      |> List.filterMap identity
 
-textInputAttributes : Id -> ClassList -> Placeholder -> List (Html.Attribute a)
-textInputAttributes inputId classList plac =
-  let
-    idx = Just (Html.Attributes.id ("input" ++ toString inputId))
-    typex = Just (type' "text")
-    classes = Just (class (String.join " " classList))
-    placeholderx =
-      case plac of
-        Just pl -> Just (placeholder pl)
-        Nothing -> Nothing
-  in
-    List.filterMap identity [idx, typex, classes, placeholderx]
+-- textInputAttrs : Id -> ClassList -> Placeholder -> List (Html.Attribute a)
+textInputAttrs attrs =
+  [idToAttr attrs.id, classesToAttr attrs.classList, placeholderToAttr attrs.placeholder, Just (type' "text")]
 
-textAreaAttributes : Id -> ClassList -> Placeholder -> RowNumber -> List (Html.Attribute a)
-textAreaAttributes inputId classList plac rowNo =
-  let
-    idx = Just (Html.Attributes.id ("input" ++ toString inputId))
-    classes = Just (class (String.join " " classList))
-    placeholderx =
-      case plac of
-        Just pl -> Just (placeholder pl)
-        Nothing -> Nothing
-    rowNox = Just (rows rowNo)
-  in
-    List.filterMap identity [idx, classes, placeholderx, rowNox]
+-- textAreaAttrs : Id -> ClassList -> Placeholder -> RowNumber -> List (Html.Attribute a)
+textAreaAttrs attrs =
+  [idToAttr attrs.id, classesToAttr attrs.classList, placeholderToAttr attrs.placeholder, Just (rows attrs.rowNumber)]
 
+selectAttrs attrs =
+  [idToAttr attrs.id, classesToAttr attrs.classList, Just (type' "text")]
 
+multiselectAttrs attrs =
+  [idToAttr attrs.id, classesToAttr attrs.classList, Just (type' "text")]
 
-selectHtml : Input -> Html Msg
-selectHtml inp =
-  text "ho"
+fileUploadAttrs attrs =
+  [idToAttr attrs.id, classesToAttr attrs.classList, Just (type' "text")]
+
+radioAttrs attrs =
+  [idToAttr attrs.id, classesToAttr attrs.classList, Just (type' "text")]
+
+checkboxAttrs attrs =
+  [idToAttr attrs.id, classesToAttr attrs.classList, Just (type' "text")]
+
+buttonAttrs attrs =
+  [idToAttr attrs.id, classesToAttr attrs.classList, Just (type' "text")]
+
+-------
+idToAttr : Id -> Maybe (Html.Attribute a)
+idToAttr id =
+  Just (Html.Attributes.id ("input" ++ toString id))
+
+-- classesToAttribute : Id -> Maybe (Html.Attribute a)
+classesToAttr classList =
+  Just (class (String.join " " classList))
+
+placeholderToAttr : Placeholder -> Maybe (Html.Attribute a)
+placeholderToAttr plac =
+  Maybe.map placeholder plac
+-----------
+
 
 multiselectHtml : Input -> Html Msg
 multiselectHtml inp =

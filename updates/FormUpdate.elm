@@ -36,7 +36,6 @@ removeInput model id =
 
 newTextInput : Model -> Input
 newTextInput model =
-  -- TextInput (countNewInputId model, [ "form-control" ], Nothing, Just "Some input")
   TextInput { id = countNewInputId model, classList = [ "form-control" ], placeholder = Nothing, label = Just "New input" }
 
 -------------

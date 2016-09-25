@@ -6,17 +6,17 @@ var _user$project$Models$extractId = function (inp) {
 		case 'TextArea':
 			return _p0._0.id;
 		case 'Select':
-			return _p0._0;
+			return _p0._0.id;
 		case 'Multiselect':
-			return _p0._0;
+			return _p0._0.id;
 		case 'FileUpload':
-			return _p0._0;
+			return _p0._0.id;
 		case 'Radio':
-			return _p0._0;
+			return _p0._0.id;
 		case 'Checkbox':
-			return _p0._0;
+			return _p0._0.id;
 		default:
-			return _p0._0;
+			return _p0._0.id;
 	}
 };
 var _user$project$Models$Model = F2(
