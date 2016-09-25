@@ -17,18 +17,19 @@ var _user$project$Models$TextInput = function (a) {
 var _user$project$Models$new = function () {
 	var textInput2 = _user$project$Models$TextArea(
 		{
-			ctor: '_Tuple3',
+			ctor: '_Tuple4',
 			_0: 'input2',
 			_1: _elm_lang$core$Native_List.fromArray(
 				[]),
-			_2: _elm_lang$core$Maybe$Just('Some placeholder...')
+			_2: _elm_lang$core$Maybe$Just('Some placeholder...'),
+			_3: 3
 		});
 	var textInput = _user$project$Models$TextInput(
 		{
 			ctor: '_Tuple3',
 			_0: 'input1',
 			_1: _elm_lang$core$Native_List.fromArray(
-				[]),
+				['form-control']),
 			_2: _elm_lang$core$Maybe$Nothing
 		});
 	return A2(

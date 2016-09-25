@@ -18,9 +18,9 @@ view model =
 inputHtml : Input -> Html Msg
 inputHtml input =
   case input of
-    TextInput (a, b, c) ->
+    TextInput (_, _, _) ->
       textInputHtml input
-    TextArea (a, b, c) ->
+    TextArea (_, _, _, _) ->
       textAreaHtml input
     Select ->
       selectHtml input
@@ -41,8 +41,6 @@ inputHtml input =
 textInputHtml : Input -> Html Msg
 textInputHtml inp =
   let
-    -- input = Html.input [ type' "text", class "form-control", id "input1", placeholder "hovno" ] []
-    -- input = Html.input [ type' "text", class "form-control", id "input1", placeholder "hovno" ] []
     input = Html.input (inputAttributes inp) []
   in
     formGroup [ label inp, input ]
@@ -50,7 +48,7 @@ textInputHtml inp =
 textAreaHtml : Input -> Html Msg
 textAreaHtml inp =
   let
-    area = textarea [class "form-control", id "input2", rows 3 ] []
+    area = textarea (inputAttributes inp) []
   in
     formGroup [ label inp, area ]
 
@@ -66,55 +64,40 @@ label : Input -> Html Msg
 label inp =
   Html.label [ for "input2" ] [ text "lable" ]
 
--- inputAttributes : Input -> List VirtualDom.Property
+inputAttributes : Input -> List (Html.Attribute a)
 inputAttributes inp =
   case inp of
     TextInput (a, b, c) ->
       textInputAttributes a b c
+    TextArea (a, b, c, d) ->
+      textAreaAttributes a b c d
     _ ->
       []
 
 textInputAttributes : Id -> ClassList -> Placeholder -> List (Html.Attribute a)
 textInputAttributes id classList plac =
   let
-    -- (x, y, z) = (\ (Input (a, b, c)) -> (a, b, c))
-    -- (x, y, z) = (TextInput (a, b, c))
     t = Just (type' "text")
     c = Just (class (String.join " " classList))
-    -- p = if plac /= "" then Just (placeholder plac) else Nothing
     p =
       case plac of
         Just pl -> Just (placeholder pl)
         Nothing -> Nothing
   in
-    -- List.filterMap [t, c, p]
     List.filterMap identity [t, c]
 
--- textInputAttributes : Id -> ClassList -> Placeholder
--- textInputAttributes id classList placeholder =
---   []
-
--- textInputAttributes : Input -> List (Html.Attribute a)
--- textInputAttributes inp =
-  -- let
-    -- (x, y, z) = (\ (Input (a, b, c)) -> (a, b, c))
-    -- (x, y, z) = (TextInput (a, b, c))
-    -- t = Just (type' "text")
-    -- c = Just (class (String.join " " y))
-    -- p = if z /= "" then Just (placeholder z) else Nothing
-    -- p =
-    --   case z of
-    --     Just plac -> Just (placeholder plac)
-    --     Nothing -> Nothing
-  -- in
-    -- List.filterMap [t, c, p]
-    -- List.filterMap identity [t]
--- --
--- dest inp =
---   case inp of
---     TextInput (a, b, c) -> [a, b, c]
---     _ -> []
-
+textAreaAttributes : Id -> ClassList -> Placeholder -> RowNumber -> List (Html.Attribute a)
+textAreaAttributes id classList plac rowNo =
+  let
+    t = Just (type' "text")
+    c = Just (class (String.join " " classList))
+    p =
+      case plac of
+        Just pl -> Just (placeholder pl)
+        Nothing -> Nothing
+    r = Just (rows rowNo)
+  in
+    List.filterMap identity [t, c]
 
 
 

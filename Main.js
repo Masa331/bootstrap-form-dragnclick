@@ -7916,18 +7916,19 @@ var _user$project$Models$TextInput = function (a) {
 var _user$project$Models$new = function () {
 	var textInput2 = _user$project$Models$TextArea(
 		{
-			ctor: '_Tuple3',
+			ctor: '_Tuple4',
 			_0: 'input2',
 			_1: _elm_lang$core$Native_List.fromArray(
 				[]),
-			_2: _elm_lang$core$Maybe$Just('Some placeholder...')
+			_2: _elm_lang$core$Maybe$Just('Some placeholder...'),
+			_3: 3
 		});
 	var textInput = _user$project$Models$TextInput(
 		{
 			ctor: '_Tuple3',
 			_0: 'input1',
 			_1: _elm_lang$core$Native_List.fromArray(
-				[]),
+				['form-control']),
 			_2: _elm_lang$core$Maybe$Nothing
 		});
 	return A2(
@@ -7980,8 +7981,10 @@ var _user$project$FormEdit$multiselectHtml = function (inp) {
 var _user$project$FormEdit$selectHtml = function (inp) {
 	return _elm_lang$html$Html$text('ho');
 };
-var _user$project$FormEdit$textInputAttributes = F3(
-	function (id, classList, plac) {
+var _user$project$FormEdit$textAreaAttributes = F4(
+	function (id, classList, plac, rowNo) {
+		var r = _elm_lang$core$Maybe$Just(
+			_elm_lang$html$Html_Attributes$rows(rowNo));
 		var p = function () {
 			var _p0 = plac;
 			if (_p0.ctor === 'Just') {
@@ -8002,14 +8005,51 @@ var _user$project$FormEdit$textInputAttributes = F3(
 			_elm_lang$core$Native_List.fromArray(
 				[t, c]));
 	});
+var _user$project$FormEdit$textInputAttributes = F3(
+	function (id, classList, plac) {
+		var p = function () {
+			var _p1 = plac;
+			if (_p1.ctor === 'Just') {
+				return _elm_lang$core$Maybe$Just(
+					_elm_lang$html$Html_Attributes$placeholder(_p1._0));
+			} else {
+				return _elm_lang$core$Maybe$Nothing;
+			}
+		}();
+		var c = _elm_lang$core$Maybe$Just(
+			_elm_lang$html$Html_Attributes$class(
+				A2(_elm_lang$core$String$join, ' ', classList)));
+		var t = _elm_lang$core$Maybe$Just(
+			_elm_lang$html$Html_Attributes$type$('text'));
+		return A2(
+			_elm_lang$core$List$filterMap,
+			_elm_lang$core$Basics$identity,
+			_elm_lang$core$Native_List.fromArray(
+				[t, c]));
+	});
 var _user$project$FormEdit$inputAttributes = function (inp) {
-	var _p1 = inp;
-	if ((_p1.ctor === 'TextInput') && (_p1._0.ctor === '_Tuple3')) {
-		return A3(_user$project$FormEdit$textInputAttributes, _p1._0._0, _p1._0._1, _p1._0._2);
-	} else {
-		return _elm_lang$core$Native_List.fromArray(
-			[]);
-	}
+	var _p2 = inp;
+	_v2_2:
+	do {
+		switch (_p2.ctor) {
+			case 'TextInput':
+				if (_p2._0.ctor === '_Tuple3') {
+					return A3(_user$project$FormEdit$textInputAttributes, _p2._0._0, _p2._0._1, _p2._0._2);
+				} else {
+					break _v2_2;
+				}
+			case 'TextArea':
+				if (_p2._0.ctor === '_Tuple4') {
+					return A4(_user$project$FormEdit$textAreaAttributes, _p2._0._0, _p2._0._1, _p2._0._2, _p2._0._3);
+				} else {
+					break _v2_2;
+				}
+			default:
+				break _v2_2;
+		}
+	} while(false);
+	return _elm_lang$core$Native_List.fromArray(
+		[]);
 };
 var _user$project$FormEdit$label = function (inp) {
 	return A2(
@@ -8035,12 +8075,7 @@ var _user$project$FormEdit$formGroup = function (els) {
 var _user$project$FormEdit$textAreaHtml = function (inp) {
 	var area = A2(
 		_elm_lang$html$Html$textarea,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$class('form-control'),
-				_elm_lang$html$Html_Attributes$id('input2'),
-				_elm_lang$html$Html_Attributes$rows(3)
-			]),
+		_user$project$FormEdit$inputAttributes(inp),
 		_elm_lang$core$Native_List.fromArray(
 			[]));
 	return _user$project$FormEdit$formGroup(
@@ -8064,8 +8099,8 @@ var _user$project$FormEdit$textInputHtml = function (inp) {
 			]));
 };
 var _user$project$FormEdit$inputHtml = function (input) {
-	var _p2 = input;
-	switch (_p2.ctor) {
+	var _p3 = input;
+	switch (_p3.ctor) {
 		case 'TextInput':
 			return _user$project$FormEdit$textInputHtml(input);
 		case 'TextArea':
@@ -8668,7 +8703,7 @@ var _user$project$Markup$inputMarkup = function (el) {
 					break _v0_2;
 				}
 			case 'TextArea':
-				if (_p0._0.ctor === '_Tuple3') {
+				if (_p0._0.ctor === '_Tuple4') {
 					return _user$project$Markup$textAreaCode(el);
 				} else {
 					break _v0_2;

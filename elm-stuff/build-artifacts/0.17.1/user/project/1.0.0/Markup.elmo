@@ -32,7 +32,7 @@ var _user$project$Markup$inputMarkup = function (el) {
 					break _v0_2;
 				}
 			case 'TextArea':
-				if (_p0._0.ctor === '_Tuple3') {
+				if (_p0._0.ctor === '_Tuple4') {
 					return _user$project$Markup$textAreaCode(el);
 				} else {
 					break _v0_2;

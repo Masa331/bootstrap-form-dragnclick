@@ -22,7 +22,7 @@ inputMarkup el =
   case el of
     TextInput (a, b, c) ->
       textInputCode el
-    TextArea (a, b, c) ->
+    TextArea (_, _, _, _) ->
       textAreaCode el
     _ ->
       textInputCode el

@@ -5,11 +5,12 @@ import String exposing (..)
 type alias ClassList = List String
 type alias Id = String
 type alias Placeholder = Maybe String
+type alias RowNumber = Int
 
 type Input
   -- = TextInput (Id, ClassList, Placeholder)
   = TextInput (Id, ClassList, Placeholder)
-  | TextArea (Id, ClassList, Placeholder)
+  | TextArea (Id, ClassList, Placeholder, RowNumber)
   | Select
   | Multiselect
   | FileUpload
@@ -23,8 +24,8 @@ type alias Model = { form: Form, currentlyEdditedInputId: Maybe Int }
 new : Model
 new =
   let
-    textInput = TextInput ("input1", [], Nothing)
-    textInput2 = TextArea ("input2", [], (Just "Some placeholder..."))
+    textInput = TextInput ("input1", [ "form-control" ], Nothing)
+    textInput2 = TextArea ("input2", [], (Just "Some placeholder..."), 3)
   in
     Model [textInput, textInput2] Nothing
 
