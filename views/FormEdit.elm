@@ -40,19 +40,30 @@ inputHtml input =
 
 textInputHtml : Input -> Html Msg
 textInputHtml inp =
-  div
-    [class "form-group"]
-    [ label [ for "input1" ] [ text "lable" ]
-    , input [ type' "text", class "form-control", id "input1", placeholder "hovno" ] []
-    ]
+  let
+    input = Html.input [ type' "text", class "form-control", id "input1", placeholder "hovno" ] []
+  in
+    formGroup [ label inp, input ]
 
 textAreaHtml : Input -> Html Msg
 textAreaHtml inp =
-  div
-    [class "form-group"]
-    [ label [ for "input2" ] [ text "lable" ]
-    , textarea [class "form-control", id "input2", rows 3 ] []
-    ]
+  let
+    area = textarea [class "form-control", id "input2", rows 3 ] []
+  in
+    formGroup [ label inp, area ]
+
+-------------
+-- Helpers --
+-------------
+
+formGroup : List (Html Msg) -> Html Msg
+formGroup els =
+  div [ class "form-group" ] els
+
+label : Input -> Html Msg
+label inp =
+  Html.label [ for "input2" ] [ text "lable" ]
+
 
 selectHtml : Input -> Html Msg
 selectHtml inp =

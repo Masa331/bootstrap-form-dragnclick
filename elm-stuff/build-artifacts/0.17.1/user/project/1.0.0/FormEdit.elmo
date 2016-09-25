@@ -16,67 +16,62 @@ var _user$project$FormEdit$multiselectHtml = function (inp) {
 var _user$project$FormEdit$selectHtml = function (inp) {
 	return _elm_lang$html$Html$text('ho');
 };
-var _user$project$FormEdit$textAreaHtml = function (inp) {
+var _user$project$FormEdit$label = function (inp) {
+	return A2(
+		_elm_lang$html$Html$label,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$for('input2')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('lable')
+			]));
+};
+var _user$project$FormEdit$formGroup = function (els) {
 	return A2(
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html_Attributes$class('form-group')
 			]),
+		els);
+};
+var _user$project$FormEdit$textAreaHtml = function (inp) {
+	var area = A2(
+		_elm_lang$html$Html$textarea,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				A2(
-				_elm_lang$html$Html$label,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$for('input2')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('lable')
-					])),
-				A2(
-				_elm_lang$html$Html$textarea,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('form-control'),
-						_elm_lang$html$Html_Attributes$id('input2'),
-						_elm_lang$html$Html_Attributes$rows(3)
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[]))
+				_elm_lang$html$Html_Attributes$class('form-control'),
+				_elm_lang$html$Html_Attributes$id('input2'),
+				_elm_lang$html$Html_Attributes$rows(3)
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+	return _user$project$FormEdit$formGroup(
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$FormEdit$label(inp),
+				area
 			]));
 };
 var _user$project$FormEdit$textInputHtml = function (inp) {
-	return A2(
-		_elm_lang$html$Html$div,
+	var input = A2(
+		_elm_lang$html$Html$input,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html_Attributes$class('form-group')
+				_elm_lang$html$Html_Attributes$type$('text'),
+				_elm_lang$html$Html_Attributes$class('form-control'),
+				_elm_lang$html$Html_Attributes$id('input1'),
+				_elm_lang$html$Html_Attributes$placeholder('hovno')
 			]),
 		_elm_lang$core$Native_List.fromArray(
+			[]));
+	return _user$project$FormEdit$formGroup(
+		_elm_lang$core$Native_List.fromArray(
 			[
-				A2(
-				_elm_lang$html$Html$label,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$for('input1')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('lable')
-					])),
-				A2(
-				_elm_lang$html$Html$input,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$type$('text'),
-						_elm_lang$html$Html_Attributes$class('form-control'),
-						_elm_lang$html$Html_Attributes$id('input1'),
-						_elm_lang$html$Html_Attributes$placeholder('hovno')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[]))
+				_user$project$FormEdit$label(inp),
+				input
 			]));
 };
 var _user$project$FormEdit$inputHtml = function (input) {
