@@ -22,22 +22,14 @@ var _user$project$Markup$textInputCode = function (inp) {
 };
 var _user$project$Markup$inputMarkup = function (el) {
 	var _p0 = el;
-	_v0_2:
-	do {
-		switch (_p0.ctor) {
-			case 'TextInput':
-				return _user$project$Markup$textInputCode(el);
-			case 'TextArea':
-				if (_p0._0.ctor === '_Tuple5') {
-					return _user$project$Markup$textAreaCode(el);
-				} else {
-					break _v0_2;
-				}
-			default:
-				break _v0_2;
-		}
-	} while(false);
-	return _user$project$Markup$textInputCode(el);
+	switch (_p0.ctor) {
+		case 'TextInput':
+			return _user$project$Markup$textInputCode(el);
+		case 'TextArea':
+			return _user$project$Markup$textAreaCode(el);
+		default:
+			return _user$project$Markup$textInputCode(el);
+	}
 };
 var _user$project$Markup$inputView = function (inp) {
 	return A2(

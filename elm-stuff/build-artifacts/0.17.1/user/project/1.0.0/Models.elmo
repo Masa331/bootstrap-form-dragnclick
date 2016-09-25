@@ -4,7 +4,7 @@ var _user$project$Models$extractId = function (inp) {
 		case 'TextInput':
 			return _p0._0.id;
 		case 'TextArea':
-			return _p0._0._0;
+			return _p0._0.id;
 		case 'Select':
 			return _p0._0;
 		case 'Multiselect':
@@ -50,13 +50,12 @@ var _user$project$Models$TextInput = function (a) {
 var _user$project$Models$new = function () {
 	var textInput2 = _user$project$Models$TextArea(
 		{
-			ctor: '_Tuple5',
-			_0: 2,
-			_1: _elm_lang$core$Native_List.fromArray(
+			id: 2,
+			classList: _elm_lang$core$Native_List.fromArray(
 				['form-control']),
-			_2: _elm_lang$core$Maybe$Just('Some placeholder...'),
-			_3: 3,
-			_4: _elm_lang$core$Maybe$Just('Some textarea')
+			placeholder: _elm_lang$core$Maybe$Just('Some placeholder...'),
+			label: _elm_lang$core$Maybe$Just('Some area'),
+			rowNumber: 3
 		});
 	var textInput = _user$project$Models$TextInput(
 		{

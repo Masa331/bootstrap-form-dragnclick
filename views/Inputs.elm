@@ -11,9 +11,9 @@ import Messages exposing (..)
 inputHtml : Input -> Html Msg
 inputHtml input =
   case input of
-    TextInput attrs ->
+    TextInput _ ->
       textInputHtml input
-    TextArea (a, b, c, d, _) ->
+    TextArea _ ->
       textAreaHtml input
     Select (a) ->
       selectHtml input
@@ -72,7 +72,7 @@ label inp =
     (txt, forx) =
       case inp of
         TextInput attrs -> (Maybe.withDefault "default" attrs.label, "input" ++ toString attrs.id)
-        TextArea (a, _, _, _, e) -> (Maybe.withDefault "default" e, "input" ++ toString a)
+        TextArea attrs -> (Maybe.withDefault "default" attrs.label, "input" ++ toString attrs.id)
         _ -> ("ahoj", "input2")
   in
     Html.label [ for forx ] [ text txt ]
@@ -82,8 +82,8 @@ inputAttributes inp =
   case inp of
     TextInput attrs ->
       textInputAttributes attrs.id attrs.classList attrs.placeholder
-    TextArea (a, b, c, d, e) ->
-      textAreaAttributes a b c d
+    TextArea attrs ->
+      textAreaAttributes attrs.id attrs.classList attrs.placeholder attrs.rowNumber
     _ ->
       []
 
