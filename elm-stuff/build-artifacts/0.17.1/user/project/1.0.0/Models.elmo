@@ -20,7 +20,7 @@ var _user$project$Models$new = function () {
 			ctor: '_Tuple4',
 			_0: 'input2',
 			_1: _elm_lang$core$Native_List.fromArray(
-				[]),
+				['form-control']),
 			_2: _elm_lang$core$Maybe$Just('Some placeholder...'),
 			_3: 3
 		});

@@ -18,9 +18,9 @@ view model =
 inputHtml : Input -> Html Msg
 inputHtml input =
   case input of
-    TextInput (_, _, _) ->
+    TextInput (a, b, c) ->
       textInputHtml input
-    TextArea (_, _, _, _) ->
+    TextArea (a, b, c, d) ->
       textAreaHtml input
     Select ->
       selectHtml input
@@ -62,7 +62,13 @@ formGroup els =
 
 label : Input -> Html Msg
 label inp =
-  Html.label [ for "input2" ] [ text "lable" ]
+  let
+    (txt, forx) =
+      case inp of
+        TextInput (a, _, _) -> ("ahoj", a)
+        _ -> ("ahoj", "input2")
+  in
+    Html.label [ for forx ] [ text txt ]
 
 inputAttributes : Input -> List (Html.Attribute a)
 inputAttributes inp =
@@ -75,29 +81,30 @@ inputAttributes inp =
       []
 
 textInputAttributes : Id -> ClassList -> Placeholder -> List (Html.Attribute a)
-textInputAttributes id classList plac =
+textInputAttributes inputId classList plac =
   let
-    t = Just (type' "text")
-    c = Just (class (String.join " " classList))
-    p =
+    idx = Just (Html.Attributes.id inputId)
+    typex = Just (type' "text")
+    classes = Just (class (String.join " " classList))
+    placeholderx =
       case plac of
         Just pl -> Just (placeholder pl)
         Nothing -> Nothing
   in
-    List.filterMap identity [t, c]
-
+    List.filterMap identity [idx, typex, classes, placeholderx]
+--
 textAreaAttributes : Id -> ClassList -> Placeholder -> RowNumber -> List (Html.Attribute a)
-textAreaAttributes id classList plac rowNo =
+textAreaAttributes inputId classList plac rowNo =
   let
-    t = Just (type' "text")
-    c = Just (class (String.join " " classList))
-    p =
+    idx = Just (Html.Attributes.id inputId)
+    classes = Just (class (String.join " " classList))
+    placeholderx =
       case plac of
         Just pl -> Just (placeholder pl)
         Nothing -> Nothing
-    r = Just (rows rowNo)
+    rowNox = Just (rows rowNo)
   in
-    List.filterMap identity [t, c]
+    List.filterMap identity [classes, placeholderx, rowNox]
 
 
 

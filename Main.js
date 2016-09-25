@@ -7919,7 +7919,7 @@ var _user$project$Models$new = function () {
 			ctor: '_Tuple4',
 			_0: 'input2',
 			_1: _elm_lang$core$Native_List.fromArray(
-				[]),
+				['form-control']),
 			_2: _elm_lang$core$Maybe$Just('Some placeholder...'),
 			_3: 3
 		});
@@ -7982,10 +7982,10 @@ var _user$project$FormEdit$selectHtml = function (inp) {
 	return _elm_lang$html$Html$text('ho');
 };
 var _user$project$FormEdit$textAreaAttributes = F4(
-	function (id, classList, plac, rowNo) {
-		var r = _elm_lang$core$Maybe$Just(
+	function (inputId, classList, plac, rowNo) {
+		var rowNox = _elm_lang$core$Maybe$Just(
 			_elm_lang$html$Html_Attributes$rows(rowNo));
-		var p = function () {
+		var placeholderx = function () {
 			var _p0 = plac;
 			if (_p0.ctor === 'Just') {
 				return _elm_lang$core$Maybe$Just(
@@ -7994,20 +7994,20 @@ var _user$project$FormEdit$textAreaAttributes = F4(
 				return _elm_lang$core$Maybe$Nothing;
 			}
 		}();
-		var c = _elm_lang$core$Maybe$Just(
+		var classes = _elm_lang$core$Maybe$Just(
 			_elm_lang$html$Html_Attributes$class(
 				A2(_elm_lang$core$String$join, ' ', classList)));
-		var t = _elm_lang$core$Maybe$Just(
-			_elm_lang$html$Html_Attributes$type$('text'));
+		var idx = _elm_lang$core$Maybe$Just(
+			_elm_lang$html$Html_Attributes$id(inputId));
 		return A2(
 			_elm_lang$core$List$filterMap,
 			_elm_lang$core$Basics$identity,
 			_elm_lang$core$Native_List.fromArray(
-				[t, c]));
+				[classes, placeholderx, rowNox]));
 	});
 var _user$project$FormEdit$textInputAttributes = F3(
-	function (id, classList, plac) {
-		var p = function () {
+	function (inputId, classList, plac) {
+		var placeholderx = function () {
 			var _p1 = plac;
 			if (_p1.ctor === 'Just') {
 				return _elm_lang$core$Maybe$Just(
@@ -8016,16 +8016,18 @@ var _user$project$FormEdit$textInputAttributes = F3(
 				return _elm_lang$core$Maybe$Nothing;
 			}
 		}();
-		var c = _elm_lang$core$Maybe$Just(
+		var classes = _elm_lang$core$Maybe$Just(
 			_elm_lang$html$Html_Attributes$class(
 				A2(_elm_lang$core$String$join, ' ', classList)));
-		var t = _elm_lang$core$Maybe$Just(
+		var typex = _elm_lang$core$Maybe$Just(
 			_elm_lang$html$Html_Attributes$type$('text'));
+		var idx = _elm_lang$core$Maybe$Just(
+			_elm_lang$html$Html_Attributes$id(inputId));
 		return A2(
 			_elm_lang$core$List$filterMap,
 			_elm_lang$core$Basics$identity,
 			_elm_lang$core$Native_List.fromArray(
-				[t, c]));
+				[idx, typex, classes, placeholderx]));
 	});
 var _user$project$FormEdit$inputAttributes = function (inp) {
 	var _p2 = inp;
@@ -8052,15 +8054,25 @@ var _user$project$FormEdit$inputAttributes = function (inp) {
 		[]);
 };
 var _user$project$FormEdit$label = function (inp) {
+	var _p3 = function () {
+		var _p4 = inp;
+		if ((_p4.ctor === 'TextInput') && (_p4._0.ctor === '_Tuple3')) {
+			return {ctor: '_Tuple2', _0: 'ahoj', _1: _p4._0._0};
+		} else {
+			return {ctor: '_Tuple2', _0: 'ahoj', _1: 'input2'};
+		}
+	}();
+	var txt = _p3._0;
+	var forx = _p3._1;
 	return A2(
 		_elm_lang$html$Html$label,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html_Attributes$for('input2')
+				_elm_lang$html$Html_Attributes$for(forx)
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html$text('lable')
+				_elm_lang$html$Html$text(txt)
 			]));
 };
 var _user$project$FormEdit$formGroup = function (els) {
@@ -8099,8 +8111,8 @@ var _user$project$FormEdit$textInputHtml = function (inp) {
 			]));
 };
 var _user$project$FormEdit$inputHtml = function (input) {
-	var _p3 = input;
-	switch (_p3.ctor) {
+	var _p5 = input;
+	switch (_p5.ctor) {
 		case 'TextInput':
 			return _user$project$FormEdit$textInputHtml(input);
 		case 'TextArea':

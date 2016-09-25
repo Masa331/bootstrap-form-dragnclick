@@ -6,11 +6,12 @@ type alias ClassList = List String
 type alias Id = String
 type alias Placeholder = Maybe String
 type alias RowNumber = Int
+type alias Label = Maybe String
 
 type Input
   -- = TextInput (Id, ClassList, Placeholder)
-  = TextInput (Id, ClassList, Placeholder)
-  | TextArea (Id, ClassList, Placeholder, RowNumber)
+  = TextInput (Id, ClassList, Placeholder, Label)
+  | TextArea (Id, ClassList, Placeholder, RowNumber, Label)
   | Select
   | Multiselect
   | FileUpload
@@ -25,7 +26,7 @@ new : Model
 new =
   let
     textInput = TextInput ("input1", [ "form-control" ], Nothing)
-    textInput2 = TextArea ("input2", [], (Just "Some placeholder..."), 3)
+    textInput2 = TextArea ("input2", [ "form-control" ], (Just "Some placeholder..."), 3)
   in
     Model [textInput, textInput2] Nothing
 
