@@ -41,7 +41,9 @@ inputHtml input =
 textInputHtml : Input -> Html Msg
 textInputHtml inp =
   let
-    input = Html.input [ type' "text", class "form-control", id "input1", placeholder "hovno" ] []
+    -- input = Html.input [ type' "text", class "form-control", id "input1", placeholder "hovno" ] []
+    -- input = Html.input [ type' "text", class "form-control", id "input1", placeholder "hovno" ] []
+    input = Html.input (inputAttributes inp) []
   in
     formGroup [ label inp, input ]
 
@@ -63,6 +65,57 @@ formGroup els =
 label : Input -> Html Msg
 label inp =
   Html.label [ for "input2" ] [ text "lable" ]
+
+-- inputAttributes : Input -> List VirtualDom.Property
+inputAttributes inp =
+  case inp of
+    TextInput (a, b, c) ->
+      textInputAttributes a b c
+    _ ->
+      []
+
+textInputAttributes : Id -> ClassList -> Placeholder -> List (Html.Attribute a)
+textInputAttributes id classList plac =
+  let
+    -- (x, y, z) = (\ (Input (a, b, c)) -> (a, b, c))
+    -- (x, y, z) = (TextInput (a, b, c))
+    t = Just (type' "text")
+    c = Just (class (String.join " " classList))
+    -- p = if plac /= "" then Just (placeholder plac) else Nothing
+    p =
+      case plac of
+        Just pl -> Just (placeholder pl)
+        Nothing -> Nothing
+  in
+    -- List.filterMap [t, c, p]
+    List.filterMap identity [t, c]
+
+-- textInputAttributes : Id -> ClassList -> Placeholder
+-- textInputAttributes id classList placeholder =
+--   []
+
+-- textInputAttributes : Input -> List (Html.Attribute a)
+-- textInputAttributes inp =
+  -- let
+    -- (x, y, z) = (\ (Input (a, b, c)) -> (a, b, c))
+    -- (x, y, z) = (TextInput (a, b, c))
+    -- t = Just (type' "text")
+    -- c = Just (class (String.join " " y))
+    -- p = if z /= "" then Just (placeholder z) else Nothing
+    -- p =
+    --   case z of
+    --     Just plac -> Just (placeholder plac)
+    --     Nothing -> Nothing
+  -- in
+    -- List.filterMap [t, c, p]
+    -- List.filterMap identity [t]
+-- --
+-- dest inp =
+--   case inp of
+--     TextInput (a, b, c) -> [a, b, c]
+--     _ -> []
+
+
 
 
 selectHtml : Input -> Html Msg

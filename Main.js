@@ -7917,7 +7917,7 @@ var _user$project$Models$new = function () {
 	var textInput2 = _user$project$Models$TextArea(
 		{
 			ctor: '_Tuple3',
-			_0: 2,
+			_0: 'input2',
 			_1: _elm_lang$core$Native_List.fromArray(
 				[]),
 			_2: _elm_lang$core$Maybe$Just('Some placeholder...')
@@ -7925,7 +7925,7 @@ var _user$project$Models$new = function () {
 	var textInput = _user$project$Models$TextInput(
 		{
 			ctor: '_Tuple3',
-			_0: 1,
+			_0: 'input1',
 			_1: _elm_lang$core$Native_List.fromArray(
 				[]),
 			_2: _elm_lang$core$Maybe$Nothing
@@ -7980,6 +7980,37 @@ var _user$project$FormEdit$multiselectHtml = function (inp) {
 var _user$project$FormEdit$selectHtml = function (inp) {
 	return _elm_lang$html$Html$text('ho');
 };
+var _user$project$FormEdit$textInputAttributes = F3(
+	function (id, classList, plac) {
+		var p = function () {
+			var _p0 = plac;
+			if (_p0.ctor === 'Just') {
+				return _elm_lang$core$Maybe$Just(
+					_elm_lang$html$Html_Attributes$placeholder(_p0._0));
+			} else {
+				return _elm_lang$core$Maybe$Nothing;
+			}
+		}();
+		var c = _elm_lang$core$Maybe$Just(
+			_elm_lang$html$Html_Attributes$class(
+				A2(_elm_lang$core$String$join, ' ', classList)));
+		var t = _elm_lang$core$Maybe$Just(
+			_elm_lang$html$Html_Attributes$type$('text'));
+		return A2(
+			_elm_lang$core$List$filterMap,
+			_elm_lang$core$Basics$identity,
+			_elm_lang$core$Native_List.fromArray(
+				[t, c]));
+	});
+var _user$project$FormEdit$inputAttributes = function (inp) {
+	var _p1 = inp;
+	if ((_p1.ctor === 'TextInput') && (_p1._0.ctor === '_Tuple3')) {
+		return A3(_user$project$FormEdit$textInputAttributes, _p1._0._0, _p1._0._1, _p1._0._2);
+	} else {
+		return _elm_lang$core$Native_List.fromArray(
+			[]);
+	}
+};
 var _user$project$FormEdit$label = function (inp) {
 	return A2(
 		_elm_lang$html$Html$label,
@@ -8022,13 +8053,7 @@ var _user$project$FormEdit$textAreaHtml = function (inp) {
 var _user$project$FormEdit$textInputHtml = function (inp) {
 	var input = A2(
 		_elm_lang$html$Html$input,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$type$('text'),
-				_elm_lang$html$Html_Attributes$class('form-control'),
-				_elm_lang$html$Html_Attributes$id('input1'),
-				_elm_lang$html$Html_Attributes$placeholder('hovno')
-			]),
+		_user$project$FormEdit$inputAttributes(inp),
 		_elm_lang$core$Native_List.fromArray(
 			[]));
 	return _user$project$FormEdit$formGroup(
@@ -8039,8 +8064,8 @@ var _user$project$FormEdit$textInputHtml = function (inp) {
 			]));
 };
 var _user$project$FormEdit$inputHtml = function (input) {
-	var _p0 = input;
-	switch (_p0.ctor) {
+	var _p2 = input;
+	switch (_p2.ctor) {
 		case 'TextInput':
 			return _user$project$FormEdit$textInputHtml(input);
 		case 'TextArea':

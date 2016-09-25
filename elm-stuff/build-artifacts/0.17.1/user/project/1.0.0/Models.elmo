@@ -18,7 +18,7 @@ var _user$project$Models$new = function () {
 	var textInput2 = _user$project$Models$TextArea(
 		{
 			ctor: '_Tuple3',
-			_0: 2,
+			_0: 'input2',
 			_1: _elm_lang$core$Native_List.fromArray(
 				[]),
 			_2: _elm_lang$core$Maybe$Just('Some placeholder...')
@@ -26,7 +26,7 @@ var _user$project$Models$new = function () {
 	var textInput = _user$project$Models$TextInput(
 		{
 			ctor: '_Tuple3',
-			_0: 1,
+			_0: 'input1',
 			_1: _elm_lang$core$Native_List.fromArray(
 				[]),
 			_2: _elm_lang$core$Maybe$Nothing

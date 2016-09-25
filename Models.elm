@@ -3,7 +3,7 @@ module Models exposing (..)
 import String exposing (..)
 
 type alias ClassList = List String
-type alias Id = Int
+type alias Id = String
 type alias Placeholder = Maybe String
 
 type Input
@@ -23,8 +23,8 @@ type alias Model = { form: Form, currentlyEdditedInputId: Maybe Int }
 new : Model
 new =
   let
-    textInput = TextInput (1, [], Nothing)
-    textInput2 = TextArea (2, [], (Just "Some placeholder..."))
+    textInput = TextInput ("input1", [], Nothing)
+    textInput2 = TextArea ("input2", [], (Just "Some placeholder..."))
   in
     Model [textInput, textInput2] Nothing
 
