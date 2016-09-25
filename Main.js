@@ -8614,12 +8614,54 @@ var _user$project$Templates$view = _elm_lang$core$Native_List.fromArray(
 		_user$project$Templates$submit
 	]);
 
+var _user$project$Markup$textAreaCode = function (inp) {
+	var line4 = '  </div>';
+	var line3 = '    <textarea class=\"form-control\" id=\"input2\" rows=3>';
+	var line2 = '    <label for=\"input2\">Input 2</label>';
+	var line1 = '  <div class=\"form-group\">';
+	return A2(
+		_elm_lang$core$String$join,
+		'\n',
+		_elm_lang$core$Native_List.fromArray(
+			[line1, line2, line3, line4]));
+};
+var _user$project$Markup$textInputCode = function (inp) {
+	var line4 = '  </div>';
+	var line3 = '    <input type=\"text\" class=\"form-control\" id=\"input1\" placeholder=\"neco\">';
+	var line2 = '    <label for=\"input1\">Input 1</label>';
+	var line1 = '  <div class=\"form-group\">';
+	return A2(
+		_elm_lang$core$String$join,
+		'\n',
+		_elm_lang$core$Native_List.fromArray(
+			[line1, line2, line3, line4]));
+};
 var _user$project$Markup$inputMarkup = function (el) {
-	return '  hovno';
+	var _p0 = el;
+	_v0_2:
+	do {
+		switch (_p0.ctor) {
+			case 'TextInput':
+				if (_p0._0.ctor === '_Tuple3') {
+					return _user$project$Markup$textInputCode(el);
+				} else {
+					break _v0_2;
+				}
+			case 'TextArea':
+				if (_p0._0.ctor === '_Tuple3') {
+					return _user$project$Markup$textAreaCode(el);
+				} else {
+					break _v0_2;
+				}
+			default:
+				break _v0_2;
+		}
+	} while(false);
+	return _user$project$Markup$textInputCode(el);
 };
 var _user$project$Markup$view = function (model) {
 	var inputs = A2(_elm_lang$core$List$map, _user$project$Markup$inputMarkup, model.form);
-	var inputsString = _elm_lang$core$String$concat(inputs);
+	var inputsString = A2(_elm_lang$core$String$join, '\n', inputs);
 	return A2(
 		_elm_lang$html$Html$pre,
 		_elm_lang$core$Native_List.fromArray(

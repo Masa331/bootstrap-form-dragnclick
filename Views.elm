@@ -33,12 +33,9 @@ formCreator model =
          [ class "col-sm-8"]
          [ div [class "bd-example"] (formEdit model)
          , div [class "highlight"] (markup model)]
-         -- [ div [class "bd-example"] [ (text "ahoj") ]
-         -- , div [class "highlight"] [ (text "ahoj") ] ]
       , div
          [ class "col-sm-4" ]
          templates
-         -- [ text "ho" ]
       ]
     ]
 
