@@ -29,6 +29,18 @@ new =
   in
     Model [textInput, textInput2] Nothing
 
+extractId : Input -> Int
+extractId inp =
+  case inp of
+    TextInput (id, _, _, _) -> id
+    TextArea (id, _, _, _, _) -> id
+    Select (id) -> id
+    Multiselect (id) -> id
+    FileUpload (id) -> id
+    Radio (id) -> id
+    Checkbox (id) -> id
+    Button (id) -> id
+
 -------------
 -- Helpers --
 -------------

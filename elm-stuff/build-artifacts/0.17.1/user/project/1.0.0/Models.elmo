@@ -1,3 +1,24 @@
+var _user$project$Models$extractId = function (inp) {
+	var _p0 = inp;
+	switch (_p0.ctor) {
+		case 'TextInput':
+			return _p0._0._0;
+		case 'TextArea':
+			return _p0._0._0;
+		case 'Select':
+			return _p0._0;
+		case 'Multiselect':
+			return _p0._0;
+		case 'FileUpload':
+			return _p0._0;
+		case 'Radio':
+			return _p0._0;
+		case 'Checkbox':
+			return _p0._0;
+		default:
+			return _p0._0;
+	}
+};
 var _user$project$Models$Model = F2(
 	function (a, b) {
 		return {form: a, currentlyEdditedInputId: b};

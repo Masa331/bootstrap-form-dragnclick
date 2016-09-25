@@ -40,23 +40,40 @@ textInputHtml : Input -> Html Msg
 textInputHtml inp =
   let
     input = Html.input (inputAttributes inp) []
+    links = []
+    id = extractId inp
   in
-    formGroup [ label inp, input ]
+    formGroup [ label inp, input ] id
 
 textAreaHtml : Input -> Html Msg
 textAreaHtml inp =
   let
     area = textarea (inputAttributes inp) []
+    id = extractId inp
   in
-    formGroup [ label inp, area ]
+    -- formGroup [ label inp, area ]
+    formGroup [ label inp, area ] id
 
 -------------
 -- Helpers --
 -------------
 
-formGroup : List (Html Msg) -> Html Msg
-formGroup els =
-  div [ class "form-group" ] els
+editAndRemoveLink id =
+  div [class "edit-and-remove-link"] [editLink id, removeLink id]
+
+editLink id =
+  a [href "javascript:void(0);", onClick (InputMessage (EditInput id))] [text "Edit"]
+
+removeLink id =
+  a [href "javascript:void(0);", onClick (FormMessage (RemoveInput id))] [text "Remove"]
+
+formGroup : List (Html Msg) -> Id -> Html Msg
+formGroup els id =
+  let
+    links = [editAndRemoveLink id]
+    elementsAndLinks = List.append els links
+  in
+    div [ class "form-group" ] elementsAndLinks
 
 label : Input -> Html Msg
 label inp =

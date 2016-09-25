@@ -1,3 +1,6 @@
+var _user$project$Messages$RemoveInput = function (a) {
+	return {ctor: 'RemoveInput', _0: a};
+};
 var _user$project$Messages$AddButton = {ctor: 'AddButton'};
 var _user$project$Messages$AddCheckbox = {ctor: 'AddCheckbox'};
 var _user$project$Messages$AddRadioButtons = {ctor: 'AddRadioButtons'};
@@ -12,9 +15,6 @@ var _user$project$Messages$PlaceholderEdit = function (a) {
 var _user$project$Messages$StopEditing = {ctor: 'StopEditing'};
 var _user$project$Messages$EditInput = function (a) {
 	return {ctor: 'EditInput', _0: a};
-};
-var _user$project$Messages$RemoveInput = function (a) {
-	return {ctor: 'RemoveInput', _0: a};
 };
 var _user$project$Messages$InputMessage = function (a) {
 	return {ctor: 'InputMessage', _0: a};

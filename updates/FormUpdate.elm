@@ -21,14 +21,22 @@ update msg model =
       addInputToForm model (newTextInput model)
     AddButton ->
       addInputToForm model (newTextInput model)
+    RemoveInput id ->
+      removeInput model id
+
+removeInput model id =
+  let
+    filteredForm = List.filter (\input -> (extractId input) /= id) model.form
+  in
+  ({ model | form = filteredForm }, Cmd.none)
 
 newTextInput : Model -> Input
 newTextInput model =
   TextInput (countNewInputId model, [ "form-control" ], Nothing, Just "Some input")
 
--- -------------
--- -- Private --
--- -------------
+-------------
+-- Private --
+-------------
 
 countNewInputId : Model -> Id
 countNewInputId model =
@@ -36,6 +44,7 @@ countNewInputId model =
     actuall = extractMaxId model.form
   in
     actuall + 1
+
 
 addInputToForm model inp =
   let
@@ -47,18 +56,5 @@ extractMaxId : List Input -> Int
 extractMaxId inputs =
   let
     allIds = List.map extractId inputs
-    max = Maybe.withDefault 1 (List.maximum allIds)
   in
-    Debug.log "hoho" (max + 1)
-
-extractId : Input -> Int
-extractId inp =
-  case inp of
-    TextInput (id, _, _, _) -> id
-    TextArea (id, _, _, _, _) -> id
-    Select (id) -> id
-    Multiselect (id) -> id
-    FileUpload (id) -> id
-    Radio (id) -> id
-    Checkbox (id) -> id
-    Button (id) -> id
+    Maybe.withDefault 1 (List.maximum allIds)

@@ -7897,6 +7897,27 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
+var _user$project$Models$extractId = function (inp) {
+	var _p0 = inp;
+	switch (_p0.ctor) {
+		case 'TextInput':
+			return _p0._0._0;
+		case 'TextArea':
+			return _p0._0._0;
+		case 'Select':
+			return _p0._0;
+		case 'Multiselect':
+			return _p0._0;
+		case 'FileUpload':
+			return _p0._0;
+		case 'Radio':
+			return _p0._0;
+		case 'Checkbox':
+			return _p0._0;
+		default:
+			return _p0._0;
+	}
+};
 var _user$project$Models$Model = F2(
 	function (a, b) {
 		return {form: a, currentlyEdditedInputId: b};
@@ -7952,6 +7973,9 @@ var _user$project$Models$new = function () {
 		_elm_lang$core$Maybe$Nothing);
 }();
 
+var _user$project$Messages$RemoveInput = function (a) {
+	return {ctor: 'RemoveInput', _0: a};
+};
 var _user$project$Messages$AddButton = {ctor: 'AddButton'};
 var _user$project$Messages$AddCheckbox = {ctor: 'AddCheckbox'};
 var _user$project$Messages$AddRadioButtons = {ctor: 'AddRadioButtons'};
@@ -7966,9 +7990,6 @@ var _user$project$Messages$PlaceholderEdit = function (a) {
 var _user$project$Messages$StopEditing = {ctor: 'StopEditing'};
 var _user$project$Messages$EditInput = function (a) {
 	return {ctor: 'EditInput', _0: a};
-};
-var _user$project$Messages$RemoveInput = function (a) {
-	return {ctor: 'RemoveInput', _0: a};
 };
 var _user$project$Messages$InputMessage = function (a) {
 	return {ctor: 'InputMessage', _0: a};
@@ -8126,40 +8147,97 @@ var _user$project$FormEdit$label = function (inp) {
 				_elm_lang$html$Html$text(txt)
 			]));
 };
-var _user$project$FormEdit$formGroup = function (els) {
+var _user$project$FormEdit$removeLink = function (id) {
+	return A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
+				_elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$FormMessage(
+					_user$project$Messages$RemoveInput(id)))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Remove')
+			]));
+};
+var _user$project$FormEdit$editLink = function (id) {
+	return A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
+				_elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$InputMessage(
+					_user$project$Messages$EditInput(id)))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Edit')
+			]));
+};
+var _user$project$FormEdit$editAndRemoveLink = function (id) {
 	return A2(
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html_Attributes$class('form-group')
+				_elm_lang$html$Html_Attributes$class('edit-and-remove-link')
 			]),
-		els);
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$FormEdit$editLink(id),
+				_user$project$FormEdit$removeLink(id)
+			]));
 };
+var _user$project$FormEdit$formGroup = F2(
+	function (els, id) {
+		var links = _elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$FormEdit$editAndRemoveLink(id)
+			]);
+		var elementsAndLinks = A2(_elm_lang$core$List$append, els, links);
+		return A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('form-group')
+				]),
+			elementsAndLinks);
+	});
 var _user$project$FormEdit$textAreaHtml = function (inp) {
+	var id = _user$project$Models$extractId(inp);
 	var area = A2(
 		_elm_lang$html$Html$textarea,
 		_user$project$FormEdit$inputAttributes(inp),
 		_elm_lang$core$Native_List.fromArray(
 			[]));
-	return _user$project$FormEdit$formGroup(
+	return A2(
+		_user$project$FormEdit$formGroup,
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_user$project$FormEdit$label(inp),
 				area
-			]));
+			]),
+		id);
 };
 var _user$project$FormEdit$textInputHtml = function (inp) {
+	var id = _user$project$Models$extractId(inp);
+	var links = _elm_lang$core$Native_List.fromArray(
+		[]);
 	var input = A2(
 		_elm_lang$html$Html$input,
 		_user$project$FormEdit$inputAttributes(inp),
 		_elm_lang$core$Native_List.fromArray(
 			[]));
-	return _user$project$FormEdit$formGroup(
+	return A2(
+		_user$project$FormEdit$formGroup,
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_user$project$FormEdit$label(inp),
 				input
-			]));
+			]),
+		id);
 };
 var _user$project$FormEdit$inputHtml = function (input) {
 	var _p5 = input;
@@ -8191,34 +8269,12 @@ var _user$project$FormEdit$view = function (model) {
 		elements);
 };
 
-var _user$project$FormUpdate$extractId = function (inp) {
-	var _p0 = inp;
-	switch (_p0.ctor) {
-		case 'TextInput':
-			return _p0._0._0;
-		case 'TextArea':
-			return _p0._0._0;
-		case 'Select':
-			return _p0._0;
-		case 'Multiselect':
-			return _p0._0;
-		case 'FileUpload':
-			return _p0._0;
-		case 'Radio':
-			return _p0._0;
-		case 'Checkbox':
-			return _p0._0;
-		default:
-			return _p0._0;
-	}
-};
 var _user$project$FormUpdate$extractMaxId = function (inputs) {
-	var allIds = A2(_elm_lang$core$List$map, _user$project$FormUpdate$extractId, inputs);
-	var max = A2(
+	var allIds = A2(_elm_lang$core$List$map, _user$project$Models$extractId, inputs);
+	return A2(
 		_elm_lang$core$Maybe$withDefault,
 		1,
 		_elm_lang$core$List$maximum(allIds));
-	return A2(_elm_lang$core$Debug$log, 'hoho', max + 1);
 };
 var _user$project$FormUpdate$addInputToForm = F2(
 	function (model, inp) {
@@ -8250,10 +8306,28 @@ var _user$project$FormUpdate$newTextInput = function (model) {
 			_3: _elm_lang$core$Maybe$Just('Some input')
 		});
 };
+var _user$project$FormUpdate$removeInput = F2(
+	function (model, id) {
+		var filteredForm = A2(
+			_elm_lang$core$List$filter,
+			function (input) {
+				return !_elm_lang$core$Native_Utils.eq(
+					_user$project$Models$extractId(input),
+					id);
+			},
+			model.form);
+		return {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Native_Utils.update(
+				model,
+				{form: filteredForm}),
+			_1: _elm_lang$core$Platform_Cmd$none
+		};
+	});
 var _user$project$FormUpdate$update = F2(
 	function (msg, model) {
-		var _p1 = msg;
-		switch (_p1.ctor) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
 			case 'AddTextInput':
 				return A2(
 					_user$project$FormUpdate$addInputToForm,
@@ -8289,11 +8363,13 @@ var _user$project$FormUpdate$update = F2(
 					_user$project$FormUpdate$addInputToForm,
 					model,
 					_user$project$FormUpdate$newTextInput(model));
-			default:
+			case 'AddButton':
 				return A2(
 					_user$project$FormUpdate$addInputToForm,
 					model,
 					_user$project$FormUpdate$newTextInput(model));
+			default:
+				return A2(_user$project$FormUpdate$removeInput, model, _p0._0);
 		}
 	});
 

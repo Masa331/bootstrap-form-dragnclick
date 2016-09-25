@@ -1,31 +1,9 @@
-var _user$project$FormUpdate$extractId = function (inp) {
-	var _p0 = inp;
-	switch (_p0.ctor) {
-		case 'TextInput':
-			return _p0._0._0;
-		case 'TextArea':
-			return _p0._0._0;
-		case 'Select':
-			return _p0._0;
-		case 'Multiselect':
-			return _p0._0;
-		case 'FileUpload':
-			return _p0._0;
-		case 'Radio':
-			return _p0._0;
-		case 'Checkbox':
-			return _p0._0;
-		default:
-			return _p0._0;
-	}
-};
 var _user$project$FormUpdate$extractMaxId = function (inputs) {
-	var allIds = A2(_elm_lang$core$List$map, _user$project$FormUpdate$extractId, inputs);
-	var max = A2(
+	var allIds = A2(_elm_lang$core$List$map, _user$project$Models$extractId, inputs);
+	return A2(
 		_elm_lang$core$Maybe$withDefault,
 		1,
 		_elm_lang$core$List$maximum(allIds));
-	return A2(_elm_lang$core$Debug$log, 'hoho', max + 1);
 };
 var _user$project$FormUpdate$addInputToForm = F2(
 	function (model, inp) {
@@ -57,10 +35,28 @@ var _user$project$FormUpdate$newTextInput = function (model) {
 			_3: _elm_lang$core$Maybe$Just('Some input')
 		});
 };
+var _user$project$FormUpdate$removeInput = F2(
+	function (model, id) {
+		var filteredForm = A2(
+			_elm_lang$core$List$filter,
+			function (input) {
+				return !_elm_lang$core$Native_Utils.eq(
+					_user$project$Models$extractId(input),
+					id);
+			},
+			model.form);
+		return {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Native_Utils.update(
+				model,
+				{form: filteredForm}),
+			_1: _elm_lang$core$Platform_Cmd$none
+		};
+	});
 var _user$project$FormUpdate$update = F2(
 	function (msg, model) {
-		var _p1 = msg;
-		switch (_p1.ctor) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
 			case 'AddTextInput':
 				return A2(
 					_user$project$FormUpdate$addInputToForm,
@@ -96,10 +92,12 @@ var _user$project$FormUpdate$update = F2(
 					_user$project$FormUpdate$addInputToForm,
 					model,
 					_user$project$FormUpdate$newTextInput(model));
-			default:
+			case 'AddButton':
 				return A2(
 					_user$project$FormUpdate$addInputToForm,
 					model,
 					_user$project$FormUpdate$newTextInput(model));
+			default:
+				return A2(_user$project$FormUpdate$removeInput, model, _p0._0);
 		}
 	});

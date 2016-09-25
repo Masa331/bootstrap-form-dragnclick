@@ -9,10 +9,12 @@ type FormMsg =
   | AddRadioButtons
   | AddCheckbox
   | AddButton
+  | RemoveInput Int
 
 type InputMsg =
-  RemoveInput Int
-  | EditInput (Int)
+  -- RemoveInput Int
+  -- | EditInput (Int)
+  EditInput (Int)
   | StopEditing
   | PlaceholderEdit String
 
