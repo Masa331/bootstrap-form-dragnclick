@@ -3,7 +3,12 @@ var _user$project$Main$subscriptions = function (model) {
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		var _p0 = msg;
+		if (_p0.ctor === 'InputMessage') {
+			return A2(_user$project$Updates$inputUpdate, _p0._0, model);
+		} else {
+			return A2(_user$project$Updates$formUpdate, _p0._0, model);
+		}
 	});
 var _user$project$Main$view = function (model) {
 	return _user$project$Views$view(model);

@@ -36,6 +36,7 @@ formCreator model =
       , div
          [ class "col-sm-4" ]
          templates
+      , div [] [text (toString model)]
       ]
     ]
 

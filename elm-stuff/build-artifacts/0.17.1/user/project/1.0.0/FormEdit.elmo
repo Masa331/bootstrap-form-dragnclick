@@ -33,12 +33,16 @@ var _user$project$FormEdit$textAreaAttributes = F4(
 			_elm_lang$html$Html_Attributes$class(
 				A2(_elm_lang$core$String$join, ' ', classList)));
 		var idx = _elm_lang$core$Maybe$Just(
-			_elm_lang$html$Html_Attributes$id(inputId));
+			_elm_lang$html$Html_Attributes$id(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'input',
+					_elm_lang$core$Basics$toString(inputId))));
 		return A2(
 			_elm_lang$core$List$filterMap,
 			_elm_lang$core$Basics$identity,
 			_elm_lang$core$Native_List.fromArray(
-				[classes, placeholderx, rowNox]));
+				[idx, classes, placeholderx, rowNox]));
 	});
 var _user$project$FormEdit$textInputAttributes = F3(
 	function (inputId, classList, plac) {
@@ -57,7 +61,11 @@ var _user$project$FormEdit$textInputAttributes = F3(
 		var typex = _elm_lang$core$Maybe$Just(
 			_elm_lang$html$Html_Attributes$type$('text'));
 		var idx = _elm_lang$core$Maybe$Just(
-			_elm_lang$html$Html_Attributes$id(inputId));
+			_elm_lang$html$Html_Attributes$id(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'input',
+					_elm_lang$core$Basics$toString(inputId))));
 		return A2(
 			_elm_lang$core$List$filterMap,
 			_elm_lang$core$Basics$identity,
@@ -70,13 +78,13 @@ var _user$project$FormEdit$inputAttributes = function (inp) {
 	do {
 		switch (_p2.ctor) {
 			case 'TextInput':
-				if (_p2._0.ctor === '_Tuple3') {
+				if (_p2._0.ctor === '_Tuple4') {
 					return A3(_user$project$FormEdit$textInputAttributes, _p2._0._0, _p2._0._1, _p2._0._2);
 				} else {
 					break _v2_2;
 				}
 			case 'TextArea':
-				if (_p2._0.ctor === '_Tuple4') {
+				if (_p2._0.ctor === '_Tuple5') {
 					return A4(_user$project$FormEdit$textAreaAttributes, _p2._0._0, _p2._0._1, _p2._0._2, _p2._0._3);
 				} else {
 					break _v2_2;
@@ -91,11 +99,40 @@ var _user$project$FormEdit$inputAttributes = function (inp) {
 var _user$project$FormEdit$label = function (inp) {
 	var _p3 = function () {
 		var _p4 = inp;
-		if ((_p4.ctor === 'TextInput') && (_p4._0.ctor === '_Tuple3')) {
-			return {ctor: '_Tuple2', _0: 'ahoj', _1: _p4._0._0};
-		} else {
-			return {ctor: '_Tuple2', _0: 'ahoj', _1: 'input2'};
-		}
+		_v3_2:
+		do {
+			switch (_p4.ctor) {
+				case 'TextInput':
+					if (_p4._0.ctor === '_Tuple4') {
+						return {
+							ctor: '_Tuple2',
+							_0: A2(_elm_lang$core$Maybe$withDefault, 'default', _p4._0._3),
+							_1: A2(
+								_elm_lang$core$Basics_ops['++'],
+								'input',
+								_elm_lang$core$Basics$toString(_p4._0._0))
+						};
+					} else {
+						break _v3_2;
+					}
+				case 'TextArea':
+					if (_p4._0.ctor === '_Tuple5') {
+						return {
+							ctor: '_Tuple2',
+							_0: A2(_elm_lang$core$Maybe$withDefault, 'default', _p4._0._4),
+							_1: A2(
+								_elm_lang$core$Basics_ops['++'],
+								'input',
+								_elm_lang$core$Basics$toString(_p4._0._0))
+						};
+					} else {
+						break _v3_2;
+					}
+				default:
+					break _v3_2;
+			}
+		} while(false);
+		return {ctor: '_Tuple2', _0: 'ahoj', _1: 'input2'};
 	}();
 	var txt = _p3._0;
 	var forx = _p3._1;

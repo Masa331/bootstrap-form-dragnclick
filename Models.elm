@@ -3,21 +3,20 @@ module Models exposing (..)
 import String exposing (..)
 
 type alias ClassList = List String
-type alias Id = String
+type alias Id = Int
 type alias Placeholder = Maybe String
 type alias RowNumber = Int
 type alias Label = Maybe String
 
 type Input
-  -- = TextInput (Id, ClassList, Placeholder)
   = TextInput (Id, ClassList, Placeholder, Label)
   | TextArea (Id, ClassList, Placeholder, RowNumber, Label)
-  | Select
-  | Multiselect
-  | FileUpload
-  | Radio
-  | Checkbox
-  | Button
+  | Select (Id)
+  | Multiselect (Id)
+  | FileUpload (Id)
+  | Radio (Id)
+  | Checkbox (Id)
+  | Button (Id)
 
 type alias Form = List Input
 type alias Model = { form: Form, currentlyEdditedInputId: Maybe Int }
@@ -25,10 +24,15 @@ type alias Model = { form: Form, currentlyEdditedInputId: Maybe Int }
 new : Model
 new =
   let
-    textInput = TextInput ("input1", [ "form-control" ], Nothing)
-    textInput2 = TextArea ("input2", [ "form-control" ], (Just "Some placeholder..."), 3)
+    textInput = TextInput (1, [ "form-control" ], Nothing, Just "Some input")
+    textInput2 = TextArea (2, [ "form-control" ], (Just "Some placeholder..."), 3, Just "Some textarea")
   in
     Model [textInput, textInput2] Nothing
+
+-------------
+-- Helpers --
+-------------
+
 
 
 

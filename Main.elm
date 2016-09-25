@@ -14,12 +14,11 @@ view model =
   Views.view model
 
 update msg model =
-  (model, Cmd.none)
-  -- case msg of
-  --   Messages.InputMessage inputMsg ->
-  --     Updates.inputUpdate inputMsg model
-  --   Messages.FormMessage formMsg ->
-  --     Updates.formUpdate formMsg model
+  case msg of
+    Messages.InputMessage inputMsg ->
+      Updates.inputUpdate inputMsg model
+    Messages.FormMessage formMsg ->
+      Updates.formUpdate formMsg model
 
 subscriptions model =
   Sub.none

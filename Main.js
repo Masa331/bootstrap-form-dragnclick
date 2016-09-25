@@ -7901,12 +7901,24 @@ var _user$project$Models$Model = F2(
 	function (a, b) {
 		return {form: a, currentlyEdditedInputId: b};
 	});
-var _user$project$Models$Button = {ctor: 'Button'};
-var _user$project$Models$Checkbox = {ctor: 'Checkbox'};
-var _user$project$Models$Radio = {ctor: 'Radio'};
-var _user$project$Models$FileUpload = {ctor: 'FileUpload'};
-var _user$project$Models$Multiselect = {ctor: 'Multiselect'};
-var _user$project$Models$Select = {ctor: 'Select'};
+var _user$project$Models$Button = function (a) {
+	return {ctor: 'Button', _0: a};
+};
+var _user$project$Models$Checkbox = function (a) {
+	return {ctor: 'Checkbox', _0: a};
+};
+var _user$project$Models$Radio = function (a) {
+	return {ctor: 'Radio', _0: a};
+};
+var _user$project$Models$FileUpload = function (a) {
+	return {ctor: 'FileUpload', _0: a};
+};
+var _user$project$Models$Multiselect = function (a) {
+	return {ctor: 'Multiselect', _0: a};
+};
+var _user$project$Models$Select = function (a) {
+	return {ctor: 'Select', _0: a};
+};
 var _user$project$Models$TextArea = function (a) {
 	return {ctor: 'TextArea', _0: a};
 };
@@ -7916,20 +7928,22 @@ var _user$project$Models$TextInput = function (a) {
 var _user$project$Models$new = function () {
 	var textInput2 = _user$project$Models$TextArea(
 		{
-			ctor: '_Tuple4',
-			_0: 'input2',
+			ctor: '_Tuple5',
+			_0: 2,
 			_1: _elm_lang$core$Native_List.fromArray(
 				['form-control']),
 			_2: _elm_lang$core$Maybe$Just('Some placeholder...'),
-			_3: 3
+			_3: 3,
+			_4: _elm_lang$core$Maybe$Just('Some textarea')
 		});
 	var textInput = _user$project$Models$TextInput(
 		{
-			ctor: '_Tuple3',
-			_0: 'input1',
+			ctor: '_Tuple4',
+			_0: 1,
 			_1: _elm_lang$core$Native_List.fromArray(
 				['form-control']),
-			_2: _elm_lang$core$Maybe$Nothing
+			_2: _elm_lang$core$Maybe$Nothing,
+			_3: _elm_lang$core$Maybe$Just('Some input')
 		});
 	return A2(
 		_user$project$Models$Model,
@@ -7998,12 +8012,16 @@ var _user$project$FormEdit$textAreaAttributes = F4(
 			_elm_lang$html$Html_Attributes$class(
 				A2(_elm_lang$core$String$join, ' ', classList)));
 		var idx = _elm_lang$core$Maybe$Just(
-			_elm_lang$html$Html_Attributes$id(inputId));
+			_elm_lang$html$Html_Attributes$id(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'input',
+					_elm_lang$core$Basics$toString(inputId))));
 		return A2(
 			_elm_lang$core$List$filterMap,
 			_elm_lang$core$Basics$identity,
 			_elm_lang$core$Native_List.fromArray(
-				[classes, placeholderx, rowNox]));
+				[idx, classes, placeholderx, rowNox]));
 	});
 var _user$project$FormEdit$textInputAttributes = F3(
 	function (inputId, classList, plac) {
@@ -8022,7 +8040,11 @@ var _user$project$FormEdit$textInputAttributes = F3(
 		var typex = _elm_lang$core$Maybe$Just(
 			_elm_lang$html$Html_Attributes$type$('text'));
 		var idx = _elm_lang$core$Maybe$Just(
-			_elm_lang$html$Html_Attributes$id(inputId));
+			_elm_lang$html$Html_Attributes$id(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'input',
+					_elm_lang$core$Basics$toString(inputId))));
 		return A2(
 			_elm_lang$core$List$filterMap,
 			_elm_lang$core$Basics$identity,
@@ -8035,13 +8057,13 @@ var _user$project$FormEdit$inputAttributes = function (inp) {
 	do {
 		switch (_p2.ctor) {
 			case 'TextInput':
-				if (_p2._0.ctor === '_Tuple3') {
+				if (_p2._0.ctor === '_Tuple4') {
 					return A3(_user$project$FormEdit$textInputAttributes, _p2._0._0, _p2._0._1, _p2._0._2);
 				} else {
 					break _v2_2;
 				}
 			case 'TextArea':
-				if (_p2._0.ctor === '_Tuple4') {
+				if (_p2._0.ctor === '_Tuple5') {
 					return A4(_user$project$FormEdit$textAreaAttributes, _p2._0._0, _p2._0._1, _p2._0._2, _p2._0._3);
 				} else {
 					break _v2_2;
@@ -8056,11 +8078,40 @@ var _user$project$FormEdit$inputAttributes = function (inp) {
 var _user$project$FormEdit$label = function (inp) {
 	var _p3 = function () {
 		var _p4 = inp;
-		if ((_p4.ctor === 'TextInput') && (_p4._0.ctor === '_Tuple3')) {
-			return {ctor: '_Tuple2', _0: 'ahoj', _1: _p4._0._0};
-		} else {
-			return {ctor: '_Tuple2', _0: 'ahoj', _1: 'input2'};
-		}
+		_v3_2:
+		do {
+			switch (_p4.ctor) {
+				case 'TextInput':
+					if (_p4._0.ctor === '_Tuple4') {
+						return {
+							ctor: '_Tuple2',
+							_0: A2(_elm_lang$core$Maybe$withDefault, 'default', _p4._0._3),
+							_1: A2(
+								_elm_lang$core$Basics_ops['++'],
+								'input',
+								_elm_lang$core$Basics$toString(_p4._0._0))
+						};
+					} else {
+						break _v3_2;
+					}
+				case 'TextArea':
+					if (_p4._0.ctor === '_Tuple5') {
+						return {
+							ctor: '_Tuple2',
+							_0: A2(_elm_lang$core$Maybe$withDefault, 'default', _p4._0._4),
+							_1: A2(
+								_elm_lang$core$Basics_ops['++'],
+								'input',
+								_elm_lang$core$Basics$toString(_p4._0._0))
+						};
+					} else {
+						break _v3_2;
+					}
+				default:
+					break _v3_2;
+			}
+		} while(false);
+		return {ctor: '_Tuple2', _0: 'ahoj', _1: 'input2'};
 	}();
 	var txt = _p3._0;
 	var forx = _p3._1;
@@ -8140,13 +8191,120 @@ var _user$project$FormEdit$view = function (model) {
 		elements);
 };
 
-var _user$project$FormUpdate$ahoj = '';
+var _user$project$FormUpdate$extractId = function (inp) {
+	var _p0 = inp;
+	switch (_p0.ctor) {
+		case 'TextInput':
+			return _p0._0._0;
+		case 'TextArea':
+			return _p0._0._0;
+		case 'Select':
+			return _p0._0;
+		case 'Multiselect':
+			return _p0._0;
+		case 'FileUpload':
+			return _p0._0;
+		case 'Radio':
+			return _p0._0;
+		case 'Checkbox':
+			return _p0._0;
+		default:
+			return _p0._0;
+	}
+};
+var _user$project$FormUpdate$extractMaxId = function (inputs) {
+	var allIds = A2(_elm_lang$core$List$map, _user$project$FormUpdate$extractId, inputs);
+	var max = A2(
+		_elm_lang$core$Maybe$withDefault,
+		1,
+		_elm_lang$core$List$maximum(allIds));
+	return A2(_elm_lang$core$Debug$log, 'hoho', max + 1);
+};
+var _user$project$FormUpdate$addInputToForm = F2(
+	function (model, inp) {
+		var newForm = A2(
+			_elm_lang$core$List$append,
+			model.form,
+			_elm_lang$core$Native_List.fromArray(
+				[inp]));
+		return {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Native_Utils.update(
+				model,
+				{form: newForm}),
+			_1: _elm_lang$core$Platform_Cmd$none
+		};
+	});
+var _user$project$FormUpdate$countNewInputId = function (model) {
+	var actuall = _user$project$FormUpdate$extractMaxId(model.form);
+	return actuall + 1;
+};
+var _user$project$FormUpdate$newTextInput = function (model) {
+	return _user$project$Models$TextInput(
+		{
+			ctor: '_Tuple4',
+			_0: _user$project$FormUpdate$countNewInputId(model),
+			_1: _elm_lang$core$Native_List.fromArray(
+				['form-control']),
+			_2: _elm_lang$core$Maybe$Nothing,
+			_3: _elm_lang$core$Maybe$Just('Some input')
+		});
+};
+var _user$project$FormUpdate$update = F2(
+	function (msg, model) {
+		var _p1 = msg;
+		switch (_p1.ctor) {
+			case 'AddTextInput':
+				return A2(
+					_user$project$FormUpdate$addInputToForm,
+					model,
+					_user$project$FormUpdate$newTextInput(model));
+			case 'AddSelect':
+				return A2(
+					_user$project$FormUpdate$addInputToForm,
+					model,
+					_user$project$FormUpdate$newTextInput(model));
+			case 'AddMultiselect':
+				return A2(
+					_user$project$FormUpdate$addInputToForm,
+					model,
+					_user$project$FormUpdate$newTextInput(model));
+			case 'AddTextarea':
+				return A2(
+					_user$project$FormUpdate$addInputToForm,
+					model,
+					_user$project$FormUpdate$newTextInput(model));
+			case 'AddFileUpload':
+				return A2(
+					_user$project$FormUpdate$addInputToForm,
+					model,
+					_user$project$FormUpdate$newTextInput(model));
+			case 'AddRadioButtons':
+				return A2(
+					_user$project$FormUpdate$addInputToForm,
+					model,
+					_user$project$FormUpdate$newTextInput(model));
+			case 'AddCheckbox':
+				return A2(
+					_user$project$FormUpdate$addInputToForm,
+					model,
+					_user$project$FormUpdate$newTextInput(model));
+			default:
+				return A2(
+					_user$project$FormUpdate$addInputToForm,
+					model,
+					_user$project$FormUpdate$newTextInput(model));
+		}
+	});
 
 var _user$project$InputEdit$view = '';
 
 var _user$project$InputOptions$view = '';
 
-var _user$project$InputUpdate$ahoj = '';
+var _user$project$InputUpdate$update = F2(
+	function (msg, model) {
+		return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+	});
 
 var _user$project$Templates$submit = A2(
 	_elm_lang$html$Html$div,
@@ -8709,13 +8867,13 @@ var _user$project$Markup$inputMarkup = function (el) {
 	do {
 		switch (_p0.ctor) {
 			case 'TextInput':
-				if (_p0._0.ctor === '_Tuple3') {
+				if (_p0._0.ctor === '_Tuple4') {
 					return _user$project$Markup$textInputCode(el);
 				} else {
 					break _v0_2;
 				}
 			case 'TextArea':
-				if (_p0._0.ctor === '_Tuple4') {
+				if (_p0._0.ctor === '_Tuple5') {
 					return _user$project$Markup$textAreaCode(el);
 				} else {
 					break _v0_2;
@@ -8800,7 +8958,16 @@ var _user$project$Views$formCreator = function (model) {
 							[
 								_elm_lang$html$Html_Attributes$class('col-sm-4')
 							]),
-						_user$project$Views$templates)
+						_user$project$Views$templates),
+						A2(
+						_elm_lang$html$Html$div,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text(
+								_elm_lang$core$Basics$toString(model))
+							]))
 					]))
 			]));
 };
@@ -8813,14 +8980,26 @@ var _user$project$Views$view = function (model) {
 	}
 };
 
-var _user$project$Updates$ahoj = '';
+var _user$project$Updates$inputUpdate = F2(
+	function (msg, model) {
+		return A2(_user$project$InputUpdate$update, msg, model);
+	});
+var _user$project$Updates$formUpdate = F2(
+	function (msg, model) {
+		return A2(_user$project$FormUpdate$update, msg, model);
+	});
 
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		var _p0 = msg;
+		if (_p0.ctor === 'InputMessage') {
+			return A2(_user$project$Updates$inputUpdate, _p0._0, model);
+		} else {
+			return A2(_user$project$Updates$formUpdate, _p0._0, model);
+		}
 	});
 var _user$project$Main$view = function (model) {
 	return _user$project$Views$view(model);

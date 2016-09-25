@@ -3,7 +3,9 @@ module InputUpdate exposing (..)
 import Messages exposing (..)
 import Models exposing (..)
 
-ahoj = ""
+update msg model =
+  (model, Cmd.none)
+
 --
 -- update msg model =
 --   case msg of

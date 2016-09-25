@@ -1,1 +1,105 @@
-var _user$project$FormUpdate$ahoj = '';
+var _user$project$FormUpdate$extractId = function (inp) {
+	var _p0 = inp;
+	switch (_p0.ctor) {
+		case 'TextInput':
+			return _p0._0._0;
+		case 'TextArea':
+			return _p0._0._0;
+		case 'Select':
+			return _p0._0;
+		case 'Multiselect':
+			return _p0._0;
+		case 'FileUpload':
+			return _p0._0;
+		case 'Radio':
+			return _p0._0;
+		case 'Checkbox':
+			return _p0._0;
+		default:
+			return _p0._0;
+	}
+};
+var _user$project$FormUpdate$extractMaxId = function (inputs) {
+	var allIds = A2(_elm_lang$core$List$map, _user$project$FormUpdate$extractId, inputs);
+	var max = A2(
+		_elm_lang$core$Maybe$withDefault,
+		1,
+		_elm_lang$core$List$maximum(allIds));
+	return A2(_elm_lang$core$Debug$log, 'hoho', max + 1);
+};
+var _user$project$FormUpdate$addInputToForm = F2(
+	function (model, inp) {
+		var newForm = A2(
+			_elm_lang$core$List$append,
+			model.form,
+			_elm_lang$core$Native_List.fromArray(
+				[inp]));
+		return {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Native_Utils.update(
+				model,
+				{form: newForm}),
+			_1: _elm_lang$core$Platform_Cmd$none
+		};
+	});
+var _user$project$FormUpdate$countNewInputId = function (model) {
+	var actuall = _user$project$FormUpdate$extractMaxId(model.form);
+	return actuall + 1;
+};
+var _user$project$FormUpdate$newTextInput = function (model) {
+	return _user$project$Models$TextInput(
+		{
+			ctor: '_Tuple4',
+			_0: _user$project$FormUpdate$countNewInputId(model),
+			_1: _elm_lang$core$Native_List.fromArray(
+				['form-control']),
+			_2: _elm_lang$core$Maybe$Nothing,
+			_3: _elm_lang$core$Maybe$Just('Some input')
+		});
+};
+var _user$project$FormUpdate$update = F2(
+	function (msg, model) {
+		var _p1 = msg;
+		switch (_p1.ctor) {
+			case 'AddTextInput':
+				return A2(
+					_user$project$FormUpdate$addInputToForm,
+					model,
+					_user$project$FormUpdate$newTextInput(model));
+			case 'AddSelect':
+				return A2(
+					_user$project$FormUpdate$addInputToForm,
+					model,
+					_user$project$FormUpdate$newTextInput(model));
+			case 'AddMultiselect':
+				return A2(
+					_user$project$FormUpdate$addInputToForm,
+					model,
+					_user$project$FormUpdate$newTextInput(model));
+			case 'AddTextarea':
+				return A2(
+					_user$project$FormUpdate$addInputToForm,
+					model,
+					_user$project$FormUpdate$newTextInput(model));
+			case 'AddFileUpload':
+				return A2(
+					_user$project$FormUpdate$addInputToForm,
+					model,
+					_user$project$FormUpdate$newTextInput(model));
+			case 'AddRadioButtons':
+				return A2(
+					_user$project$FormUpdate$addInputToForm,
+					model,
+					_user$project$FormUpdate$newTextInput(model));
+			case 'AddCheckbox':
+				return A2(
+					_user$project$FormUpdate$addInputToForm,
+					model,
+					_user$project$FormUpdate$newTextInput(model));
+			default:
+				return A2(
+					_user$project$FormUpdate$addInputToForm,
+					model,
+					_user$project$FormUpdate$newTextInput(model));
+		}
+	});

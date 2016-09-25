@@ -18,24 +18,22 @@ view model =
 inputHtml : Input -> Html Msg
 inputHtml input =
   case input of
-    TextInput (a, b, c) ->
+    TextInput (a, b, c, _) ->
       textInputHtml input
-    TextArea (a, b, c, d) ->
+    TextArea (a, b, c, d, _) ->
       textAreaHtml input
-    Select ->
+    Select (a) ->
       selectHtml input
-    Multiselect ->
+    Multiselect (a) ->
       multiselectHtml input
-    FileUpload ->
+    FileUpload (a) ->
       fileUploadHtml input
-    Radio ->
+    Radio (a) ->
       radioHtml input
-    Checkbox ->
+    Checkbox (a) ->
       checkboxHtml input
-    Button ->
+    Button (a) ->
       buttonHtml input
-
-
 
 
 textInputHtml : Input -> Html Msg
@@ -65,7 +63,8 @@ label inp =
   let
     (txt, forx) =
       case inp of
-        TextInput (a, _, _) -> ("ahoj", a)
+        TextInput (a, _, _, d) -> (Maybe.withDefault "default" d, "input" ++ toString a)
+        TextArea (a, _, _, _, e) -> (Maybe.withDefault "default" e, "input" ++ toString a)
         _ -> ("ahoj", "input2")
   in
     Html.label [ for forx ] [ text txt ]
@@ -73,9 +72,9 @@ label inp =
 inputAttributes : Input -> List (Html.Attribute a)
 inputAttributes inp =
   case inp of
-    TextInput (a, b, c) ->
+    TextInput (a, b, c, d) ->
       textInputAttributes a b c
-    TextArea (a, b, c, d) ->
+    TextArea (a, b, c, d, e) ->
       textAreaAttributes a b c d
     _ ->
       []
@@ -83,7 +82,7 @@ inputAttributes inp =
 textInputAttributes : Id -> ClassList -> Placeholder -> List (Html.Attribute a)
 textInputAttributes inputId classList plac =
   let
-    idx = Just (Html.Attributes.id inputId)
+    idx = Just (Html.Attributes.id ("input" ++ toString inputId))
     typex = Just (type' "text")
     classes = Just (class (String.join " " classList))
     placeholderx =
@@ -92,11 +91,12 @@ textInputAttributes inputId classList plac =
         Nothing -> Nothing
   in
     List.filterMap identity [idx, typex, classes, placeholderx]
---
+
 textAreaAttributes : Id -> ClassList -> Placeholder -> RowNumber -> List (Html.Attribute a)
 textAreaAttributes inputId classList plac rowNo =
   let
-    idx = Just (Html.Attributes.id inputId)
+    -- idx = Just (Html.Attributes.id inputId)
+    idx = Just (Html.Attributes.id ("input" ++ toString inputId))
     classes = Just (class (String.join " " classList))
     placeholderx =
       case plac of
@@ -104,7 +104,7 @@ textAreaAttributes inputId classList plac rowNo =
         Nothing -> Nothing
     rowNox = Just (rows rowNo)
   in
-    List.filterMap identity [classes, placeholderx, rowNox]
+    List.filterMap identity [idx, classes, placeholderx, rowNox]
 
 
 

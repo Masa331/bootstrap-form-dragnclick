@@ -1,1 +1,4 @@
-var _user$project$InputUpdate$ahoj = '';
+var _user$project$InputUpdate$update = F2(
+	function (msg, model) {
+		return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+	});

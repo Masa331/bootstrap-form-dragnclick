@@ -2,12 +2,24 @@ var _user$project$Models$Model = F2(
 	function (a, b) {
 		return {form: a, currentlyEdditedInputId: b};
 	});
-var _user$project$Models$Button = {ctor: 'Button'};
-var _user$project$Models$Checkbox = {ctor: 'Checkbox'};
-var _user$project$Models$Radio = {ctor: 'Radio'};
-var _user$project$Models$FileUpload = {ctor: 'FileUpload'};
-var _user$project$Models$Multiselect = {ctor: 'Multiselect'};
-var _user$project$Models$Select = {ctor: 'Select'};
+var _user$project$Models$Button = function (a) {
+	return {ctor: 'Button', _0: a};
+};
+var _user$project$Models$Checkbox = function (a) {
+	return {ctor: 'Checkbox', _0: a};
+};
+var _user$project$Models$Radio = function (a) {
+	return {ctor: 'Radio', _0: a};
+};
+var _user$project$Models$FileUpload = function (a) {
+	return {ctor: 'FileUpload', _0: a};
+};
+var _user$project$Models$Multiselect = function (a) {
+	return {ctor: 'Multiselect', _0: a};
+};
+var _user$project$Models$Select = function (a) {
+	return {ctor: 'Select', _0: a};
+};
 var _user$project$Models$TextArea = function (a) {
 	return {ctor: 'TextArea', _0: a};
 };
@@ -17,20 +29,22 @@ var _user$project$Models$TextInput = function (a) {
 var _user$project$Models$new = function () {
 	var textInput2 = _user$project$Models$TextArea(
 		{
-			ctor: '_Tuple4',
-			_0: 'input2',
+			ctor: '_Tuple5',
+			_0: 2,
 			_1: _elm_lang$core$Native_List.fromArray(
 				['form-control']),
 			_2: _elm_lang$core$Maybe$Just('Some placeholder...'),
-			_3: 3
+			_3: 3,
+			_4: _elm_lang$core$Maybe$Just('Some textarea')
 		});
 	var textInput = _user$project$Models$TextInput(
 		{
-			ctor: '_Tuple3',
-			_0: 'input1',
+			ctor: '_Tuple4',
+			_0: 1,
 			_1: _elm_lang$core$Native_List.fromArray(
 				['form-control']),
-			_2: _elm_lang$core$Maybe$Nothing
+			_2: _elm_lang$core$Maybe$Nothing,
+			_3: _elm_lang$core$Maybe$Just('Some input')
 		});
 	return A2(
 		_user$project$Models$Model,

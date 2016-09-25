@@ -20,9 +20,9 @@ view model =
 inputMarkup : Input -> String
 inputMarkup el =
   case el of
-    TextInput (a, b, c) ->
+    TextInput (a, b, c, _) ->
       textInputCode el
-    TextArea (_, _, _, _) ->
+    TextArea (_, _, _, _, _) ->
       textAreaCode el
     _ ->
       textInputCode el

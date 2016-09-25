@@ -1,1 +1,8 @@
-var _user$project$Updates$ahoj = '';
+var _user$project$Updates$inputUpdate = F2(
+	function (msg, model) {
+		return A2(_user$project$InputUpdate$update, msg, model);
+	});
+var _user$project$Updates$formUpdate = F2(
+	function (msg, model) {
+		return A2(_user$project$FormUpdate$update, msg, model);
+	});
