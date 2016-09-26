@@ -14,6 +14,9 @@ var _user$project$Messages$AddMultiselect = {ctor: 'AddMultiselect'};
 var _user$project$Messages$AddSelect = {ctor: 'AddSelect'};
 var _user$project$Messages$AddTextInput = {ctor: 'AddTextInput'};
 var _user$project$Messages$NoOp = {ctor: 'NoOp'};
+var _user$project$Messages$LabelEdit = function (a) {
+	return {ctor: 'LabelEdit', _0: a};
+};
 var _user$project$Messages$PlaceholderEdit = function (a) {
 	return {ctor: 'PlaceholderEdit', _0: a};
 };

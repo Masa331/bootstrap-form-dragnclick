@@ -8001,6 +8001,9 @@ var _user$project$Messages$AddMultiselect = {ctor: 'AddMultiselect'};
 var _user$project$Messages$AddSelect = {ctor: 'AddSelect'};
 var _user$project$Messages$AddTextInput = {ctor: 'AddTextInput'};
 var _user$project$Messages$NoOp = {ctor: 'NoOp'};
+var _user$project$Messages$LabelEdit = function (a) {
+	return {ctor: 'LabelEdit', _0: a};
+};
 var _user$project$Messages$PlaceholderEdit = function (a) {
 	return {ctor: 'PlaceholderEdit', _0: a};
 };
@@ -8864,11 +8867,45 @@ var _user$project$InputOptions$view = function (model) {
 						]),
 					_elm_lang$core$Native_List.fromArray(
 						[]))
+				])),
+			A2(
+			_elm_lang$html$Html$b,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Placeholder')
+				])),
+			A2(
+			_elm_lang$html$Html$hr,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+			A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$input,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$class('form-control'),
+							_elm_lang$html$Html_Events$onInput(
+							function (_p1) {
+								return _user$project$Messages$InputMessage(
+									_user$project$Messages$LabelEdit(_p1));
+							})
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[]))
 				]))
 		]);
 };
 
-var _user$project$InputUpdate$updateInputPlaceholder = F2(
+var _user$project$InputUpdate$placeholderUpdateFunc = F2(
 	function (inp, newPlaceholder) {
 		var _p0 = inp;
 		if (_p0.ctor === 'TextInput') {
@@ -8882,25 +8919,16 @@ var _user$project$InputUpdate$updateInputPlaceholder = F2(
 			return inp;
 		}
 	});
-var _user$project$InputUpdate$updatePlaceholder = F3(
-	function (id, model, newPlaceholder) {
+var _user$project$InputUpdate$updateInputAttribute = F4(
+	function (updateFunc, model, inputId, newPlaceholder) {
 		var newInputs = A2(
 			_elm_lang$core$List$map,
 			function (inp) {
 				return _elm_lang$core$Native_Utils.eq(
 					_user$project$Models$extractId(inp),
-					id) ? A2(_user$project$InputUpdate$updateInputPlaceholder, inp, newPlaceholder) : inp;
+					inputId) ? A2(updateFunc, inp, newPlaceholder) : inp;
 			},
 			model.form);
-		var input = _elm_lang$core$List$head(
-			A2(
-				_elm_lang$core$List$filter,
-				function (el) {
-					return _elm_lang$core$Native_Utils.eq(
-						_user$project$Models$extractId(el),
-						id);
-				},
-				model.form));
 		return {
 			ctor: '_Tuple2',
 			_0: _elm_lang$core$Native_Utils.update(
@@ -8911,16 +8939,19 @@ var _user$project$InputUpdate$updatePlaceholder = F3(
 	});
 var _user$project$InputUpdate$update = F2(
 	function (msg, model) {
-		var _p1 = msg;
-		if (_p1.ctor === 'PlaceholderEdit') {
-			var _p2 = model.currentlyEdditedInputId;
-			if (_p2.ctor === 'Nothing') {
-				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-			} else {
-				return A3(_user$project$InputUpdate$updatePlaceholder, _p2._0, model, _p1._0);
-			}
-		} else {
+		var _p1 = model.currentlyEdditedInputId;
+		if (_p1.ctor === 'Nothing') {
 			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		} else {
+			var _p2 = msg;
+			switch (_p2.ctor) {
+				case 'PlaceholderEdit':
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$placeholderUpdateFunc, model, _p1._0, _p2._0);
+				case 'LabelEdit':
+					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+				default:
+					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+			}
 		}
 	});
 

@@ -12,4 +12,8 @@ view model =
   [ b [] [text "Placeholder"]
   , hr [] []
   , div [] [ input [class "form-control", onInput (InputMessage << PlaceholderEdit)] [] ]
+
+  , b [] [ text "Placeholder" ]
+  , hr [] []
+  , div [] [ input [ class "form-control", onInput (InputMessage << LabelEdit) ] [] ]
   ]

@@ -100,8 +100,7 @@ buttonHtml inp =
 
 editAndRemoveLink inp =
   div
-    [class "edit-and-remove-link"]
-    -- [ p [] [editLink inp], p [] [removeLink inp]]
+    [ class "edit-and-remove-link" ]
     [ editLink inp, text " | ", removeLink inp, text " | ", moveUpLink inp, text " | ", moveDownLink inp]
 
 editLink id =

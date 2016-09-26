@@ -92,7 +92,6 @@ body {
   background-color: lightgrey;
 }
 
-/* .bd-example:hover .edit-and-remove-link { */
 .form-group:hover .edit-and-remove-link {
   display: block;
 }
@@ -110,14 +109,11 @@ body {
 }
 
 .form-group {
-  /* position: absolute; */
   position: relative;
 
 }
 
 .bd-example {
-  /* position: relative; */
-
   padding: 1rem;
   margin: 1rem -1rem;
   border: solid #f7f7f9;

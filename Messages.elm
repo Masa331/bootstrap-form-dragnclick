@@ -15,6 +15,7 @@ type FormMsg =
 
 type InputMsg 
   = PlaceholderEdit String
+  | LabelEdit String
   | NoOp
 
 type Msg =
