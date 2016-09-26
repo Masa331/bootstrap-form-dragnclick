@@ -35,7 +35,6 @@ textInputHtml inp =
     input = Html.input (inputAttributes inp) []
   in
     div [ class "form-group" ] [ inputLabel, input, editAndRemoveLink inp ]
-    -- div [ class "form-group" ] [ inputLabel, input ]
 
 textAreaHtml : Input -> Html Msg
 textAreaHtml inp =
@@ -90,7 +89,10 @@ checkboxHtml inp =
 
 buttonHtml : Input -> Html Msg
 buttonHtml inp =
-  button [type' "submit"] [text "Submit"]
+  div
+    [ class "my-container" ]
+    [ button [ type' "submit" ] [ text "Submit" ]
+    , editAndRemoveLink inp ]
 
 -------------
 -- Helpers --

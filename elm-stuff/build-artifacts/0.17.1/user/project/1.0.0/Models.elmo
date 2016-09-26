@@ -48,7 +48,21 @@ var _user$project$Models$TextInput = function (a) {
 	return {ctor: 'TextInput', _0: a};
 };
 var _user$project$Models$new = function () {
-	var textInput2 = _user$project$Models$TextArea(
+	var button = _user$project$Models$Button(
+		{
+			id: 2,
+			classList: _elm_lang$core$Native_List.fromArray(
+				['form-control']),
+			label: _elm_lang$core$Maybe$Just('Some area')
+		});
+	var checkbox = _user$project$Models$Checkbox(
+		{
+			id: 2,
+			classList: _elm_lang$core$Native_List.fromArray(
+				[]),
+			label: _elm_lang$core$Maybe$Just('Some area')
+		});
+	var textArea = _user$project$Models$TextArea(
 		{
 			id: 2,
 			classList: _elm_lang$core$Native_List.fromArray(
@@ -68,6 +82,6 @@ var _user$project$Models$new = function () {
 	return A2(
 		_user$project$Models$Model,
 		_elm_lang$core$Native_List.fromArray(
-			[textInput, textInput2]),
+			[textInput, textArea, checkbox, button]),
 		_elm_lang$core$Maybe$Nothing);
 }();

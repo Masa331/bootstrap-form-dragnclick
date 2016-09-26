@@ -308,14 +308,24 @@ var _user$project$Inputs$editAndRemoveLink = function (inp) {
 };
 var _user$project$Inputs$buttonHtml = function (inp) {
 	return A2(
-		_elm_lang$html$Html$button,
+		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html_Attributes$type$('submit')
+				_elm_lang$html$Html_Attributes$class('my-container')
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html$text('Submit')
+				A2(
+				_elm_lang$html$Html$button,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$type$('submit')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Submit')
+					])),
+				_user$project$Inputs$editAndRemoveLink(inp)
 			]));
 };
 var _user$project$Inputs$checkboxHtml = function (inp) {

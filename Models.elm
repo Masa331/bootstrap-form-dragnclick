@@ -25,9 +25,11 @@ new : Model
 new =
   let
     textInput = TextInput { id = 1, classList = [ "form-control" ], placeholder = Nothing, label = (Just "Some input") }
-    textInput2 = TextArea { id = 2, classList = [ "form-control" ], placeholder = Just "Some placeholder...", label = (Just "Some area"), rowNumber = 3 }
+    textArea = TextArea { id = 2, classList = [ "form-control" ], placeholder = Just "Some placeholder...", label = (Just "Some area"), rowNumber = 3 }
+    checkbox = Checkbox { id = 2, classList = [  ], label = (Just "Some area") }
+    button = Button { id = 2, classList = [ "form-control" ], label = (Just "Some area") }
   in
-    Model [textInput, textInput2] Nothing
+    Model [ textInput, textArea, checkbox, button ] Nothing
 
 extractId : Input -> Int
 extractId inp =

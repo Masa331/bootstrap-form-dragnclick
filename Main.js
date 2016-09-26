@@ -7947,7 +7947,21 @@ var _user$project$Models$TextInput = function (a) {
 	return {ctor: 'TextInput', _0: a};
 };
 var _user$project$Models$new = function () {
-	var textInput2 = _user$project$Models$TextArea(
+	var button = _user$project$Models$Button(
+		{
+			id: 2,
+			classList: _elm_lang$core$Native_List.fromArray(
+				['form-control']),
+			label: _elm_lang$core$Maybe$Just('Some area')
+		});
+	var checkbox = _user$project$Models$Checkbox(
+		{
+			id: 2,
+			classList: _elm_lang$core$Native_List.fromArray(
+				[]),
+			label: _elm_lang$core$Maybe$Just('Some area')
+		});
+	var textArea = _user$project$Models$TextArea(
 		{
 			id: 2,
 			classList: _elm_lang$core$Native_List.fromArray(
@@ -7967,7 +7981,7 @@ var _user$project$Models$new = function () {
 	return A2(
 		_user$project$Models$Model,
 		_elm_lang$core$Native_List.fromArray(
-			[textInput, textInput2]),
+			[textInput, textArea, checkbox, button]),
 		_elm_lang$core$Maybe$Nothing);
 }();
 
@@ -8307,14 +8321,24 @@ var _user$project$Inputs$editAndRemoveLink = function (inp) {
 };
 var _user$project$Inputs$buttonHtml = function (inp) {
 	return A2(
-		_elm_lang$html$Html$button,
+		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html_Attributes$type$('submit')
+				_elm_lang$html$Html_Attributes$class('my-container')
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html$text('Submit')
+				A2(
+				_elm_lang$html$Html$button,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$type$('submit')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Submit')
+					])),
+				_user$project$Inputs$editAndRemoveLink(inp)
 			]));
 };
 var _user$project$Inputs$checkboxHtml = function (inp) {

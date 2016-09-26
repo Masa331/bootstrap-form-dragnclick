@@ -84,7 +84,8 @@ body {
 .edit-and-remove-link {
   position: absolute;
   top: 0px;
-  left: 0px;
+  /* left: 0px; */
+  right: 0px;
 
   display: none;
 
@@ -93,6 +94,18 @@ body {
 
 /* .bd-example:hover .edit-and-remove-link { */
 .form-group:hover .edit-and-remove-link {
+  display: block;
+}
+
+.form-check:hover .edit-and-remove-link {
+  display: block;
+}
+
+.my-container {
+  position: relative;
+}
+
+.my-container:hover .edit-and-remove-link {
   display: block;
 }
 
