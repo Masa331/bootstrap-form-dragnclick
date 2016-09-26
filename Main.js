@@ -7897,25 +7897,33 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
-var _user$project$Models$extractId = function (inp) {
+var _user$project$Models$extractPlaceholder = function (inp) {
 	var _p0 = inp;
-	switch (_p0.ctor) {
+	if (_p0.ctor === 'TextInput') {
+		return _p0._0.placeholder;
+	} else {
+		return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _user$project$Models$extractId = function (inp) {
+	var _p1 = inp;
+	switch (_p1.ctor) {
 		case 'TextInput':
-			return _p0._0.id;
+			return _p1._0.id;
 		case 'TextArea':
-			return _p0._0.id;
+			return _p1._0.id;
 		case 'Select':
-			return _p0._0.id;
+			return _p1._0.id;
 		case 'Multiselect':
-			return _p0._0.id;
+			return _p1._0.id;
 		case 'FileUpload':
-			return _p0._0.id;
+			return _p1._0.id;
 		case 'Radio':
-			return _p0._0.id;
+			return _p1._0.id;
 		case 'Checkbox':
-			return _p0._0.id;
+			return _p1._0.id;
 		default:
-			return _p0._0.id;
+			return _p1._0.id;
 	}
 };
 var _user$project$Models$Model = F2(
@@ -8831,7 +8839,54 @@ var _user$project$InputEdit$view = function (inp) {
 			]));
 };
 
-var _user$project$InputOptions$view = function (model) {
+var _user$project$InputOptions$labelEdit = function (inp) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$b,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Label')
+				])),
+			A2(
+			_elm_lang$html$Html$hr,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+			A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$input,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$class('form-control'),
+							_elm_lang$html$Html_Events$onInput(
+							function (_p0) {
+								return _user$project$Messages$InputMessage(
+									_user$project$Messages$LabelEdit(_p0));
+							})
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[]))
+				]))
+		]);
+};
+var _user$project$InputOptions$placeholderEdit = function (string) {
+	var placeholderText = function () {
+		var _p1 = string;
+		if (_p1.ctor === 'Just') {
+			return _p1._0;
+		} else {
+			return 'ehe';
+		}
+	}();
 	return _elm_lang$core$Native_List.fromArray(
 		[
 			A2(
@@ -8860,58 +8915,66 @@ var _user$project$InputOptions$view = function (model) {
 						[
 							_elm_lang$html$Html_Attributes$class('form-control'),
 							_elm_lang$html$Html_Events$onInput(
-							function (_p0) {
+							function (_p2) {
 								return _user$project$Messages$InputMessage(
-									_user$project$Messages$PlaceholderEdit(_p0));
-							})
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[]))
-				])),
-			A2(
-			_elm_lang$html$Html$b,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Placeholder')
-				])),
-			A2(
-			_elm_lang$html$Html$hr,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-			A2(
-			_elm_lang$html$Html$div,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$input,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$class('form-control'),
-							_elm_lang$html$Html_Events$onInput(
-							function (_p1) {
-								return _user$project$Messages$InputMessage(
-									_user$project$Messages$LabelEdit(_p1));
-							})
+									_user$project$Messages$PlaceholderEdit(_p2));
+							}),
+							_elm_lang$html$Html_Attributes$value(placeholderText)
 						]),
 					_elm_lang$core$Native_List.fromArray(
 						[]))
 				]))
 		]);
 };
+var _user$project$InputOptions$view = function (inp) {
+	var _p3 = inp;
+	if (_p3.ctor === 'TextInput') {
+		return _elm_lang$core$List$concat(
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_user$project$InputOptions$placeholderEdit(
+					A2(
+						_elm_lang$core$Debug$log,
+						'neco',
+						_user$project$Models$extractPlaceholder(inp))),
+					_user$project$InputOptions$labelEdit(inp)
+				]));
+	} else {
+		return _elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$b,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Not yet implemented ;)')
+					]))
+			]);
+	}
+};
 
-var _user$project$InputUpdate$placeholderUpdateFunc = F2(
-	function (inp, newPlaceholder) {
+var _user$project$InputUpdate$labelUpdateFunc = F2(
+	function (inp, newLabel) {
 		var _p0 = inp;
 		if (_p0.ctor === 'TextInput') {
 			return _user$project$Models$TextInput(
 				_elm_lang$core$Native_Utils.update(
 					_p0._0,
+					{
+						label: _elm_lang$core$Maybe$Just(newLabel)
+					}));
+		} else {
+			return inp;
+		}
+	});
+var _user$project$InputUpdate$placeholderUpdateFunc = F2(
+	function (inp, newPlaceholder) {
+		var _p1 = inp;
+		if (_p1.ctor === 'TextInput') {
+			return _user$project$Models$TextInput(
+				_elm_lang$core$Native_Utils.update(
+					_p1._0,
 					{
 						placeholder: _elm_lang$core$Maybe$Just(newPlaceholder)
 					}));
@@ -8939,16 +9002,17 @@ var _user$project$InputUpdate$updateInputAttribute = F4(
 	});
 var _user$project$InputUpdate$update = F2(
 	function (msg, model) {
-		var _p1 = model.currentlyEdditedInputId;
-		if (_p1.ctor === 'Nothing') {
+		var _p2 = model.currentlyEdditedInputId;
+		if (_p2.ctor === 'Nothing') {
 			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 		} else {
-			var _p2 = msg;
-			switch (_p2.ctor) {
+			var _p4 = _p2._0;
+			var _p3 = msg;
+			switch (_p3.ctor) {
 				case 'PlaceholderEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$placeholderUpdateFunc, model, _p1._0, _p2._0);
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$placeholderUpdateFunc, model, _p4, _p3._0);
 				case 'LabelEdit':
-					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$labelUpdateFunc, model, _p4, _p3._0);
 				default:
 					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 			}

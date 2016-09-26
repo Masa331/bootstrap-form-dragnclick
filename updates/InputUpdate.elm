@@ -2,19 +2,6 @@ module InputUpdate exposing (..)
 
 import Messages exposing (..)
 import Models exposing (..)
---
--- update msg model =
---   case msg of
---     PlaceholderEdit placeholder ->
---       case model.currentlyEdditedInputId of
---         Nothing ->
---           (model, Cmd.none)
---         Just id ->
---           updatePlaceholder id model placeholder
---     LabelEdit newLabel ->
---       (model, Cmd.none)
---     NoOp ->
---       (model, Cmd.none)
 
 update : InputMsg -> Model -> (Model, Cmd Msg)
 update msg model =
@@ -26,7 +13,8 @@ update msg model =
         PlaceholderEdit newPlaceholder ->
           updateInputAttribute placeholderUpdateFunc model inputId newPlaceholder
         LabelEdit newLabel ->
-          (model, Cmd.none)
+          -- (model, Cmd.none)
+          updateInputAttribute labelUpdateFunc model inputId newLabel
         NoOp ->
           (model, Cmd.none)
 
@@ -46,4 +34,11 @@ placeholderUpdateFunc inp newPlaceholder =
   case inp of
     TextInput attrs ->
       TextInput { attrs | placeholder = Just newPlaceholder }
+    _ -> inp
+
+labelUpdateFunc : Input -> String -> Input
+labelUpdateFunc inp newLabel =
+  case inp of
+    TextInput attrs ->
+      TextInput { attrs | label = Just newLabel }
     _ -> inp

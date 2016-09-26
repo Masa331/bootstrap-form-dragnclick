@@ -42,3 +42,9 @@ extractId inp =
     Radio attrs -> attrs.id
     Checkbox attrs -> attrs.id
     Button attrs -> attrs.id
+
+extractPlaceholder : Input -> Maybe String
+extractPlaceholder inp =
+  case inp of
+    TextInput attrs -> attrs.placeholder
+    _ -> Nothing

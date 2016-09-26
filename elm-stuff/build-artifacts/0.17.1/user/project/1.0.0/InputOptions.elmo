@@ -1,4 +1,51 @@
-var _user$project$InputOptions$view = function (model) {
+var _user$project$InputOptions$labelEdit = function (inp) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$b,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Label')
+				])),
+			A2(
+			_elm_lang$html$Html$hr,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+			A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$input,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$class('form-control'),
+							_elm_lang$html$Html_Events$onInput(
+							function (_p0) {
+								return _user$project$Messages$InputMessage(
+									_user$project$Messages$LabelEdit(_p0));
+							})
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[]))
+				]))
+		]);
+};
+var _user$project$InputOptions$placeholderEdit = function (string) {
+	var placeholderText = function () {
+		var _p1 = string;
+		if (_p1.ctor === 'Just') {
+			return _p1._0;
+		} else {
+			return 'ehe';
+		}
+	}();
 	return _elm_lang$core$Native_List.fromArray(
 		[
 			A2(
@@ -27,47 +74,41 @@ var _user$project$InputOptions$view = function (model) {
 						[
 							_elm_lang$html$Html_Attributes$class('form-control'),
 							_elm_lang$html$Html_Events$onInput(
-							function (_p0) {
+							function (_p2) {
 								return _user$project$Messages$InputMessage(
-									_user$project$Messages$PlaceholderEdit(_p0));
-							})
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[]))
-				])),
-			A2(
-			_elm_lang$html$Html$b,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Placeholder')
-				])),
-			A2(
-			_elm_lang$html$Html$hr,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[])),
-			A2(
-			_elm_lang$html$Html$div,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$input,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$class('form-control'),
-							_elm_lang$html$Html_Events$onInput(
-							function (_p1) {
-								return _user$project$Messages$InputMessage(
-									_user$project$Messages$LabelEdit(_p1));
-							})
+									_user$project$Messages$PlaceholderEdit(_p2));
+							}),
+							_elm_lang$html$Html_Attributes$value(placeholderText)
 						]),
 					_elm_lang$core$Native_List.fromArray(
 						[]))
 				]))
 		]);
+};
+var _user$project$InputOptions$view = function (inp) {
+	var _p3 = inp;
+	if (_p3.ctor === 'TextInput') {
+		return _elm_lang$core$List$concat(
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_user$project$InputOptions$placeholderEdit(
+					A2(
+						_elm_lang$core$Debug$log,
+						'neco',
+						_user$project$Models$extractPlaceholder(inp))),
+					_user$project$InputOptions$labelEdit(inp)
+				]));
+	} else {
+		return _elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$b,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Not yet implemented ;)')
+					]))
+			]);
+	}
 };
