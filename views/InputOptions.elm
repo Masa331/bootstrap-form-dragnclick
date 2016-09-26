@@ -12,7 +12,7 @@ view : Input -> List (Html Msg)
 view inp =
   case inp of
     TextInput attrs ->
-      List.concat [ placeholderEdit (Debug.log "neco" (extractPlaceholder inp)), labelEdit inp ]
+      List.concat [ placeholderEdit (extractPlaceholder inp), labelEdit (extractLabel inp) ]
     _ ->
       [ b [] [text "Not yet implemented ;)"]
       ]
@@ -29,12 +29,18 @@ placeholderEdit string =
   in
     [ b [] [text "Placeholder"]
     , hr [] []
-    , div [] [ input [class "form-control", onInput (InputMessage << PlaceholderEdit), value placeholderText] [ ] ]
+    , div  [ class "form-group" ] [ input [class "form-control", onInput (InputMessage << PlaceholderEdit), value placeholderText] [ ] ]
     ]
 
-labelEdit : Input -> List (Html Msg)
-labelEdit inp =
-  [ b [] [ text "Label" ]
-  , hr [] []
-  , div [] [ input [ class "form-control", onInput (InputMessage << LabelEdit) ] [] ]
-  ]
+labelEdit : Maybe String -> List (Html Msg)
+labelEdit string =
+  let
+    labelText =
+      case string of
+        Just s -> s
+        Nothing -> "ehe"
+  in
+    [ b [] [ text "Label" ]
+    , hr [] []
+    , div [ class "form-group" ] [ input [ class "form-control", onInput (InputMessage << LabelEdit), value labelText ] [] ]
+    ]

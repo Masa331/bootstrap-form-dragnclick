@@ -48,3 +48,9 @@ extractPlaceholder inp =
   case inp of
     TextInput attrs -> attrs.placeholder
     _ -> Nothing
+
+extractLabel : Input -> Maybe String
+extractLabel inp =
+  case inp of
+    TextInput attrs -> attrs.label
+    _ -> Nothing

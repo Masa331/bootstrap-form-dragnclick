@@ -7897,33 +7897,41 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
-var _user$project$Models$extractPlaceholder = function (inp) {
+var _user$project$Models$extractLabel = function (inp) {
 	var _p0 = inp;
 	if (_p0.ctor === 'TextInput') {
-		return _p0._0.placeholder;
+		return _p0._0.label;
+	} else {
+		return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _user$project$Models$extractPlaceholder = function (inp) {
+	var _p1 = inp;
+	if (_p1.ctor === 'TextInput') {
+		return _p1._0.placeholder;
 	} else {
 		return _elm_lang$core$Maybe$Nothing;
 	}
 };
 var _user$project$Models$extractId = function (inp) {
-	var _p1 = inp;
-	switch (_p1.ctor) {
+	var _p2 = inp;
+	switch (_p2.ctor) {
 		case 'TextInput':
-			return _p1._0.id;
+			return _p2._0.id;
 		case 'TextArea':
-			return _p1._0.id;
+			return _p2._0.id;
 		case 'Select':
-			return _p1._0.id;
+			return _p2._0.id;
 		case 'Multiselect':
-			return _p1._0.id;
+			return _p2._0.id;
 		case 'FileUpload':
-			return _p1._0.id;
+			return _p2._0.id;
 		case 'Radio':
-			return _p1._0.id;
+			return _p2._0.id;
 		case 'Checkbox':
-			return _p1._0.id;
+			return _p2._0.id;
 		default:
-			return _p1._0.id;
+			return _p2._0.id;
 	}
 };
 var _user$project$Models$Model = F2(
@@ -8839,7 +8847,15 @@ var _user$project$InputEdit$view = function (inp) {
 			]));
 };
 
-var _user$project$InputOptions$labelEdit = function (inp) {
+var _user$project$InputOptions$labelEdit = function (string) {
+	var labelText = function () {
+		var _p0 = string;
+		if (_p0.ctor === 'Just') {
+			return _p0._0;
+		} else {
+			return 'ehe';
+		}
+	}();
 	return _elm_lang$core$Native_List.fromArray(
 		[
 			A2(
@@ -8859,7 +8875,9 @@ var _user$project$InputOptions$labelEdit = function (inp) {
 			A2(
 			_elm_lang$html$Html$div,
 			_elm_lang$core$Native_List.fromArray(
-				[]),
+				[
+					_elm_lang$html$Html_Attributes$class('form-group')
+				]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					A2(
@@ -8868,10 +8886,11 @@ var _user$project$InputOptions$labelEdit = function (inp) {
 						[
 							_elm_lang$html$Html_Attributes$class('form-control'),
 							_elm_lang$html$Html_Events$onInput(
-							function (_p0) {
+							function (_p1) {
 								return _user$project$Messages$InputMessage(
-									_user$project$Messages$LabelEdit(_p0));
-							})
+									_user$project$Messages$LabelEdit(_p1));
+							}),
+							_elm_lang$html$Html_Attributes$value(labelText)
 						]),
 					_elm_lang$core$Native_List.fromArray(
 						[]))
@@ -8880,9 +8899,9 @@ var _user$project$InputOptions$labelEdit = function (inp) {
 };
 var _user$project$InputOptions$placeholderEdit = function (string) {
 	var placeholderText = function () {
-		var _p1 = string;
-		if (_p1.ctor === 'Just') {
-			return _p1._0;
+		var _p2 = string;
+		if (_p2.ctor === 'Just') {
+			return _p2._0;
 		} else {
 			return 'ehe';
 		}
@@ -8906,7 +8925,9 @@ var _user$project$InputOptions$placeholderEdit = function (string) {
 			A2(
 			_elm_lang$html$Html$div,
 			_elm_lang$core$Native_List.fromArray(
-				[]),
+				[
+					_elm_lang$html$Html_Attributes$class('form-group')
+				]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					A2(
@@ -8915,9 +8936,9 @@ var _user$project$InputOptions$placeholderEdit = function (string) {
 						[
 							_elm_lang$html$Html_Attributes$class('form-control'),
 							_elm_lang$html$Html_Events$onInput(
-							function (_p2) {
+							function (_p3) {
 								return _user$project$Messages$InputMessage(
-									_user$project$Messages$PlaceholderEdit(_p2));
+									_user$project$Messages$PlaceholderEdit(_p3));
 							}),
 							_elm_lang$html$Html_Attributes$value(placeholderText)
 						]),
@@ -8927,17 +8948,15 @@ var _user$project$InputOptions$placeholderEdit = function (string) {
 		]);
 };
 var _user$project$InputOptions$view = function (inp) {
-	var _p3 = inp;
-	if (_p3.ctor === 'TextInput') {
+	var _p4 = inp;
+	if (_p4.ctor === 'TextInput') {
 		return _elm_lang$core$List$concat(
 			_elm_lang$core$Native_List.fromArray(
 				[
 					_user$project$InputOptions$placeholderEdit(
-					A2(
-						_elm_lang$core$Debug$log,
-						'neco',
-						_user$project$Models$extractPlaceholder(inp))),
-					_user$project$InputOptions$labelEdit(inp)
+					_user$project$Models$extractPlaceholder(inp)),
+					_user$project$InputOptions$labelEdit(
+					_user$project$Models$extractLabel(inp))
 				]));
 	} else {
 		return _elm_lang$core$Native_List.fromArray(
