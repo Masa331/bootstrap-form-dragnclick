@@ -571,7 +571,11 @@ var _user$project$Inputs$textInputHtml = function (inp) {
 				_elm_lang$html$Html_Attributes$class('form-group')
 			]),
 		_elm_lang$core$Native_List.fromArray(
-			[inputLabel, input]));
+			[
+				inputLabel,
+				input,
+				_user$project$Inputs$editAndRemoveLink(inp)
+			]));
 };
 var _user$project$Inputs$inputHtml = function (input) {
 	var _p11 = input;

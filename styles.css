@@ -83,8 +83,10 @@ body {
 
 .edit-and-remove-link {
   position: absolute;
-  top: 24px;
-  left: 24px;
+  /* top: 24px; */
+  /* left: 24px; */
+  top: 0px;
+  left: 0px;
 
   display: none;
 
@@ -96,8 +98,14 @@ body {
   display: block;
 }
 
-.bd-example {
+.form-group {
+  /* position: absolute; */
   position: relative;
+
+}
+
+.bd-example {
+  /* position: relative; */
 
   padding: 1rem;
   margin: 1rem -1rem;
@@ -108,6 +116,7 @@ body {
   margin-left: 0;
   border-width: .2rem;
 }
+
 .highlight {
   padding: 1.5rem;
   margin-right: 0;

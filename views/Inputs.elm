@@ -34,8 +34,8 @@ textInputHtml inp =
     inputLabel = label inp
     input = Html.input (inputAttributes inp) []
   in
-    -- div [ class "form-group" ] [ inputLabel, input, editAndRemoveLink inp ]
-    div [ class "form-group" ] [ inputLabel, input ]
+    div [ class "form-group" ] [ inputLabel, input, editAndRemoveLink inp ]
+    -- div [ class "form-group" ] [ inputLabel, input ]
 
 textAreaHtml : Input -> Html Msg
 textAreaHtml inp =
