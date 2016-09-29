@@ -11,8 +11,9 @@ import Messages exposing (..)
 inputHtml : Input -> Html Msg
 inputHtml input =
   case input of
-    TextInput _ ->
-      textInputHtml input
+    TextInput attrs ->
+      -- textInputHtml input
+      textInputHtml input attrs
     TextArea _ ->
       textAreaHtml input
     Select _ ->
@@ -28,71 +29,28 @@ inputHtml input =
     Button _ ->
       buttonHtml input
 
-textInputHtml : Input -> Html Msg
-textInputHtml inp =
-  let
-    inputLabel = label inp
-    input = Html.input (inputAttributes inp) []
-  in
-    div [ class "form-group" ] [ inputLabel, input, editAndRemoveLink inp ]
 
-textAreaHtml : Input -> Html Msg
-textAreaHtml inp =
+-- textInputHtml : Input -> Html Msg
+textInputHtml inp attrs =
   let
-    area = textarea (inputAttributes inp) []
-  in
-    div [ class "form-group" ] [ label inp, area, editAndRemoveLink inp ]
+    inputLabel = Maybe.map (\value -> Html.label [ for ("input" ++ toString attrs.id) ] [ text (value) ]) attrs.label
 
-selectHtml : Input -> Html Msg
-selectHtml inp =
-  let
-    s1 = option [] [text "1"]
-    s2 = option [] [text "2"]
-    s3 = option [] [text "3"]
-    select = Html.select [class "form-control"] [s1, s2, s3]
-  in
-    div [ class "form-group" ] [ label inp, select, editAndRemoveLink inp ]
+    disabled = Nothing -- to be disabled
+    readonly = Nothing -- to be readonly
+    sizeClass = "" -- to be size class
+    inputClasses = Just (class (String.join " " (sizeClass::attrs.classList)))
+    inputAttrs = [ idToAttr attrs.id, inputClasses, placeholderToAttr attrs.placeholder, Just (type' "text"), readonly, disabled ]
+      |> List.filterMap identity
 
-multiselectHtml : Input -> Html Msg
-multiselectHtml inp =
-  let
-    s1 = option [] [text "1"]
-    s2 = option [] [text "2"]
-    s3 = option [] [text "3"]
-    select = Html.select [class "form-control", multiple True] [s1, s2, s3]
-  in
-    div [ class "form-group" ] [ label inp, select, editAndRemoveLink inp ]
+    input = Just (Html.input inputAttrs [])
+    smallText = Just (small [ class "form-text text-muted" ] [ text "yesss!" ])
+    links = Just (editAndRemoveLink inp)
 
-fileUploadHtml : Input -> Html Msg
-fileUploadHtml inp =
-  let
-    input = Html.input [type' "file"] []
+    addon1 = Nothing -- to be addon1
+    -- addon2 = Nothing -- to be addon2
+    addon2 = Just (div [ class "input-group-addon" ] [ text "$" ])
   in
-    div [ class "form-group" ] [ label inp, input, editAndRemoveLink inp ]
-
-radioHtml : Input -> Html Msg
-radioHtml inp =
-  let
-    leg = legend [] [ text "Radios" ]
-    r1 = div [] [Html.label [] [input [type' "radio", name "radioOption", Html.Attributes.id "radioOption1", value "option1"] [], text "Option 1"]]
-    r2 = div [] [Html.label [] [input [type' "radio", name "radioOption", Html.Attributes.id "radioOption2", value "option2"] [], text "Option 2"]]
-  in
-    fieldset [ class "form-group" ] [ leg, r1, r2, editAndRemoveLink inp ]
-
-checkboxHtml : Input -> Html Msg
-checkboxHtml inp =
-  let
-    input = Html.input [type' "checkbox"] []
-    label = Html.label [] [input, text "Check me out"]
-  in
-    div [ class "form-check" ] [ label, editAndRemoveLink inp ]
-
-buttonHtml : Input -> Html Msg
-buttonHtml inp =
-  div
-    [ class "my-container" ]
-    [ button [ type' "submit" ] [ text "Submit" ]
-    , editAndRemoveLink inp ]
+    div [ class "form-group" ] ([ inputLabel, addon1, input, addon2, smallText, links ] |> List.filterMap identity)
 
 -------------
 -- Helpers --
@@ -163,6 +121,83 @@ inputAttributes inp =
 textInputAttrs attrs =
   [idToAttr attrs.id, classesToAttr attrs.classList, placeholderToAttr attrs.placeholder, Just (type' "text")]
 
+-------
+idToAttr : Id -> Maybe (Html.Attribute a)
+idToAttr id =
+  Just (Html.Attributes.id ("input" ++ toString id))
+
+-- classesToAttribute : Id -> Maybe (Html.Attribute a)
+classesToAttr classList =
+  Just (class (String.join " " classList))
+
+placeholderToAttr : Placeholder -> Maybe (Html.Attribute a)
+placeholderToAttr plac =
+  Maybe.map placeholder plac
+
+
+-------------
+-- Others for now.. --
+-------------
+
+
+textAreaHtml : Input -> Html Msg
+textAreaHtml inp =
+  let
+    area = textarea (inputAttributes inp) []
+  in
+    div [ class "form-group" ] [ label inp, area, editAndRemoveLink inp ]
+
+selectHtml : Input -> Html Msg
+selectHtml inp =
+  let
+    s1 = option [] [text "1"]
+    s2 = option [] [text "2"]
+    s3 = option [] [text "3"]
+    select = Html.select [class "form-control"] [s1, s2, s3]
+  in
+    div [ class "form-group" ] [ label inp, select, editAndRemoveLink inp ]
+
+multiselectHtml : Input -> Html Msg
+multiselectHtml inp =
+  let
+    s1 = option [] [text "1"]
+    s2 = option [] [text "2"]
+    s3 = option [] [text "3"]
+    select = Html.select [class "form-control", multiple True] [s1, s2, s3]
+  in
+    div [ class "form-group" ] [ label inp, select, editAndRemoveLink inp ]
+
+fileUploadHtml : Input -> Html Msg
+fileUploadHtml inp =
+  let
+    input = Html.input [type' "file"] []
+  in
+    div [ class "form-group" ] [ label inp, input, editAndRemoveLink inp ]
+
+radioHtml : Input -> Html Msg
+radioHtml inp =
+  let
+    leg = legend [] [ text "Radios" ]
+    r1 = div [] [Html.label [] [input [type' "radio", name "radioOption", Html.Attributes.id "radioOption1", value "option1"] [], text "Option 1"]]
+    r2 = div [] [Html.label [] [input [type' "radio", name "radioOption", Html.Attributes.id "radioOption2", value "option2"] [], text "Option 2"]]
+  in
+    fieldset [ class "form-group" ] [ leg, r1, r2, editAndRemoveLink inp ]
+
+checkboxHtml : Input -> Html Msg
+checkboxHtml inp =
+  let
+    input = Html.input [type' "checkbox"] []
+    label = Html.label [] [input, text "Check me out"]
+  in
+    div [ class "form-check" ] [ label, editAndRemoveLink inp ]
+
+buttonHtml : Input -> Html Msg
+buttonHtml inp =
+  div
+    [ class "my-container" ]
+    [ button [ type' "submit" ] [ text "Submit" ]
+    , editAndRemoveLink inp ]
+
 -- textAreaAttrs : Id -> ClassList -> Placeholder -> RowNumber -> List (Html.Attribute a)
 textAreaAttrs attrs =
   [idToAttr attrs.id, classesToAttr attrs.classList, placeholderToAttr attrs.placeholder, Just (rows attrs.rowNumber)]
@@ -184,16 +219,3 @@ checkboxAttrs attrs =
 
 buttonAttrs attrs =
   [idToAttr attrs.id, classesToAttr attrs.classList, Just (type' "text")]
-
--------
-idToAttr : Id -> Maybe (Html.Attribute a)
-idToAttr id =
-  Just (Html.Attributes.id ("input" ++ toString id))
-
--- classesToAttribute : Id -> Maybe (Html.Attribute a)
-classesToAttr classList =
-  Just (class (String.join " " classList))
-
-placeholderToAttr : Placeholder -> Maybe (Html.Attribute a)
-placeholderToAttr plac =
-  Maybe.map placeholder plac

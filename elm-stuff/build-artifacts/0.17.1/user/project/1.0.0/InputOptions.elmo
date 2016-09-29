@@ -121,7 +121,7 @@ var _user$project$InputOptions$sizeEdit = function () {
 				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
-					_elm_lang$html$Html$text('Text input type')
+					_elm_lang$html$Html$text('Size edit')
 				])),
 			A2(
 			_elm_lang$html$Html$hr,
@@ -390,40 +390,6 @@ var _user$project$InputOptions$smallUnderEdit = _elm_lang$core$Native_List.fromA
 					[]))
 			]))
 	]);
-var _user$project$InputOptions$textUnderEdit = _elm_lang$core$Native_List.fromArray(
-	[
-		A2(
-		_elm_lang$html$Html$b,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Text under input')
-			])),
-		A2(
-		_elm_lang$html$Html$hr,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[])),
-		A2(
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$class('form-group')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_elm_lang$html$Html$input,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('form-control')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[]))
-			]))
-	]);
 var _user$project$InputOptions$labelEdit = function (string) {
 	var labelText = function () {
 		var _p0 = string;
@@ -534,7 +500,6 @@ var _user$project$InputOptions$view = function (inp) {
 					_user$project$Models$extractPlaceholder(inp)),
 					_user$project$InputOptions$labelEdit(
 					_user$project$Models$extractLabel(inp)),
-					_user$project$InputOptions$textUnderEdit,
 					_user$project$InputOptions$smallUnderEdit,
 					_user$project$InputOptions$typeEdit,
 					_user$project$InputOptions$addon1Edit,

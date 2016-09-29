@@ -12,7 +12,7 @@ view : Input -> List (Html Msg)
 view inp =
   case inp of
     TextInput attrs ->
-      List.concat [ placeholderEdit (extractPlaceholder inp), labelEdit (extractLabel inp), textUnderEdit, smallUnderEdit, typeEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
+      List.concat [ placeholderEdit (extractPlaceholder inp), labelEdit (extractLabel inp), smallUnderEdit, typeEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
     _ ->
       [ b [] [text "Not yet implemented ;)"]
       ]
@@ -44,13 +44,6 @@ labelEdit string =
     , hr [] []
     , div [ class "form-group" ] [ input [ class "form-control", onInput (InputMessage << LabelEdit), value labelText ] [] ]
     ]
-
-textUnderEdit : List (Html Msg)
-textUnderEdit =
-  [ b [] [ text "Text under input" ]
-  , hr [] []
-  , div [ class "form-group" ] [ input [ class "form-control" ] [] ]
-  ]
 
 smallUnderEdit : List (Html Msg)
 smallUnderEdit =
@@ -104,7 +97,7 @@ sizeEdit =
     s3 = option [] [ text "large" ]
     types = [s1, s2, s3]
   in
-    [ b [] [ text "Text input type" ]
+    [ b [] [ text "Size edit" ]
     , hr [] []
     , div [ class "form-group" ] [ Html.select [ class "form-control" ] types ]
     ]
