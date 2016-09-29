@@ -96,7 +96,12 @@ var _user$project$FormUpdate$newTextInput = function (model) {
 			classList: _elm_lang$core$Native_List.fromArray(
 				['form-control']),
 			placeholder: _elm_lang$core$Maybe$Nothing,
-			label: _elm_lang$core$Maybe$Just('New input')
+			label: _elm_lang$core$Maybe$Just('New input'),
+			disabled: false,
+			readonly: false,
+			size: _user$project$Models$Normal,
+			addon1: _elm_lang$core$Maybe$Nothing,
+			addon2: _elm_lang$core$Maybe$Nothing
 		});
 };
 var _user$project$FormUpdate$removeInput = F2(

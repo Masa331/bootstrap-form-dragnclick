@@ -35,22 +35,29 @@ textInputHtml inp attrs =
   let
     inputLabel = Maybe.map (\value -> Html.label [ for ("input" ++ toString attrs.id) ] [ text (value) ]) attrs.label
 
-    disabled = Nothing -- to be disabled
-    readonly = Nothing -- to be readonly
-    sizeClass = "" -- to be size class
+    disabled = if attrs.disabled then Just (Html.Attributes.disabled True) else Nothing
+    readonly = if attrs.readonly then Just (Html.Attributes.readonly True) else Nothing
+    sizeClass =
+      case attrs.size of
+        Small -> "form-control-sm"
+        Normal -> ""
+        Big -> "form-control-lg"
     inputClasses = Just (class (String.join " " (sizeClass::attrs.classList)))
     inputAttrs = [ idToAttr attrs.id, inputClasses, placeholderToAttr attrs.placeholder, Just (type' "text"), readonly, disabled ]
       |> List.filterMap identity
 
-    input = Just (Html.input inputAttrs [])
+    add1 = Maybe.map (\value -> div [ class "input-group-addon" ] [ text value ]) attrs.addon1
+    add2 = Maybe.map (\value -> div [ class "input-group-addon" ] [ text value ]) attrs.addon2
+    input =
+      if ((List.filterMap identity [add1, add2]) |> List.length) > 0 then
+        Just (div [ class "input-group" ] ([add1, Just (Html.input inputAttrs []), add2 ] |> List.filterMap identity))
+      else
+        Just (Html.input inputAttrs [])
+
     smallText = Just (small [ class "form-text text-muted" ] [ text "yesss!" ])
     links = Just (editAndRemoveLink inp)
-
-    addon1 = Nothing -- to be addon1
-    -- addon2 = Nothing -- to be addon2
-    addon2 = Just (div [ class "input-group-addon" ] [ text "$" ])
   in
-    div [ class "form-group" ] ([ inputLabel, addon1, input, addon2, smallText, links ] |> List.filterMap identity)
+    div [ class "form-group" ] ([ inputLabel, input, smallText, links ] |> List.filterMap identity)
 
 -------------
 -- Helpers --

@@ -7938,6 +7938,9 @@ var _user$project$Models$Model = F2(
 	function (a, b) {
 		return {form: a, currentlyEdditedInputId: b};
 	});
+var _user$project$Models$Big = {ctor: 'Big'};
+var _user$project$Models$Normal = {ctor: 'Normal'};
+var _user$project$Models$Small = {ctor: 'Small'};
 var _user$project$Models$Button = function (a) {
 	return {ctor: 'Button', _0: a};
 };
@@ -7992,7 +7995,12 @@ var _user$project$Models$new = function () {
 			classList: _elm_lang$core$Native_List.fromArray(
 				['form-control']),
 			placeholder: _elm_lang$core$Maybe$Nothing,
-			label: _elm_lang$core$Maybe$Just('Some input')
+			label: _elm_lang$core$Maybe$Just('Some input'),
+			disabled: false,
+			readonly: false,
+			size: _user$project$Models$Normal,
+			addon1: _elm_lang$core$Maybe$Nothing,
+			addon2: _elm_lang$core$Maybe$Nothing
 		});
 	return A2(
 		_user$project$Models$Model,
@@ -8601,18 +8609,6 @@ var _user$project$Inputs$buttonHtml = function (inp) {
 };
 var _user$project$Inputs$textInputHtml = F2(
 	function (inp, attrs) {
-		var addon2 = _elm_lang$core$Maybe$Just(
-			A2(
-				_elm_lang$html$Html$div,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('input-group-addon')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('$')
-					])));
-		var addon1 = _elm_lang$core$Maybe$Nothing;
 		var links = _elm_lang$core$Maybe$Just(
 			_user$project$Inputs$editAndRemoveLink(inp));
 		var smallText = _elm_lang$core$Maybe$Just(
@@ -8626,15 +8622,57 @@ var _user$project$Inputs$textInputHtml = F2(
 					[
 						_elm_lang$html$Html$text('yesss!')
 					])));
-		var sizeClass = '';
+		var add2 = A2(
+			_elm_lang$core$Maybe$map,
+			function (value) {
+				return A2(
+					_elm_lang$html$Html$div,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$class('input-group-addon')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text(value)
+						]));
+			},
+			attrs.addon2);
+		var add1 = A2(
+			_elm_lang$core$Maybe$map,
+			function (value) {
+				return A2(
+					_elm_lang$html$Html$div,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$class('input-group-addon')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text(value)
+						]));
+			},
+			attrs.addon1);
+		var sizeClass = function () {
+			var _p11 = attrs.size;
+			switch (_p11.ctor) {
+				case 'Small':
+					return 'form-control-sm';
+				case 'Normal':
+					return '';
+				default:
+					return 'form-control-lg';
+			}
+		}();
 		var inputClasses = _elm_lang$core$Maybe$Just(
 			_elm_lang$html$Html_Attributes$class(
 				A2(
 					_elm_lang$core$String$join,
 					' ',
 					A2(_elm_lang$core$List_ops['::'], sizeClass, attrs.classList))));
-		var readonly = _elm_lang$core$Maybe$Nothing;
-		var disabled = _elm_lang$core$Maybe$Nothing;
+		var readonly = attrs.readonly ? _elm_lang$core$Maybe$Just(
+			_elm_lang$html$Html_Attributes$readonly(true)) : _elm_lang$core$Maybe$Nothing;
+		var disabled = attrs.disabled ? _elm_lang$core$Maybe$Just(
+			_elm_lang$html$Html_Attributes$disabled(true)) : _elm_lang$core$Maybe$Nothing;
 		var inputAttrs = A2(
 			_elm_lang$core$List$filterMap,
 			_elm_lang$core$Basics$identity,
@@ -8648,7 +8686,34 @@ var _user$project$Inputs$textInputHtml = F2(
 					readonly,
 					disabled
 				]));
-		var input = _elm_lang$core$Maybe$Just(
+		var input = (_elm_lang$core$Native_Utils.cmp(
+			_elm_lang$core$List$length(
+				A2(
+					_elm_lang$core$List$filterMap,
+					_elm_lang$core$Basics$identity,
+					_elm_lang$core$Native_List.fromArray(
+						[add1, add2]))),
+			0) > 0) ? _elm_lang$core$Maybe$Just(
+			A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('input-group')
+					]),
+				A2(
+					_elm_lang$core$List$filterMap,
+					_elm_lang$core$Basics$identity,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							add1,
+							_elm_lang$core$Maybe$Just(
+							A2(
+								_elm_lang$html$Html$input,
+								inputAttrs,
+								_elm_lang$core$Native_List.fromArray(
+									[]))),
+							add2
+						])))) : _elm_lang$core$Maybe$Just(
 			A2(
 				_elm_lang$html$Html$input,
 				inputAttrs,
@@ -8683,13 +8748,13 @@ var _user$project$Inputs$textInputHtml = F2(
 				_elm_lang$core$List$filterMap,
 				_elm_lang$core$Basics$identity,
 				_elm_lang$core$Native_List.fromArray(
-					[inputLabel, addon1, input, addon2, smallText, links])));
+					[inputLabel, input, smallText, links])));
 	});
 var _user$project$Inputs$inputHtml = function (input) {
-	var _p11 = input;
-	switch (_p11.ctor) {
+	var _p12 = input;
+	switch (_p12.ctor) {
 		case 'TextInput':
-			return A2(_user$project$Inputs$textInputHtml, input, _p11._0);
+			return A2(_user$project$Inputs$textInputHtml, input, _p12._0);
 		case 'TextArea':
 			return _user$project$Inputs$textAreaHtml(input);
 		case 'Select':
@@ -8814,7 +8879,12 @@ var _user$project$FormUpdate$newTextInput = function (model) {
 			classList: _elm_lang$core$Native_List.fromArray(
 				['form-control']),
 			placeholder: _elm_lang$core$Maybe$Nothing,
-			label: _elm_lang$core$Maybe$Just('New input')
+			label: _elm_lang$core$Maybe$Just('New input'),
+			disabled: false,
+			readonly: false,
+			size: _user$project$Models$Normal,
+			addon1: _elm_lang$core$Maybe$Nothing,
+			addon2: _elm_lang$core$Maybe$Nothing
 		});
 };
 var _user$project$FormUpdate$removeInput = F2(

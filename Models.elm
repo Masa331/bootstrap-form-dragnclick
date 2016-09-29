@@ -7,9 +7,10 @@ type alias Id = Int
 type alias Placeholder = Maybe String
 type alias RowNumber = Int
 type alias Label = Maybe String
+type Size = Small | Normal | Big
 
 type Input
-  = TextInput { id: Id, classList: ClassList, placeholder: Placeholder, label: Label }
+  = TextInput { id: Id, classList: ClassList, placeholder: Placeholder, label: Label, disabled: Bool, readonly: Bool, size: Size, addon1: Maybe String, addon2: Maybe String }
   | TextArea { id: Id, classList: ClassList, placeholder: Placeholder, label: Label, rowNumber: RowNumber }
   | Select { id: Id, classList: ClassList, label: Label }
   | Multiselect { id: Id, classList: ClassList, label: Label }
@@ -24,7 +25,7 @@ type alias Model = { form: Form, currentlyEdditedInputId: Maybe Int }
 new : Model
 new =
   let
-    textInput = TextInput { id = 1, classList = [ "form-control" ], placeholder = Nothing, label = (Just "Some input") }
+    textInput = TextInput { id = 1, classList = [ "form-control" ], placeholder = Nothing, label = (Just "Some input"), disabled = False, readonly = False, size = Normal, addon1 = Nothing, addon2 = Nothing }
     textArea = TextArea { id = 2, classList = [ "form-control" ], placeholder = Just "Some placeholder...", label = (Just "Some area"), rowNumber = 3 }
     checkbox = Checkbox { id = 2, classList = [  ], label = (Just "Some area") }
     button = Button { id = 2, classList = [ "form-control" ], label = (Just "Some area") }

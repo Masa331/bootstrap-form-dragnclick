@@ -39,6 +39,9 @@ var _user$project$Models$Model = F2(
 	function (a, b) {
 		return {form: a, currentlyEdditedInputId: b};
 	});
+var _user$project$Models$Big = {ctor: 'Big'};
+var _user$project$Models$Normal = {ctor: 'Normal'};
+var _user$project$Models$Small = {ctor: 'Small'};
 var _user$project$Models$Button = function (a) {
 	return {ctor: 'Button', _0: a};
 };
@@ -93,7 +96,12 @@ var _user$project$Models$new = function () {
 			classList: _elm_lang$core$Native_List.fromArray(
 				['form-control']),
 			placeholder: _elm_lang$core$Maybe$Nothing,
-			label: _elm_lang$core$Maybe$Just('Some input')
+			label: _elm_lang$core$Maybe$Just('Some input'),
+			disabled: false,
+			readonly: false,
+			size: _user$project$Models$Normal,
+			addon1: _elm_lang$core$Maybe$Nothing,
+			addon2: _elm_lang$core$Maybe$Nothing
 		});
 	return A2(
 		_user$project$Models$Model,
