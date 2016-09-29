@@ -1,10 +1,36 @@
-var _user$project$InputUpdate$labelUpdateFunc = F2(
-	function (inp, newLabel) {
+var _user$project$InputUpdate$disabledUpdateFunc = F2(
+	function (inp, newDisabled) {
 		var _p0 = inp;
 		if (_p0.ctor === 'TextInput') {
 			return _user$project$Models$TextInput(
 				_elm_lang$core$Native_Utils.update(
 					_p0._0,
+					{disabled: newDisabled}));
+		} else {
+			return inp;
+		}
+	});
+var _user$project$InputUpdate$smallUpdateFunc = F2(
+	function (inp, newSmall) {
+		var _p1 = inp;
+		if (_p1.ctor === 'TextInput') {
+			return _user$project$Models$TextInput(
+				_elm_lang$core$Native_Utils.update(
+					_p1._0,
+					{
+						small: _elm_lang$core$Maybe$Just(newSmall)
+					}));
+		} else {
+			return inp;
+		}
+	});
+var _user$project$InputUpdate$labelUpdateFunc = F2(
+	function (inp, newLabel) {
+		var _p2 = inp;
+		if (_p2.ctor === 'TextInput') {
+			return _user$project$Models$TextInput(
+				_elm_lang$core$Native_Utils.update(
+					_p2._0,
 					{
 						label: _elm_lang$core$Maybe$Just(newLabel)
 					}));
@@ -14,11 +40,11 @@ var _user$project$InputUpdate$labelUpdateFunc = F2(
 	});
 var _user$project$InputUpdate$placeholderUpdateFunc = F2(
 	function (inp, newPlaceholder) {
-		var _p1 = inp;
-		if (_p1.ctor === 'TextInput') {
+		var _p3 = inp;
+		if (_p3.ctor === 'TextInput') {
 			return _user$project$Models$TextInput(
 				_elm_lang$core$Native_Utils.update(
-					_p1._0,
+					_p3._0,
 					{
 						placeholder: _elm_lang$core$Maybe$Just(newPlaceholder)
 					}));
@@ -46,17 +72,21 @@ var _user$project$InputUpdate$updateInputAttribute = F4(
 	});
 var _user$project$InputUpdate$update = F2(
 	function (msg, model) {
-		var _p2 = model.currentlyEdditedInputId;
-		if (_p2.ctor === 'Nothing') {
+		var _p4 = model.currentlyEdditedInputId;
+		if (_p4.ctor === 'Nothing') {
 			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 		} else {
-			var _p4 = _p2._0;
-			var _p3 = msg;
-			switch (_p3.ctor) {
+			var _p6 = _p4._0;
+			var _p5 = msg;
+			switch (_p5.ctor) {
 				case 'PlaceholderEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$placeholderUpdateFunc, model, _p4, _p3._0);
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$placeholderUpdateFunc, model, _p6, _p5._0);
 				case 'LabelEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$labelUpdateFunc, model, _p4, _p3._0);
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$labelUpdateFunc, model, _p6, _p5._0);
+				case 'SmallEdit':
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$smallUpdateFunc, model, _p6, _p5._0);
+				case 'DisabledEdit':
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$disabledUpdateFunc, model, _p6, _p5._0);
 				default:
 					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 			}

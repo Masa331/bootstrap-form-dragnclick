@@ -13,9 +13,11 @@ type FormMsg =
   | EditInput Int
   | StopEditing
 
-type InputMsg 
+type InputMsg
   = PlaceholderEdit String
   | LabelEdit String
+  | SmallEdit String
+  | DisabledEdit Bool
   | NoOp
 
 type Msg =

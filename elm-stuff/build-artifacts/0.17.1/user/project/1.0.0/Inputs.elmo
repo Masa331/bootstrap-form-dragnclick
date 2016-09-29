@@ -571,17 +571,21 @@ var _user$project$Inputs$textInputHtml = F2(
 	function (inp, attrs) {
 		var links = _elm_lang$core$Maybe$Just(
 			_user$project$Inputs$editAndRemoveLink(inp));
-		var smallText = _elm_lang$core$Maybe$Just(
-			A2(
-				_elm_lang$html$Html$small,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('form-text text-muted')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('yesss!')
-					])));
+		var smallText = A2(
+			_elm_lang$core$Maybe$map,
+			function (value) {
+				return A2(
+					_elm_lang$html$Html$small,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$class('form-text text-muted')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text(value)
+						]));
+			},
+			attrs.small);
 		var add2 = A2(
 			_elm_lang$core$Maybe$map,
 			function (value) {

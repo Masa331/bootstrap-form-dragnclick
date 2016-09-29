@@ -1,38 +1,54 @@
-var _user$project$Models$extractLabel = function (inp) {
+var _user$project$Models$extractSmall = function (inp) {
 	var _p0 = inp;
 	if (_p0.ctor === 'TextInput') {
-		return _p0._0.label;
+		return _p0._0.small;
+	} else {
+		return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _user$project$Models$extractDisabled = function (inp) {
+	var _p1 = inp;
+	if (_p1.ctor === 'TextInput') {
+		return _p1._0.disabled;
+	} else {
+		return false;
+	}
+};
+var _user$project$Models$extractLabel = function (inp) {
+	var _p2 = inp;
+	if (_p2.ctor === 'TextInput') {
+		return _p2._0.label;
 	} else {
 		return _elm_lang$core$Maybe$Nothing;
 	}
 };
 var _user$project$Models$extractPlaceholder = function (inp) {
-	var _p1 = inp;
-	if (_p1.ctor === 'TextInput') {
-		return _p1._0.placeholder;
+	var _p3 = inp;
+	if (_p3.ctor === 'TextInput') {
+		return _p3._0.placeholder;
 	} else {
 		return _elm_lang$core$Maybe$Nothing;
 	}
 };
 var _user$project$Models$extractId = function (inp) {
-	var _p2 = inp;
-	switch (_p2.ctor) {
+	var _p4 = inp;
+	switch (_p4.ctor) {
 		case 'TextInput':
-			return _p2._0.id;
+			return _p4._0.id;
 		case 'TextArea':
-			return _p2._0.id;
+			return _p4._0.id;
 		case 'Select':
-			return _p2._0.id;
+			return _p4._0.id;
 		case 'Multiselect':
-			return _p2._0.id;
+			return _p4._0.id;
 		case 'FileUpload':
-			return _p2._0.id;
+			return _p4._0.id;
 		case 'Radio':
-			return _p2._0.id;
+			return _p4._0.id;
 		case 'Checkbox':
-			return _p2._0.id;
+			return _p4._0.id;
 		default:
-			return _p2._0.id;
+			return _p4._0.id;
 	}
 };
 var _user$project$Models$Model = F2(
@@ -101,7 +117,8 @@ var _user$project$Models$new = function () {
 			readonly: false,
 			size: _user$project$Models$Normal,
 			addon1: _elm_lang$core$Maybe$Nothing,
-			addon2: _elm_lang$core$Maybe$Nothing
+			addon2: _elm_lang$core$Maybe$Nothing,
+			small: _elm_lang$core$Maybe$Nothing
 		});
 	return A2(
 		_user$project$Models$Model,

@@ -10,7 +10,7 @@ type alias Label = Maybe String
 type Size = Small | Normal | Big
 
 type Input
-  = TextInput { id: Id, classList: ClassList, placeholder: Placeholder, label: Label, disabled: Bool, readonly: Bool, size: Size, addon1: Maybe String, addon2: Maybe String }
+  = TextInput { id: Id, classList: ClassList, placeholder: Placeholder, label: Label, disabled: Bool, readonly: Bool, size: Size, addon1: Maybe String, addon2: Maybe String, small: Maybe String }
   | TextArea { id: Id, classList: ClassList, placeholder: Placeholder, label: Label, rowNumber: RowNumber }
   | Select { id: Id, classList: ClassList, label: Label }
   | Multiselect { id: Id, classList: ClassList, label: Label }
@@ -25,7 +25,7 @@ type alias Model = { form: Form, currentlyEdditedInputId: Maybe Int }
 new : Model
 new =
   let
-    textInput = TextInput { id = 1, classList = [ "form-control" ], placeholder = Nothing, label = (Just "Some input"), disabled = False, readonly = False, size = Normal, addon1 = Nothing, addon2 = Nothing }
+    textInput = TextInput { id = 1, classList = [ "form-control" ], placeholder = Nothing, label = (Just "Some input"), disabled = False, readonly = False, size = Normal, addon1 = Nothing, addon2 = Nothing, small = Nothing }
     textArea = TextArea { id = 2, classList = [ "form-control" ], placeholder = Just "Some placeholder...", label = (Just "Some area"), rowNumber = 3 }
     checkbox = Checkbox { id = 2, classList = [  ], label = (Just "Some area") }
     button = Button { id = 2, classList = [ "form-control" ], label = (Just "Some area") }
@@ -54,4 +54,16 @@ extractLabel : Input -> Maybe String
 extractLabel inp =
   case inp of
     TextInput attrs -> attrs.label
+    _ -> Nothing
+
+extractDisabled : Input -> Bool
+extractDisabled inp =
+  case inp of
+    TextInput attrs -> attrs.disabled
+    _ -> False
+
+extractSmall : Input -> Maybe String
+extractSmall inp =
+  case inp of
+    TextInput attrs -> attrs.small
     _ -> Nothing

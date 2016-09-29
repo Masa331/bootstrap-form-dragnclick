@@ -54,7 +54,8 @@ textInputHtml inp attrs =
       else
         Just (Html.input inputAttrs [])
 
-    smallText = Just (small [ class "form-text text-muted" ] [ text "yesss!" ])
+    -- smallText = Just (small [ class "form-text text-muted" ] [ text "yesss!" ])
+    smallText = Maybe.map (\value -> small [ class "form-text text-muted" ] [ text value ]) attrs.small
     links = Just (editAndRemoveLink inp)
   in
     div [ class "form-group" ] ([ inputLabel, input, smallText, links ] |> List.filterMap identity)

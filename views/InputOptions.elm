@@ -12,7 +12,7 @@ view : Input -> List (Html Msg)
 view inp =
   case inp of
     TextInput attrs ->
-      List.concat [ placeholderEdit (extractPlaceholder inp), labelEdit (extractLabel inp), smallUnderEdit, typeEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
+      List.concat [ placeholderEdit (extractPlaceholder inp), labelEdit (extractLabel inp), smallUnderEdit (extractSmall inp), typeEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit (extractDisabled inp), readonlyEdit ]
     _ ->
       [ b [] [text "Not yet implemented ;)"]
       ]
@@ -38,19 +38,25 @@ labelEdit string =
     labelText =
       case string of
         Just s -> s
-        Nothing -> "ehe"
+        Nothing -> ""
   in
     [ b [] [ text "Label" ]
     , hr [] []
     , div [ class "form-group" ] [ input [ class "form-control", onInput (InputMessage << LabelEdit), value labelText ] [] ]
     ]
 
-smallUnderEdit : List (Html Msg)
-smallUnderEdit =
-  [ b [] [ text "Small text under input" ]
-  , hr [] []
-  , div [ class "form-group" ] [ input [ class "form-control" ] [] ]
-  ]
+-- smallUnderEdit : List (Html Msg)
+smallUnderEdit string =
+  let
+    smallText =
+      case string of
+        Just s -> s
+        Nothing -> ""
+  in
+    [ b [] [ text "Small text under input" ]
+    , hr [] []
+    , div [ class "form-group" ] [ input [ class "form-control", value smallText, onInput (InputMessage << SmallEdit) ] [ ] ]
+    ]
 
 typeEdit : List (Html Msg)
 typeEdit =
@@ -102,11 +108,11 @@ sizeEdit =
     , div [ class "form-group" ] [ Html.select [ class "form-control" ] types ]
     ]
 
-disabledEdit : List (Html Msg)
-disabledEdit =
+-- disabledEdit : List (Html Msg)
+disabledEdit value =
   [ b [] [ text "Disabled" ]
   , hr [] []
-  , div [ class "form-group" ] [ label [ class "form-check-label" ] [ input [ type' "checkbox", class "form-check-input" ] [] ] ]
+  , div [ class "form-group" ] [ label [ class "form-check-label" ] [ input [ type' "checkbox", class "form-check-input", onCheck (InputMessage << DisabledEdit), Html.Attributes.checked value ] [] ] ]
   ]
 
 readonlyEdit : List (Html Msg)

@@ -101,7 +101,8 @@ var _user$project$FormUpdate$newTextInput = function (model) {
 			readonly: false,
 			size: _user$project$Models$Normal,
 			addon1: _elm_lang$core$Maybe$Nothing,
-			addon2: _elm_lang$core$Maybe$Nothing
+			addon2: _elm_lang$core$Maybe$Nothing,
+			small: _elm_lang$core$Maybe$Nothing
 		});
 };
 var _user$project$FormUpdate$removeInput = F2(
