@@ -1,10 +1,22 @@
-var _user$project$InputUpdate$disabledUpdateFunc = F2(
-	function (inp, newDisabled) {
+var _user$project$InputUpdate$readonlyUpdateFunc = F2(
+	function (inp, newReadonly) {
 		var _p0 = inp;
 		if (_p0.ctor === 'TextInput') {
 			return _user$project$Models$TextInput(
 				_elm_lang$core$Native_Utils.update(
 					_p0._0,
+					{readonly: newReadonly}));
+		} else {
+			return inp;
+		}
+	});
+var _user$project$InputUpdate$disabledUpdateFunc = F2(
+	function (inp, newDisabled) {
+		var _p1 = inp;
+		if (_p1.ctor === 'TextInput') {
+			return _user$project$Models$TextInput(
+				_elm_lang$core$Native_Utils.update(
+					_p1._0,
 					{disabled: newDisabled}));
 		} else {
 			return inp;
@@ -12,11 +24,11 @@ var _user$project$InputUpdate$disabledUpdateFunc = F2(
 	});
 var _user$project$InputUpdate$smallUpdateFunc = F2(
 	function (inp, newSmall) {
-		var _p1 = inp;
-		if (_p1.ctor === 'TextInput') {
+		var _p2 = inp;
+		if (_p2.ctor === 'TextInput') {
 			return _user$project$Models$TextInput(
 				_elm_lang$core$Native_Utils.update(
-					_p1._0,
+					_p2._0,
 					{
 						small: _elm_lang$core$Maybe$Just(newSmall)
 					}));
@@ -26,11 +38,11 @@ var _user$project$InputUpdate$smallUpdateFunc = F2(
 	});
 var _user$project$InputUpdate$labelUpdateFunc = F2(
 	function (inp, newLabel) {
-		var _p2 = inp;
-		if (_p2.ctor === 'TextInput') {
+		var _p3 = inp;
+		if (_p3.ctor === 'TextInput') {
 			return _user$project$Models$TextInput(
 				_elm_lang$core$Native_Utils.update(
-					_p2._0,
+					_p3._0,
 					{
 						label: _elm_lang$core$Maybe$Just(newLabel)
 					}));
@@ -40,11 +52,11 @@ var _user$project$InputUpdate$labelUpdateFunc = F2(
 	});
 var _user$project$InputUpdate$placeholderUpdateFunc = F2(
 	function (inp, newPlaceholder) {
-		var _p3 = inp;
-		if (_p3.ctor === 'TextInput') {
+		var _p4 = inp;
+		if (_p4.ctor === 'TextInput') {
 			return _user$project$Models$TextInput(
 				_elm_lang$core$Native_Utils.update(
-					_p3._0,
+					_p4._0,
 					{
 						placeholder: _elm_lang$core$Maybe$Just(newPlaceholder)
 					}));
@@ -55,11 +67,11 @@ var _user$project$InputUpdate$placeholderUpdateFunc = F2(
 var _user$project$InputUpdate$secondAddonEditFunc = F2(
 	function (inp, newAddon) {
 		var wrappedAddon = _elm_lang$core$Native_Utils.eq(newAddon, '') ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(newAddon);
-		var _p4 = inp;
-		if (_p4.ctor === 'TextInput') {
+		var _p5 = inp;
+		if (_p5.ctor === 'TextInput') {
 			return _user$project$Models$TextInput(
 				_elm_lang$core$Native_Utils.update(
-					_p4._0,
+					_p5._0,
 					{addon2: wrappedAddon}));
 		} else {
 			return inp;
@@ -68,12 +80,57 @@ var _user$project$InputUpdate$secondAddonEditFunc = F2(
 var _user$project$InputUpdate$firstAddonEditFunc = F2(
 	function (inp, newAddon) {
 		var wrappedAddon = _elm_lang$core$Native_Utils.eq(newAddon, '') ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(newAddon);
-		var _p5 = inp;
-		if (_p5.ctor === 'TextInput') {
+		var _p6 = inp;
+		if (_p6.ctor === 'TextInput') {
 			return _user$project$Models$TextInput(
 				_elm_lang$core$Native_Utils.update(
-					_p5._0,
+					_p6._0,
 					{addon1: wrappedAddon}));
+		} else {
+			return inp;
+		}
+	});
+var _user$project$InputUpdate$typeEditFunc = F2(
+	function (inp, newType) {
+		var neco = function () {
+			var _p7 = newType;
+			switch (_p7) {
+				case 'text':
+					return _user$project$Models$Text;
+				case 'search':
+					return _user$project$Models$Search;
+				case 'email':
+					return _user$project$Models$Email;
+				case 'url':
+					return _user$project$Models$Url;
+				case 'tel':
+					return _user$project$Models$Tel;
+				case 'password':
+					return _user$project$Models$Password;
+				case 'number':
+					return _user$project$Models$Number;
+				case 'datetime-local':
+					return _user$project$Models$DatetimeLocal;
+				case 'date':
+					return _user$project$Models$Date;
+				case 'month':
+					return _user$project$Models$Month;
+				case 'week':
+					return _user$project$Models$Week;
+				case 'time':
+					return _user$project$Models$Time;
+				case 'color':
+					return _user$project$Models$Color;
+				default:
+					return _user$project$Models$Text;
+			}
+		}();
+		var _p8 = inp;
+		if (_p8.ctor === 'TextInput') {
+			return _user$project$Models$TextInput(
+				_elm_lang$core$Native_Utils.update(
+					_p8._0,
+					{type$: neco}));
 		} else {
 			return inp;
 		}
@@ -81,8 +138,8 @@ var _user$project$InputUpdate$firstAddonEditFunc = F2(
 var _user$project$InputUpdate$sizeEditFunc = F2(
 	function (inp, newSize) {
 		var neco = function () {
-			var _p6 = newSize;
-			switch (_p6) {
+			var _p9 = newSize;
+			switch (_p9) {
 				case 'small':
 					return _user$project$Models$Small;
 				case 'normal':
@@ -93,11 +150,11 @@ var _user$project$InputUpdate$sizeEditFunc = F2(
 					return _user$project$Models$Normal;
 			}
 		}();
-		var _p7 = inp;
-		if (_p7.ctor === 'TextInput') {
+		var _p10 = inp;
+		if (_p10.ctor === 'TextInput') {
 			return _user$project$Models$TextInput(
 				_elm_lang$core$Native_Utils.update(
-					_p7._0,
+					_p10._0,
 					{size: neco}));
 		} else {
 			return inp;
@@ -123,29 +180,31 @@ var _user$project$InputUpdate$updateInputAttribute = F4(
 	});
 var _user$project$InputUpdate$update = F2(
 	function (msg, model) {
-		var _p8 = model.currentlyEdditedInputId;
-		if (_p8.ctor === 'Nothing') {
+		var _p11 = model.currentlyEdditedInputId;
+		if (_p11.ctor === 'Nothing') {
 			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 		} else {
-			var _p10 = _p8._0;
-			var _p9 = msg;
-			switch (_p9.ctor) {
+			var _p13 = _p11._0;
+			var _p12 = msg;
+			switch (_p12.ctor) {
 				case 'PlaceholderEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$placeholderUpdateFunc, model, _p10, _p9._0);
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$placeholderUpdateFunc, model, _p13, _p12._0);
 				case 'LabelEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$labelUpdateFunc, model, _p10, _p9._0);
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$labelUpdateFunc, model, _p13, _p12._0);
 				case 'SmallEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$smallUpdateFunc, model, _p10, _p9._0);
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$smallUpdateFunc, model, _p13, _p12._0);
 				case 'DisabledEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$disabledUpdateFunc, model, _p10, _p9._0);
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$disabledUpdateFunc, model, _p13, _p12._0);
+				case 'ReadonlyEdit':
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$readonlyUpdateFunc, model, _p13, _p12._0);
 				case 'FirstAddonEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$firstAddonEditFunc, model, _p10, _p9._0);
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$firstAddonEditFunc, model, _p13, _p12._0);
 				case 'SecondAddonEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$secondAddonEditFunc, model, _p10, _p9._0);
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$secondAddonEditFunc, model, _p13, _p12._0);
 				case 'SizeEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$sizeEditFunc, model, _p10, _p9._0);
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$sizeEditFunc, model, _p13, _p12._0);
 				default:
-					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$typeEditFunc, model, _p13, _p12._0);
 			}
 		}
 	});

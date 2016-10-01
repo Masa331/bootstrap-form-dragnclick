@@ -1,47 +1,55 @@
-var _user$project$InputOptions$readonlyEdit = _elm_lang$core$Native_List.fromArray(
-	[
-		A2(
-		_elm_lang$html$Html$b,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Readonly')
-			])),
-		A2(
-		_elm_lang$html$Html$hr,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[])),
-		A2(
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$class('form-group')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_elm_lang$html$Html$label,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('form-check-label')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(
-						_elm_lang$html$Html$input,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html_Attributes$type$('checkbox'),
-								_elm_lang$html$Html_Attributes$class('form-check-input')
-							]),
-						_elm_lang$core$Native_List.fromArray(
-							[]))
-					]))
-			]))
-	]);
+var _user$project$InputOptions$readonlyEdit = function (value) {
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$b,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Readonly')
+				])),
+			A2(
+			_elm_lang$html$Html$hr,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+			A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('form-group')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$label,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$class('form-check-label')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_elm_lang$html$Html$input,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$type$('checkbox'),
+									_elm_lang$html$Html_Attributes$class('form-check-input'),
+									_elm_lang$html$Html_Events$onCheck(
+									function (_p0) {
+										return _user$project$Messages$InputMessage(
+											_user$project$Messages$ReadonlyEdit(_p0));
+									}),
+									_elm_lang$html$Html_Attributes$checked(value)
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[]))
+						]))
+				]))
+		]);
+};
 var _user$project$InputOptions$disabledEdit = function (value) {
 	return _elm_lang$core$Native_List.fromArray(
 		[
@@ -82,9 +90,9 @@ var _user$project$InputOptions$disabledEdit = function (value) {
 									_elm_lang$html$Html_Attributes$type$('checkbox'),
 									_elm_lang$html$Html_Attributes$class('form-check-input'),
 									_elm_lang$html$Html_Events$onCheck(
-									function (_p0) {
+									function (_p1) {
 										return _user$project$Messages$InputMessage(
-											_user$project$Messages$DisabledEdit(_p0));
+											_user$project$Messages$DisabledEdit(_p1));
 									}),
 									_elm_lang$html$Html_Attributes$checked(value)
 								]),
@@ -96,8 +104,8 @@ var _user$project$InputOptions$disabledEdit = function (value) {
 };
 var _user$project$InputOptions$sizeEdit = function (size) {
 	var options = function () {
-		var _p1 = size;
-		switch (_p1.ctor) {
+		var _p2 = size;
+		switch (_p2.ctor) {
 			case 'Small':
 				return _elm_lang$core$Native_List.fromArray(
 					[
@@ -220,9 +228,9 @@ var _user$project$InputOptions$sizeEdit = function (size) {
 						[
 							_elm_lang$html$Html_Attributes$class('form-control'),
 							_elm_lang$html$Html_Events$onInput(
-							function (_p2) {
+							function (_p3) {
 								return _user$project$Messages$InputMessage(
-									_user$project$Messages$SizeEdit(_p2));
+									_user$project$Messages$SizeEdit(_p3));
 							})
 						]),
 					options)
@@ -231,9 +239,9 @@ var _user$project$InputOptions$sizeEdit = function (size) {
 };
 var _user$project$InputOptions$addon2Edit = function (string) {
 	var addonText = function () {
-		var _p3 = string;
-		if (_p3.ctor === 'Just') {
-			return _p3._0;
+		var _p4 = string;
+		if (_p4.ctor === 'Just') {
+			return _p4._0;
 		} else {
 			return '';
 		}
@@ -269,9 +277,9 @@ var _user$project$InputOptions$addon2Edit = function (string) {
 							_elm_lang$html$Html_Attributes$class('form-control'),
 							_elm_lang$html$Html_Attributes$value(addonText),
 							_elm_lang$html$Html_Events$onInput(
-							function (_p4) {
+							function (_p5) {
 								return _user$project$Messages$InputMessage(
-									_user$project$Messages$SecondAddonEdit(_p4));
+									_user$project$Messages$SecondAddonEdit(_p5));
 							})
 						]),
 					_elm_lang$core$Native_List.fromArray(
@@ -281,9 +289,9 @@ var _user$project$InputOptions$addon2Edit = function (string) {
 };
 var _user$project$InputOptions$addon1Edit = function (string) {
 	var addonText = function () {
-		var _p5 = string;
-		if (_p5.ctor === 'Just') {
-			return _p5._0;
+		var _p6 = string;
+		if (_p6.ctor === 'Just') {
+			return _p6._0;
 		} else {
 			return '';
 		}
@@ -319,9 +327,9 @@ var _user$project$InputOptions$addon1Edit = function (string) {
 							_elm_lang$html$Html_Attributes$class('form-control'),
 							_elm_lang$html$Html_Attributes$value(addonText),
 							_elm_lang$html$Html_Events$onInput(
-							function (_p6) {
+							function (_p7) {
 								return _user$project$Messages$InputMessage(
-									_user$project$Messages$FirstAddonEdit(_p6));
+									_user$project$Messages$FirstAddonEdit(_p7));
 							})
 						]),
 					_elm_lang$core$Native_List.fromArray(
@@ -329,113 +337,37 @@ var _user$project$InputOptions$addon1Edit = function (string) {
 				]))
 		]);
 };
-var _user$project$InputOptions$typeEdit = function () {
-	var o13 = A2(
-		_elm_lang$html$Html$option,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('color')
-			]));
-	var o12 = A2(
-		_elm_lang$html$Html$option,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('time')
-			]));
-	var o11 = A2(
-		_elm_lang$html$Html$option,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('week')
-			]));
-	var o10 = A2(
-		_elm_lang$html$Html$option,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('month')
-			]));
-	var o9 = A2(
-		_elm_lang$html$Html$option,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('date')
-			]));
-	var o8 = A2(
-		_elm_lang$html$Html$option,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('datetime-local')
-			]));
-	var o7 = A2(
-		_elm_lang$html$Html$option,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('number')
-			]));
-	var o6 = A2(
-		_elm_lang$html$Html$option,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('password')
-			]));
-	var o5 = A2(
-		_elm_lang$html$Html$option,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('tel')
-			]));
-	var o4 = A2(
-		_elm_lang$html$Html$option,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('url')
-			]));
-	var o3 = A2(
-		_elm_lang$html$Html$option,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('email')
-			]));
-	var o2 = A2(
-		_elm_lang$html$Html$option,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('search')
-			]));
-	var o1 = A2(
-		_elm_lang$html$Html$option,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('text')
-			]));
-	var types = _elm_lang$core$Native_List.fromArray(
-		[o1, o2, o3, o4, o5, o6, o7, o8, o9, o10, o11, o12, o13]);
+var _user$project$InputOptions$typeEdit = function (type$) {
+	var actualType = _user$project$Models$typeToText(type$);
+	var o = function (optionType) {
+		return A2(
+			_elm_lang$html$Html$option,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$selected(
+					_elm_lang$core$Native_Utils.eq(optionType, actualType) ? true : false)
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text(optionType)
+				]));
+	};
+	var options = _elm_lang$core$Native_List.fromArray(
+		[
+			o('text'),
+			o('search'),
+			o('email'),
+			o('url'),
+			o('tel'),
+			o('password'),
+			o('number'),
+			o('datetime-local'),
+			o('date'),
+			o('month'),
+			o('week'),
+			o('time'),
+			o('color')
+		]);
 	return _elm_lang$core$Native_List.fromArray(
 		[
 			A2(
@@ -464,17 +396,22 @@ var _user$project$InputOptions$typeEdit = function () {
 					_elm_lang$html$Html$select,
 					_elm_lang$core$Native_List.fromArray(
 						[
-							_elm_lang$html$Html_Attributes$class('form-control')
+							_elm_lang$html$Html_Attributes$class('form-control'),
+							_elm_lang$html$Html_Events$onInput(
+							function (_p8) {
+								return _user$project$Messages$InputMessage(
+									_user$project$Messages$TypeEdit(_p8));
+							})
 						]),
-					types)
+					options)
 				]))
 		]);
-}();
+};
 var _user$project$InputOptions$smallUnderEdit = function (string) {
 	var smallText = function () {
-		var _p7 = string;
-		if (_p7.ctor === 'Just') {
-			return _p7._0;
+		var _p9 = string;
+		if (_p9.ctor === 'Just') {
+			return _p9._0;
 		} else {
 			return '';
 		}
@@ -510,9 +447,9 @@ var _user$project$InputOptions$smallUnderEdit = function (string) {
 							_elm_lang$html$Html_Attributes$class('form-control'),
 							_elm_lang$html$Html_Attributes$value(smallText),
 							_elm_lang$html$Html_Events$onInput(
-							function (_p8) {
+							function (_p10) {
 								return _user$project$Messages$InputMessage(
-									_user$project$Messages$SmallEdit(_p8));
+									_user$project$Messages$SmallEdit(_p10));
 							})
 						]),
 					_elm_lang$core$Native_List.fromArray(
@@ -522,9 +459,9 @@ var _user$project$InputOptions$smallUnderEdit = function (string) {
 };
 var _user$project$InputOptions$labelEdit = function (string) {
 	var labelText = function () {
-		var _p9 = string;
-		if (_p9.ctor === 'Just') {
-			return _p9._0;
+		var _p11 = string;
+		if (_p11.ctor === 'Just') {
+			return _p11._0;
 		} else {
 			return '';
 		}
@@ -559,9 +496,9 @@ var _user$project$InputOptions$labelEdit = function (string) {
 						[
 							_elm_lang$html$Html_Attributes$class('form-control'),
 							_elm_lang$html$Html_Events$onInput(
-							function (_p10) {
+							function (_p12) {
 								return _user$project$Messages$InputMessage(
-									_user$project$Messages$LabelEdit(_p10));
+									_user$project$Messages$LabelEdit(_p12));
 							}),
 							_elm_lang$html$Html_Attributes$value(labelText)
 						]),
@@ -572,9 +509,9 @@ var _user$project$InputOptions$labelEdit = function (string) {
 };
 var _user$project$InputOptions$placeholderEdit = function (string) {
 	var placeholderText = function () {
-		var _p11 = string;
-		if (_p11.ctor === 'Just') {
-			return _p11._0;
+		var _p13 = string;
+		if (_p13.ctor === 'Just') {
+			return _p13._0;
 		} else {
 			return '';
 		}
@@ -609,9 +546,9 @@ var _user$project$InputOptions$placeholderEdit = function (string) {
 						[
 							_elm_lang$html$Html_Attributes$class('form-control'),
 							_elm_lang$html$Html_Events$onInput(
-							function (_p12) {
+							function (_p14) {
 								return _user$project$Messages$InputMessage(
-									_user$project$Messages$PlaceholderEdit(_p12));
+									_user$project$Messages$PlaceholderEdit(_p14));
 							}),
 							_elm_lang$html$Html_Attributes$value(placeholderText)
 						]),
@@ -621,8 +558,8 @@ var _user$project$InputOptions$placeholderEdit = function (string) {
 		]);
 };
 var _user$project$InputOptions$view = function (inp) {
-	var _p13 = inp;
-	if (_p13.ctor === 'TextInput') {
+	var _p15 = inp;
+	if (_p15.ctor === 'TextInput') {
 		return _elm_lang$core$List$concat(
 			_elm_lang$core$Native_List.fromArray(
 				[
@@ -632,7 +569,8 @@ var _user$project$InputOptions$view = function (inp) {
 					_user$project$Models$extractLabel(inp)),
 					_user$project$InputOptions$smallUnderEdit(
 					_user$project$Models$extractSmall(inp)),
-					_user$project$InputOptions$typeEdit,
+					_user$project$InputOptions$typeEdit(
+					_user$project$Models$extractType(inp)),
 					_user$project$InputOptions$addon1Edit(
 					_user$project$Models$extractAddon1(inp)),
 					_user$project$InputOptions$addon2Edit(
@@ -641,7 +579,8 @@ var _user$project$InputOptions$view = function (inp) {
 					_user$project$Models$extractSize(inp)),
 					_user$project$InputOptions$disabledEdit(
 					_user$project$Models$extractDisabled(inp)),
-					_user$project$InputOptions$readonlyEdit
+					_user$project$InputOptions$readonlyEdit(
+					_user$project$Models$extractReadonly(inp))
 				]));
 	} else {
 		return _elm_lang$core$Native_List.fromArray(

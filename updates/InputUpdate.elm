@@ -18,14 +18,16 @@ update msg model =
           updateInputAttribute smallUpdateFunc model inputId newLabel
         DisabledEdit newDisabled ->
           updateInputAttribute disabledUpdateFunc model inputId newDisabled
+        ReadonlyEdit newDisabled ->
+          updateInputAttribute readonlyUpdateFunc model inputId newDisabled
         FirstAddonEdit newAddon ->
           updateInputAttribute firstAddonEditFunc model inputId newAddon
         SecondAddonEdit newAddon ->
           updateInputAttribute secondAddonEditFunc model inputId newAddon
         SizeEdit newSize ->
           updateInputAttribute sizeEditFunc model inputId newSize
-        TypeEdit string ->
-          (model, Cmd.none)
+        TypeEdit newType ->
+          updateInputAttribute typeEditFunc model inputId newType
 
 -------------
 -- Private --
@@ -42,8 +44,6 @@ updateInputAttribute updateFunc model inputId newPlaceholder =
 sizeEditFunc : Input -> String -> Input
 sizeEditFunc inp newSize =
   let
-    -- wrappedAddon = if newAddon == "" then Nothing else Just newAddon
-
     neco =
       case newSize of
         "small" -> Small
@@ -54,6 +54,31 @@ sizeEditFunc inp newSize =
     case inp of
       TextInput attrs ->
         TextInput { attrs | size = neco }
+      _ -> inp
+
+typeEditFunc : Input -> String -> Input
+typeEditFunc inp newType =
+  let
+    neco =
+      case newType of
+        "text" -> Text
+        "search" -> Search
+        "email" -> Email
+        "url" -> Url
+        "tel" -> Tel
+        "password" -> Password
+        "number" -> Number
+        "datetime-local" -> DatetimeLocal
+        "date" -> Date
+        "month" -> Month
+        "week" -> Week
+        "time" -> Time
+        "color" -> Color
+        _ -> Text
+  in
+    case inp of
+      TextInput attrs ->
+        TextInput { attrs | type' = neco }
       _ -> inp
 
 firstAddonEditFunc : Input -> String -> Input
@@ -102,4 +127,11 @@ disabledUpdateFunc inp newDisabled =
   case inp of
     TextInput attrs ->
       TextInput { attrs | disabled = newDisabled }
+    _ -> inp
+
+readonlyUpdateFunc : Input -> Bool -> Input
+readonlyUpdateFunc inp newReadonly =
+  case inp of
+    TextInput attrs ->
+      TextInput { attrs | readonly = newReadonly }
     _ -> inp

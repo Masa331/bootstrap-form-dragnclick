@@ -12,7 +12,7 @@ view : Input -> List (Html Msg)
 view inp =
   case inp of
     TextInput attrs ->
-      List.concat [ placeholderEdit (extractPlaceholder inp), labelEdit (extractLabel inp), smallUnderEdit (extractSmall inp), typeEdit, addon1Edit (extractAddon1 inp), addon2Edit (extractAddon2 inp), sizeEdit (extractSize inp), disabledEdit (extractDisabled inp), readonlyEdit ]
+      List.concat [ placeholderEdit (extractPlaceholder inp), labelEdit (extractLabel inp), smallUnderEdit (extractSmall inp), typeEdit (extractType inp), addon1Edit (extractAddon1 inp), addon2Edit (extractAddon2 inp), sizeEdit (extractSize inp), disabledEdit (extractDisabled inp), readonlyEdit (extractReadonly inp) ]
     _ ->
       [ b [] [text "Not yet implemented ;)"]
       ]
@@ -58,27 +58,16 @@ smallUnderEdit string =
     , div [ class "form-group" ] [ input [ class "form-control", value smallText, onInput (InputMessage << SmallEdit) ] [ ] ]
     ]
 
-typeEdit : List (Html Msg)
-typeEdit =
+typeEdit : InputType -> List (Html Msg)
+typeEdit type' =
   let
-    o1 = option [] [ text "text" ]
-    o2 = option [] [ text "search" ]
-    o3 = option [] [ text "email" ]
-    o4 = option [] [ text "url" ]
-    o5 = option [] [ text "tel" ]
-    o6 = option [] [ text "password" ]
-    o7 = option [] [ text "number" ]
-    o8 = option [] [ text "datetime-local" ]
-    o9 = option [] [ text "date" ]
-    o10 = option [] [ text "month" ]
-    o11 = option [] [ text "week" ]
-    o12 = option [] [ text "time" ]
-    o13 = option [] [ text "color" ]
-    types = [o1, o2, o3, o4, o5, o6, o7, o8, o9, o10, o11, o12, o13]
+    actualType = typeToText type'
+    o = (\optionType -> option [ selected (if optionType == actualType then True else False) ] [ text optionType ] )
+    options = [o "text", o "search", o "email", o "url", o "tel", o "password", o "number", o "datetime-local", o "date", o "month", o "week", o "time", o "color"]
   in
     [ b [] [ text "Text input type" ]
     , hr [] []
-    , div [ class "form-group" ] [ Html.select [ class "form-control" ] types ]
+    , div [ class "form-group" ] [ Html.select [ class "form-control", onInput (InputMessage << TypeEdit) ] options ]
     ]
 
 addon1Edit : Maybe String -> List (Html Msg)
@@ -128,9 +117,9 @@ disabledEdit value =
   , div [ class "form-group" ] [ label [ class "form-check-label" ] [ input [ type' "checkbox", class "form-check-input", onCheck (InputMessage << DisabledEdit), Html.Attributes.checked value ] [] ] ]
   ]
 
-readonlyEdit : List (Html Msg)
-readonlyEdit =
+-- readonlyEdit : List (Html Msg)
+readonlyEdit value =
   [ b [] [ text "Readonly" ]
   , hr [] []
-  , div [ class "form-group" ] [ label [ class "form-check-label" ] [ input [ type' "checkbox", class "form-check-input" ] [] ] ]
+  , div [ class "form-group" ] [ label [ class "form-check-label" ] [ input [ type' "checkbox", class "form-check-input", onCheck (InputMessage << ReadonlyEdit), Html.Attributes.checked value ] [] ] ]
   ]

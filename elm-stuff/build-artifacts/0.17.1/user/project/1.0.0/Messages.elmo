@@ -25,6 +25,9 @@ var _user$project$Messages$SecondAddonEdit = function (a) {
 var _user$project$Messages$FirstAddonEdit = function (a) {
 	return {ctor: 'FirstAddonEdit', _0: a};
 };
+var _user$project$Messages$ReadonlyEdit = function (a) {
+	return {ctor: 'ReadonlyEdit', _0: a};
+};
 var _user$project$Messages$DisabledEdit = function (a) {
 	return {ctor: 'DisabledEdit', _0: a};
 };

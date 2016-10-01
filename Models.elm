@@ -8,9 +8,10 @@ type alias Placeholder = Maybe String
 type alias RowNumber = Int
 type alias Label = Maybe String
 type Size = Small | Normal | Large
+type InputType = Text | Search | Email | Url | Tel | Password | Number | DatetimeLocal | Date | Month | Week | Time | Color
 
 type Input
-  = TextInput { id: Id, classList: ClassList, placeholder: Placeholder, label: Label, disabled: Bool, readonly: Bool, size: Size, addon1: Maybe String, addon2: Maybe String, small: Maybe String }
+  = TextInput { id: Id, classList: ClassList, placeholder: Placeholder, label: Label, disabled: Bool, readonly: Bool, size: Size, addon1: Maybe String, addon2: Maybe String, small: Maybe String, type': InputType }
   | TextArea { id: Id, classList: ClassList, placeholder: Placeholder, label: Label, rowNumber: RowNumber }
   | Select { id: Id, classList: ClassList, label: Label }
   | Multiselect { id: Id, classList: ClassList, label: Label }
@@ -25,7 +26,7 @@ type alias Model = { form: Form, currentlyEdditedInputId: Maybe Int }
 new : Model
 new =
   let
-    textInput = TextInput { id = 1, classList = [ "form-control" ], placeholder = Nothing, label = (Just "Some input"), disabled = False, readonly = False, size = Normal, addon1 = Nothing, addon2 = Nothing, small = Nothing }
+    textInput = TextInput { id = 1, classList = [ "form-control" ], placeholder = Nothing, label = (Just "Some input"), disabled = False, readonly = False, size = Normal, addon1 = Nothing, addon2 = Nothing, small = Nothing, type' = Text }
     textArea = TextArea { id = 2, classList = [ "form-control" ], placeholder = Just "Some placeholder...", label = (Just "Some area"), rowNumber = 3 }
     checkbox = Checkbox { id = 2, classList = [  ], label = (Just "Some area") }
     button = Button { id = 2, classList = [ "form-control" ], label = (Just "Some area") }
@@ -62,6 +63,12 @@ extractDisabled inp =
     TextInput attrs -> attrs.disabled
     _ -> False
 
+extractReadonly : Input -> Bool
+extractReadonly inp =
+  case inp of
+    TextInput attrs -> attrs.readonly
+    _ -> False
+
 extractSmall : Input -> Maybe String
 extractSmall inp =
   case inp of
@@ -85,3 +92,26 @@ extractSize inp =
   case inp of
     TextInput attrs -> attrs.size
     _ -> Normal
+
+extractType : Input -> InputType
+extractType inp =
+  case inp of
+    TextInput attrs -> attrs.type'
+    _ -> Text
+
+typeToText : InputType -> String
+typeToText type' =
+  case type' of
+    Text -> "text"
+    Search -> "search"
+    Email -> "email"
+    Url -> "url"
+    Tel -> "tel"
+    Password -> "password"
+    Number -> "number"
+    DatetimeLocal -> "datetime-local"
+    Date -> "date"
+    Month -> "month"
+    Week -> "week"
+    Time -> "time"
+    Color -> "color"

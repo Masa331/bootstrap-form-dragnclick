@@ -18,6 +18,7 @@ type InputMsg
   | LabelEdit String
   | SmallEdit String
   | DisabledEdit Bool
+  | ReadonlyEdit Bool
   | FirstAddonEdit String
   | SecondAddonEdit String
   | SizeEdit String

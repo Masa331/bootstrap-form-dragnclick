@@ -43,7 +43,9 @@ textInputHtml inp attrs =
         Normal -> ""
         Large -> "form-control-lg"
     inputClasses = Just (class (String.join " " (sizeClass::attrs.classList)))
-    inputAttrs = [ idToAttr attrs.id, inputClasses, placeholderToAttr attrs.placeholder, Just (type' "text"), readonly, disabled ]
+
+    inputType = typeToText attrs.type'
+    inputAttrs = [ idToAttr attrs.id, inputClasses, placeholderToAttr attrs.placeholder, Just (type' inputType), readonly, disabled ]
       |> List.filterMap identity
 
     add1 = Maybe.map (\value -> div [ class "input-group-addon" ] [ text value ]) attrs.addon1

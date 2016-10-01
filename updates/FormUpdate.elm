@@ -36,7 +36,7 @@ removeInput model id =
 
 newTextInput : Model -> Input
 newTextInput model =
-  TextInput { id = countNewInputId model, classList = [ "form-control" ], placeholder = Nothing, label = Just "New input", disabled = False, readonly = False, size = Normal, addon1 = Nothing, addon2 = Nothing, small = Nothing }
+  TextInput { id = countNewInputId model, classList = [ "form-control" ], placeholder = Nothing, label = Just "New input", disabled = False, readonly = False, size = Normal, addon1 = Nothing, addon2 = Nothing, small = Nothing, type' = Text }
 
 newTextArea : Model -> Input
 newTextArea model =
