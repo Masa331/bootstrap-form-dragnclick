@@ -28,6 +28,12 @@ update msg model =
           updateInputAttribute sizeEditFunc model inputId newSize
         TypeEdit newType ->
           updateInputAttribute typeEditFunc model inputId newType
+        NewOptionEdit value ->
+          ({ model | newOption = value }, Cmd.none)
+        SaveNewOption ->
+          updateInputAttribute addNewOptionFunc model inputId model.newOption
+        RemoveOption value ->
+          updateInputAttribute removeOptionFunc model inputId value
 
 -------------
 -- Private --
@@ -40,6 +46,23 @@ updateInputAttribute updateFunc model inputId newPlaceholder =
     newInputs = List.map (\inp -> if extractId inp == inputId then updateFunc inp newPlaceholder else inp) model.form
   in
     ({ model | form = newInputs }, Cmd.none)
+
+removeOptionFunc : Input -> String -> Input
+removeOptionFunc inp newOption =
+  let
+    func = (\neco -> if newOption == neco then Nothing else Just neco)
+  in
+  case inp of
+    Select attrs ->
+      Select { attrs | options = List.map func attrs.options |> List.filterMap identity }
+    _ -> inp
+
+addNewOptionFunc : Input -> String -> Input
+addNewOptionFunc inp newOption =
+  case inp of
+    Select attrs ->
+      Select { attrs | options = newOption::attrs.options }
+    _ -> inp
 
 sizeEditFunc : Input -> String -> Input
 sizeEditFunc inp newSize =
@@ -54,6 +77,8 @@ sizeEditFunc inp newSize =
     case inp of
       TextInput attrs ->
         TextInput { attrs | size = neco }
+      Select attrs ->
+        Select { attrs | size = neco }
       _ -> inp
 
 typeEditFunc : Input -> String -> Input
@@ -113,6 +138,8 @@ labelUpdateFunc inp newLabel =
   case inp of
     TextInput attrs ->
       TextInput { attrs | label = Just newLabel }
+    Select attrs ->
+      Select { attrs | label = Just newLabel }
     _ -> inp
 
 smallUpdateFunc : Input -> String -> Input
@@ -120,6 +147,8 @@ smallUpdateFunc inp newSmall =
   case inp of
     TextInput attrs ->
       TextInput { attrs | small = Just newSmall }
+    Select attrs ->
+      Select { attrs | small = Just newSmall }
     _ -> inp
 
 disabledUpdateFunc : Input -> Bool -> Input
@@ -127,6 +156,8 @@ disabledUpdateFunc inp newDisabled =
   case inp of
     TextInput attrs ->
       TextInput { attrs | disabled = newDisabled }
+    Select attrs ->
+      Select { attrs | disabled = newDisabled }
     _ -> inp
 
 readonlyUpdateFunc : Input -> Bool -> Input

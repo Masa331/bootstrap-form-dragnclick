@@ -13,11 +13,28 @@ view inp =
   case inp of
     TextInput attrs ->
       List.concat [ placeholderEdit (extractPlaceholder inp), labelEdit (extractLabel inp), smallUnderEdit (extractSmall inp), typeEdit (extractType inp), addon1Edit (extractAddon1 inp), addon2Edit (extractAddon2 inp), sizeEdit (extractSize inp), disabledEdit (extractDisabled inp), readonlyEdit (extractReadonly inp) ]
+    Select attrs ->
+      List.concat [ labelEdit (extractLabel inp), optionsEdit (extractOptions inp), smallUnderEdit (extractSmall inp), sizeEdit (extractSize inp), disabledEdit (extractDisabled inp) ]
     _ ->
       [ b [] [text "Not yet implemented ;)"]
       ]
 
 
+
+optionsEdit : List String -> List (Html Msg)
+optionsEdit inp =
+  let
+    lifunc = (\value -> li [] [text value, a [href "javascript:void(0);", class "pull-xs-right", onClick (InputMessage (RemoveOption value))] [text "remove"]] )
+    lis = List.map lifunc inp
+  in
+    [ b [] [text "Options"]
+    , hr [] []
+    , div
+      [ class "input-group" ]
+      [ input [class "form-control", onInput (InputMessage << NewOptionEdit) ] []
+      , span [class "input-group-btn"] [ button [class "btn btn-secondary", type' "button", onClick (InputMessage SaveNewOption)] [text "Add"]] ]
+    , div [] [ ul [] lis ]
+    ]
 
 placeholderEdit : Maybe String -> List (Html Msg)
 placeholderEdit string =

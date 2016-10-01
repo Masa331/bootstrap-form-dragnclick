@@ -13,6 +13,13 @@ var _user$project$Messages$AddTextarea = {ctor: 'AddTextarea'};
 var _user$project$Messages$AddMultiselect = {ctor: 'AddMultiselect'};
 var _user$project$Messages$AddSelect = {ctor: 'AddSelect'};
 var _user$project$Messages$AddTextInput = {ctor: 'AddTextInput'};
+var _user$project$Messages$RemoveOption = function (a) {
+	return {ctor: 'RemoveOption', _0: a};
+};
+var _user$project$Messages$SaveNewOption = {ctor: 'SaveNewOption'};
+var _user$project$Messages$NewOptionEdit = function (a) {
+	return {ctor: 'NewOptionEdit', _0: a};
+};
 var _user$project$Messages$TypeEdit = function (a) {
 	return {ctor: 'TypeEdit', _0: a};
 };

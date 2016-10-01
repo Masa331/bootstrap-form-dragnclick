@@ -44,7 +44,7 @@ newTextArea model =
 
 newSelect : Model -> Input
 newSelect model =
-  Select { id = countNewInputId model, classList = [ "form-control" ], label = Just "New radio" }
+  Select { id = countNewInputId model, classList = [ "form-control" ], label = Just "New select", small = Nothing, disabled = False, size = Normal, options = ["options1", "option2", "option3"] }
 
 newMultiselect : Model -> Input
 newMultiselect model =

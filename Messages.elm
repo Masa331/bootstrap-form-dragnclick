@@ -23,6 +23,9 @@ type InputMsg
   | SecondAddonEdit String
   | SizeEdit String
   | TypeEdit String
+  | NewOptionEdit String
+  | SaveNewOption
+  | RemoveOption String
 
 type Msg =
   FormMessage FormMsg

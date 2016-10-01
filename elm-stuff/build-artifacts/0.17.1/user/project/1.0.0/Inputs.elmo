@@ -325,52 +325,6 @@ var _user$project$Inputs$textAreaHtml = function (inp) {
 				_user$project$Inputs$editAndRemoveLink(inp)
 			]));
 };
-var _user$project$Inputs$selectHtml = function (inp) {
-	var s3 = A2(
-		_elm_lang$html$Html$option,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('3')
-			]));
-	var s2 = A2(
-		_elm_lang$html$Html$option,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('2')
-			]));
-	var s1 = A2(
-		_elm_lang$html$Html$option,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('1')
-			]));
-	var select = A2(
-		_elm_lang$html$Html$select,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$class('form-control')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[s1, s2, s3]));
-	return A2(
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$class('form-group')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$Inputs$label(inp),
-				select,
-				_user$project$Inputs$editAndRemoveLink(inp)
-			]));
-};
 var _user$project$Inputs$multiselectHtml = function (inp) {
 	var s3 = A2(
 		_elm_lang$html$Html$option,
@@ -567,6 +521,99 @@ var _user$project$Inputs$buttonHtml = function (inp) {
 				_user$project$Inputs$editAndRemoveLink(inp)
 			]));
 };
+var _user$project$Inputs$selectHtml = F2(
+	function (inp, attrs) {
+		var links = _elm_lang$core$Maybe$Just(
+			_user$project$Inputs$editAndRemoveLink(inp));
+		var smallText = A2(
+			_elm_lang$core$Maybe$map,
+			function (value) {
+				return A2(
+					_elm_lang$html$Html$small,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$class('form-text text-muted')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text(value)
+						]));
+			},
+			attrs.small);
+		var inputLabel = A2(
+			_elm_lang$core$Maybe$map,
+			function (value) {
+				return A2(
+					_elm_lang$html$Html$label,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$for(
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								'input',
+								_elm_lang$core$Basics$toString(attrs.id)))
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text(value)
+						]));
+			},
+			attrs.label);
+		var sizeClass = function () {
+			var _p11 = attrs.size;
+			switch (_p11.ctor) {
+				case 'Small':
+					return 'form-control-sm';
+				case 'Normal':
+					return '';
+				default:
+					return 'form-control-lg';
+			}
+		}();
+		var selectClasses = _elm_lang$core$Maybe$Just(
+			_elm_lang$html$Html_Attributes$class(
+				A2(
+					_elm_lang$core$String$join,
+					' ',
+					A2(_elm_lang$core$List_ops['::'], sizeClass, attrs.classList))));
+		var disabled = attrs.disabled ? _elm_lang$core$Maybe$Just(
+			_elm_lang$html$Html_Attributes$disabled(true)) : _elm_lang$core$Maybe$Nothing;
+		var selectAttrs = A2(
+			_elm_lang$core$List$filterMap,
+			_elm_lang$core$Basics$identity,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_user$project$Inputs$idToAttr(attrs.id),
+					selectClasses,
+					disabled
+				]));
+		var options = A2(
+			_elm_lang$core$List$map,
+			function (value) {
+				return A2(
+					_elm_lang$html$Html$option,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text(value)
+						]));
+			},
+			attrs.options);
+		var select = _elm_lang$core$Maybe$Just(
+			A2(_elm_lang$html$Html$select, selectAttrs, options));
+		return A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('form-group')
+				]),
+			A2(
+				_elm_lang$core$List$filterMap,
+				_elm_lang$core$Basics$identity,
+				_elm_lang$core$Native_List.fromArray(
+					[inputLabel, select, smallText, links])));
+	});
 var _user$project$Inputs$textInputHtml = F2(
 	function (inp, attrs) {
 		var links = _elm_lang$core$Maybe$Just(
@@ -618,8 +665,8 @@ var _user$project$Inputs$textInputHtml = F2(
 			attrs.addon1);
 		var inputType = _user$project$Models$typeToText(attrs.type$);
 		var sizeClass = function () {
-			var _p11 = attrs.size;
-			switch (_p11.ctor) {
+			var _p12 = attrs.size;
+			switch (_p12.ctor) {
 				case 'Small':
 					return 'form-control-sm';
 				case 'Normal':
@@ -716,14 +763,14 @@ var _user$project$Inputs$textInputHtml = F2(
 					[inputLabel, input, smallText, links])));
 	});
 var _user$project$Inputs$inputHtml = function (input) {
-	var _p12 = input;
-	switch (_p12.ctor) {
+	var _p13 = input;
+	switch (_p13.ctor) {
 		case 'TextInput':
-			return A2(_user$project$Inputs$textInputHtml, input, _p12._0);
+			return A2(_user$project$Inputs$textInputHtml, input, _p13._0);
 		case 'TextArea':
 			return _user$project$Inputs$textAreaHtml(input);
 		case 'Select':
-			return _user$project$Inputs$selectHtml(input);
+			return A2(_user$project$Inputs$selectHtml, input, _p13._0);
 		case 'Multiselect':
 			return _user$project$Inputs$multiselectHtml(input);
 		case 'FileUpload':

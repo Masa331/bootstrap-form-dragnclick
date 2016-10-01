@@ -27,7 +27,7 @@ formCreator model =
   div
     []
     [ div
-      [ class "row"]
+      [ class "row" ]
       [ div
          [ class "col-sm-8"]
          [ div [class "bd-example"] [FormEdit.view model]
@@ -35,6 +35,12 @@ formCreator model =
       , div
          [ class "col-sm-4" ]
          Templates.view
+      , div
+         [ class "row" ]
+         [ div 
+            [ class "col-sm-12"]
+            [ text (toString model)]
+         ]
       ]
     ]
 
@@ -59,4 +65,10 @@ inputEditLayout model id =
                  [ class "col-sm-4"]
                  (InputOptions.view b)
               ]
+          , div
+             [ class "row" ]
+             [ div 
+                [ class "col-sm-12"]
+                [ text (toString model)]
+             ]
           ]

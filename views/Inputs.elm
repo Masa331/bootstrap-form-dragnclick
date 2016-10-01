@@ -16,8 +16,8 @@ inputHtml input =
       textInputHtml input attrs
     TextArea _ ->
       textAreaHtml input
-    Select _ ->
-      selectHtml input
+    Select attrs ->
+      selectHtml input attrs
     Multiselect _ ->
       multiselectHtml input
     FileUpload _ ->
@@ -55,12 +55,33 @@ textInputHtml inp attrs =
         Just (div [ class "input-group" ] ([add1, Just (Html.input inputAttrs []), add2 ] |> List.filterMap identity))
       else
         Just (Html.input inputAttrs [])
-
-    -- smallText = Just (small [ class "form-text text-muted" ] [ text "yesss!" ])
     smallText = Maybe.map (\value -> small [ class "form-text text-muted" ] [ text value ]) attrs.small
     links = Just (editAndRemoveLink inp)
   in
     div [ class "form-group" ] ([ inputLabel, input, smallText, links ] |> List.filterMap identity)
+
+-- selectHtml : Input -> Html Msg
+selectHtml inp attrs =
+  let
+    -- s1 = option [] [text "1"]
+    -- s2 = option [] [text "2"]
+    -- s3 = option [] [text "3"]
+    options = List.map (\value -> option [] [text value]) attrs.options
+
+    disabled = if attrs.disabled then Just (Html.Attributes.disabled True) else Nothing
+    sizeClass =
+      case attrs.size of
+        Small -> "form-control-sm"
+        Normal -> ""
+        Large -> "form-control-lg"
+    selectClasses = Just (class (String.join " " (sizeClass::attrs.classList)))
+    selectAttrs = [ idToAttr attrs.id, selectClasses, disabled ] |> List.filterMap identity
+    inputLabel = Maybe.map (\value -> Html.label [ for ("input" ++ toString attrs.id) ] [ text (value) ]) attrs.label
+    select = Just (Html.select selectAttrs options)
+    smallText = Maybe.map (\value -> small [ class "form-text text-muted" ] [ text value ]) attrs.small
+    links = Just (editAndRemoveLink inp)
+  in
+    div [ class "form-group" ] ([ inputLabel, select, smallText, links ] |> List.filterMap identity)
 
 -------------
 -- Helpers --
@@ -156,16 +177,6 @@ textAreaHtml inp =
     area = textarea (inputAttributes inp) []
   in
     div [ class "form-group" ] [ label inp, area, editAndRemoveLink inp ]
-
-selectHtml : Input -> Html Msg
-selectHtml inp =
-  let
-    s1 = option [] [text "1"]
-    s2 = option [] [text "2"]
-    s3 = option [] [text "3"]
-    select = Html.select [class "form-control"] [s1, s2, s3]
-  in
-    div [ class "form-group" ] [ label inp, select, editAndRemoveLink inp ]
 
 multiselectHtml : Input -> Html Msg
 multiselectHtml inp =

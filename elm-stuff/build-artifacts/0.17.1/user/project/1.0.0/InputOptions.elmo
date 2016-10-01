@@ -557,42 +557,158 @@ var _user$project$InputOptions$placeholderEdit = function (string) {
 				]))
 		]);
 };
-var _user$project$InputOptions$view = function (inp) {
-	var _p15 = inp;
-	if (_p15.ctor === 'TextInput') {
-		return _elm_lang$core$List$concat(
+var _user$project$InputOptions$optionsEdit = function (inp) {
+	var lifunc = function (value) {
+		return A2(
+			_elm_lang$html$Html$li,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
-					_user$project$InputOptions$placeholderEdit(
-					_user$project$Models$extractPlaceholder(inp)),
-					_user$project$InputOptions$labelEdit(
-					_user$project$Models$extractLabel(inp)),
-					_user$project$InputOptions$smallUnderEdit(
-					_user$project$Models$extractSmall(inp)),
-					_user$project$InputOptions$typeEdit(
-					_user$project$Models$extractType(inp)),
-					_user$project$InputOptions$addon1Edit(
-					_user$project$Models$extractAddon1(inp)),
-					_user$project$InputOptions$addon2Edit(
-					_user$project$Models$extractAddon2(inp)),
-					_user$project$InputOptions$sizeEdit(
-					_user$project$Models$extractSize(inp)),
-					_user$project$InputOptions$disabledEdit(
-					_user$project$Models$extractDisabled(inp)),
-					_user$project$InputOptions$readonlyEdit(
-					_user$project$Models$extractReadonly(inp))
+					_elm_lang$html$Html$text(value),
+					A2(
+					_elm_lang$html$Html$a,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
+							_elm_lang$html$Html_Attributes$class('pull-xs-right'),
+							_elm_lang$html$Html_Events$onClick(
+							_user$project$Messages$InputMessage(
+								_user$project$Messages$RemoveOption(value)))
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('remove')
+						]))
 				]));
-	} else {
-		return _elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_elm_lang$html$Html$b,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
+	};
+	var lis = A2(_elm_lang$core$List$map, lifunc, inp);
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$b,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Options')
+				])),
+			A2(
+			_elm_lang$html$Html$hr,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+			A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('input-group')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$input,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$class('form-control'),
+							_elm_lang$html$Html_Events$onInput(
+							function (_p15) {
+								return _user$project$Messages$InputMessage(
+									_user$project$Messages$NewOptionEdit(_p15));
+							})
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[])),
+					A2(
+					_elm_lang$html$Html$span,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$class('input-group-btn')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_elm_lang$html$Html$button,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$class('btn btn-secondary'),
+									_elm_lang$html$Html_Attributes$type$('button'),
+									_elm_lang$html$Html_Events$onClick(
+									_user$project$Messages$InputMessage(_user$project$Messages$SaveNewOption))
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html$text('Add')
+								]))
+						]))
+				])),
+			A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$ul,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					lis)
+				]))
+		]);
+};
+var _user$project$InputOptions$view = function (inp) {
+	var _p16 = inp;
+	switch (_p16.ctor) {
+		case 'TextInput':
+			return _elm_lang$core$List$concat(
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html$text('Not yet implemented ;)')
-					]))
-			]);
+						_user$project$InputOptions$placeholderEdit(
+						_user$project$Models$extractPlaceholder(inp)),
+						_user$project$InputOptions$labelEdit(
+						_user$project$Models$extractLabel(inp)),
+						_user$project$InputOptions$smallUnderEdit(
+						_user$project$Models$extractSmall(inp)),
+						_user$project$InputOptions$typeEdit(
+						_user$project$Models$extractType(inp)),
+						_user$project$InputOptions$addon1Edit(
+						_user$project$Models$extractAddon1(inp)),
+						_user$project$InputOptions$addon2Edit(
+						_user$project$Models$extractAddon2(inp)),
+						_user$project$InputOptions$sizeEdit(
+						_user$project$Models$extractSize(inp)),
+						_user$project$InputOptions$disabledEdit(
+						_user$project$Models$extractDisabled(inp)),
+						_user$project$InputOptions$readonlyEdit(
+						_user$project$Models$extractReadonly(inp))
+					]));
+		case 'Select':
+			return _elm_lang$core$List$concat(
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_user$project$InputOptions$labelEdit(
+						_user$project$Models$extractLabel(inp)),
+						_user$project$InputOptions$optionsEdit(
+						_user$project$Models$extractOptions(inp)),
+						_user$project$InputOptions$smallUnderEdit(
+						_user$project$Models$extractSmall(inp)),
+						_user$project$InputOptions$sizeEdit(
+						_user$project$Models$extractSize(inp)),
+						_user$project$InputOptions$disabledEdit(
+						_user$project$Models$extractDisabled(inp))
+					]));
+		default:
+			return _elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$b,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('Not yet implemented ;)')
+						]))
+				]);
 	}
 };

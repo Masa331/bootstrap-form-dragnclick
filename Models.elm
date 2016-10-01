@@ -13,7 +13,7 @@ type InputType = Text | Search | Email | Url | Tel | Password | Number | Datetim
 type Input
   = TextInput { id: Id, classList: ClassList, placeholder: Placeholder, label: Label, disabled: Bool, readonly: Bool, size: Size, addon1: Maybe String, addon2: Maybe String, small: Maybe String, type': InputType }
   | TextArea { id: Id, classList: ClassList, placeholder: Placeholder, label: Label, rowNumber: RowNumber }
-  | Select { id: Id, classList: ClassList, label: Label }
+  | Select { id: Id, classList: ClassList, label: Label, small: Maybe String, disabled: Bool, size: Size, options: List String }
   | Multiselect { id: Id, classList: ClassList, label: Label }
   | FileUpload { id: Id, classList: ClassList, label: Label }
   | Radio { id: Id, classList: ClassList, label: Label }
@@ -21,17 +21,18 @@ type Input
   | Button { id: Id, classList: ClassList, label: Label }
 
 type alias Form = List Input
-type alias Model = { form: Form, currentlyEdditedInputId: Maybe Int }
+type alias Model = { form: Form, currentlyEdditedInputId: Maybe Int, newOption: String }
 
 new : Model
 new =
   let
     textInput = TextInput { id = 1, classList = [ "form-control" ], placeholder = Nothing, label = (Just "Some input"), disabled = False, readonly = False, size = Normal, addon1 = Nothing, addon2 = Nothing, small = Nothing, type' = Text }
     textArea = TextArea { id = 2, classList = [ "form-control" ], placeholder = Just "Some placeholder...", label = (Just "Some area"), rowNumber = 3 }
-    checkbox = Checkbox { id = 2, classList = [  ], label = (Just "Some area") }
-    button = Button { id = 2, classList = [ "form-control" ], label = (Just "Some area") }
+    checkbox = Checkbox { id = 3, classList = [  ], label = (Just "Some area") }
+    select1 = Select { id = 4, classList = [ "form-control" ], label = (Just "Some select"), small = Nothing, disabled = False, size = Normal, options = ["options1", "option2", "option3"] }
+    button = Button { id = 5, classList = [ "form-control" ], label = (Just "Some area") }
   in
-    Model [ textInput, textArea, checkbox, button ] Nothing
+    Model [ textInput, textArea, select1, checkbox, button ] Nothing ""
 
 extractId : Input -> Int
 extractId inp =
@@ -55,12 +56,14 @@ extractLabel : Input -> Maybe String
 extractLabel inp =
   case inp of
     TextInput attrs -> attrs.label
+    Select attrs -> attrs.label
     _ -> Nothing
 
 extractDisabled : Input -> Bool
 extractDisabled inp =
   case inp of
     TextInput attrs -> attrs.disabled
+    Select attrs -> attrs.disabled
     _ -> False
 
 extractReadonly : Input -> Bool
@@ -73,6 +76,7 @@ extractSmall : Input -> Maybe String
 extractSmall inp =
   case inp of
     TextInput attrs -> attrs.small
+    Select attrs -> attrs.small
     _ -> Nothing
 
 extractAddon1 : Input -> Maybe String
@@ -91,6 +95,7 @@ extractSize : Input -> Size
 extractSize inp =
   case inp of
     TextInput attrs -> attrs.size
+    Select attrs -> attrs.size
     _ -> Normal
 
 extractType : Input -> InputType
@@ -98,6 +103,12 @@ extractType inp =
   case inp of
     TextInput attrs -> attrs.type'
     _ -> Text
+
+extractOptions : Input -> List String
+extractOptions inp =
+  case inp of
+    Select attrs -> attrs.options
+    _ -> []
 
 typeToText : InputType -> String
 typeToText type' =

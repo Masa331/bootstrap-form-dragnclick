@@ -75,7 +75,12 @@ var _user$project$FormUpdate$newSelect = function (model) {
 			id: _user$project$FormUpdate$countNewInputId(model),
 			classList: _elm_lang$core$Native_List.fromArray(
 				['form-control']),
-			label: _elm_lang$core$Maybe$Just('New radio')
+			label: _elm_lang$core$Maybe$Just('New select'),
+			small: _elm_lang$core$Maybe$Nothing,
+			disabled: false,
+			size: _user$project$Models$Normal,
+			options: _elm_lang$core$Native_List.fromArray(
+				['options1', 'option2', 'option3'])
 		});
 };
 var _user$project$FormUpdate$newTextArea = function (model) {
