@@ -12,7 +12,7 @@ view : Input -> List (Html Msg)
 view inp =
   case inp of
     TextInput attrs ->
-      List.concat [ placeholderEdit (extractPlaceholder inp), labelEdit (extractLabel inp), smallUnderEdit (extractSmall inp), typeEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit (extractDisabled inp), readonlyEdit ]
+      List.concat [ placeholderEdit (extractPlaceholder inp), labelEdit (extractLabel inp), smallUnderEdit (extractSmall inp), typeEdit, addon1Edit (extractAddon1 inp), addon2Edit (extractAddon2 inp), sizeEdit (extractSize inp), disabledEdit (extractDisabled inp), readonlyEdit ]
     _ ->
       [ b [] [text "Not yet implemented ;)"]
       ]
@@ -81,31 +81,44 @@ typeEdit =
     , div [ class "form-group" ] [ Html.select [ class "form-control" ] types ]
     ]
 
-addon1Edit : List (Html Msg)
-addon1Edit =
+addon1Edit : Maybe String -> List (Html Msg)
+addon1Edit string =
+  let
+    addonText =
+      case string of
+        Just s -> s
+        Nothing -> ""
+  in
   [ b [] [ text "First addon" ]
   , hr [] []
-  , div [ class "form-group" ] [ input [ class "form-control" ] [] ]
+  , div [ class "form-group" ] [ input [ class "form-control", value addonText, onInput (InputMessage << FirstAddonEdit) ] [] ]
   ]
 
-addon2Edit : List (Html Msg)
-addon2Edit =
+addon2Edit : Maybe String -> List (Html Msg)
+addon2Edit string =
+  let
+    addonText =
+      case string of
+        Just s -> s
+        Nothing -> ""
+  in
   [ b [] [ text "Second addon" ]
   , hr [] []
-  , div [ class "form-group" ] [ input [ class "form-control" ] [] ]
+  , div [ class "form-group" ] [ input [ class "form-control", value addonText, onInput (InputMessage << SecondAddonEdit) ] [] ]
   ]
 
-sizeEdit : List (Html Msg)
-sizeEdit =
+sizeEdit : Size -> List (Html Msg)
+sizeEdit size =
   let
-    s1 = option [] [ text "small" ]
-    s2 = option [] [ text "normal" ]
-    s3 = option [] [ text "large" ]
-    types = [s1, s2, s3]
+    options =
+      case size of
+        Small -> [ option [selected True] [ text "small" ], option [] [ text "normal" ], option [] [ text "large" ] ]
+        Normal -> [ option [] [ text "small" ], option [selected True] [ text "normal" ], option [] [ text "large" ] ]
+        Large -> [ option [] [ text "small" ], option [] [ text "normal" ], option [selected True] [ text "large" ] ]
   in
     [ b [] [ text "Size edit" ]
     , hr [] []
-    , div [ class "form-group" ] [ Html.select [ class "form-control" ] types ]
+    , div [ class "form-group" ] [ Html.select [ class "form-control", onInput (InputMessage << SizeEdit) ] options ]
     ]
 
 -- disabledEdit : List (Html Msg)

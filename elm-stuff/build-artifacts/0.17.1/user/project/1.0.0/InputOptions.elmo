@@ -94,33 +94,102 @@ var _user$project$InputOptions$disabledEdit = function (value) {
 				]))
 		]);
 };
-var _user$project$InputOptions$sizeEdit = function () {
-	var s3 = A2(
-		_elm_lang$html$Html$option,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('large')
-			]));
-	var s2 = A2(
-		_elm_lang$html$Html$option,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('normal')
-			]));
-	var s1 = A2(
-		_elm_lang$html$Html$option,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('small')
-			]));
-	var types = _elm_lang$core$Native_List.fromArray(
-		[s1, s2, s3]);
+var _user$project$InputOptions$sizeEdit = function (size) {
+	var options = function () {
+		var _p1 = size;
+		switch (_p1.ctor) {
+			case 'Small':
+				return _elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$option,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$selected(true)
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('small')
+							])),
+						A2(
+						_elm_lang$html$Html$option,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('normal')
+							])),
+						A2(
+						_elm_lang$html$Html$option,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('large')
+							]))
+					]);
+			case 'Normal':
+				return _elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$option,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('small')
+							])),
+						A2(
+						_elm_lang$html$Html$option,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$selected(true)
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('normal')
+							])),
+						A2(
+						_elm_lang$html$Html$option,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('large')
+							]))
+					]);
+			default:
+				return _elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$option,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('small')
+							])),
+						A2(
+						_elm_lang$html$Html$option,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('normal')
+							])),
+						A2(
+						_elm_lang$html$Html$option,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$selected(true)
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('large')
+							]))
+					]);
+		}
+	}();
 	return _elm_lang$core$Native_List.fromArray(
 		[
 			A2(
@@ -149,80 +218,117 @@ var _user$project$InputOptions$sizeEdit = function () {
 					_elm_lang$html$Html$select,
 					_elm_lang$core$Native_List.fromArray(
 						[
-							_elm_lang$html$Html_Attributes$class('form-control')
+							_elm_lang$html$Html_Attributes$class('form-control'),
+							_elm_lang$html$Html_Events$onInput(
+							function (_p2) {
+								return _user$project$Messages$InputMessage(
+									_user$project$Messages$SizeEdit(_p2));
+							})
 						]),
-					types)
+					options)
 				]))
 		]);
-}();
-var _user$project$InputOptions$addon2Edit = _elm_lang$core$Native_List.fromArray(
-	[
-		A2(
-		_elm_lang$html$Html$b,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Second addon')
-			])),
-		A2(
-		_elm_lang$html$Html$hr,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[])),
-		A2(
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$class('form-group')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_elm_lang$html$Html$input,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('form-control')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[]))
-			]))
-	]);
-var _user$project$InputOptions$addon1Edit = _elm_lang$core$Native_List.fromArray(
-	[
-		A2(
-		_elm_lang$html$Html$b,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('First addon')
-			])),
-		A2(
-		_elm_lang$html$Html$hr,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[])),
-		A2(
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$class('form-group')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_elm_lang$html$Html$input,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('form-control')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[]))
-			]))
-	]);
+};
+var _user$project$InputOptions$addon2Edit = function (string) {
+	var addonText = function () {
+		var _p3 = string;
+		if (_p3.ctor === 'Just') {
+			return _p3._0;
+		} else {
+			return '';
+		}
+	}();
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$b,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Second addon')
+				])),
+			A2(
+			_elm_lang$html$Html$hr,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+			A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('form-group')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$input,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$class('form-control'),
+							_elm_lang$html$Html_Attributes$value(addonText),
+							_elm_lang$html$Html_Events$onInput(
+							function (_p4) {
+								return _user$project$Messages$InputMessage(
+									_user$project$Messages$SecondAddonEdit(_p4));
+							})
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[]))
+				]))
+		]);
+};
+var _user$project$InputOptions$addon1Edit = function (string) {
+	var addonText = function () {
+		var _p5 = string;
+		if (_p5.ctor === 'Just') {
+			return _p5._0;
+		} else {
+			return '';
+		}
+	}();
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$b,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('First addon')
+				])),
+			A2(
+			_elm_lang$html$Html$hr,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+			A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('form-group')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$input,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$class('form-control'),
+							_elm_lang$html$Html_Attributes$value(addonText),
+							_elm_lang$html$Html_Events$onInput(
+							function (_p6) {
+								return _user$project$Messages$InputMessage(
+									_user$project$Messages$FirstAddonEdit(_p6));
+							})
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[]))
+				]))
+		]);
+};
 var _user$project$InputOptions$typeEdit = function () {
 	var o13 = A2(
 		_elm_lang$html$Html$option,
@@ -366,9 +472,9 @@ var _user$project$InputOptions$typeEdit = function () {
 }();
 var _user$project$InputOptions$smallUnderEdit = function (string) {
 	var smallText = function () {
-		var _p1 = string;
-		if (_p1.ctor === 'Just') {
-			return _p1._0;
+		var _p7 = string;
+		if (_p7.ctor === 'Just') {
+			return _p7._0;
 		} else {
 			return '';
 		}
@@ -404,9 +510,9 @@ var _user$project$InputOptions$smallUnderEdit = function (string) {
 							_elm_lang$html$Html_Attributes$class('form-control'),
 							_elm_lang$html$Html_Attributes$value(smallText),
 							_elm_lang$html$Html_Events$onInput(
-							function (_p2) {
+							function (_p8) {
 								return _user$project$Messages$InputMessage(
-									_user$project$Messages$SmallEdit(_p2));
+									_user$project$Messages$SmallEdit(_p8));
 							})
 						]),
 					_elm_lang$core$Native_List.fromArray(
@@ -416,9 +522,9 @@ var _user$project$InputOptions$smallUnderEdit = function (string) {
 };
 var _user$project$InputOptions$labelEdit = function (string) {
 	var labelText = function () {
-		var _p3 = string;
-		if (_p3.ctor === 'Just') {
-			return _p3._0;
+		var _p9 = string;
+		if (_p9.ctor === 'Just') {
+			return _p9._0;
 		} else {
 			return '';
 		}
@@ -453,9 +559,9 @@ var _user$project$InputOptions$labelEdit = function (string) {
 						[
 							_elm_lang$html$Html_Attributes$class('form-control'),
 							_elm_lang$html$Html_Events$onInput(
-							function (_p4) {
+							function (_p10) {
 								return _user$project$Messages$InputMessage(
-									_user$project$Messages$LabelEdit(_p4));
+									_user$project$Messages$LabelEdit(_p10));
 							}),
 							_elm_lang$html$Html_Attributes$value(labelText)
 						]),
@@ -466,9 +572,9 @@ var _user$project$InputOptions$labelEdit = function (string) {
 };
 var _user$project$InputOptions$placeholderEdit = function (string) {
 	var placeholderText = function () {
-		var _p5 = string;
-		if (_p5.ctor === 'Just') {
-			return _p5._0;
+		var _p11 = string;
+		if (_p11.ctor === 'Just') {
+			return _p11._0;
 		} else {
 			return '';
 		}
@@ -503,9 +609,9 @@ var _user$project$InputOptions$placeholderEdit = function (string) {
 						[
 							_elm_lang$html$Html_Attributes$class('form-control'),
 							_elm_lang$html$Html_Events$onInput(
-							function (_p6) {
+							function (_p12) {
 								return _user$project$Messages$InputMessage(
-									_user$project$Messages$PlaceholderEdit(_p6));
+									_user$project$Messages$PlaceholderEdit(_p12));
 							}),
 							_elm_lang$html$Html_Attributes$value(placeholderText)
 						]),
@@ -515,8 +621,8 @@ var _user$project$InputOptions$placeholderEdit = function (string) {
 		]);
 };
 var _user$project$InputOptions$view = function (inp) {
-	var _p7 = inp;
-	if (_p7.ctor === 'TextInput') {
+	var _p13 = inp;
+	if (_p13.ctor === 'TextInput') {
 		return _elm_lang$core$List$concat(
 			_elm_lang$core$Native_List.fromArray(
 				[
@@ -527,9 +633,12 @@ var _user$project$InputOptions$view = function (inp) {
 					_user$project$InputOptions$smallUnderEdit(
 					_user$project$Models$extractSmall(inp)),
 					_user$project$InputOptions$typeEdit,
-					_user$project$InputOptions$addon1Edit,
-					_user$project$InputOptions$addon2Edit,
-					_user$project$InputOptions$sizeEdit,
+					_user$project$InputOptions$addon1Edit(
+					_user$project$Models$extractAddon1(inp)),
+					_user$project$InputOptions$addon2Edit(
+					_user$project$Models$extractAddon2(inp)),
+					_user$project$InputOptions$sizeEdit(
+					_user$project$Models$extractSize(inp)),
 					_user$project$InputOptions$disabledEdit(
 					_user$project$Models$extractDisabled(inp)),
 					_user$project$InputOptions$readonlyEdit

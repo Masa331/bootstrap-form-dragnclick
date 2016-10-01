@@ -41,7 +41,7 @@ textInputHtml inp attrs =
       case attrs.size of
         Small -> "form-control-sm"
         Normal -> ""
-        Big -> "form-control-lg"
+        Large -> "form-control-lg"
     inputClasses = Just (class (String.join " " (sizeClass::attrs.classList)))
     inputAttrs = [ idToAttr attrs.id, inputClasses, placeholderToAttr attrs.placeholder, Just (type' "text"), readonly, disabled ]
       |> List.filterMap identity

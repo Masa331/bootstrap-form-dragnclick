@@ -17,9 +17,14 @@ update msg model =
         SmallEdit newLabel ->
           updateInputAttribute smallUpdateFunc model inputId newLabel
         DisabledEdit newDisabled ->
-          -- (model, Cmd.none)
           updateInputAttribute disabledUpdateFunc model inputId newDisabled
-        NoOp ->
+        FirstAddonEdit newAddon ->
+          updateInputAttribute firstAddonEditFunc model inputId newAddon
+        SecondAddonEdit newAddon ->
+          updateInputAttribute secondAddonEditFunc model inputId newAddon
+        SizeEdit newSize ->
+          updateInputAttribute sizeEditFunc model inputId newSize
+        TypeEdit string ->
           (model, Cmd.none)
 
 -------------
@@ -33,6 +38,43 @@ updateInputAttribute updateFunc model inputId newPlaceholder =
     newInputs = List.map (\inp -> if extractId inp == inputId then updateFunc inp newPlaceholder else inp) model.form
   in
     ({ model | form = newInputs }, Cmd.none)
+
+sizeEditFunc : Input -> String -> Input
+sizeEditFunc inp newSize =
+  let
+    -- wrappedAddon = if newAddon == "" then Nothing else Just newAddon
+
+    neco =
+      case newSize of
+        "small" -> Small
+        "normal" -> Normal
+        "large" -> Large
+        _ -> Normal
+  in
+    case inp of
+      TextInput attrs ->
+        TextInput { attrs | size = neco }
+      _ -> inp
+
+firstAddonEditFunc : Input -> String -> Input
+firstAddonEditFunc inp newAddon =
+  let
+    wrappedAddon = if newAddon == "" then Nothing else Just newAddon
+  in
+    case inp of
+      TextInput attrs ->
+        TextInput { attrs | addon1 = wrappedAddon }
+      _ -> inp
+
+secondAddonEditFunc : Input -> String -> Input
+secondAddonEditFunc inp newAddon =
+  let
+    wrappedAddon = if newAddon == "" then Nothing else Just newAddon
+  in
+    case inp of
+      TextInput attrs ->
+        TextInput { attrs | addon2 = wrappedAddon }
+      _ -> inp
 
 placeholderUpdateFunc : Input -> String -> Input
 placeholderUpdateFunc inp newPlaceholder =

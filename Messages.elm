@@ -18,7 +18,10 @@ type InputMsg
   | LabelEdit String
   | SmallEdit String
   | DisabledEdit Bool
-  | NoOp
+  | FirstAddonEdit String
+  | SecondAddonEdit String
+  | SizeEdit String
+  | TypeEdit String
 
 type Msg =
   FormMessage FormMsg

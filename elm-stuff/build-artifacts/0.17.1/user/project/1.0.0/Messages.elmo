@@ -13,7 +13,18 @@ var _user$project$Messages$AddTextarea = {ctor: 'AddTextarea'};
 var _user$project$Messages$AddMultiselect = {ctor: 'AddMultiselect'};
 var _user$project$Messages$AddSelect = {ctor: 'AddSelect'};
 var _user$project$Messages$AddTextInput = {ctor: 'AddTextInput'};
-var _user$project$Messages$NoOp = {ctor: 'NoOp'};
+var _user$project$Messages$TypeEdit = function (a) {
+	return {ctor: 'TypeEdit', _0: a};
+};
+var _user$project$Messages$SizeEdit = function (a) {
+	return {ctor: 'SizeEdit', _0: a};
+};
+var _user$project$Messages$SecondAddonEdit = function (a) {
+	return {ctor: 'SecondAddonEdit', _0: a};
+};
+var _user$project$Messages$FirstAddonEdit = function (a) {
+	return {ctor: 'FirstAddonEdit', _0: a};
+};
 var _user$project$Messages$DisabledEdit = function (a) {
 	return {ctor: 'DisabledEdit', _0: a};
 };

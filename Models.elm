@@ -7,7 +7,7 @@ type alias Id = Int
 type alias Placeholder = Maybe String
 type alias RowNumber = Int
 type alias Label = Maybe String
-type Size = Small | Normal | Big
+type Size = Small | Normal | Large
 
 type Input
   = TextInput { id: Id, classList: ClassList, placeholder: Placeholder, label: Label, disabled: Bool, readonly: Bool, size: Size, addon1: Maybe String, addon2: Maybe String, small: Maybe String }
@@ -67,3 +67,21 @@ extractSmall inp =
   case inp of
     TextInput attrs -> attrs.small
     _ -> Nothing
+
+extractAddon1 : Input -> Maybe String
+extractAddon1 inp =
+  case inp of
+    TextInput attrs -> attrs.addon1
+    _ -> Nothing
+
+extractAddon2 : Input -> Maybe String
+extractAddon2 inp =
+  case inp of
+    TextInput attrs -> attrs.addon2
+    _ -> Nothing
+
+extractSize : Input -> Size
+extractSize inp =
+  case inp of
+    TextInput attrs -> attrs.size
+    _ -> Normal

@@ -7897,65 +7897,89 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
-var _user$project$Models$extractSmall = function (inp) {
+var _user$project$Models$extractAddon2 = function (inp) {
 	var _p0 = inp;
 	if (_p0.ctor === 'TextInput') {
-		return _p0._0.small;
+		return _p0._0.addon2;
+	} else {
+		return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _user$project$Models$extractAddon1 = function (inp) {
+	var _p1 = inp;
+	if (_p1.ctor === 'TextInput') {
+		return _p1._0.addon1;
+	} else {
+		return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _user$project$Models$extractSmall = function (inp) {
+	var _p2 = inp;
+	if (_p2.ctor === 'TextInput') {
+		return _p2._0.small;
 	} else {
 		return _elm_lang$core$Maybe$Nothing;
 	}
 };
 var _user$project$Models$extractDisabled = function (inp) {
-	var _p1 = inp;
-	if (_p1.ctor === 'TextInput') {
-		return _p1._0.disabled;
+	var _p3 = inp;
+	if (_p3.ctor === 'TextInput') {
+		return _p3._0.disabled;
 	} else {
 		return false;
 	}
 };
 var _user$project$Models$extractLabel = function (inp) {
-	var _p2 = inp;
-	if (_p2.ctor === 'TextInput') {
-		return _p2._0.label;
+	var _p4 = inp;
+	if (_p4.ctor === 'TextInput') {
+		return _p4._0.label;
 	} else {
 		return _elm_lang$core$Maybe$Nothing;
 	}
 };
 var _user$project$Models$extractPlaceholder = function (inp) {
-	var _p3 = inp;
-	if (_p3.ctor === 'TextInput') {
-		return _p3._0.placeholder;
+	var _p5 = inp;
+	if (_p5.ctor === 'TextInput') {
+		return _p5._0.placeholder;
 	} else {
 		return _elm_lang$core$Maybe$Nothing;
 	}
 };
 var _user$project$Models$extractId = function (inp) {
-	var _p4 = inp;
-	switch (_p4.ctor) {
+	var _p6 = inp;
+	switch (_p6.ctor) {
 		case 'TextInput':
-			return _p4._0.id;
+			return _p6._0.id;
 		case 'TextArea':
-			return _p4._0.id;
+			return _p6._0.id;
 		case 'Select':
-			return _p4._0.id;
+			return _p6._0.id;
 		case 'Multiselect':
-			return _p4._0.id;
+			return _p6._0.id;
 		case 'FileUpload':
-			return _p4._0.id;
+			return _p6._0.id;
 		case 'Radio':
-			return _p4._0.id;
+			return _p6._0.id;
 		case 'Checkbox':
-			return _p4._0.id;
+			return _p6._0.id;
 		default:
-			return _p4._0.id;
+			return _p6._0.id;
 	}
 };
 var _user$project$Models$Model = F2(
 	function (a, b) {
 		return {form: a, currentlyEdditedInputId: b};
 	});
-var _user$project$Models$Big = {ctor: 'Big'};
+var _user$project$Models$Large = {ctor: 'Large'};
 var _user$project$Models$Normal = {ctor: 'Normal'};
+var _user$project$Models$extractSize = function (inp) {
+	var _p7 = inp;
+	if (_p7.ctor === 'TextInput') {
+		return _p7._0.size;
+	} else {
+		return _user$project$Models$Normal;
+	}
+};
 var _user$project$Models$Small = {ctor: 'Small'};
 var _user$project$Models$Button = function (a) {
 	return {ctor: 'Button', _0: a};
@@ -8041,7 +8065,18 @@ var _user$project$Messages$AddTextarea = {ctor: 'AddTextarea'};
 var _user$project$Messages$AddMultiselect = {ctor: 'AddMultiselect'};
 var _user$project$Messages$AddSelect = {ctor: 'AddSelect'};
 var _user$project$Messages$AddTextInput = {ctor: 'AddTextInput'};
-var _user$project$Messages$NoOp = {ctor: 'NoOp'};
+var _user$project$Messages$TypeEdit = function (a) {
+	return {ctor: 'TypeEdit', _0: a};
+};
+var _user$project$Messages$SizeEdit = function (a) {
+	return {ctor: 'SizeEdit', _0: a};
+};
+var _user$project$Messages$SecondAddonEdit = function (a) {
+	return {ctor: 'SecondAddonEdit', _0: a};
+};
+var _user$project$Messages$FirstAddonEdit = function (a) {
+	return {ctor: 'FirstAddonEdit', _0: a};
+};
 var _user$project$Messages$DisabledEdit = function (a) {
 	return {ctor: 'DisabledEdit', _0: a};
 };
@@ -9107,33 +9142,102 @@ var _user$project$InputOptions$disabledEdit = function (value) {
 				]))
 		]);
 };
-var _user$project$InputOptions$sizeEdit = function () {
-	var s3 = A2(
-		_elm_lang$html$Html$option,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('large')
-			]));
-	var s2 = A2(
-		_elm_lang$html$Html$option,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('normal')
-			]));
-	var s1 = A2(
-		_elm_lang$html$Html$option,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('small')
-			]));
-	var types = _elm_lang$core$Native_List.fromArray(
-		[s1, s2, s3]);
+var _user$project$InputOptions$sizeEdit = function (size) {
+	var options = function () {
+		var _p1 = size;
+		switch (_p1.ctor) {
+			case 'Small':
+				return _elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$option,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$selected(true)
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('small')
+							])),
+						A2(
+						_elm_lang$html$Html$option,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('normal')
+							])),
+						A2(
+						_elm_lang$html$Html$option,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('large')
+							]))
+					]);
+			case 'Normal':
+				return _elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$option,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('small')
+							])),
+						A2(
+						_elm_lang$html$Html$option,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$selected(true)
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('normal')
+							])),
+						A2(
+						_elm_lang$html$Html$option,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('large')
+							]))
+					]);
+			default:
+				return _elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$option,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('small')
+							])),
+						A2(
+						_elm_lang$html$Html$option,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('normal')
+							])),
+						A2(
+						_elm_lang$html$Html$option,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$selected(true)
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text('large')
+							]))
+					]);
+		}
+	}();
 	return _elm_lang$core$Native_List.fromArray(
 		[
 			A2(
@@ -9162,80 +9266,117 @@ var _user$project$InputOptions$sizeEdit = function () {
 					_elm_lang$html$Html$select,
 					_elm_lang$core$Native_List.fromArray(
 						[
-							_elm_lang$html$Html_Attributes$class('form-control')
+							_elm_lang$html$Html_Attributes$class('form-control'),
+							_elm_lang$html$Html_Events$onInput(
+							function (_p2) {
+								return _user$project$Messages$InputMessage(
+									_user$project$Messages$SizeEdit(_p2));
+							})
 						]),
-					types)
+					options)
 				]))
 		]);
-}();
-var _user$project$InputOptions$addon2Edit = _elm_lang$core$Native_List.fromArray(
-	[
-		A2(
-		_elm_lang$html$Html$b,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Second addon')
-			])),
-		A2(
-		_elm_lang$html$Html$hr,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[])),
-		A2(
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$class('form-group')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_elm_lang$html$Html$input,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('form-control')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[]))
-			]))
-	]);
-var _user$project$InputOptions$addon1Edit = _elm_lang$core$Native_List.fromArray(
-	[
-		A2(
-		_elm_lang$html$Html$b,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('First addon')
-			])),
-		A2(
-		_elm_lang$html$Html$hr,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[])),
-		A2(
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$class('form-group')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_elm_lang$html$Html$input,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('form-control')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[]))
-			]))
-	]);
+};
+var _user$project$InputOptions$addon2Edit = function (string) {
+	var addonText = function () {
+		var _p3 = string;
+		if (_p3.ctor === 'Just') {
+			return _p3._0;
+		} else {
+			return '';
+		}
+	}();
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$b,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Second addon')
+				])),
+			A2(
+			_elm_lang$html$Html$hr,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+			A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('form-group')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$input,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$class('form-control'),
+							_elm_lang$html$Html_Attributes$value(addonText),
+							_elm_lang$html$Html_Events$onInput(
+							function (_p4) {
+								return _user$project$Messages$InputMessage(
+									_user$project$Messages$SecondAddonEdit(_p4));
+							})
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[]))
+				]))
+		]);
+};
+var _user$project$InputOptions$addon1Edit = function (string) {
+	var addonText = function () {
+		var _p5 = string;
+		if (_p5.ctor === 'Just') {
+			return _p5._0;
+		} else {
+			return '';
+		}
+	}();
+	return _elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$b,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('First addon')
+				])),
+			A2(
+			_elm_lang$html$Html$hr,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+			A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('form-group')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$input,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$class('form-control'),
+							_elm_lang$html$Html_Attributes$value(addonText),
+							_elm_lang$html$Html_Events$onInput(
+							function (_p6) {
+								return _user$project$Messages$InputMessage(
+									_user$project$Messages$FirstAddonEdit(_p6));
+							})
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[]))
+				]))
+		]);
+};
 var _user$project$InputOptions$typeEdit = function () {
 	var o13 = A2(
 		_elm_lang$html$Html$option,
@@ -9379,9 +9520,9 @@ var _user$project$InputOptions$typeEdit = function () {
 }();
 var _user$project$InputOptions$smallUnderEdit = function (string) {
 	var smallText = function () {
-		var _p1 = string;
-		if (_p1.ctor === 'Just') {
-			return _p1._0;
+		var _p7 = string;
+		if (_p7.ctor === 'Just') {
+			return _p7._0;
 		} else {
 			return '';
 		}
@@ -9417,9 +9558,9 @@ var _user$project$InputOptions$smallUnderEdit = function (string) {
 							_elm_lang$html$Html_Attributes$class('form-control'),
 							_elm_lang$html$Html_Attributes$value(smallText),
 							_elm_lang$html$Html_Events$onInput(
-							function (_p2) {
+							function (_p8) {
 								return _user$project$Messages$InputMessage(
-									_user$project$Messages$SmallEdit(_p2));
+									_user$project$Messages$SmallEdit(_p8));
 							})
 						]),
 					_elm_lang$core$Native_List.fromArray(
@@ -9429,9 +9570,9 @@ var _user$project$InputOptions$smallUnderEdit = function (string) {
 };
 var _user$project$InputOptions$labelEdit = function (string) {
 	var labelText = function () {
-		var _p3 = string;
-		if (_p3.ctor === 'Just') {
-			return _p3._0;
+		var _p9 = string;
+		if (_p9.ctor === 'Just') {
+			return _p9._0;
 		} else {
 			return '';
 		}
@@ -9466,9 +9607,9 @@ var _user$project$InputOptions$labelEdit = function (string) {
 						[
 							_elm_lang$html$Html_Attributes$class('form-control'),
 							_elm_lang$html$Html_Events$onInput(
-							function (_p4) {
+							function (_p10) {
 								return _user$project$Messages$InputMessage(
-									_user$project$Messages$LabelEdit(_p4));
+									_user$project$Messages$LabelEdit(_p10));
 							}),
 							_elm_lang$html$Html_Attributes$value(labelText)
 						]),
@@ -9479,9 +9620,9 @@ var _user$project$InputOptions$labelEdit = function (string) {
 };
 var _user$project$InputOptions$placeholderEdit = function (string) {
 	var placeholderText = function () {
-		var _p5 = string;
-		if (_p5.ctor === 'Just') {
-			return _p5._0;
+		var _p11 = string;
+		if (_p11.ctor === 'Just') {
+			return _p11._0;
 		} else {
 			return '';
 		}
@@ -9516,9 +9657,9 @@ var _user$project$InputOptions$placeholderEdit = function (string) {
 						[
 							_elm_lang$html$Html_Attributes$class('form-control'),
 							_elm_lang$html$Html_Events$onInput(
-							function (_p6) {
+							function (_p12) {
 								return _user$project$Messages$InputMessage(
-									_user$project$Messages$PlaceholderEdit(_p6));
+									_user$project$Messages$PlaceholderEdit(_p12));
 							}),
 							_elm_lang$html$Html_Attributes$value(placeholderText)
 						]),
@@ -9528,8 +9669,8 @@ var _user$project$InputOptions$placeholderEdit = function (string) {
 		]);
 };
 var _user$project$InputOptions$view = function (inp) {
-	var _p7 = inp;
-	if (_p7.ctor === 'TextInput') {
+	var _p13 = inp;
+	if (_p13.ctor === 'TextInput') {
 		return _elm_lang$core$List$concat(
 			_elm_lang$core$Native_List.fromArray(
 				[
@@ -9540,9 +9681,12 @@ var _user$project$InputOptions$view = function (inp) {
 					_user$project$InputOptions$smallUnderEdit(
 					_user$project$Models$extractSmall(inp)),
 					_user$project$InputOptions$typeEdit,
-					_user$project$InputOptions$addon1Edit,
-					_user$project$InputOptions$addon2Edit,
-					_user$project$InputOptions$sizeEdit,
+					_user$project$InputOptions$addon1Edit(
+					_user$project$Models$extractAddon1(inp)),
+					_user$project$InputOptions$addon2Edit(
+					_user$project$Models$extractAddon2(inp)),
+					_user$project$InputOptions$sizeEdit(
+					_user$project$Models$extractSize(inp)),
 					_user$project$InputOptions$disabledEdit(
 					_user$project$Models$extractDisabled(inp)),
 					_user$project$InputOptions$readonlyEdit
@@ -9616,6 +9760,57 @@ var _user$project$InputUpdate$placeholderUpdateFunc = F2(
 			return inp;
 		}
 	});
+var _user$project$InputUpdate$secondAddonEditFunc = F2(
+	function (inp, newAddon) {
+		var wrappedAddon = _elm_lang$core$Native_Utils.eq(newAddon, '') ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(newAddon);
+		var _p4 = inp;
+		if (_p4.ctor === 'TextInput') {
+			return _user$project$Models$TextInput(
+				_elm_lang$core$Native_Utils.update(
+					_p4._0,
+					{addon2: wrappedAddon}));
+		} else {
+			return inp;
+		}
+	});
+var _user$project$InputUpdate$firstAddonEditFunc = F2(
+	function (inp, newAddon) {
+		var wrappedAddon = _elm_lang$core$Native_Utils.eq(newAddon, '') ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(newAddon);
+		var _p5 = inp;
+		if (_p5.ctor === 'TextInput') {
+			return _user$project$Models$TextInput(
+				_elm_lang$core$Native_Utils.update(
+					_p5._0,
+					{addon1: wrappedAddon}));
+		} else {
+			return inp;
+		}
+	});
+var _user$project$InputUpdate$sizeEditFunc = F2(
+	function (inp, newSize) {
+		var neco = function () {
+			var _p6 = newSize;
+			switch (_p6) {
+				case 'small':
+					return _user$project$Models$Small;
+				case 'normal':
+					return _user$project$Models$Normal;
+				case 'large':
+					return _user$project$Models$Large;
+				default:
+					return _user$project$Models$Normal;
+			}
+		}();
+		var _p7 = inp;
+		if (_p7.ctor === 'TextInput') {
+			return _user$project$Models$TextInput(
+				_elm_lang$core$Native_Utils.update(
+					_p7._0,
+					{size: neco}));
+		} else {
+			return inp;
+		}
+	});
 var _user$project$InputUpdate$updateInputAttribute = F4(
 	function (updateFunc, model, inputId, newPlaceholder) {
 		var newInputs = A2(
@@ -9636,21 +9831,27 @@ var _user$project$InputUpdate$updateInputAttribute = F4(
 	});
 var _user$project$InputUpdate$update = F2(
 	function (msg, model) {
-		var _p4 = model.currentlyEdditedInputId;
-		if (_p4.ctor === 'Nothing') {
+		var _p8 = model.currentlyEdditedInputId;
+		if (_p8.ctor === 'Nothing') {
 			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 		} else {
-			var _p6 = _p4._0;
-			var _p5 = msg;
-			switch (_p5.ctor) {
+			var _p10 = _p8._0;
+			var _p9 = msg;
+			switch (_p9.ctor) {
 				case 'PlaceholderEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$placeholderUpdateFunc, model, _p6, _p5._0);
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$placeholderUpdateFunc, model, _p10, _p9._0);
 				case 'LabelEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$labelUpdateFunc, model, _p6, _p5._0);
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$labelUpdateFunc, model, _p10, _p9._0);
 				case 'SmallEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$smallUpdateFunc, model, _p6, _p5._0);
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$smallUpdateFunc, model, _p10, _p9._0);
 				case 'DisabledEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$disabledUpdateFunc, model, _p6, _p5._0);
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$disabledUpdateFunc, model, _p10, _p9._0);
+				case 'FirstAddonEdit':
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$firstAddonEditFunc, model, _p10, _p9._0);
+				case 'SecondAddonEdit':
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$secondAddonEditFunc, model, _p10, _p9._0);
+				case 'SizeEdit':
+					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$sizeEditFunc, model, _p10, _p9._0);
 				default:
 					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 			}

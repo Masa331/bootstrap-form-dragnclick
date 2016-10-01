@@ -1,62 +1,86 @@
-var _user$project$Models$extractSmall = function (inp) {
+var _user$project$Models$extractAddon2 = function (inp) {
 	var _p0 = inp;
 	if (_p0.ctor === 'TextInput') {
-		return _p0._0.small;
+		return _p0._0.addon2;
+	} else {
+		return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _user$project$Models$extractAddon1 = function (inp) {
+	var _p1 = inp;
+	if (_p1.ctor === 'TextInput') {
+		return _p1._0.addon1;
+	} else {
+		return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _user$project$Models$extractSmall = function (inp) {
+	var _p2 = inp;
+	if (_p2.ctor === 'TextInput') {
+		return _p2._0.small;
 	} else {
 		return _elm_lang$core$Maybe$Nothing;
 	}
 };
 var _user$project$Models$extractDisabled = function (inp) {
-	var _p1 = inp;
-	if (_p1.ctor === 'TextInput') {
-		return _p1._0.disabled;
+	var _p3 = inp;
+	if (_p3.ctor === 'TextInput') {
+		return _p3._0.disabled;
 	} else {
 		return false;
 	}
 };
 var _user$project$Models$extractLabel = function (inp) {
-	var _p2 = inp;
-	if (_p2.ctor === 'TextInput') {
-		return _p2._0.label;
+	var _p4 = inp;
+	if (_p4.ctor === 'TextInput') {
+		return _p4._0.label;
 	} else {
 		return _elm_lang$core$Maybe$Nothing;
 	}
 };
 var _user$project$Models$extractPlaceholder = function (inp) {
-	var _p3 = inp;
-	if (_p3.ctor === 'TextInput') {
-		return _p3._0.placeholder;
+	var _p5 = inp;
+	if (_p5.ctor === 'TextInput') {
+		return _p5._0.placeholder;
 	} else {
 		return _elm_lang$core$Maybe$Nothing;
 	}
 };
 var _user$project$Models$extractId = function (inp) {
-	var _p4 = inp;
-	switch (_p4.ctor) {
+	var _p6 = inp;
+	switch (_p6.ctor) {
 		case 'TextInput':
-			return _p4._0.id;
+			return _p6._0.id;
 		case 'TextArea':
-			return _p4._0.id;
+			return _p6._0.id;
 		case 'Select':
-			return _p4._0.id;
+			return _p6._0.id;
 		case 'Multiselect':
-			return _p4._0.id;
+			return _p6._0.id;
 		case 'FileUpload':
-			return _p4._0.id;
+			return _p6._0.id;
 		case 'Radio':
-			return _p4._0.id;
+			return _p6._0.id;
 		case 'Checkbox':
-			return _p4._0.id;
+			return _p6._0.id;
 		default:
-			return _p4._0.id;
+			return _p6._0.id;
 	}
 };
 var _user$project$Models$Model = F2(
 	function (a, b) {
 		return {form: a, currentlyEdditedInputId: b};
 	});
-var _user$project$Models$Big = {ctor: 'Big'};
+var _user$project$Models$Large = {ctor: 'Large'};
 var _user$project$Models$Normal = {ctor: 'Normal'};
+var _user$project$Models$extractSize = function (inp) {
+	var _p7 = inp;
+	if (_p7.ctor === 'TextInput') {
+		return _p7._0.size;
+	} else {
+		return _user$project$Models$Normal;
+	}
+};
 var _user$project$Models$Small = {ctor: 'Small'};
 var _user$project$Models$Button = function (a) {
 	return {ctor: 'Button', _0: a};
