@@ -63,9 +63,6 @@ textInputHtml inp attrs =
 -- selectHtml : Input -> Html Msg
 selectHtml inp attrs =
   let
-    -- s1 = option [] [text "1"]
-    -- s2 = option [] [text "2"]
-    -- s3 = option [] [text "3"]
     options = List.map (\value -> option [] [text value]) attrs.options
 
     disabled = if attrs.disabled then Just (Html.Attributes.disabled True) else Nothing
