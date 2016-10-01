@@ -169,8 +169,8 @@ textInputToHtmlTree inp attrs =
 
     id = Just (Attribute "id" ("input" ++ toString attrs.id))
     placeholder = Maybe.map (Attribute "placeholder") attrs.placeholder
-    disabled = if attrs.disabled then Just (Attribute "disabled" "true") else Nothing
-    readonly = if attrs.readonly then Just (Attribute "readonly" "true") else Nothing
+    disabled = if attrs.disabled then Just (Attribute "disabled" "disabled") else Nothing
+    readonly = if attrs.readonly then Just (Attribute "readonly" "readonly") else Nothing
     sizeClass =
       case attrs.size of
         Small -> "form-control-sm"

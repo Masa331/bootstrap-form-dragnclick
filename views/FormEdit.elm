@@ -58,4 +58,13 @@ createAttributes model =
   List.map createAttribute model.attributes
 
 createAttribute attribute =
-  Html.Attributes.attribute attribute.name attribute.value
+  -- if True then
+  --   Html.Attributes.attribute "disabled" True
+  -- else
+    Html.Attributes.attribute attribute.name attribute.value
+  --
+  -- case attribute.name of
+  --   "disabled" -> Html.Attributes.disabled True
+  --   _ -> Html.Attributes.attribute attribute.name attribute.value
+  --   -- "disabled" -> Html.Attributes.disabled True
+  --   -- _ -> Html.Attributes.attribute attribute.name attribute.value

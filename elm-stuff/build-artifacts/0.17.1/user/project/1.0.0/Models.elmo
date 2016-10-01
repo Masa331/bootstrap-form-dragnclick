@@ -239,9 +239,9 @@ var _user$project$Models$textInputToHtmlTree = F2(
 					' ',
 					A2(_elm_lang$core$List_ops['::'], sizeClass, attrs.classList))));
 		var readonly = attrs.readonly ? _elm_lang$core$Maybe$Just(
-			A2(_user$project$Models$Attribute, 'readonly', 'true')) : _elm_lang$core$Maybe$Nothing;
+			A2(_user$project$Models$Attribute, 'readonly', 'readonly')) : _elm_lang$core$Maybe$Nothing;
 		var disabled = attrs.disabled ? _elm_lang$core$Maybe$Just(
-			A2(_user$project$Models$Attribute, 'disabled', 'true')) : _elm_lang$core$Maybe$Nothing;
+			A2(_user$project$Models$Attribute, 'disabled', 'disabled')) : _elm_lang$core$Maybe$Nothing;
 		var placeholder = A2(
 			_elm_lang$core$Maybe$map,
 			_user$project$Models$Attribute('placeholder'),
