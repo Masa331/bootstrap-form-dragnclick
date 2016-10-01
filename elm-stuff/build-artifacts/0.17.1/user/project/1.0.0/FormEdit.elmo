@@ -1,8 +1,69 @@
+var _user$project$FormEdit$createAttribute = function (attribute) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, attribute.name, attribute.value);
+};
+var _user$project$FormEdit$createAttributes = function (model) {
+	return A2(_elm_lang$core$List$map, _user$project$FormEdit$createAttribute, model.attributes);
+};
+var _user$project$FormEdit$toElmHtmlNode = function (model) {
+	var value = _elm_lang$html$Html$text(model.value);
+	var childs = function (_p0) {
+		var _p1 = _p0;
+		return _p1._0;
+	}(model.children);
+	var attributes = _user$project$FormEdit$createAttributes(model);
+	var _p2 = childs;
+	if (_p2.ctor === '[]') {
+		return false ? _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				_elm_lang$core$Native_List.fromArray(
+					[value]))
+			]) : _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				_elm_lang$core$Native_List.fromArray(
+					[value]))
+			]);
+	} else {
+		return false ? _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$List$concat(
+						A2(_elm_lang$core$List$map, _user$project$FormEdit$toElmHtmlNode, childs)),
+					_elm_lang$core$Native_List.fromArray(
+						[value])))
+			]) : _elm_lang$core$Native_List.fromArray(
+			[
+				A3(
+				_elm_lang$html$Html$node,
+				model.tag,
+				attributes,
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$List$concat(
+						A2(_elm_lang$core$List$map, _user$project$FormEdit$toElmHtmlNode, childs)),
+					_elm_lang$core$Native_List.fromArray(
+						[value])))
+			]);
+	}
+};
 var _user$project$FormEdit$view = function (model) {
 	var elements = A2(_elm_lang$core$List$map, _user$project$Inputs$inputHtml, model.form);
 	return A2(
 		_elm_lang$html$Html$form,
 		_elm_lang$core$Native_List.fromArray(
 			[]),
-		elements);
+		_user$project$FormEdit$toElmHtmlNode(
+			_user$project$Models$modelToHtmlTree(model.form)));
 };

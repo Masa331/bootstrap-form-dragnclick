@@ -2,6 +2,10 @@ module Models exposing (..)
 
 import String exposing (..)
 
+type alias Attribute = { name: String, value: String }
+type Children = Children (List Element)
+type alias Element = { tag: String, attributes: List Attribute, children: Children, value: String }
+
 type alias ClassList = List String
 type alias Id = Int
 type alias Placeholder = Maybe String
@@ -126,3 +130,49 @@ typeToText type' =
     Week -> "week"
     Time -> "time"
     Color -> "color"
+
+
+
+-- WIP ----------------------------
+
+modelToHtmlTree : Form -> Element
+modelToHtmlTree form =
+  let
+    e1 = initialTextInput
+    e2 = initialCheckbox
+    e3 = initialSubmit
+    -- children = [e1, e2, e3]
+
+    children = List.map inputToHtmlTree form
+  in
+    Element "form" [] (Children children) ""
+
+inputToHtmlTree input =
+  initialTextInput
+
+initialTextInput =
+  let
+    label = Element "label" [Attribute "for" "input1"] (Children []) "Input1"
+    inputAttrs = [Attribute "type" "text", Attribute "class" "form-control", Attribute "id" "input1"]
+    input = Element "input" inputAttrs (Children []) ""
+  in
+    Element "div" [Attribute "class" "form-group"] (Children [label, input]) ""
+
+initialCheckbox =
+  let
+    checkInput = Element "input" [Attribute "type" "checkbox", Attribute "class" "form-check-input"] (Children []) ""
+    checkLabel = Element "label" [Attribute "class" "form-check-label"] (Children [checkInput]) "Check me out"
+  in
+    Element "div" [Attribute "class" "form-check"] (Children [checkLabel]) ""
+
+initialSubmit =
+  let
+    submitAttrs = [Attribute "type" "submit", Attribute "class" "btn btn-primary"]
+  in
+    Element "button" submitAttrs (Children []) "Submit"
+
+isVoid element =
+  List.member element.tag voidElementsList
+
+voidElementsList =
+  ["area", "base", "br", "col", "command", "embed", "hr", "img", "input", "keygen", "link", "meta", "param", "source", "track", "wbr"]

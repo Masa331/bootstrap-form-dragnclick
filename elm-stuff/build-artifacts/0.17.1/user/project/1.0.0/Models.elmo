@@ -1,3 +1,8 @@
+var _user$project$Models$voidElementsList = _elm_lang$core$Native_List.fromArray(
+	['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']);
+var _user$project$Models$isVoid = function (element) {
+	return A2(_elm_lang$core$List$member, element.tag, _user$project$Models$voidElementsList);
+};
 var _user$project$Models$typeToText = function (type$) {
 	var _p0 = type$;
 	switch (_p0.ctor) {
@@ -124,10 +129,126 @@ var _user$project$Models$extractId = function (inp) {
 			return _p9._0.id;
 	}
 };
+var _user$project$Models$Attribute = F2(
+	function (a, b) {
+		return {name: a, value: b};
+	});
+var _user$project$Models$Element = F4(
+	function (a, b, c, d) {
+		return {tag: a, attributes: b, children: c, value: d};
+	});
 var _user$project$Models$Model = F3(
 	function (a, b, c) {
 		return {form: a, currentlyEdditedInputId: b, newOption: c};
 	});
+var _user$project$Models$Children = function (a) {
+	return {ctor: 'Children', _0: a};
+};
+var _user$project$Models$initialTextInput = function () {
+	var inputAttrs = _elm_lang$core$Native_List.fromArray(
+		[
+			A2(_user$project$Models$Attribute, 'type', 'text'),
+			A2(_user$project$Models$Attribute, 'class', 'form-control'),
+			A2(_user$project$Models$Attribute, 'id', 'input1')
+		]);
+	var input = A4(
+		_user$project$Models$Element,
+		'input',
+		inputAttrs,
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'');
+	var label = A4(
+		_user$project$Models$Element,
+		'label',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'for', 'input1')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'Input1');
+	return A4(
+		_user$project$Models$Element,
+		'div',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-group')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[label, input])),
+		'');
+}();
+var _user$project$Models$inputToHtmlTree = function (input) {
+	return _user$project$Models$initialTextInput;
+};
+var _user$project$Models$initialCheckbox = function () {
+	var checkInput = A4(
+		_user$project$Models$Element,
+		'input',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'type', 'checkbox'),
+				A2(_user$project$Models$Attribute, 'class', 'form-check-input')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'');
+	var checkLabel = A4(
+		_user$project$Models$Element,
+		'label',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-check-label')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[checkInput])),
+		'Check me out');
+	return A4(
+		_user$project$Models$Element,
+		'div',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$Models$Attribute, 'class', 'form-check')
+			]),
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[checkLabel])),
+		'');
+}();
+var _user$project$Models$initialSubmit = function () {
+	var submitAttrs = _elm_lang$core$Native_List.fromArray(
+		[
+			A2(_user$project$Models$Attribute, 'type', 'submit'),
+			A2(_user$project$Models$Attribute, 'class', 'btn btn-primary')
+		]);
+	return A4(
+		_user$project$Models$Element,
+		'button',
+		submitAttrs,
+		_user$project$Models$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'Submit');
+}();
+var _user$project$Models$modelToHtmlTree = function (form) {
+	var children = A2(_elm_lang$core$List$map, _user$project$Models$inputToHtmlTree, form);
+	var e3 = _user$project$Models$initialSubmit;
+	var e2 = _user$project$Models$initialCheckbox;
+	var e1 = _user$project$Models$initialTextInput;
+	return A4(
+		_user$project$Models$Element,
+		'form',
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_user$project$Models$Children(children),
+		'');
+};
 var _user$project$Models$Large = {ctor: 'Large'};
 var _user$project$Models$Normal = {ctor: 'Normal'};
 var _user$project$Models$extractSize = function (inp) {
