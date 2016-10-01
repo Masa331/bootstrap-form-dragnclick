@@ -26,15 +26,33 @@ toElmHtmlNode model =
   in
     case childs of
       [] ->
-        if False then
-          [Html.node model.tag attributes [value]]
+        if isDeletable model then
+          [editLinks model.value]
         else
           [Html.node model.tag attributes [value]]
       x::xs ->
-        if False then
+        if isDeletable model then
           [Html.node model.tag attributes ((List.concat (List.map toElmHtmlNode childs)) ++ [value])]
         else
           [Html.node model.tag attributes ((List.concat (List.map toElmHtmlNode childs)) ++ [value])]
+
+editLinks id =
+  let
+    castedId = toInt id
+    resolvedId =
+      case castedId of
+        Ok val -> val
+        Err _ -> 1
+    l1 = a [href "javascript:void(0);", onClick (FormMessage (EditInput resolvedId))] [text "Edit"]
+    l2 = a [href "javascript:void(0);", onClick (FormMessage (RemoveInput resolvedId))] [text "Remove"]
+    l3 = a [href "javascript:void(0);"] [text "Move up"]
+    l4 = a [href "javascript:void(0);"] [text "Move Down"]
+  in
+    div
+      [ class "edit-and-remove-link" ]
+      [ l1, text " | ", l2, text " | ", l3, text " | ", l4]
+
+
 
 createAttributes model =
   List.map createAttribute model.attributes
