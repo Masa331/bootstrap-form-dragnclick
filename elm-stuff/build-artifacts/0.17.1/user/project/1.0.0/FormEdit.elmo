@@ -1,9 +1,7 @@
-var _user$project$FormEdit$view = function (model) {
-	var elements = A2(_elm_lang$core$List$map, _user$project$Inputs$inputHtml, model.form);
+var _user$project$FormEdit$view = function (htmlTree) {
 	return A2(
 		_elm_lang$html$Html$form,
 		_elm_lang$core$Native_List.fromArray(
 			[]),
-		_user$project$Inputs$toElmHtmlNode(
-			_user$project$Models$modelToHtmlTree(model.form)));
+		_user$project$Inputs$toElmHtmlNode(htmlTree));
 };

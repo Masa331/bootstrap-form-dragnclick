@@ -132,6 +132,22 @@ var _user$project$Models$extractId = function (inp) {
 			return _p9._0.id;
 	}
 };
+var _user$project$Models$currentlyEdditedInput = function (model) {
+	var _p10 = model.currentlyEdditedInputId;
+	if (_p10.ctor === 'Nothing') {
+		return _elm_lang$core$Maybe$Nothing;
+	} else {
+		return _elm_lang$core$List$head(
+			A2(
+				_elm_lang$core$List$filter,
+				function (el) {
+					return _elm_lang$core$Native_Utils.eq(
+						_user$project$Models$extractId(el),
+						_p10._0);
+				},
+				model.form));
+	}
+};
 var _user$project$Models$Attribute = F2(
 	function (a, b) {
 		return {name: a, value: b};
@@ -170,8 +186,8 @@ var _user$project$Models$toType = function (value) {
 var _user$project$Models$toClasses = F2(
 	function (classList, size) {
 		var sizeClass = function () {
-			var _p10 = size;
-			switch (_p10.ctor) {
+			var _p11 = size;
+			switch (_p11.ctor) {
 				case 'Small':
 					return 'form-control-sm';
 				case 'Normal':
@@ -506,8 +522,8 @@ var _user$project$Models$checkboxToHtmlTree = F2(
 					[])),
 			'');
 		var label = function () {
-			var _p11 = attrs.label;
-			if (_p11.ctor === 'Nothing') {
+			var _p12 = attrs.label;
+			if (_p12.ctor === 'Nothing') {
 				return _elm_lang$core$Maybe$Just(
 					A4(
 						_user$project$Models$Element,
@@ -532,7 +548,7 @@ var _user$project$Models$checkboxToHtmlTree = F2(
 						_user$project$Models$Children(
 							_elm_lang$core$Native_List.fromArray(
 								[input])),
-						_p11._0));
+						_p12._0));
 			}
 		}();
 		var children = A2(
@@ -585,12 +601,12 @@ var _user$project$Models$buttonToHtmlTree = F2(
 var _user$project$Models$Large = {ctor: 'Large'};
 var _user$project$Models$Normal = {ctor: 'Normal'};
 var _user$project$Models$extractSize = function (inp) {
-	var _p12 = inp;
-	switch (_p12.ctor) {
+	var _p13 = inp;
+	switch (_p13.ctor) {
 		case 'TextInput':
-			return _p12._0.size;
+			return _p13._0.size;
 		case 'Select':
-			return _p12._0.size;
+			return _p13._0.size;
 		default:
 			return _user$project$Models$Normal;
 	}
@@ -731,35 +747,25 @@ var _user$project$Models$fileUploadToHtmlTree = F2(
 			'');
 	});
 var _user$project$Models$inputToHtmlTree = function (input) {
-	var _p13 = input;
-	switch (_p13.ctor) {
+	var _p14 = input;
+	switch (_p14.ctor) {
 		case 'TextInput':
-			return A2(_user$project$Models$textInputToHtmlTree, input, _p13._0);
+			return A2(_user$project$Models$textInputToHtmlTree, input, _p14._0);
 		case 'TextArea':
-			return A2(_user$project$Models$textAreaToHtmlTree, input, _p13._0);
+			return A2(_user$project$Models$textAreaToHtmlTree, input, _p14._0);
 		case 'Select':
-			return A2(_user$project$Models$selectToHtmlTree, input, _p13._0);
+			return A2(_user$project$Models$selectToHtmlTree, input, _p14._0);
 		case 'Multiselect':
-			return A2(_user$project$Models$multiselectToHtmlTree, input, _p13._0);
+			return A2(_user$project$Models$multiselectToHtmlTree, input, _p14._0);
 		case 'FileUpload':
-			return A2(_user$project$Models$fileUploadToHtmlTree, input, _p13._0);
+			return A2(_user$project$Models$fileUploadToHtmlTree, input, _p14._0);
 		case 'Radio':
-			return A2(_user$project$Models$radioToHtmlTree, input, _p13._0);
+			return A2(_user$project$Models$radioToHtmlTree, input, _p14._0);
 		case 'Checkbox':
-			return A2(_user$project$Models$checkboxToHtmlTree, input, _p13._0);
+			return A2(_user$project$Models$checkboxToHtmlTree, input, _p14._0);
 		default:
-			return A2(_user$project$Models$buttonToHtmlTree, input, _p13._0);
+			return A2(_user$project$Models$buttonToHtmlTree, input, _p14._0);
 	}
-};
-var _user$project$Models$modelToHtmlTree = function (form) {
-	var children = A2(_elm_lang$core$List$map, _user$project$Models$inputToHtmlTree, form);
-	return A4(
-		_user$project$Models$Element,
-		'form',
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_user$project$Models$Children(children),
-		'');
 };
 var _user$project$Models$Small = {ctor: 'Small'};
 var _user$project$Models$Color = {ctor: 'Color'};
@@ -776,9 +782,9 @@ var _user$project$Models$Email = {ctor: 'Email'};
 var _user$project$Models$Search = {ctor: 'Search'};
 var _user$project$Models$Text = {ctor: 'Text'};
 var _user$project$Models$extractType = function (inp) {
-	var _p14 = inp;
-	if (_p14.ctor === 'TextInput') {
-		return _p14._0.type$;
+	var _p15 = inp;
+	if (_p15.ctor === 'TextInput') {
+		return _p15._0.type$;
 	} else {
 		return _user$project$Models$Text;
 	}

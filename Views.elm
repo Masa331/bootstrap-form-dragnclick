@@ -1,62 +1,64 @@
-module Views exposing (..)
+module Views exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 
 import Templates exposing (..)
-import FormEdit exposing (..)
-import Markup exposing (..)
-import InputEdit exposing (..)
+import Markup exposing (view)
+import Form exposing (view)
 import InputOptions exposing (..)
 import Messages exposing (..)
 import Models exposing (..)
 
 view model =
-  case model.currentlyEdditedInputId of
+  case currentlyEdditedInput model of
     Nothing ->
-      formCreator model
-    Just id ->
-      inputEditLayout model id
+      formEdit model
+    Just input ->
+      inputEdit input
 
 -------------
 -- Private --
 -------------
 
-formCreator model =
-  div
-    []
-    [ div
-      [ class "row" ]
-      [ div
-         [ class "col-sm-8"]
-         [ div [ class "bd-example" ] [ FormEdit.view model ]
-         , div [ class "highlight" ] [ Markup.view model] ]
-      , div
-         [ class "col-sm-4" ]
-         Templates.view
-      ]
-    ]
-
-inputEditLayout model id =
+formEdit : Model -> Html Msg
+formEdit model =
   let
-    input = List.head (List.filter (\el -> extractId el == id) model.form)
+    inputs = List.map inputToHtmlTree model.form
+    htmlTree = Element "form" [] (Children inputs) ""
   in
-    case input of
-      Nothing ->
-        div [] [text "Nothing to edit"]
-      Just b ->
-        div
-          []
-          [ a [href "javascript:void(0)", onClick (FormMessage StopEditing)] [text "Back to form"]
+    div
+      []
+      [ div
+        [ class "row" ]
+        [ div
+           [ class "col-sm-8"]
+           [ div [ class "bd-example" ] (Form.view htmlTree)
+           , div [ class "highlight" ] [ Markup.view htmlTree] ]
+        , div
+           [ class "col-sm-4" ]
+           Templates.view
+        ]
+      ]
+
+inputEdit : Input -> Html Msg
+inputEdit input =
+  let
+    inputs = [inputToHtmlTree input]
+    htmlTree = Element "form" [] (Children inputs) ""
+  in
+    div
+      []
+      [ a [href "javascript:void(0)", onClick (FormMessage StopEditing)] [text "Back to form"]
+      , div
+          [ class "row"]
+          [ div
+             [ class "col-sm-8"]
+             [ div [ class "bd-example" ] (Form.view htmlTree)
+             , div [ class "highlight" ] [ Markup.view htmlTree ] ]
           , div
-              [ class "row"]
-              [ div
-                 [ class "col-sm-8"]
-                 [ div [ class "bd-example" ] [ InputEdit.view b ]
-                 , div [ class "highlight" ] [ Markup.inputView b ] ]
-              , div
-                 [ class "col-sm-4" ]
-                 (InputOptions.view b)
-              ]
+             [ class "col-sm-4" ]
+             (InputOptions.view input)
           ]
+      ]

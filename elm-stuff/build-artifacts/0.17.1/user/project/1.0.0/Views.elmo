@@ -1,93 +1,86 @@
-var _user$project$Views$inputEditLayout = F2(
-	function (model, id) {
-		var input = _elm_lang$core$List$head(
-			A2(
-				_elm_lang$core$List$filter,
-				function (el) {
-					return _elm_lang$core$Native_Utils.eq(
-						_user$project$Models$extractId(el),
-						id);
-				},
-				model.form));
-		var _p0 = input;
-		if (_p0.ctor === 'Nothing') {
-			return A2(
-				_elm_lang$html$Html$div,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
+var _user$project$Views$inputEdit = function (input) {
+	var inputs = _elm_lang$core$Native_List.fromArray(
+		[
+			_user$project$Models$inputToHtmlTree(input)
+		]);
+	var htmlTree = A4(
+		_user$project$Models$Element,
+		'form',
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_user$project$Models$Children(inputs),
+		'');
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$a,
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html$text('Nothing to edit')
-					]));
-		} else {
-			var _p1 = _p0._0;
-			return A2(
+						_elm_lang$html$Html_Attributes$href('javascript:void(0)'),
+						_elm_lang$html$Html_Events$onClick(
+						_user$project$Messages$FormMessage(_user$project$Messages$StopEditing))
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Back to form')
+					])),
+				A2(
 				_elm_lang$html$Html$div,
 				_elm_lang$core$Native_List.fromArray(
-					[]),
+					[
+						_elm_lang$html$Html_Attributes$class('row')
+					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
 						A2(
-						_elm_lang$html$Html$a,
+						_elm_lang$html$Html$div,
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html_Attributes$href('javascript:void(0)'),
-								_elm_lang$html$Html_Events$onClick(
-								_user$project$Messages$FormMessage(_user$project$Messages$StopEditing))
+								_elm_lang$html$Html_Attributes$class('col-sm-8')
 							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html$text('Back to form')
+								A2(
+								_elm_lang$html$Html$div,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('bd-example')
+									]),
+								_user$project$Form$view(htmlTree)),
+								A2(
+								_elm_lang$html$Html$div,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('highlight')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_user$project$Markup$view(htmlTree)
+									]))
 							])),
 						A2(
 						_elm_lang$html$Html$div,
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html_Attributes$class('row')
+								_elm_lang$html$Html_Attributes$class('col-sm-4')
 							]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								A2(
-								_elm_lang$html$Html$div,
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html_Attributes$class('col-sm-8')
-									]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										A2(
-										_elm_lang$html$Html$div,
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_elm_lang$html$Html_Attributes$class('bd-example')
-											]),
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_user$project$InputEdit$view(_p1)
-											])),
-										A2(
-										_elm_lang$html$Html$div,
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_elm_lang$html$Html_Attributes$class('highlight')
-											]),
-										_elm_lang$core$Native_List.fromArray(
-											[
-												_user$project$Markup$inputView(_p1)
-											]))
-									])),
-								A2(
-								_elm_lang$html$Html$div,
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html_Attributes$class('col-sm-4')
-									]),
-								_user$project$InputOptions$view(_p1))
-							]))
-					]));
-		}
-	});
-var _user$project$Views$formCreator = function (model) {
+						_user$project$InputOptions$view(input))
+					]))
+			]));
+};
+var _user$project$Views$formEdit = function (model) {
+	var inputs = A2(_elm_lang$core$List$map, _user$project$Models$inputToHtmlTree, model.form);
+	var htmlTree = A4(
+		_user$project$Models$Element,
+		'form',
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_user$project$Models$Children(inputs),
+		'');
 	return A2(
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
@@ -116,10 +109,7 @@ var _user$project$Views$formCreator = function (model) {
 									[
 										_elm_lang$html$Html_Attributes$class('bd-example')
 									]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_user$project$FormEdit$view(model)
-									])),
+								_user$project$Form$view(htmlTree)),
 								A2(
 								_elm_lang$html$Html$div,
 								_elm_lang$core$Native_List.fromArray(
@@ -128,7 +118,7 @@ var _user$project$Views$formCreator = function (model) {
 									]),
 								_elm_lang$core$Native_List.fromArray(
 									[
-										_user$project$Markup$view(model)
+										_user$project$Markup$view(htmlTree)
 									]))
 							])),
 						A2(
@@ -142,10 +132,10 @@ var _user$project$Views$formCreator = function (model) {
 			]));
 };
 var _user$project$Views$view = function (model) {
-	var _p2 = model.currentlyEdditedInputId;
-	if (_p2.ctor === 'Nothing') {
-		return _user$project$Views$formCreator(model);
+	var _p0 = _user$project$Models$currentlyEdditedInput(model);
+	if (_p0.ctor === 'Nothing') {
+		return _user$project$Views$formEdit(model);
 	} else {
-		return A2(_user$project$Views$inputEditLayout, model, _p2._0);
+		return _user$project$Views$inputEdit(_p0._0);
 	}
 };

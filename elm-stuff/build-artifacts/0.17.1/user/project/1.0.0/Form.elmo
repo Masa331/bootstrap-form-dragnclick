@@ -1,10 +1,10 @@
-var _user$project$Inputs$createAttribute = function (attribute) {
+var _user$project$Form$createAttribute = function (attribute) {
 	return A2(_elm_lang$html$Html_Attributes$attribute, attribute.name, attribute.value);
 };
-var _user$project$Inputs$createAttributes = function (model) {
-	return A2(_elm_lang$core$List$map, _user$project$Inputs$createAttribute, model.attributes);
+var _user$project$Form$createAttributes = function (model) {
+	return A2(_elm_lang$core$List$map, _user$project$Form$createAttribute, model.attributes);
 };
-var _user$project$Inputs$editLinks = function (id) {
+var _user$project$Form$editLinks = function (id) {
 	var l4 = A2(
 		_elm_lang$html$Html$a,
 		_elm_lang$core$Native_List.fromArray(
@@ -77,18 +77,18 @@ var _user$project$Inputs$editLinks = function (id) {
 				l4
 			]));
 };
-var _user$project$Inputs$toElmHtmlNode = function (model) {
+var _user$project$Form$toElmHtmlNode = function (model) {
 	var value = _elm_lang$html$Html$text(model.value);
 	var childs = function (_p1) {
 		var _p2 = _p1;
 		return _p2._0;
 	}(model.children);
-	var attributes = _user$project$Inputs$createAttributes(model);
+	var attributes = _user$project$Form$createAttributes(model);
 	var _p3 = childs;
 	if (_p3.ctor === '[]') {
 		return _user$project$Models$isDeletable(model) ? _elm_lang$core$Native_List.fromArray(
 			[
-				_user$project$Inputs$editLinks(model.value)
+				_user$project$Form$editLinks(model.value)
 			]) : _elm_lang$core$Native_List.fromArray(
 			[
 				A3(
@@ -108,7 +108,7 @@ var _user$project$Inputs$toElmHtmlNode = function (model) {
 				A2(
 					_elm_lang$core$Basics_ops['++'],
 					_elm_lang$core$List$concat(
-						A2(_elm_lang$core$List$map, _user$project$Inputs$toElmHtmlNode, childs)),
+						A2(_elm_lang$core$List$map, _user$project$Form$toElmHtmlNode, childs)),
 					_elm_lang$core$Native_List.fromArray(
 						[value])))
 			]) : _elm_lang$core$Native_List.fromArray(
@@ -120,9 +120,12 @@ var _user$project$Inputs$toElmHtmlNode = function (model) {
 				A2(
 					_elm_lang$core$Basics_ops['++'],
 					_elm_lang$core$List$concat(
-						A2(_elm_lang$core$List$map, _user$project$Inputs$toElmHtmlNode, childs)),
+						A2(_elm_lang$core$List$map, _user$project$Form$toElmHtmlNode, childs)),
 					_elm_lang$core$Native_List.fromArray(
 						[value])))
 			]);
 	}
+};
+var _user$project$Form$view = function (htmlTree) {
+	return _user$project$Form$toElmHtmlNode(htmlTree);
 };

@@ -135,13 +135,6 @@ typeToText type' =
 
 -- WIP ----------------------------
 
-modelToHtmlTree : Form -> Element
-modelToHtmlTree form =
-  let
-    children = List.map inputToHtmlTree form
-  in
-    Element "form" [] (Children children) ""
-
 inputToHtmlTree input =
   case input of
     TextInput attrs -> textInputToHtmlTree input attrs
@@ -351,3 +344,11 @@ isDeletable model =
     True
   else
     False
+
+currentlyEdditedInput : Model -> Maybe Input
+currentlyEdditedInput model =
+  case model.currentlyEdditedInputId of
+    Nothing ->
+      Nothing
+    Just id ->
+      List.head (List.filter (\el -> extractId el == id) model.form)

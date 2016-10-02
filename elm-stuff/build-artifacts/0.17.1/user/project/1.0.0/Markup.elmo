@@ -93,7 +93,7 @@ var _user$project$Markup$toElmHtmlNode = F2(
 										_user$project$Markup$closingTag(model))))))));
 		}
 	});
-var _user$project$Markup$view2 = function (model) {
+var _user$project$Markup$view = function (htmlTree) {
 	return A2(
 		_elm_lang$html$Html$pre,
 		_elm_lang$core$Native_List.fromArray(
@@ -101,26 +101,6 @@ var _user$project$Markup$view2 = function (model) {
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html$text(
-				A2(
-					_user$project$Markup$toElmHtmlNode,
-					0,
-					_user$project$Models$modelToHtmlTree(model.form)))
+				A2(_user$project$Markup$toElmHtmlNode, 0, htmlTree))
 			]));
-};
-var _user$project$Markup$inputView = function (inp) {
-	return A2(
-		_elm_lang$html$Html$pre,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text(
-				A2(
-					_user$project$Markup$toElmHtmlNode,
-					0,
-					_user$project$Models$inputToHtmlTree(inp)))
-			]));
-};
-var _user$project$Markup$view = function (model) {
-	return _user$project$Markup$view2(model);
 };
