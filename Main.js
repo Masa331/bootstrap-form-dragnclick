@@ -11293,26 +11293,6 @@ var _user$project$Views$inputEditLayout = F2(
 										_elm_lang$html$Html_Attributes$class('col-sm-4')
 									]),
 								_user$project$InputOptions$view(_p1))
-							])),
-						A2(
-						_elm_lang$html$Html$div,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html_Attributes$class('row')
-							]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								A2(
-								_elm_lang$html$Html$div,
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html_Attributes$class('col-sm-12')
-									]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text(
-										_elm_lang$core$Basics$toString(model))
-									]))
 							]))
 					]));
 		}
@@ -11367,27 +11347,7 @@ var _user$project$Views$formCreator = function (model) {
 							[
 								_elm_lang$html$Html_Attributes$class('col-sm-4')
 							]),
-						_user$project$Templates$view),
-						A2(
-						_elm_lang$html$Html$div,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html_Attributes$class('row')
-							]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								A2(
-								_elm_lang$html$Html$div,
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html_Attributes$class('col-sm-12')
-									]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text(
-										_elm_lang$core$Basics$toString(model))
-									]))
-							]))
+						_user$project$Templates$view)
 					]))
 			]));
 };

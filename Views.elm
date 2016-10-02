@@ -30,17 +30,11 @@ formCreator model =
       [ class "row" ]
       [ div
          [ class "col-sm-8"]
-         [ div [class "bd-example"] [FormEdit.view model]
-         , div [class "highlight"] [Markup.view model]]
+         [ div [ class "bd-example" ] [ FormEdit.view model ]
+         , div [ class "highlight" ] [ Markup.view model] ]
       , div
          [ class "col-sm-4" ]
          Templates.view
-      , div
-         [ class "row" ]
-         [ div 
-            [ class "col-sm-12"]
-            [ text (toString model)]
-         ]
       ]
     ]
 
@@ -59,16 +53,10 @@ inputEditLayout model id =
               [ class "row"]
               [ div
                  [ class "col-sm-8"]
-                 [ div [class "bd-example"] [InputEdit.view b]
-                 , div [class "highlight"] [Markup.inputView b]]
+                 [ div [ class "bd-example" ] [ InputEdit.view b ]
+                 , div [ class "highlight" ] [ Markup.inputView b ] ]
               , div
-                 [ class "col-sm-4"]
+                 [ class "col-sm-4" ]
                  (InputOptions.view b)
               ]
-          , div
-             [ class "row" ]
-             [ div 
-                [ class "col-sm-12"]
-                [ text (toString model)]
-             ]
           ]
