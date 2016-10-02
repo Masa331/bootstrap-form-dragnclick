@@ -250,7 +250,23 @@ var _user$project$Models$toLabel = function (value) {
 				_user$project$Models$Children(
 					_elm_lang$core$Native_List.fromArray(
 						[])),
-				'Input1');
+				value);
+		},
+		value);
+};
+var _user$project$Models$toLegend = function (value) {
+	return A2(
+		_elm_lang$core$Maybe$map,
+		function (value) {
+			return A4(
+				_user$project$Models$Element,
+				'legend',
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_user$project$Models$Children(
+					_elm_lang$core$Native_List.fromArray(
+						[])),
+				value);
 		},
 		value);
 };
@@ -379,86 +395,76 @@ var _user$project$Models$selectToHtmlTree = F2(
 			_user$project$Models$Children(children),
 			'');
 	});
-var _user$project$Models$multiselectToHtmlTree = F2(
-	function (inp, attrs) {
-		var inputAttrs = _elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'type', 'text'),
-				A2(_user$project$Models$Attribute, 'class', 'form-control'),
-				A2(_user$project$Models$Attribute, 'id', 'input1')
-			]);
+var _user$project$Models$toRadioOption = F3(
+	function (id, index, value) {
 		var input = A4(
 			_user$project$Models$Element,
 			'input',
-			inputAttrs,
-			_user$project$Models$Children(
-				_elm_lang$core$Native_List.fromArray(
-					[])),
-			'');
-		var label = A4(
-			_user$project$Models$Element,
-			'label',
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(_user$project$Models$Attribute, 'for', 'input1')
+					A2(_user$project$Models$Attribute, 'type', 'radio'),
+					A2(_user$project$Models$Attribute, 'class', 'form-check-input'),
+					A2(
+					_user$project$Models$Attribute,
+					'name',
+					_elm_lang$core$Basics$toString(id)),
+					A2(
+					_user$project$Models$Attribute,
+					'id',
+					_elm_lang$core$Basics$toString(id)),
+					A2(_user$project$Models$Attribute, 'value', value)
 				]),
 			_user$project$Models$Children(
 				_elm_lang$core$Native_List.fromArray(
 					[])),
-			'Input1');
+			'');
+		var children = A4(
+			_user$project$Models$Element,
+			'label',
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(_user$project$Models$Attribute, 'class', 'form-check-label')
+				]),
+			_user$project$Models$Children(
+				_elm_lang$core$Native_List.fromArray(
+					[input])),
+			value);
 		return A4(
 			_user$project$Models$Element,
 			'div',
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(_user$project$Models$Attribute, 'class', 'form-group')
+					A2(_user$project$Models$Attribute, 'class', 'form-check')
 				]),
 			_user$project$Models$Children(
 				_elm_lang$core$Native_List.fromArray(
-					[label, input])),
-			'');
-	});
-var _user$project$Models$fileUploadToHtmlTree = F2(
-	function (inp, attrs) {
-		var inputAttrs = _elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'type', 'text'),
-				A2(_user$project$Models$Attribute, 'class', 'form-control'),
-				A2(_user$project$Models$Attribute, 'id', 'input1')
-			]);
-		var input = A4(
-			_user$project$Models$Element,
-			'input',
-			inputAttrs,
-			_user$project$Models$Children(
-				_elm_lang$core$Native_List.fromArray(
-					[])),
-			'');
-		var label = A4(
-			_user$project$Models$Element,
-			'label',
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(_user$project$Models$Attribute, 'for', 'input1')
-				]),
-			_user$project$Models$Children(
-				_elm_lang$core$Native_List.fromArray(
-					[])),
-			'Input1');
-		return A4(
-			_user$project$Models$Element,
-			'div',
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(_user$project$Models$Attribute, 'class', 'form-group')
-				]),
-			_user$project$Models$Children(
-				_elm_lang$core$Native_List.fromArray(
-					[label, input])),
+					[children])),
 			'');
 	});
 var _user$project$Models$radioToHtmlTree = F2(
 	function (inp, attrs) {
+		var links = _user$project$Models$toLinks(
+			_user$project$Models$extractId(inp));
+		var legend = _user$project$Models$toLegend(attrs.label);
+		var options = A2(
+			_elm_lang$core$List$map,
+			function (value) {
+				return _elm_lang$core$Maybe$Just(
+					A3(_user$project$Models$toRadioOption, attrs.id, 1, value));
+			},
+			attrs.options);
+		var children = A2(
+			_elm_lang$core$List$filterMap,
+			_elm_lang$core$Basics$identity,
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_elm_lang$core$Native_List.fromArray(
+					[legend]),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					options,
+					_elm_lang$core$Native_List.fromArray(
+						[links]))));
 		var inputAttrs = _elm_lang$core$Native_List.fromArray(
 			[
 				A2(_user$project$Models$Attribute, 'type', 'text'),
@@ -473,116 +479,118 @@ var _user$project$Models$radioToHtmlTree = F2(
 				_elm_lang$core$Native_List.fromArray(
 					[])),
 			'');
-		var label = A4(
-			_user$project$Models$Element,
-			'label',
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(_user$project$Models$Attribute, 'for', 'input1')
-				]),
-			_user$project$Models$Children(
-				_elm_lang$core$Native_List.fromArray(
-					[])),
-			'Input1');
 		return A4(
 			_user$project$Models$Element,
-			'div',
+			'fieldset',
 			_elm_lang$core$Native_List.fromArray(
 				[
 					A2(_user$project$Models$Attribute, 'class', 'form-group')
 				]),
-			_user$project$Models$Children(
-				_elm_lang$core$Native_List.fromArray(
-					[label, input])),
+			_user$project$Models$Children(children),
 			'');
 	});
 var _user$project$Models$checkboxToHtmlTree = F2(
 	function (inp, attrs) {
-		var inputAttrs = _elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'type', 'text'),
-				A2(_user$project$Models$Attribute, 'class', 'form-control'),
-				A2(_user$project$Models$Attribute, 'id', 'input1')
-			]);
+		var links = _user$project$Models$toLinks(
+			_user$project$Models$extractId(inp));
 		var input = A4(
 			_user$project$Models$Element,
 			'input',
-			inputAttrs,
-			_user$project$Models$Children(
-				_elm_lang$core$Native_List.fromArray(
-					[])),
-			'');
-		var label = A4(
-			_user$project$Models$Element,
-			'label',
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(_user$project$Models$Attribute, 'for', 'input1')
+					A2(_user$project$Models$Attribute, 'type', 'checkbox'),
+					A2(_user$project$Models$Attribute, 'class', 'form-check-input')
 				]),
 			_user$project$Models$Children(
 				_elm_lang$core$Native_List.fromArray(
 					[])),
-			'Input1');
+			'');
+		var label = function () {
+			var _p11 = attrs.label;
+			if (_p11.ctor === 'Nothing') {
+				return _elm_lang$core$Maybe$Just(
+					A4(
+						_user$project$Models$Element,
+						'label',
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(_user$project$Models$Attribute, 'class', 'form-check-label')
+							]),
+						_user$project$Models$Children(
+							_elm_lang$core$Native_List.fromArray(
+								[input])),
+						''));
+			} else {
+				return _elm_lang$core$Maybe$Just(
+					A4(
+						_user$project$Models$Element,
+						'label',
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(_user$project$Models$Attribute, 'class', 'form-check-label')
+							]),
+						_user$project$Models$Children(
+							_elm_lang$core$Native_List.fromArray(
+								[input])),
+						_p11._0));
+			}
+		}();
+		var children = A2(
+			_elm_lang$core$List$filterMap,
+			_elm_lang$core$Basics$identity,
+			_elm_lang$core$Native_List.fromArray(
+				[label, links]));
 		return A4(
 			_user$project$Models$Element,
 			'div',
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(_user$project$Models$Attribute, 'class', 'form-group')
+					A2(_user$project$Models$Attribute, 'class', 'form-check')
 				]),
-			_user$project$Models$Children(
-				_elm_lang$core$Native_List.fromArray(
-					[label, input])),
+			_user$project$Models$Children(children),
 			'');
 	});
 var _user$project$Models$buttonToHtmlTree = F2(
 	function (inp, attrs) {
-		var inputAttrs = _elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$Models$Attribute, 'type', 'text'),
-				A2(_user$project$Models$Attribute, 'class', 'form-control'),
-				A2(_user$project$Models$Attribute, 'id', 'input1')
-			]);
-		var input = A4(
-			_user$project$Models$Element,
-			'input',
-			inputAttrs,
-			_user$project$Models$Children(
+		var links = _user$project$Models$toLinks(
+			_user$project$Models$extractId(inp));
+		var button = _elm_lang$core$Maybe$Just(
+			A4(
+				_user$project$Models$Element,
+				'button',
 				_elm_lang$core$Native_List.fromArray(
-					[])),
-			'');
-		var label = A4(
-			_user$project$Models$Element,
-			'label',
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(_user$project$Models$Attribute, 'for', 'input1')
-				]),
-			_user$project$Models$Children(
-				_elm_lang$core$Native_List.fromArray(
-					[])),
-			'Input1');
+					[
+						A2(_user$project$Models$Attribute, 'type', 'submit'),
+						A2(_user$project$Models$Attribute, 'class', 'btn btn-primary')
+					]),
+				_user$project$Models$Children(
+					_elm_lang$core$Native_List.fromArray(
+						[])),
+				A2(_elm_lang$core$Maybe$withDefault, 'Submit', attrs.label)));
 		return A4(
 			_user$project$Models$Element,
 			'div',
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(_user$project$Models$Attribute, 'class', 'form-group')
+					A2(_user$project$Models$Attribute, 'class', 'my-container')
 				]),
 			_user$project$Models$Children(
-				_elm_lang$core$Native_List.fromArray(
-					[label, input])),
+				A2(
+					_elm_lang$core$List$filterMap,
+					_elm_lang$core$Basics$identity,
+					_elm_lang$core$Native_List.fromArray(
+						[button, links]))),
 			'');
 	});
 var _user$project$Models$Large = {ctor: 'Large'};
 var _user$project$Models$Normal = {ctor: 'Normal'};
 var _user$project$Models$extractSize = function (inp) {
-	var _p11 = inp;
-	switch (_p11.ctor) {
+	var _p12 = inp;
+	switch (_p12.ctor) {
 		case 'TextInput':
-			return _p11._0.size;
+			return _p12._0.size;
 		case 'Select':
-			return _p11._0.size;
+			return _p12._0.size;
 		default:
 			return _user$project$Models$Normal;
 	}
@@ -630,25 +638,117 @@ var _user$project$Models$textAreaToHtmlTree = F2(
 						[inputLabel, area, links]))),
 			'');
 	});
+var _user$project$Models$multiselectToHtmlTree = F2(
+	function (inp, attrs) {
+		var links = _user$project$Models$toLinks(
+			_user$project$Models$extractId(inp));
+		var smallText = _user$project$Models$toSmall(attrs.small);
+		var inputLabel = _user$project$Models$toLabel(attrs.label);
+		var options = A2(
+			_elm_lang$core$List$map,
+			function (value) {
+				return A4(
+					_user$project$Models$Element,
+					'option',
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_user$project$Models$Children(
+						_elm_lang$core$Native_List.fromArray(
+							[])),
+					value);
+			},
+			attrs.options);
+		var multiple = _elm_lang$core$Maybe$Just(
+			A2(_user$project$Models$Attribute, 'multiple', 'multiple'));
+		var inputClasses = A2(_user$project$Models$toClasses, attrs.classList, _user$project$Models$Normal);
+		var disabled = _user$project$Models$toDisabled(attrs.disabled);
+		var id = _user$project$Models$toId(attrs.id);
+		var selectAttrs = A2(
+			_elm_lang$core$List$filterMap,
+			_elm_lang$core$Basics$identity,
+			_elm_lang$core$Native_List.fromArray(
+				[id, inputClasses, disabled, multiple]));
+		var select = _elm_lang$core$Maybe$Just(
+			A4(
+				_user$project$Models$Element,
+				'select',
+				selectAttrs,
+				_user$project$Models$Children(options),
+				''));
+		var children = A2(
+			_elm_lang$core$List$filterMap,
+			_elm_lang$core$Basics$identity,
+			_elm_lang$core$Native_List.fromArray(
+				[inputLabel, select, smallText, links]));
+		return A4(
+			_user$project$Models$Element,
+			'div',
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(_user$project$Models$Attribute, 'class', 'form-group')
+				]),
+			_user$project$Models$Children(children),
+			'');
+	});
+var _user$project$Models$fileUploadToHtmlTree = F2(
+	function (inp, attrs) {
+		var links = _user$project$Models$toLinks(
+			_user$project$Models$extractId(inp));
+		var smallText = _user$project$Models$toSmall(attrs.small);
+		var inputLabel = _user$project$Models$toLabel(attrs.label);
+		var uploadType = _elm_lang$core$Maybe$Just(
+			A2(_user$project$Models$Attribute, 'type', 'file'));
+		var inputClasses = A2(_user$project$Models$toClasses, attrs.classList, _user$project$Models$Normal);
+		var disabled = _user$project$Models$toDisabled(attrs.disabled);
+		var id = _user$project$Models$toId(attrs.id);
+		var uploadAttrs = A2(
+			_elm_lang$core$List$filterMap,
+			_elm_lang$core$Basics$identity,
+			_elm_lang$core$Native_List.fromArray(
+				[id, inputClasses, disabled, uploadType]));
+		var upload = _elm_lang$core$Maybe$Just(
+			A4(
+				_user$project$Models$Element,
+				'input',
+				uploadAttrs,
+				_user$project$Models$Children(
+					_elm_lang$core$Native_List.fromArray(
+						[])),
+				''));
+		var children = A2(
+			_elm_lang$core$List$filterMap,
+			_elm_lang$core$Basics$identity,
+			_elm_lang$core$Native_List.fromArray(
+				[inputLabel, upload, smallText, links]));
+		return A4(
+			_user$project$Models$Element,
+			'div',
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(_user$project$Models$Attribute, 'class', 'form-group')
+				]),
+			_user$project$Models$Children(children),
+			'');
+	});
 var _user$project$Models$inputToHtmlTree = function (input) {
-	var _p12 = input;
-	switch (_p12.ctor) {
+	var _p13 = input;
+	switch (_p13.ctor) {
 		case 'TextInput':
-			return A2(_user$project$Models$textInputToHtmlTree, input, _p12._0);
+			return A2(_user$project$Models$textInputToHtmlTree, input, _p13._0);
 		case 'TextArea':
-			return A2(_user$project$Models$textAreaToHtmlTree, input, _p12._0);
+			return A2(_user$project$Models$textAreaToHtmlTree, input, _p13._0);
 		case 'Select':
-			return A2(_user$project$Models$selectToHtmlTree, input, _p12._0);
+			return A2(_user$project$Models$selectToHtmlTree, input, _p13._0);
 		case 'Multiselect':
-			return A2(_user$project$Models$multiselectToHtmlTree, input, _p12._0);
+			return A2(_user$project$Models$multiselectToHtmlTree, input, _p13._0);
 		case 'FileUpload':
-			return A2(_user$project$Models$fileUploadToHtmlTree, input, _p12._0);
+			return A2(_user$project$Models$fileUploadToHtmlTree, input, _p13._0);
 		case 'Radio':
-			return A2(_user$project$Models$radioToHtmlTree, input, _p12._0);
+			return A2(_user$project$Models$radioToHtmlTree, input, _p13._0);
 		case 'Checkbox':
-			return A2(_user$project$Models$checkboxToHtmlTree, input, _p12._0);
+			return A2(_user$project$Models$checkboxToHtmlTree, input, _p13._0);
 		default:
-			return A2(_user$project$Models$buttonToHtmlTree, input, _p12._0);
+			return A2(_user$project$Models$buttonToHtmlTree, input, _p13._0);
 	}
 };
 var _user$project$Models$modelToHtmlTree = function (form) {
@@ -676,9 +776,9 @@ var _user$project$Models$Email = {ctor: 'Email'};
 var _user$project$Models$Search = {ctor: 'Search'};
 var _user$project$Models$Text = {ctor: 'Text'};
 var _user$project$Models$extractType = function (inp) {
-	var _p13 = inp;
-	if (_p13.ctor === 'TextInput') {
-		return _p13._0.type$;
+	var _p14 = inp;
+	if (_p14.ctor === 'TextInput') {
+		return _p14._0.type$;
 	} else {
 		return _user$project$Models$Text;
 	}

@@ -48,15 +48,15 @@ newSelect model =
 
 newMultiselect : Model -> Input
 newMultiselect model =
-  Multiselect { id = countNewInputId model, classList = [ "form-control" ], label = Just "New input" }
+  Multiselect { id = countNewInputId model, classList = [ "form-control" ], label = Just "New input", disabled = False, options = ["option1", "option2", "option3"], small = Nothing }
 
 newFileUpload : Model -> Input
 newFileUpload model =
-  FileUpload { id = countNewInputId model, classList = [ "form-control" ], label = Just "New input" }
+  FileUpload { id = countNewInputId model, classList = [ "form-control-file" ], label = Just "New input", disabled = False, small = Nothing }
 
 newRadio : Model -> Input
 newRadio model =
-  Radio { id = countNewInputId model, classList = [ "form-control" ], label = Just "New input" }
+  Radio { id = countNewInputId model, classList = [ "form-control" ], label = Just "New input", options = ["option1", "option2"] }
 
 newCheckbox : Model -> Input
 newCheckbox model =
