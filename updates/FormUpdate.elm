@@ -40,7 +40,7 @@ newTextInput model =
 
 newTextArea : Model -> Input
 newTextArea model =
-  TextArea { id = countNewInputId model, classList = [ "form-control" ], placeholder = Nothing, label = Just "New input", rowNumber = 3 }
+  TextArea { id = countNewInputId model, classList = [ "form-control" ], placeholder = Nothing, label = Just "New input", rowNumber = 3, disabled = False }
 
 newSelect : Model -> Input
 newSelect model =

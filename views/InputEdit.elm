@@ -12,4 +12,4 @@ import Inputs exposing (..)
 
 view : Input -> Html Msg
 view inp =
-  Html.form [] [ inputHtml inp ]
+  Html.form [] (toElmHtmlNode (inputToHtmlTree inp))

@@ -19,8 +19,6 @@ view inp =
       [ b [] [text "Not yet implemented ;)"]
       ]
 
-
-
 optionsEdit : List String -> List (Html Msg)
 optionsEdit inp =
   let

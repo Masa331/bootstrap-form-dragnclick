@@ -16,7 +16,7 @@ type InputType = Text | Search | Email | Url | Tel | Password | Number | Datetim
 
 type Input
   = TextInput { id: Id, classList: ClassList, placeholder: Placeholder, label: Label, disabled: Bool, readonly: Bool, size: Size, addon1: Maybe String, addon2: Maybe String, small: Maybe String, type': InputType }
-  | TextArea { id: Id, classList: ClassList, placeholder: Placeholder, label: Label, rowNumber: RowNumber }
+  | TextArea { id: Id, classList: ClassList, placeholder: Placeholder, label: Label, rowNumber: RowNumber, disabled: Bool }
   | Select { id: Id, classList: ClassList, label: Label, small: Maybe String, disabled: Bool, size: Size, options: List String }
   | Multiselect { id: Id, classList: ClassList, label: Label }
   | FileUpload { id: Id, classList: ClassList, label: Label }
@@ -31,7 +31,7 @@ new : Model
 new =
   let
     textInput = TextInput { id = 1, classList = [ "form-control" ], placeholder = Nothing, label = (Just "Some input"), disabled = False, readonly = False, size = Normal, addon1 = Nothing, addon2 = Nothing, small = Just "haha", type' = Text }
-    textArea = TextArea { id = 2, classList = [ "form-control" ], placeholder = Just "Some placeholder...", label = (Just "Some area"), rowNumber = 3 }
+    textArea = TextArea { id = 2, classList = [ "form-control" ], placeholder = Just "Some placeholder...", label = (Just "Some area"), rowNumber = 3, disabled = False }
     checkbox = Checkbox { id = 3, classList = [  ], label = (Just "Some area") }
     select1 = Select { id = 4, classList = [ "form-control" ], label = (Just "Some select"), small = Nothing, disabled = False, size = Normal, options = ["options1", "option2", "option3"] }
     button = Button { id = 5, classList = [ "form-control" ], label = (Just "Some area") }
@@ -145,80 +145,122 @@ modelToHtmlTree form =
 inputToHtmlTree input =
   case input of
     TextInput attrs -> textInputToHtmlTree input attrs
-    TextArea attrs -> textAreaToHtmlTree
-    Select attrs -> selectToHtmlTree
-    Multiselect attrs -> multiselectToHtmlTree
-    FileUpload attrs -> fileUploadToHtmlTree
-    Radio attrs -> radioToHtmlTree
-    Checkbox attrs -> checkboxToHtmlTree
-    Button attrs -> buttonToHtmlTree
+    TextArea attrs -> textAreaToHtmlTree input attrs
+    Select attrs -> selectToHtmlTree input attrs
+    Multiselect attrs -> multiselectToHtmlTree input attrs
+    FileUpload attrs -> fileUploadToHtmlTree input attrs
+    Radio attrs -> radioToHtmlTree input attrs
+    Checkbox attrs -> checkboxToHtmlTree input attrs
+    Button attrs -> buttonToHtmlTree input attrs
 
 textInputToHtmlTree inp attrs =
   let
-    labelFunc = (\value -> Element "label" [Attribute "for" "input1"] (Children []) "Input1")
-    inputLabel = Maybe.map labelFunc attrs.label
+    id = toId attrs.id
+    placeholder = toPlaceholder attrs.placeholder
+    disabled = toDisabled attrs.disabled
+    readonly = toReadonly attrs.readonly
+    inputClasses = toClasses attrs.classList attrs.size
+    inputType = toType attrs.type'
+    inputAttrs =
+      [ id, inputClasses, placeholder, inputType, readonly, disabled ]
+      |> List.filterMap identity
 
-    smallFunc = (\value -> Element "small" [Attribute "class" "form-text text-muted"] (Children []) value)
-    smallText = Maybe.map smallFunc attrs.small
+    inputLabel = toLabel attrs.label
+    smallText = toSmall attrs.small
+    links = toLinks (extractId inp)
+    add1 = toAddon attrs.addon1
+    add2 = toAddon attrs.addon2
+    input1 = Just (Element "input" inputAttrs (Children []) "")
+    input =
+      if List.isEmpty (List.filterMap identity [add1, add2]) then
+        input1
+      else
+        Just (Element "div" [Attribute "class" "input-group"] (Children ([add1, input1, add2] |> List.filterMap identity)) "")
 
-    links = Just (editAndRemoveLink2 inp)
+    children = [ inputLabel, input, smallText, links ] |> List.filterMap identity
+  in
+    Element "div" [Attribute "class" "form-group"] (Children children) ""
 
-    addFunc = (\value -> Element "div" [Attribute "class" "input-group-addon"] (Children []) value)
-    add1 = Maybe.map addFunc attrs.addon1
-    add2 = Maybe.map addFunc attrs.addon2
+toPlaceholder : Maybe String -> Maybe Attribute
+toPlaceholder value =
+  Maybe.map (Attribute "placeholder") value
 
-    id = Just (Attribute "id" ("input" ++ toString attrs.id))
-    placeholder = Maybe.map (Attribute "placeholder") attrs.placeholder
-    disabled = if attrs.disabled then Just (Attribute "disabled" "disabled") else Nothing
-    readonly = if attrs.readonly then Just (Attribute "readonly" "readonly") else Nothing
+toId : Int -> Maybe Attribute
+toId value =
+  Just (Attribute "id" ("input" ++ toString value))
+
+toDisabled : Bool -> Maybe Attribute
+toDisabled value =
+  if value then Just (Attribute "disabled" "disabled") else Nothing
+
+toReadonly : Bool -> Maybe Attribute
+toReadonly value =
+  if value then Just (Attribute "readonly" "readonly") else Nothing
+
+toAddon : Maybe String -> Maybe Element
+toAddon value =
+  Maybe.map (\value -> Element "div" [Attribute "class" "input-group-addon"] (Children []) value) value
+
+toSmall : Maybe String -> Maybe Element
+toSmall value =
+  Maybe.map (\value -> Element "small" [Attribute "class" "form-text text-muted"] (Children []) value) value
+
+toLabel : Maybe String -> Maybe Element
+toLabel value =
+  Maybe.map (\value -> Element "label" [Attribute "for" "input1"] (Children []) "Input1") value
+
+toType : InputType -> Maybe Attribute
+toType value =
+  Just (Attribute "type" (typeToText value))
+
+toLinks : Id -> Maybe Element
+toLinks value =
+  Just (Element "editLinks" [] (Children []) (toString value))
+
+toClasses : List String -> Size -> Maybe Attribute
+toClasses classList size =
+  let
     sizeClass =
-      case attrs.size of
+      case size of
         Small -> "form-control-sm"
         Normal -> ""
         Large -> "form-control-lg"
-    inputClasses = Just (Attribute "class" (String.join " " (sizeClass::attrs.classList)))
-
-    inputType = Just (Attribute "type" (typeToText attrs.type'))
-    inputAttrs = [ id, inputClasses, placeholder, inputType, readonly, disabled ] |> List.filterMap identity
-
-    input1 = Just (Element "input" inputAttrs (Children []) "")
-    input =
-      if ((List.filterMap identity [add1, add2]) |> List.length) > 0 then
-        Just (Element "div" [Attribute "class" "input-group"] (Children ([add1, input1, add2] |> List.filterMap identity)) "")
-      else
-        input1
   in
-    Element "div" [Attribute "class" "form-group"] (Children ([ inputLabel, input, smallText, links ] |> List.filterMap identity)) ""
+    Just (Attribute "class" (String.join " " (sizeClass::classList)))
 
-
-editAndRemoveLink2 inp =
+selectToHtmlTree inp attrs =
   let
-    l1 = Element "a" [Attribute "href" "javascript:void(0);"] (Children []) "Edit"
-    l2 = Element "a" [Attribute "href" "javascript:void(0);"] (Children []) "Remove"
-    l3 = Element "a" [Attribute "href" "javascript:void(0);"] (Children []) "Move up"
-    l4 = Element "a" [Attribute "href" "javascript:void(0);"] (Children []) "Move down"
-    separator = Element "span" [] (Children []) " | "
-  in
-    -- Element "div" [Attribute "class" "edit-and-remove-link"] (Children [l1, separator, l2, separator, l3, separator, l4]) ""
-    Element "editLinks" [] (Children []) (toString (extractId inp))
+    id = toId attrs.id
+    disabled = toDisabled attrs.disabled
+    inputClasses = toClasses attrs.classList attrs.size
+    selectAttrs = [ id, inputClasses, disabled ] |> List.filterMap identity
 
-textAreaToHtmlTree =
+    options = List.map (\value -> Element "option" [] (Children []) value) attrs.options
+    inputLabel = toLabel attrs.label
+    smallText = toSmall attrs.small
+    links = toLinks (extractId inp)
+    select = Just (Element "select" selectAttrs (Children options) "")
+    children = [inputLabel, select, smallText, links] |> List.filterMap identity
+  in
+    Element "div" [Attribute "class" "form-group"] (Children children) ""
+
+textAreaToHtmlTree inp attrs =
   let
-    label = Element "label" [Attribute "for" "input1"] (Children []) "Input1"
-    inputAttrs = [Attribute "type" "text", Attribute "class" "form-control", Attribute "id" "input1"]
-    input = Element "input" inputAttrs (Children []) ""
-  in
-    Element "div" [Attribute "class" "form-group"] (Children [label, input]) ""
+    inputLabel = toLabel attrs.label
+    id = toId attrs.id
+    disabled = toDisabled attrs.disabled
+    placeholder = toPlaceholder attrs.placeholder
+    inputClasses = toClasses attrs.classList Normal
+    rowNumber = Just (Attribute "rows" (toString attrs.rowNumber))
+    links = toLinks (extractId inp)
 
-selectToHtmlTree =
-  let
-    label = Element "label" [Attribute "for" "input1"] (Children []) "Input1"
-    inputAttrs = [Attribute "type" "text", Attribute "class" "form-control", Attribute "id" "input1"]
-    input = Element "input" inputAttrs (Children []) ""
+    areaAttrs = [ id, inputClasses, disabled, placeholder, rowNumber ] |> List.filterMap identity
+    -- areaAttrs = [ id, inputClasses, disabled, placeholder, rowNumber ] |> List.filterMap identity
+    area = Just (Element "textarea" areaAttrs (Children []) "")
   in
-    Element "div" [Attribute "class" "form-group"] (Children [label, input]) ""
+    Element "div" [Attribute "class" "form-group"] (Children ([inputLabel, area, links] |> List.filterMap identity)) ""
 
-multiselectToHtmlTree =
+multiselectToHtmlTree inp attrs =
   let
     label = Element "label" [Attribute "for" "input1"] (Children []) "Input1"
     inputAttrs = [Attribute "type" "text", Attribute "class" "form-control", Attribute "id" "input1"]
@@ -226,7 +268,7 @@ multiselectToHtmlTree =
   in
     Element "div" [Attribute "class" "form-group"] (Children [label, input]) ""
 
-fileUploadToHtmlTree =
+fileUploadToHtmlTree inp attrs =
   let
     label = Element "label" [Attribute "for" "input1"] (Children []) "Input1"
     inputAttrs = [Attribute "type" "text", Attribute "class" "form-control", Attribute "id" "input1"]
@@ -234,7 +276,7 @@ fileUploadToHtmlTree =
   in
     Element "div" [Attribute "class" "form-group"] (Children [label, input]) ""
 
-radioToHtmlTree =
+radioToHtmlTree inp attrs =
   let
     label = Element "label" [Attribute "for" "input1"] (Children []) "Input1"
     inputAttrs = [Attribute "type" "text", Attribute "class" "form-control", Attribute "id" "input1"]
@@ -242,7 +284,7 @@ radioToHtmlTree =
   in
     Element "div" [Attribute "class" "form-group"] (Children [label, input]) ""
 
-checkboxToHtmlTree =
+checkboxToHtmlTree inp attrs =
   let
     label = Element "label" [Attribute "for" "input1"] (Children []) "Input1"
     inputAttrs = [Attribute "type" "text", Attribute "class" "form-control", Attribute "id" "input1"]
@@ -250,7 +292,7 @@ checkboxToHtmlTree =
   in
     Element "div" [Attribute "class" "form-group"] (Children [label, input]) ""
 
-buttonToHtmlTree =
+buttonToHtmlTree inp attrs =
   let
     label = Element "label" [Attribute "for" "input1"] (Children []) "Input1"
     inputAttrs = [Attribute "type" "text", Attribute "class" "form-control", Attribute "id" "input1"]

@@ -3,8 +3,6 @@ var _user$project$InputEdit$view = function (inp) {
 		_elm_lang$html$Html$form,
 		_elm_lang$core$Native_List.fromArray(
 			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$Inputs$inputHtml(inp)
-			]));
+		_user$project$Inputs$toElmHtmlNode(
+			_user$project$Models$inputToHtmlTree(inp)));
 };

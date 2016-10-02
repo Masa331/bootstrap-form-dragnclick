@@ -91,7 +91,8 @@ var _user$project$FormUpdate$newTextArea = function (model) {
 				['form-control']),
 			placeholder: _elm_lang$core$Maybe$Nothing,
 			label: _elm_lang$core$Maybe$Just('New input'),
-			rowNumber: 3
+			rowNumber: 3,
+			disabled: false
 		});
 };
 var _user$project$FormUpdate$newTextInput = function (model) {

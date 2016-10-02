@@ -12,12 +12,11 @@ inputHtml : Input -> Html Msg
 inputHtml input =
   case input of
     TextInput attrs ->
-      -- textInputHtml input
-      textInputHtml input attrs
+      div [] []
     TextArea _ ->
       textAreaHtml input
     Select attrs ->
-      selectHtml input attrs
+      div [] []
     Multiselect _ ->
       multiselectHtml input
     FileUpload _ ->
@@ -28,57 +27,6 @@ inputHtml input =
       checkboxHtml input
     Button _ ->
       buttonHtml input
-
-
--- textInputHtml : Input -> Html Msg
-textInputHtml inp attrs =
-  let
-    inputLabel = Maybe.map (\value -> Html.label [ for ("input" ++ toString attrs.id) ] [ text (value) ]) attrs.label
-
-    disabled = if attrs.disabled then Just (Html.Attributes.disabled True) else Nothing
-    readonly = if attrs.readonly then Just (Html.Attributes.readonly True) else Nothing
-    sizeClass =
-      case attrs.size of
-        Small -> "form-control-sm"
-        Normal -> ""
-        Large -> "form-control-lg"
-    inputClasses = Just (class (String.join " " (sizeClass::attrs.classList)))
-
-    inputType = typeToText attrs.type'
-    inputAttrs = [ idToAttr attrs.id, inputClasses, placeholderToAttr attrs.placeholder, Just (type' inputType), readonly, disabled ]
-      |> List.filterMap identity
-
-    add1 = Maybe.map (\value -> div [ class "input-group-addon" ] [ text value ]) attrs.addon1
-    add2 = Maybe.map (\value -> div [ class "input-group-addon" ] [ text value ]) attrs.addon2
-    input =
-      if ((List.filterMap identity [add1, add2]) |> List.length) > 0 then
-        Just (div [ class "input-group" ] ([add1, Just (Html.input inputAttrs []), add2 ] |> List.filterMap identity))
-      else
-        Just (Html.input inputAttrs [])
-    smallText = Maybe.map (\value -> small [ class "form-text text-muted" ] [ text value ]) attrs.small
-    links = Just (editAndRemoveLink inp)
-  in
-    div [ class "form-group" ] ([ inputLabel, input, smallText, links ] |> List.filterMap identity)
-
--- selectHtml : Input -> Html Msg
-selectHtml inp attrs =
-  let
-    options = List.map (\value -> option [] [text value]) attrs.options
-
-    disabled = if attrs.disabled then Just (Html.Attributes.disabled True) else Nothing
-    sizeClass =
-      case attrs.size of
-        Small -> "form-control-sm"
-        Normal -> ""
-        Large -> "form-control-lg"
-    selectClasses = Just (class (String.join " " (sizeClass::attrs.classList)))
-    selectAttrs = [ idToAttr attrs.id, selectClasses, disabled ] |> List.filterMap identity
-    inputLabel = Maybe.map (\value -> Html.label [ for ("input" ++ toString attrs.id) ] [ text (value) ]) attrs.label
-    select = Just (Html.select selectAttrs options)
-    smallText = Maybe.map (\value -> small [ class "form-text text-muted" ] [ text value ]) attrs.small
-    links = Just (editAndRemoveLink inp)
-  in
-    div [ class "form-group" ] ([ inputLabel, select, smallText, links ] |> List.filterMap identity)
 
 -------------
 -- Helpers --
@@ -237,3 +185,48 @@ checkboxAttrs attrs =
 
 buttonAttrs attrs =
   [idToAttr attrs.id, classesToAttr attrs.classList, Just (type' "text")]
+
+
+-----------------------------
+
+
+
+toElmHtmlNode model =
+  let
+    attributes = createAttributes model
+    childs = (\ (Children childs) -> childs) model.children
+    value = Html.text model.value
+  in
+    case childs of
+      [] ->
+        if isDeletable model then
+          [editLinks model.value]
+        else
+          [Html.node model.tag attributes [value]]
+      x::xs ->
+        if isDeletable model then
+          [Html.node model.tag attributes ((List.concat (List.map toElmHtmlNode childs)) ++ [value])]
+        else
+          [Html.node model.tag attributes ((List.concat (List.map toElmHtmlNode childs)) ++ [value])]
+
+editLinks id =
+  let
+    castedId = toInt id
+    resolvedId =
+      case castedId of
+        Ok val -> val
+        Err _ -> 1
+    l1 = a [href "javascript:void(0);", onClick (FormMessage (EditInput resolvedId))] [text "Edit"]
+    l2 = a [href "javascript:void(0);", onClick (FormMessage (RemoveInput resolvedId))] [text "Remove"]
+    l3 = a [href "javascript:void(0);"] [text "Move up"]
+    l4 = a [href "javascript:void(0);"] [text "Move Down"]
+  in
+    div
+      [ class "edit-and-remove-link" ]
+      [ l1, text " | ", l2, text " | ", l3, text " | ", l4]
+
+createAttributes model =
+  List.map createAttribute model.attributes
+
+createAttribute attribute =
+  Html.Attributes.attribute attribute.name attribute.value
