@@ -10,7 +10,7 @@ type InputType = Text | Search | Email | Url | Tel | Password | Number | Datetim
 
 type Input
   = TextInput { id: Id, classList: ClassList, placeholder: Placeholder, label: Label, disabled: Bool, readonly: Bool, size: Size, addon1: Maybe String, addon2: Maybe String, small: Maybe String, type': InputType }
-  | TextArea { id: Id, classList: ClassList, placeholder: Placeholder, label: Label, rowNumber: RowNumber, disabled: Bool }
+  | TextArea { id: Id, classList: ClassList, placeholder: Placeholder, label: Label, rowNumber: RowNumber, disabled: Bool, readonly: Bool }
   | Select { id: Id, classList: ClassList, label: Label, small: Maybe String, disabled: Bool, size: Size, options: List String }
   | Multiselect { id: Id, classList: ClassList, label: Label, small: Maybe String, disabled: Bool, options: List String }
   | FileUpload { id: Id, classList: ClassList, label: Label, disabled: Bool, small: Maybe String }
@@ -24,7 +24,7 @@ textInput id =
 
 textArea : Int -> Input
 textArea id =
-  TextArea { id = id, classList = [ "form-control" ], placeholder = Nothing, label = Just "New input", rowNumber = 3, disabled = False }
+  TextArea { id = id, classList = [ "form-control" ], placeholder = Nothing, label = Just "New input", rowNumber = 3, disabled = False, readonly = False }
 
 select : Int -> Input
 select id =

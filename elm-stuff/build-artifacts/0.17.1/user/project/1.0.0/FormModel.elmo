@@ -256,7 +256,8 @@ var _user$project$FormModel$textArea = function (id) {
 			placeholder: _elm_lang$core$Maybe$Nothing,
 			label: _elm_lang$core$Maybe$Just('New input'),
 			rowNumber: 3,
-			disabled: false
+			disabled: false,
+			readonly: false
 		});
 };
 var _user$project$FormModel$TextInput = function (a) {
