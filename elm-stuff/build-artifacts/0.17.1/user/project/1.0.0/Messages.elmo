@@ -1,3 +1,9 @@
+var _user$project$Messages$MoveDown = function (a) {
+	return {ctor: 'MoveDown', _0: a};
+};
+var _user$project$Messages$MoveUp = function (a) {
+	return {ctor: 'MoveUp', _0: a};
+};
 var _user$project$Messages$StopEditing = {ctor: 'StopEditing'};
 var _user$project$Messages$EditInput = function (a) {
 	return {ctor: 'EditInput', _0: a};

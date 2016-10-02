@@ -339,12 +339,6 @@ isVoid element =
 voidElementsList =
   ["area", "base", "br", "col", "command", "embed", "hr", "img", "input", "keygen", "link", "meta", "param", "source", "track", "wbr"]
 
-isDeletable model =
-  if model.tag == "editLinks" then
-    True
-  else
-    False
-
 currentlyEdditedInput : Model -> Maybe Input
 currentlyEdditedInput model =
   case model.currentlyEdditedInputId of

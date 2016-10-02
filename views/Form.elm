@@ -16,31 +16,26 @@ view htmlTree =
 -- Private --
 -------------
 
-toElmHtmlNode model =
+toElmHtmlNode : Element -> List (Html Msg)
+toElmHtmlNode htmlTree =
   let
-    attributes = createAttributes model
-    childs = (\ (Children childs) -> childs) model.children
-    value = Html.text model.value
+    attributes = createAttributes htmlTree
+    childs = (\ (Children childs) -> childs) htmlTree.children
+    value = Html.text htmlTree.value
+    node = Html.node htmlTree.tag attributes
   in
     case childs of
       [] ->
-        if isDeletable model then
-          [editLinks model.value]
+        if htmlTree.tag == "editLinks" then
+          [editLinks htmlTree.value]
         else
-          [Html.node model.tag attributes [value]]
+          [node [value]]
       x::xs ->
-        if isDeletable model then
-          [Html.node model.tag attributes ((List.concat (List.map toElmHtmlNode childs)) ++ [value])]
-        else
-          [Html.node model.tag attributes ((List.concat (List.map toElmHtmlNode childs)) ++ [value])]
+        [node ((List.concat (List.map toElmHtmlNode childs)) ++ [value])]
 
 editLinks id =
   let
-    castedId = toInt id
-    resolvedId =
-      case castedId of
-        Ok val -> val
-        Err _ -> 1
+    resolvedId = idToInt id
     l1 = a [href "javascript:void(0);", onClick (FormMessage (EditInput resolvedId))] [text "Edit"]
     l2 = a [href "javascript:void(0);", onClick (FormMessage (RemoveInput resolvedId))] [text "Remove"]
     l3 = a [href "javascript:void(0);"] [text "Move up"]
@@ -49,6 +44,15 @@ editLinks id =
     div
       [ class "edit-and-remove-link" ]
       [ l1, text " | ", l2, text " | ", l3, text " | ", l4]
+
+idToInt id =
+  let
+    castedId = toInt id
+  in
+    case castedId of
+      Ok val -> val
+      Err _ -> 1
+
 
 createAttributes model =
   List.map createAttribute model.attributes

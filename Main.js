@@ -7897,9 +7897,6 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
-var _user$project$Models$isDeletable = function (model) {
-	return _elm_lang$core$Native_Utils.eq(model.tag, 'editLinks') ? true : false;
-};
 var _user$project$Models$voidElementsList = _elm_lang$core$Native_List.fromArray(
 	['area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']);
 var _user$project$Models$isVoid = function (element) {
@@ -8834,6 +8831,15 @@ var _user$project$Form$createAttribute = function (attribute) {
 var _user$project$Form$createAttributes = function (model) {
 	return A2(_elm_lang$core$List$map, _user$project$Form$createAttribute, model.attributes);
 };
+var _user$project$Form$idToInt = function (id) {
+	var castedId = _elm_lang$core$String$toInt(id);
+	var _p0 = castedId;
+	if (_p0.ctor === 'Ok') {
+		return _p0._0;
+	} else {
+		return 1;
+	}
+};
 var _user$project$Form$editLinks = function (id) {
 	var l4 = A2(
 		_elm_lang$html$Html$a,
@@ -8855,15 +8861,7 @@ var _user$project$Form$editLinks = function (id) {
 			[
 				_elm_lang$html$Html$text('Move up')
 			]));
-	var castedId = _elm_lang$core$String$toInt(id);
-	var resolvedId = function () {
-		var _p0 = castedId;
-		if (_p0.ctor === 'Ok') {
-			return _p0._0;
-		} else {
-			return 1;
-		}
-	}();
+	var resolvedId = _user$project$Form$idToInt(id);
 	var l1 = A2(
 		_elm_lang$html$Html$a,
 		_elm_lang$core$Native_List.fromArray(
@@ -8907,46 +8905,29 @@ var _user$project$Form$editLinks = function (id) {
 				l4
 			]));
 };
-var _user$project$Form$toElmHtmlNode = function (model) {
-	var value = _elm_lang$html$Html$text(model.value);
+var _user$project$Form$toElmHtmlNode = function (htmlTree) {
+	var value = _elm_lang$html$Html$text(htmlTree.value);
 	var childs = function (_p1) {
 		var _p2 = _p1;
 		return _p2._0;
-	}(model.children);
-	var attributes = _user$project$Form$createAttributes(model);
+	}(htmlTree.children);
+	var attributes = _user$project$Form$createAttributes(htmlTree);
+	var node = A2(_elm_lang$html$Html$node, htmlTree.tag, attributes);
 	var _p3 = childs;
 	if (_p3.ctor === '[]') {
-		return _user$project$Models$isDeletable(model) ? _elm_lang$core$Native_List.fromArray(
+		return _elm_lang$core$Native_Utils.eq(htmlTree.tag, 'editLinks') ? _elm_lang$core$Native_List.fromArray(
 			[
-				_user$project$Form$editLinks(model.value)
+				_user$project$Form$editLinks(htmlTree.value)
 			]) : _elm_lang$core$Native_List.fromArray(
 			[
-				A3(
-				_elm_lang$html$Html$node,
-				model.tag,
-				attributes,
+				node(
 				_elm_lang$core$Native_List.fromArray(
 					[value]))
 			]);
 	} else {
-		return _user$project$Models$isDeletable(model) ? _elm_lang$core$Native_List.fromArray(
+		return _elm_lang$core$Native_List.fromArray(
 			[
-				A3(
-				_elm_lang$html$Html$node,
-				model.tag,
-				attributes,
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_elm_lang$core$List$concat(
-						A2(_elm_lang$core$List$map, _user$project$Form$toElmHtmlNode, childs)),
-					_elm_lang$core$Native_List.fromArray(
-						[value])))
-			]) : _elm_lang$core$Native_List.fromArray(
-			[
-				A3(
-				_elm_lang$html$Html$node,
-				model.tag,
-				attributes,
+				node(
 				A2(
 					_elm_lang$core$Basics_ops['++'],
 					_elm_lang$core$List$concat(
