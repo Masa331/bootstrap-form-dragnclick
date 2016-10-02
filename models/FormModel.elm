@@ -144,3 +144,29 @@ typeToText type' =
     Week -> "week"
     Time -> "time"
     Color -> "color"
+
+textToType : String -> InputType
+textToType text =
+  case text of
+    "text" -> Text
+    "search" -> Search
+    "email" -> Email
+    "url" -> Url
+    "tel" -> Tel
+    "password" -> Password
+    "number" -> Number
+    "datetime-local" -> DatetimeLocal
+    "date" -> Date
+    "month" -> Month
+    "week" -> Week
+    "time" -> Time
+    "color" -> Color
+    _ -> Text
+
+textToSize : String -> Size
+textToSize text =
+  case text of
+    "small" -> Small
+    "normal" -> Normal
+    "large" -> Large
+    _ -> Normal

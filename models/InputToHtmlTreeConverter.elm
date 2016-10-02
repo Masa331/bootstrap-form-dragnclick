@@ -36,8 +36,6 @@ textInputToHtmlTree inp attrs =
   in
     Element "div" [Attribute "class" "form-group"] (Children children) ""
 
-
-
 selectToHtmlTree inp attrs =
   let
     inputAttrs =

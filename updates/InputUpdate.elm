@@ -6,35 +6,31 @@ import FormModel exposing (..)
 
 update : InputMsg -> Model -> (Model, Cmd Msg)
 update msg model =
-  case model.currentlyEdditedInputId of
-    Nothing ->
-      (model, Cmd.none)
-    Just inputId ->
-      case msg of
-        PlaceholderEdit newPlaceholder ->
-          updateInputAttribute placeholderUpdateFunc model inputId newPlaceholder
-        LabelEdit newLabel ->
-          updateInputAttribute labelUpdateFunc model inputId newLabel
-        SmallEdit newLabel ->
-          updateInputAttribute smallUpdateFunc model inputId newLabel
-        DisabledEdit newDisabled ->
-          updateInputAttribute disabledUpdateFunc model inputId newDisabled
-        ReadonlyEdit newDisabled ->
-          updateInputAttribute readonlyUpdateFunc model inputId newDisabled
-        FirstAddonEdit newAddon ->
-          updateInputAttribute firstAddonEditFunc model inputId newAddon
-        SecondAddonEdit newAddon ->
-          updateInputAttribute secondAddonEditFunc model inputId newAddon
-        SizeEdit newSize ->
-          updateInputAttribute sizeEditFunc model inputId newSize
-        TypeEdit newType ->
-          updateInputAttribute typeEditFunc model inputId newType
-        NewOptionEdit value ->
-          ({ model | newOption = value }, Cmd.none)
-        SaveNewOption ->
-          updateInputAttribute addNewOptionFunc model inputId model.newOption
-        RemoveOption value ->
-          updateInputAttribute removeOptionFunc model inputId value
+  case msg of
+    PlaceholderEdit newPlaceholder ->
+      updateInputAttribute placeholderUpdateFunc model newPlaceholder
+    LabelEdit newLabel ->
+      updateInputAttribute labelUpdateFunc model newLabel
+    SmallEdit newLabel ->
+      updateInputAttribute smallUpdateFunc model newLabel
+    DisabledEdit newDisabled ->
+      updateInputAttribute disabledUpdateFunc model newDisabled
+    ReadonlyEdit newDisabled ->
+      updateInputAttribute readonlyUpdateFunc model newDisabled
+    FirstAddonEdit newAddon ->
+      updateInputAttribute firstAddonEditFunc model newAddon
+    SecondAddonEdit newAddon ->
+      updateInputAttribute secondAddonEditFunc model newAddon
+    SizeEdit newSize ->
+      updateInputAttribute sizeEditFunc model newSize
+    TypeEdit newType ->
+      updateInputAttribute typeEditFunc model newType
+    NewOptionEdit value ->
+      ({ model | newOption = value }, Cmd.none)
+    SaveNewOption ->
+      updateInputAttribute addNewOptionFunc model model.newOption
+    RemoveOption value ->
+      updateInputAttribute removeOptionFunc model value
 
 -------------
 -- Private --
@@ -42,11 +38,16 @@ update msg model =
 
 -- updateInputAttribute : (Input -> String -> Input) -> Model -> Int -> String -> (Model, Cmd Msg)
 -- updateInputAttribute : (Input -> a -> Input) -> Model -> Int -> String -> (Model, Cmd Msg)
-updateInputAttribute updateFunc model inputId newPlaceholder =
-  let
-    newInputs = List.map (\inp -> if extractId inp == inputId then updateFunc inp newPlaceholder else inp) model.form
-  in
-    ({ model | form = newInputs }, Cmd.none)
+updateInputAttribute updateFunc model newPlaceholder =
+  case currentlyEdditedInput model of
+    Nothing ->
+      (model, Cmd.none)
+    Just input ->
+      let
+        updatedInput = updateFunc input newPlaceholder
+        newInputs = List.map (\inp -> if extractId inp == extractId input then updatedInput else inp) model.form
+      in
+        ({ model | form = newInputs }, Cmd.none)
 
 removeOptionFunc : Input -> String -> Input
 removeOptionFunc inp newOption =
@@ -68,12 +69,7 @@ addNewOptionFunc inp newOption =
 sizeEditFunc : Input -> String -> Input
 sizeEditFunc inp newSize =
   let
-    neco =
-      case newSize of
-        "small" -> Small
-        "normal" -> Normal
-        "large" -> Large
-        _ -> Normal
+    neco = textToSize newSize
   in
     case inp of
       TextInput attrs ->
@@ -85,22 +81,7 @@ sizeEditFunc inp newSize =
 typeEditFunc : Input -> String -> Input
 typeEditFunc inp newType =
   let
-    neco =
-      case newType of
-        "text" -> Text
-        "search" -> Search
-        "email" -> Email
-        "url" -> Url
-        "tel" -> Tel
-        "password" -> Password
-        "number" -> Number
-        "datetime-local" -> DatetimeLocal
-        "date" -> Date
-        "month" -> Month
-        "week" -> Week
-        "time" -> Time
-        "color" -> Color
-        _ -> Text
+    neco = textToType newType
   in
     case inp of
       TextInput attrs ->

@@ -138,6 +138,19 @@ var _user$project$FormModel$extractSize = function (inp) {
 	}
 };
 var _user$project$FormModel$Small = {ctor: 'Small'};
+var _user$project$FormModel$textToSize = function (text) {
+	var _p11 = text;
+	switch (_p11) {
+		case 'small':
+			return _user$project$FormModel$Small;
+		case 'normal':
+			return _user$project$FormModel$Normal;
+		case 'large':
+			return _user$project$FormModel$Large;
+		default:
+			return _user$project$FormModel$Normal;
+	}
+};
 var _user$project$FormModel$Color = {ctor: 'Color'};
 var _user$project$FormModel$Time = {ctor: 'Time'};
 var _user$project$FormModel$Week = {ctor: 'Week'};
@@ -152,11 +165,44 @@ var _user$project$FormModel$Email = {ctor: 'Email'};
 var _user$project$FormModel$Search = {ctor: 'Search'};
 var _user$project$FormModel$Text = {ctor: 'Text'};
 var _user$project$FormModel$extractType = function (inp) {
-	var _p11 = inp;
-	if (_p11.ctor === 'TextInput') {
-		return _p11._0.type$;
+	var _p12 = inp;
+	if (_p12.ctor === 'TextInput') {
+		return _p12._0.type$;
 	} else {
 		return _user$project$FormModel$Text;
+	}
+};
+var _user$project$FormModel$textToType = function (text) {
+	var _p13 = text;
+	switch (_p13) {
+		case 'text':
+			return _user$project$FormModel$Text;
+		case 'search':
+			return _user$project$FormModel$Search;
+		case 'email':
+			return _user$project$FormModel$Email;
+		case 'url':
+			return _user$project$FormModel$Url;
+		case 'tel':
+			return _user$project$FormModel$Tel;
+		case 'password':
+			return _user$project$FormModel$Password;
+		case 'number':
+			return _user$project$FormModel$Number;
+		case 'datetime-local':
+			return _user$project$FormModel$DatetimeLocal;
+		case 'date':
+			return _user$project$FormModel$Date;
+		case 'month':
+			return _user$project$FormModel$Month;
+		case 'week':
+			return _user$project$FormModel$Week;
+		case 'time':
+			return _user$project$FormModel$Time;
+		case 'color':
+			return _user$project$FormModel$Color;
+		default:
+			return _user$project$FormModel$Text;
 	}
 };
 var _user$project$FormModel$Button = function (a) {

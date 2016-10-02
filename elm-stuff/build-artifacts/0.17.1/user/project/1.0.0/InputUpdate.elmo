@@ -114,44 +114,12 @@ var _user$project$InputUpdate$firstAddonEditFunc = F2(
 	});
 var _user$project$InputUpdate$typeEditFunc = F2(
 	function (inp, newType) {
-		var neco = function () {
-			var _p7 = newType;
-			switch (_p7) {
-				case 'text':
-					return _user$project$FormModel$Text;
-				case 'search':
-					return _user$project$FormModel$Search;
-				case 'email':
-					return _user$project$FormModel$Email;
-				case 'url':
-					return _user$project$FormModel$Url;
-				case 'tel':
-					return _user$project$FormModel$Tel;
-				case 'password':
-					return _user$project$FormModel$Password;
-				case 'number':
-					return _user$project$FormModel$Number;
-				case 'datetime-local':
-					return _user$project$FormModel$DatetimeLocal;
-				case 'date':
-					return _user$project$FormModel$Date;
-				case 'month':
-					return _user$project$FormModel$Month;
-				case 'week':
-					return _user$project$FormModel$Week;
-				case 'time':
-					return _user$project$FormModel$Time;
-				case 'color':
-					return _user$project$FormModel$Color;
-				default:
-					return _user$project$FormModel$Text;
-			}
-		}();
-		var _p8 = inp;
-		if (_p8.ctor === 'TextInput') {
+		var neco = _user$project$FormModel$textToType(newType);
+		var _p7 = inp;
+		if (_p7.ctor === 'TextInput') {
 			return _user$project$FormModel$TextInput(
 				_elm_lang$core$Native_Utils.update(
-					_p8._0,
+					_p7._0,
 					{type$: neco}));
 		} else {
 			return inp;
@@ -159,30 +127,18 @@ var _user$project$InputUpdate$typeEditFunc = F2(
 	});
 var _user$project$InputUpdate$sizeEditFunc = F2(
 	function (inp, newSize) {
-		var neco = function () {
-			var _p9 = newSize;
-			switch (_p9) {
-				case 'small':
-					return _user$project$FormModel$Small;
-				case 'normal':
-					return _user$project$FormModel$Normal;
-				case 'large':
-					return _user$project$FormModel$Large;
-				default:
-					return _user$project$FormModel$Normal;
-			}
-		}();
-		var _p10 = inp;
-		switch (_p10.ctor) {
+		var neco = _user$project$FormModel$textToSize(newSize);
+		var _p8 = inp;
+		switch (_p8.ctor) {
 			case 'TextInput':
 				return _user$project$FormModel$TextInput(
 					_elm_lang$core$Native_Utils.update(
-						_p10._0,
+						_p8._0,
 						{size: neco}));
 			case 'Select':
 				return _user$project$FormModel$Select(
 					_elm_lang$core$Native_Utils.update(
-						_p10._0,
+						_p8._0,
 						{size: neco}));
 			default:
 				return inp;
@@ -190,14 +146,14 @@ var _user$project$InputUpdate$sizeEditFunc = F2(
 	});
 var _user$project$InputUpdate$addNewOptionFunc = F2(
 	function (inp, newOption) {
-		var _p11 = inp;
-		if (_p11.ctor === 'Select') {
-			var _p12 = _p11._0;
+		var _p9 = inp;
+		if (_p9.ctor === 'Select') {
+			var _p10 = _p9._0;
 			return _user$project$FormModel$Select(
 				_elm_lang$core$Native_Utils.update(
-					_p12,
+					_p10,
 					{
-						options: A2(_elm_lang$core$List_ops['::'], newOption, _p12.options)
+						options: A2(_elm_lang$core$List_ops['::'], newOption, _p10.options)
 					}));
 		} else {
 			return inp;
@@ -208,79 +164,80 @@ var _user$project$InputUpdate$removeOptionFunc = F2(
 		var func = function (neco) {
 			return _elm_lang$core$Native_Utils.eq(newOption, neco) ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(neco);
 		};
-		var _p13 = inp;
-		if (_p13.ctor === 'Select') {
-			var _p14 = _p13._0;
+		var _p11 = inp;
+		if (_p11.ctor === 'Select') {
+			var _p12 = _p11._0;
 			return _user$project$FormModel$Select(
 				_elm_lang$core$Native_Utils.update(
-					_p14,
+					_p12,
 					{
 						options: A2(
 							_elm_lang$core$List$filterMap,
 							_elm_lang$core$Basics$identity,
-							A2(_elm_lang$core$List$map, func, _p14.options))
+							A2(_elm_lang$core$List$map, func, _p12.options))
 					}));
 		} else {
 			return inp;
 		}
 	});
-var _user$project$InputUpdate$updateInputAttribute = F4(
-	function (updateFunc, model, inputId, newPlaceholder) {
-		var newInputs = A2(
-			_elm_lang$core$List$map,
-			function (inp) {
-				return _elm_lang$core$Native_Utils.eq(
-					_user$project$FormModel$extractId(inp),
-					inputId) ? A2(updateFunc, inp, newPlaceholder) : inp;
-			},
-			model.form);
-		return {
-			ctor: '_Tuple2',
-			_0: _elm_lang$core$Native_Utils.update(
-				model,
-				{form: newInputs}),
-			_1: _elm_lang$core$Platform_Cmd$none
-		};
+var _user$project$InputUpdate$updateInputAttribute = F3(
+	function (updateFunc, model, newPlaceholder) {
+		var _p13 = _user$project$Models$currentlyEdditedInput(model);
+		if (_p13.ctor === 'Nothing') {
+			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		} else {
+			var _p14 = _p13._0;
+			var updatedInput = A2(updateFunc, _p14, newPlaceholder);
+			var newInputs = A2(
+				_elm_lang$core$List$map,
+				function (inp) {
+					return _elm_lang$core$Native_Utils.eq(
+						_user$project$FormModel$extractId(inp),
+						_user$project$FormModel$extractId(_p14)) ? updatedInput : inp;
+				},
+				model.form);
+			return {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_Utils.update(
+					model,
+					{form: newInputs}),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
+		}
 	});
 var _user$project$InputUpdate$update = F2(
 	function (msg, model) {
-		var _p15 = model.currentlyEdditedInputId;
-		if (_p15.ctor === 'Nothing') {
-			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-		} else {
-			var _p17 = _p15._0;
-			var _p16 = msg;
-			switch (_p16.ctor) {
-				case 'PlaceholderEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$placeholderUpdateFunc, model, _p17, _p16._0);
-				case 'LabelEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$labelUpdateFunc, model, _p17, _p16._0);
-				case 'SmallEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$smallUpdateFunc, model, _p17, _p16._0);
-				case 'DisabledEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$disabledUpdateFunc, model, _p17, _p16._0);
-				case 'ReadonlyEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$readonlyUpdateFunc, model, _p17, _p16._0);
-				case 'FirstAddonEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$firstAddonEditFunc, model, _p17, _p16._0);
-				case 'SecondAddonEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$secondAddonEditFunc, model, _p17, _p16._0);
-				case 'SizeEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$sizeEditFunc, model, _p17, _p16._0);
-				case 'TypeEdit':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$typeEditFunc, model, _p17, _p16._0);
-				case 'NewOptionEdit':
-					return {
-						ctor: '_Tuple2',
-						_0: _elm_lang$core$Native_Utils.update(
-							model,
-							{newOption: _p16._0}),
-						_1: _elm_lang$core$Platform_Cmd$none
-					};
-				case 'SaveNewOption':
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$addNewOptionFunc, model, _p17, model.newOption);
-				default:
-					return A4(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$removeOptionFunc, model, _p17, _p16._0);
-			}
+		var _p15 = msg;
+		switch (_p15.ctor) {
+			case 'PlaceholderEdit':
+				return A3(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$placeholderUpdateFunc, model, _p15._0);
+			case 'LabelEdit':
+				return A3(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$labelUpdateFunc, model, _p15._0);
+			case 'SmallEdit':
+				return A3(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$smallUpdateFunc, model, _p15._0);
+			case 'DisabledEdit':
+				return A3(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$disabledUpdateFunc, model, _p15._0);
+			case 'ReadonlyEdit':
+				return A3(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$readonlyUpdateFunc, model, _p15._0);
+			case 'FirstAddonEdit':
+				return A3(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$firstAddonEditFunc, model, _p15._0);
+			case 'SecondAddonEdit':
+				return A3(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$secondAddonEditFunc, model, _p15._0);
+			case 'SizeEdit':
+				return A3(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$sizeEditFunc, model, _p15._0);
+			case 'TypeEdit':
+				return A3(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$typeEditFunc, model, _p15._0);
+			case 'NewOptionEdit':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{newOption: _p15._0}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'SaveNewOption':
+				return A3(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$addNewOptionFunc, model, model.newOption);
+			default:
+				return A3(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$removeOptionFunc, model, _p15._0);
 		}
 	});
