@@ -38,8 +38,8 @@ editLinks id =
     resolvedId = idToInt id
     l1 = a [href "javascript:void(0);", onClick (FormMessage (EditInput resolvedId))] [text "Edit"]
     l2 = a [href "javascript:void(0);", onClick (FormMessage (RemoveInput resolvedId))] [text "Remove"]
-    l3 = a [href "javascript:void(0);"] [text "Move up"]
-    l4 = a [href "javascript:void(0);"] [text "Move Down"]
+    l3 = a [href "javascript:void(0);", onClick (FormMessage (MoveUp resolvedId))] [text "Move up"]
+    l4 = a [href "javascript:void(0);", onClick (FormMessage (MoveDown resolvedId))] [text "Move Down"]
   in
     div
       [ class "edit-and-remove-link" ]

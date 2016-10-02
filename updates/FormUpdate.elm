@@ -27,6 +27,10 @@ update msg model =
       ({ model | currentlyEdditedInputId = Just id }, Cmd.none)
     StopEditing ->
       ({ model | currentlyEdditedInputId = Nothing }, Cmd.none)
+    MoveUp id ->
+      (model, Cmd.none)
+    MoveDown id ->
+      (model, Cmd.none)
 
 removeInput model id =
   let

@@ -8769,6 +8769,12 @@ var _user$project$Models$new = function () {
 		'');
 }();
 
+var _user$project$Messages$MoveDown = function (a) {
+	return {ctor: 'MoveDown', _0: a};
+};
+var _user$project$Messages$MoveUp = function (a) {
+	return {ctor: 'MoveUp', _0: a};
+};
 var _user$project$Messages$StopEditing = {ctor: 'StopEditing'};
 var _user$project$Messages$EditInput = function (a) {
 	return {ctor: 'EditInput', _0: a};
@@ -8841,26 +8847,6 @@ var _user$project$Form$idToInt = function (id) {
 	}
 };
 var _user$project$Form$editLinks = function (id) {
-	var l4 = A2(
-		_elm_lang$html$Html$a,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$href('javascript:void(0);')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Move Down')
-			]));
-	var l3 = A2(
-		_elm_lang$html$Html$a,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$href('javascript:void(0);')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Move up')
-			]));
 	var resolvedId = _user$project$Form$idToInt(id);
 	var l1 = A2(
 		_elm_lang$html$Html$a,
@@ -8887,6 +8873,32 @@ var _user$project$Form$editLinks = function (id) {
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html$text('Remove')
+			]));
+	var l3 = A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
+				_elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$FormMessage(
+					_user$project$Messages$MoveUp(resolvedId)))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Move up')
+			]));
+	var l4 = A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
+				_elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$FormMessage(
+					_user$project$Messages$MoveDown(resolvedId)))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Move Down')
 			]));
 	return A2(
 		_elm_lang$html$Html$div,
@@ -9137,7 +9149,7 @@ var _user$project$FormUpdate$update = F2(
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
-			default:
+			case 'StopEditing':
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
@@ -9145,6 +9157,10 @@ var _user$project$FormUpdate$update = F2(
 						{currentlyEdditedInputId: _elm_lang$core$Maybe$Nothing}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
+			case 'MoveUp':
+				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+			default:
+				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 		}
 	});
 

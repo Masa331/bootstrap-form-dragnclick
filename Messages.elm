@@ -12,6 +12,8 @@ type FormMsg =
   | RemoveInput Int
   | EditInput Int
   | StopEditing
+  | MoveUp Int
+  | MoveDown Int
 
 type InputMsg
   = PlaceholderEdit String

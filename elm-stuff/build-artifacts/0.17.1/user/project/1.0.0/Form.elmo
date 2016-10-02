@@ -14,26 +14,6 @@ var _user$project$Form$idToInt = function (id) {
 	}
 };
 var _user$project$Form$editLinks = function (id) {
-	var l4 = A2(
-		_elm_lang$html$Html$a,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$href('javascript:void(0);')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Move Down')
-			]));
-	var l3 = A2(
-		_elm_lang$html$Html$a,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$href('javascript:void(0);')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Move up')
-			]));
 	var resolvedId = _user$project$Form$idToInt(id);
 	var l1 = A2(
 		_elm_lang$html$Html$a,
@@ -60,6 +40,32 @@ var _user$project$Form$editLinks = function (id) {
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html$text('Remove')
+			]));
+	var l3 = A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
+				_elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$FormMessage(
+					_user$project$Messages$MoveUp(resolvedId)))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Move up')
+			]));
+	var l4 = A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
+				_elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$FormMessage(
+					_user$project$Messages$MoveDown(resolvedId)))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text('Move Down')
 			]));
 	return A2(
 		_elm_lang$html$Html$div,
