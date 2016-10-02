@@ -6,21 +6,21 @@ import Models exposing (..)
 update msg model =
   case msg of
     AddTextInput ->
-      addInputToForm model (newTextInput model)
+      addNewInput textInput model
     AddTextarea ->
-      addInputToForm model (newTextArea model)
+      addNewInput textArea model
     AddSelect ->
-      addInputToForm model (newSelect model)
+      addNewInput select model
     AddMultiselect ->
-      addInputToForm model (newMultiselect model)
+      addNewInput multiselect model
     AddFileUpload ->
-      addInputToForm model (newFileUpload model)
+      addNewInput fileUpload model
     AddRadio ->
-      addInputToForm model (newRadio model)
+      addNewInput radio model
     AddCheckbox ->
-      addInputToForm model (newCheckbox model)
+      addNewInput checkbox model
     AddButton ->
-      addInputToForm model (newButton model)
+      addNewInput button model
     RemoveInput id ->
       removeInput model id
     EditInput id ->
@@ -32,65 +32,60 @@ update msg model =
     MoveDown id ->
       (model, Cmd.none)
 
+addNewInput input model =
+  let
+    newId = countNewInputId model
+  in
+    ({ model | form = model.form ++ [input newId] }, Cmd.none)
+
+countNewInputId : Model -> Id
+countNewInputId model =
+  maxId model + 1
+
+maxId : Model -> Int
+maxId model =
+  Maybe.withDefault 0
+  <| List.maximum
+  <| List.map extractId model.form
+
 removeInput model id =
   let
     filteredForm = List.filter (\input -> (extractId input) /= id) model.form
   in
     ({ model | form = filteredForm }, Cmd.none)
 
-newTextInput : Model -> Input
-newTextInput model =
-  TextInput { id = countNewInputId model, classList = [ "form-control" ], placeholder = Nothing, label = Just "New input", disabled = False, readonly = False, size = Normal, addon1 = Nothing, addon2 = Nothing, small = Nothing, type' = Text }
+textInput : Int -> Input
+textInput id =
+  TextInput { id = id, classList = [ "form-control" ], placeholder = Nothing, label = Just "New input", disabled = False, readonly = False, size = Normal, addon1 = Nothing, addon2 = Nothing, small = Nothing, type' = Text }
 
-newTextArea : Model -> Input
-newTextArea model =
-  TextArea { id = countNewInputId model, classList = [ "form-control" ], placeholder = Nothing, label = Just "New input", rowNumber = 3, disabled = False }
+textArea : Int -> Input
+textArea id =
+  TextArea { id = id, classList = [ "form-control" ], placeholder = Nothing, label = Just "New input", rowNumber = 3, disabled = False }
 
-newSelect : Model -> Input
-newSelect model =
-  Select { id = countNewInputId model, classList = [ "form-control" ], label = Just "New select", small = Nothing, disabled = False, size = Normal, options = ["options1", "option2", "option3"] }
+select : Int -> Input
+select id =
+  Select { id = id, classList = [ "form-control" ], label = Just "New select", small = Nothing, disabled = False, size = Normal, options = ["options1", "option2", "option3"] }
 
-newMultiselect : Model -> Input
-newMultiselect model =
-  Multiselect { id = countNewInputId model, classList = [ "form-control" ], label = Just "New input", disabled = False, options = ["option1", "option2", "option3"], small = Nothing }
+multiselect : Int -> Input
+multiselect id =
+  Multiselect { id = id, classList = [ "form-control" ], label = Just "New input", disabled = False, options = ["option1", "option2", "option3"], small = Nothing }
 
-newFileUpload : Model -> Input
-newFileUpload model =
-  FileUpload { id = countNewInputId model, classList = [ "form-control-file" ], label = Just "New input", disabled = False, small = Nothing }
+fileUpload : Int -> Input
+fileUpload id =
+  FileUpload { id = id, classList = [ "form-control-file" ], label = Just "New input", disabled = False, small = Nothing }
 
-newRadio : Model -> Input
-newRadio model =
-  Radio { id = countNewInputId model, classList = [ "form-control" ], label = Just "New input", options = ["option1", "option2"] }
+radio : Int -> Input
+radio id =
+  Radio { id = id, classList = [ "form-control" ], label = Just "New input", options = ["option1", "option2"] }
 
-newCheckbox : Model -> Input
-newCheckbox model =
-  Checkbox { id = countNewInputId model, classList = [ "form-control" ], label = Just "New input" }
+checkbox : Int -> Input
+checkbox id =
+  Checkbox { id = id, classList = [ "form-control" ], label = Just "New input" }
 
-newButton : Model -> Input
-newButton model =
-  Button { id = countNewInputId model, classList = [ "form-control" ], label = Just "New input" }
+button : Int -> Input
+button id =
+  Button { id = id, classList = [ "form-control" ], label = Just "New input" }
 
 -------------
 -- Private --
 -------------
-
-countNewInputId : Model -> Id
-countNewInputId model =
-  let
-    actuall = extractMaxId model.form
-  in
-    actuall + 1
-
-
-addInputToForm model inp =
-  let
-    newForm = List.append model.form [inp]
-  in
-    ({ model | form = newForm }, Cmd.none)
-
-extractMaxId : List Input -> Int
-extractMaxId inputs =
-  let
-    allIds = List.map extractId inputs
-  in
-    Maybe.withDefault 1 (List.maximum allIds)
