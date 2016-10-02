@@ -6,6 +6,8 @@ import Html.Events exposing (..)
 import String exposing (..)
 
 import Models exposing (..)
+import HtmlTree exposing (..)
+import FormModel exposing (..)
 import Messages exposing (..)
 
 view : Element -> List (Html Msg)
@@ -16,11 +18,11 @@ view htmlTree =
 -- Private --
 -------------
 
-toElmHtmlNode : Element -> List (Html Msg)
+toElmHtmlNode : HtmlTree.Element -> List (Html Msg)
 toElmHtmlNode htmlTree =
   let
     attributes = createAttributes htmlTree
-    childs = (\ (Children childs) -> childs) htmlTree.children
+    childs = (\ (HtmlTree.Children childs) -> childs) htmlTree.children
     value = Html.text htmlTree.value
     node = Html.node htmlTree.tag attributes
   in

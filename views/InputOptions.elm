@@ -6,6 +6,7 @@ import Html.Events exposing (..)
 import String exposing (..)
 
 import Models exposing (..)
+import FormModel exposing (..)
 import Messages exposing (..)
 
 view : Input -> List (Html Msg)
@@ -30,7 +31,7 @@ optionsEdit inp =
     , div
       [ class "input-group" ]
       [ input [class "form-control", onInput (InputMessage << NewOptionEdit) ] []
-      , span [class "input-group-btn"] [ button [class "btn btn-secondary", type' "button", onClick (InputMessage SaveNewOption)] [text "Add"]] ]
+      , span [class "input-group-btn"] [ Html.button [class "btn btn-secondary", type' "button", onClick (InputMessage SaveNewOption)] [text "Add"]] ]
     , div [] [ ul [] lis ]
     ]
 

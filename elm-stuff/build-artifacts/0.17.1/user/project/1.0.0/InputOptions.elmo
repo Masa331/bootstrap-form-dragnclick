@@ -338,7 +338,7 @@ var _user$project$InputOptions$addon1Edit = function (string) {
 		]);
 };
 var _user$project$InputOptions$typeEdit = function (type$) {
-	var actualType = _user$project$Models$typeToText(type$);
+	var actualType = _user$project$FormModel$typeToText(type$);
 	var o = function (optionType) {
 		return A2(
 			_elm_lang$html$Html$option,
@@ -665,38 +665,38 @@ var _user$project$InputOptions$view = function (inp) {
 				_elm_lang$core$Native_List.fromArray(
 					[
 						_user$project$InputOptions$placeholderEdit(
-						_user$project$Models$extractPlaceholder(inp)),
+						_user$project$FormModel$extractPlaceholder(inp)),
 						_user$project$InputOptions$labelEdit(
-						_user$project$Models$extractLabel(inp)),
+						_user$project$FormModel$extractLabel(inp)),
 						_user$project$InputOptions$smallUnderEdit(
-						_user$project$Models$extractSmall(inp)),
+						_user$project$FormModel$extractSmall(inp)),
 						_user$project$InputOptions$typeEdit(
-						_user$project$Models$extractType(inp)),
+						_user$project$FormModel$extractType(inp)),
 						_user$project$InputOptions$addon1Edit(
-						_user$project$Models$extractAddon1(inp)),
+						_user$project$FormModel$extractAddon1(inp)),
 						_user$project$InputOptions$addon2Edit(
-						_user$project$Models$extractAddon2(inp)),
+						_user$project$FormModel$extractAddon2(inp)),
 						_user$project$InputOptions$sizeEdit(
-						_user$project$Models$extractSize(inp)),
+						_user$project$FormModel$extractSize(inp)),
 						_user$project$InputOptions$disabledEdit(
-						_user$project$Models$extractDisabled(inp)),
+						_user$project$FormModel$extractDisabled(inp)),
 						_user$project$InputOptions$readonlyEdit(
-						_user$project$Models$extractReadonly(inp))
+						_user$project$FormModel$extractReadonly(inp))
 					]));
 		case 'Select':
 			return _elm_lang$core$List$concat(
 				_elm_lang$core$Native_List.fromArray(
 					[
 						_user$project$InputOptions$labelEdit(
-						_user$project$Models$extractLabel(inp)),
+						_user$project$FormModel$extractLabel(inp)),
 						_user$project$InputOptions$optionsEdit(
-						_user$project$Models$extractOptions(inp)),
+						_user$project$FormModel$extractOptions(inp)),
 						_user$project$InputOptions$smallUnderEdit(
-						_user$project$Models$extractSmall(inp)),
+						_user$project$FormModel$extractSmall(inp)),
 						_user$project$InputOptions$sizeEdit(
-						_user$project$Models$extractSize(inp)),
+						_user$project$FormModel$extractSize(inp)),
 						_user$project$InputOptions$disabledEdit(
-						_user$project$Models$extractDisabled(inp))
+						_user$project$FormModel$extractDisabled(inp))
 					]));
 		default:
 			return _elm_lang$core$Native_List.fromArray(

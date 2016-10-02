@@ -8,7 +8,7 @@ import Models
 import Messages
 import Updates
 
-init = (Models.new, Cmd.none)
+init = (Models.initial, Cmd.none)
 
 view model =
   Views.view model

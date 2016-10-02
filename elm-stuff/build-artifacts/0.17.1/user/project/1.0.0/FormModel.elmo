@@ -1,0 +1,281 @@
+var _user$project$FormModel$typeToText = function (type$) {
+	var _p0 = type$;
+	switch (_p0.ctor) {
+		case 'Text':
+			return 'text';
+		case 'Search':
+			return 'search';
+		case 'Email':
+			return 'email';
+		case 'Url':
+			return 'url';
+		case 'Tel':
+			return 'tel';
+		case 'Password':
+			return 'password';
+		case 'Number':
+			return 'number';
+		case 'DatetimeLocal':
+			return 'datetime-local';
+		case 'Date':
+			return 'date';
+		case 'Month':
+			return 'month';
+		case 'Week':
+			return 'week';
+		case 'Time':
+			return 'time';
+		default:
+			return 'color';
+	}
+};
+var _user$project$FormModel$extractOptions = function (inp) {
+	var _p1 = inp;
+	if (_p1.ctor === 'Select') {
+		return _p1._0.options;
+	} else {
+		return _elm_lang$core$Native_List.fromArray(
+			[]);
+	}
+};
+var _user$project$FormModel$extractAddon2 = function (inp) {
+	var _p2 = inp;
+	if (_p2.ctor === 'TextInput') {
+		return _p2._0.addon2;
+	} else {
+		return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _user$project$FormModel$extractAddon1 = function (inp) {
+	var _p3 = inp;
+	if (_p3.ctor === 'TextInput') {
+		return _p3._0.addon1;
+	} else {
+		return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _user$project$FormModel$extractSmall = function (inp) {
+	var _p4 = inp;
+	switch (_p4.ctor) {
+		case 'TextInput':
+			return _p4._0.small;
+		case 'Select':
+			return _p4._0.small;
+		default:
+			return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _user$project$FormModel$extractReadonly = function (inp) {
+	var _p5 = inp;
+	if (_p5.ctor === 'TextInput') {
+		return _p5._0.readonly;
+	} else {
+		return false;
+	}
+};
+var _user$project$FormModel$extractDisabled = function (inp) {
+	var _p6 = inp;
+	switch (_p6.ctor) {
+		case 'TextInput':
+			return _p6._0.disabled;
+		case 'Select':
+			return _p6._0.disabled;
+		default:
+			return false;
+	}
+};
+var _user$project$FormModel$extractLabel = function (inp) {
+	var _p7 = inp;
+	switch (_p7.ctor) {
+		case 'TextInput':
+			return _p7._0.label;
+		case 'Select':
+			return _p7._0.label;
+		default:
+			return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _user$project$FormModel$extractPlaceholder = function (inp) {
+	var _p8 = inp;
+	if (_p8.ctor === 'TextInput') {
+		return _p8._0.placeholder;
+	} else {
+		return _elm_lang$core$Maybe$Nothing;
+	}
+};
+var _user$project$FormModel$extractId = function (inp) {
+	var _p9 = inp;
+	switch (_p9.ctor) {
+		case 'TextInput':
+			return _p9._0.id;
+		case 'TextArea':
+			return _p9._0.id;
+		case 'Select':
+			return _p9._0.id;
+		case 'Multiselect':
+			return _p9._0.id;
+		case 'FileUpload':
+			return _p9._0.id;
+		case 'Radio':
+			return _p9._0.id;
+		case 'Checkbox':
+			return _p9._0.id;
+		default:
+			return _p9._0.id;
+	}
+};
+var _user$project$FormModel$Large = {ctor: 'Large'};
+var _user$project$FormModel$Normal = {ctor: 'Normal'};
+var _user$project$FormModel$extractSize = function (inp) {
+	var _p10 = inp;
+	switch (_p10.ctor) {
+		case 'TextInput':
+			return _p10._0.size;
+		case 'Select':
+			return _p10._0.size;
+		default:
+			return _user$project$FormModel$Normal;
+	}
+};
+var _user$project$FormModel$Small = {ctor: 'Small'};
+var _user$project$FormModel$Color = {ctor: 'Color'};
+var _user$project$FormModel$Time = {ctor: 'Time'};
+var _user$project$FormModel$Week = {ctor: 'Week'};
+var _user$project$FormModel$Month = {ctor: 'Month'};
+var _user$project$FormModel$Date = {ctor: 'Date'};
+var _user$project$FormModel$DatetimeLocal = {ctor: 'DatetimeLocal'};
+var _user$project$FormModel$Number = {ctor: 'Number'};
+var _user$project$FormModel$Password = {ctor: 'Password'};
+var _user$project$FormModel$Tel = {ctor: 'Tel'};
+var _user$project$FormModel$Url = {ctor: 'Url'};
+var _user$project$FormModel$Email = {ctor: 'Email'};
+var _user$project$FormModel$Search = {ctor: 'Search'};
+var _user$project$FormModel$Text = {ctor: 'Text'};
+var _user$project$FormModel$extractType = function (inp) {
+	var _p11 = inp;
+	if (_p11.ctor === 'TextInput') {
+		return _p11._0.type$;
+	} else {
+		return _user$project$FormModel$Text;
+	}
+};
+var _user$project$FormModel$Button = function (a) {
+	return {ctor: 'Button', _0: a};
+};
+var _user$project$FormModel$button = function (id) {
+	return _user$project$FormModel$Button(
+		{
+			id: id,
+			classList: _elm_lang$core$Native_List.fromArray(
+				['form-control']),
+			label: _elm_lang$core$Maybe$Just('New input')
+		});
+};
+var _user$project$FormModel$Checkbox = function (a) {
+	return {ctor: 'Checkbox', _0: a};
+};
+var _user$project$FormModel$checkbox = function (id) {
+	return _user$project$FormModel$Checkbox(
+		{
+			id: id,
+			classList: _elm_lang$core$Native_List.fromArray(
+				['form-control']),
+			label: _elm_lang$core$Maybe$Just('New input')
+		});
+};
+var _user$project$FormModel$Radio = function (a) {
+	return {ctor: 'Radio', _0: a};
+};
+var _user$project$FormModel$radio = function (id) {
+	return _user$project$FormModel$Radio(
+		{
+			id: id,
+			classList: _elm_lang$core$Native_List.fromArray(
+				['form-control']),
+			label: _elm_lang$core$Maybe$Just('New input'),
+			options: _elm_lang$core$Native_List.fromArray(
+				['option1', 'option2'])
+		});
+};
+var _user$project$FormModel$FileUpload = function (a) {
+	return {ctor: 'FileUpload', _0: a};
+};
+var _user$project$FormModel$fileUpload = function (id) {
+	return _user$project$FormModel$FileUpload(
+		{
+			id: id,
+			classList: _elm_lang$core$Native_List.fromArray(
+				['form-control-file']),
+			label: _elm_lang$core$Maybe$Just('New input'),
+			disabled: false,
+			small: _elm_lang$core$Maybe$Nothing
+		});
+};
+var _user$project$FormModel$Multiselect = function (a) {
+	return {ctor: 'Multiselect', _0: a};
+};
+var _user$project$FormModel$multiselect = function (id) {
+	return _user$project$FormModel$Multiselect(
+		{
+			id: id,
+			classList: _elm_lang$core$Native_List.fromArray(
+				['form-control']),
+			label: _elm_lang$core$Maybe$Just('New input'),
+			disabled: false,
+			options: _elm_lang$core$Native_List.fromArray(
+				['option1', 'option2', 'option3']),
+			small: _elm_lang$core$Maybe$Nothing
+		});
+};
+var _user$project$FormModel$Select = function (a) {
+	return {ctor: 'Select', _0: a};
+};
+var _user$project$FormModel$select = function (id) {
+	return _user$project$FormModel$Select(
+		{
+			id: id,
+			classList: _elm_lang$core$Native_List.fromArray(
+				['form-control']),
+			label: _elm_lang$core$Maybe$Just('New select'),
+			small: _elm_lang$core$Maybe$Nothing,
+			disabled: false,
+			size: _user$project$FormModel$Normal,
+			options: _elm_lang$core$Native_List.fromArray(
+				['options1', 'option2', 'option3'])
+		});
+};
+var _user$project$FormModel$TextArea = function (a) {
+	return {ctor: 'TextArea', _0: a};
+};
+var _user$project$FormModel$textArea = function (id) {
+	return _user$project$FormModel$TextArea(
+		{
+			id: id,
+			classList: _elm_lang$core$Native_List.fromArray(
+				['form-control']),
+			placeholder: _elm_lang$core$Maybe$Nothing,
+			label: _elm_lang$core$Maybe$Just('New input'),
+			rowNumber: 3,
+			disabled: false
+		});
+};
+var _user$project$FormModel$TextInput = function (a) {
+	return {ctor: 'TextInput', _0: a};
+};
+var _user$project$FormModel$textInput = function (id) {
+	return _user$project$FormModel$TextInput(
+		{
+			id: id,
+			classList: _elm_lang$core$Native_List.fromArray(
+				['form-control']),
+			placeholder: _elm_lang$core$Maybe$Nothing,
+			label: _elm_lang$core$Maybe$Just('New input'),
+			disabled: false,
+			readonly: false,
+			size: _user$project$FormModel$Normal,
+			addon1: _elm_lang$core$Maybe$Nothing,
+			addon2: _elm_lang$core$Maybe$Nothing,
+			small: _elm_lang$core$Maybe$Nothing,
+			type$: _user$project$FormModel$Text
+		});
+};

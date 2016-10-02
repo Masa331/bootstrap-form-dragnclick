@@ -1,7 +1,0 @@
-var _user$project$InputEdit$view = function (htmlTree) {
-	return A2(
-		_elm_lang$html$Html$form,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_user$project$Inputs$toElmHtmlNode(htmlTree));
-};

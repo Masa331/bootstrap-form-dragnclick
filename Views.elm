@@ -10,6 +10,10 @@ import Form exposing (view)
 import InputOptions exposing (..)
 import Messages exposing (..)
 import Models exposing (..)
+import HtmlTree exposing (..)
+import FormModel exposing (..)
+
+import InputToHtmlTreeConverter exposing (..)
 
 view model =
   case currentlyEdditedInput model of
@@ -26,7 +30,7 @@ formEdit : Model -> Html Msg
 formEdit model =
   let
     inputs = List.map inputToHtmlTree model.form
-    htmlTree = Element "form" [] (Children inputs) ""
+    htmlTree = HtmlTree.Element "form" [] (HtmlTree.Children inputs) ""
   in
     div
       []
@@ -46,7 +50,7 @@ inputEdit : Input -> Html Msg
 inputEdit input =
   let
     inputs = [inputToHtmlTree input]
-    htmlTree = Element "form" [] (Children inputs) ""
+    htmlTree = HtmlTree.Element "form" [] (HtmlTree.Children inputs) ""
   in
     div
       []

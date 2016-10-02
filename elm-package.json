@@ -6,7 +6,8 @@
     "source-directories": [
         ".",
         "views",
-        "updates"
+        "updates",
+        "models"
     ],
     "exposed-modules": [],
     "dependencies": {

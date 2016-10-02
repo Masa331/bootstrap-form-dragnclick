@@ -1,0 +1,11 @@
+var _user$project$HtmlTree$Attribute = F2(
+	function (a, b) {
+		return {name: a, value: b};
+	});
+var _user$project$HtmlTree$Element = F4(
+	function (a, b, c, d) {
+		return {tag: a, attributes: b, children: c, value: d};
+	});
+var _user$project$HtmlTree$Children = function (a) {
+	return {ctor: 'Children', _0: a};
+};

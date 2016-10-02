@@ -1,106 +1,10 @@
-var _user$project$FormUpdate$button = function (id) {
-	return _user$project$Models$Button(
-		{
-			id: id,
-			classList: _elm_lang$core$Native_List.fromArray(
-				['form-control']),
-			label: _elm_lang$core$Maybe$Just('New input')
-		});
-};
-var _user$project$FormUpdate$checkbox = function (id) {
-	return _user$project$Models$Checkbox(
-		{
-			id: id,
-			classList: _elm_lang$core$Native_List.fromArray(
-				['form-control']),
-			label: _elm_lang$core$Maybe$Just('New input')
-		});
-};
-var _user$project$FormUpdate$radio = function (id) {
-	return _user$project$Models$Radio(
-		{
-			id: id,
-			classList: _elm_lang$core$Native_List.fromArray(
-				['form-control']),
-			label: _elm_lang$core$Maybe$Just('New input'),
-			options: _elm_lang$core$Native_List.fromArray(
-				['option1', 'option2'])
-		});
-};
-var _user$project$FormUpdate$fileUpload = function (id) {
-	return _user$project$Models$FileUpload(
-		{
-			id: id,
-			classList: _elm_lang$core$Native_List.fromArray(
-				['form-control-file']),
-			label: _elm_lang$core$Maybe$Just('New input'),
-			disabled: false,
-			small: _elm_lang$core$Maybe$Nothing
-		});
-};
-var _user$project$FormUpdate$multiselect = function (id) {
-	return _user$project$Models$Multiselect(
-		{
-			id: id,
-			classList: _elm_lang$core$Native_List.fromArray(
-				['form-control']),
-			label: _elm_lang$core$Maybe$Just('New input'),
-			disabled: false,
-			options: _elm_lang$core$Native_List.fromArray(
-				['option1', 'option2', 'option3']),
-			small: _elm_lang$core$Maybe$Nothing
-		});
-};
-var _user$project$FormUpdate$select = function (id) {
-	return _user$project$Models$Select(
-		{
-			id: id,
-			classList: _elm_lang$core$Native_List.fromArray(
-				['form-control']),
-			label: _elm_lang$core$Maybe$Just('New select'),
-			small: _elm_lang$core$Maybe$Nothing,
-			disabled: false,
-			size: _user$project$Models$Normal,
-			options: _elm_lang$core$Native_List.fromArray(
-				['options1', 'option2', 'option3'])
-		});
-};
-var _user$project$FormUpdate$textArea = function (id) {
-	return _user$project$Models$TextArea(
-		{
-			id: id,
-			classList: _elm_lang$core$Native_List.fromArray(
-				['form-control']),
-			placeholder: _elm_lang$core$Maybe$Nothing,
-			label: _elm_lang$core$Maybe$Just('New input'),
-			rowNumber: 3,
-			disabled: false
-		});
-};
-var _user$project$FormUpdate$textInput = function (id) {
-	return _user$project$Models$TextInput(
-		{
-			id: id,
-			classList: _elm_lang$core$Native_List.fromArray(
-				['form-control']),
-			placeholder: _elm_lang$core$Maybe$Nothing,
-			label: _elm_lang$core$Maybe$Just('New input'),
-			disabled: false,
-			readonly: false,
-			size: _user$project$Models$Normal,
-			addon1: _elm_lang$core$Maybe$Nothing,
-			addon2: _elm_lang$core$Maybe$Nothing,
-			small: _elm_lang$core$Maybe$Nothing,
-			type$: _user$project$Models$Text
-		});
-};
 var _user$project$FormUpdate$removeInput = F2(
 	function (model, id) {
 		var filteredForm = A2(
 			_elm_lang$core$List$filter,
 			function (input) {
 				return !_elm_lang$core$Native_Utils.eq(
-					_user$project$Models$extractId(input),
+					_user$project$FormModel$extractId(input),
 					id);
 			},
 			model.form);
@@ -112,19 +16,9 @@ var _user$project$FormUpdate$removeInput = F2(
 			_1: _elm_lang$core$Platform_Cmd$none
 		};
 	});
-var _user$project$FormUpdate$maxId = function (model) {
-	return A2(
-		_elm_lang$core$Maybe$withDefault,
-		0,
-		_elm_lang$core$List$maximum(
-			A2(_elm_lang$core$List$map, _user$project$Models$extractId, model.form)));
-};
-var _user$project$FormUpdate$countNewInputId = function (model) {
-	return _user$project$FormUpdate$maxId(model) + 1;
-};
 var _user$project$FormUpdate$addNewInput = F2(
 	function (input, model) {
-		var newId = _user$project$FormUpdate$countNewInputId(model);
+		var newId = _user$project$Models$maxInputId(model) + 1;
 		return {
 			ctor: '_Tuple2',
 			_0: _elm_lang$core$Native_Utils.update(
@@ -146,21 +40,21 @@ var _user$project$FormUpdate$update = F2(
 		var _p0 = msg;
 		switch (_p0.ctor) {
 			case 'AddTextInput':
-				return A2(_user$project$FormUpdate$addNewInput, _user$project$FormUpdate$textInput, model);
+				return A2(_user$project$FormUpdate$addNewInput, _user$project$FormModel$textInput, model);
 			case 'AddTextarea':
-				return A2(_user$project$FormUpdate$addNewInput, _user$project$FormUpdate$textArea, model);
+				return A2(_user$project$FormUpdate$addNewInput, _user$project$FormModel$textArea, model);
 			case 'AddSelect':
-				return A2(_user$project$FormUpdate$addNewInput, _user$project$FormUpdate$select, model);
+				return A2(_user$project$FormUpdate$addNewInput, _user$project$FormModel$select, model);
 			case 'AddMultiselect':
-				return A2(_user$project$FormUpdate$addNewInput, _user$project$FormUpdate$multiselect, model);
+				return A2(_user$project$FormUpdate$addNewInput, _user$project$FormModel$multiselect, model);
 			case 'AddFileUpload':
-				return A2(_user$project$FormUpdate$addNewInput, _user$project$FormUpdate$fileUpload, model);
+				return A2(_user$project$FormUpdate$addNewInput, _user$project$FormModel$fileUpload, model);
 			case 'AddRadio':
-				return A2(_user$project$FormUpdate$addNewInput, _user$project$FormUpdate$radio, model);
+				return A2(_user$project$FormUpdate$addNewInput, _user$project$FormModel$radio, model);
 			case 'AddCheckbox':
-				return A2(_user$project$FormUpdate$addNewInput, _user$project$FormUpdate$checkbox, model);
+				return A2(_user$project$FormUpdate$addNewInput, _user$project$FormModel$checkbox, model);
 			case 'AddButton':
-				return A2(_user$project$FormUpdate$addNewInput, _user$project$FormUpdate$button, model);
+				return A2(_user$project$FormUpdate$addNewInput, _user$project$FormModel$button, model);
 			case 'RemoveInput':
 				return A2(_user$project$FormUpdate$removeInput, model, _p0._0);
 			case 'EditInput':

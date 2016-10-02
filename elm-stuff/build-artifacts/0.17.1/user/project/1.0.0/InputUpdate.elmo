@@ -2,7 +2,7 @@ var _user$project$InputUpdate$readonlyUpdateFunc = F2(
 	function (inp, newReadonly) {
 		var _p0 = inp;
 		if (_p0.ctor === 'TextInput') {
-			return _user$project$Models$TextInput(
+			return _user$project$FormModel$TextInput(
 				_elm_lang$core$Native_Utils.update(
 					_p0._0,
 					{readonly: newReadonly}));
@@ -15,12 +15,12 @@ var _user$project$InputUpdate$disabledUpdateFunc = F2(
 		var _p1 = inp;
 		switch (_p1.ctor) {
 			case 'TextInput':
-				return _user$project$Models$TextInput(
+				return _user$project$FormModel$TextInput(
 					_elm_lang$core$Native_Utils.update(
 						_p1._0,
 						{disabled: newDisabled}));
 			case 'Select':
-				return _user$project$Models$Select(
+				return _user$project$FormModel$Select(
 					_elm_lang$core$Native_Utils.update(
 						_p1._0,
 						{disabled: newDisabled}));
@@ -33,14 +33,14 @@ var _user$project$InputUpdate$smallUpdateFunc = F2(
 		var _p2 = inp;
 		switch (_p2.ctor) {
 			case 'TextInput':
-				return _user$project$Models$TextInput(
+				return _user$project$FormModel$TextInput(
 					_elm_lang$core$Native_Utils.update(
 						_p2._0,
 						{
 							small: _elm_lang$core$Maybe$Just(newSmall)
 						}));
 			case 'Select':
-				return _user$project$Models$Select(
+				return _user$project$FormModel$Select(
 					_elm_lang$core$Native_Utils.update(
 						_p2._0,
 						{
@@ -55,14 +55,14 @@ var _user$project$InputUpdate$labelUpdateFunc = F2(
 		var _p3 = inp;
 		switch (_p3.ctor) {
 			case 'TextInput':
-				return _user$project$Models$TextInput(
+				return _user$project$FormModel$TextInput(
 					_elm_lang$core$Native_Utils.update(
 						_p3._0,
 						{
 							label: _elm_lang$core$Maybe$Just(newLabel)
 						}));
 			case 'Select':
-				return _user$project$Models$Select(
+				return _user$project$FormModel$Select(
 					_elm_lang$core$Native_Utils.update(
 						_p3._0,
 						{
@@ -76,7 +76,7 @@ var _user$project$InputUpdate$placeholderUpdateFunc = F2(
 	function (inp, newPlaceholder) {
 		var _p4 = inp;
 		if (_p4.ctor === 'TextInput') {
-			return _user$project$Models$TextInput(
+			return _user$project$FormModel$TextInput(
 				_elm_lang$core$Native_Utils.update(
 					_p4._0,
 					{
@@ -91,7 +91,7 @@ var _user$project$InputUpdate$secondAddonEditFunc = F2(
 		var wrappedAddon = _elm_lang$core$Native_Utils.eq(newAddon, '') ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(newAddon);
 		var _p5 = inp;
 		if (_p5.ctor === 'TextInput') {
-			return _user$project$Models$TextInput(
+			return _user$project$FormModel$TextInput(
 				_elm_lang$core$Native_Utils.update(
 					_p5._0,
 					{addon2: wrappedAddon}));
@@ -104,7 +104,7 @@ var _user$project$InputUpdate$firstAddonEditFunc = F2(
 		var wrappedAddon = _elm_lang$core$Native_Utils.eq(newAddon, '') ? _elm_lang$core$Maybe$Nothing : _elm_lang$core$Maybe$Just(newAddon);
 		var _p6 = inp;
 		if (_p6.ctor === 'TextInput') {
-			return _user$project$Models$TextInput(
+			return _user$project$FormModel$TextInput(
 				_elm_lang$core$Native_Utils.update(
 					_p6._0,
 					{addon1: wrappedAddon}));
@@ -118,38 +118,38 @@ var _user$project$InputUpdate$typeEditFunc = F2(
 			var _p7 = newType;
 			switch (_p7) {
 				case 'text':
-					return _user$project$Models$Text;
+					return _user$project$FormModel$Text;
 				case 'search':
-					return _user$project$Models$Search;
+					return _user$project$FormModel$Search;
 				case 'email':
-					return _user$project$Models$Email;
+					return _user$project$FormModel$Email;
 				case 'url':
-					return _user$project$Models$Url;
+					return _user$project$FormModel$Url;
 				case 'tel':
-					return _user$project$Models$Tel;
+					return _user$project$FormModel$Tel;
 				case 'password':
-					return _user$project$Models$Password;
+					return _user$project$FormModel$Password;
 				case 'number':
-					return _user$project$Models$Number;
+					return _user$project$FormModel$Number;
 				case 'datetime-local':
-					return _user$project$Models$DatetimeLocal;
+					return _user$project$FormModel$DatetimeLocal;
 				case 'date':
-					return _user$project$Models$Date;
+					return _user$project$FormModel$Date;
 				case 'month':
-					return _user$project$Models$Month;
+					return _user$project$FormModel$Month;
 				case 'week':
-					return _user$project$Models$Week;
+					return _user$project$FormModel$Week;
 				case 'time':
-					return _user$project$Models$Time;
+					return _user$project$FormModel$Time;
 				case 'color':
-					return _user$project$Models$Color;
+					return _user$project$FormModel$Color;
 				default:
-					return _user$project$Models$Text;
+					return _user$project$FormModel$Text;
 			}
 		}();
 		var _p8 = inp;
 		if (_p8.ctor === 'TextInput') {
-			return _user$project$Models$TextInput(
+			return _user$project$FormModel$TextInput(
 				_elm_lang$core$Native_Utils.update(
 					_p8._0,
 					{type$: neco}));
@@ -163,24 +163,24 @@ var _user$project$InputUpdate$sizeEditFunc = F2(
 			var _p9 = newSize;
 			switch (_p9) {
 				case 'small':
-					return _user$project$Models$Small;
+					return _user$project$FormModel$Small;
 				case 'normal':
-					return _user$project$Models$Normal;
+					return _user$project$FormModel$Normal;
 				case 'large':
-					return _user$project$Models$Large;
+					return _user$project$FormModel$Large;
 				default:
-					return _user$project$Models$Normal;
+					return _user$project$FormModel$Normal;
 			}
 		}();
 		var _p10 = inp;
 		switch (_p10.ctor) {
 			case 'TextInput':
-				return _user$project$Models$TextInput(
+				return _user$project$FormModel$TextInput(
 					_elm_lang$core$Native_Utils.update(
 						_p10._0,
 						{size: neco}));
 			case 'Select':
-				return _user$project$Models$Select(
+				return _user$project$FormModel$Select(
 					_elm_lang$core$Native_Utils.update(
 						_p10._0,
 						{size: neco}));
@@ -193,7 +193,7 @@ var _user$project$InputUpdate$addNewOptionFunc = F2(
 		var _p11 = inp;
 		if (_p11.ctor === 'Select') {
 			var _p12 = _p11._0;
-			return _user$project$Models$Select(
+			return _user$project$FormModel$Select(
 				_elm_lang$core$Native_Utils.update(
 					_p12,
 					{
@@ -211,7 +211,7 @@ var _user$project$InputUpdate$removeOptionFunc = F2(
 		var _p13 = inp;
 		if (_p13.ctor === 'Select') {
 			var _p14 = _p13._0;
-			return _user$project$Models$Select(
+			return _user$project$FormModel$Select(
 				_elm_lang$core$Native_Utils.update(
 					_p14,
 					{
@@ -230,7 +230,7 @@ var _user$project$InputUpdate$updateInputAttribute = F4(
 			_elm_lang$core$List$map,
 			function (inp) {
 				return _elm_lang$core$Native_Utils.eq(
-					_user$project$Models$extractId(inp),
+					_user$project$FormModel$extractId(inp),
 					inputId) ? A2(updateFunc, inp, newPlaceholder) : inp;
 			},
 			model.form);

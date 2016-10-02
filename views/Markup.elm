@@ -5,6 +5,7 @@ import Html.Attributes exposing (..)
 import String
 
 import Models exposing (..)
+import HtmlTree exposing (..)
 import Messages exposing (..)
 
 view : Element -> Html Msg
@@ -56,7 +57,13 @@ htmlAttributeString attribute =
     attribute.name ++ "=" ++ "\"" ++ attribute.value ++ "\""
 
 closingTag element =
-  if Models.isVoid element then
+  if isVoid element then
     ""
   else
     "</" ++ element.tag ++ ">"
+
+isVoid element =
+  List.member element.tag voidElementsList
+
+voidElementsList =
+  ["area", "base", "br", "col", "command", "embed", "hr", "img", "input", "keygen", "link", "meta", "param", "source", "track", "wbr"]
