@@ -42,6 +42,6 @@ addNewInput input model =
 
 removeInput model id =
   let
-    filteredForm = List.filter (\input -> (extractId input) /= id) model.form
+    filteredForm = List.filter (\input -> input.id /= id) model.form
   in
     ({ model | form = filteredForm }, Cmd.none)

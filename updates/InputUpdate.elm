@@ -45,7 +45,7 @@ updateInputAttribute updateFunc model newPlaceholder =
     Just input ->
       let
         updatedInput = updateFunc input newPlaceholder
-        newInputs = List.map (\inp -> if extractId inp == extractId input then updatedInput else inp) model.form
+        newInputs = List.map (\inp -> if inp.id == input.id then updatedInput else inp) model.form
       in
         ({ model | form = newInputs }, Cmd.none)
 
@@ -54,97 +54,56 @@ removeOptionFunc inp newOption =
   let
     func = (\neco -> if newOption == neco then Nothing else Just neco)
   in
-  case inp of
-    Select attrs ->
-      Select { attrs | options = List.map func attrs.options |> List.filterMap identity }
-    _ -> inp
+    { inp | options = List.map func inp.options |> List.filterMap identity }
 
 addNewOptionFunc : Input -> String -> Input
 addNewOptionFunc inp newOption =
-  case inp of
-    Select attrs ->
-      Select { attrs | options = newOption::attrs.options }
-    _ -> inp
+  { inp | options = newOption::inp.options }
 
 sizeEditFunc : Input -> String -> Input
 sizeEditFunc inp newSize =
   let
     neco = textToSize newSize
   in
-    case inp of
-      TextInput attrs ->
-        TextInput { attrs | size = neco }
-      Select attrs ->
-        Select { attrs | size = neco }
-      _ -> inp
+    { inp | size = neco }
 
 typeEditFunc : Input -> String -> Input
 typeEditFunc inp newType =
   let
     neco = textToType newType
   in
-    case inp of
-      TextInput attrs ->
-        TextInput { attrs | type' = neco }
-      _ -> inp
+    { inp | type' = neco }
 
 firstAddonEditFunc : Input -> String -> Input
 firstAddonEditFunc inp newAddon =
   let
     wrappedAddon = if newAddon == "" then Nothing else Just newAddon
   in
-    case inp of
-      TextInput attrs ->
-        TextInput { attrs | addon1 = wrappedAddon }
-      _ -> inp
+    { inp | addon1 = wrappedAddon }
 
 secondAddonEditFunc : Input -> String -> Input
 secondAddonEditFunc inp newAddon =
   let
     wrappedAddon = if newAddon == "" then Nothing else Just newAddon
   in
-    case inp of
-      TextInput attrs ->
-        TextInput { attrs | addon2 = wrappedAddon }
-      _ -> inp
+    { inp | addon2 = wrappedAddon }
 
 placeholderUpdateFunc : Input -> String -> Input
 placeholderUpdateFunc inp newPlaceholder =
-  case inp of
-    TextInput attrs ->
-      TextInput { attrs | placeholder = Just newPlaceholder }
-    _ -> inp
+  { inp | placeholder = Just newPlaceholder }
 
 labelUpdateFunc : Input -> String -> Input
 labelUpdateFunc inp newLabel =
-  case inp of
-    TextInput attrs ->
-      TextInput { attrs | label = Just newLabel }
-    Select attrs ->
-      Select { attrs | label = Just newLabel }
-    _ -> inp
+  { inp | label = Just newLabel }
 
 smallUpdateFunc : Input -> String -> Input
 smallUpdateFunc inp newSmall =
-  case inp of
-    TextInput attrs ->
-      TextInput { attrs | small = Just newSmall }
-    Select attrs ->
-      Select { attrs | small = Just newSmall }
-    _ -> inp
+  { inp | small = Just newSmall }
 
 disabledUpdateFunc : Input -> Bool -> Input
 disabledUpdateFunc inp newDisabled =
-  case inp of
-    TextInput attrs ->
-      TextInput { attrs | disabled = newDisabled }
-    Select attrs ->
-      Select { attrs | disabled = newDisabled }
-    _ -> inp
+  { inp | disabled = newDisabled }
 
 readonlyUpdateFunc : Input -> Bool -> Input
 readonlyUpdateFunc inp newReadonly =
-  case inp of
-    TextInput attrs ->
-      TextInput { attrs | readonly = newReadonly }
-    _ -> inp
+  { inp | readonly = newReadonly }

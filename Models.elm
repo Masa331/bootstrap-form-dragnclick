@@ -22,10 +22,10 @@ currentlyEdditedInput model =
     Nothing ->
       Nothing
     Just id ->
-      List.head (List.filter (\el -> FormModel.extractId el == id) model.form)
+      List.head (List.filter (\el -> el.id == id) model.form)
 
 maxInputId : Model -> Int
 maxInputId model =
   Maybe.withDefault 0
   <| List.maximum
-  <| List.map FormModel.extractId model.form
+  <| List.map .id model.form

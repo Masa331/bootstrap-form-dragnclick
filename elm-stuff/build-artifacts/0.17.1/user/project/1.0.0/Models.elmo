@@ -3,7 +3,12 @@ var _user$project$Models$maxInputId = function (model) {
 		_elm_lang$core$Maybe$withDefault,
 		0,
 		_elm_lang$core$List$maximum(
-			A2(_elm_lang$core$List$map, _user$project$FormModel$extractId, model.form)));
+			A2(
+				_elm_lang$core$List$map,
+				function (_) {
+					return _.id;
+				},
+				model.form)));
 };
 var _user$project$Models$currentlyEdditedInput = function (model) {
 	var _p0 = model.currentlyEdditedInputId;
@@ -14,9 +19,7 @@ var _user$project$Models$currentlyEdditedInput = function (model) {
 			A2(
 				_elm_lang$core$List$filter,
 				function (el) {
-					return _elm_lang$core$Native_Utils.eq(
-						_user$project$FormModel$extractId(el),
-						_p0._0);
+					return _elm_lang$core$Native_Utils.eq(el.id, _p0._0);
 				},
 				model.form));
 	}

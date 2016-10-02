@@ -6,117 +6,118 @@ import FormModel exposing (..)
 import String exposing (join)
 
 inputToHtmlTree input =
-  case input of
-    TextInput attrs -> textInputToHtmlTree input attrs
-    TextArea attrs -> textAreaToHtmlTree input attrs
-    Select attrs -> selectToHtmlTree input attrs
-    Multiselect attrs -> multiselectToHtmlTree input attrs
-    FileUpload attrs -> fileUploadToHtmlTree input attrs
-    Radio attrs -> radioToHtmlTree input attrs
-    Checkbox attrs -> checkboxToHtmlTree input attrs
-    Button attrs -> buttonToHtmlTree input attrs
+  case input.type' of
+    Text -> textInputToHtmlTree input
+    TextArea -> textAreaToHtmlTree input
+    Select -> selectToHtmlTree input
+    Multiselect -> multiselectToHtmlTree input
+    FileUpload -> fileUploadToHtmlTree input
+    Radio -> radioToHtmlTree input
+    Checkbox -> checkboxToHtmlTree input
+    Button -> buttonToHtmlTree input
+    _ -> textInputToHtmlTree input
 
-textInputToHtmlTree inp attrs =
+textInputToHtmlTree inp =
   let
     inputAttrs =
-      [ toId attrs.id
-      , toPlaceholder attrs.placeholder
-      , toDisabled attrs.disabled
-      , toReadonly attrs.readonly
-      , toClasses attrs.classList attrs.size
-      , toType attrs.type'
+      [ toId inp.id
+      , toPlaceholder inp.placeholder
+      , toDisabled inp.disabled
+      , toReadonly inp.readonly
+      , toClasses inp.classList inp.size
+      , toType inp.type'
       ] |> List.filterMap identity
 
     children =
-      [ toLabel attrs.label
-      , wrapInAddons inputAttrs attrs
-      , toSmall attrs.small
-      , toLinks (extractId inp)
+      [ toLabel inp.label
+      , wrapInAddons inputAttrs inp
+      , toSmall inp.small
+      , toLinks inp.id
       ] |> List.filterMap identity
   in
     Element "div" [Attribute "class" "form-group"] (Children children) ""
 
-selectToHtmlTree inp attrs =
+selectToHtmlTree inp =
   let
     inputAttrs =
-      [ toId attrs.id
-      , toDisabled attrs.disabled
-      , toClasses attrs.classList attrs.size
+      [ toId inp.id
+      , toDisabled inp.disabled
+      , toClasses inp.classList inp.size
       ] |> List.filterMap identity
 
-    options = List.map (\value -> Element "option" [] (Children []) value) attrs.options
+    options = List.map (\value -> Element "option" [] (Children []) value) inp.options
     children =
-      [ toLabel attrs.label
+      [ toLabel inp.label
       , Just (Element "select" inputAttrs (Children options) "")
-      , toSmall attrs.small
-      , toLinks (extractId inp)
+      , toSmall inp.small
+      , toLinks inp.id
       ] |> List.filterMap identity
   in
     Element "div" [Attribute "class" "form-group"] (Children children) ""
 
-textAreaToHtmlTree inp attrs =
+textAreaToHtmlTree inp =
   let
     inputAttrs =
-      [ toId attrs.id
-      , toPlaceholder attrs.placeholder
-      , toDisabled attrs.disabled
-      , toReadonly attrs.readonly
-      , toClasses attrs.classList Normal
-      , Just (Attribute "rows" (toString attrs.rowNumber))
+      [ toId inp.id
+      , toPlaceholder inp.placeholder
+      , toDisabled inp.disabled
+      , toReadonly inp.readonly
+      , toClasses inp.classList Normal
+      , Just (Attribute "rows" (toString inp.rowNumber))
       ] |> List.filterMap identity
 
     children =
-      [ toLabel attrs.label
+      [ toLabel inp.label
       , Just (Element "textarea" inputAttrs (Children []) "")
-      , toLinks (extractId inp)
+      , toLinks inp.id
       ] |> List.filterMap identity
   in
     Element "div" [Attribute "class" "form-group"] (Children (children)) ""
 
-multiselectToHtmlTree inp attrs =
+multiselectToHtmlTree inp =
   let
     inputAttrs =
-      [ toId attrs.id
-      , toDisabled attrs.disabled
-      , toClasses attrs.classList Normal
+      [ toId inp.id
+      , toDisabled inp.disabled
+      , toClasses inp.classList Normal
       , Just (Attribute "multiple" "multiple")
       ] |> List.filterMap identity
 
-    options = List.map (\value -> Element "option" [] (Children []) value) attrs.options
+    options = List.map (\value -> Element "option" [] (Children []) value) inp.options
     children =
-      [ toLabel attrs.label
+      [ toLabel inp.label
       , Just (Element "select" inputAttrs (Children options) "")
-      , toSmall attrs.small
-      , toLinks (extractId inp)
+      , toSmall inp.small
+      , toLinks inp.id
       ] |> List.filterMap identity
   in
     Element "div" [Attribute "class" "form-group"] (Children children) ""
 
-fileUploadToHtmlTree inp attrs =
+fileUploadToHtmlTree inp =
   let
     inputAttrs =
-      [ toId attrs.id
-      , toDisabled attrs.disabled
-      , toClasses attrs.classList Normal
+      [ toId inp.id
+      , toDisabled inp.disabled
+      , toClasses inp.classList Normal
       , Just (Attribute "type" "file")
       ] |> List.filterMap identity
 
     children =
-      [ toLabel attrs.label
+      [ toLabel inp.label
       , Just (Element "input" inputAttrs (Children []) "")
-      , toSmall attrs.small
-      , toLinks (extractId inp)
+      , toSmall inp.small
+      , toLinks inp.id
       ] |> List.filterMap identity
   in
     Element "div" [Attribute "class" "form-group"] (Children children) ""
 
-radioToHtmlTree inp attrs =
+radioToHtmlTree inp =
   let
-    options = List.map (\value -> Just (toRadioOption attrs.id 1 value)) attrs.options
+    options = List.map (\value -> Just (toRadioOption inp.id 1 value)) inp.options
     children =
-      [ toLegend attrs.label ]
+      [ toLegend inp.label ]
       ++ options
-      ++ [ toLinks (extractId inp) ]
+      ++ [ toLinks inp.id ]
       |> List.filterMap identity
   in
     Element "fieldset" [Attribute "class" "form-group"] (Children children ) ""
@@ -129,26 +130,26 @@ toRadioOption id index value =
     Element "div" [Attribute "class" "form-check"] (Children [children]) ""
 
 
-checkboxToHtmlTree inp attrs =
+checkboxToHtmlTree inp =
   let
     input = Element "input" [Attribute "type" "checkbox", Attribute "class" "form-check-input"] (Children []) ""
     label =
-      case attrs.label of
+      case inp.label of
         Nothing ->
           Just (Element "label" [Attribute "class" "form-check-label"] (Children [input]) "")
         Just value ->
           Just (Element "label" [Attribute "class" "form-check-label"] (Children [input]) value)
 
-    links = toLinks (extractId inp)
+    links = toLinks inp.id
     children = [label, links] |> List.filterMap identity
   in
     Element "div" [Attribute "class" "form-check"] (Children children) ""
 
-buttonToHtmlTree inp attrs =
+buttonToHtmlTree inp =
   let
     children =
-      [ Just (Element "button" [Attribute "type" "submit", Attribute "class" "btn btn-primary"] (Children []) (Maybe.withDefault "Submit" attrs.label))
-      , toLinks (extractId inp)
+      [ Just (Element "button" [Attribute "type" "submit", Attribute "class" "btn btn-primary"] (Children []) (Maybe.withDefault "Submit" inp.label))
+      , toLinks inp.id
       ] |> List.filterMap identity
   in
     Element "div" [Attribute "class" "my-container"] (Children children) ""

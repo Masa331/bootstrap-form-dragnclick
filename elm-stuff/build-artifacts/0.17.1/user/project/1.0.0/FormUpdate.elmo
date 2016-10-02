@@ -3,9 +3,7 @@ var _user$project$FormUpdate$removeInput = F2(
 		var filteredForm = A2(
 			_elm_lang$core$List$filter,
 			function (input) {
-				return !_elm_lang$core$Native_Utils.eq(
-					_user$project$FormModel$extractId(input),
-					id);
+				return !_elm_lang$core$Native_Utils.eq(input.id, id);
 			},
 			model.form);
 		return {

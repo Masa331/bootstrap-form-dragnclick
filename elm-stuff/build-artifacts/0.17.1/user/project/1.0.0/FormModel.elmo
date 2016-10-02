@@ -25,122 +25,48 @@ var _user$project$FormModel$typeToText = function (type$) {
 			return 'week';
 		case 'Time':
 			return 'time';
-		default:
+		case 'Color':
 			return 'color';
-	}
-};
-var _user$project$FormModel$extractOptions = function (inp) {
-	var _p1 = inp;
-	if (_p1.ctor === 'Select') {
-		return _p1._0.options;
-	} else {
-		return _elm_lang$core$Native_List.fromArray(
-			[]);
-	}
-};
-var _user$project$FormModel$extractAddon2 = function (inp) {
-	var _p2 = inp;
-	if (_p2.ctor === 'TextInput') {
-		return _p2._0.addon2;
-	} else {
-		return _elm_lang$core$Maybe$Nothing;
-	}
-};
-var _user$project$FormModel$extractAddon1 = function (inp) {
-	var _p3 = inp;
-	if (_p3.ctor === 'TextInput') {
-		return _p3._0.addon1;
-	} else {
-		return _elm_lang$core$Maybe$Nothing;
-	}
-};
-var _user$project$FormModel$extractSmall = function (inp) {
-	var _p4 = inp;
-	switch (_p4.ctor) {
-		case 'TextInput':
-			return _p4._0.small;
-		case 'Select':
-			return _p4._0.small;
 		default:
-			return _elm_lang$core$Maybe$Nothing;
+			return 'resolve please';
 	}
 };
-var _user$project$FormModel$extractReadonly = function (inp) {
-	var _p5 = inp;
-	if (_p5.ctor === 'TextInput') {
-		return _p5._0.readonly;
-	} else {
-		return false;
-	}
+var _user$project$FormModel$extractType = function (inp) {
+	return inp.type$;
 };
-var _user$project$FormModel$extractDisabled = function (inp) {
-	var _p6 = inp;
-	switch (_p6.ctor) {
-		case 'TextInput':
-			return _p6._0.disabled;
-		case 'Select':
-			return _p6._0.disabled;
-		default:
-			return false;
-	}
-};
-var _user$project$FormModel$extractLabel = function (inp) {
-	var _p7 = inp;
-	switch (_p7.ctor) {
-		case 'TextInput':
-			return _p7._0.label;
-		case 'Select':
-			return _p7._0.label;
-		default:
-			return _elm_lang$core$Maybe$Nothing;
-	}
-};
-var _user$project$FormModel$extractPlaceholder = function (inp) {
-	var _p8 = inp;
-	if (_p8.ctor === 'TextInput') {
-		return _p8._0.placeholder;
-	} else {
-		return _elm_lang$core$Maybe$Nothing;
-	}
-};
-var _user$project$FormModel$extractId = function (inp) {
-	var _p9 = inp;
-	switch (_p9.ctor) {
-		case 'TextInput':
-			return _p9._0.id;
-		case 'TextArea':
-			return _p9._0.id;
-		case 'Select':
-			return _p9._0.id;
-		case 'Multiselect':
-			return _p9._0.id;
-		case 'FileUpload':
-			return _p9._0.id;
-		case 'Radio':
-			return _p9._0.id;
-		case 'Checkbox':
-			return _p9._0.id;
-		default:
-			return _p9._0.id;
-	}
+var _user$project$FormModel$Input = function (a) {
+	return function (b) {
+		return function (c) {
+			return function (d) {
+				return function (e) {
+					return function (f) {
+						return function (g) {
+							return function (h) {
+								return function (i) {
+									return function (j) {
+										return function (k) {
+											return function (l) {
+												return function (m) {
+													return {type$: a, id: b, classList: c, placeholder: d, label: e, disabled: f, readonly: g, size: h, addon1: i, addon2: j, small: k, rowNumber: l, options: m};
+												};
+											};
+										};
+									};
+								};
+							};
+						};
+					};
+				};
+			};
+		};
+	};
 };
 var _user$project$FormModel$Large = {ctor: 'Large'};
 var _user$project$FormModel$Normal = {ctor: 'Normal'};
-var _user$project$FormModel$extractSize = function (inp) {
-	var _p10 = inp;
-	switch (_p10.ctor) {
-		case 'TextInput':
-			return _p10._0.size;
-		case 'Select':
-			return _p10._0.size;
-		default:
-			return _user$project$FormModel$Normal;
-	}
-};
 var _user$project$FormModel$Small = {ctor: 'Small'};
 var _user$project$FormModel$textToSize = function (text) {
-	var _p11 = text;
-	switch (_p11) {
+	var _p1 = text;
+	switch (_p1) {
 		case 'small':
 			return _user$project$FormModel$Small;
 		case 'normal':
@@ -163,18 +89,169 @@ var _user$project$FormModel$Tel = {ctor: 'Tel'};
 var _user$project$FormModel$Url = {ctor: 'Url'};
 var _user$project$FormModel$Email = {ctor: 'Email'};
 var _user$project$FormModel$Search = {ctor: 'Search'};
+var _user$project$FormModel$Button = {ctor: 'Button'};
+var _user$project$FormModel$button = function (id) {
+	return {
+		type$: _user$project$FormModel$Button,
+		id: id,
+		classList: _elm_lang$core$Native_List.fromArray(
+			['form-control']),
+		placeholder: _elm_lang$core$Maybe$Nothing,
+		label: _elm_lang$core$Maybe$Just('Submit'),
+		disabled: false,
+		readonly: false,
+		size: _user$project$FormModel$Normal,
+		addon1: _elm_lang$core$Maybe$Nothing,
+		addon2: _elm_lang$core$Maybe$Nothing,
+		small: _elm_lang$core$Maybe$Nothing,
+		rowNumber: 1,
+		options: _elm_lang$core$Native_List.fromArray(
+			[])
+	};
+};
+var _user$project$FormModel$Checkbox = {ctor: 'Checkbox'};
+var _user$project$FormModel$checkbox = function (id) {
+	return {
+		type$: _user$project$FormModel$Checkbox,
+		id: id,
+		classList: _elm_lang$core$Native_List.fromArray(
+			['form-control']),
+		placeholder: _elm_lang$core$Maybe$Nothing,
+		label: _elm_lang$core$Maybe$Just('Some label..'),
+		disabled: false,
+		readonly: false,
+		size: _user$project$FormModel$Normal,
+		addon1: _elm_lang$core$Maybe$Nothing,
+		addon2: _elm_lang$core$Maybe$Nothing,
+		small: _elm_lang$core$Maybe$Nothing,
+		rowNumber: 1,
+		options: _elm_lang$core$Native_List.fromArray(
+			[])
+	};
+};
+var _user$project$FormModel$Radio = {ctor: 'Radio'};
+var _user$project$FormModel$radio = function (id) {
+	return {
+		type$: _user$project$FormModel$Radio,
+		id: id,
+		classList: _elm_lang$core$Native_List.fromArray(
+			['form-control']),
+		placeholder: _elm_lang$core$Maybe$Nothing,
+		label: _elm_lang$core$Maybe$Just('Some label..'),
+		disabled: false,
+		readonly: false,
+		size: _user$project$FormModel$Normal,
+		addon1: _elm_lang$core$Maybe$Nothing,
+		addon2: _elm_lang$core$Maybe$Nothing,
+		small: _elm_lang$core$Maybe$Nothing,
+		rowNumber: 1,
+		options: _elm_lang$core$Native_List.fromArray(
+			['option1', 'option2'])
+	};
+};
+var _user$project$FormModel$FileUpload = {ctor: 'FileUpload'};
+var _user$project$FormModel$fileUpload = function (id) {
+	return {
+		type$: _user$project$FormModel$FileUpload,
+		id: id,
+		classList: _elm_lang$core$Native_List.fromArray(
+			['form-control-file']),
+		placeholder: _elm_lang$core$Maybe$Nothing,
+		label: _elm_lang$core$Maybe$Just('Some label..'),
+		disabled: false,
+		readonly: false,
+		size: _user$project$FormModel$Normal,
+		addon1: _elm_lang$core$Maybe$Nothing,
+		addon2: _elm_lang$core$Maybe$Nothing,
+		small: _elm_lang$core$Maybe$Nothing,
+		rowNumber: 1,
+		options: _elm_lang$core$Native_List.fromArray(
+			[])
+	};
+};
+var _user$project$FormModel$Multiselect = {ctor: 'Multiselect'};
+var _user$project$FormModel$multiselect = function (id) {
+	return {
+		type$: _user$project$FormModel$Multiselect,
+		id: id,
+		classList: _elm_lang$core$Native_List.fromArray(
+			['form-control']),
+		placeholder: _elm_lang$core$Maybe$Nothing,
+		label: _elm_lang$core$Maybe$Just('Some label..'),
+		disabled: false,
+		readonly: false,
+		size: _user$project$FormModel$Normal,
+		addon1: _elm_lang$core$Maybe$Nothing,
+		addon2: _elm_lang$core$Maybe$Nothing,
+		small: _elm_lang$core$Maybe$Nothing,
+		rowNumber: 1,
+		options: _elm_lang$core$Native_List.fromArray(
+			['options1', 'option2', 'option3'])
+	};
+};
+var _user$project$FormModel$Select = {ctor: 'Select'};
+var _user$project$FormModel$select = function (id) {
+	return {
+		type$: _user$project$FormModel$Select,
+		id: id,
+		classList: _elm_lang$core$Native_List.fromArray(
+			['form-control']),
+		placeholder: _elm_lang$core$Maybe$Nothing,
+		label: _elm_lang$core$Maybe$Just('Some label..'),
+		disabled: false,
+		readonly: false,
+		size: _user$project$FormModel$Normal,
+		addon1: _elm_lang$core$Maybe$Nothing,
+		addon2: _elm_lang$core$Maybe$Nothing,
+		small: _elm_lang$core$Maybe$Nothing,
+		rowNumber: 1,
+		options: _elm_lang$core$Native_List.fromArray(
+			['options1', 'option2', 'option3'])
+	};
+};
+var _user$project$FormModel$TextArea = {ctor: 'TextArea'};
+var _user$project$FormModel$textArea = function (id) {
+	return {
+		type$: _user$project$FormModel$TextArea,
+		id: id,
+		classList: _elm_lang$core$Native_List.fromArray(
+			['form-control']),
+		placeholder: _elm_lang$core$Maybe$Nothing,
+		label: _elm_lang$core$Maybe$Just('Some label..'),
+		disabled: false,
+		readonly: false,
+		size: _user$project$FormModel$Normal,
+		addon1: _elm_lang$core$Maybe$Nothing,
+		addon2: _elm_lang$core$Maybe$Nothing,
+		small: _elm_lang$core$Maybe$Nothing,
+		rowNumber: 3,
+		options: _elm_lang$core$Native_List.fromArray(
+			[])
+	};
+};
 var _user$project$FormModel$Text = {ctor: 'Text'};
-var _user$project$FormModel$extractType = function (inp) {
-	var _p12 = inp;
-	if (_p12.ctor === 'TextInput') {
-		return _p12._0.type$;
-	} else {
-		return _user$project$FormModel$Text;
-	}
+var _user$project$FormModel$textInput = function (id) {
+	return {
+		type$: _user$project$FormModel$Text,
+		id: id,
+		classList: _elm_lang$core$Native_List.fromArray(
+			['form-control']),
+		placeholder: _elm_lang$core$Maybe$Nothing,
+		label: _elm_lang$core$Maybe$Just('Some label..'),
+		disabled: false,
+		readonly: false,
+		size: _user$project$FormModel$Normal,
+		addon1: _elm_lang$core$Maybe$Nothing,
+		addon2: _elm_lang$core$Maybe$Nothing,
+		small: _elm_lang$core$Maybe$Nothing,
+		rowNumber: 1,
+		options: _elm_lang$core$Native_List.fromArray(
+			[])
+	};
 };
 var _user$project$FormModel$textToType = function (text) {
-	var _p13 = text;
-	switch (_p13) {
+	var _p2 = text;
+	switch (_p2) {
 		case 'text':
 			return _user$project$FormModel$Text;
 		case 'search':
@@ -204,125 +281,4 @@ var _user$project$FormModel$textToType = function (text) {
 		default:
 			return _user$project$FormModel$Text;
 	}
-};
-var _user$project$FormModel$Button = function (a) {
-	return {ctor: 'Button', _0: a};
-};
-var _user$project$FormModel$button = function (id) {
-	return _user$project$FormModel$Button(
-		{
-			id: id,
-			classList: _elm_lang$core$Native_List.fromArray(
-				['form-control']),
-			label: _elm_lang$core$Maybe$Just('New input')
-		});
-};
-var _user$project$FormModel$Checkbox = function (a) {
-	return {ctor: 'Checkbox', _0: a};
-};
-var _user$project$FormModel$checkbox = function (id) {
-	return _user$project$FormModel$Checkbox(
-		{
-			id: id,
-			classList: _elm_lang$core$Native_List.fromArray(
-				['form-control']),
-			label: _elm_lang$core$Maybe$Just('New input')
-		});
-};
-var _user$project$FormModel$Radio = function (a) {
-	return {ctor: 'Radio', _0: a};
-};
-var _user$project$FormModel$radio = function (id) {
-	return _user$project$FormModel$Radio(
-		{
-			id: id,
-			classList: _elm_lang$core$Native_List.fromArray(
-				['form-control']),
-			label: _elm_lang$core$Maybe$Just('New input'),
-			options: _elm_lang$core$Native_List.fromArray(
-				['option1', 'option2'])
-		});
-};
-var _user$project$FormModel$FileUpload = function (a) {
-	return {ctor: 'FileUpload', _0: a};
-};
-var _user$project$FormModel$fileUpload = function (id) {
-	return _user$project$FormModel$FileUpload(
-		{
-			id: id,
-			classList: _elm_lang$core$Native_List.fromArray(
-				['form-control-file']),
-			label: _elm_lang$core$Maybe$Just('New input'),
-			disabled: false,
-			small: _elm_lang$core$Maybe$Nothing
-		});
-};
-var _user$project$FormModel$Multiselect = function (a) {
-	return {ctor: 'Multiselect', _0: a};
-};
-var _user$project$FormModel$multiselect = function (id) {
-	return _user$project$FormModel$Multiselect(
-		{
-			id: id,
-			classList: _elm_lang$core$Native_List.fromArray(
-				['form-control']),
-			label: _elm_lang$core$Maybe$Just('New input'),
-			disabled: false,
-			options: _elm_lang$core$Native_List.fromArray(
-				['option1', 'option2', 'option3']),
-			small: _elm_lang$core$Maybe$Nothing
-		});
-};
-var _user$project$FormModel$Select = function (a) {
-	return {ctor: 'Select', _0: a};
-};
-var _user$project$FormModel$select = function (id) {
-	return _user$project$FormModel$Select(
-		{
-			id: id,
-			classList: _elm_lang$core$Native_List.fromArray(
-				['form-control']),
-			label: _elm_lang$core$Maybe$Just('New select'),
-			small: _elm_lang$core$Maybe$Nothing,
-			disabled: false,
-			size: _user$project$FormModel$Normal,
-			options: _elm_lang$core$Native_List.fromArray(
-				['options1', 'option2', 'option3'])
-		});
-};
-var _user$project$FormModel$TextArea = function (a) {
-	return {ctor: 'TextArea', _0: a};
-};
-var _user$project$FormModel$textArea = function (id) {
-	return _user$project$FormModel$TextArea(
-		{
-			id: id,
-			classList: _elm_lang$core$Native_List.fromArray(
-				['form-control']),
-			placeholder: _elm_lang$core$Maybe$Nothing,
-			label: _elm_lang$core$Maybe$Just('New input'),
-			rowNumber: 3,
-			disabled: false,
-			readonly: false
-		});
-};
-var _user$project$FormModel$TextInput = function (a) {
-	return {ctor: 'TextInput', _0: a};
-};
-var _user$project$FormModel$textInput = function (id) {
-	return _user$project$FormModel$TextInput(
-		{
-			id: id,
-			classList: _elm_lang$core$Native_List.fromArray(
-				['form-control']),
-			placeholder: _elm_lang$core$Maybe$Nothing,
-			label: _elm_lang$core$Maybe$Just('New input'),
-			disabled: false,
-			readonly: false,
-			size: _user$project$FormModel$Normal,
-			addon1: _elm_lang$core$Maybe$Nothing,
-			addon2: _elm_lang$core$Maybe$Nothing,
-			small: _elm_lang$core$Maybe$Nothing,
-			type$: _user$project$FormModel$Text
-		});
 };

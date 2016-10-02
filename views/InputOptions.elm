@@ -11,11 +11,11 @@ import Messages exposing (..)
 
 view : Input -> List (Html Msg)
 view inp =
-  case inp of
-    TextInput attrs ->
-      List.concat [ placeholderEdit (extractPlaceholder inp), labelEdit (extractLabel inp), smallUnderEdit (extractSmall inp), typeEdit (extractType inp), addon1Edit (extractAddon1 inp), addon2Edit (extractAddon2 inp), sizeEdit (extractSize inp), disabledEdit (extractDisabled inp), readonlyEdit (extractReadonly inp) ]
-    Select attrs ->
-      List.concat [ labelEdit (extractLabel inp), optionsEdit (extractOptions inp), smallUnderEdit (extractSmall inp), sizeEdit (extractSize inp), disabledEdit (extractDisabled inp) ]
+  case inp.type' of
+    Text ->
+      List.concat [ placeholderEdit inp.placeholder, labelEdit inp.label, smallUnderEdit inp.small, typeEdit (extractType inp), addon1Edit inp.addon1, addon2Edit inp.addon2, sizeEdit inp.size, disabledEdit inp.disabled, readonlyEdit inp.readonly ]
+    Select ->
+      List.concat [ labelEdit inp.label, optionsEdit inp.options, smallUnderEdit inp.small, sizeEdit inp.size, disabledEdit inp.disabled ]
     _ ->
       [ b [] [text "Not yet implemented ;)"]
       ]

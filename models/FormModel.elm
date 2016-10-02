@@ -6,127 +6,157 @@ type alias Placeholder = Maybe String
 type alias RowNumber = Int
 type alias Label = Maybe String
 type Size = Small | Normal | Large
-type InputType = Text | Search | Email | Url | Tel | Password | Number | DatetimeLocal | Date | Month | Week | Time | Color
 
-type Input
-  = TextInput { id: Id, classList: ClassList, placeholder: Placeholder, label: Label, disabled: Bool, readonly: Bool, size: Size, addon1: Maybe String, addon2: Maybe String, small: Maybe String, type': InputType }
-  | TextArea { id: Id, classList: ClassList, placeholder: Placeholder, label: Label, rowNumber: RowNumber, disabled: Bool, readonly: Bool }
-  | Select { id: Id, classList: ClassList, label: Label, small: Maybe String, disabled: Bool, size: Size, options: List String }
-  | Multiselect { id: Id, classList: ClassList, label: Label, small: Maybe String, disabled: Bool, options: List String }
-  | FileUpload { id: Id, classList: ClassList, label: Label, disabled: Bool, small: Maybe String }
-  | Radio { id: Id, classList: ClassList, label: Label, options: List String }
-  | Checkbox { id: Id, classList: ClassList, label: Label }
-  | Button { id: Id, classList: ClassList, label: Label }
+type InputType = Text | TextArea | Select | Multiselect | FileUpload | Radio | Checkbox | Button | Search | Email | Url | Tel | Password | Number | DatetimeLocal | Date | Month | Week | Time | Color
+
+type alias Input =
+  { type': InputType
+  , id: Id
+  , classList: ClassList
+  , placeholder: Placeholder
+  , label: Label
+  , disabled: Bool
+  , readonly: Bool
+  , size: Size
+  , addon1: Maybe String
+  , addon2: Maybe String
+  , small: Maybe String
+  , rowNumber: RowNumber
+  , options: List String }
 
 textInput : Int -> Input
 textInput id =
-  TextInput { id = id, classList = [ "form-control" ], placeholder = Nothing, label = Just "New input", disabled = False, readonly = False, size = Normal, addon1 = Nothing, addon2 = Nothing, small = Nothing, type' = Text }
+  { type' = Text
+  , id = id
+  , classList = [ "form-control" ]
+  , placeholder = Nothing
+  , label = Just "Some label.."
+  , disabled = False
+  , readonly = False
+  , size = Normal
+  , addon1 = Nothing
+  , addon2 = Nothing
+  , small = Nothing
+  , rowNumber = 1
+  , options = [] }
 
 textArea : Int -> Input
 textArea id =
-  TextArea { id = id, classList = [ "form-control" ], placeholder = Nothing, label = Just "New input", rowNumber = 3, disabled = False, readonly = False }
+  { type' = TextArea
+  , id = id
+  , classList = [ "form-control" ]
+  , placeholder = Nothing
+  , label = Just "Some label.."
+  , disabled = False
+  , readonly = False
+  , size = Normal
+  , addon1 = Nothing
+  , addon2 = Nothing
+  , small = Nothing
+  , rowNumber = 3
+  , options = [] }
 
 select : Int -> Input
 select id =
-  Select { id = id, classList = [ "form-control" ], label = Just "New select", small = Nothing, disabled = False, size = Normal, options = ["options1", "option2", "option3"] }
+  { type' = Select
+  , id = id
+  , classList = [ "form-control" ]
+  , placeholder = Nothing
+  , label = Just "Some label.."
+  , disabled = False
+  , readonly = False
+  , size = Normal
+  , addon1 = Nothing
+  , addon2 = Nothing
+  , small = Nothing
+  , rowNumber = 1
+  , options = [ "options1", "option2", "option3" ] }
 
 multiselect : Int -> Input
 multiselect id =
-  Multiselect { id = id, classList = [ "form-control" ], label = Just "New input", disabled = False, options = ["option1", "option2", "option3"], small = Nothing }
+  { type' = Multiselect
+  , id = id
+  , classList = [ "form-control" ]
+  , placeholder = Nothing
+  , label = Just "Some label.."
+  , disabled = False
+  , readonly = False
+  , size = Normal
+  , addon1 = Nothing
+  , addon2 = Nothing
+  , small = Nothing
+  , rowNumber = 1
+  , options = [ "options1", "option2", "option3" ] }
 
 fileUpload : Int -> Input
 fileUpload id =
-  FileUpload { id = id, classList = [ "form-control-file" ], label = Just "New input", disabled = False, small = Nothing }
+  { type' = FileUpload
+  , id = id
+  , classList = [ "form-control-file" ]
+  , placeholder = Nothing
+  , label = Just "Some label.."
+  , disabled = False
+  , readonly = False
+  , size = Normal
+  , addon1 = Nothing
+  , addon2 = Nothing
+  , small = Nothing
+  , rowNumber = 1
+  , options = [] }
 
 radio : Int -> Input
 radio id =
-  Radio { id = id, classList = [ "form-control" ], label = Just "New input", options = ["option1", "option2"] }
+  { type' = Radio
+  , id = id
+  , classList = [ "form-control" ]
+  , placeholder = Nothing
+  , label = Just "Some label.."
+  , disabled = False
+  , readonly = False
+  , size = Normal
+  , addon1 = Nothing
+  , addon2 = Nothing
+  , small = Nothing
+  , rowNumber = 1
+  , options = [ "option1", "option2" ] }
 
 checkbox : Int -> Input
 checkbox id =
-  Checkbox { id = id, classList = [ "form-control" ], label = Just "New input" }
+  { type' = Checkbox
+  , id = id
+  , classList = [ "form-control" ]
+  , placeholder = Nothing
+  , label = Just "Some label.."
+  , disabled = False
+  , readonly = False
+  , size = Normal
+  , addon1 = Nothing
+  , addon2 = Nothing
+  , small = Nothing
+  , rowNumber = 1
+  , options = [] }
 
 button : Int -> Input
 button id =
-  Button { id = id, classList = [ "form-control" ], label = Just "New input" }
+  { type' = Button
+  , id = id
+  , classList = [ "form-control" ]
+  , placeholder = Nothing
+  , label = Just "Submit"
+  , disabled = False
+  , readonly = False
+  , size = Normal
+  , addon1 = Nothing
+  , addon2 = Nothing
+  , small = Nothing
+  , rowNumber = 1
+  , options = [] }
 
 type alias Form = List Input
 
-extractId : Input -> Int
-extractId inp =
-  case inp of
-    TextInput attrs -> attrs.id
-    TextArea attrs -> attrs.id
-    Select attrs -> attrs.id
-    Multiselect attrs -> attrs.id
-    FileUpload attrs -> attrs.id
-    Radio attrs -> attrs.id
-    Checkbox attrs -> attrs.id
-    Button attrs -> attrs.id
-
-extractPlaceholder : Input -> Maybe String
-extractPlaceholder inp =
-  case inp of
-    TextInput attrs -> attrs.placeholder
-    _ -> Nothing
-
-extractLabel : Input -> Maybe String
-extractLabel inp =
-  case inp of
-    TextInput attrs -> attrs.label
-    Select attrs -> attrs.label
-    _ -> Nothing
-
-extractDisabled : Input -> Bool
-extractDisabled inp =
-  case inp of
-    TextInput attrs -> attrs.disabled
-    Select attrs -> attrs.disabled
-    _ -> False
-
-extractReadonly : Input -> Bool
-extractReadonly inp =
-  case inp of
-    TextInput attrs -> attrs.readonly
-    _ -> False
-
-extractSmall : Input -> Maybe String
-extractSmall inp =
-  case inp of
-    TextInput attrs -> attrs.small
-    Select attrs -> attrs.small
-    _ -> Nothing
-
-extractAddon1 : Input -> Maybe String
-extractAddon1 inp =
-  case inp of
-    TextInput attrs -> attrs.addon1
-    _ -> Nothing
-
-extractAddon2 : Input -> Maybe String
-extractAddon2 inp =
-  case inp of
-    TextInput attrs -> attrs.addon2
-    _ -> Nothing
-
-extractSize : Input -> Size
-extractSize inp =
-  case inp of
-    TextInput attrs -> attrs.size
-    Select attrs -> attrs.size
-    _ -> Normal
-
 extractType : Input -> InputType
 extractType inp =
-  case inp of
-    TextInput attrs -> attrs.type'
-    _ -> Text
-
-extractOptions : Input -> List String
-extractOptions inp =
-  case inp of
-    Select attrs -> attrs.options
-    _ -> []
+  inp.type'
 
 typeToText : InputType -> String
 typeToText type' =
@@ -144,6 +174,7 @@ typeToText type' =
     Week -> "week"
     Time -> "time"
     Color -> "color"
+    _ -> "resolve please"
 
 textToType : String -> InputType
 textToType text =
