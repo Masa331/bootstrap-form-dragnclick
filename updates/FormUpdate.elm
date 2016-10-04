@@ -34,12 +34,20 @@ update msg model =
     MoveDown id ->
       (model, Cmd.none)
 
+moveInputUp : Id -> Model -> (Model, Cmd Msg)
+moveInputUp id model =
+  Models.moveInputUp id model
+  -- (model, Cmd.none)
+
+
+addNewInput : (Int -> Input) -> Model -> (Model, Cmd Msg)
 addNewInput input model =
   let
     newId = maxInputId model + 1
   in
     ({ model | form = model.form ++ [input newId] }, Cmd.none)
 
+removeInput : Model -> Id -> (Model, Cmd Msg)
 removeInput model id =
   let
     filteredForm = List.filter (\input -> input.id /= id) model.form

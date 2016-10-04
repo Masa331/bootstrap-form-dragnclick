@@ -1,4 +1,4 @@
-module Models exposing (Model, initial, currentlyEdditedInput, maxInputId)
+module Models exposing (Model, initial, currentlyEdditedInput, maxInputId, moveInputUp)
 
 import HtmlTree
 import FormModel
@@ -29,3 +29,6 @@ maxInputId model =
   Maybe.withDefault 0
   <| List.maximum
   <| List.map .id model.form
+
+moveInputUp id model =
+  (model, Cmd.none)
