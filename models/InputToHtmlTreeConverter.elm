@@ -3,7 +3,7 @@ module InputToHtmlTreeConverter exposing (..)
 import HtmlTree exposing (..)
 import FormModel exposing (..)
 
-import String exposing (join)
+import String
 
 inputToHtmlTree input =
   case input.type' of
