@@ -33,17 +33,26 @@ update msg model =
     MoveUp id ->
       moveInputUp id model
     MoveDown id ->
-      (model, Cmd.none)
+      moveInputDown id model
 
 moveInputUp : Id -> Model -> (Model, Cmd Msg)
 moveInputUp id model =
   let
     index = getIndexOfElementWithId model.form id
-
     ary = Array.fromList model.form
-    -- index = getIndexOfElementWithId ary id
     newForm =
       moveLeft index ary
+      |> Array.toList
+  in
+    ({ model | form = newForm }, Cmd.none)
+
+moveInputDown : Id -> Model -> (Model, Cmd Msg)
+moveInputDown id model =
+  let
+    index = getIndexOfElementWithId model.form id
+    ary = Array.fromList model.form
+    newForm =
+      moveRight index ary
       |> Array.toList
   in
     ({ model | form = newForm }, Cmd.none)

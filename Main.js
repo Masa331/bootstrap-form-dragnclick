@@ -8516,6 +8516,20 @@ var _user$project$FormUpdate$addNewInput = F2(
 			_1: _elm_lang$core$Platform_Cmd$none
 		};
 	});
+var _user$project$FormUpdate$moveInputDown = F2(
+	function (id, model) {
+		var ary = _elm_lang$core$Array$fromList(model.form);
+		var index = A2(_user$project$FormUpdate$getIndexOfElementWithId, model.form, id);
+		var newForm = _elm_lang$core$Array$toList(
+			A2(_user$project$FormUpdate$moveRight, index, ary));
+		return {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Native_Utils.update(
+				model,
+				{form: newForm}),
+			_1: _elm_lang$core$Platform_Cmd$none
+		};
+	});
 var _user$project$FormUpdate$moveInputUp = F2(
 	function (id, model) {
 		var ary = _elm_lang$core$Array$fromList(model.form);
@@ -8573,7 +8587,7 @@ var _user$project$FormUpdate$update = F2(
 			case 'MoveUp':
 				return A2(_user$project$FormUpdate$moveInputUp, _p2._0, model);
 			default:
-				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+				return A2(_user$project$FormUpdate$moveInputDown, _p2._0, model);
 		}
 	});
 
