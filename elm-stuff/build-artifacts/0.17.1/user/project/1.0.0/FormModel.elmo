@@ -175,7 +175,7 @@ var _user$project$FormModel$multiselect = function (id) {
 		type$: _user$project$FormModel$Multiselect,
 		id: id,
 		classList: _elm_lang$core$Native_List.fromArray(
-			['form-control']),
+			[]),
 		placeholder: _elm_lang$core$Maybe$Nothing,
 		label: _elm_lang$core$Maybe$Just('Some label..'),
 		disabled: false,
@@ -195,7 +195,7 @@ var _user$project$FormModel$select = function (id) {
 		type$: _user$project$FormModel$Select,
 		id: id,
 		classList: _elm_lang$core$Native_List.fromArray(
-			['form-control']),
+			[]),
 		placeholder: _elm_lang$core$Maybe$Nothing,
 		label: _elm_lang$core$Maybe$Just('Some label..'),
 		disabled: false,
@@ -215,7 +215,7 @@ var _user$project$FormModel$textArea = function (id) {
 		type$: _user$project$FormModel$TextArea,
 		id: id,
 		classList: _elm_lang$core$Native_List.fromArray(
-			['form-control']),
+			[]),
 		placeholder: _elm_lang$core$Maybe$Nothing,
 		label: _elm_lang$core$Maybe$Just('Some label..'),
 		disabled: false,
@@ -235,7 +235,7 @@ var _user$project$FormModel$textInput = function (id) {
 		type$: _user$project$FormModel$Text,
 		id: id,
 		classList: _elm_lang$core$Native_List.fromArray(
-			['form-control']),
+			[]),
 		placeholder: _elm_lang$core$Maybe$Nothing,
 		label: _elm_lang$core$Maybe$Just('Some label..'),
 		disabled: false,

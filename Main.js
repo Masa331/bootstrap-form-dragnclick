@@ -8086,7 +8086,7 @@ var _user$project$FormModel$multiselect = function (id) {
 		type$: _user$project$FormModel$Multiselect,
 		id: id,
 		classList: _elm_lang$core$Native_List.fromArray(
-			['form-control']),
+			[]),
 		placeholder: _elm_lang$core$Maybe$Nothing,
 		label: _elm_lang$core$Maybe$Just('Some label..'),
 		disabled: false,
@@ -8106,7 +8106,7 @@ var _user$project$FormModel$select = function (id) {
 		type$: _user$project$FormModel$Select,
 		id: id,
 		classList: _elm_lang$core$Native_List.fromArray(
-			['form-control']),
+			[]),
 		placeholder: _elm_lang$core$Maybe$Nothing,
 		label: _elm_lang$core$Maybe$Just('Some label..'),
 		disabled: false,
@@ -8126,7 +8126,7 @@ var _user$project$FormModel$textArea = function (id) {
 		type$: _user$project$FormModel$TextArea,
 		id: id,
 		classList: _elm_lang$core$Native_List.fromArray(
-			['form-control']),
+			[]),
 		placeholder: _elm_lang$core$Maybe$Nothing,
 		label: _elm_lang$core$Maybe$Just('Some label..'),
 		disabled: false,
@@ -8146,7 +8146,7 @@ var _user$project$FormModel$textInput = function (id) {
 		type$: _user$project$FormModel$Text,
 		id: id,
 		classList: _elm_lang$core$Native_List.fromArray(
-			['form-control']),
+			[]),
 		placeholder: _elm_lang$core$Maybe$Nothing,
 		label: _elm_lang$core$Maybe$Just('Some label..'),
 		disabled: false,
@@ -9293,28 +9293,30 @@ var _user$project$InputOptions$view = function (inp) {
 	}
 };
 
-var _user$project$InputToHtmlTreeConverter$toClasses = F2(
-	function (classList, size) {
-		var sizeClass = function () {
-			var _p0 = size;
-			switch (_p0.ctor) {
-				case 'Small':
-					return 'form-control-sm';
-				case 'Normal':
-					return '';
-				default:
-					return 'form-control-lg';
-			}
-		}();
-		return _elm_lang$core$Maybe$Just(
-			A2(
-				_user$project$HtmlTree$Attribute,
-				'class',
-				A2(
-					_elm_lang$core$String$join,
-					' ',
-					A2(_elm_lang$core$List_ops['::'], sizeClass, classList))));
-	});
+var _user$project$InputToHtmlTreeConverter$toClasses = function (classList) {
+	var value = A2(
+		_elm_lang$core$String$join,
+		' ',
+		A2(
+			_elm_lang$core$List$filter,
+			function ($class) {
+				return !_elm_lang$core$Native_Utils.eq($class, '');
+			},
+			classList));
+	return _elm_lang$core$Maybe$Just(
+		A2(_user$project$HtmlTree$Attribute, 'class', value));
+};
+var _user$project$InputToHtmlTreeConverter$sizeClass = function (size) {
+	var _p0 = size;
+	switch (_p0.ctor) {
+		case 'Small':
+			return 'form-control-sm';
+		case 'Normal':
+			return '';
+		default:
+			return 'form-control-lg';
+	}
+};
 var _user$project$InputToHtmlTreeConverter$toLinks = function (value) {
 	return _elm_lang$core$Maybe$Just(
 		A4(
@@ -9640,7 +9642,11 @@ var _user$project$InputToHtmlTreeConverter$fileUploadToHtmlTree = function (inp)
 			[
 				_user$project$InputToHtmlTreeConverter$toId(inp.id),
 				_user$project$InputToHtmlTreeConverter$toDisabled(inp.disabled),
-				A2(_user$project$InputToHtmlTreeConverter$toClasses, inp.classList, _user$project$FormModel$Normal),
+				_user$project$InputToHtmlTreeConverter$toClasses(
+				A2(
+					_elm_lang$core$List_ops['::'],
+					_user$project$InputToHtmlTreeConverter$sizeClass(inp.size),
+					inp.classList)),
 				_elm_lang$core$Maybe$Just(
 				A2(_user$project$HtmlTree$Attribute, 'type', 'file'))
 			]));
@@ -9694,7 +9700,12 @@ var _user$project$InputToHtmlTreeConverter$multiselectToHtmlTree = function (inp
 			[
 				_user$project$InputToHtmlTreeConverter$toId(inp.id),
 				_user$project$InputToHtmlTreeConverter$toDisabled(inp.disabled),
-				A2(_user$project$InputToHtmlTreeConverter$toClasses, inp.classList, _user$project$FormModel$Normal),
+				_user$project$InputToHtmlTreeConverter$toClasses(
+				A2(
+					_elm_lang$core$List_ops['::'],
+					_user$project$InputToHtmlTreeConverter$sizeClass(inp.size),
+					_elm_lang$core$Native_List.fromArray(
+						['form-control']))),
 				_elm_lang$core$Maybe$Just(
 				A2(_user$project$HtmlTree$Attribute, 'multiple', 'multiple'))
 			]));
@@ -9734,7 +9745,12 @@ var _user$project$InputToHtmlTreeConverter$textAreaToHtmlTree = function (inp) {
 				_user$project$InputToHtmlTreeConverter$toPlaceholder(inp.placeholder),
 				_user$project$InputToHtmlTreeConverter$toDisabled(inp.disabled),
 				_user$project$InputToHtmlTreeConverter$toReadonly(inp.readonly),
-				A2(_user$project$InputToHtmlTreeConverter$toClasses, inp.classList, _user$project$FormModel$Normal),
+				_user$project$InputToHtmlTreeConverter$toClasses(
+				A2(
+					_elm_lang$core$List_ops['::'],
+					_user$project$InputToHtmlTreeConverter$sizeClass(inp.size),
+					_elm_lang$core$Native_List.fromArray(
+						['form-control']))),
 				_elm_lang$core$Maybe$Just(
 				A2(
 					_user$project$HtmlTree$Attribute,
@@ -9790,7 +9806,12 @@ var _user$project$InputToHtmlTreeConverter$selectToHtmlTree = function (inp) {
 			[
 				_user$project$InputToHtmlTreeConverter$toId(inp.id),
 				_user$project$InputToHtmlTreeConverter$toDisabled(inp.disabled),
-				A2(_user$project$InputToHtmlTreeConverter$toClasses, inp.classList, inp.size)
+				_user$project$InputToHtmlTreeConverter$toClasses(
+				A2(
+					_elm_lang$core$List_ops['::'],
+					_user$project$InputToHtmlTreeConverter$sizeClass(inp.size),
+					_elm_lang$core$Native_List.fromArray(
+						['form-control'])))
 			]));
 	var children = A2(
 		_elm_lang$core$List$filterMap,
@@ -9828,7 +9849,12 @@ var _user$project$InputToHtmlTreeConverter$textInputToHtmlTree = function (inp) 
 				_user$project$InputToHtmlTreeConverter$toPlaceholder(inp.placeholder),
 				_user$project$InputToHtmlTreeConverter$toDisabled(inp.disabled),
 				_user$project$InputToHtmlTreeConverter$toReadonly(inp.readonly),
-				A2(_user$project$InputToHtmlTreeConverter$toClasses, inp.classList, inp.size),
+				_user$project$InputToHtmlTreeConverter$toClasses(
+				A2(
+					_elm_lang$core$List_ops['::'],
+					_user$project$InputToHtmlTreeConverter$sizeClass(inp.size),
+					_elm_lang$core$Native_List.fromArray(
+						['form-control']))),
 				_user$project$InputToHtmlTreeConverter$toType(inp.type$)
 			]));
 	var children = A2(
@@ -10575,12 +10601,15 @@ var _user$project$Markup$htmlAttributeString = function (attribute) {
 			A2(
 				_elm_lang$core$Basics_ops['++'],
 				'\"',
-				A2(_elm_lang$core$Basics_ops['++'], attribute.value, '\"'))));
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					A2(_elm_lang$core$Debug$log, 'atr', attribute.value),
+					'\"'))));
 };
 var _user$project$Markup$htmlAttributesString = function (attributes) {
 	var stringifiedAttributes = A2(_elm_lang$core$List$map, _user$project$Markup$htmlAttributeString, attributes);
 	return (_elm_lang$core$Native_Utils.cmp(
-		_elm_lang$core$List$length(stringifiedAttributes),
+		_elm_lang$core$List$length(attributes),
 		0) > 0) ? A2(
 		_elm_lang$core$Basics_ops['++'],
 		' ',
@@ -10590,21 +10619,26 @@ var _user$project$Markup$openingTag = function (model) {
 	var attributes = _user$project$Markup$htmlAttributesString(model.attributes);
 	var tag = model.tag;
 	return A2(
-		_elm_lang$core$String$join,
-		'',
-		_elm_lang$core$Native_List.fromArray(
-			['<', tag, attributes, '>']));
-};
-var _user$project$Markup$valuePresence = F2(
-	function (nestingLevel, model) {
-		return (!_elm_lang$core$Native_Utils.eq(model.value, '')) ? A2(
+		_elm_lang$core$Basics_ops['++'],
+		'<',
+		A2(
 			_elm_lang$core$Basics_ops['++'],
-			'\n',
+			tag,
+			A2(_elm_lang$core$Basics_ops['++'], attributes, '>')));
+};
+var _user$project$Markup$wrapInTags = F2(
+	function (element, content) {
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			_user$project$Markup$openingTag(element),
 			A2(
 				_elm_lang$core$Basics_ops['++'],
-				A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
-				model.value)) : '';
+				content,
+				_user$project$Markup$closingTag(element)));
 	});
+var _user$project$Markup$indent = function (level) {
+	return A2(_elm_lang$core$String$repeat, level, '  ');
+};
 var _user$project$Markup$toElmHtmlNode = F2(
 	function (nestingLevel, model) {
 		var childs = function (_p0) {
@@ -10613,45 +10647,46 @@ var _user$project$Markup$toElmHtmlNode = F2(
 		}(model.children);
 		var _p2 = childs;
 		if (_p2.ctor === '[]') {
-			return A2(
+			return _elm_lang$core$Native_Utils.eq(model.tag, 'editLinks') ? '' : A2(
 				_elm_lang$core$Basics_ops['++'],
-				A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_user$project$Markup$openingTag(model),
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						model.value,
-						_user$project$Markup$closingTag(model))));
+				_user$project$Markup$indent(nestingLevel),
+				A2(_user$project$Markup$wrapInTags, model, model.value));
 		} else {
-			return A2(
+			var transformedChilds = A2(
 				_elm_lang$core$Basics_ops['++'],
-				A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
+				'\n',
 				A2(
 					_elm_lang$core$Basics_ops['++'],
-					_user$project$Markup$openingTag(model),
 					A2(
+						_elm_lang$core$String$join,
+						'\n',
+						A2(
+							_elm_lang$core$List$map,
+							_user$project$Markup$toElmHtmlNode(nestingLevel + 1),
+							childs)),
+					(!_elm_lang$core$Native_Utils.eq(model.value, '')) ? A2(
 						_elm_lang$core$Basics_ops['++'],
 						'\n',
 						A2(
 							_elm_lang$core$Basics_ops['++'],
-							A2(
-								_elm_lang$core$String$join,
-								'\n',
-								A2(
-									_elm_lang$core$List$map,
-									_user$project$Markup$toElmHtmlNode(nestingLevel + 1),
-									childs)),
+							_user$project$Markup$indent(nestingLevel + 1),
 							A2(
 								_elm_lang$core$Basics_ops['++'],
-								A2(_user$project$Markup$valuePresence, nestingLevel + 1, model),
+								model.value,
 								A2(
 									_elm_lang$core$Basics_ops['++'],
 									'\n',
-									A2(
-										_elm_lang$core$Basics_ops['++'],
-										A2(_elm_lang$core$String$repeat, nestingLevel, '  '),
-										_user$project$Markup$closingTag(model))))))));
+									_user$project$Markup$indent(nestingLevel))))) : A2(
+						_elm_lang$core$Basics_ops['++'],
+						'',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'\n',
+							_user$project$Markup$indent(nestingLevel)))));
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				_user$project$Markup$indent(nestingLevel),
+				A2(_user$project$Markup$wrapInTags, model, transformedChilds));
 		}
 	});
 var _user$project$Markup$view = function (htmlTree) {

@@ -28,7 +28,7 @@ textInput : Int -> Input
 textInput id =
   { type' = Text
   , id = id
-  , classList = [ "form-control" ]
+  , classList = []
   , placeholder = Nothing
   , label = Just "Some label.."
   , disabled = False
@@ -44,7 +44,7 @@ textArea : Int -> Input
 textArea id =
   { type' = TextArea
   , id = id
-  , classList = [ "form-control" ]
+  , classList = []
   , placeholder = Nothing
   , label = Just "Some label.."
   , disabled = False
@@ -60,7 +60,7 @@ select : Int -> Input
 select id =
   { type' = Select
   , id = id
-  , classList = [ "form-control" ]
+  , classList = []
   , placeholder = Nothing
   , label = Just "Some label.."
   , disabled = False
@@ -76,7 +76,7 @@ multiselect : Int -> Input
 multiselect id =
   { type' = Multiselect
   , id = id
-  , classList = [ "form-control" ]
+  , classList = []
   , placeholder = Nothing
   , label = Just "Some label.."
   , disabled = False

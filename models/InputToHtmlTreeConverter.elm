@@ -24,7 +24,7 @@ textInputToHtmlTree inp =
       , toPlaceholder inp.placeholder
       , toDisabled inp.disabled
       , toReadonly inp.readonly
-      , toClasses inp.classList inp.size
+      , toClasses ((sizeClass inp.size) :: [ "form-control" ])
       , toType inp.type'
       ] |> List.filterMap identity
 
@@ -42,7 +42,7 @@ selectToHtmlTree inp =
     inputAttrs =
       [ toId inp.id
       , toDisabled inp.disabled
-      , toClasses inp.classList inp.size
+      , toClasses ((sizeClass inp.size) :: [ "form-control" ])
       ] |> List.filterMap identity
 
     options = List.map (\value -> Element "option" [] (Children []) value) inp.options
@@ -62,7 +62,7 @@ textAreaToHtmlTree inp =
       , toPlaceholder inp.placeholder
       , toDisabled inp.disabled
       , toReadonly inp.readonly
-      , toClasses inp.classList Normal
+      , toClasses ((sizeClass inp.size) :: [ "form-control" ])
       , Just (Attribute "rows" (toString inp.rowNumber))
       ] |> List.filterMap identity
 
@@ -79,7 +79,7 @@ multiselectToHtmlTree inp =
     inputAttrs =
       [ toId inp.id
       , toDisabled inp.disabled
-      , toClasses inp.classList Normal
+      , toClasses ((sizeClass inp.size) :: [ "form-control" ])
       , Just (Attribute "multiple" "multiple")
       ] |> List.filterMap identity
 
@@ -98,7 +98,8 @@ fileUploadToHtmlTree inp =
     inputAttrs =
       [ toId inp.id
       , toDisabled inp.disabled
-      , toClasses inp.classList Normal
+      -- , toClasses inp.classList Normal
+      , toClasses ((sizeClass inp.size) :: inp.classList)
       , Just (Attribute "type" "file")
       ] |> List.filterMap identity
 
@@ -198,16 +199,24 @@ toLinks : Id -> Maybe Element
 toLinks value =
   Just (Element "editLinks" [] (Children []) (toString value))
 
-toClasses : List String -> Size -> Maybe Attribute
-toClasses classList size =
+sizeClass : Size -> String
+sizeClass size =
+  case size of
+    Small ->
+      "form-control-sm"
+    Normal ->
+      ""
+    Large ->
+      "form-control-lg"
+
+toClasses : List String -> Maybe Attribute
+toClasses classList =
   let
-    sizeClass =
-      case size of
-        Small -> "form-control-sm"
-        Normal -> ""
-        Large -> "form-control-lg"
+    value =
+      List.filter (\class -> class /= "") classList
+        |> String.join " "
   in
-    Just (Attribute "class" (String.join " " (sizeClass::classList)))
+    Just (Attribute "class" value)
 
 wrapInAddons inputAttrs attrs =
   let

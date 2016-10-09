@@ -25,15 +25,25 @@ toElmHtmlNode nestingLevel model =
   in
    case childs of
      [] ->
-       (String.repeat nestingLevel "  ") ++ (openingTag model)  ++ model.value  ++ (closingTag model)
+       if model.tag == "editLinks" then
+         ""
+       else
+         indent nestingLevel ++ wrapInTags model model.value
      x::xs ->
-       (String.repeat nestingLevel "  ") ++ (openingTag model)  ++ "\n" ++ (String.join "\n" (List.map (toElmHtmlNode (nestingLevel + 1)) childs)) ++ (valuePresence (nestingLevel + 1) model) ++ "\n" ++ (String.repeat nestingLevel "  ") ++ (closingTag model)
+       let
+         transformedChilds =
+           "\n" ++ (String.join "\n" (List.map (toElmHtmlNode (nestingLevel + 1)) childs))
+           ++ if model.value /= "" then "\n" ++ indent (nestingLevel + 1) ++ model.value ++ "\n" ++ indent (nestingLevel) else ""
+           ++ "\n" ++ indent nestingLevel
+       in
+         indent nestingLevel ++ wrapInTags model transformedChilds
 
-valuePresence nestingLevel model =
-  if model.value /= "" then
-    "\n" ++ (String.repeat nestingLevel "  ") ++ model.value
-  else
-    ""
+indent : Int -> String
+indent level =
+  String.repeat level "  "
+
+wrapInTags element content =
+  (openingTag element) ++ content  ++ (closingTag element)
 
 openingTag : Element -> String
 openingTag model =
@@ -41,14 +51,14 @@ openingTag model =
     tag = model.tag
     attributes = htmlAttributesString model.attributes
   in
-    String.join "" ["<", tag, attributes, ">"]
+    "<" ++ tag ++ attributes ++ ">"
 
 htmlAttributesString : List HtmlTree.Attribute -> String
 htmlAttributesString attributes =
   let
     stringifiedAttributes = (List.map htmlAttributeString attributes)
   in
-    if List.length stringifiedAttributes > 0 then
+    if List.length attributes > 0 then
       " " ++ (String.join " " stringifiedAttributes)
     else
       ""
@@ -58,7 +68,7 @@ htmlAttributeString attribute =
   if attribute.value == "" then
     attribute.name
   else
-    attribute.name ++ "=" ++ "\"" ++ attribute.value ++ "\""
+    attribute.name ++ "=" ++ "\"" ++ (Debug.log "atr" attribute.value) ++ "\""
 
 closingTag : Element -> String
 closingTag element =
