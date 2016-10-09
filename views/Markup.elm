@@ -12,12 +12,13 @@ view : Element -> Html Msg
 view htmlTree =
   pre
     []
-    [text (toElmHtmlNode 0 htmlTree)]
+    [ text (toElmHtmlNode 0 htmlTree) ]
 
 -------------
 -- Private --
 -------------
 
+toElmHtmlNode : Int -> HtmlTree.Element -> String
 toElmHtmlNode nestingLevel model =
   let
     childs = (\ (Children childs) -> childs) model.children
@@ -34,6 +35,7 @@ valuePresence nestingLevel model =
   else
     ""
 
+openingTag : Element -> String
 openingTag model =
   let
     tag = model.tag
@@ -41,6 +43,7 @@ openingTag model =
   in
     String.join "" ["<", tag, attributes, ">"]
 
+htmlAttributesString : List HtmlTree.Attribute -> String
 htmlAttributesString attributes =
   let
     stringifiedAttributes = (List.map htmlAttributeString attributes)
@@ -50,20 +53,39 @@ htmlAttributesString attributes =
     else
       ""
 
+htmlAttributeString : HtmlTree.Attribute -> String
 htmlAttributeString attribute =
   if attribute.value == "" then
     attribute.name
   else
     attribute.name ++ "=" ++ "\"" ++ attribute.value ++ "\""
 
+closingTag : Element -> String
 closingTag element =
   if isVoid element then
     ""
   else
     "</" ++ element.tag ++ ">"
 
+isVoid : Element -> Bool
 isVoid element =
   List.member element.tag voidElementsList
 
+voidElementsList : List String
 voidElementsList =
-  ["area", "base", "br", "col", "command", "embed", "hr", "img", "input", "keygen", "link", "meta", "param", "source", "track", "wbr"]
+  [ "area"
+  , "base"
+  , "br"
+  , "col"
+  , "command"
+  , "embed"
+  , "hr"
+  , "img"
+  , "input"
+  , "keygen"
+  , "link"
+  , "meta"
+  , "param"
+  , "source"
+  , "track"
+  , "wbr" ]
