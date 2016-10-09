@@ -37,9 +37,9 @@ formEdit model =
       [ div
         [ class "row" ]
         [ div
-           [ class "col-sm-8"]
+           [ class "col-sm-8" ]
            [ div [ class "bd-example" ] (Form.view htmlTree)
-           , div [ class "highlight" ] [ Markup.view htmlTree] ]
+           , div [ class "highlight" ] [ Markup.view htmlTree ] ]
         , div
            [ class "col-sm-4" ]
            Templates.view
@@ -54,11 +54,11 @@ inputEdit input =
   in
     div
       []
-      [ a [href "javascript:void(0)", onClick (FormMessage StopEditing)] [text "Back to form"]
+      [ a [ href "javascript:void(0)", onClick (FormMessage StopEditing) ] [text "Back to form" ]
       , div
-          [ class "row"]
+          [ class "row" ]
           [ div
-             [ class "col-sm-8"]
+             [ class "col-sm-8" ]
              [ div [ class "bd-example" ] (Form.view htmlTree)
              , div [ class "highlight" ] [ Markup.view htmlTree ] ]
           , div
