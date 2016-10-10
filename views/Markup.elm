@@ -9,10 +9,13 @@ import HtmlTree exposing (..)
 import Messages exposing (..)
 
 view : Element -> Html Msg
-view htmlTree =
-  pre
-    []
-    [ text (toElmHtmlNode 0 htmlTree) ]
+view tree =
+  let
+    cleanedTree = removeElementRecursively "editLinks" tree
+  in
+    pre
+      []
+      [ text (toElmHtmlNode 0 cleanedTree) ]
 
 -------------
 -- Private --
@@ -25,10 +28,7 @@ toElmHtmlNode nestingLevel model =
   in
    case childs of
      [] ->
-       if model.tag == "editLinks" then
-         ""
-       else
-         indent nestingLevel ++ wrapInTags model model.value
+       indent nestingLevel ++ wrapInTags model model.value
      x::xs ->
        let
          transformedChilds =
@@ -68,7 +68,7 @@ htmlAttributeString attribute =
   if attribute.value == "" then
     attribute.name
   else
-    attribute.name ++ "=" ++ "\"" ++ (Debug.log "atr" attribute.value) ++ "\""
+    attribute.name ++ "=" ++ "\"" ++ attribute.value ++ "\""
 
 closingTag : Element -> String
 closingTag element =

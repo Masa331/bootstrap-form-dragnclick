@@ -7908,6 +7908,37 @@ var _user$project$HtmlTree$Element = F4(
 var _user$project$HtmlTree$Children = function (a) {
 	return {ctor: 'Children', _0: a};
 };
+var _user$project$HtmlTree$removeElementRecursively = F2(
+	function (tag, tree) {
+		var childs = function (_p0) {
+			var _p1 = _p0;
+			return _p1._0;
+		}(tree.children);
+		var filteredChilds = A2(
+			_elm_lang$core$List$filter,
+			function (child) {
+				return !_elm_lang$core$Native_Utils.eq(child.tag, tag);
+			},
+			childs);
+		var _p2 = childs;
+		if (_p2.ctor === '[]') {
+			return A4(
+				_user$project$HtmlTree$Element,
+				tree.tag,
+				tree.attributes,
+				_user$project$HtmlTree$Children(filteredChilds),
+				tree.value);
+		} else {
+			var innerChilds = _user$project$HtmlTree$Children(
+				A2(
+					_elm_lang$core$List$map,
+					function (child) {
+						return A2(_user$project$HtmlTree$removeElementRecursively, tag, child);
+					},
+					filteredChilds));
+			return A4(_user$project$HtmlTree$Element, tree.tag, tree.attributes, innerChilds, tree.value);
+		}
+	});
 
 var _user$project$FormModel$typeToText = function (type$) {
 	var _p0 = type$;
@@ -10601,10 +10632,7 @@ var _user$project$Markup$htmlAttributeString = function (attribute) {
 			A2(
 				_elm_lang$core$Basics_ops['++'],
 				'\"',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					A2(_elm_lang$core$Debug$log, 'atr', attribute.value),
-					'\"'))));
+				A2(_elm_lang$core$Basics_ops['++'], attribute.value, '\"'))));
 };
 var _user$project$Markup$htmlAttributesString = function (attributes) {
 	var stringifiedAttributes = A2(_elm_lang$core$List$map, _user$project$Markup$htmlAttributeString, attributes);
@@ -10647,7 +10675,7 @@ var _user$project$Markup$toElmHtmlNode = F2(
 		}(model.children);
 		var _p2 = childs;
 		if (_p2.ctor === '[]') {
-			return _elm_lang$core$Native_Utils.eq(model.tag, 'editLinks') ? '' : A2(
+			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				_user$project$Markup$indent(nestingLevel),
 				A2(_user$project$Markup$wrapInTags, model, model.value));
@@ -10689,7 +10717,8 @@ var _user$project$Markup$toElmHtmlNode = F2(
 				A2(_user$project$Markup$wrapInTags, model, transformedChilds));
 		}
 	});
-var _user$project$Markup$view = function (htmlTree) {
+var _user$project$Markup$view = function (tree) {
+	var cleanedTree = A2(_user$project$HtmlTree$removeElementRecursively, 'editLinks', tree);
 	return A2(
 		_elm_lang$html$Html$pre,
 		_elm_lang$core$Native_List.fromArray(
@@ -10697,7 +10726,7 @@ var _user$project$Markup$view = function (htmlTree) {
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html$text(
-				A2(_user$project$Markup$toElmHtmlNode, 0, htmlTree))
+				A2(_user$project$Markup$toElmHtmlNode, 0, cleanedTree))
 			]));
 };
 

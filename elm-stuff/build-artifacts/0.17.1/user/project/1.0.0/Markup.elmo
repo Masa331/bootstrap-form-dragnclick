@@ -19,10 +19,7 @@ var _user$project$Markup$htmlAttributeString = function (attribute) {
 			A2(
 				_elm_lang$core$Basics_ops['++'],
 				'\"',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					A2(_elm_lang$core$Debug$log, 'atr', attribute.value),
-					'\"'))));
+				A2(_elm_lang$core$Basics_ops['++'], attribute.value, '\"'))));
 };
 var _user$project$Markup$htmlAttributesString = function (attributes) {
 	var stringifiedAttributes = A2(_elm_lang$core$List$map, _user$project$Markup$htmlAttributeString, attributes);
@@ -65,7 +62,7 @@ var _user$project$Markup$toElmHtmlNode = F2(
 		}(model.children);
 		var _p2 = childs;
 		if (_p2.ctor === '[]') {
-			return _elm_lang$core$Native_Utils.eq(model.tag, 'editLinks') ? '' : A2(
+			return A2(
 				_elm_lang$core$Basics_ops['++'],
 				_user$project$Markup$indent(nestingLevel),
 				A2(_user$project$Markup$wrapInTags, model, model.value));
@@ -107,7 +104,8 @@ var _user$project$Markup$toElmHtmlNode = F2(
 				A2(_user$project$Markup$wrapInTags, model, transformedChilds));
 		}
 	});
-var _user$project$Markup$view = function (htmlTree) {
+var _user$project$Markup$view = function (tree) {
+	var cleanedTree = A2(_user$project$HtmlTree$removeElementRecursively, 'editLinks', tree);
 	return A2(
 		_elm_lang$html$Html$pre,
 		_elm_lang$core$Native_List.fromArray(
@@ -115,6 +113,6 @@ var _user$project$Markup$view = function (htmlTree) {
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html$text(
-				A2(_user$project$Markup$toElmHtmlNode, 0, htmlTree))
+				A2(_user$project$Markup$toElmHtmlNode, 0, cleanedTree))
 			]));
 };
