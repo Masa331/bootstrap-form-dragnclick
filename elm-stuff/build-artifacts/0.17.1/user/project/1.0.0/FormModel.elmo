@@ -90,164 +90,94 @@ var _user$project$FormModel$Url = {ctor: 'Url'};
 var _user$project$FormModel$Email = {ctor: 'Email'};
 var _user$project$FormModel$Search = {ctor: 'Search'};
 var _user$project$FormModel$Button = {ctor: 'Button'};
-var _user$project$FormModel$button = function (id) {
-	return {
-		type$: _user$project$FormModel$Button,
-		id: id,
-		classList: _elm_lang$core$Native_List.fromArray(
-			['form-control']),
-		placeholder: _elm_lang$core$Maybe$Nothing,
-		label: _elm_lang$core$Maybe$Just('Submit'),
-		disabled: false,
-		readonly: false,
-		size: _user$project$FormModel$Normal,
-		addon1: _elm_lang$core$Maybe$Nothing,
-		addon2: _elm_lang$core$Maybe$Nothing,
-		small: _elm_lang$core$Maybe$Nothing,
-		rowNumber: 1,
-		options: _elm_lang$core$Native_List.fromArray(
-			[])
-	};
-};
 var _user$project$FormModel$Checkbox = {ctor: 'Checkbox'};
-var _user$project$FormModel$checkbox = function (id) {
-	return {
-		type$: _user$project$FormModel$Checkbox,
-		id: id,
-		classList: _elm_lang$core$Native_List.fromArray(
-			['form-control']),
-		placeholder: _elm_lang$core$Maybe$Nothing,
-		label: _elm_lang$core$Maybe$Just('Some label..'),
-		disabled: false,
-		readonly: false,
-		size: _user$project$FormModel$Normal,
-		addon1: _elm_lang$core$Maybe$Nothing,
-		addon2: _elm_lang$core$Maybe$Nothing,
-		small: _elm_lang$core$Maybe$Nothing,
-		rowNumber: 1,
-		options: _elm_lang$core$Native_List.fromArray(
-			[])
-	};
-};
 var _user$project$FormModel$Radio = {ctor: 'Radio'};
-var _user$project$FormModel$radio = function (id) {
-	return {
-		type$: _user$project$FormModel$Radio,
-		id: id,
-		classList: _elm_lang$core$Native_List.fromArray(
-			['form-control']),
-		placeholder: _elm_lang$core$Maybe$Nothing,
-		label: _elm_lang$core$Maybe$Just('Some label..'),
-		disabled: false,
-		readonly: false,
-		size: _user$project$FormModel$Normal,
-		addon1: _elm_lang$core$Maybe$Nothing,
-		addon2: _elm_lang$core$Maybe$Nothing,
-		small: _elm_lang$core$Maybe$Nothing,
-		rowNumber: 1,
-		options: _elm_lang$core$Native_List.fromArray(
-			['option1', 'option2'])
-	};
-};
 var _user$project$FormModel$FileUpload = {ctor: 'FileUpload'};
-var _user$project$FormModel$fileUpload = function (id) {
-	return {
-		type$: _user$project$FormModel$FileUpload,
-		id: id,
-		classList: _elm_lang$core$Native_List.fromArray(
-			['form-control-file']),
-		placeholder: _elm_lang$core$Maybe$Nothing,
-		label: _elm_lang$core$Maybe$Just('Some label..'),
-		disabled: false,
-		readonly: false,
-		size: _user$project$FormModel$Normal,
-		addon1: _elm_lang$core$Maybe$Nothing,
-		addon2: _elm_lang$core$Maybe$Nothing,
-		small: _elm_lang$core$Maybe$Nothing,
-		rowNumber: 1,
-		options: _elm_lang$core$Native_List.fromArray(
-			[])
-	};
-};
 var _user$project$FormModel$Multiselect = {ctor: 'Multiselect'};
-var _user$project$FormModel$multiselect = function (id) {
-	return {
-		type$: _user$project$FormModel$Multiselect,
-		id: id,
-		classList: _elm_lang$core$Native_List.fromArray(
-			[]),
-		placeholder: _elm_lang$core$Maybe$Nothing,
-		label: _elm_lang$core$Maybe$Just('Some label..'),
-		disabled: false,
-		readonly: false,
-		size: _user$project$FormModel$Normal,
-		addon1: _elm_lang$core$Maybe$Nothing,
-		addon2: _elm_lang$core$Maybe$Nothing,
-		small: _elm_lang$core$Maybe$Nothing,
-		rowNumber: 1,
-		options: _elm_lang$core$Native_List.fromArray(
-			['options1', 'option2', 'option3'])
-	};
-};
 var _user$project$FormModel$Select = {ctor: 'Select'};
-var _user$project$FormModel$select = function (id) {
-	return {
-		type$: _user$project$FormModel$Select,
-		id: id,
-		classList: _elm_lang$core$Native_List.fromArray(
-			[]),
-		placeholder: _elm_lang$core$Maybe$Nothing,
-		label: _elm_lang$core$Maybe$Just('Some label..'),
-		disabled: false,
-		readonly: false,
-		size: _user$project$FormModel$Normal,
-		addon1: _elm_lang$core$Maybe$Nothing,
-		addon2: _elm_lang$core$Maybe$Nothing,
-		small: _elm_lang$core$Maybe$Nothing,
-		rowNumber: 1,
-		options: _elm_lang$core$Native_List.fromArray(
-			['options1', 'option2', 'option3'])
-	};
-};
 var _user$project$FormModel$TextArea = {ctor: 'TextArea'};
-var _user$project$FormModel$textArea = function (id) {
-	return {
-		type$: _user$project$FormModel$TextArea,
-		id: id,
-		classList: _elm_lang$core$Native_List.fromArray(
-			[]),
-		placeholder: _elm_lang$core$Maybe$Nothing,
-		label: _elm_lang$core$Maybe$Just('Some label..'),
-		disabled: false,
-		readonly: false,
-		size: _user$project$FormModel$Normal,
-		addon1: _elm_lang$core$Maybe$Nothing,
-		addon2: _elm_lang$core$Maybe$Nothing,
-		small: _elm_lang$core$Maybe$Nothing,
-		rowNumber: 3,
-		options: _elm_lang$core$Native_List.fromArray(
-			[])
-	};
-};
 var _user$project$FormModel$Text = {ctor: 'Text'};
+var _user$project$FormModel$blankInput = {
+	type$: _user$project$FormModel$Text,
+	id: 0,
+	classList: _elm_lang$core$Native_List.fromArray(
+		[]),
+	placeholder: _elm_lang$core$Maybe$Nothing,
+	label: _elm_lang$core$Maybe$Just('Some label..'),
+	disabled: false,
+	readonly: false,
+	size: _user$project$FormModel$Normal,
+	addon1: _elm_lang$core$Maybe$Nothing,
+	addon2: _elm_lang$core$Maybe$Nothing,
+	small: _elm_lang$core$Maybe$Nothing,
+	rowNumber: 1,
+	options: _elm_lang$core$Native_List.fromArray(
+		[])
+};
+var _user$project$FormModel$textArea = function (id) {
+	return _elm_lang$core$Native_Utils.update(
+		_user$project$FormModel$blankInput,
+		{type$: _user$project$FormModel$TextArea, id: id, rowNumber: 3});
+};
+var _user$project$FormModel$select = function (id) {
+	return _elm_lang$core$Native_Utils.update(
+		_user$project$FormModel$blankInput,
+		{
+			type$: _user$project$FormModel$Select,
+			id: id,
+			options: _elm_lang$core$Native_List.fromArray(
+				['options1', 'option2', 'option3'])
+		});
+};
+var _user$project$FormModel$multiselect = function (id) {
+	return _elm_lang$core$Native_Utils.update(
+		_user$project$FormModel$blankInput,
+		{
+			type$: _user$project$FormModel$Multiselect,
+			id: id,
+			options: _elm_lang$core$Native_List.fromArray(
+				['options1', 'option2', 'option3'])
+		});
+};
+var _user$project$FormModel$fileUpload = function (id) {
+	return _elm_lang$core$Native_Utils.update(
+		_user$project$FormModel$blankInput,
+		{
+			type$: _user$project$FormModel$FileUpload,
+			id: id,
+			classList: _elm_lang$core$Native_List.fromArray(
+				['form-control-file'])
+		});
+};
+var _user$project$FormModel$radio = function (id) {
+	return _elm_lang$core$Native_Utils.update(
+		_user$project$FormModel$blankInput,
+		{
+			type$: _user$project$FormModel$Radio,
+			id: id,
+			options: _elm_lang$core$Native_List.fromArray(
+				['options1', 'option2', 'option3'])
+		});
+};
+var _user$project$FormModel$checkbox = function (id) {
+	return _elm_lang$core$Native_Utils.update(
+		_user$project$FormModel$blankInput,
+		{
+			type$: _user$project$FormModel$Checkbox,
+			id: id,
+			classList: _elm_lang$core$Native_List.fromArray(
+				['form-control'])
+		});
+};
+var _user$project$FormModel$button = function (id) {
+	return _elm_lang$core$Native_Utils.update(
+		_user$project$FormModel$blankInput,
+		{type$: _user$project$FormModel$Button, id: id});
+};
 var _user$project$FormModel$textInput = function (id) {
-	return {
-		type$: _user$project$FormModel$Text,
-		id: id,
-		classList: _elm_lang$core$Native_List.fromArray(
-			[]),
-		placeholder: _elm_lang$core$Maybe$Nothing,
-		label: _elm_lang$core$Maybe$Just('Some label..'),
-		disabled: false,
-		readonly: false,
-		size: _user$project$FormModel$Normal,
-		addon1: _elm_lang$core$Maybe$Nothing,
-		addon2: _elm_lang$core$Maybe$Nothing,
-		small: _elm_lang$core$Maybe$Nothing,
-		rowNumber: 1,
-		options: _elm_lang$core$Native_List.fromArray(
-			[])
-	};
+	return _elm_lang$core$Native_Utils.update(
+		_user$project$FormModel$blankInput,
+		{type$: _user$project$FormModel$Text, id: id});
 };
 var _user$project$FormModel$textToType = function (text) {
 	var _p2 = text;

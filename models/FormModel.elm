@@ -24,10 +24,12 @@ type alias Input =
   , rowNumber: RowNumber
   , options: List String }
 
-textInput : Int -> Input
-textInput id =
+type alias Form = List Input
+
+blankInput : Input
+blankInput =
   { type' = Text
-  , id = id
+  , id = 0
   , classList = []
   , placeholder = Nothing
   , label = Just "Some label.."
@@ -39,120 +41,38 @@ textInput id =
   , small = Nothing
   , rowNumber = 1
   , options = [] }
+
+textInput : Int -> Input
+textInput id =
+  { blankInput | type' = Text, id = id }
 
 textArea : Int -> Input
 textArea id =
-  { type' = TextArea
-  , id = id
-  , classList = []
-  , placeholder = Nothing
-  , label = Just "Some label.."
-  , disabled = False
-  , readonly = False
-  , size = Normal
-  , addon1 = Nothing
-  , addon2 = Nothing
-  , small = Nothing
-  , rowNumber = 3
-  , options = [] }
+  { blankInput | type' = TextArea, id = id, rowNumber = 3 }
 
 select : Int -> Input
 select id =
-  { type' = Select
-  , id = id
-  , classList = []
-  , placeholder = Nothing
-  , label = Just "Some label.."
-  , disabled = False
-  , readonly = False
-  , size = Normal
-  , addon1 = Nothing
-  , addon2 = Nothing
-  , small = Nothing
-  , rowNumber = 1
-  , options = [ "options1", "option2", "option3" ] }
+  { blankInput | type' = Select, id = id, options = [ "options1", "option2", "option3" ] }
 
 multiselect : Int -> Input
 multiselect id =
-  { type' = Multiselect
-  , id = id
-  , classList = []
-  , placeholder = Nothing
-  , label = Just "Some label.."
-  , disabled = False
-  , readonly = False
-  , size = Normal
-  , addon1 = Nothing
-  , addon2 = Nothing
-  , small = Nothing
-  , rowNumber = 1
-  , options = [ "options1", "option2", "option3" ] }
+  { blankInput | type' = Multiselect, id = id, options = [ "options1", "option2", "option3" ] }
 
 fileUpload : Int -> Input
 fileUpload id =
-  { type' = FileUpload
-  , id = id
-  , classList = [ "form-control-file" ]
-  , placeholder = Nothing
-  , label = Just "Some label.."
-  , disabled = False
-  , readonly = False
-  , size = Normal
-  , addon1 = Nothing
-  , addon2 = Nothing
-  , small = Nothing
-  , rowNumber = 1
-  , options = [] }
+  { blankInput | type' = FileUpload, id = id, classList = [ "form-control-file" ] }
 
 radio : Int -> Input
 radio id =
-  { type' = Radio
-  , id = id
-  , classList = [ "form-control" ]
-  , placeholder = Nothing
-  , label = Just "Some label.."
-  , disabled = False
-  , readonly = False
-  , size = Normal
-  , addon1 = Nothing
-  , addon2 = Nothing
-  , small = Nothing
-  , rowNumber = 1
-  , options = [ "option1", "option2" ] }
+  { blankInput | type' = Radio, id = id, options = [ "options1", "option2", "option3" ] }
 
 checkbox : Int -> Input
 checkbox id =
-  { type' = Checkbox
-  , id = id
-  , classList = [ "form-control" ]
-  , placeholder = Nothing
-  , label = Just "Some label.."
-  , disabled = False
-  , readonly = False
-  , size = Normal
-  , addon1 = Nothing
-  , addon2 = Nothing
-  , small = Nothing
-  , rowNumber = 1
-  , options = [] }
+  { blankInput | type' = Checkbox, id = id,  classList = [ "form-control" ] }
 
 button : Int -> Input
 button id =
-  { type' = Button
-  , id = id
-  , classList = [ "form-control" ]
-  , placeholder = Nothing
-  , label = Just "Submit"
-  , disabled = False
-  , readonly = False
-  , size = Normal
-  , addon1 = Nothing
-  , addon2 = Nothing
-  , small = Nothing
-  , rowNumber = 1
-  , options = [] }
-
-type alias Form = List Input
+  { blankInput | type' = Button, id = id }
 
 extractType : Input -> InputType
 extractType inp =
