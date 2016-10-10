@@ -8225,10 +8225,6 @@ var _user$project$FormModel$textToType = function (text) {
 	}
 };
 
-var _user$project$Models$moveInputUp = F2(
-	function (id, model) {
-		return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-	});
 var _user$project$Models$maxInputId = function (model) {
 	return A2(
 		_elm_lang$core$Maybe$withDefault,
