@@ -193,7 +193,7 @@ toLegend value =
 
 toType : InputType -> Maybe Attribute
 toType value =
-  Just (Attribute "type" (typeToText value))
+  Just (Attribute "type" (inputTypeToString value))
 
 toLinks : Id -> Maybe Element
 toLinks value =

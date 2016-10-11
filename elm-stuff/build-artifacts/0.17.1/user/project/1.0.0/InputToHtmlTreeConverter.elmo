@@ -39,7 +39,7 @@ var _user$project$InputToHtmlTreeConverter$toType = function (value) {
 		A2(
 			_user$project$HtmlTree$Attribute,
 			'type',
-			_user$project$FormModel$typeToText(value)));
+			_user$project$FormModel$inputTypeToString(value)));
 };
 var _user$project$InputToHtmlTreeConverter$toLegend = function (value) {
 	return A2(
