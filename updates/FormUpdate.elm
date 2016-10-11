@@ -57,12 +57,12 @@ moveInputDown id model =
   in
     ({ model | form = newForm }, Cmd.none)
 
-addNewInput : (Int -> Input) -> Model -> (Model, Cmd Msg)
+addNewInput : Input -> Model -> (Model, Cmd Msg)
 addNewInput input model =
   let
-    newId = maxInputId model + 1
+    newInput = { input | id = maxInputId model + 1 }
   in
-    ({ model | form = model.form ++ [input newId] }, Cmd.none)
+    ({ model | form = model.form ++ [newInput] }, Cmd.none)
 
 removeInput : Model -> Id -> (Model, Cmd Msg)
 removeInput model id =

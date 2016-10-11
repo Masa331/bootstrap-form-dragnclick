@@ -1,6 +1,8 @@
 var _user$project$Repl$t_s_o_l = {ctor: '_Tuple0'};
-var _user$project$Repl$d_e_l_t_r_o_n_3_0_3_0 = A2(
-	_elm_lang$core$List$drop,
-	3,
+var _user$project$Repl$f = function (_p0) {
+	return _elm_lang$core$String$reverse(
+		_elm_lang$core$String$concat(_p0));
+};
+var _user$project$Repl$d_e_l_t_r_o_n_3_0_3_0 = _user$project$Repl$f(
 	_elm_lang$core$Native_List.fromArray(
-		[]));
+		['ahoj', 'jelene']));

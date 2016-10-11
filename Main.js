@@ -8056,71 +8056,50 @@ var _user$project$FormModel$blankInput = {
 	options: _elm_lang$core$Native_List.fromArray(
 		[])
 };
-var _user$project$FormModel$textArea = function (id) {
-	return _elm_lang$core$Native_Utils.update(
-		_user$project$FormModel$blankInput,
-		{type$: _user$project$FormModel$TextArea, id: id, rowNumber: 3});
-};
-var _user$project$FormModel$select = function (id) {
-	return _elm_lang$core$Native_Utils.update(
-		_user$project$FormModel$blankInput,
-		{
-			type$: _user$project$FormModel$Select,
-			id: id,
-			options: _elm_lang$core$Native_List.fromArray(
-				['options1', 'option2', 'option3'])
-		});
-};
-var _user$project$FormModel$multiselect = function (id) {
-	return _elm_lang$core$Native_Utils.update(
-		_user$project$FormModel$blankInput,
-		{
-			type$: _user$project$FormModel$Multiselect,
-			id: id,
-			options: _elm_lang$core$Native_List.fromArray(
-				['options1', 'option2', 'option3'])
-		});
-};
-var _user$project$FormModel$fileUpload = function (id) {
-	return _elm_lang$core$Native_Utils.update(
-		_user$project$FormModel$blankInput,
-		{
-			type$: _user$project$FormModel$FileUpload,
-			id: id,
-			classList: _elm_lang$core$Native_List.fromArray(
-				['form-control-file'])
-		});
-};
-var _user$project$FormModel$radio = function (id) {
-	return _elm_lang$core$Native_Utils.update(
-		_user$project$FormModel$blankInput,
-		{
-			type$: _user$project$FormModel$Radio,
-			id: id,
-			options: _elm_lang$core$Native_List.fromArray(
-				['options1', 'option2', 'option3'])
-		});
-};
-var _user$project$FormModel$checkbox = function (id) {
-	return _elm_lang$core$Native_Utils.update(
-		_user$project$FormModel$blankInput,
-		{
-			type$: _user$project$FormModel$Checkbox,
-			id: id,
-			classList: _elm_lang$core$Native_List.fromArray(
-				['form-control'])
-		});
-};
-var _user$project$FormModel$button = function (id) {
-	return _elm_lang$core$Native_Utils.update(
-		_user$project$FormModel$blankInput,
-		{type$: _user$project$FormModel$Button, id: id});
-};
-var _user$project$FormModel$textInput = function (id) {
-	return _elm_lang$core$Native_Utils.update(
-		_user$project$FormModel$blankInput,
-		{type$: _user$project$FormModel$Text, id: id});
-};
+var _user$project$FormModel$textArea = _elm_lang$core$Native_Utils.update(
+	_user$project$FormModel$blankInput,
+	{type$: _user$project$FormModel$TextArea, rowNumber: 3});
+var _user$project$FormModel$select = _elm_lang$core$Native_Utils.update(
+	_user$project$FormModel$blankInput,
+	{
+		type$: _user$project$FormModel$Select,
+		options: _elm_lang$core$Native_List.fromArray(
+			['options1', 'option2', 'option3'])
+	});
+var _user$project$FormModel$multiselect = _elm_lang$core$Native_Utils.update(
+	_user$project$FormModel$blankInput,
+	{
+		type$: _user$project$FormModel$Multiselect,
+		options: _elm_lang$core$Native_List.fromArray(
+			['options1', 'option2', 'option3'])
+	});
+var _user$project$FormModel$fileUpload = _elm_lang$core$Native_Utils.update(
+	_user$project$FormModel$blankInput,
+	{
+		type$: _user$project$FormModel$FileUpload,
+		classList: _elm_lang$core$Native_List.fromArray(
+			['form-control-file'])
+	});
+var _user$project$FormModel$radio = _elm_lang$core$Native_Utils.update(
+	_user$project$FormModel$blankInput,
+	{
+		type$: _user$project$FormModel$Radio,
+		options: _elm_lang$core$Native_List.fromArray(
+			['options1', 'option2', 'option3'])
+	});
+var _user$project$FormModel$checkbox = _elm_lang$core$Native_Utils.update(
+	_user$project$FormModel$blankInput,
+	{
+		type$: _user$project$FormModel$Checkbox,
+		classList: _elm_lang$core$Native_List.fromArray(
+			['form-control'])
+	});
+var _user$project$FormModel$button = _elm_lang$core$Native_Utils.update(
+	_user$project$FormModel$blankInput,
+	{type$: _user$project$FormModel$Button});
+var _user$project$FormModel$textInput = _elm_lang$core$Native_Utils.update(
+	_user$project$FormModel$blankInput,
+	{type$: _user$project$FormModel$Text});
 var _user$project$FormModel$textToType = function (text) {
 	var _p2 = text;
 	switch (_p2) {
@@ -8186,17 +8165,40 @@ var _user$project$Models$Model = F3(
 		return {form: a, currentlyEdditedInputId: b, newOption: c};
 	});
 var _user$project$Models$initial = function () {
-	var button = _user$project$FormModel$button(5);
-	var select1 = _user$project$FormModel$select(4);
-	var checkbox = _user$project$FormModel$checkbox(3);
-	var textArea = _user$project$FormModel$textArea(2);
-	var textInput = _user$project$FormModel$textInput(1);
-	return A3(
-		_user$project$Models$Model,
-		_elm_lang$core$Native_List.fromArray(
-			[textInput, textArea, select1, checkbox, button]),
-		_elm_lang$core$Maybe$Nothing,
-		'');
+	var inputs = _elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$core$Native_Utils.update(
+			_user$project$FormModel$textInput,
+			{
+				id: 1,
+				label: _elm_lang$core$Maybe$Just('Name')
+			}),
+			_elm_lang$core$Native_Utils.update(
+			_user$project$FormModel$textInput,
+			{
+				id: 2,
+				label: _elm_lang$core$Maybe$Just('E-mail')
+			}),
+			_elm_lang$core$Native_Utils.update(
+			_user$project$FormModel$textInput,
+			{
+				id: 3,
+				label: _elm_lang$core$Maybe$Just('Password')
+			}),
+			_elm_lang$core$Native_Utils.update(
+			_user$project$FormModel$checkbox,
+			{
+				id: 4,
+				label: _elm_lang$core$Maybe$Just('Send newsletter')
+			}),
+			_elm_lang$core$Native_Utils.update(
+			_user$project$FormModel$button,
+			{
+				id: 5,
+				label: _elm_lang$core$Maybe$Just('Register!')
+			})
+		]);
+	return A3(_user$project$Models$Model, inputs, _elm_lang$core$Maybe$Nothing, '');
 }();
 
 var _user$project$Messages$MoveDown = function (a) {
@@ -8456,7 +8458,11 @@ var _user$project$FormUpdate$removeInput = F2(
 	});
 var _user$project$FormUpdate$addNewInput = F2(
 	function (input, model) {
-		var newId = _user$project$Models$maxInputId(model) + 1;
+		var newInput = _elm_lang$core$Native_Utils.update(
+			input,
+			{
+				id: _user$project$Models$maxInputId(model) + 1
+			});
 		return {
 			ctor: '_Tuple2',
 			_0: _elm_lang$core$Native_Utils.update(
@@ -8466,9 +8472,7 @@ var _user$project$FormUpdate$addNewInput = F2(
 						_elm_lang$core$Basics_ops['++'],
 						model.form,
 						_elm_lang$core$Native_List.fromArray(
-							[
-								input(newId)
-							]))
+							[newInput]))
 				}),
 			_1: _elm_lang$core$Platform_Cmd$none
 		};

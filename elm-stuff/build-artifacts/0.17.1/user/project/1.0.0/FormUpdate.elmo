@@ -71,7 +71,11 @@ var _user$project$FormUpdate$removeInput = F2(
 	});
 var _user$project$FormUpdate$addNewInput = F2(
 	function (input, model) {
-		var newId = _user$project$Models$maxInputId(model) + 1;
+		var newInput = _elm_lang$core$Native_Utils.update(
+			input,
+			{
+				id: _user$project$Models$maxInputId(model) + 1
+			});
 		return {
 			ctor: '_Tuple2',
 			_0: _elm_lang$core$Native_Utils.update(
@@ -81,9 +85,7 @@ var _user$project$FormUpdate$addNewInput = F2(
 						_elm_lang$core$Basics_ops['++'],
 						model.form,
 						_elm_lang$core$Native_List.fromArray(
-							[
-								input(newId)
-							]))
+							[newInput]))
 				}),
 			_1: _elm_lang$core$Platform_Cmd$none
 		};

@@ -42,37 +42,37 @@ blankInput =
   , rowNumber = 1
   , options = [] }
 
-textInput : Int -> Input
-textInput id =
-  { blankInput | type' = Text, id = id }
+textInput : Input
+textInput =
+  { blankInput | type' = Text }
 
-textArea : Int -> Input
-textArea id =
-  { blankInput | type' = TextArea, id = id, rowNumber = 3 }
+textArea : Input
+textArea =
+  { blankInput | type' = TextArea, rowNumber = 3 }
 
-select : Int -> Input
-select id =
-  { blankInput | type' = Select, id = id, options = [ "options1", "option2", "option3" ] }
+select : Input
+select =
+  { blankInput | type' = Select, options = [ "options1", "option2", "option3" ] }
 
-multiselect : Int -> Input
-multiselect id =
-  { blankInput | type' = Multiselect, id = id, options = [ "options1", "option2", "option3" ] }
+multiselect : Input
+multiselect =
+  { blankInput | type' = Multiselect, options = [ "options1", "option2", "option3" ] }
 
-fileUpload : Int -> Input
-fileUpload id =
-  { blankInput | type' = FileUpload, id = id, classList = [ "form-control-file" ] }
+fileUpload : Input
+fileUpload =
+  { blankInput | type' = FileUpload, classList = [ "form-control-file" ] }
 
-radio : Int -> Input
-radio id =
-  { blankInput | type' = Radio, id = id, options = [ "options1", "option2", "option3" ] }
+radio : Input
+radio =
+  { blankInput | type' = Radio, options = [ "options1", "option2", "option3" ] }
 
-checkbox : Int -> Input
-checkbox id =
-  { blankInput | type' = Checkbox, id = id,  classList = [ "form-control" ] }
+checkbox : Input
+checkbox =
+  { blankInput | type' = Checkbox, classList = [ "form-control" ] }
 
-button : Int -> Input
-button id =
-  { blankInput | type' = Button, id = id }
+button :Input
+button =
+  { blankInput | type' = Button }
 
 extractType : Input -> InputType
 extractType inp =

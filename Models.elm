@@ -1,20 +1,21 @@
 module Models exposing (Model, initial, currentlyEdditedInput, maxInputId)
 
 import HtmlTree
-import FormModel
+import FormModel exposing (blankInput, textInput, textArea, select, checkbox, button)
 
 type alias Model = { form: FormModel.Form, currentlyEdditedInputId: Maybe Int, newOption: String }
 
 initial : Model
 initial =
   let
-    textInput = FormModel.textInput 1
-    textArea = FormModel.textArea 2
-    checkbox = FormModel.checkbox 3
-    select1 = FormModel.select 4
-    button = FormModel.button 5
+    inputs = [ { textInput | id = 1, label = Just "Name" }
+             , { textInput | id = 2, label = Just "E-mail" }
+             , { textInput | id = 3, label = Just "Password" }
+             , { checkbox | id = 4, label = Just "Send newsletter" }
+             , { button | id = 5, label = Just "Register!" }
+             ]
   in
-    Model [ textInput, textArea, select1, checkbox, button ] Nothing ""
+    Model inputs Nothing ""
 
 currentlyEdditedInput : Model -> Maybe FormModel.Input
 currentlyEdditedInput model =

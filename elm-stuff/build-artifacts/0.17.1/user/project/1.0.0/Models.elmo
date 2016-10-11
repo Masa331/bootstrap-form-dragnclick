@@ -29,15 +29,38 @@ var _user$project$Models$Model = F3(
 		return {form: a, currentlyEdditedInputId: b, newOption: c};
 	});
 var _user$project$Models$initial = function () {
-	var button = _user$project$FormModel$button(5);
-	var select1 = _user$project$FormModel$select(4);
-	var checkbox = _user$project$FormModel$checkbox(3);
-	var textArea = _user$project$FormModel$textArea(2);
-	var textInput = _user$project$FormModel$textInput(1);
-	return A3(
-		_user$project$Models$Model,
-		_elm_lang$core$Native_List.fromArray(
-			[textInput, textArea, select1, checkbox, button]),
-		_elm_lang$core$Maybe$Nothing,
-		'');
+	var inputs = _elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$core$Native_Utils.update(
+			_user$project$FormModel$textInput,
+			{
+				id: 1,
+				label: _elm_lang$core$Maybe$Just('Name')
+			}),
+			_elm_lang$core$Native_Utils.update(
+			_user$project$FormModel$textInput,
+			{
+				id: 2,
+				label: _elm_lang$core$Maybe$Just('E-mail')
+			}),
+			_elm_lang$core$Native_Utils.update(
+			_user$project$FormModel$textInput,
+			{
+				id: 3,
+				label: _elm_lang$core$Maybe$Just('Password')
+			}),
+			_elm_lang$core$Native_Utils.update(
+			_user$project$FormModel$checkbox,
+			{
+				id: 4,
+				label: _elm_lang$core$Maybe$Just('Send newsletter')
+			}),
+			_elm_lang$core$Native_Utils.update(
+			_user$project$FormModel$button,
+			{
+				id: 5,
+				label: _elm_lang$core$Maybe$Just('Register!')
+			})
+		]);
+	return A3(_user$project$Models$Model, inputs, _elm_lang$core$Maybe$Nothing, '');
 }();
