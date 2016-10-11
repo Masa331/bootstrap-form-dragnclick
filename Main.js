@@ -9221,8 +9221,7 @@ var _user$project$InputOptions$view = function (inp) {
 						_user$project$InputOptions$placeholderEdit(inp.placeholder),
 						_user$project$InputOptions$labelEdit(inp.label),
 						_user$project$InputOptions$smallUnderEdit(inp.small),
-						_user$project$InputOptions$typeEdit(
-						_user$project$FormModel$extractType(inp)),
+						_user$project$InputOptions$typeEdit(inp.type$),
 						_user$project$InputOptions$addon1Edit(inp.addon1),
 						_user$project$InputOptions$addon2Edit(inp.addon2),
 						_user$project$InputOptions$sizeEdit(inp.size),

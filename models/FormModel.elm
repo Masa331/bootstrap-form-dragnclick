@@ -74,10 +74,6 @@ button :Input
 button =
   { blankInput | type' = Button }
 
-extractType : Input -> InputType
-extractType inp =
-  inp.type'
-
 typeToText : InputType -> String
 typeToText type' =
   case type' of

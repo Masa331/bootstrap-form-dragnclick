@@ -12,7 +12,7 @@ view : Input -> List (Html Msg)
 view inp =
   case inp.type' of
     Text ->
-      List.concat [ placeholderEdit inp.placeholder, labelEdit inp.label, smallUnderEdit inp.small, typeEdit (extractType inp), addon1Edit inp.addon1, addon2Edit inp.addon2, sizeEdit inp.size, disabledEdit inp.disabled, readonlyEdit inp.readonly ]
+      List.concat [ placeholderEdit inp.placeholder, labelEdit inp.label, smallUnderEdit inp.small, typeEdit inp.type', addon1Edit inp.addon1, addon2Edit inp.addon2, sizeEdit inp.size, disabledEdit inp.disabled, readonlyEdit inp.readonly ]
     Select ->
       List.concat [ labelEdit inp.label, optionsEdit inp.options, smallUnderEdit inp.small, sizeEdit inp.size, disabledEdit inp.disabled ]
     _ ->
