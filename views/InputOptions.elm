@@ -10,131 +10,107 @@ import Messages exposing (..)
 
 view : Input -> List (Html Msg)
 view inp =
-  case inp.type' of
-    Text ->
-      List.concat [ placeholderEdit inp.placeholder, labelEdit inp.label, smallUnderEdit inp.small, typeEdit inp.type', addon1Edit inp.addon1, addon2Edit inp.addon2, sizeEdit inp.size, disabledEdit inp.disabled, readonlyEdit inp.readonly ]
-    Select ->
-      List.concat [ labelEdit inp.label, optionsEdit inp.options, smallUnderEdit inp.small, sizeEdit inp.size, disabledEdit inp.disabled ]
-    _ ->
-      [ b [] [text "Not yet implemented ;)"]
-      ]
+  let
+    options =
+      case inp.type' of
+        Text -> [ placeholderEdit, labelEdit, smallUnderEdit, typeEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
+        Select -> [ labelEdit, optionsEdit, smallUnderEdit, sizeEdit, disabledEdit ]
+        TextArea -> [ placeholderEdit, labelEdit, smallUnderEdit, addon1Edit ]
+        Multiselect -> []
+        FileUpload -> []
+        Radio -> []
+        Checkbox -> []
+        Button -> []
+        Search -> []
+        Email -> []
+        Url -> []
+        Tel -> []
+        Password -> []
+        Number -> []
+        DatetimeLocal -> []
+        Date -> []
+        Month -> []
+        Week -> []
+        Time -> []
+        Color -> []
+  in
+    options
+      |> List.map (\f -> f inp)
+      |> List.concat
 
-optionsEdit : List String -> List (Html Msg)
-optionsEdit inp =
+placeholderEdit : Input -> List (Html Msg)
+placeholderEdit input =
+  textEdit "Placeholder" (InputMessage << PlaceholderEdit) (Maybe.withDefault "" input.placeholder)
+
+labelEdit : Input -> List (Html Msg)
+labelEdit input =
+  textEdit "Label" (InputMessage << LabelEdit) (Maybe.withDefault "" input.label)
+
+smallUnderEdit : Input -> List (Html Msg)
+smallUnderEdit input =
+  textEdit "Small text under input" (InputMessage << SmallEdit) (Maybe.withDefault "" input.small)
+
+addon1Edit : Input -> List (Html Msg)
+addon1Edit input =
+  textEdit "First addon" (InputMessage << FirstAddonEdit) (Maybe.withDefault "" input.addon1)
+
+addon2Edit : Input -> List (Html Msg)
+addon2Edit input =
+  textEdit "Second addon" (InputMessage << SecondAddonEdit) (Maybe.withDefault "" input.addon2)
+
+typeEdit : Input -> List (Html Msg)
+typeEdit input =
+  selectEdit "Text input type" (InputMessage << TypeEdit) ["text", "search", "email", "url", "tel", "password", "number", "datetime-local", "date", "month", "week", "time", "color"] (inputTypeToString input.type')
+
+sizeEdit : Input -> List (Html Msg)
+sizeEdit input =
+  selectEdit "Size edit" (InputMessage << SizeEdit) ["small", "normal", "large"] (sizeToString input.size)
+
+disabledEdit : Input -> List (Html Msg)
+disabledEdit input =
+  boolEdit "Disabled" (InputMessage << DisabledEdit) input.disabled
+
+readonlyEdit : Input -> List (Html Msg)
+readonlyEdit input =
+  boolEdit "Readonly" (InputMessage << ReadonlyEdit) input.readonly
+
+textEdit : String -> (String -> Msg) -> String -> List (Html Msg)
+textEdit label msg value =
+  [ b [] [ text label ]
+  , hr [] []
+  , div [ class "form-group" ] [ Html.input [ class "form-control", onInput msg, Html.Attributes.value value ] [] ]
+  ]
+
+selectEdit : String -> (String -> Msg) -> List String -> String -> List (Html Msg)
+selectEdit label msg options selected =
+  let
+    os =
+      options
+        |> List.map (\option -> Html.option [ Html.Attributes.selected (option == selected) ] [ text option ] )
+  in
+    [ b [] [ text label ]
+    , hr [] []
+    , div [ class "form-group" ] [ Html.select [ class "form-control", onInput msg ] os ]
+    ]
+
+boolEdit : String -> (Bool -> Msg) -> Bool -> List (Html Msg)
+boolEdit label msg value =
+  [ b [] [ text label ]
+  , hr [] []
+  , div [ class "form-group" ] [ Html.label [ class "form-check-label" ] [ Html.input [ type' "checkbox", class "form-check-input", onCheck msg, Html.Attributes.checked value ] [] ] ]
+  ]
+
+optionsEdit : Input -> List (Html Msg)
+optionsEdit input =
   let
     lifunc = (\value -> li [] [text value, a [href "javascript:void(0);", class "pull-xs-right", onClick (InputMessage (RemoveOption value))] [text "remove"]] )
-    lis = List.map lifunc inp
+    lis = List.map lifunc input.options
   in
     [ b [] [text "Options"]
     , hr [] []
     , div
       [ class "input-group" ]
-      [ input [class "form-control", onInput (InputMessage << NewOptionEdit) ] []
+      [ Html.input [class "form-control", onInput (InputMessage << NewOptionEdit) ] []
       , span [class "input-group-btn"] [ Html.button [class "btn btn-secondary", type' "button", onClick (InputMessage SaveNewOption)] [text "Add"]] ]
     , div [] [ ul [] lis ]
     ]
-
-placeholderEdit : Maybe String -> List (Html Msg)
-placeholderEdit string =
-  let
-    placeholderText =
-      case string of
-        Just s -> s
-        Nothing -> ""
-  in
-    [ b [] [text "Placeholder"]
-    , hr [] []
-    , div  [ class "form-group" ] [ input [class "form-control", onInput (InputMessage << PlaceholderEdit), value placeholderText] [ ] ]
-    ]
-
-labelEdit : Maybe String -> List (Html Msg)
-labelEdit string =
-  let
-    labelText =
-      case string of
-        Just s -> s
-        Nothing -> ""
-  in
-    [ b [] [ text "Label" ]
-    , hr [] []
-    , div [ class "form-group" ] [ input [ class "form-control", onInput (InputMessage << LabelEdit), value labelText ] [] ]
-    ]
-
--- smallUnderEdit : List (Html Msg)
-smallUnderEdit string =
-  let
-    smallText =
-      case string of
-        Just s -> s
-        Nothing -> ""
-  in
-    [ b [] [ text "Small text under input" ]
-    , hr [] []
-    , div [ class "form-group" ] [ input [ class "form-control", value smallText, onInput (InputMessage << SmallEdit) ] [ ] ]
-    ]
-
-typeEdit : InputType -> List (Html Msg)
-typeEdit type' =
-  let
-    actualType = typeToText type'
-    o = (\optionType -> option [ selected (if optionType == actualType then True else False) ] [ text optionType ] )
-    options = [o "text", o "search", o "email", o "url", o "tel", o "password", o "number", o "datetime-local", o "date", o "month", o "week", o "time", o "color"]
-  in
-    [ b [] [ text "Text input type" ]
-    , hr [] []
-    , div [ class "form-group" ] [ Html.select [ class "form-control", onInput (InputMessage << TypeEdit) ] options ]
-    ]
-
-addon1Edit : Maybe String -> List (Html Msg)
-addon1Edit string =
-  let
-    addonText =
-      case string of
-        Just s -> s
-        Nothing -> ""
-  in
-  [ b [] [ text "First addon" ]
-  , hr [] []
-  , div [ class "form-group" ] [ input [ class "form-control", value addonText, onInput (InputMessage << FirstAddonEdit) ] [] ]
-  ]
-
-addon2Edit : Maybe String -> List (Html Msg)
-addon2Edit string =
-  let
-    addonText =
-      case string of
-        Just s -> s
-        Nothing -> ""
-  in
-  [ b [] [ text "Second addon" ]
-  , hr [] []
-  , div [ class "form-group" ] [ input [ class "form-control", value addonText, onInput (InputMessage << SecondAddonEdit) ] [] ]
-  ]
-
-sizeEdit : Size -> List (Html Msg)
-sizeEdit size =
-  let
-    options =
-      case size of
-        Small -> [ option [selected True] [ text "small" ], option [] [ text "normal" ], option [] [ text "large" ] ]
-        Normal -> [ option [] [ text "small" ], option [selected True] [ text "normal" ], option [] [ text "large" ] ]
-        Large -> [ option [] [ text "small" ], option [] [ text "normal" ], option [selected True] [ text "large" ] ]
-  in
-    [ b [] [ text "Size edit" ]
-    , hr [] []
-    , div [ class "form-group" ] [ Html.select [ class "form-control", onInput (InputMessage << SizeEdit) ] options ]
-    ]
-
--- disabledEdit : List (Html Msg)
-disabledEdit value =
-  [ b [] [ text "Disabled" ]
-  , hr [] []
-  , div [ class "form-group" ] [ label [ class "form-check-label" ] [ input [ type' "checkbox", class "form-check-input", onCheck (InputMessage << DisabledEdit), Html.Attributes.checked value ] [] ] ]
-  ]
-
--- readonlyEdit : List (Html Msg)
-readonlyEdit value =
-  [ b [] [ text "Readonly" ]
-  , hr [] []
-  , div [ class "form-group" ] [ label [ class "form-check-label" ] [ input [ type' "checkbox", class "form-check-input", onCheck (InputMessage << ReadonlyEdit), Html.Attributes.checked value ] [] ] ]
-  ]

@@ -1,5 +1,7 @@
 module FormModel exposing (..)
 
+import String
+
 type alias ClassList = List String
 type alias Id = Int
 type alias Placeholder = Maybe String
@@ -74,23 +76,15 @@ button :Input
 button =
   { blankInput | type' = Button }
 
-typeToText : InputType -> String
-typeToText type' =
+inputTypeToString : InputType -> String
+inputTypeToString type' =
   case type' of
-    Text -> "text"
-    Search -> "search"
-    Email -> "email"
-    Url -> "url"
-    Tel -> "tel"
-    Password -> "password"
-    Number -> "number"
     DatetimeLocal -> "datetime-local"
-    Date -> "date"
-    Month -> "month"
-    Week -> "week"
-    Time -> "time"
-    Color -> "color"
-    _ -> "resolve please"
+    _ -> (toString >> String.toLower) type'
+
+sizeToString : Size -> String
+sizeToString =
+  toString >> String.toLower
 
 textToType : String -> InputType
 textToType text =

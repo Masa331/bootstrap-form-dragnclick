@@ -1,38 +1,17 @@
-var _user$project$FormModel$typeToText = function (type$) {
-	var _p0 = type$;
-	switch (_p0.ctor) {
-		case 'Text':
-			return 'text';
-		case 'Search':
-			return 'search';
-		case 'Email':
-			return 'email';
-		case 'Url':
-			return 'url';
-		case 'Tel':
-			return 'tel';
-		case 'Password':
-			return 'password';
-		case 'Number':
-			return 'number';
-		case 'DatetimeLocal':
-			return 'datetime-local';
-		case 'Date':
-			return 'date';
-		case 'Month':
-			return 'month';
-		case 'Week':
-			return 'week';
-		case 'Time':
-			return 'time';
-		case 'Color':
-			return 'color';
-		default:
-			return 'resolve please';
-	}
+var _user$project$FormModel$sizeToString = function (_p0) {
+	return _elm_lang$core$String$toLower(
+		_elm_lang$core$Basics$toString(_p0));
 };
-var _user$project$FormModel$extractType = function (inp) {
-	return inp.type$;
+var _user$project$FormModel$inputTypeToString = function (type$) {
+	var _p1 = type$;
+	if (_p1.ctor === 'DatetimeLocal') {
+		return 'datetime-local';
+	} else {
+		return function (_p2) {
+			return _elm_lang$core$String$toLower(
+				_elm_lang$core$Basics$toString(_p2));
+		}(type$);
+	}
 };
 var _user$project$FormModel$Input = function (a) {
 	return function (b) {
@@ -65,8 +44,8 @@ var _user$project$FormModel$Large = {ctor: 'Large'};
 var _user$project$FormModel$Normal = {ctor: 'Normal'};
 var _user$project$FormModel$Small = {ctor: 'Small'};
 var _user$project$FormModel$textToSize = function (text) {
-	var _p1 = text;
-	switch (_p1) {
+	var _p3 = text;
+	switch (_p3) {
 		case 'small':
 			return _user$project$FormModel$Small;
 		case 'normal':
@@ -159,8 +138,8 @@ var _user$project$FormModel$textInput = _elm_lang$core$Native_Utils.update(
 	_user$project$FormModel$blankInput,
 	{type$: _user$project$FormModel$Text});
 var _user$project$FormModel$textToType = function (text) {
-	var _p2 = text;
-	switch (_p2) {
+	var _p4 = text;
+	switch (_p4) {
 		case 'text':
 			return _user$project$FormModel$Text;
 		case 'search':
