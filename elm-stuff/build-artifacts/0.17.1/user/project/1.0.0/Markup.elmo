@@ -4,13 +4,13 @@ var _user$project$Markup$isVoid = function (element) {
 	return A2(_elm_lang$core$List$member, element.tag, _user$project$Markup$voidElementsList);
 };
 var _user$project$Markup$closingTag = function (element) {
-	return _user$project$Markup$isVoid(element) ? '' : A2(
+	return A2(
 		_elm_lang$core$Basics_ops['++'],
 		'</',
 		A2(_elm_lang$core$Basics_ops['++'], element.tag, '>'));
 };
 var _user$project$Markup$htmlAttributeString = function (attribute) {
-	return _elm_lang$core$Native_Utils.eq(attribute.value, '') ? attribute.name : A2(
+	return A2(
 		_elm_lang$core$Basics_ops['++'],
 		attribute.name,
 		A2(
@@ -22,86 +22,79 @@ var _user$project$Markup$htmlAttributeString = function (attribute) {
 				A2(_elm_lang$core$Basics_ops['++'], attribute.value, '\"'))));
 };
 var _user$project$Markup$htmlAttributesString = function (attributes) {
-	var stringifiedAttributes = A2(_elm_lang$core$List$map, _user$project$Markup$htmlAttributeString, attributes);
-	return (_elm_lang$core$Native_Utils.cmp(
-		_elm_lang$core$List$length(attributes),
-		0) > 0) ? A2(
-		_elm_lang$core$Basics_ops['++'],
+	return A2(
+		_elm_lang$core$String$join,
 		' ',
-		A2(_elm_lang$core$String$join, ' ', stringifiedAttributes)) : '';
+		A2(_elm_lang$core$List$map, _user$project$Markup$htmlAttributeString, attributes));
 };
 var _user$project$Markup$openingTag = function (model) {
 	var attributes = _user$project$Markup$htmlAttributesString(model.attributes);
 	var tag = model.tag;
+	var value = A2(
+		_elm_lang$core$String$join,
+		' ',
+		_user$project$Utils$compact(
+			_elm_lang$core$Native_List.fromArray(
+				[tag, attributes])));
 	return A2(
 		_elm_lang$core$Basics_ops['++'],
 		'<',
-		A2(
-			_elm_lang$core$Basics_ops['++'],
-			tag,
-			A2(_elm_lang$core$Basics_ops['++'], attributes, '>')));
+		A2(_elm_lang$core$Basics_ops['++'], value, '>'));
 };
-var _user$project$Markup$wrapInTags = F2(
-	function (element, content) {
-		return A2(
-			_elm_lang$core$Basics_ops['++'],
-			_user$project$Markup$openingTag(element),
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				content,
-				_user$project$Markup$closingTag(element)));
-	});
 var _user$project$Markup$indent = function (level) {
 	return A2(_elm_lang$core$String$repeat, level, '  ');
 };
+var _user$project$Markup$inputToMarkup = F3(
+	function (nestingLevel, htmlTree, value) {
+		return A2(
+			_elm_lang$core$Basics_ops['++'],
+			'\n',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_user$project$Markup$indent(nestingLevel),
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_user$project$Markup$openingTag(htmlTree),
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						value,
+						_user$project$Markup$isVoid(htmlTree) ? '' : A2(
+							_elm_lang$core$Basics_ops['++'],
+							'\n',
+							A2(
+								_elm_lang$core$Basics_ops['++'],
+								_user$project$Markup$indent(nestingLevel),
+								_user$project$Markup$closingTag(htmlTree)))))));
+	});
 var _user$project$Markup$toElmHtmlNode = F2(
 	function (nestingLevel, model) {
+		var value = _elm_lang$core$Native_Utils.eq(model.value, '') ? '' : A2(
+			_elm_lang$core$Basics_ops['++'],
+			'\n',
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				_user$project$Markup$indent(nestingLevel + 1),
+				model.value));
 		var childs = function (_p0) {
 			var _p1 = _p0;
 			return _p1._0;
 		}(model.children);
+		var subNodes = A2(
+			_elm_lang$core$String$join,
+			' ',
+			A2(
+				_elm_lang$core$List$map,
+				_user$project$Markup$toElmHtmlNode(nestingLevel + 1),
+				childs));
 		var _p2 = childs;
 		if (_p2.ctor === '[]') {
-			return A2(
-				_elm_lang$core$Basics_ops['++'],
-				_user$project$Markup$indent(nestingLevel),
-				A2(_user$project$Markup$wrapInTags, model, model.value));
+			return A3(_user$project$Markup$inputToMarkup, nestingLevel, model, value);
 		} else {
-			var transformedChilds = A2(
-				_elm_lang$core$Basics_ops['++'],
-				'\n',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					A2(
-						_elm_lang$core$String$join,
-						'\n',
-						A2(
-							_elm_lang$core$List$map,
-							_user$project$Markup$toElmHtmlNode(nestingLevel + 1),
-							childs)),
-					(!_elm_lang$core$Native_Utils.eq(model.value, '')) ? A2(
-						_elm_lang$core$Basics_ops['++'],
-						'\n',
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							_user$project$Markup$indent(nestingLevel + 1),
-							A2(
-								_elm_lang$core$Basics_ops['++'],
-								model.value,
-								A2(
-									_elm_lang$core$Basics_ops['++'],
-									'\n',
-									_user$project$Markup$indent(nestingLevel))))) : A2(
-						_elm_lang$core$Basics_ops['++'],
-						'',
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							'\n',
-							_user$project$Markup$indent(nestingLevel)))));
-			return A2(
-				_elm_lang$core$Basics_ops['++'],
-				_user$project$Markup$indent(nestingLevel),
-				A2(_user$project$Markup$wrapInTags, model, transformedChilds));
+			return A3(
+				_user$project$Markup$inputToMarkup,
+				nestingLevel,
+				model,
+				A2(_elm_lang$core$Basics_ops['++'], subNodes, value));
 		}
 	});
 var _user$project$Markup$view = function (tree) {

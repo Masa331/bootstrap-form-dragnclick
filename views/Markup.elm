@@ -3,6 +3,7 @@ module Markup exposing (view)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import String
+import Utils
 
 import Models exposing (..)
 import HtmlTree exposing (..)
@@ -25,57 +26,52 @@ toElmHtmlNode : Int -> HtmlTree.Element -> String
 toElmHtmlNode nestingLevel model =
   let
     childs = (\ (Children childs) -> childs) model.children
+    subNodes = List.map (toElmHtmlNode (nestingLevel + 1)) childs
+                |> String.join " "
+    value = if model.value == "" then "" else "\n" ++ (indent (nestingLevel + 1)) ++ model.value
   in
    case childs of
      [] ->
-       indent nestingLevel ++ wrapInTags model model.value
+      inputToMarkup nestingLevel model value
      x::xs ->
-       let
-         transformedChilds =
-           "\n" ++ (String.join "\n" (List.map (toElmHtmlNode (nestingLevel + 1)) childs))
-           ++ if model.value /= "" then "\n" ++ indent (nestingLevel + 1) ++ model.value ++ "\n" ++ indent (nestingLevel) else ""
-           ++ "\n" ++ indent nestingLevel
-       in
-         indent nestingLevel ++ wrapInTags model transformedChilds
+      inputToMarkup nestingLevel model (subNodes ++ value)
+
+inputToMarkup : Int -> HtmlTree.Element -> String -> String
+inputToMarkup nestingLevel htmlTree value =
+   "\n"
+   ++ indent nestingLevel ++ openingTag htmlTree
+
+   ++ value
+
+   ++ if isVoid htmlTree then "" else "\n" ++ indent nestingLevel ++ closingTag htmlTree
 
 indent : Int -> String
 indent level =
   String.repeat level "  "
-
-wrapInTags element content =
-  (openingTag element) ++ content  ++ (closingTag element)
 
 openingTag : Element -> String
 openingTag model =
   let
     tag = model.tag
     attributes = htmlAttributesString model.attributes
+    value = [tag, attributes]
+      |> Utils.compact
+      |> String.join " "
   in
-    "<" ++ tag ++ attributes ++ ">"
+    "<" ++ value ++ ">"
 
 htmlAttributesString : List HtmlTree.Attribute -> String
 htmlAttributesString attributes =
-  let
-    stringifiedAttributes = (List.map htmlAttributeString attributes)
-  in
-    if List.length attributes > 0 then
-      " " ++ (String.join " " stringifiedAttributes)
-    else
-      ""
+  List.map htmlAttributeString attributes
+    |> String.join " "
 
 htmlAttributeString : HtmlTree.Attribute -> String
 htmlAttributeString attribute =
-  if attribute.value == "" then
-    attribute.name
-  else
-    attribute.name ++ "=" ++ "\"" ++ attribute.value ++ "\""
+  attribute.name ++ "=" ++ "\"" ++ attribute.value ++ "\""
 
 closingTag : Element -> String
 closingTag element =
-  if isVoid element then
-    ""
-  else
-    "</" ++ element.tag ++ ">"
+  "</" ++ element.tag ++ ">"
 
 isVoid : Element -> Bool
 isVoid element =

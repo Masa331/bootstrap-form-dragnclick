@@ -1,0 +1,9 @@
+var _user$project$Utils$compact = function (list) {
+	return A2(
+		_elm_lang$core$List$filter,
+		function (_p0) {
+			return _elm_lang$core$Basics$not(
+				_elm_lang$core$String$isEmpty(_p0));
+		},
+		list);
+};
