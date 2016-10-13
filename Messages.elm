@@ -25,6 +25,7 @@ type InputMsg
   | SecondAddonEdit String
   | SizeEdit String
   | TypeEdit String
+  | RowNumberEdit String
   | NewOptionEdit String
   | SaveNewOption
   | RemoveOption String

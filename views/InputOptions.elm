@@ -13,26 +13,26 @@ view inp =
   let
     options =
       case inp.type' of
-        Text -> [ placeholderEdit, labelEdit, smallUnderEdit, typeEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
-        Select -> [ labelEdit, optionsEdit, smallUnderEdit, sizeEdit, disabledEdit ]
-        TextArea -> [ placeholderEdit, labelEdit, smallUnderEdit, addon1Edit ]
-        Multiselect -> []
-        FileUpload -> []
-        Radio -> []
-        Checkbox -> []
-        Button -> []
-        Search -> []
-        Email -> []
-        Url -> []
-        Tel -> []
-        Password -> []
-        Number -> []
-        DatetimeLocal -> []
-        Date -> []
-        Month -> []
-        Week -> []
-        Time -> []
-        Color -> []
+        Text -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
+        Select -> [ typeEdit, labelEdit, optionsEdit, smallUnderEdit, sizeEdit, disabledEdit ]
+        TextArea -> [ typeEdit, rowNumberEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit ]
+        Multiselect -> [ typeEdit, labelEdit, optionsEdit, smallUnderEdit, disabledEdit ]
+        FileUpload -> [ typeEdit, labelEdit, smallUnderEdit, disabledEdit ]
+        Radio -> [ typeEdit, labelEdit, optionsEdit, smallUnderEdit, disabledEdit ]
+        Checkbox -> [ typeEdit, labelEdit, smallUnderEdit, disabledEdit ]
+        Button -> [ typeEdit, labelEdit ]
+        Search -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
+        Email -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
+        Url -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
+        Tel -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
+        Password -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
+        Number -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
+        DatetimeLocal -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
+        Date -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
+        Month -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
+        Week -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
+        Time -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
+        Color -> [ typeEdit, labelEdit, smallUnderEdit, disabledEdit ]
   in
     options
       |> List.map (\f -> f inp)
@@ -60,7 +60,7 @@ addon2Edit input =
 
 typeEdit : Input -> List (Html Msg)
 typeEdit input =
-  selectEdit "Text input type" (InputMessage << TypeEdit) ["text", "search", "email", "url", "tel", "password", "number", "datetime-local", "date", "month", "week", "time", "color"] (inputTypeToString input.type')
+  selectEdit "Text input type" (InputMessage << TypeEdit) stringInputTypes (inputTypeToString input.type')
 
 sizeEdit : Input -> List (Html Msg)
 sizeEdit input =
@@ -98,6 +98,17 @@ boolEdit label msg value =
   [ b [] [ text label ]
   , hr [] []
   , div [ class "form-group" ] [ Html.label [ class "form-check-label" ] [ Html.input [ type' "checkbox", class "form-check-input", onCheck msg, Html.Attributes.checked value ] [] ] ]
+  ]
+
+rowNumberEdit : Input -> List (Html Msg)
+rowNumberEdit input =
+  numberEdit "Number of rows" (InputMessage << RowNumberEdit) input.rowNumber
+
+numberEdit : String -> (String -> Msg) -> String -> List (Html Msg)
+numberEdit label msg value =
+  [ b [] [ text label ]
+  , hr [] []
+  , div [ class "form-group" ] [ Html.input [ type' "number", class "form-control", onInput msg, Html.Attributes.value value ] [] ]
   ]
 
 optionsEdit : Input -> List (Html Msg)

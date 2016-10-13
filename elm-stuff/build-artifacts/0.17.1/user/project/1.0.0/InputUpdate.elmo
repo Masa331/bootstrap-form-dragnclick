@@ -55,6 +55,13 @@ var _user$project$InputUpdate$typeEditFunc = F2(
 			inp,
 			{type$: neco});
 	});
+var _user$project$InputUpdate$rowNumberEditFunc = F2(
+	function (inp, newRowNumber) {
+		var neco = newRowNumber;
+		return _elm_lang$core$Native_Utils.update(
+			inp,
+			{rowNumber: neco});
+	});
 var _user$project$InputUpdate$sizeEditFunc = F2(
 	function (inp, newSize) {
 		var neco = _user$project$FormModel$textToSize(newSize);
@@ -129,6 +136,8 @@ var _user$project$InputUpdate$update = F2(
 				return A3(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$sizeEditFunc, model, _p2._0);
 			case 'TypeEdit':
 				return A3(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$typeEditFunc, model, _p2._0);
+			case 'RowNumberEdit':
+				return A3(_user$project$InputUpdate$updateInputAttribute, _user$project$InputUpdate$rowNumberEditFunc, model, _p2._0);
 			case 'NewOptionEdit':
 				return {
 					ctor: '_Tuple2',

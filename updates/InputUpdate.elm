@@ -25,6 +25,8 @@ update msg model =
       updateInputAttribute sizeEditFunc model newSize
     TypeEdit newType ->
       updateInputAttribute typeEditFunc model newType
+    RowNumberEdit newRowNumber ->
+      updateInputAttribute rowNumberEditFunc model newRowNumber
     NewOptionEdit value ->
       ({ model | newOption = value }, Cmd.none)
     SaveNewOption ->
@@ -66,6 +68,13 @@ sizeEditFunc inp newSize =
     neco = textToSize newSize
   in
     { inp | size = neco }
+
+rowNumberEditFunc : Input -> RowNumber -> Input
+rowNumberEditFunc inp newRowNumber =
+  let
+    neco = newRowNumber
+  in
+    { inp | rowNumber = neco }
 
 typeEditFunc : Input -> String -> Input
 typeEditFunc inp newType =

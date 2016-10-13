@@ -15,6 +15,7 @@ inputToHtmlTree input =
     Radio -> radioToHtmlTree input
     Checkbox -> checkboxToHtmlTree input
     Button -> buttonToHtmlTree input
+    Color -> colorToHtmlTree input
     _ -> textInputToHtmlTree input
 
 textInputToHtmlTree inp =
@@ -31,6 +32,26 @@ textInputToHtmlTree inp =
     children =
       [ toLabel inp.label
       , wrapInAddons inputAttrs inp
+      , toSmall inp.small
+      , toLinks inp.id
+      ] |> List.filterMap identity
+  in
+    Element "div" [Attribute "class" "form-group"] (Children children) ""
+
+colorToHtmlTree inp =
+  let
+    inputAttrs =
+      [ toId inp.id
+      , toPlaceholder inp.placeholder
+      , toDisabled inp.disabled
+      , toReadonly inp.readonly
+      , toClasses ((sizeClass inp.size) :: [ "form-control" ])
+      , toType inp.type'
+      ] |> List.filterMap identity
+
+    children =
+      [ toLabel inp.label
+      , Just (Element "input" inputAttrs (Children []) "")
       , toSmall inp.small
       , toLinks inp.id
       ] |> List.filterMap identity
@@ -62,13 +83,13 @@ textAreaToHtmlTree inp =
       , toPlaceholder inp.placeholder
       , toDisabled inp.disabled
       , toReadonly inp.readonly
-      , toClasses ((sizeClass inp.size) :: [ "form-control" ])
-      , Just (Attribute "rows" (toString inp.rowNumber))
+      , toClasses [ "form-control" ]
+      , Just (Attribute "rows" (inp.rowNumber))
       ] |> List.filterMap identity
 
     children =
       [ toLabel inp.label
-      , Just (Element "textarea" inputAttrs (Children []) "")
+      , wrapInAddons inputAttrs inp
       , toLinks inp.id
       ] |> List.filterMap identity
   in
@@ -98,7 +119,6 @@ fileUploadToHtmlTree inp =
     inputAttrs =
       [ toId inp.id
       , toDisabled inp.disabled
-      -- , toClasses inp.classList Normal
       , toClasses ((sizeClass inp.size) :: inp.classList)
       , Just (Attribute "type" "file")
       ] |> List.filterMap identity
@@ -114,18 +134,28 @@ fileUploadToHtmlTree inp =
 
 radioToHtmlTree inp =
   let
-    options = List.map (\value -> Just (toRadioOption inp.id 1 value)) inp.options
+    options = List.map (\value -> Just (toRadioOption inp.id 1 value (toDisabled inp.disabled))) inp.options
     children =
       [ toLegend inp.label ]
       ++ options
+      ++ [ toSmall inp.small ]
       ++ [ toLinks inp.id ]
       |> List.filterMap identity
   in
     Element "fieldset" [Attribute "class" "form-group"] (Children children ) ""
 
-toRadioOption id index value =
+toRadioOption id index value disabled =
   let
-    input = Element "input" [Attribute "type" "radio", Attribute "class" "form-check-input", Attribute "name" (toString id), Attribute "id" (toString id), Attribute "value" value] (Children []) ""
+    inputAttrs =
+      [ Just (Attribute "type" "radio")
+      , Just (Attribute "class" "form-check-input")
+      , Just (Attribute "name" (toString id))
+      , Just (Attribute "id" (toString id))
+      , Just (Attribute "value" value)
+      , disabled
+      ] |> List.filterMap identity
+
+    input = Element "input" inputAttrs (Children []) ""
     children = Element "label" [Attribute "class" "form-check-label"] (Children [input]) value
   in
     Element "div" [Attribute "class" "form-check"] (Children [children]) ""
@@ -218,11 +248,15 @@ toClasses classList =
   in
     Just (Attribute "class" value)
 
-wrapInAddons inputAttrs attrs =
+wrapInAddons inputAttrs input =
   let
-    add1 = toAddon attrs.addon1
-    add2 = toAddon attrs.addon2
-    input1 = Just (Element "input" inputAttrs (Children []) "")
+    add1 = toAddon input.addon1
+    add2 = toAddon input.addon2
+    inputType =
+      case input.type' of
+        TextArea -> "textarea"
+        _ -> "input"
+    input1 = Just (Element inputType inputAttrs (Children []) "")
   in
     if List.isEmpty (List.filterMap identity [add1, add2]) then
       input1

@@ -1,3 +1,11 @@
+var _user$project$FormModel$stringInputTypes = _elm_lang$core$Native_List.fromArray(
+	['text', 'textarea', 'select', 'multiselect', 'fileupload', 'radio', 'checkbox', 'button', 'search', 'email', 'url', 'tel', 'password', 'number', 'datetime-local', 'date', 'month', 'week', 'time', 'color']);
+var _user$project$FormModel$rowsToNumber = function (rowNumber) {
+	return A2(
+		_elm_lang$core$Result$withDefault,
+		3,
+		_elm_lang$core$String$toInt(rowNumber));
+};
 var _user$project$FormModel$sizeToString = function (_p0) {
 	return _elm_lang$core$String$toLower(
 		_elm_lang$core$Basics$toString(_p0));
@@ -89,13 +97,13 @@ var _user$project$FormModel$blankInput = {
 	addon1: _elm_lang$core$Maybe$Nothing,
 	addon2: _elm_lang$core$Maybe$Nothing,
 	small: _elm_lang$core$Maybe$Nothing,
-	rowNumber: 1,
+	rowNumber: '1',
 	options: _elm_lang$core$Native_List.fromArray(
 		[])
 };
 var _user$project$FormModel$textArea = _elm_lang$core$Native_Utils.update(
 	_user$project$FormModel$blankInput,
-	{type$: _user$project$FormModel$TextArea, rowNumber: 3});
+	{type$: _user$project$FormModel$TextArea, rowNumber: '3'});
 var _user$project$FormModel$select = _elm_lang$core$Native_Utils.update(
 	_user$project$FormModel$blankInput,
 	{
@@ -142,6 +150,20 @@ var _user$project$FormModel$textToType = function (text) {
 	switch (_p4) {
 		case 'text':
 			return _user$project$FormModel$Text;
+		case 'textarea':
+			return _user$project$FormModel$TextArea;
+		case 'select':
+			return _user$project$FormModel$Select;
+		case 'multiselect':
+			return _user$project$FormModel$Multiselect;
+		case 'fileupload':
+			return _user$project$FormModel$FileUpload;
+		case 'radio':
+			return _user$project$FormModel$Radio;
+		case 'checkbox':
+			return _user$project$FormModel$Checkbox;
+		case 'button':
+			return _user$project$FormModel$Button;
 		case 'search':
 			return _user$project$FormModel$Search;
 		case 'email':

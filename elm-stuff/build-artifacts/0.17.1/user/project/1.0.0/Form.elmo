@@ -1,5 +1,6 @@
 var _user$project$Form$createAttribute = function (attribute) {
-	return A2(_elm_lang$html$Html_Attributes$attribute, attribute.name, attribute.value);
+	return _elm_lang$core$Native_Utils.eq(attribute.name, 'rows') ? _elm_lang$html$Html_Attributes$rows(
+		_user$project$FormModel$rowsToNumber(attribute.value)) : A2(_elm_lang$html$Html_Attributes$attribute, attribute.name, attribute.value);
 };
 var _user$project$Form$createAttributes = function (model) {
 	return A2(_elm_lang$core$List$map, _user$project$Form$createAttribute, model.attributes);

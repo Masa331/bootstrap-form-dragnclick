@@ -5,7 +5,7 @@ import String
 type alias ClassList = List String
 type alias Id = Int
 type alias Placeholder = Maybe String
-type alias RowNumber = Int
+type alias RowNumber = String
 type alias Label = Maybe String
 type Size = Small | Normal | Large
 
@@ -41,7 +41,7 @@ blankInput =
   , addon1 = Nothing
   , addon2 = Nothing
   , small = Nothing
-  , rowNumber = 1
+  , rowNumber = "1"
   , options = [] }
 
 textInput : Input
@@ -50,7 +50,7 @@ textInput =
 
 textArea : Input
 textArea =
-  { blankInput | type' = TextArea, rowNumber = 3 }
+  { blankInput | type' = TextArea, rowNumber = "3" }
 
 select : Input
 select =
@@ -86,10 +86,22 @@ sizeToString : Size -> String
 sizeToString =
   toString >> String.toLower
 
+rowsToNumber : RowNumber -> Int
+rowsToNumber rowNumber =
+  String.toInt rowNumber
+    |> Result.withDefault 3
+
 textToType : String -> InputType
 textToType text =
   case text of
     "text" -> Text
+    "textarea" -> TextArea
+    "select" -> Select
+    "multiselect" -> Multiselect
+    "fileupload" -> FileUpload
+    "radio" -> Radio
+    "checkbox" -> Checkbox
+    "button" -> Button
     "search" -> Search
     "email" -> Email
     "url" -> Url
@@ -111,3 +123,27 @@ textToSize text =
     "normal" -> Normal
     "large" -> Large
     _ -> Normal
+
+stringInputTypes : List String
+stringInputTypes =
+  [ "text"
+  , "textarea"
+  , "select"
+  , "multiselect"
+  , "fileupload"
+  , "radio"
+  , "checkbox"
+  , "button"
+  , "search"
+  , "email"
+  , "url"
+  , "tel"
+  , "password"
+  , "number"
+  , "datetime-local"
+  , "date"
+  , "month"
+  , "week"
+  , "time"
+  , "color"
+  ]

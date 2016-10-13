@@ -55,9 +55,12 @@ idToInt id =
       Ok val -> val
       Err _ -> 1
 
-
 createAttributes model =
   List.map createAttribute model.attributes
 
+-- createAttribute : Attribute -> Html.Attribute
 createAttribute attribute =
-  Html.Attributes.attribute attribute.name attribute.value
+  if attribute.name == "rows" then
+    Html.Attributes.rows (rowsToNumber attribute.value)
+  else
+    Html.Attributes.attribute attribute.name attribute.value

@@ -26,6 +26,9 @@ var _user$project$Messages$SaveNewOption = {ctor: 'SaveNewOption'};
 var _user$project$Messages$NewOptionEdit = function (a) {
 	return {ctor: 'NewOptionEdit', _0: a};
 };
+var _user$project$Messages$RowNumberEdit = function (a) {
+	return {ctor: 'RowNumberEdit', _0: a};
+};
 var _user$project$Messages$TypeEdit = function (a) {
 	return {ctor: 'TypeEdit', _0: a};
 };
