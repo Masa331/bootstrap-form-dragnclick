@@ -30,7 +30,7 @@ formEdit : Model -> Html Msg
 formEdit model =
   let
     inputs = List.map inputToHtmlTree model.form
-    htmlTree = HtmlTree.Element "form" [] (HtmlTree.Children inputs) ""
+    htmlTree = HtmlTree.Element "form" [] (HtmlTree.Children inputs) "" []
   in
     div
       []
@@ -38,7 +38,10 @@ formEdit model =
         [ class "row" ]
         [ div
            [ class "col-sm-8" ]
-           [ div [ class "bd-example" ] (Form.view htmlTree)
+           [ div [] [text (toString model.mousePosition) ]
+           , div [] [text (toString model.elementMap) ]
+           , div [] [text (toString model.currentlyDraggedInputId) ]
+           , div [ class "bd-example" ] (Form.view htmlTree)
            , div [ class "highlight" ] [ Markup.view htmlTree ] ]
         , div
            [ class "col-sm-4" ]
@@ -50,7 +53,7 @@ inputEdit : Input -> Html Msg
 inputEdit input =
   let
     inputs = [inputToHtmlTree input]
-    htmlTree = HtmlTree.Element "form" [] (HtmlTree.Children inputs) ""
+    htmlTree = HtmlTree.Element "form" [] (HtmlTree.Children inputs) "" []
   in
     div
       []

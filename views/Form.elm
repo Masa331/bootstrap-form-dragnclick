@@ -24,7 +24,7 @@ toElmHtmlNode htmlTree =
     attributes = createAttributes htmlTree
     childs = (\ (HtmlTree.Children childs) -> childs) htmlTree.children
     value = Html.text htmlTree.value
-    node = Html.node htmlTree.tag attributes
+    node = Html.node htmlTree.tag (attributes ++ htmlTree.events)
   in
     case childs of
       [] ->
@@ -55,10 +55,11 @@ idToInt id =
       Ok val -> val
       Err _ -> 1
 
+createAttributes : HtmlTree.Element -> List (Html.Attribute a)
 createAttributes model =
   List.map createAttribute model.attributes
 
--- createAttribute : Attribute -> Html.Attribute
+createAttribute : HtmlTree.Attribute -> Html.Attribute a
 createAttribute attribute =
   if attribute.name == "rows" then
     Html.Attributes.rows (rowsToNumber attribute.value)

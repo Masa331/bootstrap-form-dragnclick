@@ -26,6 +26,19 @@
     <script type="text/javascript" charset="utf-8">
       var node = document.getElementById('elm-container');
       var app = Elm.Main.embed(node)
+
+      app.ports.getFormMap.subscribe(function(id) {
+        var form = document.getElementsByTagName('form')[0];
+
+        if (form) {
+          // var position = element.getBoundingClientRect();
+          var childs = [].slice.call(form.children);
+          var func = function(el) { return [el.getBoundingClientRect()]; };
+          var childsPositions = childs.map(func);
+
+          app.ports.determinedFormMap.send(childsPositions);
+        }
+      });
     </script>
   </body>
 </html>

@@ -92,7 +92,10 @@ var _user$project$Form$toElmHtmlNode = function (htmlTree) {
 		return _p2._0;
 	}(htmlTree.children);
 	var attributes = _user$project$Form$createAttributes(htmlTree);
-	var node = A2(_elm_lang$html$Html$node, htmlTree.tag, attributes);
+	var node = A2(
+		_elm_lang$html$Html$node,
+		htmlTree.tag,
+		A2(_elm_lang$core$Basics_ops['++'], attributes, htmlTree.events));
 	var _p3 = childs;
 	if (_p3.ctor === '[]') {
 		return _elm_lang$core$Native_Utils.eq(htmlTree.tag, 'editLinks') ? _elm_lang$core$Native_List.fromArray(

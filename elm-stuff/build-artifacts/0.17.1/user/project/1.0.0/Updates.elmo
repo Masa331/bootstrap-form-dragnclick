@@ -1,3 +1,33 @@
+var _user$project$Updates$mouseUpdate = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
+			case 'MouseDown':
+				var newModel = _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						currentlyDraggedInputId: _elm_lang$core$Maybe$Just(_p0._0)
+					});
+				return {
+					ctor: '_Tuple2',
+					_0: newModel,
+					_1: _user$project$Utils$getFormMap('ahoj')
+				};
+			case 'MouseUp':
+				var newModel = _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						currentlyDraggedInputId: _elm_lang$core$Maybe$Nothing,
+						mousePosition: {x: 0, y: 0}
+					});
+				return {ctor: '_Tuple2', _0: newModel, _1: _elm_lang$core$Platform_Cmd$none};
+			default:
+				var newModel = _elm_lang$core$Native_Utils.update(
+					model,
+					{mousePosition: _p0._0});
+				return {ctor: '_Tuple2', _0: newModel, _1: _elm_lang$core$Platform_Cmd$none};
+		}
+	});
 var _user$project$Updates$inputUpdate = F2(
 	function (msg, model) {
 		return A2(_user$project$InputUpdate$update, msg, model);

@@ -56,6 +56,21 @@ var _user$project$Messages$LabelEdit = function (a) {
 var _user$project$Messages$PlaceholderEdit = function (a) {
 	return {ctor: 'PlaceholderEdit', _0: a};
 };
+var _user$project$Messages$MouseMove = function (a) {
+	return {ctor: 'MouseMove', _0: a};
+};
+var _user$project$Messages$MouseUp = function (a) {
+	return {ctor: 'MouseUp', _0: a};
+};
+var _user$project$Messages$MouseDown = function (a) {
+	return {ctor: 'MouseDown', _0: a};
+};
+var _user$project$Messages$MapDetermined = function (a) {
+	return {ctor: 'MapDetermined', _0: a};
+};
+var _user$project$Messages$MouseMessage = function (a) {
+	return {ctor: 'MouseMessage', _0: a};
+};
 var _user$project$Messages$InputMessage = function (a) {
 	return {ctor: 'InputMessage', _0: a};
 };

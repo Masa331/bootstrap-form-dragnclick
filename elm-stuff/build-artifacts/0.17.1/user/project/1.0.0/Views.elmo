@@ -3,13 +3,15 @@ var _user$project$Views$inputEdit = function (input) {
 		[
 			_user$project$InputToHtmlTreeConverter$inputToHtmlTree(input)
 		]);
-	var htmlTree = A4(
+	var htmlTree = A5(
 		_user$project$HtmlTree$Element,
 		'form',
 		_elm_lang$core$Native_List.fromArray(
 			[]),
 		_user$project$HtmlTree$Children(inputs),
-		'');
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[]));
 	return A2(
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
@@ -74,13 +76,15 @@ var _user$project$Views$inputEdit = function (input) {
 };
 var _user$project$Views$formEdit = function (model) {
 	var inputs = A2(_elm_lang$core$List$map, _user$project$InputToHtmlTreeConverter$inputToHtmlTree, model.form);
-	var htmlTree = A4(
+	var htmlTree = A5(
 		_user$project$HtmlTree$Element,
 		'form',
 		_elm_lang$core$Native_List.fromArray(
 			[]),
 		_user$project$HtmlTree$Children(inputs),
-		'');
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[]));
 	return A2(
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
@@ -103,6 +107,33 @@ var _user$project$Views$formEdit = function (model) {
 							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
+								A2(
+								_elm_lang$html$Html$div,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text(
+										_elm_lang$core$Basics$toString(model.mousePosition))
+									])),
+								A2(
+								_elm_lang$html$Html$div,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text(
+										_elm_lang$core$Basics$toString(model.elementMap))
+									])),
+								A2(
+								_elm_lang$html$Html$div,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text(
+										_elm_lang$core$Basics$toString(model.currentlyDraggedInputId))
+									])),
 								A2(
 								_elm_lang$html$Html$div,
 								_elm_lang$core$Native_List.fromArray(

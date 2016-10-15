@@ -2,9 +2,9 @@ var _user$project$HtmlTree$Attribute = F2(
 	function (a, b) {
 		return {name: a, value: b};
 	});
-var _user$project$HtmlTree$Element = F4(
-	function (a, b, c, d) {
-		return {tag: a, attributes: b, children: c, value: d};
+var _user$project$HtmlTree$Element = F5(
+	function (a, b, c, d, e) {
+		return {tag: a, attributes: b, children: c, value: d, events: e};
 	});
 var _user$project$HtmlTree$Children = function (a) {
 	return {ctor: 'Children', _0: a};
@@ -23,12 +23,13 @@ var _user$project$HtmlTree$removeElementRecursively = F2(
 			childs);
 		var _p2 = childs;
 		if (_p2.ctor === '[]') {
-			return A4(
+			return A5(
 				_user$project$HtmlTree$Element,
 				tree.tag,
 				tree.attributes,
 				_user$project$HtmlTree$Children(filteredChilds),
-				tree.value);
+				tree.value,
+				tree.events);
 		} else {
 			var innerChilds = _user$project$HtmlTree$Children(
 				A2(
@@ -37,6 +38,6 @@ var _user$project$HtmlTree$removeElementRecursively = F2(
 						return A2(_user$project$HtmlTree$removeElementRecursively, tag, child);
 					},
 					filteredChilds));
-			return A4(_user$project$HtmlTree$Element, tree.tag, tree.attributes, innerChilds, tree.value);
+			return A5(_user$project$HtmlTree$Element, tree.tag, tree.attributes, innerChilds, tree.value, tree.events);
 		}
 	});

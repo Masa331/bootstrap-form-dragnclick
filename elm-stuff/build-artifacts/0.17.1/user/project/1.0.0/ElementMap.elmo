@@ -1,0 +1,4 @@
+var _user$project$ElementMap$ElementDimensions = F8(
+	function (a, b, c, d, e, f, g, h) {
+		return {x: a, y: b, width: c, height: d, top: e, right: f, bottom: g, left: h};
+	});

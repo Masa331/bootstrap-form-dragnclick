@@ -24,9 +24,9 @@ var _user$project$Models$currentlyEdditedInput = function (model) {
 				model.form));
 	}
 };
-var _user$project$Models$Model = F3(
-	function (a, b, c) {
-		return {form: a, currentlyEdditedInputId: b, newOption: c};
+var _user$project$Models$Model = F6(
+	function (a, b, c, d, e, f) {
+		return {form: a, currentlyEdditedInputId: b, currentlyDraggedInputId: c, newOption: d, mousePosition: e, elementMap: f};
 	});
 var _user$project$Models$initial = function () {
 	var inputs = _elm_lang$core$Native_List.fromArray(
@@ -62,5 +62,16 @@ var _user$project$Models$initial = function () {
 				label: _elm_lang$core$Maybe$Just('Register!')
 			})
 		]);
-	return A3(_user$project$Models$Model, inputs, _elm_lang$core$Maybe$Nothing, '');
+	return A6(
+		_user$project$Models$Model,
+		inputs,
+		_elm_lang$core$Maybe$Nothing,
+		_elm_lang$core$Maybe$Nothing,
+		'',
+		{x: 0, y: 0},
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$core$Native_List.fromArray(
+				[])
+			]));
 }();

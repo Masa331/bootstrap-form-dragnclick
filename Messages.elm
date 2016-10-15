@@ -1,5 +1,8 @@
 module Messages exposing (..)
 
+import Mouse
+import ElementMap
+
 type FormMsg =
   AddTextInput
   | AddSelect
@@ -30,6 +33,13 @@ type InputMsg
   | SaveNewOption
   | RemoveOption String
 
+type MouseMsg
+  = MouseDown Int
+  | MouseUp Mouse.Position
+  | MouseMove Mouse.Position
+
 type Msg =
   FormMessage FormMsg
   | InputMessage InputMsg
+  | MouseMessage MouseMsg
+  | MapDetermined ElementMap.ElementMap

@@ -1,9 +1,18 @@
 module Models exposing (Model, initial, currentlyEdditedInput, maxInputId)
 
+import Mouse
+
 import HtmlTree
+import ElementMap
 import FormModel exposing (blankInput, textInput, textArea, select, checkbox, button)
 
-type alias Model = { form: FormModel.Form, currentlyEdditedInputId: Maybe Int, newOption: String }
+type alias Model = { form: FormModel.Form
+                   , currentlyEdditedInputId: Maybe Int
+                   , currentlyDraggedInputId: Maybe Int
+                   , newOption: String
+                   , mousePosition : Mouse.Position
+                   , elementMap : ElementMap.ElementMap
+                   }
 
 initial : Model
 initial =
@@ -15,7 +24,7 @@ initial =
              , { button | id = 5, label = Just "Register!" }
              ]
   in
-    Model inputs Nothing ""
+    Model inputs Nothing Nothing "" { x = 0, y = 0 } [[]]
 
 currentlyEdditedInput : Model -> Maybe FormModel.Input
 currentlyEdditedInput model =

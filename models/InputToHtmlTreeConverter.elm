@@ -1,9 +1,11 @@
 module InputToHtmlTreeConverter exposing (..)
 
+import String
+import Html.Events
+
 import HtmlTree exposing (..)
 import FormModel exposing (..)
-
-import String
+import Messages
 
 inputToHtmlTree input =
   case input.type' of
@@ -17,6 +19,9 @@ inputToHtmlTree input =
     Button -> buttonToHtmlTree input
     Color -> colorToHtmlTree input
     _ -> textInputToHtmlTree input
+
+onMouseDown id =
+  Html.Events.onMouseDown ((Messages.MouseMessage (Messages.MouseDown id)))
 
 textInputToHtmlTree inp =
   let
@@ -36,7 +41,7 @@ textInputToHtmlTree inp =
       , toLinks inp.id
       ] |> List.filterMap identity
   in
-    Element "div" [Attribute "class" "form-group"] (Children children) ""
+    Element "div" [Attribute "class" "form-group"] (Children children) "" [onMouseDown inp.id]
 
 colorToHtmlTree inp =
   let
@@ -51,12 +56,12 @@ colorToHtmlTree inp =
 
     children =
       [ toLabel inp.label
-      , Just (Element "input" inputAttrs (Children []) "")
+      , Just (Element "input" inputAttrs (Children []) "" [])
       , toSmall inp.small
       , toLinks inp.id
       ] |> List.filterMap identity
   in
-    Element "div" [Attribute "class" "form-group"] (Children children) ""
+    Element "div" [Attribute "class" "form-group"] (Children children) "" []
 
 selectToHtmlTree inp =
   let
@@ -66,15 +71,15 @@ selectToHtmlTree inp =
       , toClasses ((sizeClass inp.size) :: [ "form-control" ])
       ] |> List.filterMap identity
 
-    options = List.map (\value -> Element "option" [] (Children []) value) inp.options
+    options = List.map (\value -> Element "option" [] (Children []) value []) inp.options
     children =
       [ toLabel inp.label
-      , Just (Element "select" inputAttrs (Children options) "")
+      , Just (Element "select" inputAttrs (Children options) "" [])
       , toSmall inp.small
       , toLinks inp.id
       ] |> List.filterMap identity
   in
-    Element "div" [Attribute "class" "form-group"] (Children children) ""
+    Element "div" [Attribute "class" "form-group"] (Children children) "" []
 
 textAreaToHtmlTree inp =
   let
@@ -93,7 +98,7 @@ textAreaToHtmlTree inp =
       , toLinks inp.id
       ] |> List.filterMap identity
   in
-    Element "div" [Attribute "class" "form-group"] (Children (children)) ""
+    Element "div" [Attribute "class" "form-group"] (Children (children)) "" []
 
 multiselectToHtmlTree inp =
   let
@@ -104,15 +109,15 @@ multiselectToHtmlTree inp =
       , Just (Attribute "multiple" "multiple")
       ] |> List.filterMap identity
 
-    options = List.map (\value -> Element "option" [] (Children []) value) inp.options
+    options = List.map (\value -> Element "option" [] (Children []) value []) inp.options
     children =
       [ toLabel inp.label
-      , Just (Element "select" inputAttrs (Children options) "")
+      , Just (Element "select" inputAttrs (Children options) "" [])
       , toSmall inp.small
       , toLinks inp.id
       ] |> List.filterMap identity
   in
-    Element "div" [Attribute "class" "form-group"] (Children children) ""
+    Element "div" [Attribute "class" "form-group"] (Children children) "" []
 
 fileUploadToHtmlTree inp =
   let
@@ -125,12 +130,12 @@ fileUploadToHtmlTree inp =
 
     children =
       [ toLabel inp.label
-      , Just (Element "input" inputAttrs (Children []) "")
+      , Just (Element "input" inputAttrs (Children []) "" [])
       , toSmall inp.small
       , toLinks inp.id
       ] |> List.filterMap identity
   in
-    Element "div" [Attribute "class" "form-group"] (Children children) ""
+    Element "div" [Attribute "class" "form-group"] (Children children) "" []
 
 radioToHtmlTree inp =
   let
@@ -142,7 +147,7 @@ radioToHtmlTree inp =
       ++ [ toLinks inp.id ]
       |> List.filterMap identity
   in
-    Element "fieldset" [Attribute "class" "form-group"] (Children children ) ""
+    Element "fieldset" [Attribute "class" "form-group"] (Children children ) "" []
 
 toRadioOption id index value disabled =
   let
@@ -155,35 +160,35 @@ toRadioOption id index value disabled =
       , disabled
       ] |> List.filterMap identity
 
-    input = Element "input" inputAttrs (Children []) ""
-    children = Element "label" [Attribute "class" "form-check-label"] (Children [input]) value
+    input = Element "input" inputAttrs (Children []) "" []
+    children = Element "label" [Attribute "class" "form-check-label"] (Children [input]) value []
   in
-    Element "div" [Attribute "class" "form-check"] (Children [children]) ""
+    Element "div" [Attribute "class" "form-check"] (Children [children]) "" []
 
 
 checkboxToHtmlTree inp =
   let
-    input = Element "input" [Attribute "type" "checkbox", Attribute "class" "form-check-input"] (Children []) ""
+    input = Element "input" [Attribute "type" "checkbox", Attribute "class" "form-check-input"] (Children []) "" []
     label =
       case inp.label of
         Nothing ->
-          Just (Element "label" [Attribute "class" "form-check-label"] (Children [input]) "")
+          Just (Element "label" [Attribute "class" "form-check-label"] (Children [input]) "" [])
         Just value ->
-          Just (Element "label" [Attribute "class" "form-check-label"] (Children [input]) value)
+          Just (Element "label" [Attribute "class" "form-check-label"] (Children [input]) value [])
 
     links = toLinks inp.id
     children = [label, links] |> List.filterMap identity
   in
-    Element "div" [Attribute "class" "form-check"] (Children children) ""
+    Element "div" [Attribute "class" "form-check"] (Children children) "" []
 
 buttonToHtmlTree inp =
   let
     children =
-      [ Just (Element "button" [Attribute "type" "submit", Attribute "class" "btn btn-primary"] (Children []) (Maybe.withDefault "Submit" inp.label))
+      [ Just (Element "button" [Attribute "type" "submit", Attribute "class" "btn btn-primary"] (Children []) (Maybe.withDefault "Submit" inp.label) [])
       , toLinks inp.id
       ] |> List.filterMap identity
   in
-    Element "div" [Attribute "class" "my-container"] (Children children) ""
+    Element "div" [Attribute "class" "my-container"] (Children children) "" []
 
 -------------
 -- Helpers --
@@ -207,19 +212,19 @@ toReadonly value =
 
 toAddon : Maybe String -> Maybe Element
 toAddon value =
-  Maybe.map (\value -> Element "div" [Attribute "class" "input-group-addon"] (Children []) value) value
+  Maybe.map (\value -> Element "div" [Attribute "class" "input-group-addon"] (Children []) value []) value
 
 toSmall : Maybe String -> Maybe Element
 toSmall value =
-  Maybe.map (\value -> Element "small" [Attribute "class" "form-text text-muted"] (Children []) value) value
+  Maybe.map (\value -> Element "small" [Attribute "class" "form-text text-muted"] (Children []) value []) value
 
 toLabel : Maybe String -> Maybe Element
 toLabel value =
-  Maybe.map (\value -> Element "label" [Attribute "for" "input1"] (Children []) value) value
+  Maybe.map (\value -> Element "label" [Attribute "for" "input1"] (Children []) value []) value
 
 toLegend : Maybe String -> Maybe Element
 toLegend value =
-  Maybe.map (\value -> Element "legend" [] (Children []) value) value
+  Maybe.map (\value -> Element "legend" [] (Children []) value []) value
 
 toType : InputType -> Maybe Attribute
 toType value =
@@ -227,7 +232,7 @@ toType value =
 
 toLinks : Id -> Maybe Element
 toLinks value =
-  Just (Element "editLinks" [] (Children []) (toString value))
+  Just (Element "editLinks" [] (Children []) (toString value) [])
 
 sizeClass : Size -> String
 sizeClass size =
@@ -256,9 +261,9 @@ wrapInAddons inputAttrs input =
       case input.type' of
         TextArea -> "textarea"
         _ -> "input"
-    input1 = Just (Element inputType inputAttrs (Children []) "")
+    input1 = Just (Element inputType inputAttrs (Children []) "" [])
   in
     if List.isEmpty (List.filterMap identity [add1, add2]) then
       input1
     else
-      Just (Element "div" [Attribute "class" "input-group"] (Children ([add1, input1, add2] |> List.filterMap identity)) "")
+      Just (Element "div" [Attribute "class" "input-group"] (Children ([add1, input1, add2] |> List.filterMap identity)) "" [])

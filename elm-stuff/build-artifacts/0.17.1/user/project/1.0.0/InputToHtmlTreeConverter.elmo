@@ -24,7 +24,7 @@ var _user$project$InputToHtmlTreeConverter$sizeClass = function (size) {
 };
 var _user$project$InputToHtmlTreeConverter$toLinks = function (value) {
 	return _elm_lang$core$Maybe$Just(
-		A4(
+		A5(
 			_user$project$HtmlTree$Element,
 			'editLinks',
 			_elm_lang$core$Native_List.fromArray(
@@ -32,7 +32,9 @@ var _user$project$InputToHtmlTreeConverter$toLinks = function (value) {
 			_user$project$HtmlTree$Children(
 				_elm_lang$core$Native_List.fromArray(
 					[])),
-			_elm_lang$core$Basics$toString(value)));
+			_elm_lang$core$Basics$toString(value),
+			_elm_lang$core$Native_List.fromArray(
+				[])));
 };
 var _user$project$InputToHtmlTreeConverter$toType = function (value) {
 	return _elm_lang$core$Maybe$Just(
@@ -45,7 +47,7 @@ var _user$project$InputToHtmlTreeConverter$toLegend = function (value) {
 	return A2(
 		_elm_lang$core$Maybe$map,
 		function (value) {
-			return A4(
+			return A5(
 				_user$project$HtmlTree$Element,
 				'legend',
 				_elm_lang$core$Native_List.fromArray(
@@ -53,7 +55,9 @@ var _user$project$InputToHtmlTreeConverter$toLegend = function (value) {
 				_user$project$HtmlTree$Children(
 					_elm_lang$core$Native_List.fromArray(
 						[])),
-				value);
+				value,
+				_elm_lang$core$Native_List.fromArray(
+					[]));
 		},
 		value);
 };
@@ -61,7 +65,7 @@ var _user$project$InputToHtmlTreeConverter$toLabel = function (value) {
 	return A2(
 		_elm_lang$core$Maybe$map,
 		function (value) {
-			return A4(
+			return A5(
 				_user$project$HtmlTree$Element,
 				'label',
 				_elm_lang$core$Native_List.fromArray(
@@ -71,7 +75,9 @@ var _user$project$InputToHtmlTreeConverter$toLabel = function (value) {
 				_user$project$HtmlTree$Children(
 					_elm_lang$core$Native_List.fromArray(
 						[])),
-				value);
+				value,
+				_elm_lang$core$Native_List.fromArray(
+					[]));
 		},
 		value);
 };
@@ -79,7 +85,7 @@ var _user$project$InputToHtmlTreeConverter$toSmall = function (value) {
 	return A2(
 		_elm_lang$core$Maybe$map,
 		function (value) {
-			return A4(
+			return A5(
 				_user$project$HtmlTree$Element,
 				'small',
 				_elm_lang$core$Native_List.fromArray(
@@ -89,7 +95,9 @@ var _user$project$InputToHtmlTreeConverter$toSmall = function (value) {
 				_user$project$HtmlTree$Children(
 					_elm_lang$core$Native_List.fromArray(
 						[])),
-				value);
+				value,
+				_elm_lang$core$Native_List.fromArray(
+					[]));
 		},
 		value);
 };
@@ -97,7 +105,7 @@ var _user$project$InputToHtmlTreeConverter$toAddon = function (value) {
 	return A2(
 		_elm_lang$core$Maybe$map,
 		function (value) {
-			return A4(
+			return A5(
 				_user$project$HtmlTree$Element,
 				'div',
 				_elm_lang$core$Native_List.fromArray(
@@ -107,7 +115,9 @@ var _user$project$InputToHtmlTreeConverter$toAddon = function (value) {
 				_user$project$HtmlTree$Children(
 					_elm_lang$core$Native_List.fromArray(
 						[])),
-				value);
+				value,
+				_elm_lang$core$Native_List.fromArray(
+					[]));
 		},
 		value);
 };
@@ -122,14 +132,16 @@ var _user$project$InputToHtmlTreeConverter$wrapInAddons = F2(
 			}
 		}();
 		var input1 = _elm_lang$core$Maybe$Just(
-			A4(
+			A5(
 				_user$project$HtmlTree$Element,
 				inputType,
 				inputAttrs,
 				_user$project$HtmlTree$Children(
 					_elm_lang$core$Native_List.fromArray(
 						[])),
-				''));
+				'',
+				_elm_lang$core$Native_List.fromArray(
+					[])));
 		var add2 = _user$project$InputToHtmlTreeConverter$toAddon(input.addon2);
 		var add1 = _user$project$InputToHtmlTreeConverter$toAddon(input.addon1);
 		return _elm_lang$core$List$isEmpty(
@@ -138,7 +150,7 @@ var _user$project$InputToHtmlTreeConverter$wrapInAddons = F2(
 				_elm_lang$core$Basics$identity,
 				_elm_lang$core$Native_List.fromArray(
 					[add1, add2]))) ? input1 : _elm_lang$core$Maybe$Just(
-			A4(
+			A5(
 				_user$project$HtmlTree$Element,
 				'div',
 				_elm_lang$core$Native_List.fromArray(
@@ -151,7 +163,9 @@ var _user$project$InputToHtmlTreeConverter$wrapInAddons = F2(
 						_elm_lang$core$Basics$identity,
 						_elm_lang$core$Native_List.fromArray(
 							[add1, input1, add2]))),
-				''));
+				'',
+				_elm_lang$core$Native_List.fromArray(
+					[])));
 	});
 var _user$project$InputToHtmlTreeConverter$toReadonly = function (value) {
 	return value ? _elm_lang$core$Maybe$Just(
@@ -184,7 +198,7 @@ var _user$project$InputToHtmlTreeConverter$buttonToHtmlTree = function (inp) {
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$core$Maybe$Just(
-				A4(
+				A5(
 					_user$project$HtmlTree$Element,
 					'button',
 					_elm_lang$core$Native_List.fromArray(
@@ -195,10 +209,12 @@ var _user$project$InputToHtmlTreeConverter$buttonToHtmlTree = function (inp) {
 					_user$project$HtmlTree$Children(
 						_elm_lang$core$Native_List.fromArray(
 							[])),
-					A2(_elm_lang$core$Maybe$withDefault, 'Submit', inp.label))),
+					A2(_elm_lang$core$Maybe$withDefault, 'Submit', inp.label),
+					_elm_lang$core$Native_List.fromArray(
+						[]))),
 				_user$project$InputToHtmlTreeConverter$toLinks(inp.id)
 			]));
-	return A4(
+	return A5(
 		_user$project$HtmlTree$Element,
 		'div',
 		_elm_lang$core$Native_List.fromArray(
@@ -206,11 +222,13 @@ var _user$project$InputToHtmlTreeConverter$buttonToHtmlTree = function (inp) {
 				A2(_user$project$HtmlTree$Attribute, 'class', 'my-container')
 			]),
 		_user$project$HtmlTree$Children(children),
-		'');
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[]));
 };
 var _user$project$InputToHtmlTreeConverter$checkboxToHtmlTree = function (inp) {
 	var links = _user$project$InputToHtmlTreeConverter$toLinks(inp.id);
-	var input = A4(
+	var input = A5(
 		_user$project$HtmlTree$Element,
 		'input',
 		_elm_lang$core$Native_List.fromArray(
@@ -221,12 +239,14 @@ var _user$project$InputToHtmlTreeConverter$checkboxToHtmlTree = function (inp) {
 		_user$project$HtmlTree$Children(
 			_elm_lang$core$Native_List.fromArray(
 				[])),
-		'');
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[]));
 	var label = function () {
 		var _p2 = inp.label;
 		if (_p2.ctor === 'Nothing') {
 			return _elm_lang$core$Maybe$Just(
-				A4(
+				A5(
 					_user$project$HtmlTree$Element,
 					'label',
 					_elm_lang$core$Native_List.fromArray(
@@ -236,10 +256,12 @@ var _user$project$InputToHtmlTreeConverter$checkboxToHtmlTree = function (inp) {
 					_user$project$HtmlTree$Children(
 						_elm_lang$core$Native_List.fromArray(
 							[input])),
-					''));
+					'',
+					_elm_lang$core$Native_List.fromArray(
+						[])));
 		} else {
 			return _elm_lang$core$Maybe$Just(
-				A4(
+				A5(
 					_user$project$HtmlTree$Element,
 					'label',
 					_elm_lang$core$Native_List.fromArray(
@@ -249,7 +271,9 @@ var _user$project$InputToHtmlTreeConverter$checkboxToHtmlTree = function (inp) {
 					_user$project$HtmlTree$Children(
 						_elm_lang$core$Native_List.fromArray(
 							[input])),
-					_p2._0));
+					_p2._0,
+					_elm_lang$core$Native_List.fromArray(
+						[])));
 		}
 	}();
 	var children = A2(
@@ -257,7 +281,7 @@ var _user$project$InputToHtmlTreeConverter$checkboxToHtmlTree = function (inp) {
 		_elm_lang$core$Basics$identity,
 		_elm_lang$core$Native_List.fromArray(
 			[label, links]));
-	return A4(
+	return A5(
 		_user$project$HtmlTree$Element,
 		'div',
 		_elm_lang$core$Native_List.fromArray(
@@ -265,7 +289,9 @@ var _user$project$InputToHtmlTreeConverter$checkboxToHtmlTree = function (inp) {
 				A2(_user$project$HtmlTree$Attribute, 'class', 'form-check')
 			]),
 		_user$project$HtmlTree$Children(children),
-		'');
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[]));
 };
 var _user$project$InputToHtmlTreeConverter$toRadioOption = F4(
 	function (id, index, value, disabled) {
@@ -292,15 +318,17 @@ var _user$project$InputToHtmlTreeConverter$toRadioOption = F4(
 					A2(_user$project$HtmlTree$Attribute, 'value', value)),
 					disabled
 				]));
-		var input = A4(
+		var input = A5(
 			_user$project$HtmlTree$Element,
 			'input',
 			inputAttrs,
 			_user$project$HtmlTree$Children(
 				_elm_lang$core$Native_List.fromArray(
 					[])),
-			'');
-		var children = A4(
+			'',
+			_elm_lang$core$Native_List.fromArray(
+				[]));
+		var children = A5(
 			_user$project$HtmlTree$Element,
 			'label',
 			_elm_lang$core$Native_List.fromArray(
@@ -310,8 +338,10 @@ var _user$project$InputToHtmlTreeConverter$toRadioOption = F4(
 			_user$project$HtmlTree$Children(
 				_elm_lang$core$Native_List.fromArray(
 					[input])),
-			value);
-		return A4(
+			value,
+			_elm_lang$core$Native_List.fromArray(
+				[]));
+		return A5(
 			_user$project$HtmlTree$Element,
 			'div',
 			_elm_lang$core$Native_List.fromArray(
@@ -321,7 +351,9 @@ var _user$project$InputToHtmlTreeConverter$toRadioOption = F4(
 			_user$project$HtmlTree$Children(
 				_elm_lang$core$Native_List.fromArray(
 					[children])),
-			'');
+			'',
+			_elm_lang$core$Native_List.fromArray(
+				[]));
 	});
 var _user$project$InputToHtmlTreeConverter$radioToHtmlTree = function (inp) {
 	var options = A2(
@@ -358,7 +390,7 @@ var _user$project$InputToHtmlTreeConverter$radioToHtmlTree = function (inp) {
 						[
 							_user$project$InputToHtmlTreeConverter$toLinks(inp.id)
 						])))));
-	return A4(
+	return A5(
 		_user$project$HtmlTree$Element,
 		'fieldset',
 		_elm_lang$core$Native_List.fromArray(
@@ -366,7 +398,9 @@ var _user$project$InputToHtmlTreeConverter$radioToHtmlTree = function (inp) {
 				A2(_user$project$HtmlTree$Attribute, 'class', 'form-group')
 			]),
 		_user$project$HtmlTree$Children(children),
-		'');
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[]));
 };
 var _user$project$InputToHtmlTreeConverter$fileUploadToHtmlTree = function (inp) {
 	var inputAttrs = A2(
@@ -391,18 +425,20 @@ var _user$project$InputToHtmlTreeConverter$fileUploadToHtmlTree = function (inp)
 			[
 				_user$project$InputToHtmlTreeConverter$toLabel(inp.label),
 				_elm_lang$core$Maybe$Just(
-				A4(
+				A5(
 					_user$project$HtmlTree$Element,
 					'input',
 					inputAttrs,
 					_user$project$HtmlTree$Children(
 						_elm_lang$core$Native_List.fromArray(
 							[])),
-					'')),
+					'',
+					_elm_lang$core$Native_List.fromArray(
+						[]))),
 				_user$project$InputToHtmlTreeConverter$toSmall(inp.small),
 				_user$project$InputToHtmlTreeConverter$toLinks(inp.id)
 			]));
-	return A4(
+	return A5(
 		_user$project$HtmlTree$Element,
 		'div',
 		_elm_lang$core$Native_List.fromArray(
@@ -410,13 +446,15 @@ var _user$project$InputToHtmlTreeConverter$fileUploadToHtmlTree = function (inp)
 				A2(_user$project$HtmlTree$Attribute, 'class', 'form-group')
 			]),
 		_user$project$HtmlTree$Children(children),
-		'');
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[]));
 };
 var _user$project$InputToHtmlTreeConverter$multiselectToHtmlTree = function (inp) {
 	var options = A2(
 		_elm_lang$core$List$map,
 		function (value) {
-			return A4(
+			return A5(
 				_user$project$HtmlTree$Element,
 				'option',
 				_elm_lang$core$Native_List.fromArray(
@@ -424,7 +462,9 @@ var _user$project$InputToHtmlTreeConverter$multiselectToHtmlTree = function (inp
 				_user$project$HtmlTree$Children(
 					_elm_lang$core$Native_List.fromArray(
 						[])),
-				value);
+				value,
+				_elm_lang$core$Native_List.fromArray(
+					[]));
 		},
 		inp.options);
 	var inputAttrs = A2(
@@ -450,16 +490,18 @@ var _user$project$InputToHtmlTreeConverter$multiselectToHtmlTree = function (inp
 			[
 				_user$project$InputToHtmlTreeConverter$toLabel(inp.label),
 				_elm_lang$core$Maybe$Just(
-				A4(
+				A5(
 					_user$project$HtmlTree$Element,
 					'select',
 					inputAttrs,
 					_user$project$HtmlTree$Children(options),
-					'')),
+					'',
+					_elm_lang$core$Native_List.fromArray(
+						[]))),
 				_user$project$InputToHtmlTreeConverter$toSmall(inp.small),
 				_user$project$InputToHtmlTreeConverter$toLinks(inp.id)
 			]));
-	return A4(
+	return A5(
 		_user$project$HtmlTree$Element,
 		'div',
 		_elm_lang$core$Native_List.fromArray(
@@ -467,7 +509,9 @@ var _user$project$InputToHtmlTreeConverter$multiselectToHtmlTree = function (inp
 				A2(_user$project$HtmlTree$Attribute, 'class', 'form-group')
 			]),
 		_user$project$HtmlTree$Children(children),
-		'');
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[]));
 };
 var _user$project$InputToHtmlTreeConverter$textAreaToHtmlTree = function (inp) {
 	var inputAttrs = A2(
@@ -494,7 +538,7 @@ var _user$project$InputToHtmlTreeConverter$textAreaToHtmlTree = function (inp) {
 				A2(_user$project$InputToHtmlTreeConverter$wrapInAddons, inputAttrs, inp),
 				_user$project$InputToHtmlTreeConverter$toLinks(inp.id)
 			]));
-	return A4(
+	return A5(
 		_user$project$HtmlTree$Element,
 		'div',
 		_elm_lang$core$Native_List.fromArray(
@@ -502,13 +546,15 @@ var _user$project$InputToHtmlTreeConverter$textAreaToHtmlTree = function (inp) {
 				A2(_user$project$HtmlTree$Attribute, 'class', 'form-group')
 			]),
 		_user$project$HtmlTree$Children(children),
-		'');
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[]));
 };
 var _user$project$InputToHtmlTreeConverter$selectToHtmlTree = function (inp) {
 	var options = A2(
 		_elm_lang$core$List$map,
 		function (value) {
-			return A4(
+			return A5(
 				_user$project$HtmlTree$Element,
 				'option',
 				_elm_lang$core$Native_List.fromArray(
@@ -516,7 +562,9 @@ var _user$project$InputToHtmlTreeConverter$selectToHtmlTree = function (inp) {
 				_user$project$HtmlTree$Children(
 					_elm_lang$core$Native_List.fromArray(
 						[])),
-				value);
+				value,
+				_elm_lang$core$Native_List.fromArray(
+					[]));
 		},
 		inp.options);
 	var inputAttrs = A2(
@@ -540,16 +588,18 @@ var _user$project$InputToHtmlTreeConverter$selectToHtmlTree = function (inp) {
 			[
 				_user$project$InputToHtmlTreeConverter$toLabel(inp.label),
 				_elm_lang$core$Maybe$Just(
-				A4(
+				A5(
 					_user$project$HtmlTree$Element,
 					'select',
 					inputAttrs,
 					_user$project$HtmlTree$Children(options),
-					'')),
+					'',
+					_elm_lang$core$Native_List.fromArray(
+						[]))),
 				_user$project$InputToHtmlTreeConverter$toSmall(inp.small),
 				_user$project$InputToHtmlTreeConverter$toLinks(inp.id)
 			]));
-	return A4(
+	return A5(
 		_user$project$HtmlTree$Element,
 		'div',
 		_elm_lang$core$Native_List.fromArray(
@@ -557,7 +607,9 @@ var _user$project$InputToHtmlTreeConverter$selectToHtmlTree = function (inp) {
 				A2(_user$project$HtmlTree$Attribute, 'class', 'form-group')
 			]),
 		_user$project$HtmlTree$Children(children),
-		'');
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[]));
 };
 var _user$project$InputToHtmlTreeConverter$colorToHtmlTree = function (inp) {
 	var inputAttrs = A2(
@@ -584,18 +636,20 @@ var _user$project$InputToHtmlTreeConverter$colorToHtmlTree = function (inp) {
 			[
 				_user$project$InputToHtmlTreeConverter$toLabel(inp.label),
 				_elm_lang$core$Maybe$Just(
-				A4(
+				A5(
 					_user$project$HtmlTree$Element,
 					'input',
 					inputAttrs,
 					_user$project$HtmlTree$Children(
 						_elm_lang$core$Native_List.fromArray(
 							[])),
-					'')),
+					'',
+					_elm_lang$core$Native_List.fromArray(
+						[]))),
 				_user$project$InputToHtmlTreeConverter$toSmall(inp.small),
 				_user$project$InputToHtmlTreeConverter$toLinks(inp.id)
 			]));
-	return A4(
+	return A5(
 		_user$project$HtmlTree$Element,
 		'div',
 		_elm_lang$core$Native_List.fromArray(
@@ -603,7 +657,14 @@ var _user$project$InputToHtmlTreeConverter$colorToHtmlTree = function (inp) {
 				A2(_user$project$HtmlTree$Attribute, 'class', 'form-group')
 			]),
 		_user$project$HtmlTree$Children(children),
-		'');
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+};
+var _user$project$InputToHtmlTreeConverter$onMouseDown = function (id) {
+	return _elm_lang$html$Html_Events$onMouseDown(
+		_user$project$Messages$MouseMessage(
+			_user$project$Messages$MouseDown(id)));
 };
 var _user$project$InputToHtmlTreeConverter$textInputToHtmlTree = function (inp) {
 	var inputAttrs = A2(
@@ -633,7 +694,7 @@ var _user$project$InputToHtmlTreeConverter$textInputToHtmlTree = function (inp) 
 				_user$project$InputToHtmlTreeConverter$toSmall(inp.small),
 				_user$project$InputToHtmlTreeConverter$toLinks(inp.id)
 			]));
-	return A4(
+	return A5(
 		_user$project$HtmlTree$Element,
 		'div',
 		_elm_lang$core$Native_List.fromArray(
@@ -641,7 +702,11 @@ var _user$project$InputToHtmlTreeConverter$textInputToHtmlTree = function (inp) 
 				A2(_user$project$HtmlTree$Attribute, 'class', 'form-group')
 			]),
 		_user$project$HtmlTree$Children(children),
-		'');
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$InputToHtmlTreeConverter$onMouseDown(inp.id)
+			]));
 };
 var _user$project$InputToHtmlTreeConverter$inputToHtmlTree = function (input) {
 	var _p3 = input.type$;
