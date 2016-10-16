@@ -30,32 +30,6 @@ update msg model =
       ({ model | currentlyEdditedInputId = Just id }, Cmd.none)
     StopEditing ->
       ({ model | currentlyEdditedInputId = Nothing }, Cmd.none)
-    MoveUp id ->
-      moveInputUp id model
-    MoveDown id ->
-      moveInputDown id model
-
-moveInputUp : Id -> Model -> (Model, Cmd Msg)
-moveInputUp id model =
-  let
-    index = getIndexOfElementWithId model.form id
-    ary = Array.fromList model.form
-    newForm =
-      moveLeft index ary
-      |> Array.toList
-  in
-    ({ model | form = newForm }, Cmd.none)
-
-moveInputDown : Id -> Model -> (Model, Cmd Msg)
-moveInputDown id model =
-  let
-    index = getIndexOfElementWithId model.form id
-    ary = Array.fromList model.form
-    newForm =
-      moveRight index ary
-      |> Array.toList
-  in
-    ({ model | form = newForm }, Cmd.none)
 
 addNewInput : Input -> Model -> (Model, Cmd Msg)
 addNewInput input model =
@@ -70,50 +44,3 @@ removeInput model id =
     filteredForm = List.filter (\input -> input.id /= id) model.form
   in
     ({ model | form = filteredForm }, Cmd.none)
-
--------------
--- Helpers --
--------------
-
-moveLeft : Int -> Array a -> Array a
-moveLeft index a1 =
-  let
-    movedRight = Array.get (index - 1) a1
-    movedLeft = Array.get (index) a1
-  in
-    replace (index - 1) movedLeft a1
-      |> replace index movedRight
-
-
-moveRight : Int -> Array a -> Array a
-moveRight index a1 =
-  let
-    movedRight = Array.get (index) a1
-    movedLeft = Array.get (index + 1) a1
-  in
-    replace (index + 1) movedRight a1
-      |> replace index movedLeft
-
-replace : Int -> Maybe a -> Array a -> Array a
-replace index element ary =
-  case element of
-    Nothing ->
-      ary
-    Just b ->
-      Array.set index b ary
-
-
-getIndexOfElementWithId : List Input -> Id -> Int
-getIndexOfElementWithId lst id =
-  helper lst id 0
-
-helper : List Input -> Id -> Int -> Int
-helper lst id offset =
-  case lst of
-    [] ->
-      -1
-    x :: xs ->
-      if x.id == id then
-        offset
-      else
-        helper xs id (offset + 1)

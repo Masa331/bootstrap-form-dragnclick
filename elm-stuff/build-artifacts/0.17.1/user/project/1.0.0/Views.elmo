@@ -1,7 +1,101 @@
+var _user$project$Views$draggedElement = function (model) {
+	var _p0 = _user$project$Models$currentlyDraggedInput(model);
+	if (_p0.ctor === 'Nothing') {
+		return A2(
+			_elm_lang$html$Html$div,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[]));
+	} else {
+		var _p4 = _p0._0;
+		var dimensions = function () {
+			var _p1 = A2(
+				_user$project$ElementMap$dimensionsById,
+				model.elementMap,
+				_elm_lang$core$Basics$toString(_p4.id));
+			if (_p1.ctor === 'Nothing') {
+				return {ctor: '_Tuple4', _0: 0, _1: 0, _2: 0, _3: 0};
+			} else {
+				var _p2 = _p1._0;
+				return {
+					ctor: '_Tuple4',
+					_0: _elm_lang$core$Basics$round(_p2.x) + (model.mousePosition.x - model.initialMousePosition.x),
+					_1: _elm_lang$core$Basics$round(_p2.y) + (model.mousePosition.y - model.initialMousePosition.y),
+					_2: _elm_lang$core$Basics$round(_p2.width),
+					_3: _elm_lang$core$Basics$round(_p2.height)
+				};
+			}
+		}();
+		var _p3 = dimensions;
+		var topx = _p3._0;
+		var topy = _p3._1;
+		var widthx = _p3._2;
+		var heightx = _p3._3;
+		var top = {
+			ctor: '_Tuple2',
+			_0: 'top',
+			_1: A2(
+				_elm_lang$core$Basics_ops['++'],
+				_elm_lang$core$Basics$toString(topy),
+				'px')
+		};
+		var left = {
+			ctor: '_Tuple2',
+			_0: 'left',
+			_1: A2(
+				_elm_lang$core$Basics_ops['++'],
+				_elm_lang$core$Basics$toString(topx),
+				'px')
+		};
+		var width = {
+			ctor: '_Tuple2',
+			_0: 'width',
+			_1: A2(
+				_elm_lang$core$Basics_ops['++'],
+				_elm_lang$core$Basics$toString(widthx),
+				'px')
+		};
+		var height = {
+			ctor: '_Tuple2',
+			_0: 'height',
+			_1: A2(
+				_elm_lang$core$Basics_ops['++'],
+				_elm_lang$core$Basics$toString(heightx),
+				'px')
+		};
+		var attrs = _elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$style(
+				_elm_lang$core$Native_List.fromArray(
+					[
+						{ctor: '_Tuple2', _0: 'position', _1: 'fixed'},
+						top,
+						left,
+						width,
+						height
+					]))
+			]);
+		var input = _user$project$HtmlTreeBuilder$buildDragged(_p4);
+		var htmlTree = A5(
+			_user$project$HtmlTree$Element,
+			'form',
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_user$project$HtmlTree$Children(
+				_elm_lang$core$Native_List.fromArray(
+					[input])),
+			'',
+			_elm_lang$core$Native_List.fromArray(
+				[]));
+		var content = _user$project$Form$view(htmlTree);
+		return A2(_elm_lang$html$Html$div, attrs, content);
+	}
+};
 var _user$project$Views$inputEdit = function (input) {
 	var inputs = _elm_lang$core$Native_List.fromArray(
 		[
-			_user$project$InputToHtmlTreeConverter$inputToHtmlTree(input)
+			_user$project$HtmlTreeBuilder$buildWithControlElements(input)
 		]);
 	var htmlTree = A5(
 		_user$project$HtmlTree$Element,
@@ -75,13 +169,23 @@ var _user$project$Views$inputEdit = function (input) {
 			]));
 };
 var _user$project$Views$formEdit = function (model) {
-	var inputs = A2(_elm_lang$core$List$map, _user$project$InputToHtmlTreeConverter$inputToHtmlTree, model.form);
-	var htmlTree = A5(
+	var inputs2 = A2(_elm_lang$core$List$map, _user$project$HtmlTreeBuilder$buildRaw, model.form);
+	var rawHtmlTree = A5(
 		_user$project$HtmlTree$Element,
 		'form',
 		_elm_lang$core$Native_List.fromArray(
 			[]),
-		_user$project$HtmlTree$Children(inputs),
+		_user$project$HtmlTree$Children(inputs2),
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+	var inputs1 = A2(_elm_lang$core$List$map, _user$project$HtmlTreeBuilder$buildWithControlElements, model.form);
+	var htmlTreeWithControlElements = A5(
+		_user$project$HtmlTree$Element,
+		'form',
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_user$project$HtmlTree$Children(inputs1),
 		'',
 		_elm_lang$core$Native_List.fromArray(
 			[]));
@@ -113,7 +217,8 @@ var _user$project$Views$formEdit = function (model) {
 									[
 										_elm_lang$html$Html_Attributes$class('bd-example')
 									]),
-								_user$project$Form$view(htmlTree)),
+								_user$project$Form$view(htmlTreeWithControlElements)),
+								_user$project$Views$draggedElement(model),
 								A2(
 								_elm_lang$html$Html$div,
 								_elm_lang$core$Native_List.fromArray(
@@ -122,34 +227,7 @@ var _user$project$Views$formEdit = function (model) {
 									]),
 								_elm_lang$core$Native_List.fromArray(
 									[
-										_user$project$Markup$view(htmlTree)
-									])),
-								A2(
-								_elm_lang$html$Html$div,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text(
-										_elm_lang$core$Basics$toString(model.mousePosition))
-									])),
-								A2(
-								_elm_lang$html$Html$div,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text(
-										_elm_lang$core$Basics$toString(model.elementMap))
-									])),
-								A2(
-								_elm_lang$html$Html$div,
-								_elm_lang$core$Native_List.fromArray(
-									[]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text(
-										_elm_lang$core$Basics$toString(model.currentlyDraggedInputId))
+										_user$project$Markup$view(rawHtmlTree)
 									]))
 							])),
 						A2(
@@ -163,10 +241,10 @@ var _user$project$Views$formEdit = function (model) {
 			]));
 };
 var _user$project$Views$view = function (model) {
-	var _p0 = _user$project$Models$currentlyEdditedInput(model);
-	if (_p0.ctor === 'Nothing') {
+	var _p5 = _user$project$Models$currentlyEdditedInput(model);
+	if (_p5.ctor === 'Nothing') {
 		return _user$project$Views$formEdit(model);
 	} else {
-		return _user$project$Views$inputEdit(_p0._0);
+		return _user$project$Views$inputEdit(_p5._0);
 	}
 };

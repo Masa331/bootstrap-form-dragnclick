@@ -5,103 +5,20 @@ var _user$project$Form$createAttribute = function (attribute) {
 var _user$project$Form$createAttributes = function (model) {
 	return A2(_elm_lang$core$List$map, _user$project$Form$createAttribute, model.attributes);
 };
-var _user$project$Form$idToInt = function (id) {
-	var castedId = _elm_lang$core$String$toInt(id);
-	var _p0 = castedId;
-	if (_p0.ctor === 'Ok') {
-		return _p0._0;
-	} else {
-		return 1;
-	}
-};
-var _user$project$Form$editLinks = function (id) {
-	var resolvedId = _user$project$Form$idToInt(id);
-	var l1 = A2(
-		_elm_lang$html$Html$a,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$FormMessage(
-					_user$project$Messages$EditInput(resolvedId)))
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Edit')
-			]));
-	var l2 = A2(
-		_elm_lang$html$Html$a,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$FormMessage(
-					_user$project$Messages$RemoveInput(resolvedId)))
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Remove')
-			]));
-	var l3 = A2(
-		_elm_lang$html$Html$a,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$FormMessage(
-					_user$project$Messages$MoveUp(resolvedId)))
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Move up')
-			]));
-	var l4 = A2(
-		_elm_lang$html$Html$a,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-				_elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$FormMessage(
-					_user$project$Messages$MoveDown(resolvedId)))
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Move Down')
-			]));
-	return A2(
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$class('edit-and-remove-link')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				l1,
-				_elm_lang$html$Html$text(' | '),
-				l2,
-				_elm_lang$html$Html$text(' | '),
-				l3,
-				_elm_lang$html$Html$text(' | '),
-				l4
-			]));
-};
 var _user$project$Form$toElmHtmlNode = function (htmlTree) {
 	var value = _elm_lang$html$Html$text(htmlTree.value);
-	var childs = function (_p1) {
-		var _p2 = _p1;
-		return _p2._0;
+	var childs = function (_p0) {
+		var _p1 = _p0;
+		return _p1._0;
 	}(htmlTree.children);
 	var attributes = _user$project$Form$createAttributes(htmlTree);
 	var node = A2(
 		_elm_lang$html$Html$node,
 		htmlTree.tag,
 		A2(_elm_lang$core$Basics_ops['++'], attributes, htmlTree.events));
-	var _p3 = childs;
-	if (_p3.ctor === '[]') {
-		return _elm_lang$core$Native_Utils.eq(htmlTree.tag, 'editLinks') ? _elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$Form$editLinks(htmlTree.value)
-			]) : _elm_lang$core$Native_List.fromArray(
+	var _p2 = childs;
+	if (_p2.ctor === '[]') {
+		return _elm_lang$core$Native_List.fromArray(
 			[
 				node(
 				_elm_lang$core$Native_List.fromArray(

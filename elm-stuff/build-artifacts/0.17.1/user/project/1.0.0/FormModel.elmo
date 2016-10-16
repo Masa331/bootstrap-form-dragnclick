@@ -1,3 +1,19 @@
+var _user$project$FormModel$updateInput = F3(
+	function (model, id, updateFunc) {
+		var updatedInputs = A2(
+			_elm_lang$core$List$map,
+			function (inp) {
+				return _elm_lang$core$Native_Utils.eq(inp.id, id) ? updateFunc(inp) : inp;
+			},
+			model.form);
+		return {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Native_Utils.update(
+				model,
+				{form: updatedInputs}),
+			_1: _elm_lang$core$Platform_Cmd$none
+		};
+	});
 var _user$project$FormModel$stringInputTypes = _elm_lang$core$Native_List.fromArray(
 	['text', 'textarea', 'select', 'multiselect', 'fileupload', 'radio', 'checkbox', 'button', 'search', 'email', 'url', 'tel', 'password', 'number', 'datetime-local', 'date', 'month', 'week', 'time', 'color']);
 var _user$project$FormModel$rowsToNumber = function (rowNumber) {
@@ -34,7 +50,9 @@ var _user$project$FormModel$Input = function (a) {
 										return function (k) {
 											return function (l) {
 												return function (m) {
-													return {type$: a, id: b, classList: c, placeholder: d, label: e, disabled: f, readonly: g, size: h, addon1: i, addon2: j, small: k, rowNumber: l, options: m};
+													return function (n) {
+														return {type$: a, id: b, classList: c, placeholder: d, label: e, disabled: f, readonly: g, size: h, addon1: i, addon2: j, small: k, rowNumber: l, dragged: m, options: n};
+													};
 												};
 											};
 										};
@@ -98,6 +116,7 @@ var _user$project$FormModel$blankInput = {
 	addon2: _elm_lang$core$Maybe$Nothing,
 	small: _elm_lang$core$Maybe$Nothing,
 	rowNumber: '1',
+	dragged: false,
 	options: _elm_lang$core$Native_List.fromArray(
 		[])
 };

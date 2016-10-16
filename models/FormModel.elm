@@ -24,6 +24,7 @@ type alias Input =
   , addon2: Maybe String
   , small: Maybe String
   , rowNumber: RowNumber
+  , dragged: Bool
   , options: List String }
 
 type alias Form = List Input
@@ -42,6 +43,7 @@ blankInput =
   , addon2 = Nothing
   , small = Nothing
   , rowNumber = "1"
+  , dragged = False
   , options = [] }
 
 textInput : Input
@@ -147,3 +149,9 @@ stringInputTypes =
   , "time"
   , "color"
   ]
+
+updateInput model id updateFunc =
+  let
+    updatedInputs = List.map (\inp -> if inp.id == id then updateFunc inp else inp) model.form
+  in
+    ({ model | form = updatedInputs }, Cmd.none)

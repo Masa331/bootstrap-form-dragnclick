@@ -38,12 +38,6 @@ update msg model =
 -- Private --
 -------------
 
-updateInput model id updateFunc =
-  let
-    updatedInputs = List.map (\inp -> if inp.id == id then updateFunc inp else inp) model.form
-  in
-    ({ model | form = updatedInputs }, Cmd.none)
-
 updateLabel : String -> Input -> Input
 updateLabel newLabel input =
   { input | label = Just newLabel }

@@ -92,83 +92,67 @@ var _user$project$InputUpdate$updateLabel = F2(
 				label: _elm_lang$core$Maybe$Just(newLabel)
 			});
 	});
-var _user$project$InputUpdate$updateInput = F3(
-	function (model, id, updateFunc) {
-		var updatedInputs = A2(
-			_elm_lang$core$List$map,
-			function (inp) {
-				return _elm_lang$core$Native_Utils.eq(inp.id, id) ? updateFunc(inp) : inp;
-			},
-			model.form);
-		return {
-			ctor: '_Tuple2',
-			_0: _elm_lang$core$Native_Utils.update(
-				model,
-				{form: updatedInputs}),
-			_1: _elm_lang$core$Platform_Cmd$none
-		};
-	});
 var _user$project$InputUpdate$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
 		switch (_p0.ctor) {
 			case 'PlaceholderEdit':
 				return A3(
-					_user$project$InputUpdate$updateInput,
+					_user$project$FormModel$updateInput,
 					model,
 					_p0._0,
 					_user$project$InputUpdate$updatePlaceholder(_p0._1));
 			case 'LabelEdit':
 				return A3(
-					_user$project$InputUpdate$updateInput,
+					_user$project$FormModel$updateInput,
 					model,
 					_p0._0,
 					_user$project$InputUpdate$updateLabel(_p0._1));
 			case 'SmallEdit':
 				return A3(
-					_user$project$InputUpdate$updateInput,
+					_user$project$FormModel$updateInput,
 					model,
 					_p0._0,
 					_user$project$InputUpdate$updateSmall(_p0._1));
 			case 'DisabledEdit':
 				return A3(
-					_user$project$InputUpdate$updateInput,
+					_user$project$FormModel$updateInput,
 					model,
 					_p0._0,
 					_user$project$InputUpdate$updateDisabled(_p0._1));
 			case 'ReadonlyEdit':
 				return A3(
-					_user$project$InputUpdate$updateInput,
+					_user$project$FormModel$updateInput,
 					model,
 					_p0._0,
 					_user$project$InputUpdate$updateReadonly(_p0._1));
 			case 'FirstAddonEdit':
 				return A3(
-					_user$project$InputUpdate$updateInput,
+					_user$project$FormModel$updateInput,
 					model,
 					_p0._0,
 					_user$project$InputUpdate$updateFirstAddon(_p0._1));
 			case 'SecondAddonEdit':
 				return A3(
-					_user$project$InputUpdate$updateInput,
+					_user$project$FormModel$updateInput,
 					model,
 					_p0._0,
 					_user$project$InputUpdate$updateSecondAddon(_p0._1));
 			case 'SizeEdit':
 				return A3(
-					_user$project$InputUpdate$updateInput,
+					_user$project$FormModel$updateInput,
 					model,
 					_p0._0,
 					_user$project$InputUpdate$updateSize(_p0._1));
 			case 'TypeEdit':
 				return A3(
-					_user$project$InputUpdate$updateInput,
+					_user$project$FormModel$updateInput,
 					model,
 					_p0._0,
 					_user$project$InputUpdate$updateType(_p0._1));
 			case 'RowNumberEdit':
 				return A3(
-					_user$project$InputUpdate$updateInput,
+					_user$project$FormModel$updateInput,
 					model,
 					_p0._0,
 					_user$project$InputUpdate$updateRowNumber(_p0._1));
@@ -182,13 +166,13 @@ var _user$project$InputUpdate$update = F2(
 				};
 			case 'SaveNewOption':
 				return A3(
-					_user$project$InputUpdate$updateInput,
+					_user$project$FormModel$updateInput,
 					model,
 					_p0._0,
 					_user$project$InputUpdate$addNewOption(model.newOption));
 			default:
 				return A3(
-					_user$project$InputUpdate$updateInput,
+					_user$project$FormModel$updateInput,
 					model,
 					_p0._0,
 					_user$project$InputUpdate$removeOption(_p0._1));

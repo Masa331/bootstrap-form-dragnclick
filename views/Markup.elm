@@ -11,12 +11,9 @@ import Messages exposing (..)
 
 view : Element -> Html Msg
 view tree =
-  let
-    cleanedTree = removeElementRecursively "editLinks" tree
-  in
-    pre
-      []
-      [ text (toElmHtmlNode 0 cleanedTree) ]
+  pre
+    []
+    [ text (toElmHtmlNode 0 tree) ]
 
 -------------
 -- Private --

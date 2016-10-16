@@ -1,13 +1,16 @@
-module InputToHtmlTreeConverter exposing (..)
+module Raw exposing (build)
 
 import String
 import Html.Events
+import Html.Attributes
 
 import HtmlTree exposing (..)
 import FormModel exposing (..)
 import Messages
+import Models
 
-inputToHtmlTree input =
+build : Input -> HtmlTree.Element
+build input =
   case input.type' of
     Text -> textInputToHtmlTree input
     TextArea -> textAreaToHtmlTree input
@@ -20,8 +23,12 @@ inputToHtmlTree input =
     Color -> colorToHtmlTree input
     _ -> textInputToHtmlTree input
 
+-------------
+-- Private --
+-------------
+
 onMouseDown id =
-  Html.Events.onMouseDown ((Messages.MouseMessage (Messages.MouseDown id)))
+  Html.Events.onMouseDown ((Messages.MouseMessage (Messages.MouseClick id)))
 
 textInputToHtmlTree inp =
   let
@@ -34,14 +41,15 @@ textInputToHtmlTree inp =
       , toType inp.type'
       ] |> List.filterMap identity
 
+    containerClass = Attribute "class" "form-group"
+
     children =
       [ toLabel inp.label
       , wrapInAddons inputAttrs inp
       , toSmall inp.small
-      , toLinks inp.id
       ] |> List.filterMap identity
   in
-    Element "div" [Attribute "class" "form-group"] (Children children) "" [onMouseDown inp.id]
+    Element "div" [containerClass] (Children children) "" []
 
 colorToHtmlTree inp =
   let
@@ -58,7 +66,6 @@ colorToHtmlTree inp =
       [ toLabel inp.label
       , Just (Element "input" inputAttrs (Children []) "" [])
       , toSmall inp.small
-      , toLinks inp.id
       ] |> List.filterMap identity
   in
     Element "div" [Attribute "class" "form-group"] (Children children) "" []
@@ -76,7 +83,6 @@ selectToHtmlTree inp =
       [ toLabel inp.label
       , Just (Element "select" inputAttrs (Children options) "" [])
       , toSmall inp.small
-      , toLinks inp.id
       ] |> List.filterMap identity
   in
     Element "div" [Attribute "class" "form-group"] (Children children) "" []
@@ -95,7 +101,6 @@ textAreaToHtmlTree inp =
     children =
       [ toLabel inp.label
       , wrapInAddons inputAttrs inp
-      , toLinks inp.id
       ] |> List.filterMap identity
   in
     Element "div" [Attribute "class" "form-group"] (Children (children)) "" []
@@ -114,7 +119,6 @@ multiselectToHtmlTree inp =
       [ toLabel inp.label
       , Just (Element "select" inputAttrs (Children options) "" [])
       , toSmall inp.small
-      , toLinks inp.id
       ] |> List.filterMap identity
   in
     Element "div" [Attribute "class" "form-group"] (Children children) "" []
@@ -132,7 +136,6 @@ fileUploadToHtmlTree inp =
       [ toLabel inp.label
       , Just (Element "input" inputAttrs (Children []) "" [])
       , toSmall inp.small
-      , toLinks inp.id
       ] |> List.filterMap identity
   in
     Element "div" [Attribute "class" "form-group"] (Children children) "" []
@@ -144,7 +147,6 @@ radioToHtmlTree inp =
       [ toLegend inp.label ]
       ++ options
       ++ [ toSmall inp.small ]
-      ++ [ toLinks inp.id ]
       |> List.filterMap identity
   in
     Element "fieldset" [Attribute "class" "form-group"] (Children children ) "" []
@@ -163,7 +165,7 @@ toRadioOption id index value disabled =
     input = Element "input" inputAttrs (Children []) "" []
     children = Element "label" [Attribute "class" "form-check-label"] (Children [input]) value []
   in
-    Element "div" [Attribute "class" "form-check"] (Children [children]) "" []
+    Element "div" [ Attribute "class" "form-check" ] (Children [children]) "" []
 
 
 checkboxToHtmlTree inp =
@@ -176,19 +178,12 @@ checkboxToHtmlTree inp =
         Just value ->
           Just (Element "label" [Attribute "class" "form-check-label"] (Children [input]) value [])
 
-    links = toLinks inp.id
-    children = [label, links] |> List.filterMap identity
+    children = [label] |> List.filterMap identity
   in
     Element "div" [Attribute "class" "form-check"] (Children children) "" []
 
 buttonToHtmlTree inp =
-  let
-    children =
-      [ Just (Element "button" [Attribute "type" "submit", Attribute "class" "btn btn-primary"] (Children []) (Maybe.withDefault "Submit" inp.label) [])
-      , toLinks inp.id
-      ] |> List.filterMap identity
-  in
-    Element "div" [Attribute "class" "my-container"] (Children children) "" []
+  Element "button" [Attribute "type" "submit", Attribute "class" "btn btn-primary"] (Children []) (Maybe.withDefault "Submit" inp.label) []
 
 -------------
 -- Helpers --
@@ -229,10 +224,6 @@ toLegend value =
 toType : InputType -> Maybe Attribute
 toType value =
   Just (Attribute "type" (inputTypeToString value))
-
-toLinks : Id -> Maybe Element
-toLinks value =
-  Just (Element "editLinks" [] (Children []) (toString value) [])
 
 sizeClass : Size -> String
 sizeClass size =

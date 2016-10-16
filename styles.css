@@ -87,39 +87,33 @@ body {
   /* left: 0px; */
   right: 0px;
 
-  display: none;
+  /* display: none; */
 
-  background-color: lightgrey;
+  /* background-color: lightgrey; */
 }
 
+span i {
+  color: lightgrey;
+}
 
-.form-group:hover {
-  border: 1px solid black;
+span i:hover {
+  color: grey;
+}
+
+.control {
   cursor: pointer;
 }
-.form-check:hover {
-  border: 1px solid black;
-  cursor: pointer;
-}
-.my-container:hover {
-  border: 1px solid black;
-  cursor: pointer;
+
+div.dragged i.control {
+  cursor: move;
 }
 
-.form-group:hover .edit-and-remove-link {
-  display: block;
-}
-
-.form-check:hover .edit-and-remove-link {
-  display: block;
+.hidden {
+  visibility: hidden;
 }
 
 .my-container {
   position: relative;
-}
-
-.my-container:hover .edit-and-remove-link {
-  display: block;
 }
 
 .form-group {

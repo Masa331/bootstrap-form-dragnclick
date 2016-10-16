@@ -1,3 +1,20 @@
+var _user$project$Models$currentlyDraggedInput = function (model) {
+	return _elm_lang$core$List$head(
+		A2(
+			_elm_lang$core$List$filter,
+			function (_) {
+				return _.dragged;
+			},
+			model.form));
+};
+var _user$project$Models$currentlyDraggedInputs = function (model) {
+	return A2(
+		_elm_lang$core$List$filter,
+		function (_) {
+			return _.dragged;
+		},
+		model.form);
+};
 var _user$project$Models$maxInputId = function (model) {
 	return A2(
 		_elm_lang$core$Maybe$withDefault,
@@ -10,8 +27,8 @@ var _user$project$Models$maxInputId = function (model) {
 				},
 				model.form)));
 };
-var _user$project$Models$currentlyDraggedInput = function (model) {
-	var _p0 = model.currentlyDraggedInputId;
+var _user$project$Models$currentlyEdditedInput = function (model) {
+	var _p0 = model.currentlyEdditedInputId;
 	if (_p0.ctor === 'Nothing') {
 		return _elm_lang$core$Maybe$Nothing;
 	} else {
@@ -24,23 +41,9 @@ var _user$project$Models$currentlyDraggedInput = function (model) {
 				model.form));
 	}
 };
-var _user$project$Models$currentlyEdditedInput = function (model) {
-	var _p1 = model.currentlyEdditedInputId;
-	if (_p1.ctor === 'Nothing') {
-		return _elm_lang$core$Maybe$Nothing;
-	} else {
-		return _elm_lang$core$List$head(
-			A2(
-				_elm_lang$core$List$filter,
-				function (el) {
-					return _elm_lang$core$Native_Utils.eq(el.id, _p1._0);
-				},
-				model.form));
-	}
-};
 var _user$project$Models$Model = F6(
 	function (a, b, c, d, e, f) {
-		return {form: a, currentlyEdditedInputId: b, currentlyDraggedInputId: c, newOption: d, mousePosition: e, elementMap: f};
+		return {form: a, currentlyEdditedInputId: b, newOption: c, mousePosition: d, initialMousePosition: e, elementMap: f};
 	});
 var _user$project$Models$initial = function () {
 	var inputs = _elm_lang$core$Native_List.fromArray(
@@ -80,8 +83,8 @@ var _user$project$Models$initial = function () {
 		_user$project$Models$Model,
 		inputs,
 		_elm_lang$core$Maybe$Nothing,
-		_elm_lang$core$Maybe$Nothing,
 		'',
+		{x: 0, y: 0},
 		{x: 0, y: 0},
 		_elm_lang$core$Native_List.fromArray(
 			[

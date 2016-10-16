@@ -1,4 +1,4 @@
-module Models exposing (Model, initial, currentlyEdditedInput, maxInputId)
+module Models exposing (Model, initial, currentlyEdditedInput, maxInputId, currentlyDraggedInputs, currentlyDraggedInput)
 
 import Mouse
 
@@ -8,9 +8,9 @@ import FormModel exposing (blankInput, textInput, textArea, select, checkbox, bu
 
 type alias Model = { form: FormModel.Form
                    , currentlyEdditedInputId: Maybe Int
-                   , currentlyDraggedInputId: Maybe Int
                    , newOption: String
                    , mousePosition : Mouse.Position
+                   , initialMousePosition : Mouse.Position
                    , elementMap : ElementMap.ElementMap
                    }
 
@@ -24,19 +24,11 @@ initial =
              , { button | id = 5, label = Just "Register!" }
              ]
   in
-    Model inputs Nothing Nothing "" { x = 0, y = 0 } [[]]
+    Model inputs Nothing "" { x = 0, y = 0 } { x = 0, y = 0 } [[]]
 
 currentlyEdditedInput : Model -> Maybe FormModel.Input
 currentlyEdditedInput model =
   case model.currentlyEdditedInputId of
-    Nothing ->
-      Nothing
-    Just id ->
-      List.head (List.filter (\el -> el.id == id) model.form)
-
-currentlyDraggedInput : Model -> Maybe FormModel.Input
-currentlyDraggedInput model =
-  case model.currentlyDraggedInputId of
     Nothing ->
       Nothing
     Just id ->
@@ -47,3 +39,10 @@ maxInputId model =
   Maybe.withDefault 0
   <| List.maximum
   <| List.map .id model.form
+
+currentlyDraggedInputs model =
+  List.filter .dragged model.form
+
+currentlyDraggedInput model =
+  List.filter .dragged model.form
+    |> List.head

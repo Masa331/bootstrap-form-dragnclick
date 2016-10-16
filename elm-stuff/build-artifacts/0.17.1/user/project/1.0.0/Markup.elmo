@@ -98,7 +98,6 @@ var _user$project$Markup$toElmHtmlNode = F2(
 		}
 	});
 var _user$project$Markup$view = function (tree) {
-	var cleanedTree = A2(_user$project$HtmlTree$removeElementRecursively, 'editLinks', tree);
 	return A2(
 		_elm_lang$html$Html$pre,
 		_elm_lang$core$Native_List.fromArray(
@@ -106,6 +105,6 @@ var _user$project$Markup$view = function (tree) {
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html$text(
-				A2(_user$project$Markup$toElmHtmlNode, 0, cleanedTree))
+				A2(_user$project$Markup$toElmHtmlNode, 0, tree))
 			]));
 };

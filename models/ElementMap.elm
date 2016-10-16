@@ -1,8 +1,9 @@
 module ElementMap exposing (..)
 
 type alias ElementDimensions =
-  { x : Float
-  , y : Float
+  { id: String
+  , x: Float
+  , y: Float
   , width: Float
   , height: Float
   , top: Float
@@ -12,3 +13,8 @@ type alias ElementDimensions =
   }
 type alias ElementMap
   = List (List ElementDimensions)
+
+dimensionsById dimensions id =
+  List.concat dimensions
+    |> List.filter (\a -> a.id == id)
+    |> List.head

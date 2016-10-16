@@ -1,0 +1,111 @@
+var _user$project$MouseUpdate$moveInputs = F2(
+	function (model, mousePosition) {
+		var mapInputFunc = function (id) {
+			return _elm_lang$core$List$head(
+				A2(
+					_elm_lang$core$List$filter,
+					function (input) {
+						return _elm_lang$core$Native_Utils.eq(
+							_elm_lang$core$Basics$toString(input.id),
+							id);
+					},
+					model.form));
+		};
+		var draggedElementsIds = A2(
+			_elm_lang$core$List$map,
+			function (el) {
+				return _elm_lang$core$Basics$toString(el.id);
+			},
+			A2(
+				_elm_lang$core$List$filter,
+				function (el) {
+					return el.dragged;
+				},
+				model.form));
+		var mapFunc = function (y) {
+			return A2(_elm_lang$core$List$member, y.id, draggedElementsIds) ? {
+				id: y.id,
+				yMiddle: _elm_lang$core$Basics$toFloat(mousePosition.y) + (y.height / 2)
+			} : {id: y.id, yMiddle: y.top + (y.height / 2)};
+		};
+		var dimensions = _elm_lang$core$List$concat(model.elementMap);
+		var ysWithMove = A2(_elm_lang$core$List$map, mapFunc, dimensions);
+		var sorted = A2(
+			_elm_lang$core$List$map,
+			function (_) {
+				return _.id;
+			},
+			A2(
+				_elm_lang$core$List$sortBy,
+				function (_) {
+					return _.yMiddle;
+				},
+				ysWithMove));
+		var sortedInputs = A2(_elm_lang$core$List$filterMap, mapInputFunc, sorted);
+		return _elm_lang$core$Native_Utils.update(
+			model,
+			{form: sortedInputs});
+	});
+var _user$project$MouseUpdate$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
+			case 'MouseClick':
+				var updateFunc = function (input) {
+					return _elm_lang$core$Native_Utils.update(
+						input,
+						{dragged: true});
+				};
+				var updatedInputs = A2(
+					_elm_lang$core$List$map,
+					function (inp) {
+						return _elm_lang$core$Native_Utils.eq(inp.id, _p0._0) ? updateFunc(inp) : inp;
+					},
+					model.form);
+				var newModel = _elm_lang$core$Native_Utils.update(
+					model,
+					{form: updatedInputs});
+				return {
+					ctor: '_Tuple2',
+					_0: newModel,
+					_1: _user$project$Utils$getFormMap('unused_nonsense')
+				};
+			case 'MouseUp':
+				var updatedInputs = A2(
+					_elm_lang$core$List$map,
+					function (input) {
+						return _elm_lang$core$Native_Utils.update(
+							input,
+							{dragged: false});
+					},
+					model.form);
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							form: updatedInputs,
+							initialMousePosition: {x: 0, y: 0}
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				var _p2 = _p0._0;
+				var initialPosition = function () {
+					var _p1 = model.initialMousePosition.x + model.initialMousePosition.y;
+					if (_p1 === 0) {
+						return _p2;
+					} else {
+						return model.initialMousePosition;
+					}
+				}();
+				var newModel = _elm_lang$core$Native_Utils.update(
+					model,
+					{mousePosition: _p2, initialMousePosition: initialPosition});
+				return {
+					ctor: '_Tuple2',
+					_0: A2(_user$project$MouseUpdate$moveInputs, newModel, _p2),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+		}
+	});

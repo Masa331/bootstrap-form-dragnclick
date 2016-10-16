@@ -10,10 +10,11 @@ import Form exposing (view)
 import InputOptions exposing (..)
 import Messages exposing (..)
 import Models exposing (..)
+import ElementMap exposing (..)
 import HtmlTree exposing (..)
 import FormModel exposing (..)
 
-import InputToHtmlTreeConverter exposing (..)
+import HtmlTreeBuilder exposing (..)
 
 view model =
   case currentlyEdditedInput model of
@@ -29,8 +30,11 @@ view model =
 formEdit : Model -> Html Msg
 formEdit model =
   let
-    inputs = List.map inputToHtmlTree model.form
-    htmlTree = HtmlTree.Element "form" [] (HtmlTree.Children inputs) "" []
+    inputs1 = List.map HtmlTreeBuilder.buildWithControlElements model.form
+    htmlTreeWithControlElements = HtmlTree.Element "form" [] (HtmlTree.Children inputs1) "" []
+
+    inputs2 = List.map HtmlTreeBuilder.buildRaw model.form
+    rawHtmlTree = HtmlTree.Element "form" [] (HtmlTree.Children inputs2) "" []
   in
     div
       []
@@ -38,11 +42,9 @@ formEdit model =
         [ class "row" ]
         [ div
            [ class "col-sm-8" ]
-           [ div [ class "bd-example" ] (Form.view htmlTree)
-           , div [ class "highlight" ] [ Markup.view htmlTree ]
-           , div [] [text (toString model.mousePosition) ]
-           , div [] [text (toString model.elementMap) ]
-           , div [] [text (toString model.currentlyDraggedInputId) ]
+           [ div [ class "bd-example" ] (Form.view htmlTreeWithControlElements)
+           , draggedElement model
+           , div [ class "highlight" ] [ Markup.view rawHtmlTree ]
            ]
         , div
            [ class "col-sm-4" ]
@@ -53,7 +55,7 @@ formEdit model =
 inputEdit : Input -> Html Msg
 inputEdit input =
   let
-    inputs = [inputToHtmlTree input]
+    inputs = [HtmlTreeBuilder.buildWithControlElements input]
     htmlTree = HtmlTree.Element "form" [] (HtmlTree.Children inputs) "" []
   in
     div
@@ -70,3 +72,36 @@ inputEdit input =
              (InputOptions.view input)
           ]
       ]
+
+-------------
+-- Helpers --
+-------------
+
+draggedElement model =
+  case Models.currentlyDraggedInput model of
+    Nothing ->
+      div [] []
+    Just element ->
+      let
+        input = HtmlTreeBuilder.buildDragged element
+        htmlTree = HtmlTree.Element "form" [] (HtmlTree.Children [input]) "" []
+        content = Form.view htmlTree
+
+        dimensions =
+          case dimensionsById model.elementMap (toString element.id) of
+            Nothing ->
+              (0, 0, 0, 0)
+            Just dims ->
+              ((round dims.x) + (model.mousePosition.x - model.initialMousePosition.x)
+              , (round dims.y) + (model.mousePosition.y - model.initialMousePosition.y)
+              , round dims.width
+              , round dims.height)
+
+        (topx, topy, widthx, heightx) = dimensions
+        top = ("top", (toString topy) ++ "px")
+        left = ("left", (toString topx) ++ "px")
+        width = ("width", (toString widthx) ++ "px")
+        height = ("height", (toString heightx) ++ "px")
+        attrs = [style [("position", "fixed"), top, left, width, height]]
+      in
+        div attrs content

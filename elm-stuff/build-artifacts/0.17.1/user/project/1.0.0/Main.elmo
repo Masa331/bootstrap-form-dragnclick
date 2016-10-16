@@ -1,39 +1,42 @@
 var _user$project$Main$subscriptions = function (model) {
-	var _p0 = model.currentlyDraggedInputId;
-	if (_p0.ctor === 'Just') {
-		return _elm_lang$core$Platform_Sub$batch(
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$mouse$Mouse$moves(
-					function (_p1) {
-						return _user$project$Messages$MouseMessage(
-							_user$project$Messages$MouseMove(_p1));
-					}),
-					_elm_lang$mouse$Mouse$ups(
-					function (_p2) {
-						return _user$project$Messages$MouseMessage(
-							_user$project$Messages$MouseUp(_p2));
-					})
-				]));
-	} else {
-		return _user$project$Utils$determinedFormMap(_user$project$Messages$MapDetermined);
-	}
+	return A2(
+		_elm_lang$core$List$any,
+		function (_) {
+			return _.dragged;
+		},
+		model.form) ? _elm_lang$core$Platform_Sub$batch(
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$mouse$Mouse$moves(
+				function (_p0) {
+					return _user$project$Messages$MouseMessage(
+						_user$project$Messages$MouseMove(_p0));
+				}),
+				_elm_lang$mouse$Mouse$ups(
+				function (_p1) {
+					return _user$project$Messages$MouseMessage(
+						_user$project$Messages$MouseUp(_p1));
+				})
+			])) : _user$project$Utils$determinedFormMap(_user$project$Messages$MapDetermined);
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		var _p3 = msg;
-		switch (_p3.ctor) {
+		var _p2 = msg;
+		switch (_p2.ctor) {
 			case 'InputMessage':
-				return A2(_user$project$Updates$inputUpdate, _p3._0, model);
+				return A2(_user$project$Updates$inputUpdate, _p2._0, model);
 			case 'FormMessage':
-				return A2(_user$project$Updates$formUpdate, _p3._0, model);
+				return A2(_user$project$Updates$formUpdate, _p2._0, model);
 			case 'MouseMessage':
-				return A2(_user$project$Updates$mouseUpdate, _p3._0, model);
+				return A2(_user$project$Updates$mouseUpdate, _p2._0, model);
 			default:
-				var newModel = _elm_lang$core$Native_Utils.update(
-					model,
-					{elementMap: _p3._0});
-				return {ctor: '_Tuple2', _0: newModel, _1: _elm_lang$core$Platform_Cmd$none};
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{elementMap: _p2._0}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 		}
 	});
 var _user$project$Main$view = function (model) {

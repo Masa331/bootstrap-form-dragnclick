@@ -9,35 +9,3 @@ var _user$project$HtmlTree$Element = F5(
 var _user$project$HtmlTree$Children = function (a) {
 	return {ctor: 'Children', _0: a};
 };
-var _user$project$HtmlTree$removeElementRecursively = F2(
-	function (tag, tree) {
-		var childs = function (_p0) {
-			var _p1 = _p0;
-			return _p1._0;
-		}(tree.children);
-		var filteredChilds = A2(
-			_elm_lang$core$List$filter,
-			function (child) {
-				return !_elm_lang$core$Native_Utils.eq(child.tag, tag);
-			},
-			childs);
-		var _p2 = childs;
-		if (_p2.ctor === '[]') {
-			return A5(
-				_user$project$HtmlTree$Element,
-				tree.tag,
-				tree.attributes,
-				_user$project$HtmlTree$Children(filteredChilds),
-				tree.value,
-				tree.events);
-		} else {
-			var innerChilds = _user$project$HtmlTree$Children(
-				A2(
-					_elm_lang$core$List$map,
-					function (child) {
-						return A2(_user$project$HtmlTree$removeElementRecursively, tag, child);
-					},
-					filteredChilds));
-			return A5(_user$project$HtmlTree$Element, tree.tag, tree.attributes, innerChilds, tree.value, tree.events);
-		}
-	});

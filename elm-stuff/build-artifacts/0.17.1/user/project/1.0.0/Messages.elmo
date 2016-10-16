@@ -1,9 +1,3 @@
-var _user$project$Messages$MoveDown = function (a) {
-	return {ctor: 'MoveDown', _0: a};
-};
-var _user$project$Messages$MoveUp = function (a) {
-	return {ctor: 'MoveUp', _0: a};
-};
 var _user$project$Messages$StopEditing = {ctor: 'StopEditing'};
 var _user$project$Messages$EditInput = function (a) {
 	return {ctor: 'EditInput', _0: a};
@@ -75,8 +69,8 @@ var _user$project$Messages$MouseMove = function (a) {
 var _user$project$Messages$MouseUp = function (a) {
 	return {ctor: 'MouseUp', _0: a};
 };
-var _user$project$Messages$MouseDown = function (a) {
-	return {ctor: 'MouseDown', _0: a};
+var _user$project$Messages$MouseClick = function (a) {
+	return {ctor: 'MouseClick', _0: a};
 };
 var _user$project$Messages$MapDetermined = function (a) {
 	return {ctor: 'MapDetermined', _0: a};

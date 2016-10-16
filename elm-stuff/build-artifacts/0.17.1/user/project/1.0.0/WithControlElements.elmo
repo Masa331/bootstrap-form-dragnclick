@@ -1,4 +1,4 @@
-var _user$project$InputToHtmlTreeConverter$toClasses = function (classList) {
+var _user$project$WithControlElements$toClasses = function (classList) {
 	var value = A2(
 		_elm_lang$core$String$join,
 		' ',
@@ -11,7 +11,7 @@ var _user$project$InputToHtmlTreeConverter$toClasses = function (classList) {
 	return _elm_lang$core$Maybe$Just(
 		A2(_user$project$HtmlTree$Attribute, 'class', value));
 };
-var _user$project$InputToHtmlTreeConverter$sizeClass = function (size) {
+var _user$project$WithControlElements$sizeClass = function (size) {
 	var _p0 = size;
 	switch (_p0.ctor) {
 		case 'Small':
@@ -22,28 +22,115 @@ var _user$project$InputToHtmlTreeConverter$sizeClass = function (size) {
 			return 'form-control-lg';
 	}
 };
-var _user$project$InputToHtmlTreeConverter$toLinks = function (value) {
+var _user$project$WithControlElements$toLinks = function (value) {
+	var i3 = A5(
+		_user$project$HtmlTree$Element,
+		'i',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-arrows control')
+			]),
+		_user$project$HtmlTree$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+	var l3 = A5(
+		_user$project$HtmlTree$Element,
+		'span',
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_user$project$HtmlTree$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[i3])),
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Events$onMouseDown(
+				_user$project$Messages$MouseMessage(
+					_user$project$Messages$MouseClick(value)))
+			]));
+	var i2 = A5(
+		_user$project$HtmlTree$Element,
+		'i',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-trash control')
+			]),
+		_user$project$HtmlTree$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+	var l2 = A5(
+		_user$project$HtmlTree$Element,
+		'span',
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_user$project$HtmlTree$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[i2])),
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$FormMessage(
+					_user$project$Messages$RemoveInput(value)))
+			]));
+	var i1 = A5(
+		_user$project$HtmlTree$Element,
+		'i',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-edit control')
+			]),
+		_user$project$HtmlTree$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+	var l1 = A5(
+		_user$project$HtmlTree$Element,
+		'span',
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_user$project$HtmlTree$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[i1])),
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$FormMessage(
+					_user$project$Messages$EditInput(value)))
+			]));
+	var children = _user$project$HtmlTree$Children(
+		_elm_lang$core$Native_List.fromArray(
+			[l1, l2, l3]));
 	return _elm_lang$core$Maybe$Just(
 		A5(
 			_user$project$HtmlTree$Element,
-			'editLinks',
+			'div',
 			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_user$project$HtmlTree$Children(
-				_elm_lang$core$Native_List.fromArray(
-					[])),
-			_elm_lang$core$Basics$toString(value),
+				[
+					A2(_user$project$HtmlTree$Attribute, 'class', 'edit-and-remove-link')
+				]),
+			children,
+			'',
 			_elm_lang$core$Native_List.fromArray(
 				[])));
 };
-var _user$project$InputToHtmlTreeConverter$toType = function (value) {
+var _user$project$WithControlElements$toType = function (value) {
 	return _elm_lang$core$Maybe$Just(
 		A2(
 			_user$project$HtmlTree$Attribute,
 			'type',
 			_user$project$FormModel$inputTypeToString(value)));
 };
-var _user$project$InputToHtmlTreeConverter$toLegend = function (value) {
+var _user$project$WithControlElements$toLegend = function (value) {
 	return A2(
 		_elm_lang$core$Maybe$map,
 		function (value) {
@@ -61,7 +148,7 @@ var _user$project$InputToHtmlTreeConverter$toLegend = function (value) {
 		},
 		value);
 };
-var _user$project$InputToHtmlTreeConverter$toLabel = function (value) {
+var _user$project$WithControlElements$toLabel = function (value) {
 	return A2(
 		_elm_lang$core$Maybe$map,
 		function (value) {
@@ -81,7 +168,7 @@ var _user$project$InputToHtmlTreeConverter$toLabel = function (value) {
 		},
 		value);
 };
-var _user$project$InputToHtmlTreeConverter$toSmall = function (value) {
+var _user$project$WithControlElements$toSmall = function (value) {
 	return A2(
 		_elm_lang$core$Maybe$map,
 		function (value) {
@@ -101,7 +188,7 @@ var _user$project$InputToHtmlTreeConverter$toSmall = function (value) {
 		},
 		value);
 };
-var _user$project$InputToHtmlTreeConverter$toAddon = function (value) {
+var _user$project$WithControlElements$toAddon = function (value) {
 	return A2(
 		_elm_lang$core$Maybe$map,
 		function (value) {
@@ -121,7 +208,7 @@ var _user$project$InputToHtmlTreeConverter$toAddon = function (value) {
 		},
 		value);
 };
-var _user$project$InputToHtmlTreeConverter$wrapInAddons = F2(
+var _user$project$WithControlElements$wrapInAddons = F2(
 	function (inputAttrs, input) {
 		var inputType = function () {
 			var _p1 = input.type$;
@@ -142,8 +229,8 @@ var _user$project$InputToHtmlTreeConverter$wrapInAddons = F2(
 				'',
 				_elm_lang$core$Native_List.fromArray(
 					[])));
-		var add2 = _user$project$InputToHtmlTreeConverter$toAddon(input.addon2);
-		var add1 = _user$project$InputToHtmlTreeConverter$toAddon(input.addon1);
+		var add2 = _user$project$WithControlElements$toAddon(input.addon2);
+		var add1 = _user$project$WithControlElements$toAddon(input.addon1);
 		return _elm_lang$core$List$isEmpty(
 			A2(
 				_elm_lang$core$List$filterMap,
@@ -167,15 +254,15 @@ var _user$project$InputToHtmlTreeConverter$wrapInAddons = F2(
 				_elm_lang$core$Native_List.fromArray(
 					[])));
 	});
-var _user$project$InputToHtmlTreeConverter$toReadonly = function (value) {
+var _user$project$WithControlElements$toReadonly = function (value) {
 	return value ? _elm_lang$core$Maybe$Just(
 		A2(_user$project$HtmlTree$Attribute, 'readonly', 'readonly')) : _elm_lang$core$Maybe$Nothing;
 };
-var _user$project$InputToHtmlTreeConverter$toDisabled = function (value) {
+var _user$project$WithControlElements$toDisabled = function (value) {
 	return value ? _elm_lang$core$Maybe$Just(
 		A2(_user$project$HtmlTree$Attribute, 'disabled', 'disabled')) : _elm_lang$core$Maybe$Nothing;
 };
-var _user$project$InputToHtmlTreeConverter$toId = function (value) {
+var _user$project$WithControlElements$toId = function (value) {
 	return _elm_lang$core$Maybe$Just(
 		A2(
 			_user$project$HtmlTree$Attribute,
@@ -185,13 +272,27 @@ var _user$project$InputToHtmlTreeConverter$toId = function (value) {
 				'input',
 				_elm_lang$core$Basics$toString(value))));
 };
-var _user$project$InputToHtmlTreeConverter$toPlaceholder = function (value) {
+var _user$project$WithControlElements$toPlaceholder = function (value) {
 	return A2(
 		_elm_lang$core$Maybe$map,
 		_user$project$HtmlTree$Attribute('placeholder'),
 		value);
 };
-var _user$project$InputToHtmlTreeConverter$buttonToHtmlTree = function (inp) {
+var _user$project$WithControlElements$buttonToHtmlTree = function (inp) {
+	var containerClass = A2(
+		_user$project$HtmlTree$Attribute,
+		'class',
+		A2(
+			_elm_lang$core$String$join,
+			' ',
+			A2(
+				_elm_lang$core$List$filterMap,
+				_elm_lang$core$Basics$identity,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$core$Maybe$Just('my-container'),
+						inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing
+					]))));
 	var children = A2(
 		_elm_lang$core$List$filterMap,
 		_elm_lang$core$Basics$identity,
@@ -212,14 +313,14 @@ var _user$project$InputToHtmlTreeConverter$buttonToHtmlTree = function (inp) {
 					A2(_elm_lang$core$Maybe$withDefault, 'Submit', inp.label),
 					_elm_lang$core$Native_List.fromArray(
 						[]))),
-				_user$project$InputToHtmlTreeConverter$toLinks(inp.id)
+				_user$project$WithControlElements$toLinks(inp.id)
 			]));
 	return A5(
 		_user$project$HtmlTree$Element,
 		'div',
 		_elm_lang$core$Native_List.fromArray(
 			[
-				A2(_user$project$HtmlTree$Attribute, 'class', 'my-container'),
+				containerClass,
 				A2(
 				_user$project$HtmlTree$Attribute,
 				'data-input-id',
@@ -230,8 +331,22 @@ var _user$project$InputToHtmlTreeConverter$buttonToHtmlTree = function (inp) {
 		_elm_lang$core$Native_List.fromArray(
 			[]));
 };
-var _user$project$InputToHtmlTreeConverter$checkboxToHtmlTree = function (inp) {
-	var links = _user$project$InputToHtmlTreeConverter$toLinks(inp.id);
+var _user$project$WithControlElements$checkboxToHtmlTree = function (inp) {
+	var containerClass = A2(
+		_user$project$HtmlTree$Attribute,
+		'class',
+		A2(
+			_elm_lang$core$String$join,
+			' ',
+			A2(
+				_elm_lang$core$List$filterMap,
+				_elm_lang$core$Basics$identity,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$core$Maybe$Just('form-check'),
+						inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing
+					]))));
+	var links = _user$project$WithControlElements$toLinks(inp.id);
 	var input = A5(
 		_user$project$HtmlTree$Element,
 		'input',
@@ -290,7 +405,7 @@ var _user$project$InputToHtmlTreeConverter$checkboxToHtmlTree = function (inp) {
 		'div',
 		_elm_lang$core$Native_List.fromArray(
 			[
-				A2(_user$project$HtmlTree$Attribute, 'class', 'form-check'),
+				containerClass,
 				A2(
 				_user$project$HtmlTree$Attribute,
 				'data-input-id',
@@ -301,7 +416,7 @@ var _user$project$InputToHtmlTreeConverter$checkboxToHtmlTree = function (inp) {
 		_elm_lang$core$Native_List.fromArray(
 			[]));
 };
-var _user$project$InputToHtmlTreeConverter$toRadioOption = F4(
+var _user$project$WithControlElements$toRadioOption = F4(
 	function (id, index, value, disabled) {
 		var inputAttrs = A2(
 			_elm_lang$core$List$filterMap,
@@ -363,17 +478,31 @@ var _user$project$InputToHtmlTreeConverter$toRadioOption = F4(
 			_elm_lang$core$Native_List.fromArray(
 				[]));
 	});
-var _user$project$InputToHtmlTreeConverter$radioToHtmlTree = function (inp) {
+var _user$project$WithControlElements$radioToHtmlTree = function (inp) {
+	var containerClass = A2(
+		_user$project$HtmlTree$Attribute,
+		'class',
+		A2(
+			_elm_lang$core$String$join,
+			' ',
+			A2(
+				_elm_lang$core$List$filterMap,
+				_elm_lang$core$Basics$identity,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$core$Maybe$Just('form-group'),
+						inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing
+					]))));
 	var options = A2(
 		_elm_lang$core$List$map,
 		function (value) {
 			return _elm_lang$core$Maybe$Just(
 				A4(
-					_user$project$InputToHtmlTreeConverter$toRadioOption,
+					_user$project$WithControlElements$toRadioOption,
 					inp.id,
 					1,
 					value,
-					_user$project$InputToHtmlTreeConverter$toDisabled(inp.disabled)));
+					_user$project$WithControlElements$toDisabled(inp.disabled)));
 		},
 		inp.options);
 	var children = A2(
@@ -383,7 +512,7 @@ var _user$project$InputToHtmlTreeConverter$radioToHtmlTree = function (inp) {
 			_elm_lang$core$Basics_ops['++'],
 			_elm_lang$core$Native_List.fromArray(
 				[
-					_user$project$InputToHtmlTreeConverter$toLegend(inp.label)
+					_user$project$WithControlElements$toLegend(inp.label)
 				]),
 			A2(
 				_elm_lang$core$Basics_ops['++'],
@@ -392,18 +521,18 @@ var _user$project$InputToHtmlTreeConverter$radioToHtmlTree = function (inp) {
 					_elm_lang$core$Basics_ops['++'],
 					_elm_lang$core$Native_List.fromArray(
 						[
-							_user$project$InputToHtmlTreeConverter$toSmall(inp.small)
+							_user$project$WithControlElements$toSmall(inp.small)
 						]),
 					_elm_lang$core$Native_List.fromArray(
 						[
-							_user$project$InputToHtmlTreeConverter$toLinks(inp.id)
+							_user$project$WithControlElements$toLinks(inp.id)
 						])))));
 	return A5(
 		_user$project$HtmlTree$Element,
 		'fieldset',
 		_elm_lang$core$Native_List.fromArray(
 			[
-				A2(_user$project$HtmlTree$Attribute, 'class', 'form-group'),
+				containerClass,
 				A2(
 				_user$project$HtmlTree$Attribute,
 				'data-input-id',
@@ -414,282 +543,7 @@ var _user$project$InputToHtmlTreeConverter$radioToHtmlTree = function (inp) {
 		_elm_lang$core$Native_List.fromArray(
 			[]));
 };
-var _user$project$InputToHtmlTreeConverter$fileUploadToHtmlTree = function (inp) {
-	var inputAttrs = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$InputToHtmlTreeConverter$toId(inp.id),
-				_user$project$InputToHtmlTreeConverter$toDisabled(inp.disabled),
-				_user$project$InputToHtmlTreeConverter$toClasses(
-				A2(
-					_elm_lang$core$List_ops['::'],
-					_user$project$InputToHtmlTreeConverter$sizeClass(inp.size),
-					inp.classList)),
-				_elm_lang$core$Maybe$Just(
-				A2(_user$project$HtmlTree$Attribute, 'type', 'file'))
-			]));
-	var children = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$InputToHtmlTreeConverter$toLabel(inp.label),
-				_elm_lang$core$Maybe$Just(
-				A5(
-					_user$project$HtmlTree$Element,
-					'input',
-					inputAttrs,
-					_user$project$HtmlTree$Children(
-						_elm_lang$core$Native_List.fromArray(
-							[])),
-					'',
-					_elm_lang$core$Native_List.fromArray(
-						[]))),
-				_user$project$InputToHtmlTreeConverter$toSmall(inp.small),
-				_user$project$InputToHtmlTreeConverter$toLinks(inp.id)
-			]));
-	return A5(
-		_user$project$HtmlTree$Element,
-		'div',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$HtmlTree$Attribute, 'class', 'form-group'),
-				A2(
-				_user$project$HtmlTree$Attribute,
-				'data-input-id',
-				_elm_lang$core$Basics$toString(inp.id))
-			]),
-		_user$project$HtmlTree$Children(children),
-		'',
-		_elm_lang$core$Native_List.fromArray(
-			[]));
-};
-var _user$project$InputToHtmlTreeConverter$multiselectToHtmlTree = function (inp) {
-	var options = A2(
-		_elm_lang$core$List$map,
-		function (value) {
-			return A5(
-				_user$project$HtmlTree$Element,
-				'option',
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_user$project$HtmlTree$Children(
-					_elm_lang$core$Native_List.fromArray(
-						[])),
-				value,
-				_elm_lang$core$Native_List.fromArray(
-					[]));
-		},
-		inp.options);
-	var inputAttrs = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$InputToHtmlTreeConverter$toId(inp.id),
-				_user$project$InputToHtmlTreeConverter$toDisabled(inp.disabled),
-				_user$project$InputToHtmlTreeConverter$toClasses(
-				A2(
-					_elm_lang$core$List_ops['::'],
-					_user$project$InputToHtmlTreeConverter$sizeClass(inp.size),
-					_elm_lang$core$Native_List.fromArray(
-						['form-control']))),
-				_elm_lang$core$Maybe$Just(
-				A2(_user$project$HtmlTree$Attribute, 'multiple', 'multiple'))
-			]));
-	var children = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$InputToHtmlTreeConverter$toLabel(inp.label),
-				_elm_lang$core$Maybe$Just(
-				A5(
-					_user$project$HtmlTree$Element,
-					'select',
-					inputAttrs,
-					_user$project$HtmlTree$Children(options),
-					'',
-					_elm_lang$core$Native_List.fromArray(
-						[]))),
-				_user$project$InputToHtmlTreeConverter$toSmall(inp.small),
-				_user$project$InputToHtmlTreeConverter$toLinks(inp.id)
-			]));
-	return A5(
-		_user$project$HtmlTree$Element,
-		'div',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$HtmlTree$Attribute, 'class', 'form-group'),
-				A2(
-				_user$project$HtmlTree$Attribute,
-				'data-input-id',
-				_elm_lang$core$Basics$toString(inp.id))
-			]),
-		_user$project$HtmlTree$Children(children),
-		'',
-		_elm_lang$core$Native_List.fromArray(
-			[]));
-};
-var _user$project$InputToHtmlTreeConverter$textAreaToHtmlTree = function (inp) {
-	var inputAttrs = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$InputToHtmlTreeConverter$toId(inp.id),
-				_user$project$InputToHtmlTreeConverter$toPlaceholder(inp.placeholder),
-				_user$project$InputToHtmlTreeConverter$toDisabled(inp.disabled),
-				_user$project$InputToHtmlTreeConverter$toReadonly(inp.readonly),
-				_user$project$InputToHtmlTreeConverter$toClasses(
-				_elm_lang$core$Native_List.fromArray(
-					['form-control'])),
-				_elm_lang$core$Maybe$Just(
-				A2(_user$project$HtmlTree$Attribute, 'rows', inp.rowNumber))
-			]));
-	var children = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$InputToHtmlTreeConverter$toLabel(inp.label),
-				A2(_user$project$InputToHtmlTreeConverter$wrapInAddons, inputAttrs, inp),
-				_user$project$InputToHtmlTreeConverter$toLinks(inp.id)
-			]));
-	return A5(
-		_user$project$HtmlTree$Element,
-		'div',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$HtmlTree$Attribute, 'class', 'form-group')
-			]),
-		_user$project$HtmlTree$Children(children),
-		'',
-		_elm_lang$core$Native_List.fromArray(
-			[]));
-};
-var _user$project$InputToHtmlTreeConverter$selectToHtmlTree = function (inp) {
-	var options = A2(
-		_elm_lang$core$List$map,
-		function (value) {
-			return A5(
-				_user$project$HtmlTree$Element,
-				'option',
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_user$project$HtmlTree$Children(
-					_elm_lang$core$Native_List.fromArray(
-						[])),
-				value,
-				_elm_lang$core$Native_List.fromArray(
-					[]));
-		},
-		inp.options);
-	var inputAttrs = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$InputToHtmlTreeConverter$toId(inp.id),
-				_user$project$InputToHtmlTreeConverter$toDisabled(inp.disabled),
-				_user$project$InputToHtmlTreeConverter$toClasses(
-				A2(
-					_elm_lang$core$List_ops['::'],
-					_user$project$InputToHtmlTreeConverter$sizeClass(inp.size),
-					_elm_lang$core$Native_List.fromArray(
-						['form-control'])))
-			]));
-	var children = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$InputToHtmlTreeConverter$toLabel(inp.label),
-				_elm_lang$core$Maybe$Just(
-				A5(
-					_user$project$HtmlTree$Element,
-					'select',
-					inputAttrs,
-					_user$project$HtmlTree$Children(options),
-					'',
-					_elm_lang$core$Native_List.fromArray(
-						[]))),
-				_user$project$InputToHtmlTreeConverter$toSmall(inp.small),
-				_user$project$InputToHtmlTreeConverter$toLinks(inp.id)
-			]));
-	return A5(
-		_user$project$HtmlTree$Element,
-		'div',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$HtmlTree$Attribute, 'class', 'form-group'),
-				A2(
-				_user$project$HtmlTree$Attribute,
-				'data-input-id',
-				_elm_lang$core$Basics$toString(inp.id))
-			]),
-		_user$project$HtmlTree$Children(children),
-		'',
-		_elm_lang$core$Native_List.fromArray(
-			[]));
-};
-var _user$project$InputToHtmlTreeConverter$colorToHtmlTree = function (inp) {
-	var inputAttrs = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$InputToHtmlTreeConverter$toId(inp.id),
-				_user$project$InputToHtmlTreeConverter$toPlaceholder(inp.placeholder),
-				_user$project$InputToHtmlTreeConverter$toDisabled(inp.disabled),
-				_user$project$InputToHtmlTreeConverter$toReadonly(inp.readonly),
-				_user$project$InputToHtmlTreeConverter$toClasses(
-				A2(
-					_elm_lang$core$List_ops['::'],
-					_user$project$InputToHtmlTreeConverter$sizeClass(inp.size),
-					_elm_lang$core$Native_List.fromArray(
-						['form-control']))),
-				_user$project$InputToHtmlTreeConverter$toType(inp.type$)
-			]));
-	var children = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$InputToHtmlTreeConverter$toLabel(inp.label),
-				_elm_lang$core$Maybe$Just(
-				A5(
-					_user$project$HtmlTree$Element,
-					'input',
-					inputAttrs,
-					_user$project$HtmlTree$Children(
-						_elm_lang$core$Native_List.fromArray(
-							[])),
-					'',
-					_elm_lang$core$Native_List.fromArray(
-						[]))),
-				_user$project$InputToHtmlTreeConverter$toSmall(inp.small),
-				_user$project$InputToHtmlTreeConverter$toLinks(inp.id)
-			]));
-	return A5(
-		_user$project$HtmlTree$Element,
-		'div',
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(_user$project$HtmlTree$Attribute, 'class', 'form-group'),
-				A2(
-				_user$project$HtmlTree$Attribute,
-				'data-input-id',
-				_elm_lang$core$Basics$toString(inp.id))
-			]),
-		_user$project$HtmlTree$Children(children),
-		'',
-		_elm_lang$core$Native_List.fromArray(
-			[]));
-};
-var _user$project$InputToHtmlTreeConverter$textInputToHtmlTree = function (inp) {
+var _user$project$WithControlElements$fileUploadToHtmlTree = function (inp) {
 	var containerClass = A2(
 		_user$project$HtmlTree$Attribute,
 		'class',
@@ -709,30 +563,35 @@ var _user$project$InputToHtmlTreeConverter$textInputToHtmlTree = function (inp) 
 		_elm_lang$core$Basics$identity,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_user$project$InputToHtmlTreeConverter$toId(inp.id),
-				_user$project$InputToHtmlTreeConverter$toPlaceholder(inp.placeholder),
-				_user$project$InputToHtmlTreeConverter$toDisabled(inp.disabled),
-				_user$project$InputToHtmlTreeConverter$toReadonly(inp.readonly),
-				_user$project$InputToHtmlTreeConverter$toClasses(
+				_user$project$WithControlElements$toId(inp.id),
+				_user$project$WithControlElements$toDisabled(inp.disabled),
+				_user$project$WithControlElements$toClasses(
 				A2(
 					_elm_lang$core$List_ops['::'],
-					_user$project$InputToHtmlTreeConverter$sizeClass(inp.size),
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						_elm_lang$core$Native_List.fromArray(
-							['form-control']),
-						inp.classList))),
-				_user$project$InputToHtmlTreeConverter$toType(inp.type$)
+					_user$project$WithControlElements$sizeClass(inp.size),
+					inp.classList)),
+				_elm_lang$core$Maybe$Just(
+				A2(_user$project$HtmlTree$Attribute, 'type', 'file'))
 			]));
 	var children = A2(
 		_elm_lang$core$List$filterMap,
 		_elm_lang$core$Basics$identity,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_user$project$InputToHtmlTreeConverter$toLabel(inp.label),
-				A2(_user$project$InputToHtmlTreeConverter$wrapInAddons, inputAttrs, inp),
-				_user$project$InputToHtmlTreeConverter$toSmall(inp.small),
-				_user$project$InputToHtmlTreeConverter$toLinks(inp.id)
+				_user$project$WithControlElements$toLabel(inp.label),
+				_elm_lang$core$Maybe$Just(
+				A5(
+					_user$project$HtmlTree$Element,
+					'input',
+					inputAttrs,
+					_user$project$HtmlTree$Children(
+						_elm_lang$core$Native_List.fromArray(
+							[])),
+					'',
+					_elm_lang$core$Native_List.fromArray(
+						[]))),
+				_user$project$WithControlElements$toSmall(inp.small),
+				_user$project$WithControlElements$toLinks(inp.id)
 			]));
 	return A5(
 		_user$project$HtmlTree$Element,
@@ -750,33 +609,366 @@ var _user$project$InputToHtmlTreeConverter$textInputToHtmlTree = function (inp) 
 		_elm_lang$core$Native_List.fromArray(
 			[]));
 };
-var _user$project$InputToHtmlTreeConverter$onMouseDown = function (id) {
-	return _elm_lang$html$Html_Events$onMouseDown(
-		_user$project$Messages$MouseMessage(
-			_user$project$Messages$MouseClick(id)));
+var _user$project$WithControlElements$multiselectToHtmlTree = function (inp) {
+	var options = A2(
+		_elm_lang$core$List$map,
+		function (value) {
+			return A5(
+				_user$project$HtmlTree$Element,
+				'option',
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_user$project$HtmlTree$Children(
+					_elm_lang$core$Native_List.fromArray(
+						[])),
+				value,
+				_elm_lang$core$Native_List.fromArray(
+					[]));
+		},
+		inp.options);
+	var containerClass = A2(
+		_user$project$HtmlTree$Attribute,
+		'class',
+		A2(
+			_elm_lang$core$String$join,
+			' ',
+			A2(
+				_elm_lang$core$List$filterMap,
+				_elm_lang$core$Basics$identity,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$core$Maybe$Just('form-group'),
+						inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing
+					]))));
+	var inputAttrs = A2(
+		_elm_lang$core$List$filterMap,
+		_elm_lang$core$Basics$identity,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$WithControlElements$toId(inp.id),
+				_user$project$WithControlElements$toDisabled(inp.disabled),
+				_user$project$WithControlElements$toClasses(
+				A2(
+					_elm_lang$core$List_ops['::'],
+					_user$project$WithControlElements$sizeClass(inp.size),
+					_elm_lang$core$Native_List.fromArray(
+						['form-control']))),
+				_elm_lang$core$Maybe$Just(
+				A2(_user$project$HtmlTree$Attribute, 'multiple', 'multiple'))
+			]));
+	var children = A2(
+		_elm_lang$core$List$filterMap,
+		_elm_lang$core$Basics$identity,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$WithControlElements$toLabel(inp.label),
+				_elm_lang$core$Maybe$Just(
+				A5(
+					_user$project$HtmlTree$Element,
+					'select',
+					inputAttrs,
+					_user$project$HtmlTree$Children(options),
+					'',
+					_elm_lang$core$Native_List.fromArray(
+						[]))),
+				_user$project$WithControlElements$toSmall(inp.small),
+				_user$project$WithControlElements$toLinks(inp.id)
+			]));
+	return A5(
+		_user$project$HtmlTree$Element,
+		'div',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				containerClass,
+				A2(
+				_user$project$HtmlTree$Attribute,
+				'data-input-id',
+				_elm_lang$core$Basics$toString(inp.id))
+			]),
+		_user$project$HtmlTree$Children(children),
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[]));
 };
-var _user$project$InputToHtmlTreeConverter$inputToHtmlTree = function (input) {
+var _user$project$WithControlElements$textAreaToHtmlTree = function (inp) {
+	var containerClass = A2(
+		_user$project$HtmlTree$Attribute,
+		'class',
+		A2(
+			_elm_lang$core$String$join,
+			' ',
+			A2(
+				_elm_lang$core$List$filterMap,
+				_elm_lang$core$Basics$identity,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$core$Maybe$Just('form-group'),
+						inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing
+					]))));
+	var inputAttrs = A2(
+		_elm_lang$core$List$filterMap,
+		_elm_lang$core$Basics$identity,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$WithControlElements$toId(inp.id),
+				_user$project$WithControlElements$toPlaceholder(inp.placeholder),
+				_user$project$WithControlElements$toDisabled(inp.disabled),
+				_user$project$WithControlElements$toReadonly(inp.readonly),
+				_user$project$WithControlElements$toClasses(
+				_elm_lang$core$Native_List.fromArray(
+					['form-control'])),
+				_elm_lang$core$Maybe$Just(
+				A2(_user$project$HtmlTree$Attribute, 'rows', inp.rowNumber))
+			]));
+	var children = A2(
+		_elm_lang$core$List$filterMap,
+		_elm_lang$core$Basics$identity,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$WithControlElements$toLabel(inp.label),
+				A2(_user$project$WithControlElements$wrapInAddons, inputAttrs, inp),
+				_user$project$WithControlElements$toLinks(inp.id)
+			]));
+	return A5(
+		_user$project$HtmlTree$Element,
+		'div',
+		_elm_lang$core$Native_List.fromArray(
+			[containerClass]),
+		_user$project$HtmlTree$Children(children),
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+};
+var _user$project$WithControlElements$selectToHtmlTree = function (inp) {
+	var options = A2(
+		_elm_lang$core$List$map,
+		function (value) {
+			return A5(
+				_user$project$HtmlTree$Element,
+				'option',
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_user$project$HtmlTree$Children(
+					_elm_lang$core$Native_List.fromArray(
+						[])),
+				value,
+				_elm_lang$core$Native_List.fromArray(
+					[]));
+		},
+		inp.options);
+	var containerClass = A2(
+		_user$project$HtmlTree$Attribute,
+		'class',
+		A2(
+			_elm_lang$core$String$join,
+			' ',
+			A2(
+				_elm_lang$core$List$filterMap,
+				_elm_lang$core$Basics$identity,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$core$Maybe$Just('form-group'),
+						inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing
+					]))));
+	var inputAttrs = A2(
+		_elm_lang$core$List$filterMap,
+		_elm_lang$core$Basics$identity,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$WithControlElements$toId(inp.id),
+				_user$project$WithControlElements$toDisabled(inp.disabled),
+				_user$project$WithControlElements$toClasses(
+				A2(
+					_elm_lang$core$List_ops['::'],
+					_user$project$WithControlElements$sizeClass(inp.size),
+					_elm_lang$core$Native_List.fromArray(
+						['form-control'])))
+			]));
+	var children = A2(
+		_elm_lang$core$List$filterMap,
+		_elm_lang$core$Basics$identity,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$WithControlElements$toLabel(inp.label),
+				_elm_lang$core$Maybe$Just(
+				A5(
+					_user$project$HtmlTree$Element,
+					'select',
+					inputAttrs,
+					_user$project$HtmlTree$Children(options),
+					'',
+					_elm_lang$core$Native_List.fromArray(
+						[]))),
+				_user$project$WithControlElements$toSmall(inp.small),
+				_user$project$WithControlElements$toLinks(inp.id)
+			]));
+	return A5(
+		_user$project$HtmlTree$Element,
+		'div',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				containerClass,
+				A2(
+				_user$project$HtmlTree$Attribute,
+				'data-input-id',
+				_elm_lang$core$Basics$toString(inp.id))
+			]),
+		_user$project$HtmlTree$Children(children),
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+};
+var _user$project$WithControlElements$colorToHtmlTree = function (inp) {
+	var containerClass = A2(
+		_user$project$HtmlTree$Attribute,
+		'class',
+		A2(
+			_elm_lang$core$String$join,
+			' ',
+			A2(
+				_elm_lang$core$List$filterMap,
+				_elm_lang$core$Basics$identity,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$core$Maybe$Just('form-group'),
+						inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing
+					]))));
+	var inputAttrs = A2(
+		_elm_lang$core$List$filterMap,
+		_elm_lang$core$Basics$identity,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$WithControlElements$toId(inp.id),
+				_user$project$WithControlElements$toPlaceholder(inp.placeholder),
+				_user$project$WithControlElements$toDisabled(inp.disabled),
+				_user$project$WithControlElements$toReadonly(inp.readonly),
+				_user$project$WithControlElements$toClasses(
+				A2(
+					_elm_lang$core$List_ops['::'],
+					_user$project$WithControlElements$sizeClass(inp.size),
+					_elm_lang$core$Native_List.fromArray(
+						['form-control']))),
+				_user$project$WithControlElements$toType(inp.type$)
+			]));
+	var children = A2(
+		_elm_lang$core$List$filterMap,
+		_elm_lang$core$Basics$identity,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$WithControlElements$toLabel(inp.label),
+				_elm_lang$core$Maybe$Just(
+				A5(
+					_user$project$HtmlTree$Element,
+					'input',
+					inputAttrs,
+					_user$project$HtmlTree$Children(
+						_elm_lang$core$Native_List.fromArray(
+							[])),
+					'',
+					_elm_lang$core$Native_List.fromArray(
+						[]))),
+				_user$project$WithControlElements$toSmall(inp.small),
+				_user$project$WithControlElements$toLinks(inp.id)
+			]));
+	return A5(
+		_user$project$HtmlTree$Element,
+		'div',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				containerClass,
+				A2(
+				_user$project$HtmlTree$Attribute,
+				'data-input-id',
+				_elm_lang$core$Basics$toString(inp.id))
+			]),
+		_user$project$HtmlTree$Children(children),
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+};
+var _user$project$WithControlElements$textInputToHtmlTree = function (inp) {
+	var containerClass = A2(
+		_user$project$HtmlTree$Attribute,
+		'class',
+		A2(
+			_elm_lang$core$String$join,
+			' ',
+			A2(
+				_elm_lang$core$List$filterMap,
+				_elm_lang$core$Basics$identity,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$core$Maybe$Just('form-group'),
+						inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing
+					]))));
+	var inputAttrs = A2(
+		_elm_lang$core$List$filterMap,
+		_elm_lang$core$Basics$identity,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$WithControlElements$toId(inp.id),
+				_user$project$WithControlElements$toPlaceholder(inp.placeholder),
+				_user$project$WithControlElements$toDisabled(inp.disabled),
+				_user$project$WithControlElements$toReadonly(inp.readonly),
+				_user$project$WithControlElements$toClasses(
+				A2(
+					_elm_lang$core$List_ops['::'],
+					_user$project$WithControlElements$sizeClass(inp.size),
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_elm_lang$core$Native_List.fromArray(
+							['form-control']),
+						inp.classList))),
+				_user$project$WithControlElements$toType(inp.type$)
+			]));
+	var children = A2(
+		_elm_lang$core$List$filterMap,
+		_elm_lang$core$Basics$identity,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$WithControlElements$toLabel(inp.label),
+				A2(_user$project$WithControlElements$wrapInAddons, inputAttrs, inp),
+				_user$project$WithControlElements$toSmall(inp.small),
+				_user$project$WithControlElements$toLinks(inp.id)
+			]));
+	return A5(
+		_user$project$HtmlTree$Element,
+		'div',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				containerClass,
+				A2(
+				_user$project$HtmlTree$Attribute,
+				'data-input-id',
+				_elm_lang$core$Basics$toString(inp.id))
+			]),
+		_user$project$HtmlTree$Children(children),
+		'',
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+};
+var _user$project$WithControlElements$build = function (input) {
 	var _p3 = input.type$;
 	switch (_p3.ctor) {
 		case 'Text':
-			return _user$project$InputToHtmlTreeConverter$textInputToHtmlTree(input);
+			return _user$project$WithControlElements$textInputToHtmlTree(input);
 		case 'TextArea':
-			return _user$project$InputToHtmlTreeConverter$textAreaToHtmlTree(input);
+			return _user$project$WithControlElements$textAreaToHtmlTree(input);
 		case 'Select':
-			return _user$project$InputToHtmlTreeConverter$selectToHtmlTree(input);
+			return _user$project$WithControlElements$selectToHtmlTree(input);
 		case 'Multiselect':
-			return _user$project$InputToHtmlTreeConverter$multiselectToHtmlTree(input);
+			return _user$project$WithControlElements$multiselectToHtmlTree(input);
 		case 'FileUpload':
-			return _user$project$InputToHtmlTreeConverter$fileUploadToHtmlTree(input);
+			return _user$project$WithControlElements$fileUploadToHtmlTree(input);
 		case 'Radio':
-			return _user$project$InputToHtmlTreeConverter$radioToHtmlTree(input);
+			return _user$project$WithControlElements$radioToHtmlTree(input);
 		case 'Checkbox':
-			return _user$project$InputToHtmlTreeConverter$checkboxToHtmlTree(input);
+			return _user$project$WithControlElements$checkboxToHtmlTree(input);
 		case 'Button':
-			return _user$project$InputToHtmlTreeConverter$buttonToHtmlTree(input);
+			return _user$project$WithControlElements$buttonToHtmlTree(input);
 		case 'Color':
-			return _user$project$InputToHtmlTreeConverter$colorToHtmlTree(input);
+			return _user$project$WithControlElements$colorToHtmlTree(input);
 		default:
-			return _user$project$InputToHtmlTreeConverter$textInputToHtmlTree(input);
+			return _user$project$WithControlElements$textInputToHtmlTree(input);
 	}
 };

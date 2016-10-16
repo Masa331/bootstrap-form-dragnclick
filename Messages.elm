@@ -15,8 +15,6 @@ type FormMsg =
   | RemoveInput Int
   | EditInput Int
   | StopEditing
-  | MoveUp Int
-  | MoveDown Int
 
 type InputMsg
   = PlaceholderEdit Int String
@@ -34,7 +32,7 @@ type InputMsg
   | RemoveOption Int String
 
 type MouseMsg
-  = MouseDown Int
+  = MouseClick Int
   | MouseUp Mouse.Position
   | MouseMove Mouse.Position
 

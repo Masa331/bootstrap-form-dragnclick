@@ -24,18 +24,16 @@ update msg model =
     Messages.MouseMessage mouseMsg ->
       Updates.mouseUpdate mouseMsg model
     Messages.MapDetermined map ->
-      let
-        newModel = { model | elementMap = map }
-      in
-        (newModel, Cmd.none)
+      ({ model | elementMap = map }, Cmd.none)
 
 
 subscriptions model =
-  case model.currentlyDraggedInputId of
-    Just id ->
-      Sub.batch [ Mouse.moves (Messages.MouseMessage << Messages.MouseMove), Mouse.ups (Messages.MouseMessage << Messages.MouseUp) ]
-    Nothing ->
-      Utils.determinedFormMap Messages.MapDetermined
+  if List.any .dragged model.form then
+    Sub.batch [ Mouse.moves (Messages.MouseMessage << Messages.MouseMove)
+              , Mouse.ups (Messages.MouseMessage << Messages.MouseUp)
+              ]
+  else
+    Utils.determinedFormMap Messages.MapDetermined
 
 main =
   Html.App.program
