@@ -38,11 +38,12 @@ formEdit model =
         [ class "row" ]
         [ div
            [ class "col-sm-8" ]
-           [ div [] [text (toString model.mousePosition) ]
+           [ div [ class "bd-example" ] (Form.view htmlTree)
+           , div [ class "highlight" ] [ Markup.view htmlTree ]
+           , div [] [text (toString model.mousePosition) ]
            , div [] [text (toString model.elementMap) ]
            , div [] [text (toString model.currentlyDraggedInputId) ]
-           , div [ class "bd-example" ] (Form.view htmlTree)
-           , div [ class "highlight" ] [ Markup.view htmlTree ] ]
+           ]
         , div
            [ class "col-sm-4" ]
            Templates.view

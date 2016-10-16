@@ -25,7 +25,7 @@ mouseUpdate msg model =
       let
         newModel = { model | currentlyDraggedInputId = Nothing, mousePosition = { x = 0, y = 0 } }
       in
-        (newModel, Cmd.none)
+       (newModel, Cmd.none)
     MouseMove position ->
       let
         newModel = { model | mousePosition = position }

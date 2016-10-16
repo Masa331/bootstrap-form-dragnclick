@@ -19,19 +19,19 @@ type FormMsg =
   | MoveDown Int
 
 type InputMsg
-  = PlaceholderEdit String
-  | LabelEdit String
-  | SmallEdit String
-  | DisabledEdit Bool
-  | ReadonlyEdit Bool
-  | FirstAddonEdit String
-  | SecondAddonEdit String
-  | SizeEdit String
-  | TypeEdit String
-  | RowNumberEdit String
+  = PlaceholderEdit Int String
+  | LabelEdit Int String
+  | SmallEdit Int String
+  | DisabledEdit Int Bool
+  | ReadonlyEdit Int Bool
+  | FirstAddonEdit Int String
+  | SecondAddonEdit Int String
+  | SizeEdit Int String
+  | TypeEdit Int String
+  | RowNumberEdit Int String
   | NewOptionEdit String
-  | SaveNewOption
-  | RemoveOption String
+  | SaveNewOption Int
+  | RemoveOption Int String
 
 type MouseMsg
   = MouseDown Int

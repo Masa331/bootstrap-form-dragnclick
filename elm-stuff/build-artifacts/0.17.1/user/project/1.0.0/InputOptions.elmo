@@ -15,7 +15,7 @@ var _user$project$InputOptions$optionsEdit = function (input) {
 							_elm_lang$html$Html_Attributes$class('pull-xs-right'),
 							_elm_lang$html$Html_Events$onClick(
 							_user$project$Messages$InputMessage(
-								_user$project$Messages$RemoveOption(value)))
+								A2(_user$project$Messages$RemoveOption, input.id, value)))
 						]),
 					_elm_lang$core$Native_List.fromArray(
 						[
@@ -76,7 +76,8 @@ var _user$project$InputOptions$optionsEdit = function (input) {
 									_elm_lang$html$Html_Attributes$class('btn btn-secondary'),
 									_elm_lang$html$Html_Attributes$type$('button'),
 									_elm_lang$html$Html_Events$onClick(
-									_user$project$Messages$InputMessage(_user$project$Messages$SaveNewOption))
+									_user$project$Messages$InputMessage(
+										_user$project$Messages$SaveNewOption(input.id)))
 								]),
 							_elm_lang$core$Native_List.fromArray(
 								[
@@ -144,7 +145,7 @@ var _user$project$InputOptions$rowNumberEdit = function (input) {
 		'Number of rows',
 		function (_p1) {
 			return _user$project$Messages$InputMessage(
-				_user$project$Messages$RowNumberEdit(_p1));
+				A2(_user$project$Messages$RowNumberEdit, input.id, _p1));
 		},
 		input.rowNumber);
 };
@@ -295,7 +296,7 @@ var _user$project$InputOptions$readonlyEdit = function (input) {
 		'Readonly',
 		function (_p2) {
 			return _user$project$Messages$InputMessage(
-				_user$project$Messages$ReadonlyEdit(_p2));
+				A2(_user$project$Messages$ReadonlyEdit, input.id, _p2));
 		},
 		input.readonly);
 };
@@ -305,7 +306,7 @@ var _user$project$InputOptions$disabledEdit = function (input) {
 		'Disabled',
 		function (_p3) {
 			return _user$project$Messages$InputMessage(
-				_user$project$Messages$DisabledEdit(_p3));
+				A2(_user$project$Messages$DisabledEdit, input.id, _p3));
 		},
 		input.disabled);
 };
@@ -315,7 +316,7 @@ var _user$project$InputOptions$sizeEdit = function (input) {
 		'Size edit',
 		function (_p4) {
 			return _user$project$Messages$InputMessage(
-				_user$project$Messages$SizeEdit(_p4));
+				A2(_user$project$Messages$SizeEdit, input.id, _p4));
 		},
 		_elm_lang$core$Native_List.fromArray(
 			['small', 'normal', 'large']),
@@ -327,7 +328,7 @@ var _user$project$InputOptions$typeEdit = function (input) {
 		'Text input type',
 		function (_p5) {
 			return _user$project$Messages$InputMessage(
-				_user$project$Messages$TypeEdit(_p5));
+				A2(_user$project$Messages$TypeEdit, input.id, _p5));
 		},
 		_user$project$FormModel$stringInputTypes,
 		_user$project$FormModel$inputTypeToString(input.type$));
@@ -338,7 +339,7 @@ var _user$project$InputOptions$addon2Edit = function (input) {
 		'Second addon',
 		function (_p6) {
 			return _user$project$Messages$InputMessage(
-				_user$project$Messages$SecondAddonEdit(_p6));
+				A2(_user$project$Messages$SecondAddonEdit, input.id, _p6));
 		},
 		A2(_elm_lang$core$Maybe$withDefault, '', input.addon2));
 };
@@ -348,7 +349,7 @@ var _user$project$InputOptions$addon1Edit = function (input) {
 		'First addon',
 		function (_p7) {
 			return _user$project$Messages$InputMessage(
-				_user$project$Messages$FirstAddonEdit(_p7));
+				A2(_user$project$Messages$FirstAddonEdit, input.id, _p7));
 		},
 		A2(_elm_lang$core$Maybe$withDefault, '', input.addon1));
 };
@@ -358,7 +359,7 @@ var _user$project$InputOptions$smallUnderEdit = function (input) {
 		'Small text under input',
 		function (_p8) {
 			return _user$project$Messages$InputMessage(
-				_user$project$Messages$SmallEdit(_p8));
+				A2(_user$project$Messages$SmallEdit, input.id, _p8));
 		},
 		A2(_elm_lang$core$Maybe$withDefault, '', input.small));
 };
@@ -368,7 +369,7 @@ var _user$project$InputOptions$labelEdit = function (input) {
 		'Label',
 		function (_p9) {
 			return _user$project$Messages$InputMessage(
-				_user$project$Messages$LabelEdit(_p9));
+				A2(_user$project$Messages$LabelEdit, input.id, _p9));
 		},
 		A2(_elm_lang$core$Maybe$withDefault, '', input.label));
 };
@@ -378,7 +379,7 @@ var _user$project$InputOptions$placeholderEdit = function (input) {
 		'Placeholder',
 		function (_p10) {
 			return _user$project$Messages$InputMessage(
-				_user$project$Messages$PlaceholderEdit(_p10));
+				A2(_user$project$Messages$PlaceholderEdit, input.id, _p10));
 		},
 		A2(_elm_lang$core$Maybe$withDefault, '', input.placeholder));
 };

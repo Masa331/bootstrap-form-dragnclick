@@ -7,112 +7,96 @@ import FormModel exposing (..)
 update : InputMsg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
-    PlaceholderEdit newPlaceholder ->
-      updateInputAttribute placeholderUpdateFunc model newPlaceholder
-    LabelEdit newLabel ->
-      updateInputAttribute labelUpdateFunc model newLabel
-    SmallEdit newLabel ->
-      updateInputAttribute smallUpdateFunc model newLabel
-    DisabledEdit newDisabled ->
-      updateInputAttribute disabledUpdateFunc model newDisabled
-    ReadonlyEdit newDisabled ->
-      updateInputAttribute readonlyUpdateFunc model newDisabled
-    FirstAddonEdit newAddon ->
-      updateInputAttribute firstAddonEditFunc model newAddon
-    SecondAddonEdit newAddon ->
-      updateInputAttribute secondAddonEditFunc model newAddon
-    SizeEdit newSize ->
-      updateInputAttribute sizeEditFunc model newSize
-    TypeEdit newType ->
-      updateInputAttribute typeEditFunc model newType
-    RowNumberEdit newRowNumber ->
-      updateInputAttribute rowNumberEditFunc model newRowNumber
+    PlaceholderEdit id newPlaceholder ->
+      updateInput model id (updatePlaceholder newPlaceholder)
+    LabelEdit id newLabel ->
+      updateInput model id (updateLabel newLabel)
+    SmallEdit id newSmall ->
+      updateInput model id (updateSmall newSmall)
+    DisabledEdit id newDisabled ->
+      updateInput model id (updateDisabled newDisabled)
+    ReadonlyEdit id newReadonly ->
+      updateInput model id (updateReadonly newReadonly)
+    FirstAddonEdit id newAddon ->
+      updateInput model id (updateFirstAddon newAddon)
+    SecondAddonEdit id newAddon ->
+      updateInput model id (updateSecondAddon newAddon)
+    SizeEdit id newSize ->
+      updateInput model id (updateSize newSize)
+    TypeEdit id newType ->
+      updateInput model id (updateType newType)
+    RowNumberEdit id newRowNumber ->
+      updateInput model id (updateRowNumber newRowNumber)
     NewOptionEdit value ->
       ({ model | newOption = value }, Cmd.none)
-    SaveNewOption ->
-      updateInputAttribute addNewOptionFunc model model.newOption
-    RemoveOption value ->
-      updateInputAttribute removeOptionFunc model value
+    SaveNewOption id ->
+      updateInput model id (addNewOption model.newOption)
+    RemoveOption id value ->
+      updateInput model id (removeOption value)
 
 -------------
 -- Private --
 -------------
 
--- updateInputAttribute : (Input -> String -> Input) -> Model -> Int -> String -> (Model, Cmd Msg)
--- updateInputAttribute : (Input -> a -> Input) -> Model -> Int -> String -> (Model, Cmd Msg)
-updateInputAttribute updateFunc model newPlaceholder =
-  case currentlyEdditedInput model of
-    Nothing ->
-      (model, Cmd.none)
-    Just input ->
-      let
-        updatedInput = updateFunc input newPlaceholder
-        newInputs = List.map (\inp -> if inp.id == input.id then updatedInput else inp) model.form
-      in
-        ({ model | form = newInputs }, Cmd.none)
+updateInput model id updateFunc =
+  let
+    updatedInputs = List.map (\inp -> if inp.id == id then updateFunc inp else inp) model.form
+  in
+    ({ model | form = updatedInputs }, Cmd.none)
 
-removeOptionFunc : Input -> String -> Input
-removeOptionFunc inp newOption =
+updateLabel : String -> Input -> Input
+updateLabel newLabel input =
+  { input | label = Just newLabel }
+
+updatePlaceholder : String -> Input -> Input
+updatePlaceholder newPlaceholder input =
+  { input | placeholder = Just newPlaceholder }
+
+removeOption : String -> Input -> Input
+removeOption newOption inp =
   let
     func = (\neco -> if newOption == neco then Nothing else Just neco)
   in
     { inp | options = List.map func inp.options |> List.filterMap identity }
 
-addNewOptionFunc : Input -> String -> Input
-addNewOptionFunc inp newOption =
-  { inp | options = newOption::inp.options }
+addNewOption : String -> Input -> Input
+addNewOption newOption input =
+  { input | options = newOption::input.options }
 
-sizeEditFunc : Input -> String -> Input
-sizeEditFunc inp newSize =
-  let
-    neco = textToSize newSize
-  in
-    { inp | size = neco }
+updateSize : String -> Input -> Input
+updateSize newSize input =
+  { input | size = textToSize newSize }
 
-rowNumberEditFunc : Input -> RowNumber -> Input
-rowNumberEditFunc inp newRowNumber =
-  let
-    neco = newRowNumber
-  in
-    { inp | rowNumber = neco }
+updateRowNumber : RowNumber -> Input -> Input
+updateRowNumber newRowNumber input =
+  { input | rowNumber = newRowNumber }
 
-typeEditFunc : Input -> String -> Input
-typeEditFunc inp newType =
-  let
-    neco = textToType newType
-  in
-    { inp | type' = neco }
+updateType : String -> Input -> Input
+updateType newType input =
+  { input | type' = textToType newType }
 
-firstAddonEditFunc : Input -> String -> Input
-firstAddonEditFunc inp newAddon =
+updateFirstAddon : String -> Input -> Input
+updateFirstAddon newAddon inp =
   let
     wrappedAddon = if newAddon == "" then Nothing else Just newAddon
   in
     { inp | addon1 = wrappedAddon }
 
-secondAddonEditFunc : Input -> String -> Input
-secondAddonEditFunc inp newAddon =
+updateSecondAddon : String -> Input -> Input
+updateSecondAddon newAddon inp =
   let
     wrappedAddon = if newAddon == "" then Nothing else Just newAddon
   in
     { inp | addon2 = wrappedAddon }
 
-placeholderUpdateFunc : Input -> String -> Input
-placeholderUpdateFunc inp newPlaceholder =
-  { inp | placeholder = Just newPlaceholder }
+updateSmall : String -> Input -> Input
+updateSmall newSmall input =
+  { input | small = Just newSmall }
 
-labelUpdateFunc : Input -> String -> Input
-labelUpdateFunc inp newLabel =
-  { inp | label = Just newLabel }
+updateDisabled : Bool -> Input -> Input
+updateDisabled newDisabled input =
+  { input | disabled = newDisabled }
 
-smallUpdateFunc : Input -> String -> Input
-smallUpdateFunc inp newSmall =
-  { inp | small = Just newSmall }
-
-disabledUpdateFunc : Input -> Bool -> Input
-disabledUpdateFunc inp newDisabled =
-  { inp | disabled = newDisabled }
-
-readonlyUpdateFunc : Input -> Bool -> Input
-readonlyUpdateFunc inp newReadonly =
-  { inp | readonly = newReadonly }
+updateReadonly : Bool -> Input -> Input
+updateReadonly newReadonly input =
+  { input | readonly = newReadonly }

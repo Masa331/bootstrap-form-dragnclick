@@ -680,8 +680,11 @@ var _user$project$InputToHtmlTreeConverter$textInputToHtmlTree = function (inp) 
 				A2(
 					_elm_lang$core$List_ops['::'],
 					_user$project$InputToHtmlTreeConverter$sizeClass(inp.size),
-					_elm_lang$core$Native_List.fromArray(
-						['form-control']))),
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						_elm_lang$core$Native_List.fromArray(
+							['form-control']),
+						inp.classList))),
 				_user$project$InputToHtmlTreeConverter$toType(inp.type$)
 			]));
 	var children = A2(

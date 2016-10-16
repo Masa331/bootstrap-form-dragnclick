@@ -110,6 +110,23 @@ var _user$project$Views$formEdit = function (model) {
 								A2(
 								_elm_lang$html$Html$div,
 								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('bd-example')
+									]),
+								_user$project$Form$view(htmlTree)),
+								A2(
+								_elm_lang$html$Html$div,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('highlight')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_user$project$Markup$view(htmlTree)
+									])),
+								A2(
+								_elm_lang$html$Html$div,
+								_elm_lang$core$Native_List.fromArray(
 									[]),
 								_elm_lang$core$Native_List.fromArray(
 									[
@@ -133,23 +150,6 @@ var _user$project$Views$formEdit = function (model) {
 									[
 										_elm_lang$html$Html$text(
 										_elm_lang$core$Basics$toString(model.currentlyDraggedInputId))
-									])),
-								A2(
-								_elm_lang$html$Html$div,
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html_Attributes$class('bd-example')
-									]),
-								_user$project$Form$view(htmlTree)),
-								A2(
-								_elm_lang$html$Html$div,
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html_Attributes$class('highlight')
-									]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_user$project$Markup$view(htmlTree)
 									]))
 							])),
 						A2(

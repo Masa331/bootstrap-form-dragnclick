@@ -30,7 +30,7 @@ textInputToHtmlTree inp =
       , toPlaceholder inp.placeholder
       , toDisabled inp.disabled
       , toReadonly inp.readonly
-      , toClasses ((sizeClass inp.size) :: [ "form-control" ])
+      , toClasses ((sizeClass inp.size) :: ([ "form-control" ] ++ inp.classList))
       , toType inp.type'
       ] |> List.filterMap identity
 

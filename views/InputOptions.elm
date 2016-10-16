@@ -40,39 +40,39 @@ view inp =
 
 placeholderEdit : Input -> List (Html Msg)
 placeholderEdit input =
-  textEdit "Placeholder" (InputMessage << PlaceholderEdit) (Maybe.withDefault "" input.placeholder)
+  textEdit "Placeholder" (InputMessage << PlaceholderEdit input.id) (Maybe.withDefault "" input.placeholder)
 
 labelEdit : Input -> List (Html Msg)
 labelEdit input =
-  textEdit "Label" (InputMessage << LabelEdit) (Maybe.withDefault "" input.label)
+  textEdit "Label" (InputMessage << LabelEdit input.id) (Maybe.withDefault "" input.label)
 
 smallUnderEdit : Input -> List (Html Msg)
 smallUnderEdit input =
-  textEdit "Small text under input" (InputMessage << SmallEdit) (Maybe.withDefault "" input.small)
+  textEdit "Small text under input" (InputMessage << SmallEdit input.id) (Maybe.withDefault "" input.small)
 
 addon1Edit : Input -> List (Html Msg)
 addon1Edit input =
-  textEdit "First addon" (InputMessage << FirstAddonEdit) (Maybe.withDefault "" input.addon1)
+  textEdit "First addon" (InputMessage << FirstAddonEdit input.id) (Maybe.withDefault "" input.addon1)
 
 addon2Edit : Input -> List (Html Msg)
 addon2Edit input =
-  textEdit "Second addon" (InputMessage << SecondAddonEdit) (Maybe.withDefault "" input.addon2)
+  textEdit "Second addon" (InputMessage << SecondAddonEdit input.id) (Maybe.withDefault "" input.addon2)
 
 typeEdit : Input -> List (Html Msg)
 typeEdit input =
-  selectEdit "Text input type" (InputMessage << TypeEdit) stringInputTypes (inputTypeToString input.type')
+  selectEdit "Text input type" (InputMessage << TypeEdit input.id) stringInputTypes (inputTypeToString input.type')
 
 sizeEdit : Input -> List (Html Msg)
 sizeEdit input =
-  selectEdit "Size edit" (InputMessage << SizeEdit) ["small", "normal", "large"] (sizeToString input.size)
+  selectEdit "Size edit" (InputMessage << SizeEdit input.id) ["small", "normal", "large"] (sizeToString input.size)
 
 disabledEdit : Input -> List (Html Msg)
 disabledEdit input =
-  boolEdit "Disabled" (InputMessage << DisabledEdit) input.disabled
+  boolEdit "Disabled" (InputMessage << DisabledEdit input.id) input.disabled
 
 readonlyEdit : Input -> List (Html Msg)
 readonlyEdit input =
-  boolEdit "Readonly" (InputMessage << ReadonlyEdit) input.readonly
+  boolEdit "Readonly" (InputMessage << ReadonlyEdit input.id) input.readonly
 
 textEdit : String -> (String -> Msg) -> String -> List (Html Msg)
 textEdit label msg value =
@@ -102,7 +102,7 @@ boolEdit label msg value =
 
 rowNumberEdit : Input -> List (Html Msg)
 rowNumberEdit input =
-  numberEdit "Number of rows" (InputMessage << RowNumberEdit) input.rowNumber
+  numberEdit "Number of rows" (InputMessage << RowNumberEdit input.id) input.rowNumber
 
 numberEdit : String -> (String -> Msg) -> String -> List (Html Msg)
 numberEdit label msg value =
@@ -114,7 +114,7 @@ numberEdit label msg value =
 optionsEdit : Input -> List (Html Msg)
 optionsEdit input =
   let
-    lifunc = (\value -> li [] [text value, a [href "javascript:void(0);", class "pull-xs-right", onClick (InputMessage (RemoveOption value))] [text "remove"]] )
+    lifunc = (\value -> li [] [text value, a [href "javascript:void(0);", class "pull-xs-right", onClick (InputMessage (RemoveOption input.id value))] [text "remove"]] )
     lis = List.map lifunc input.options
   in
     [ b [] [text "Options"]
@@ -122,6 +122,6 @@ optionsEdit input =
     , div
       [ class "input-group" ]
       [ Html.input [class "form-control", onInput (InputMessage << NewOptionEdit) ] []
-      , span [class "input-group-btn"] [ Html.button [class "btn btn-secondary", type' "button", onClick (InputMessage SaveNewOption)] [text "Add"]] ]
+      , span [class "input-group-btn"] [ Html.button [class "btn btn-secondary", type' "button", onClick (InputMessage (SaveNewOption input.id))] [text "Add"]] ]
     , div [] [ ul [] lis ]
     ]

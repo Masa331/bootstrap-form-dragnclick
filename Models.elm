@@ -34,6 +34,14 @@ currentlyEdditedInput model =
     Just id ->
       List.head (List.filter (\el -> el.id == id) model.form)
 
+currentlyDraggedInput : Model -> Maybe FormModel.Input
+currentlyDraggedInput model =
+  case model.currentlyDraggedInputId of
+    Nothing ->
+      Nothing
+    Just id ->
+      List.head (List.filter (\el -> el.id == id) model.form)
+
 maxInputId : Model -> Int
 maxInputId model =
   Maybe.withDefault 0

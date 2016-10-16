@@ -19,43 +19,56 @@ var _user$project$Messages$AddTextarea = {ctor: 'AddTextarea'};
 var _user$project$Messages$AddMultiselect = {ctor: 'AddMultiselect'};
 var _user$project$Messages$AddSelect = {ctor: 'AddSelect'};
 var _user$project$Messages$AddTextInput = {ctor: 'AddTextInput'};
-var _user$project$Messages$RemoveOption = function (a) {
-	return {ctor: 'RemoveOption', _0: a};
+var _user$project$Messages$RemoveOption = F2(
+	function (a, b) {
+		return {ctor: 'RemoveOption', _0: a, _1: b};
+	});
+var _user$project$Messages$SaveNewOption = function (a) {
+	return {ctor: 'SaveNewOption', _0: a};
 };
-var _user$project$Messages$SaveNewOption = {ctor: 'SaveNewOption'};
 var _user$project$Messages$NewOptionEdit = function (a) {
 	return {ctor: 'NewOptionEdit', _0: a};
 };
-var _user$project$Messages$RowNumberEdit = function (a) {
-	return {ctor: 'RowNumberEdit', _0: a};
-};
-var _user$project$Messages$TypeEdit = function (a) {
-	return {ctor: 'TypeEdit', _0: a};
-};
-var _user$project$Messages$SizeEdit = function (a) {
-	return {ctor: 'SizeEdit', _0: a};
-};
-var _user$project$Messages$SecondAddonEdit = function (a) {
-	return {ctor: 'SecondAddonEdit', _0: a};
-};
-var _user$project$Messages$FirstAddonEdit = function (a) {
-	return {ctor: 'FirstAddonEdit', _0: a};
-};
-var _user$project$Messages$ReadonlyEdit = function (a) {
-	return {ctor: 'ReadonlyEdit', _0: a};
-};
-var _user$project$Messages$DisabledEdit = function (a) {
-	return {ctor: 'DisabledEdit', _0: a};
-};
-var _user$project$Messages$SmallEdit = function (a) {
-	return {ctor: 'SmallEdit', _0: a};
-};
-var _user$project$Messages$LabelEdit = function (a) {
-	return {ctor: 'LabelEdit', _0: a};
-};
-var _user$project$Messages$PlaceholderEdit = function (a) {
-	return {ctor: 'PlaceholderEdit', _0: a};
-};
+var _user$project$Messages$RowNumberEdit = F2(
+	function (a, b) {
+		return {ctor: 'RowNumberEdit', _0: a, _1: b};
+	});
+var _user$project$Messages$TypeEdit = F2(
+	function (a, b) {
+		return {ctor: 'TypeEdit', _0: a, _1: b};
+	});
+var _user$project$Messages$SizeEdit = F2(
+	function (a, b) {
+		return {ctor: 'SizeEdit', _0: a, _1: b};
+	});
+var _user$project$Messages$SecondAddonEdit = F2(
+	function (a, b) {
+		return {ctor: 'SecondAddonEdit', _0: a, _1: b};
+	});
+var _user$project$Messages$FirstAddonEdit = F2(
+	function (a, b) {
+		return {ctor: 'FirstAddonEdit', _0: a, _1: b};
+	});
+var _user$project$Messages$ReadonlyEdit = F2(
+	function (a, b) {
+		return {ctor: 'ReadonlyEdit', _0: a, _1: b};
+	});
+var _user$project$Messages$DisabledEdit = F2(
+	function (a, b) {
+		return {ctor: 'DisabledEdit', _0: a, _1: b};
+	});
+var _user$project$Messages$SmallEdit = F2(
+	function (a, b) {
+		return {ctor: 'SmallEdit', _0: a, _1: b};
+	});
+var _user$project$Messages$LabelEdit = F2(
+	function (a, b) {
+		return {ctor: 'LabelEdit', _0: a, _1: b};
+	});
+var _user$project$Messages$PlaceholderEdit = F2(
+	function (a, b) {
+		return {ctor: 'PlaceholderEdit', _0: a, _1: b};
+	});
 var _user$project$Messages$MouseMove = function (a) {
 	return {ctor: 'MouseMove', _0: a};
 };
