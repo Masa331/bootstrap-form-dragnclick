@@ -100,11 +100,13 @@ span i:hover {
   color: grey;
 }
 
-.control {
+.control-icon {
   cursor: pointer;
+  margin-left: 2px;
+  margin-right: 2px;
 }
 
-div.dragged i.control {
+div.dragged i.control-icon {
   cursor: move;
 }
 

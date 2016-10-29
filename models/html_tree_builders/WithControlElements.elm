@@ -299,11 +299,11 @@ toType value =
 toLinks : Id -> Maybe Element
 toLinks value =
   let
-    i1 = Element "i" [Attribute "class" "fa fa-edit control"] (Children []) "" []
+    i1 = Element "i" [Attribute "class" "fa fa-edit control-icon"] (Children []) "" []
     l1 = Element "span" [] (Children [i1]) "" [Html.Events.onClick (Messages.FormMessage (Messages.EditInput value))]
-    i2 = Element "i" [Attribute "class" "fa fa-trash control"] (Children []) "" []
+    i2 = Element "i" [Attribute "class" "fa fa-trash control-icon"] (Children []) "" []
     l2 = Element "span" [] (Children [i2]) "" [Html.Events.onClick (Messages.FormMessage (Messages.RemoveInput value))]
-    i3 = Element "i" [Attribute "class" "fa fa-arrows control"] (Children []) "" []
+    i3 = Element "i" [Attribute "class" "fa fa-arrows control-icon"] (Children []) "" []
     l3 = Element "span" [] (Children [i3]) "" [Html.Events.onMouseDown ((Messages.MouseMessage (Messages.MouseClick value)))]
 
     children = (Children [l1, l2, l3])

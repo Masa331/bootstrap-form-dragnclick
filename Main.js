@@ -10095,7 +10095,7 @@ var _user$project$WithControlElements$toLinks = function (value) {
 		'i',
 		_elm_lang$core$Native_List.fromArray(
 			[
-				A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-arrows control')
+				A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-arrows control-icon')
 			]),
 		_user$project$HtmlTree$Children(
 			_elm_lang$core$Native_List.fromArray(
@@ -10123,7 +10123,7 @@ var _user$project$WithControlElements$toLinks = function (value) {
 		'i',
 		_elm_lang$core$Native_List.fromArray(
 			[
-				A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-trash control')
+				A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-trash control-icon')
 			]),
 		_user$project$HtmlTree$Children(
 			_elm_lang$core$Native_List.fromArray(
@@ -10151,7 +10151,7 @@ var _user$project$WithControlElements$toLinks = function (value) {
 		'i',
 		_elm_lang$core$Native_List.fromArray(
 			[
-				A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-edit control')
+				A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-edit control-icon')
 			]),
 		_user$project$HtmlTree$Children(
 			_elm_lang$core$Native_List.fromArray(
