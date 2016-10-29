@@ -60,7 +60,7 @@ select =
 
 multiselect : Input
 multiselect =
-  { blankInput | type' = Multiselect, options = [ "options1", "option2", "option3" ] }
+  { blankInput | type' = Multiselect, options = [ "Option1", "Option2", "Option3" ] }
 
 fileUpload : Input
 fileUpload =
@@ -68,7 +68,7 @@ fileUpload =
 
 radio : Input
 radio =
-  { blankInput | type' = Radio, options = [ "options1", "option2", "option3" ] }
+  { blankInput | type' = Radio, options = [ "Option1", "Option2", "Option3" ] }
 
 checkbox : Input
 checkbox =

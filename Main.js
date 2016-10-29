@@ -8961,7 +8961,7 @@ var _user$project$FormModel$multiselect = _elm_lang$core$Native_Utils.update(
 	{
 		type$: _user$project$FormModel$Multiselect,
 		options: _elm_lang$core$Native_List.fromArray(
-			['options1', 'option2', 'option3'])
+			['Option1', 'Option2', 'Option3'])
 	});
 var _user$project$FormModel$fileUpload = _elm_lang$core$Native_Utils.update(
 	_user$project$FormModel$blankInput,
@@ -8975,7 +8975,7 @@ var _user$project$FormModel$radio = _elm_lang$core$Native_Utils.update(
 	{
 		type$: _user$project$FormModel$Radio,
 		options: _elm_lang$core$Native_List.fromArray(
-			['options1', 'option2', 'option3'])
+			['Option1', 'Option2', 'Option3'])
 	});
 var _user$project$FormModel$checkbox = _elm_lang$core$Native_Utils.update(
 	_user$project$FormModel$blankInput,
