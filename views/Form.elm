@@ -23,14 +23,14 @@ toElmHtmlNode htmlTree =
   let
     attributes = createAttributes htmlTree
     childs = (\ (HtmlTree.Children childs) -> childs) htmlTree.children
-    value = Html.text htmlTree.value
+    value = if htmlTree.value == "" then [] else [Html.text htmlTree.value]
     node = Html.node htmlTree.tag (attributes ++ htmlTree.events)
   in
     case childs of
       [] ->
-        [node [value]]
+        [node value]
       x::xs ->
-        [node ((List.concat (List.map toElmHtmlNode childs)) ++ [value])]
+        [node ((List.concat (List.map toElmHtmlNode childs)) ++ value)]
 
 createAttributes : HtmlTree.Element -> List (Html.Attribute a)
 createAttributes model =

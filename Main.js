@@ -9950,7 +9950,11 @@ var _user$project$Form$createAttributes = function (model) {
 	return A2(_elm_lang$core$List$map, _user$project$Form$createAttribute, model.attributes);
 };
 var _user$project$Form$toElmHtmlNode = function (htmlTree) {
-	var value = _elm_lang$html$Html$text(htmlTree.value);
+	var value = _elm_lang$core$Native_Utils.eq(htmlTree.value, '') ? _elm_lang$core$Native_List.fromArray(
+		[]) : _elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html$text(htmlTree.value)
+		]);
 	var childs = function (_p0) {
 		var _p1 = _p0;
 		return _p1._0;
@@ -9964,9 +9968,7 @@ var _user$project$Form$toElmHtmlNode = function (htmlTree) {
 	if (_p2.ctor === '[]') {
 		return _elm_lang$core$Native_List.fromArray(
 			[
-				node(
-				_elm_lang$core$Native_List.fromArray(
-					[value]))
+				node(value)
 			]);
 	} else {
 		return _elm_lang$core$Native_List.fromArray(
@@ -9976,8 +9978,7 @@ var _user$project$Form$toElmHtmlNode = function (htmlTree) {
 					_elm_lang$core$Basics_ops['++'],
 					_elm_lang$core$List$concat(
 						A2(_elm_lang$core$List$map, _user$project$Form$toElmHtmlNode, childs)),
-					_elm_lang$core$Native_List.fromArray(
-						[value])))
+					value))
 			]);
 	}
 };
