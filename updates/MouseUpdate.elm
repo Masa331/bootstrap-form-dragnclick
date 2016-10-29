@@ -17,7 +17,10 @@ update msg model =
       let
         updatedInputs = List.map (\input -> { input | dragged = False }) model.form
       in
-       ({ model | form = updatedInputs, initialMousePosition = { x = 0, y = 0 } }, Cmd.none)
+       ({ model | form = updatedInputs
+                , mousePosition = { x = 0, y = 0 }
+                , initialMousePosition = { x = 0, y = 0 } }
+       , Cmd.none)
     MouseMove position ->
       let
         initialPosition =

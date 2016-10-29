@@ -13429,6 +13429,7 @@ var _user$project$MouseUpdate$update = F2(
 						model,
 						{
 							form: updatedInputs,
+							mousePosition: {x: 0, y: 0},
 							initialMousePosition: {x: 0, y: 0}
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none

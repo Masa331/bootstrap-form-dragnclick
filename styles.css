@@ -84,12 +84,7 @@ body {
 .edit-and-remove-link {
   position: absolute;
   top: 0px;
-  /* left: 0px; */
   right: 0px;
-
-  /* display: none; */
-
-  /* background-color: lightgrey; */
 }
 
 span i {
