@@ -41,14 +41,14 @@ formEdit model =
       [ div
         [ class "row" ]
         [ div
-           [ class "col-sm-8" ]
-           [ div [ class "bd-example" ] (Form.view htmlTreeWithControlElements)
+           [ class "col-sm-12" ]
+           [ div [ class "bd-example resizeable" ] ([h1 [] [text "Register form"]] ++ (Form.view htmlTreeWithControlElements))
            , draggedElement model
            , div [ class "highlight" ] [ Markup.view rawHtmlTree ]
            ]
-        , div
-           [ class "col-sm-4" ]
-           Templates.view
+        -- , div
+        --    [ class "col-sm-4" ]
+        --    Templates.view
         ]
       ]
 

@@ -122,10 +122,15 @@ div.dragged i.control-icon {
   margin: 1rem -1rem;
   border: solid #f7f7f9;
   padding: 1.5rem;
-  margin-right: 0;
-  margin-bottom: 0;
-  margin-left: 0;
+  /* margin-right: 0; */
+  /* margin-left: 0; */
   border-width: .2rem;
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
+
+  width: 500px;
 }
 
 .highlight {
@@ -135,4 +140,24 @@ div.dragged i.control-icon {
   margin-top 0;
   padding: 1rem;
   background-color: #f7f7f9;
+}
+
+.resizeable {
+  /* resize: both; */
+  /* width: 100px; */
+  /* height: 100px; */
+  /* border: 1px solid; */
+  resize: horizontal;
+  overflow: auto;
+}
+
+/* experimental - context menu */
+.context-menu {
+  display: none;
+  position: absolute;
+  z-index: 10;
+}
+
+.context-menu--active {
+  display: block;
 }

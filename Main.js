@@ -13301,7 +13301,7 @@ var _user$project$Views$formEdit = function (model) {
 						_elm_lang$html$Html$div,
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html_Attributes$class('col-sm-8')
+								_elm_lang$html$Html_Attributes$class('col-sm-12')
 							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
@@ -13309,9 +13309,22 @@ var _user$project$Views$formEdit = function (model) {
 								_elm_lang$html$Html$div,
 								_elm_lang$core$Native_List.fromArray(
 									[
-										_elm_lang$html$Html_Attributes$class('bd-example')
+										_elm_lang$html$Html_Attributes$class('bd-example resizeable')
 									]),
-								_user$project$Form$view(htmlTreeWithControlElements)),
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									_elm_lang$core$Native_List.fromArray(
+										[
+											A2(
+											_elm_lang$html$Html$h1,
+											_elm_lang$core$Native_List.fromArray(
+												[]),
+											_elm_lang$core$Native_List.fromArray(
+												[
+													_elm_lang$html$Html$text('Register form')
+												]))
+										]),
+									_user$project$Form$view(htmlTreeWithControlElements))),
 								_user$project$Views$draggedElement(model),
 								A2(
 								_elm_lang$html$Html$div,
@@ -13323,14 +13336,7 @@ var _user$project$Views$formEdit = function (model) {
 									[
 										_user$project$Markup$view(rawHtmlTree)
 									]))
-							])),
-						A2(
-						_elm_lang$html$Html$div,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html_Attributes$class('col-sm-4')
-							]),
-						_user$project$Templates$view)
+							]))
 					]))
 			]));
 };
