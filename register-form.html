@@ -18,18 +18,47 @@
       </div>
 
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
           <div class="bd-example resizeable">
             <h1>The Form</h1>
 
             <form>
               <div class="form-group">
-                <label for="exampleInput1">Name</label>
+                <label for="exampleInput1">Name <small class="control-link">Edit</small></label>
                 <div class="edit-control">
                   <span><i class="fa fa-edit"></i></span>
                   <span><i class="fa fa-trash"></i></span>
                 </div>
                 <input type="text" class="form-control" id="exampleInput1" placeholder="John Doe">
+
+                <small class="form-text text-muted control-link" contenteditable=true>Please don't insert name which doesn't belong to you.</small>
+              </div>
+
+              <div class="form-group">
+                <label for="companyPosition">Company position <small class="control-link">Edit</small></label>
+                <div class="edit-control">
+                  <span><i class="fa fa-font fa-small"></i></span>
+                  <span><i class="fa fa-font fa-normal"></i></span>
+                  <span><i class="fa fa-font fa-big"></i></span>
+
+                  <span><i class="fa fa-edit"></i></span>
+                  <span><i class="fa fa-trash"></i></span>
+                  <span><i class="fa fa-check"></i></span>
+                </div>
+
+                <div class="input-group">
+                  <div class="input-group-addon hidden-addon">
+                    <small>Edit</small>
+                  </div>
+
+                  <input type="text" class="form-control" id="companyPosition">
+
+                  <div class="input-group-addon hidden-addon">
+                    <small>Edit</small>
+                  </div>
+                </div>
+
+                <small class="form-text text-muted control-link">Please don't insert name which doesn't belong to you.</small>
               </div>
 
               <div class="form-group">
@@ -73,12 +102,6 @@
 
             </form>
           </div>
-        </div>
-
-        <div class="col-sm-6">
-          <h1>Toolbox</h1>
-
-          <span>Lorem ipsum...</span>
         </div>
       </div>
 

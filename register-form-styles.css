@@ -140,6 +140,76 @@ div.dragged i.control-icon {
   position: relative;
 }
 
+
+/*  inline control link */
+
+.control-link {
+  color: lightgrey;
+  display: none;
+  cursor: pointer;
+}
+
+.control-link:hover {
+  color: grey;
+}
+
+.form-group:hover .control-link {
+  display: inline;
+}
+
+input {
+  /* So the input looks like placeholder */
+  color: #999;
+}
+
+.form-control {
+  color: #999;
+}
+
+.form-control:focus {
+  color: #999;
+}
+
+
+.hidden-addon {
+  display: none;
+}
+
+
+.fa-small {
+  font-size: 15px !important;
+}
+
+.fa-normal {
+  font-size: 18px !important;
+}
+
+
+.fa-big {
+  font-size: 20px !important;
+}
+
+/* .input-group-addon:not(:last-child) + .input-group { */
+.input-group .form-control:not(:first-child):not(:last-child) {
+  border-bottom-right-radius: .25rem;
+  border-top-right-radius: .25rem;
+
+  border-bottom-left-radius: .25rem;
+  border-top-left-radius: .25rem;
+}
+
+.form-group:hover .form-control:not(:first-child):not(:last-child) {
+  border-bottom-right-radius: 0rem;
+  border-top-right-radius: 0rem;
+
+  border-bottom-left-radius: 0rem;
+  border-top-left-radius: 0rem;
+}
+
+.form-group:hover .hidden-addon {
+  display: table-cell;
+}
+
 /* end control */
 
 .bd-example {
