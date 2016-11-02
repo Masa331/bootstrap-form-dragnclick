@@ -18,7 +18,6 @@ type alias Input =
   , placeholder: Placeholder
   , label: Label
   , disabled: Bool
-  , readonly: Bool
   , size: Size
   , addon1: Maybe String
   , addon2: Maybe String
@@ -37,7 +36,6 @@ blankInput =
   , placeholder = Nothing
   , label = Just "Some label.."
   , disabled = False
-  , readonly = False
   , size = Normal
   , addon1 = Nothing
   , addon2 = Nothing

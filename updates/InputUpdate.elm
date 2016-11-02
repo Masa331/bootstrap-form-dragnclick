@@ -15,8 +15,6 @@ update msg model =
       updateInput model id (updateSmall newSmall)
     DisabledEdit id newDisabled ->
       updateInput model id (updateDisabled newDisabled)
-    ReadonlyEdit id newReadonly ->
-      updateInput model id (updateReadonly newReadonly)
     FirstAddonEdit id newAddon ->
       updateInput model id (updateFirstAddon newAddon)
     SecondAddonEdit id newAddon ->
@@ -90,7 +88,3 @@ updateSmall newSmall input =
 updateDisabled : Bool -> Input -> Input
 updateDisabled newDisabled input =
   { input | disabled = newDisabled }
-
-updateReadonly : Bool -> Input -> Input
-updateReadonly newReadonly input =
-  { input | readonly = newReadonly }

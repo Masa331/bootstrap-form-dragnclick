@@ -13,7 +13,7 @@ view inp =
   let
     options =
       case inp.type' of
-        Text -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
+        Text -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
         Select -> [ typeEdit, labelEdit, optionsEdit, smallUnderEdit, sizeEdit, disabledEdit ]
         TextArea -> [ typeEdit, rowNumberEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit ]
         Multiselect -> [ typeEdit, labelEdit, optionsEdit, smallUnderEdit, disabledEdit ]
@@ -21,17 +21,17 @@ view inp =
         Radio -> [ typeEdit, labelEdit, optionsEdit, smallUnderEdit, disabledEdit ]
         Checkbox -> [ typeEdit, labelEdit, smallUnderEdit, disabledEdit ]
         Button -> [ typeEdit, labelEdit ]
-        Search -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
-        Email -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
-        Url -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
-        Tel -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
-        Password -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
-        Number -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
-        DatetimeLocal -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
-        Date -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
-        Month -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
-        Week -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
-        Time -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit, readonlyEdit ]
+        Search -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
+        Email -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
+        Url -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
+        Tel -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
+        Password -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
+        Number -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
+        DatetimeLocal -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
+        Date -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
+        Month -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
+        Week -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
+        Time -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
         Color -> [ typeEdit, labelEdit, smallUnderEdit, disabledEdit ]
   in
     options
@@ -69,10 +69,6 @@ sizeEdit input =
 disabledEdit : Input -> List (Html Msg)
 disabledEdit input =
   boolEdit "Disabled" (InputMessage << DisabledEdit input.id) input.disabled
-
-readonlyEdit : Input -> List (Html Msg)
-readonlyEdit input =
-  boolEdit "Readonly" (InputMessage << ReadonlyEdit input.id) input.readonly
 
 textEdit : String -> (String -> Msg) -> String -> List (Html Msg)
 textEdit label msg value =

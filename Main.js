@@ -8770,10 +8770,6 @@ var _user$project$Messages$FirstAddonEdit = F2(
 	function (a, b) {
 		return {ctor: 'FirstAddonEdit', _0: a, _1: b};
 	});
-var _user$project$Messages$ReadonlyEdit = F2(
-	function (a, b) {
-		return {ctor: 'ReadonlyEdit', _0: a, _1: b};
-	});
 var _user$project$Messages$DisabledEdit = F2(
 	function (a, b) {
 		return {ctor: 'DisabledEdit', _0: a, _1: b};
@@ -8876,9 +8872,7 @@ var _user$project$FormModel$Input = function (a) {
 										return function (k) {
 											return function (l) {
 												return function (m) {
-													return function (n) {
-														return {type$: a, id: b, classList: c, placeholder: d, label: e, disabled: f, readonly: g, size: h, addon1: i, addon2: j, small: k, rowNumber: l, dragged: m, options: n};
-													};
+													return {type$: a, id: b, classList: c, placeholder: d, label: e, disabled: f, size: g, addon1: h, addon2: i, small: j, rowNumber: k, dragged: l, options: m};
 												};
 											};
 										};
@@ -8936,7 +8930,6 @@ var _user$project$FormModel$blankInput = {
 	placeholder: _elm_lang$core$Maybe$Nothing,
 	label: _elm_lang$core$Maybe$Just('Some label..'),
 	disabled: false,
-	readonly: false,
 	size: _user$project$FormModel$Normal,
 	addon1: _elm_lang$core$Maybe$Nothing,
 	addon2: _elm_lang$core$Maybe$Nothing,
@@ -9333,10 +9326,6 @@ var _user$project$Dragged$wrapInAddons = F2(
 				_elm_lang$core$Native_List.fromArray(
 					[])));
 	});
-var _user$project$Dragged$toReadonly = function (value) {
-	return value ? _elm_lang$core$Maybe$Just(
-		A2(_user$project$HtmlTree$Attribute, 'readonly', 'readonly')) : _elm_lang$core$Maybe$Nothing;
-};
 var _user$project$Dragged$toDisabled = function (value) {
 	return value ? _elm_lang$core$Maybe$Just(
 		A2(_user$project$HtmlTree$Attribute, 'disabled', 'disabled')) : _elm_lang$core$Maybe$Nothing;
@@ -9708,7 +9697,6 @@ var _user$project$Dragged$textAreaToHtmlTree = function (inp) {
 				_user$project$Dragged$toId(inp.id),
 				_user$project$Dragged$toPlaceholder(inp.placeholder),
 				_user$project$Dragged$toDisabled(inp.disabled),
-				_user$project$Dragged$toReadonly(inp.readonly),
 				_user$project$Dragged$toClasses(
 				_elm_lang$core$Native_List.fromArray(
 					['form-control'])),
@@ -9810,7 +9798,6 @@ var _user$project$Dragged$colorToHtmlTree = function (inp) {
 				_user$project$Dragged$toId(inp.id),
 				_user$project$Dragged$toPlaceholder(inp.placeholder),
 				_user$project$Dragged$toDisabled(inp.disabled),
-				_user$project$Dragged$toReadonly(inp.readonly),
 				_user$project$Dragged$toClasses(
 				A2(
 					_elm_lang$core$List_ops['::'],
@@ -9878,7 +9865,6 @@ var _user$project$Dragged$textInputToHtmlTree = function (inp) {
 				_user$project$Dragged$toId(inp.id),
 				_user$project$Dragged$toPlaceholder(inp.placeholder),
 				_user$project$Dragged$toDisabled(inp.disabled),
-				_user$project$Dragged$toReadonly(inp.readonly),
 				_user$project$Dragged$toClasses(
 				A2(
 					_elm_lang$core$List_ops['::'],
@@ -10322,10 +10308,6 @@ var _user$project$WithControlElements$wrapInAddons = F2(
 				_elm_lang$core$Native_List.fromArray(
 					[])));
 	});
-var _user$project$WithControlElements$toReadonly = function (value) {
-	return value ? _elm_lang$core$Maybe$Just(
-		A2(_user$project$HtmlTree$Attribute, 'readonly', 'readonly')) : _elm_lang$core$Maybe$Nothing;
-};
 var _user$project$WithControlElements$toDisabled = function (value) {
 	return value ? _elm_lang$core$Maybe$Just(
 		A2(_user$project$HtmlTree$Attribute, 'disabled', 'disabled')) : _elm_lang$core$Maybe$Nothing;
@@ -10781,7 +10763,6 @@ var _user$project$WithControlElements$textAreaToHtmlTree = function (inp) {
 				_user$project$WithControlElements$toId(inp.id),
 				_user$project$WithControlElements$toPlaceholder(inp.placeholder),
 				_user$project$WithControlElements$toDisabled(inp.disabled),
-				_user$project$WithControlElements$toReadonly(inp.readonly),
 				_user$project$WithControlElements$toClasses(
 				_elm_lang$core$Native_List.fromArray(
 					['form-control'])),
@@ -10909,7 +10890,6 @@ var _user$project$WithControlElements$colorToHtmlTree = function (inp) {
 				_user$project$WithControlElements$toId(inp.id),
 				_user$project$WithControlElements$toPlaceholder(inp.placeholder),
 				_user$project$WithControlElements$toDisabled(inp.disabled),
-				_user$project$WithControlElements$toReadonly(inp.readonly),
 				_user$project$WithControlElements$toClasses(
 				A2(
 					_elm_lang$core$List_ops['::'],
@@ -10977,7 +10957,6 @@ var _user$project$WithControlElements$textInputToHtmlTree = function (inp) {
 				_user$project$WithControlElements$toId(inp.id),
 				_user$project$WithControlElements$toPlaceholder(inp.placeholder),
 				_user$project$WithControlElements$toDisabled(inp.disabled),
-				_user$project$WithControlElements$toReadonly(inp.readonly),
 				_user$project$WithControlElements$toClasses(
 				A2(
 					_elm_lang$core$List_ops['::'],
@@ -11196,10 +11175,6 @@ var _user$project$Raw$wrapInAddons = F2(
 				_elm_lang$core$Native_List.fromArray(
 					[])));
 	});
-var _user$project$Raw$toReadonly = function (value) {
-	return value ? _elm_lang$core$Maybe$Just(
-		A2(_user$project$HtmlTree$Attribute, 'readonly', 'readonly')) : _elm_lang$core$Maybe$Nothing;
-};
 var _user$project$Raw$toDisabled = function (value) {
 	return value ? _elm_lang$core$Maybe$Just(
 		A2(_user$project$HtmlTree$Attribute, 'disabled', 'disabled')) : _elm_lang$core$Maybe$Nothing;
@@ -11523,7 +11498,6 @@ var _user$project$Raw$textAreaToHtmlTree = function (inp) {
 				_user$project$Raw$toId(inp.id),
 				_user$project$Raw$toPlaceholder(inp.placeholder),
 				_user$project$Raw$toDisabled(inp.disabled),
-				_user$project$Raw$toReadonly(inp.readonly),
 				_user$project$Raw$toClasses(
 				_elm_lang$core$Native_List.fromArray(
 					['form-control'])),
@@ -11619,7 +11593,6 @@ var _user$project$Raw$colorToHtmlTree = function (inp) {
 				_user$project$Raw$toId(inp.id),
 				_user$project$Raw$toPlaceholder(inp.placeholder),
 				_user$project$Raw$toDisabled(inp.disabled),
-				_user$project$Raw$toReadonly(inp.readonly),
 				_user$project$Raw$toClasses(
 				A2(
 					_elm_lang$core$List_ops['::'],
@@ -11669,7 +11642,6 @@ var _user$project$Raw$textInputToHtmlTree = function (inp) {
 				_user$project$Raw$toId(inp.id),
 				_user$project$Raw$toPlaceholder(inp.placeholder),
 				_user$project$Raw$toDisabled(inp.disabled),
-				_user$project$Raw$toReadonly(inp.readonly),
 				_user$project$Raw$toClasses(
 				A2(
 					_elm_lang$core$List_ops['::'],
@@ -12033,23 +12005,13 @@ var _user$project$InputOptions$textEdit = F3(
 					]))
 			]);
 	});
-var _user$project$InputOptions$readonlyEdit = function (input) {
-	return A3(
-		_user$project$InputOptions$boolEdit,
-		'Readonly',
-		function (_p2) {
-			return _user$project$Messages$InputMessage(
-				A2(_user$project$Messages$ReadonlyEdit, input.id, _p2));
-		},
-		input.readonly);
-};
 var _user$project$InputOptions$disabledEdit = function (input) {
 	return A3(
 		_user$project$InputOptions$boolEdit,
 		'Disabled',
-		function (_p3) {
+		function (_p2) {
 			return _user$project$Messages$InputMessage(
-				A2(_user$project$Messages$DisabledEdit, input.id, _p3));
+				A2(_user$project$Messages$DisabledEdit, input.id, _p2));
 		},
 		input.disabled);
 };
@@ -12057,9 +12019,9 @@ var _user$project$InputOptions$sizeEdit = function (input) {
 	return A4(
 		_user$project$InputOptions$selectEdit,
 		'Size edit',
-		function (_p4) {
+		function (_p3) {
 			return _user$project$Messages$InputMessage(
-				A2(_user$project$Messages$SizeEdit, input.id, _p4));
+				A2(_user$project$Messages$SizeEdit, input.id, _p3));
 		},
 		_elm_lang$core$Native_List.fromArray(
 			['small', 'normal', 'large']),
@@ -12069,9 +12031,9 @@ var _user$project$InputOptions$typeEdit = function (input) {
 	return A4(
 		_user$project$InputOptions$selectEdit,
 		'Text input type',
-		function (_p5) {
+		function (_p4) {
 			return _user$project$Messages$InputMessage(
-				A2(_user$project$Messages$TypeEdit, input.id, _p5));
+				A2(_user$project$Messages$TypeEdit, input.id, _p4));
 		},
 		_user$project$FormModel$stringInputTypes,
 		_user$project$FormModel$inputTypeToString(input.type$));
@@ -12080,9 +12042,9 @@ var _user$project$InputOptions$addon2Edit = function (input) {
 	return A3(
 		_user$project$InputOptions$textEdit,
 		'Second addon',
-		function (_p6) {
+		function (_p5) {
 			return _user$project$Messages$InputMessage(
-				A2(_user$project$Messages$SecondAddonEdit, input.id, _p6));
+				A2(_user$project$Messages$SecondAddonEdit, input.id, _p5));
 		},
 		A2(_elm_lang$core$Maybe$withDefault, '', input.addon2));
 };
@@ -12090,9 +12052,9 @@ var _user$project$InputOptions$addon1Edit = function (input) {
 	return A3(
 		_user$project$InputOptions$textEdit,
 		'First addon',
-		function (_p7) {
+		function (_p6) {
 			return _user$project$Messages$InputMessage(
-				A2(_user$project$Messages$FirstAddonEdit, input.id, _p7));
+				A2(_user$project$Messages$FirstAddonEdit, input.id, _p6));
 		},
 		A2(_elm_lang$core$Maybe$withDefault, '', input.addon1));
 };
@@ -12100,9 +12062,9 @@ var _user$project$InputOptions$smallUnderEdit = function (input) {
 	return A3(
 		_user$project$InputOptions$textEdit,
 		'Small text under input',
-		function (_p8) {
+		function (_p7) {
 			return _user$project$Messages$InputMessage(
-				A2(_user$project$Messages$SmallEdit, input.id, _p8));
+				A2(_user$project$Messages$SmallEdit, input.id, _p7));
 		},
 		A2(_elm_lang$core$Maybe$withDefault, '', input.small));
 };
@@ -12110,9 +12072,9 @@ var _user$project$InputOptions$labelEdit = function (input) {
 	return A3(
 		_user$project$InputOptions$textEdit,
 		'Label',
-		function (_p9) {
+		function (_p8) {
 			return _user$project$Messages$InputMessage(
-				A2(_user$project$Messages$LabelEdit, input.id, _p9));
+				A2(_user$project$Messages$LabelEdit, input.id, _p8));
 		},
 		A2(_elm_lang$core$Maybe$withDefault, '', input.label));
 };
@@ -12120,19 +12082,19 @@ var _user$project$InputOptions$placeholderEdit = function (input) {
 	return A3(
 		_user$project$InputOptions$textEdit,
 		'Placeholder',
-		function (_p10) {
+		function (_p9) {
 			return _user$project$Messages$InputMessage(
-				A2(_user$project$Messages$PlaceholderEdit, input.id, _p10));
+				A2(_user$project$Messages$PlaceholderEdit, input.id, _p9));
 		},
 		A2(_elm_lang$core$Maybe$withDefault, '', input.placeholder));
 };
 var _user$project$InputOptions$view = function (inp) {
 	var options = function () {
-		var _p11 = inp.type$;
-		switch (_p11.ctor) {
+		var _p10 = inp.type$;
+		switch (_p10.ctor) {
 			case 'Text':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit, _user$project$InputOptions$readonlyEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit]);
 			case 'Select':
 				return _elm_lang$core$Native_List.fromArray(
 					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$optionsEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit]);
@@ -12156,37 +12118,37 @@ var _user$project$InputOptions$view = function (inp) {
 					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$labelEdit]);
 			case 'Search':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit, _user$project$InputOptions$readonlyEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit]);
 			case 'Email':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit, _user$project$InputOptions$readonlyEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit]);
 			case 'Url':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit, _user$project$InputOptions$readonlyEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit]);
 			case 'Tel':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit, _user$project$InputOptions$readonlyEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit]);
 			case 'Password':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit, _user$project$InputOptions$readonlyEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit]);
 			case 'Number':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit, _user$project$InputOptions$readonlyEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit]);
 			case 'DatetimeLocal':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit, _user$project$InputOptions$readonlyEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit]);
 			case 'Date':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit, _user$project$InputOptions$readonlyEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit]);
 			case 'Month':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit, _user$project$InputOptions$readonlyEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit]);
 			case 'Week':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit, _user$project$InputOptions$readonlyEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit]);
 			case 'Time':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit, _user$project$InputOptions$readonlyEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit, _user$project$InputOptions$disabledEdit]);
 			default:
 				return _elm_lang$core$Native_List.fromArray(
 					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$disabledEdit]);
@@ -12201,12 +12163,6 @@ var _user$project$InputOptions$view = function (inp) {
 			options));
 };
 
-var _user$project$InputUpdate$updateReadonly = F2(
-	function (newReadonly, input) {
-		return _elm_lang$core$Native_Utils.update(
-			input,
-			{readonly: newReadonly});
-	});
 var _user$project$InputUpdate$updateDisabled = F2(
 	function (newDisabled, input) {
 		return _elm_lang$core$Native_Utils.update(
@@ -12323,12 +12279,6 @@ var _user$project$InputUpdate$update = F2(
 					model,
 					_p0._0,
 					_user$project$InputUpdate$updateDisabled(_p0._1));
-			case 'ReadonlyEdit':
-				return A3(
-					_user$project$FormModel$updateInput,
-					model,
-					_p0._0,
-					_user$project$InputUpdate$updateReadonly(_p0._1));
 			case 'FirstAddonEdit':
 				return A3(
 					_user$project$FormModel$updateInput,

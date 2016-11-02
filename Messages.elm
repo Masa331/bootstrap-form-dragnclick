@@ -21,7 +21,6 @@ type InputMsg
   | LabelEdit Int String
   | SmallEdit Int String
   | DisabledEdit Int Bool
-  | ReadonlyEdit Int Bool
   | FirstAddonEdit Int String
   | SecondAddonEdit Int String
   | SizeEdit Int String

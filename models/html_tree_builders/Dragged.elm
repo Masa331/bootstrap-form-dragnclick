@@ -32,7 +32,6 @@ textInputToHtmlTree inp =
       [ toId inp.id
       , toPlaceholder inp.placeholder
       , toDisabled inp.disabled
-      , toReadonly inp.readonly
       , toClasses ((sizeClass inp.size) :: ([ "form-control" ] ++ inp.classList))
       , toType inp.type'
       ] |> List.filterMap identity
@@ -59,7 +58,6 @@ colorToHtmlTree inp =
       [ toId inp.id
       , toPlaceholder inp.placeholder
       , toDisabled inp.disabled
-      , toReadonly inp.readonly
       , toClasses ((sizeClass inp.size) :: [ "form-control" ])
       , toType inp.type'
       ] |> List.filterMap identity
@@ -97,7 +95,6 @@ textAreaToHtmlTree inp =
       [ toId inp.id
       , toPlaceholder inp.placeholder
       , toDisabled inp.disabled
-      , toReadonly inp.readonly
       , toClasses [ "form-control" ]
       , Just (Attribute "rows" (inp.rowNumber))
       ] |> List.filterMap identity
@@ -215,10 +212,6 @@ toId value =
 toDisabled : Bool -> Maybe Attribute
 toDisabled value =
   if value then Just (Attribute "disabled" "disabled") else Nothing
-
-toReadonly : Bool -> Maybe Attribute
-toReadonly value =
-  if value then Just (Attribute "readonly" "readonly") else Nothing
 
 toAddon : Maybe String -> Maybe Element
 toAddon value =
