@@ -42,13 +42,18 @@ formEdit model =
         [ class "row" ]
         [ div
            [ class "col-sm-12" ]
-           [ div [ class "bd-example" ] ([h1 [] [text "Register form"]] ++ (Form.view htmlTreeWithControlElements))
-           , draggedElement model
-           -- , div [ class "highlight" ] [ Markup.view rawHtmlTree ]
+           [ div
+             [ class "form-container form-sm" ]
+             [ div
+               [ class "form-controls" ]
+               [ a [href "javascript:void(0);"] [ text "Add field" ]
+               , a [href "javascript:void(0);"] [ text "Show source code"]]
+             , div
+               [ class "bd-example" ]
+               ([h1 [] [text "The Form"]] ++ (Form.view htmlTreeWithControlElements))
+             , draggedElement model
+             ]
            ]
-        -- , div
-        --    [ class "col-sm-4" ]
-        --    Templates.view
         ]
       ]
 

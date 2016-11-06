@@ -9085,30 +9085,41 @@ var _user$project$Models$initial = function () {
 			_user$project$FormModel$textInput,
 			{
 				id: 1,
-				label: _elm_lang$core$Maybe$Just('Name')
+				label: _elm_lang$core$Maybe$Just('Name'),
+				placeholder: _elm_lang$core$Maybe$Just('Max Rockatansky')
 			}),
 			_elm_lang$core$Native_Utils.update(
 			_user$project$FormModel$textInput,
 			{
 				id: 2,
-				label: _elm_lang$core$Maybe$Just('E-mail')
+				label: _elm_lang$core$Maybe$Just('Job title'),
+				placeholder: _elm_lang$core$Maybe$Just('Sheep herder'),
+				small: _elm_lang$core$Maybe$Just('Please tell us what do you do for living for statistical purposes.')
 			}),
 			_elm_lang$core$Native_Utils.update(
 			_user$project$FormModel$textInput,
 			{
 				id: 3,
-				label: _elm_lang$core$Maybe$Just('Password')
+				label: _elm_lang$core$Maybe$Just('Email address'),
+				placeholder: _elm_lang$core$Maybe$Just('rockatansky@wastelands.com')
+			}),
+			_elm_lang$core$Native_Utils.update(
+			_user$project$FormModel$textInput,
+			{
+				id: 4,
+				label: _elm_lang$core$Maybe$Just('Password'),
+				type$: _user$project$FormModel$Password
 			}),
 			_elm_lang$core$Native_Utils.update(
 			_user$project$FormModel$checkbox,
 			{
-				id: 4,
-				label: _elm_lang$core$Maybe$Just('Send newsletter')
+				id: 5,
+				label: _elm_lang$core$Maybe$Just('I Accept all terms and agreements')
 			}),
 			_elm_lang$core$Native_Utils.update(
 			_user$project$FormModel$button,
 			{
-				id: 5,
+				id: 6,
 				label: _elm_lang$core$Maybe$Just('Register!')
 			})
 		]);
@@ -10203,24 +10214,44 @@ var _user$project$WithControlElements$toLegend = function (value) {
 		value);
 };
 var _user$project$WithControlElements$toLabel = function (value) {
-	return A2(
-		_elm_lang$core$Maybe$map,
-		function (value) {
-			return A5(
-				_user$project$HtmlTree$Element,
-				'label',
+	var editControl = A5(
+		_user$project$HtmlTree$Element,
+		'small',
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(_user$project$HtmlTree$Attribute, 'class', 'control-element hidden-inline-block')
+			]),
+		_user$project$HtmlTree$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		' Edit',
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+	var innerSpan = A5(
+		_user$project$HtmlTree$Element,
+		'span',
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_user$project$HtmlTree$Children(
+			_elm_lang$core$Native_List.fromArray(
+				[])),
+		A2(_elm_lang$core$Maybe$withDefault, '', value),
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+	return _elm_lang$core$Maybe$Just(
+		A5(
+			_user$project$HtmlTree$Element,
+			'label',
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(_user$project$HtmlTree$Attribute, 'for', 'input1')
+				]),
+			_user$project$HtmlTree$Children(
 				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(_user$project$HtmlTree$Attribute, 'for', 'input1')
-					]),
-				_user$project$HtmlTree$Children(
-					_elm_lang$core$Native_List.fromArray(
-						[])),
-				value,
-				_elm_lang$core$Native_List.fromArray(
-					[]));
-		},
-		value);
+					[innerSpan, editControl])),
+			'',
+			_elm_lang$core$Native_List.fromArray(
+				[])));
 };
 var _user$project$WithControlElements$toSmall = function (value) {
 	return A2(
@@ -10947,6 +10978,7 @@ var _user$project$WithControlElements$textInputToHtmlTree = function (inp) {
 				_elm_lang$core$Native_List.fromArray(
 					[
 						_elm_lang$core$Maybe$Just('form-group'),
+						_elm_lang$core$Maybe$Just('show-hidden-on-hover'),
 						inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing
 					]))));
 	var inputAttrs = A2(
@@ -13259,23 +13291,61 @@ var _user$project$Views$formEdit = function (model) {
 								_elm_lang$html$Html$div,
 								_elm_lang$core$Native_List.fromArray(
 									[
-										_elm_lang$html$Html_Attributes$class('bd-example')
+										_elm_lang$html$Html_Attributes$class('form-container form-sm')
 									]),
-								A2(
-									_elm_lang$core$Basics_ops['++'],
-									_elm_lang$core$Native_List.fromArray(
-										[
-											A2(
-											_elm_lang$html$Html$h1,
-											_elm_lang$core$Native_List.fromArray(
-												[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A2(
+										_elm_lang$html$Html$div,
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html_Attributes$class('form-controls')
+											]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												A2(
+												_elm_lang$html$Html$a,
+												_elm_lang$core$Native_List.fromArray(
+													[
+														_elm_lang$html$Html_Attributes$href('javascript:void(0);')
+													]),
+												_elm_lang$core$Native_List.fromArray(
+													[
+														_elm_lang$html$Html$text('Add field')
+													])),
+												A2(
+												_elm_lang$html$Html$a,
+												_elm_lang$core$Native_List.fromArray(
+													[
+														_elm_lang$html$Html_Attributes$href('javascript:void(0);')
+													]),
+												_elm_lang$core$Native_List.fromArray(
+													[
+														_elm_lang$html$Html$text('Show source code')
+													]))
+											])),
+										A2(
+										_elm_lang$html$Html$div,
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html_Attributes$class('bd-example')
+											]),
+										A2(
+											_elm_lang$core$Basics_ops['++'],
 											_elm_lang$core$Native_List.fromArray(
 												[
-													_elm_lang$html$Html$text('Register form')
-												]))
-										]),
-									_user$project$Form$view(htmlTreeWithControlElements))),
-								_user$project$Views$draggedElement(model)
+													A2(
+													_elm_lang$html$Html$h1,
+													_elm_lang$core$Native_List.fromArray(
+														[]),
+													_elm_lang$core$Native_List.fromArray(
+														[
+															_elm_lang$html$Html$text('The Form')
+														]))
+												]),
+											_user$project$Form$view(htmlTreeWithControlElements))),
+										_user$project$Views$draggedElement(model)
+									]))
 							]))
 					]))
 			]));

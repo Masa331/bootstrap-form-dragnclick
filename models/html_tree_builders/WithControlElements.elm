@@ -38,6 +38,7 @@ textInputToHtmlTree inp =
 
     containerClass =
       [ Just "form-group"
+      , Just "show-hidden-on-hover"
       , if inp.dragged then Just "hidden" else Nothing
       ] |> List.filterMap identity
         |> String.join " "
@@ -279,7 +280,11 @@ toSmall value =
 
 toLabel : Maybe String -> Maybe Element
 toLabel value =
-  Maybe.map (\value -> Element "label" [Attribute "for" "input1"] (Children []) value []) value
+  let
+    innerSpan = Element "span" [] (Children []) (Maybe.withDefault "" value) []
+    editControl = Element "small" [ Attribute "class" "control-element hidden-inline-block" ] (Children []) " Edit" []
+  in
+    Just (Element "label" [Attribute "for" "input1"] (Children [innerSpan, editControl]) "" [])
 
 toLegend : Maybe String -> Maybe Element
 toLegend value =

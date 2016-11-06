@@ -1,3 +1,7 @@
+/* -------------------------------------- */
+/* Bootstrap styles for initial template  */
+/* -------------------------------------- */
+
 /* Space out content a bit */
 body {
   padding-top: 1.5rem;
@@ -6,7 +10,6 @@ body {
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
-.marketing,
 .footer {
   margin-top: 10px;
   padding-right: 1rem;
@@ -18,48 +21,12 @@ body {
   padding-bottom: 1rem;
   border-bottom: .05rem solid #e5e5e5;
 }
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 3rem;
-}
 
 /* Custom page footer */
 .footer {
   padding-top: 1.5rem;
   color: #777;
   border-top: .05rem solid #e5e5e5;
-}
-
-/* Customize container */
-/* Not used currently */
-
-/* @media (min-width: 48em) { */
-/*   .container { */
-/*     max-width: 46rem; */
-/*   } */
-/* } */
-/* .container-narrow > hr { */
-/*   margin: 2rem 0; */
-/* } */
-
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: .05rem solid #e5e5e5;
-}
-.jumbotron .btn {
-  padding: .75rem 1.5rem;
-  font-size: 1.5rem;
-}
-
-/* Supporting marketing content */
-.marketing {
-  margin: 3rem 0;
-}
-.marketing p + h4 {
-  margin-top: 1.5rem;
 }
 
 /* Responsive: Portrait tablets and up */
@@ -81,26 +48,6 @@ body {
   }
 }
 
-.edit-and-remove-link {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-}
-
-span i {
-  color: lightgrey;
-}
-
-span i:hover {
-  color: grey;
-}
-
-.control-icon {
-  cursor: pointer;
-  margin-left: 2px;
-  margin-right: 2px;
-}
-
 div.dragged i.control-icon {
   cursor: move;
 }
@@ -109,28 +56,15 @@ div.dragged i.control-icon {
   visibility: hidden;
 }
 
-.my-container {
-  position: relative;
-}
-
-.form-group {
-  position: relative;
-}
-
 .bd-example {
   padding: 1rem;
-  margin: 1rem -1rem;
+  margin: 1rem 0rem;
   border: solid #f7f7f9;
   padding: 1.5rem;
-  margin-right: 0;
-  margin-left: 0;
   border-width: .2rem;
 
-  /* margin-left: auto; */
-  /* margin-right: auto; */
   margin-bottom: 5px;
-
-  width: 500px;
+  margin-top: 0px;
 }
 
 .highlight {
@@ -142,13 +76,102 @@ div.dragged i.control-icon {
   background-color: #f7f7f9;
 }
 
-/* experimental - context menu */
-.context-menu {
-  display: none;
-  position: absolute;
-  z-index: 10;
+.form-sm {
+  width: 500px;
 }
 
-.context-menu--active {
+.form-controls {
+  text-align: right;
+}
+/* ------------------------------- */
+/* New styles - Styles for my control elements  */
+/* ------------------------------- */
+
+.form-group {
+  position: relative;
+}
+.control-container {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.relative-position {
+  position: relative;
+}
+
+.absolute-position {
+  position: absolute;
+}
+
+.hidden-block {
+  display: none;
+}
+.show-hidden-on-hover:hover .hidden-block {
   display: block;
+}
+.hidden-inline-block {
+  display: none;
+}
+.show-hidden-on-hover:hover .hidden-inline-block {
+  display: inline-block;
+}
+.hidden-table-cell {
+  display: none;
+}
+.show-hidden-on-hover:hover .hidden-table-cell {
+  display: table-cell;
+}
+
+.control-element {
+  color: lightgrey;
+  cursor: pointer;
+}
+.control-element:hover {
+  color: grey;
+}
+
+input {
+  /* So the input looks like placeholder */
+  color: #999;
+}
+.form-control {
+  color: #999;
+}
+.form-control:focus {
+  color: #999;
+}
+
+
+.fa-small {
+  font-size: 15px !important;
+}
+.fa-normal {
+  font-size: 18px !important;
+}
+.fa-big {
+  font-size: 20px !important;
+}
+
+.input-group .form-control:not(:first-child):not(:last-child) {
+  border-bottom-right-radius: .25rem;
+  border-top-right-radius: .25rem;
+  border-bottom-left-radius: .25rem;
+  border-top-left-radius: .25rem;
+}
+
+.form-group:hover .form-control:not(:first-child):not(:last-child) {
+  border-bottom-right-radius: 0rem;
+  border-top-right-radius: 0rem;
+  border-bottom-left-radius: 0rem;
+  border-top-left-radius: 0rem;
+}
+
+
+.no-margin {
+  margin: 0px;
+}
+
+.negative-top-margin {
+  margin-top: -7px;
 }
