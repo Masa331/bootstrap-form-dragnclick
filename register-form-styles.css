@@ -42,9 +42,28 @@
   border: solid #f7f7f9;
   padding: 1.5rem;
   border-width: .2rem;
-  margin-bottom: 5px;
 
+  margin-bottom: 5px;
+  margin-top: 0px;
+
+  /* width: 500px; */
+}
+
+.highlight {
+  padding: 1.5rem;
+  margin-right: 0;
+  margin-left: 0;
+  margin-top 0;
+  padding: 1rem;
+  background-color: #f7f7f9;
+}
+
+.form-sm {
   width: 500px;
+}
+
+.form-controls {
+  text-align: right;
 }
 
 /* ------------------------------- */
@@ -58,6 +77,14 @@
   position: absolute;
   top: 0px;
   right: 0px;
+}
+
+.relative-position {
+  position: relative;
+}
+
+.absolute-position {
+  position: absolute;
 }
 
 .hidden-block {
@@ -121,4 +148,13 @@ input {
   border-top-right-radius: 0rem;
   border-bottom-left-radius: 0rem;
   border-top-left-radius: 0rem;
+}
+
+
+.no-margin {
+  margin: 0px;
+}
+
+.negative-top-margin {
+  margin-top: -7px;
 }
