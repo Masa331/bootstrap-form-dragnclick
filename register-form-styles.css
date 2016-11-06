@@ -1,12 +1,8 @@
-/* Space out content a bit */
-body {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}
+/* -------------------------------------- */
+/* Bootstrap styles for initial template  */
+/* -------------------------------------- */
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
-.marketing,
 .footer {
   margin-top: 10px;
   padding-right: 1rem;
@@ -18,12 +14,6 @@ body {
   padding-bottom: 1rem;
   border-bottom: .05rem solid #e5e5e5;
 }
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 3rem;
-}
 
 /* Custom page footer */
 .footer {
@@ -32,41 +22,10 @@ body {
   border-top: .05rem solid #e5e5e5;
 }
 
-/* Customize container */
-/* Not used currently */
-
-/* @media (min-width: 48em) { */
-/*   .container { */
-/*     max-width: 46rem; */
-/*   } */
-/* } */
-/* .container-narrow > hr { */
-/*   margin: 2rem 0; */
-/* } */
-
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: .05rem solid #e5e5e5;
-}
-.jumbotron .btn {
-  padding: .75rem 1.5rem;
-  font-size: 1.5rem;
-}
-
-/* Supporting marketing content */
-.marketing {
-  margin: 3rem 0;
-}
-.marketing p + h4 {
-  margin-top: 1.5rem;
-}
-
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 48em) {
   /* Remove the padding we set earlier */
   .header,
-  .marketing,
   .footer {
     padding-right: 0;
     padding-left: 0;
@@ -75,125 +34,84 @@ body {
   .header {
     margin-bottom: 2rem;
   }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
 }
 
-/* control */
+.bd-example {
+  padding: 1rem;
+  margin: 1rem 0rem;
+  border: solid #f7f7f9;
+  padding: 1.5rem;
+  border-width: .2rem;
+  margin-bottom: 5px;
 
-.edit-control {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  display: none;
+  width: 500px;
 }
 
-.inline-edit-control {
-  display: none;
-}
-
-.control-container:hover .inline-edit-control {
-  display: inline-block;
-}
-
-.form-group:hover .edit-control {
-  display: block;
-}
-
-.form-check:hover .inline-edit-control {
-  display: inline-block;
-}
-
-.btn:hover + .inline-edit-control {
-  display: inline-block;
-}
-
-.inline-edit-control:hover {
-  display: inline-block;
-}
-
-span i {
-  color: lightgrey;
-}
-
-span i:hover {
-  color: grey;
-}
-
-.control-icon {
-  cursor: pointer;
-  margin-left: 2px;
-  margin-right: 2px;
-}
-
-div.dragged i.control-icon {
-  cursor: move;
-}
+/* ------------------------------- */
+/* Styles for my control elements  */
+/* ------------------------------- */
 
 .form-group {
   position: relative;
 }
-
 .control-container {
-  position: relative;
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }
 
-
-/*  inline control link */
-
-.control-link {
-  color: lightgrey;
+.hidden-block {
   display: none;
+}
+.show-hidden-on-hover:hover .hidden-block {
+  display: block;
+}
+.hidden-inline-block {
+  display: none;
+}
+.show-hidden-on-hover:hover .hidden-inline-block {
+  display: inline-block;
+}
+.hidden-table-cell {
+  display: none;
+}
+.show-hidden-on-hover:hover .hidden-table-cell {
+  display: table-cell;
+}
+
+.control-element {
+  color: lightgrey;
   cursor: pointer;
 }
-
-.control-link:hover {
+.control-element:hover {
   color: grey;
-}
-
-.form-group:hover .control-link {
-  display: inline;
 }
 
 input {
   /* So the input looks like placeholder */
   color: #999;
 }
-
 .form-control {
   color: #999;
 }
-
 .form-control:focus {
   color: #999;
-}
-
-
-.hidden-addon {
-  display: none;
 }
 
 
 .fa-small {
   font-size: 15px !important;
 }
-
 .fa-normal {
   font-size: 18px !important;
 }
-
-
 .fa-big {
   font-size: 20px !important;
 }
 
-/* .input-group-addon:not(:last-child) + .input-group { */
 .input-group .form-control:not(:first-child):not(:last-child) {
   border-bottom-right-radius: .25rem;
   border-top-right-radius: .25rem;
-
   border-bottom-left-radius: .25rem;
   border-top-left-radius: .25rem;
 }
@@ -201,34 +119,6 @@ input {
 .form-group:hover .form-control:not(:first-child):not(:last-child) {
   border-bottom-right-radius: 0rem;
   border-top-right-radius: 0rem;
-
   border-bottom-left-radius: 0rem;
   border-top-left-radius: 0rem;
-}
-
-.form-group:hover .hidden-addon {
-  display: table-cell;
-}
-
-/* end control */
-
-.bd-example {
-  padding: 1rem;
-  /* margin: 1rem -1rem; */
-  /* margin: 1rem; */
-  margin: 1rem 0rem;
-  border: solid #f7f7f9;
-  padding: 1.5rem;
-  border-width: .2rem;
-
-  /* margin-left: auto; */
-  /* margin-right: auto; */
-  margin-bottom: 5px;
-
-  width: 500px;
-}
-
-.resizeable {
-  resize: horizontal;
-  overflow: auto;
 }

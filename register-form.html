@@ -19,84 +19,151 @@
 
       <div class="row">
         <div class="col-sm-12">
-          <div class="bd-example resizeable">
+          <div class="bd-example">
             <h1>The Form</h1>
 
             <form>
-              <div class="form-group">
-                <label for="exampleInput1">Name <small class="control-link">Edit</small></label>
-                <div class="edit-control">
-                  <span><i class="fa fa-edit"></i></span>
-                  <span><i class="fa fa-trash"></i></span>
-                </div>
-                <input type="text" class="form-control" id="exampleInput1" placeholder="John Doe">
+              <div class="form-group show-hidden-on-hover">
+                <label for="nameInput">Name <small class="control-element hidden-inline-block">Edit</small></label>
 
-                <small class="form-text text-muted control-link" contenteditable=true>Please don't insert name which doesn't belong to you.</small>
-              </div>
+                <div class="control-container hidden-block">
+                  <span><i class="fa fa-font fa-small control-element"></i></span>
+                  <span><i class="fa fa-font fa-normal control-element"></i></span>
+                  <span><i class="fa fa-font fa-big control-element"></i></span>
 
-              <div class="form-group">
-                <label for="companyPosition">Company position <small class="control-link">Edit</small></label>
-                <div class="edit-control">
-                  <span><i class="fa fa-font fa-small"></i></span>
-                  <span><i class="fa fa-font fa-normal"></i></span>
-                  <span><i class="fa fa-font fa-big"></i></span>
-
-                  <span><i class="fa fa-edit"></i></span>
-                  <span><i class="fa fa-trash"></i></span>
-                  <span><i class="fa fa-check"></i></span>
+                  <span><i class="fa fa-edit control-element"></i></span>
+                  <span><i class="fa fa-trash control-element"></i></span>
+                  <span><i class="fa fa-check control-element"></i></span>
                 </div>
 
                 <div class="input-group">
-                  <div class="input-group-addon hidden-addon">
-                    <small>Edit</small>
+                  <div class="input-group-addon hidden-table-cell">
+                    <small class="control-element">Edit</small>
                   </div>
 
-                  <input type="text" class="form-control" id="companyPosition">
+                  <input type="text" class="form-control" id="nameInput" placeholder="Max Rockatansky">
 
-                  <div class="input-group-addon hidden-addon">
-                    <small>Edit</small>
+                  <div class="input-group-addon hidden-table-cell">
+                    <small class="control-element">Edit</small>
                   </div>
                 </div>
 
-                <small class="form-text text-muted control-link">Please don't insert name which doesn't belong to you.</small>
-              </div>
-
-              <div class="form-group">
-                <label for="exampleInput2">Email address</label>
-                <div class="edit-control">
-                  <span><i class="fa fa-edit"></i></span>
-                  <span><i class="fa fa-trash"></i></span>
+                <div class="hidden-block">
+                  <small class="form-text control-element">Click here to edit small text under.</small>
                 </div>
-                <input type="email" class="form-control" id="exampleInput2" aria-describedby="emailHelp" placeholder="doe@gmail.com">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
 
-              <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <div class="edit-control">
-                  <span><i class="fa fa-edit"></i></span>
-                  <span><i class="fa fa-trash"></i></span>
+              <div class="form-group show-hidden-on-hover">
+                <label for="job">Job title <small class="control-element hidden-inline-block">Edit</small></label>
+                <div class="control-container hidden-block">
+                  <span><i class="fa fa-font fa-small control-element"></i></span>
+                  <span><i class="fa fa-font fa-normal control-element"></i></span>
+                  <span><i class="fa fa-font fa-big control-element"></i></span>
+
+                  <span><i class="fa fa-edit control-element"></i></span>
+                  <span><i class="fa fa-trash control-element"></i></span>
+                  <span><i class="fa fa-check control-element"></i></span>
                 </div>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="iloveyou">
+
+                <div class="input-group">
+                  <div class="input-group-addon hidden-table-cell">
+                    <small class="control-element">Edit</small>
+                  </div>
+
+                  <input type="text" class="form-control" id="job" placeholder="Sheep herder">
+
+                  <div class="input-group-addon hidden-table-cell">
+                    <small class="control-element">Edit</small>
+                  </div>
+                </div>
+
+                <small class="form-text"><span class="text-muted">Please tell us what do you do for living for statistical purposes.</span> <span class="control-element hidden-inline-block">Edit</span></small>
               </div>
 
-              <div class="form-check">
+              <div class="form-group show-hidden-on-hover">
+                <label for="email">Email address <small class="control-element hidden-inline-block">Edit</small></label>
+
+                <div class="control-container hidden-block">
+                  <span><i class="fa fa-font fa-small control-element"></i></span>
+                  <span><i class="fa fa-font fa-normal control-element"></i></span>
+                  <span><i class="fa fa-font fa-big control-element"></i></span>
+
+                  <span><i class="fa fa-edit control-element"></i></span>
+                  <span><i class="fa fa-trash control-element"></i></span>
+                  <span><i class="fa fa-check control-element"></i></span>
+                </div>
+
+                <div class="input-group">
+                  <div class="input-group-addon hidden-table-cell">
+                    <small class="control-element">Edit</small>
+                  </div>
+
+                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="rockatansky@wastelands.com">
+
+                  <div class="input-group-addon hidden-table-cell">
+                    <small class="control-element">Edit</small>
+                  </div>
+                </div>
+
+                <div class="hidden-block">
+                  <small class="form-text control-element">Click here to edit small text under.</small>
+                </div>
+              </div>
+
+              <div class="form-group show-hidden-on-hover">
+                <label for="password">Password <small class="control-element hidden-inline-block">Edit</small></label>
+
+                <div class="control-container hidden-block">
+                  <span><i class="fa fa-font fa-small control-element"></i></span>
+                  <span><i class="fa fa-font fa-normal control-element"></i></span>
+                  <span><i class="fa fa-font fa-big control-element"></i></span>
+
+                  <span><i class="fa fa-edit control-element"></i></span>
+                  <span><i class="fa fa-trash control-element"></i></span>
+                  <span><i class="fa fa-check control-element"></i></span>
+                </div>
+
+                <div class="input-group">
+                  <div class="input-group-addon hidden-table-cell">
+                    <small class="control-element">Edit</small>
+                  </div>
+
+                  <input type="password" class="form-control" id="password">
+
+                  <div class="input-group-addon hidden-table-cell">
+                    <small class="control-element">Edit</small>
+                  </div>
+                </div>
+
+                <div class="hidden-block">
+                  <small class="form-text control-element">Click here to edit small text under.</small>
+                </div>
+              </div>
+
+              <div class="form-check show-hidden-on-hover">
                 <label class="form-check-label">
                   <input type="checkbox" class="form-check-input">
                   I Accept all terms and agreements
                 </label>
 
-                <div class="inline-edit-control">
-                  <span><i class="fa fa-edit"></i></span>
-                  <span><i class="fa fa-trash"></i></span>
+                <div class="hidden-inline-block">
+                  <span><i class="fa fa-edit control-element"></i></span>
+                  <span><i class="fa fa-trash control-element"></i></span>
+                  <span><i class="fa fa-check control-element"></i></span>
+                </div>
+
+                <div class="hidden-block">
+                  <small class="form-text control-element">Click here to edit small text under.</small>
                 </div>
               </div>
 
-              <div class="control-container">
+              <div class="show-hidden-on-hover">
                 <button type="submit" class="btn btn-primary">Register!</button>
-                <div class="inline-edit-control">
-                  <span><i class="fa fa-edit"></i></span>
-                  <span><i class="fa fa-trash"></i></span>
+
+                <div class="hidden-inline-block">
+                  <span><i class="fa fa-edit control-element"></i></span>
+                  <span><i class="fa fa-trash control-element"></i></span>
+                  <span><i class="fa fa-check control-element"></i></span>
                 </div>
               </div>
 

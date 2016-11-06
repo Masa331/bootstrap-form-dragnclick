@@ -13259,7 +13259,7 @@ var _user$project$Views$formEdit = function (model) {
 								_elm_lang$html$Html$div,
 								_elm_lang$core$Native_List.fromArray(
 									[
-										_elm_lang$html$Html_Attributes$class('bd-example resizeable')
+										_elm_lang$html$Html_Attributes$class('bd-example')
 									]),
 								A2(
 									_elm_lang$core$Basics_ops['++'],
@@ -13275,17 +13275,7 @@ var _user$project$Views$formEdit = function (model) {
 												]))
 										]),
 									_user$project$Form$view(htmlTreeWithControlElements))),
-								_user$project$Views$draggedElement(model),
-								A2(
-								_elm_lang$html$Html$div,
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html_Attributes$class('highlight')
-									]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_user$project$Markup$view(rawHtmlTree)
-									]))
+								_user$project$Views$draggedElement(model)
 							]))
 					]))
 			]));
