@@ -28,14 +28,6 @@ build input =
 
 textInputToHtmlTree inp =
   let
-    inputAttrs =
-      [ toId inp.id
-      , toPlaceholder inp.placeholder
-      , toDisabled inp.disabled
-      , toClasses ((sizeClass inp.size) :: ([ "form-control" ] ++ inp.classList))
-      , toType inp.type'
-      ] |> List.filterMap identity
-
     containerClass =
       [ Just "form-group"
       , Just "show-hidden-on-hover"
@@ -46,9 +38,9 @@ textInputToHtmlTree inp =
 
     children =
       [ toLabel inp.label
-      , wrapInAddons inputAttrs inp
-      , toSmall inp.small
       , toLinks inp.id
+      , wrapInAddons inp
+      , Just (toSmall inp)
       ] |> List.filterMap identity
   in
     Element "div" [containerClass, Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
@@ -73,7 +65,7 @@ colorToHtmlTree inp =
     children =
       [ toLabel inp.label
       , Just (Element "input" inputAttrs (Children []) "" [])
-      , toSmall inp.small
+      , Just (toSmall inp)
       , toLinks inp.id
       ] |> List.filterMap identity
   in
@@ -98,7 +90,7 @@ selectToHtmlTree inp =
     children =
       [ toLabel inp.label
       , Just (Element "select" inputAttrs (Children options) "" [])
-      , toSmall inp.small
+      , Just (toSmall inp)
       , toLinks inp.id
       ] |> List.filterMap identity
   in
@@ -106,13 +98,13 @@ selectToHtmlTree inp =
 
 textAreaToHtmlTree inp =
   let
-    inputAttrs =
-      [ toId inp.id
-      , toPlaceholder inp.placeholder
-      , toDisabled inp.disabled
-      , toClasses [ "form-control" ]
-      , Just (Attribute "rows" (inp.rowNumber))
-      ] |> List.filterMap identity
+    -- inputAttrs =
+    --   [ toId inp.id
+    --   , toPlaceholder inp.placeholder
+    --   , toDisabled inp.disabled
+    --   , toClasses [ "form-control" ]
+    --   , Just (Attribute "rows" (inp.rowNumber))
+    --   ] |> List.filterMap identity
 
     containerClass =
       [ Just "form-group"
@@ -123,7 +115,7 @@ textAreaToHtmlTree inp =
 
     children =
       [ toLabel inp.label
-      , wrapInAddons inputAttrs inp
+      , wrapInAddons inp
       , toLinks inp.id
       ] |> List.filterMap identity
   in
@@ -149,7 +141,7 @@ multiselectToHtmlTree inp =
     children =
       [ toLabel inp.label
       , Just (Element "select" inputAttrs (Children options) "" [])
-      , toSmall inp.small
+      , Just (toSmall inp)
       , toLinks inp.id
       ] |> List.filterMap identity
   in
@@ -174,7 +166,7 @@ fileUploadToHtmlTree inp =
     children =
       [ toLabel inp.label
       , Just (Element "input" inputAttrs (Children []) "" [])
-      , toSmall inp.small
+      , Just (toSmall inp)
       , toLinks inp.id
       ] |> List.filterMap identity
   in
@@ -186,7 +178,7 @@ radioToHtmlTree inp =
     children =
       [ toLegend inp.label ]
       ++ options
-      ++ [ toSmall inp.small ]
+      ++ [ Just (toSmall inp) ]
       ++ [ toLinks inp.id ]
       |> List.filterMap identity
 
@@ -270,13 +262,32 @@ toDisabled : Bool -> Maybe Attribute
 toDisabled value =
   if value then Just (Attribute "disabled" "disabled") else Nothing
 
-toAddon : Maybe String -> Maybe Element
+toAddon : Maybe String -> Element
 toAddon value =
-  Maybe.map (\value -> Element "div" [Attribute "class" "input-group-addon"] (Children []) value []) value
+  let
+    editLink = Element "small" [Attribute "class" "control-element hidden-inline-block"] (Children []) "Edit" []
+  in
+    case value of
+      Just text ->
+        Element "div" [Attribute "class" "input-group-addon"] (Children [Element "span" [] (Children []) text [], editLink]) "" []
+      Nothing ->
+        Element "div" [Attribute "class" "input-group-addon hidden-table-cell"] (Children [editLink]) "" []
 
-toSmall : Maybe String -> Maybe Element
-toSmall value =
-  Maybe.map (\value -> Element "small" [Attribute "class" "form-text text-muted"] (Children []) value []) value
+toSmall : Input -> Element
+toSmall input =
+  case input.small of
+    Just text ->
+      -- Element "small" [Attribute "class" "form-text text-muted"] (Children []) text []
+      let
+        smallText = Element "span" [Attribute "class" "text-muted"] (Children []) text []
+        editLink = Element "span" [Attribute "class" "control-element hidden-inline-block"] (Children []) " Edit" []
+      in
+        Element "small" [Attribute "class" "form-text"] (Children [smallText, editLink]) "" []
+    Nothing ->
+      let
+        editLink = Element "small" [Attribute "class" "form-text control-element no-margin"] (Children []) "Click here to edit small text under." []
+      in
+        Element "div" [Attribute "class" "hidden-block absolute-position"] (Children [editLink]) "" []
 
 toLabel : Maybe String -> Maybe Element
 toLabel value =
@@ -297,16 +308,25 @@ toType value =
 toLinks : Id -> Maybe Element
 toLinks value =
   let
-    i1 = Element "i" [Attribute "class" "fa fa-edit control-icon"] (Children []) "" []
-    l1 = Element "span" [] (Children [i1]) "" [Html.Events.onClick (Messages.FormMessage (Messages.EditInput value))]
-    i2 = Element "i" [Attribute "class" "fa fa-trash control-icon"] (Children []) "" []
-    l2 = Element "span" [] (Children [i2]) "" [Html.Events.onClick (Messages.FormMessage (Messages.RemoveInput value))]
-    i3 = Element "i" [Attribute "class" "fa fa-arrows control-icon"] (Children []) "" []
-    l3 = Element "span" [] (Children [i3]) "" [Html.Events.onMouseDown ((Messages.MouseMessage (Messages.MouseClick value)))]
+    i1 = Element "i" [Attribute "class" "fa fa-font fa-small control-element"] (Children []) "" []
+    l1 = Element "span" [] (Children [i1]) "" []
+    i2 = Element "i" [Attribute "class" "fa fa-font fa-normal control-element"] (Children []) "" []
+    l2 = Element "span" [] (Children [i2]) "" []
+    i3 = Element "i" [Attribute "class" "fa fa-font fa-big control-element"] (Children []) "" []
+    l3 = Element "span" [] (Children [i3]) "" []
 
-    children = (Children [l1, l2, l3])
+    i4 = Element "i" [Attribute "class" "fa fa-edit control-element"] (Children []) "" []
+    l4 = Element "span" [] (Children [i4]) "" [Html.Events.onClick (Messages.FormMessage (Messages.EditInput value))]
+    i5 = Element "i" [Attribute "class" "fa fa-trash control-element"] (Children []) "" []
+    l5 = Element "span" [] (Children [i5]) "" [Html.Events.onClick (Messages.FormMessage (Messages.RemoveInput value))]
+    i6 = Element "i" [Attribute "class" "fa fa-check control-element"] (Children []) "" []
+    l6 = Element "span" [] (Children [i6]) "" []
+    i7 = Element "i" [Attribute "class" "fa fa-arrows control-element"] (Children []) "" []
+    l7 = Element "span" [] (Children [i7]) "" [Html.Events.onMouseDown ((Messages.MouseMessage (Messages.MouseClick value)))]
+
+    children = (Children [l1, l2, l3, l4, l5, l6, l7])
   in
-    Just (Element "div" [Attribute "class" "edit-and-remove-link"] children "" [])
+    Just (Element "div" [Attribute "class" "control-container hidden-block"] children "" [])
 
 sizeClass : Size -> String
 sizeClass size =
@@ -327,17 +347,23 @@ toClasses classList =
   in
     Just (Attribute "class" value)
 
-wrapInAddons inputAttrs input =
+wrapInAddons input =
   let
+    inputAttrs =
+      [ toId input.id
+      , toPlaceholder input.placeholder
+      , toDisabled input.disabled
+      , toClasses ((sizeClass input.size) :: ([ "form-control" ] ++ input.classList))
+      , toType input.type'
+      ] |> List.filterMap identity
+
     add1 = toAddon input.addon1
     add2 = toAddon input.addon2
     inputType =
       case input.type' of
         TextArea -> "textarea"
         _ -> "input"
-    input1 = Just (Element inputType inputAttrs (Children []) "" [])
+
+    input1 = Element inputType inputAttrs (Children []) "" []
   in
-    if List.isEmpty (List.filterMap identity [add1, add2]) then
-      input1
-    else
-      Just (Element "div" [Attribute "class" "input-group"] (Children ([add1, input1, add2] |> List.filterMap identity)) "" [])
+    Just (Element "div" [Attribute "class" "input-group"] (Children ([add1, input1, add2])) "" [])
