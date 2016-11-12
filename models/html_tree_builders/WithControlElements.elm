@@ -309,11 +309,11 @@ toLinks : Id -> Maybe Element
 toLinks value =
   let
     i1 = Element "i" [Attribute "class" "fa fa-font fa-small control-element"] (Children []) "" []
-    l1 = Element "span" [] (Children [i1]) "" []
+    l1 = Element "span" [] (Children [i1]) "" [Html.Events.onClick ((Messages.InputMessage (Messages.SizeEdit value "small")))]
     i2 = Element "i" [Attribute "class" "fa fa-font fa-normal control-element"] (Children []) "" []
-    l2 = Element "span" [] (Children [i2]) "" []
+    l2 = Element "span" [] (Children [i2]) "" [Html.Events.onClick ((Messages.InputMessage (Messages.SizeEdit value "normal")))]
     i3 = Element "i" [Attribute "class" "fa fa-font fa-big control-element"] (Children []) "" []
-    l3 = Element "span" [] (Children [i3]) "" []
+    l3 = Element "span" [] (Children [i3]) "" [Html.Events.onClick ((Messages.InputMessage (Messages.SizeEdit value "large")))]
 
     i4 = Element "i" [Attribute "class" "fa fa-edit control-element"] (Children []) "" []
     l4 = Element "span" [] (Children [i4]) "" [Html.Events.onClick (Messages.FormMessage (Messages.EditInput value))]
@@ -365,5 +365,13 @@ wrapInAddons input =
         _ -> "input"
 
     input1 = Element inputType inputAttrs (Children []) "" []
+    inputClasses =
+      case input.size of
+        Small ->
+          "input-group input-group-sm"
+        Normal ->
+          "input-group"
+        Large ->
+          "input-group input-group-lg"
   in
-    Just (Element "div" [Attribute "class" "input-group"] (Children ([add1, input1, add2])) "" [])
+    Just (Element "div" [Attribute "class" inputClasses] (Children ([add1, input1, add2])) "" [])

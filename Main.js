@@ -10223,7 +10223,11 @@ var _user$project$WithControlElements$toLinks = function (value) {
 				[i3])),
 		'',
 		_elm_lang$core$Native_List.fromArray(
-			[]));
+			[
+				_elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$InputMessage(
+					A2(_user$project$Messages$SizeEdit, value, 'large')))
+			]));
 	var i2 = A5(
 		_user$project$HtmlTree$Element,
 		'i',
@@ -10247,7 +10251,11 @@ var _user$project$WithControlElements$toLinks = function (value) {
 				[i2])),
 		'',
 		_elm_lang$core$Native_List.fromArray(
-			[]));
+			[
+				_elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$InputMessage(
+					A2(_user$project$Messages$SizeEdit, value, 'normal')))
+			]));
 	var i1 = A5(
 		_user$project$HtmlTree$Element,
 		'i',
@@ -10271,7 +10279,11 @@ var _user$project$WithControlElements$toLinks = function (value) {
 				[i1])),
 		'',
 		_elm_lang$core$Native_List.fromArray(
-			[]));
+			[
+				_elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$InputMessage(
+					A2(_user$project$Messages$SizeEdit, value, 'small')))
+			]));
 	var children = _user$project$HtmlTree$Children(
 		_elm_lang$core$Native_List.fromArray(
 			[l1, l2, l3, l4, l5, l6, l7]));
@@ -10503,9 +10515,20 @@ var _user$project$WithControlElements$toPlaceholder = function (value) {
 		value);
 };
 var _user$project$WithControlElements$wrapInAddons = function (input) {
+	var inputClasses = function () {
+		var _p3 = input.size;
+		switch (_p3.ctor) {
+			case 'Small':
+				return 'input-group input-group-sm';
+			case 'Normal':
+				return 'input-group';
+			default:
+				return 'input-group input-group-lg';
+		}
+	}();
 	var inputType = function () {
-		var _p3 = input.type$;
-		if (_p3.ctor === 'TextArea') {
+		var _p4 = input.type$;
+		if (_p4.ctor === 'TextArea') {
 			return 'textarea';
 		} else {
 			return 'input';
@@ -10548,7 +10571,7 @@ var _user$project$WithControlElements$wrapInAddons = function (input) {
 			'div',
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(_user$project$HtmlTree$Attribute, 'class', 'input-group')
+					A2(_user$project$HtmlTree$Attribute, 'class', inputClasses)
 				]),
 			_user$project$HtmlTree$Children(
 				_elm_lang$core$Native_List.fromArray(
@@ -10641,8 +10664,8 @@ var _user$project$WithControlElements$checkboxToHtmlTree = function (inp) {
 		_elm_lang$core$Native_List.fromArray(
 			[]));
 	var label = function () {
-		var _p4 = inp.label;
-		if (_p4.ctor === 'Nothing') {
+		var _p5 = inp.label;
+		if (_p5.ctor === 'Nothing') {
 			return _elm_lang$core$Maybe$Just(
 				A5(
 					_user$project$HtmlTree$Element,
@@ -10669,7 +10692,7 @@ var _user$project$WithControlElements$checkboxToHtmlTree = function (inp) {
 					_user$project$HtmlTree$Children(
 						_elm_lang$core$Native_List.fromArray(
 							[input])),
-					_p4._0,
+					_p5._0,
 					_elm_lang$core$Native_List.fromArray(
 						[])));
 		}
@@ -11198,8 +11221,8 @@ var _user$project$WithControlElements$textInputToHtmlTree = function (inp) {
 			[]));
 };
 var _user$project$WithControlElements$build = function (input) {
-	var _p5 = input.type$;
-	switch (_p5.ctor) {
+	var _p6 = input.type$;
+	switch (_p6.ctor) {
 		case 'Text':
 			return _user$project$WithControlElements$textInputToHtmlTree(input);
 		case 'TextArea':
@@ -12208,25 +12231,13 @@ var _user$project$InputOptions$textEdit = F3(
 					]))
 			]);
 	});
-var _user$project$InputOptions$sizeEdit = function (input) {
-	return A4(
-		_user$project$InputOptions$selectEdit,
-		'Size edit',
-		function (_p2) {
-			return _user$project$Messages$InputMessage(
-				A2(_user$project$Messages$SizeEdit, input.id, _p2));
-		},
-		_elm_lang$core$Native_List.fromArray(
-			['small', 'normal', 'large']),
-		_user$project$FormModel$sizeToString(input.size));
-};
 var _user$project$InputOptions$typeEdit = function (input) {
 	return A4(
 		_user$project$InputOptions$selectEdit,
 		'Text input type',
-		function (_p3) {
+		function (_p2) {
 			return _user$project$Messages$InputMessage(
-				A2(_user$project$Messages$TypeEdit, input.id, _p3));
+				A2(_user$project$Messages$TypeEdit, input.id, _p2));
 		},
 		_user$project$FormModel$stringInputTypes,
 		_user$project$FormModel$inputTypeToString(input.type$));
@@ -12235,9 +12246,9 @@ var _user$project$InputOptions$addon2Edit = function (input) {
 	return A3(
 		_user$project$InputOptions$textEdit,
 		'Second addon',
-		function (_p4) {
+		function (_p3) {
 			return _user$project$Messages$InputMessage(
-				A2(_user$project$Messages$SecondAddonEdit, input.id, _p4));
+				A2(_user$project$Messages$SecondAddonEdit, input.id, _p3));
 		},
 		A2(_elm_lang$core$Maybe$withDefault, '', input.addon2));
 };
@@ -12245,9 +12256,9 @@ var _user$project$InputOptions$addon1Edit = function (input) {
 	return A3(
 		_user$project$InputOptions$textEdit,
 		'First addon',
-		function (_p5) {
+		function (_p4) {
 			return _user$project$Messages$InputMessage(
-				A2(_user$project$Messages$FirstAddonEdit, input.id, _p5));
+				A2(_user$project$Messages$FirstAddonEdit, input.id, _p4));
 		},
 		A2(_elm_lang$core$Maybe$withDefault, '', input.addon1));
 };
@@ -12255,9 +12266,9 @@ var _user$project$InputOptions$smallUnderEdit = function (input) {
 	return A3(
 		_user$project$InputOptions$textEdit,
 		'Small text under input',
-		function (_p6) {
+		function (_p5) {
 			return _user$project$Messages$InputMessage(
-				A2(_user$project$Messages$SmallEdit, input.id, _p6));
+				A2(_user$project$Messages$SmallEdit, input.id, _p5));
 		},
 		A2(_elm_lang$core$Maybe$withDefault, '', input.small));
 };
@@ -12265,9 +12276,9 @@ var _user$project$InputOptions$labelEdit = function (input) {
 	return A3(
 		_user$project$InputOptions$textEdit,
 		'Label',
-		function (_p7) {
+		function (_p6) {
 			return _user$project$Messages$InputMessage(
-				A2(_user$project$Messages$LabelEdit, input.id, _p7));
+				A2(_user$project$Messages$LabelEdit, input.id, _p6));
 		},
 		A2(_elm_lang$core$Maybe$withDefault, '', input.label));
 };
@@ -12275,22 +12286,22 @@ var _user$project$InputOptions$placeholderEdit = function (input) {
 	return A3(
 		_user$project$InputOptions$textEdit,
 		'Placeholder',
-		function (_p8) {
+		function (_p7) {
 			return _user$project$Messages$InputMessage(
-				A2(_user$project$Messages$PlaceholderEdit, input.id, _p8));
+				A2(_user$project$Messages$PlaceholderEdit, input.id, _p7));
 		},
 		A2(_elm_lang$core$Maybe$withDefault, '', input.placeholder));
 };
 var _user$project$InputOptions$view = function (inp) {
 	var options = function () {
-		var _p9 = inp.type$;
-		switch (_p9.ctor) {
+		var _p8 = inp.type$;
+		switch (_p8.ctor) {
 			case 'Text':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit]);
 			case 'Select':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$optionsEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$sizeEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$optionsEdit, _user$project$InputOptions$smallUnderEdit]);
 			case 'TextArea':
 				return _elm_lang$core$Native_List.fromArray(
 					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$rowNumberEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit]);
@@ -12311,37 +12322,37 @@ var _user$project$InputOptions$view = function (inp) {
 					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$labelEdit]);
 			case 'Search':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit]);
 			case 'Email':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit]);
 			case 'Url':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit]);
 			case 'Tel':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit]);
 			case 'Password':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit]);
 			case 'Number':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit]);
 			case 'DatetimeLocal':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit]);
 			case 'Date':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit]);
 			case 'Month':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit]);
 			case 'Week':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit]);
 			case 'Time':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit, _user$project$InputOptions$sizeEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit]);
 			default:
 				return _elm_lang$core$Native_List.fromArray(
 					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit]);
