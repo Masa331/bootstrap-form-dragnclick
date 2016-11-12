@@ -182,3 +182,38 @@ input {
 .negative-top-margin {
   margin-top: -7px;
 }
+
+/* --- */
+/* WIP */
+/* --- */
+
+.inline-edit {
+}
+
+.inline-edit input {
+  border: dotted 1px #66afe9;
+
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 8px;
+  margin-left: 0px;
+
+  width: 50%;
+  color: #373a3c;
+}
+
+.inline-edit .edit-control {
+  float: right;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+/* --- */
+/* ENDWIP */
+/* --- */
