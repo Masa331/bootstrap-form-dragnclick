@@ -13,8 +13,8 @@ update msg model =
       updateInput model id (updateLabel newLabel)
     SmallEdit id newSmall ->
       updateInput model id (updateSmall newSmall)
-    DisabledEdit id newDisabled ->
-      updateInput model id (updateDisabled newDisabled)
+    ToggleDisabled id ->
+      updateInput model id (toggleDisabled)
     FirstAddonEdit id newAddon ->
       updateInput model id (updateFirstAddon newAddon)
     SecondAddonEdit id newAddon ->
@@ -85,6 +85,6 @@ updateSmall : String -> Input -> Input
 updateSmall newSmall input =
   { input | small = Just newSmall }
 
-updateDisabled : Bool -> Input -> Input
-updateDisabled newDisabled input =
-  { input | disabled = newDisabled }
+toggleDisabled : Input -> Input
+toggleDisabled input =
+  { input | disabled = not input.disabled }

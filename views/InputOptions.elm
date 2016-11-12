@@ -13,26 +13,26 @@ view inp =
   let
     options =
       case inp.type' of
-        Text -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
-        Select -> [ typeEdit, labelEdit, optionsEdit, smallUnderEdit, sizeEdit, disabledEdit ]
+        Text -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit ]
+        Select -> [ typeEdit, labelEdit, optionsEdit, smallUnderEdit, sizeEdit ]
         TextArea -> [ typeEdit, rowNumberEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit ]
-        Multiselect -> [ typeEdit, labelEdit, optionsEdit, smallUnderEdit, disabledEdit ]
-        FileUpload -> [ typeEdit, labelEdit, smallUnderEdit, disabledEdit ]
-        Radio -> [ typeEdit, labelEdit, optionsEdit, smallUnderEdit, disabledEdit ]
-        Checkbox -> [ typeEdit, labelEdit, smallUnderEdit, disabledEdit ]
+        Multiselect -> [ typeEdit, labelEdit, optionsEdit, smallUnderEdit ]
+        FileUpload -> [ typeEdit, labelEdit, smallUnderEdit ]
+        Radio -> [ typeEdit, labelEdit, optionsEdit, smallUnderEdit ]
+        Checkbox -> [ typeEdit, labelEdit, smallUnderEdit ]
         Button -> [ typeEdit, labelEdit ]
-        Search -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
-        Email -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
-        Url -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
-        Tel -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
-        Password -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
-        Number -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
-        DatetimeLocal -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
-        Date -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
-        Month -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
-        Week -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
-        Time -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit, disabledEdit ]
-        Color -> [ typeEdit, labelEdit, smallUnderEdit, disabledEdit ]
+        Search -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit ]
+        Email -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit ]
+        Url -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit ]
+        Tel -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit ]
+        Password -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit ]
+        Number -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit ]
+        DatetimeLocal -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit ]
+        Date -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit ]
+        Month -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit ]
+        Week -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit ]
+        Time -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit, sizeEdit ]
+        Color -> [ typeEdit, labelEdit, smallUnderEdit ]
   in
     options
       |> List.map (\f -> f inp)
@@ -65,10 +65,6 @@ typeEdit input =
 sizeEdit : Input -> List (Html Msg)
 sizeEdit input =
   selectEdit "Size edit" (InputMessage << SizeEdit input.id) ["small", "normal", "large"] (sizeToString input.size)
-
-disabledEdit : Input -> List (Html Msg)
-disabledEdit input =
-  boolEdit "Disabled" (InputMessage << DisabledEdit input.id) input.disabled
 
 textEdit : String -> (String -> Msg) -> String -> List (Html Msg)
 textEdit label msg value =

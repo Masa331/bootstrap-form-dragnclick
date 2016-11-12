@@ -20,7 +20,7 @@ type InputMsg
   = PlaceholderEdit Int String
   | LabelEdit Int String
   | SmallEdit Int String
-  | DisabledEdit Int Bool
+  | ToggleDisabled Int
   | FirstAddonEdit Int String
   | SecondAddonEdit Int String
   | SizeEdit Int String

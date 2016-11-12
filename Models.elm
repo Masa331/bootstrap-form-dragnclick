@@ -17,9 +17,9 @@ type alias Model = { form: FormModel.Form
 initial : Model
 initial =
   let
-    inputs = [ { textInput | id = 1, label = Just "Name", placeholder = Just "Max Rockatansky", addon1 = Just "$" }
+    inputs = [ { textInput | id = 1, label = Just "Name", placeholder = Just "Max Rockatansky" }
              , { textInput | id = 2, label = Just "Job title", placeholder = Just "Sheep herder", small = Just "Please tell us what do you do for living for statistical purposes." }
-             , { textInput | id = 3, label = Just "Email address", placeholder = Just "rockatansky@wastelands.com" }
+             , { textInput | id = 3, label = Just "Email address", placeholder = Just "rockatansky@wastelands.com", addon1 = Just "@" }
              , { textInput | id = 4, label = Just "Password", type' = FormModel.Password }
              , { checkbox | id = 5, label = Just "I Accept all terms and agreements" }
              , { button | id = 6, label = Just "Register!" }

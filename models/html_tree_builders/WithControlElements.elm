@@ -320,7 +320,7 @@ toLinks value =
     i5 = Element "i" [Attribute "class" "fa fa-trash control-element"] (Children []) "" []
     l5 = Element "span" [] (Children [i5]) "" [Html.Events.onClick (Messages.FormMessage (Messages.RemoveInput value))]
     i6 = Element "i" [Attribute "class" "fa fa-check control-element"] (Children []) "" []
-    l6 = Element "span" [] (Children [i6]) "" []
+    l6 = Element "span" [] (Children [i6]) "" [Html.Events.onClick ((Messages.InputMessage (Messages.ToggleDisabled value)))]
     i7 = Element "i" [Attribute "class" "fa fa-arrows control-element"] (Children []) "" []
     l7 = Element "span" [] (Children [i7]) "" [Html.Events.onMouseDown ((Messages.MouseMessage (Messages.MouseClick value)))]
 
