@@ -153,6 +153,13 @@ input {
   font-size: 20px !important;
 }
 
+.input-group div.input-group-addon:not(.hidden-table-cell) + .form-control {
+  border-bottom-left-radius: 0rem;
+  border-top-left-radius: 0rem;
+  /* I have a problem on inputs followed by an addon - i can't select them and make the borders without radius corners */
+}
+
+
 .input-group .form-control:not(:first-child):not(:last-child) {
   border-bottom-right-radius: .25rem;
   border-top-right-radius: .25rem;
