@@ -32,9 +32,6 @@ formEdit model =
   let
     inputs1 = List.map HtmlTreeBuilder.buildWithControlElements model.form
     htmlTreeWithControlElements = HtmlTree.Element "form" [] (HtmlTree.Children inputs1) "" []
-
-    inputs2 = List.map HtmlTreeBuilder.buildRaw model.form
-    rawHtmlTree = HtmlTree.Element "form" [] (HtmlTree.Children inputs2) "" []
   in
     div
       []
@@ -60,7 +57,7 @@ formEdit model =
 inputEdit : Input -> Html Msg
 inputEdit input =
   let
-    inputs = [HtmlTreeBuilder.buildWithControlElements input]
+    inputs = [HtmlTreeBuilder.forInputEdit input]
     htmlTree = HtmlTree.Element "form" [] (HtmlTree.Children inputs) "" []
   in
     div
