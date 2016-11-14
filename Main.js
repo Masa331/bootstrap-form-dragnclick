@@ -13288,36 +13288,8 @@ var _user$project$InputOptions$numberEdit = F3(
 			_1: {ctor: '[]'}
 		};
 	});
-var _user$project$InputOptions$rowNumberEdit = function (input) {
-	return A3(
-		_user$project$InputOptions$numberEdit,
-		'Rows',
-		function (_p1) {
-			return _user$project$Messages$InputMessage(
-				A2(_user$project$Messages$RowNumberEdit, input.id, _p1));
-		},
-		input.rowNumber);
-};
 var _user$project$InputOptions$selectEdit = F4(
 	function (label, msg, options, selected) {
-		var os = A2(
-			_elm_lang$core$List$map,
-			function (option) {
-				return A2(
-					_elm_lang$html$Html$option,
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$selected(
-							_elm_lang$core$Native_Utils.eq(option, selected)),
-						_1: {ctor: '[]'}
-					},
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html$text(option),
-						_1: {ctor: '[]'}
-					});
-			},
-			options);
 		return {
 			ctor: '::',
 			_0: A2(
@@ -13363,7 +13335,24 @@ var _user$project$InputOptions$selectEdit = F4(
 											_1: {ctor: '[]'}
 										}
 									},
-									os),
+									A2(
+										_elm_lang$core$List$map,
+										function (o) {
+											return A2(
+												_elm_lang$html$Html$option,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$selected(
+														_elm_lang$core$Native_Utils.eq(o, selected)),
+													_1: {ctor: '[]'}
+												},
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html$text(o),
+													_1: {ctor: '[]'}
+												});
+										},
+										options)),
 								_1: {ctor: '[]'}
 							}),
 						_1: {ctor: '[]'}
@@ -13432,6 +13421,16 @@ var _user$project$InputOptions$textEdit = F3(
 			_1: {ctor: '[]'}
 		};
 	});
+var _user$project$InputOptions$rowNumberEdit = function (input) {
+	return A3(
+		_user$project$InputOptions$numberEdit,
+		'Rows',
+		function (_p1) {
+			return _user$project$Messages$InputMessage(
+				A2(_user$project$Messages$RowNumberEdit, input.id, _p1));
+		},
+		input.rowNumber);
+};
 var _user$project$InputOptions$typeEdit = function (input) {
 	return A4(
 		_user$project$InputOptions$selectEdit,
@@ -13493,9 +13492,9 @@ var _user$project$InputOptions$placeholderEdit = function (input) {
 		},
 		A2(_elm_lang$core$Maybe$withDefault, '', input.placeholder));
 };
-var _user$project$InputOptions$view = function (inp) {
+var _user$project$InputOptions$view = function (input) {
 	var options = function () {
-		var _p8 = inp.type_;
+		var _p8 = input.type_;
 		switch (_p8.ctor) {
 			case 'Text':
 				return {
@@ -13951,7 +13950,7 @@ var _user$project$InputOptions$view = function (inp) {
 		A2(
 			_elm_lang$core$List$map,
 			function (f) {
-				return f(inp);
+				return f(input);
 			},
 			options));
 };

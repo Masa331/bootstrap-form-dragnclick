@@ -9,10 +9,10 @@ import FormModel exposing (..)
 import Messages exposing (..)
 
 view : Input -> List (Html Msg)
-view inp =
+view input =
   let
     options =
-      case inp.type_ of
+      case input.type_ of
         Text -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit ]
         Select -> [ typeEdit, labelEdit, smallUnderEdit, optionsEdit ]
         TextArea -> [ typeEdit, rowNumberEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit ]
@@ -34,9 +34,8 @@ view inp =
         Time -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit ]
         Color -> [ typeEdit, labelEdit, smallUnderEdit ]
   in
-    options
-      |> List.map (\f -> f inp)
-      |> List.concat
+    List.map (\f -> f input) options
+    |> List.concat
 
 placeholderEdit : Input -> List (Html Msg)
 placeholderEdit input =
@@ -62,6 +61,10 @@ typeEdit : Input -> List (Html Msg)
 typeEdit input =
   selectEdit "Type" (InputMessage << TypeEdit input.id) stringInputTypes (inputTypeToString input.type_)
 
+rowNumberEdit : Input -> List (Html Msg)
+rowNumberEdit input =
+  numberEdit "Rows" (InputMessage << RowNumberEdit input.id) input.rowNumber
+
 textEdit : String -> (String -> Msg) -> String -> List (Html Msg)
 textEdit label msg value =
   [ div
@@ -75,23 +78,17 @@ textEdit label msg value =
 
 selectEdit : String -> (String -> Msg) -> List String -> String -> List (Html Msg)
 selectEdit label msg options selected =
-  let
-    os =
-      options
-        |> List.map (\option -> Html.option [ Html.Attributes.selected (option == selected) ] [ text option ] )
-  in
-    [ div
-      [ class "form-group row" ]
-      [ Html.label [ class "col-sm-3 col-form-label col-form-label-sm" ] [ text label ]
-      , div
-        [ class "col-sm-9" ]
-        [ Html.select [ class "form-control form-control-sm", onInput msg ] os ]
+  [ div
+    [ class "form-group row" ]
+    [ Html.label [ class "col-sm-3 col-form-label col-form-label-sm" ] [ text label ]
+    , div
+      [ class "col-sm-9" ]
+      [ Html.select
+        [ class "form-control form-control-sm", onInput msg ]
+        (List.map (\o -> Html.option [ Html.Attributes.selected (o == selected) ] [ text o ] ) options)
       ]
     ]
-
-rowNumberEdit : Input -> List (Html Msg)
-rowNumberEdit input =
-  numberEdit "Rows" (InputMessage << RowNumberEdit input.id) input.rowNumber
+  ]
 
 numberEdit : String -> (String -> Msg) -> String -> List (Html Msg)
 numberEdit label msg value =
