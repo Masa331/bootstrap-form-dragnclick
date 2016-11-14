@@ -89,13 +89,6 @@ selectEdit label msg options selected =
       ]
     ]
 
-boolEdit : String -> (Bool -> Msg) -> Bool -> List (Html Msg)
-boolEdit label msg value =
-  [ b [] [ text label ]
-  , hr [] []
-  , div [ class "form-group" ] [ Html.label [ class "form-check-label" ] [ Html.input [ type_ "checkbox", class "form-check-input", onCheck msg, Html.Attributes.checked value ] [] ] ]
-  ]
-
 rowNumberEdit : Input -> List (Html Msg)
 rowNumberEdit input =
   numberEdit "Number of rows" (InputMessage << RowNumberEdit input.id) input.rowNumber
