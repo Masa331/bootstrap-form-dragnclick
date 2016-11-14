@@ -65,17 +65,21 @@ inputEdit input =
   in
     div
       []
-      [ a [ href "javascript:void(0)", onClick (FormMessage StopEditing) ] [text "Back to form" ]
-      , div
-          [ class "row" ]
-          [ div
-             [ class "col-sm-8" ]
-             [ div [ class "bd-example" ] (Form.view htmlTree)
-             , div [ class "highlight" ] [ Markup.view htmlTree ] ]
-          , div
-             [ class "col-sm-4" ]
-             (InputOptions.view input)
-          ]
+      [ div
+        [ class "row" ]
+        [ div
+           [ class "col-sm-12" ]
+           [ div
+             [ class "form-container form-sm" ]
+             [ div
+                 [ class "form-controls" ]
+                 [ a [ href "javascript:void(0)", onClick (FormMessage StopEditing) ] [text "Back to form" ] ]
+             , div
+               [ class "bd-example" ]
+               ((Form.view htmlTree) ++ [hr [] []] ++ ((InputOptions.view input)))
+             ]
+           ]
+        ]
       ]
 
 -------------

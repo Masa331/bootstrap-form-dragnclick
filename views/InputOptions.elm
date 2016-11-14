@@ -14,11 +14,11 @@ view inp =
     options =
       case inp.type' of
         Text -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit ]
-        Select -> [ typeEdit, labelEdit, optionsEdit, smallUnderEdit ]
+        Select -> [ typeEdit, labelEdit, smallUnderEdit, optionsEdit ]
         TextArea -> [ typeEdit, rowNumberEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit ]
-        Multiselect -> [ typeEdit, labelEdit, optionsEdit, smallUnderEdit ]
+        Multiselect -> [ typeEdit, labelEdit, smallUnderEdit, optionsEdit ]
         FileUpload -> [ typeEdit, labelEdit, smallUnderEdit ]
-        Radio -> [ typeEdit, labelEdit, optionsEdit, smallUnderEdit ]
+        Radio -> [ typeEdit, labelEdit, smallUnderEdit, optionsEdit ]
         Checkbox -> [ typeEdit, labelEdit, smallUnderEdit ]
         Button -> [ typeEdit, labelEdit ]
         Search -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit ]
@@ -48,25 +48,29 @@ labelEdit input =
 
 smallUnderEdit : Input -> List (Html Msg)
 smallUnderEdit input =
-  textEdit "Small text under input" (InputMessage << SmallEdit input.id) (Maybe.withDefault "" input.small)
+  textEdit "Description" (InputMessage << SmallEdit input.id) (Maybe.withDefault "" input.small)
 
 addon1Edit : Input -> List (Html Msg)
 addon1Edit input =
-  textEdit "First addon" (InputMessage << FirstAddonEdit input.id) (Maybe.withDefault "" input.addon1)
+  textEdit "1 addon" (InputMessage << FirstAddonEdit input.id) (Maybe.withDefault "" input.addon1)
 
 addon2Edit : Input -> List (Html Msg)
 addon2Edit input =
-  textEdit "Second addon" (InputMessage << SecondAddonEdit input.id) (Maybe.withDefault "" input.addon2)
+  textEdit "2 addon" (InputMessage << SecondAddonEdit input.id) (Maybe.withDefault "" input.addon2)
 
 typeEdit : Input -> List (Html Msg)
 typeEdit input =
-  selectEdit "Text input type" (InputMessage << TypeEdit input.id) stringInputTypes (inputTypeToString input.type')
+  selectEdit "Type" (InputMessage << TypeEdit input.id) stringInputTypes (inputTypeToString input.type')
 
 textEdit : String -> (String -> Msg) -> String -> List (Html Msg)
 textEdit label msg value =
-  [ b [] [ text label ]
-  , hr [] []
-  , div [ class "form-group" ] [ Html.input [ class "form-control", onInput msg, Html.Attributes.value value ] [] ]
+  [ div
+    [ class "form-group row" ]
+    [ Html.label [ class "col-sm-3 col-form-label col-form-label-sm" ] [ text label ]
+    , div
+      [ class "col-sm-9" ]
+      [ Html.input [ class "form-control form-control-sm", onInput msg, Html.Attributes.value value ] [] ]
+    ]
   ]
 
 selectEdit : String -> (String -> Msg) -> List String -> String -> List (Html Msg)
@@ -76,9 +80,13 @@ selectEdit label msg options selected =
       options
         |> List.map (\option -> Html.option [ Html.Attributes.selected (option == selected) ] [ text option ] )
   in
-    [ b [] [ text label ]
-    , hr [] []
-    , div [ class "form-group" ] [ Html.select [ class "form-control", onInput msg ] os ]
+    [ div
+      [ class "form-group row" ]
+      [ Html.label [ class "col-sm-3 col-form-label col-form-label-sm" ] [ text label ]
+      , div
+        [ class "col-sm-9" ]
+        [ Html.select [ class "form-control form-control-sm", onInput msg ] os ]
+      ]
     ]
 
 boolEdit : String -> (Bool -> Msg) -> Bool -> List (Html Msg)
@@ -102,14 +110,33 @@ numberEdit label msg value =
 optionsEdit : Input -> List (Html Msg)
 optionsEdit input =
   let
-    lifunc = (\value -> li [] [text value, a [href "javascript:void(0);", class "pull-xs-right", onClick (InputMessage (RemoveOption input.id value))] [text "remove"]] )
-    lis = List.map lifunc input.options
+    lifunc =
+      (\value -> li
+                   []
+                   [text (value ++ " ")
+                   , small
+                     []
+                     [a [href "javascript:void(0);", onClick (InputMessage (RemoveOption input.id value))] [text "remove"]]] )
   in
-    [ b [] [text "Options"]
-    , hr [] []
-    , div
-      [ class "input-group" ]
-      [ Html.input [class "form-control", onInput (InputMessage << NewOptionEdit) ] []
-      , span [class "input-group-btn"] [ Html.button [class "btn btn-secondary", type' "button", onClick (InputMessage (SaveNewOption input.id))] [text "Add"]] ]
-    , div [] [ ul [] lis ]
+    [ div
+      [ class "form-group row" ]
+      [ Html.label [ class "col-sm-3 col-form-label col-form-label-sm" ] [ text "Options" ]
+      , div
+        [ class "col-sm-9" ]
+        [ div
+          [ class "input-group" ]
+          [ Html.input
+            [class "form-control form-control-sm", onInput (InputMessage << NewOptionEdit) ]
+            []
+          , span
+            [ class "input-group-btn" ]
+            [ Html.button
+              [class "btn btn-sm btn-secondary"
+              , type' "button"
+              , onClick (InputMessage (SaveNewOption input.id))] [text "Add"]
+              ]
+          ]
+        , ul [ class "list-unstyled" ] (List.map lifunc input.options)
+        ]
+      ]
     ]

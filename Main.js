@@ -11947,96 +11947,111 @@ var _user$project$InputOptions$optionsEdit = function (input) {
 				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
-					_elm_lang$html$Html$text(value),
+					_elm_lang$html$Html$text(
+					A2(_elm_lang$core$Basics_ops['++'], value, ' ')),
 					A2(
-					_elm_lang$html$Html$a,
+					_elm_lang$html$Html$small,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
 					_elm_lang$core$Native_List.fromArray(
 						[
-							_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-							_elm_lang$html$Html_Attributes$class('pull-xs-right'),
-							_elm_lang$html$Html_Events$onClick(
-							_user$project$Messages$InputMessage(
-								A2(_user$project$Messages$RemoveOption, input.id, value)))
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text('remove')
+							A2(
+							_elm_lang$html$Html$a,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$href('javascript:void(0);'),
+									_elm_lang$html$Html_Events$onClick(
+									_user$project$Messages$InputMessage(
+										A2(_user$project$Messages$RemoveOption, input.id, value)))
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html$text('remove')
+								]))
 						]))
 				]));
 	};
-	var lis = A2(_elm_lang$core$List$map, lifunc, input.options);
 	return _elm_lang$core$Native_List.fromArray(
 		[
-			A2(
-			_elm_lang$html$Html$b,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Options')
-				])),
-			A2(
-			_elm_lang$html$Html$hr,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[])),
 			A2(
 			_elm_lang$html$Html$div,
 			_elm_lang$core$Native_List.fromArray(
 				[
-					_elm_lang$html$Html_Attributes$class('input-group')
+					_elm_lang$html$Html_Attributes$class('form-group row')
 				]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					A2(
-					_elm_lang$html$Html$input,
+					_elm_lang$html$Html$label,
 					_elm_lang$core$Native_List.fromArray(
 						[
-							_elm_lang$html$Html_Attributes$class('form-control'),
-							_elm_lang$html$Html_Events$onInput(
-							function (_p0) {
-								return _user$project$Messages$InputMessage(
-									_user$project$Messages$NewOptionEdit(_p0));
-							})
+							_elm_lang$html$Html_Attributes$class('col-sm-3 col-form-label col-form-label-sm')
 						]),
 					_elm_lang$core$Native_List.fromArray(
-						[])),
+						[
+							_elm_lang$html$Html$text('Options')
+						])),
 					A2(
-					_elm_lang$html$Html$span,
+					_elm_lang$html$Html$div,
 					_elm_lang$core$Native_List.fromArray(
 						[
-							_elm_lang$html$Html_Attributes$class('input-group-btn')
+							_elm_lang$html$Html_Attributes$class('col-sm-9')
 						]),
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
-							_elm_lang$html$Html$button,
+							_elm_lang$html$Html$div,
 							_elm_lang$core$Native_List.fromArray(
 								[
-									_elm_lang$html$Html_Attributes$class('btn btn-secondary'),
-									_elm_lang$html$Html_Attributes$type$('button'),
-									_elm_lang$html$Html_Events$onClick(
-									_user$project$Messages$InputMessage(
-										_user$project$Messages$SaveNewOption(input.id)))
+									_elm_lang$html$Html_Attributes$class('input-group')
 								]),
 							_elm_lang$core$Native_List.fromArray(
 								[
-									_elm_lang$html$Html$text('Add')
-								]))
+									A2(
+									_elm_lang$html$Html$input,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html_Attributes$class('form-control form-control-sm'),
+											_elm_lang$html$Html_Events$onInput(
+											function (_p0) {
+												return _user$project$Messages$InputMessage(
+													_user$project$Messages$NewOptionEdit(_p0));
+											})
+										]),
+									_elm_lang$core$Native_List.fromArray(
+										[])),
+									A2(
+									_elm_lang$html$Html$span,
+									_elm_lang$core$Native_List.fromArray(
+										[
+											_elm_lang$html$Html_Attributes$class('input-group-btn')
+										]),
+									_elm_lang$core$Native_List.fromArray(
+										[
+											A2(
+											_elm_lang$html$Html$button,
+											_elm_lang$core$Native_List.fromArray(
+												[
+													_elm_lang$html$Html_Attributes$class('btn btn-sm btn-secondary'),
+													_elm_lang$html$Html_Attributes$type$('button'),
+													_elm_lang$html$Html_Events$onClick(
+													_user$project$Messages$InputMessage(
+														_user$project$Messages$SaveNewOption(input.id)))
+												]),
+											_elm_lang$core$Native_List.fromArray(
+												[
+													_elm_lang$html$Html$text('Add')
+												]))
+										]))
+								])),
+							A2(
+							_elm_lang$html$Html$ul,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$class('list-unstyled')
+								]),
+							A2(_elm_lang$core$List$map, lifunc, input.options))
 						]))
-				])),
-			A2(
-			_elm_lang$html$Html$div,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$ul,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					lis)
 				]))
 		]);
 };
@@ -12160,35 +12175,40 @@ var _user$project$InputOptions$selectEdit = F4(
 		return _elm_lang$core$Native_List.fromArray(
 			[
 				A2(
-				_elm_lang$html$Html$b,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text(label)
-					])),
-				A2(
-				_elm_lang$html$Html$hr,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[])),
-				A2(
 				_elm_lang$html$Html$div,
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html_Attributes$class('form-group')
+						_elm_lang$html$Html_Attributes$class('form-group row')
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
 						A2(
-						_elm_lang$html$Html$select,
+						_elm_lang$html$Html$label,
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html_Attributes$class('form-control'),
-								_elm_lang$html$Html_Events$onInput(msg)
+								_elm_lang$html$Html_Attributes$class('col-sm-3 col-form-label col-form-label-sm')
 							]),
-						os)
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text(label)
+							])),
+						A2(
+						_elm_lang$html$Html$div,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$class('col-sm-9')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$select,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('form-control form-control-sm'),
+										_elm_lang$html$Html_Events$onInput(msg)
+									]),
+								os)
+							]))
 					]))
 			]);
 	});
@@ -12197,44 +12217,49 @@ var _user$project$InputOptions$textEdit = F3(
 		return _elm_lang$core$Native_List.fromArray(
 			[
 				A2(
-				_elm_lang$html$Html$b,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text(label)
-					])),
-				A2(
-				_elm_lang$html$Html$hr,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[])),
-				A2(
 				_elm_lang$html$Html$div,
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html_Attributes$class('form-group')
+						_elm_lang$html$Html_Attributes$class('form-group row')
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
 						A2(
-						_elm_lang$html$Html$input,
+						_elm_lang$html$Html$label,
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html_Attributes$class('form-control'),
-								_elm_lang$html$Html_Events$onInput(msg),
-								_elm_lang$html$Html_Attributes$value(value)
+								_elm_lang$html$Html_Attributes$class('col-sm-3 col-form-label col-form-label-sm')
 							]),
 						_elm_lang$core$Native_List.fromArray(
-							[]))
+							[
+								_elm_lang$html$Html$text(label)
+							])),
+						A2(
+						_elm_lang$html$Html$div,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$class('col-sm-9')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$input,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('form-control form-control-sm'),
+										_elm_lang$html$Html_Events$onInput(msg),
+										_elm_lang$html$Html_Attributes$value(value)
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[]))
+							]))
 					]))
 			]);
 	});
 var _user$project$InputOptions$typeEdit = function (input) {
 	return A4(
 		_user$project$InputOptions$selectEdit,
-		'Text input type',
+		'Type',
 		function (_p2) {
 			return _user$project$Messages$InputMessage(
 				A2(_user$project$Messages$TypeEdit, input.id, _p2));
@@ -12245,7 +12270,7 @@ var _user$project$InputOptions$typeEdit = function (input) {
 var _user$project$InputOptions$addon2Edit = function (input) {
 	return A3(
 		_user$project$InputOptions$textEdit,
-		'Second addon',
+		'2 addon',
 		function (_p3) {
 			return _user$project$Messages$InputMessage(
 				A2(_user$project$Messages$SecondAddonEdit, input.id, _p3));
@@ -12255,7 +12280,7 @@ var _user$project$InputOptions$addon2Edit = function (input) {
 var _user$project$InputOptions$addon1Edit = function (input) {
 	return A3(
 		_user$project$InputOptions$textEdit,
-		'First addon',
+		'1 addon',
 		function (_p4) {
 			return _user$project$Messages$InputMessage(
 				A2(_user$project$Messages$FirstAddonEdit, input.id, _p4));
@@ -12265,7 +12290,7 @@ var _user$project$InputOptions$addon1Edit = function (input) {
 var _user$project$InputOptions$smallUnderEdit = function (input) {
 	return A3(
 		_user$project$InputOptions$textEdit,
-		'Small text under input',
+		'Description',
 		function (_p5) {
 			return _user$project$Messages$InputMessage(
 				A2(_user$project$Messages$SmallEdit, input.id, _p5));
@@ -12301,19 +12326,19 @@ var _user$project$InputOptions$view = function (inp) {
 					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit]);
 			case 'Select':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$optionsEdit, _user$project$InputOptions$smallUnderEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$optionsEdit]);
 			case 'TextArea':
 				return _elm_lang$core$Native_List.fromArray(
 					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$rowNumberEdit, _user$project$InputOptions$placeholderEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$addon1Edit, _user$project$InputOptions$addon2Edit]);
 			case 'Multiselect':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$optionsEdit, _user$project$InputOptions$smallUnderEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$optionsEdit]);
 			case 'FileUpload':
 				return _elm_lang$core$Native_List.fromArray(
 					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit]);
 			case 'Radio':
 				return _elm_lang$core$Native_List.fromArray(
-					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$optionsEdit, _user$project$InputOptions$smallUnderEdit]);
+					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit, _user$project$InputOptions$optionsEdit]);
 			case 'Checkbox':
 				return _elm_lang$core$Native_List.fromArray(
 					[_user$project$InputOptions$typeEdit, _user$project$InputOptions$labelEdit, _user$project$InputOptions$smallUnderEdit]);
@@ -13358,18 +13383,6 @@ var _user$project$Views$inputEdit = function (input) {
 		_elm_lang$core$Native_List.fromArray(
 			[
 				A2(
-				_elm_lang$html$Html$a,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$href('javascript:void(0)'),
-						_elm_lang$html$Html_Events$onClick(
-						_user$project$Messages$FormMessage(_user$project$Messages$StopEditing))
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('Back to form')
-					])),
-				A2(
 				_elm_lang$html$Html$div,
 				_elm_lang$core$Native_List.fromArray(
 					[
@@ -13381,7 +13394,7 @@ var _user$project$Views$inputEdit = function (input) {
 						_elm_lang$html$Html$div,
 						_elm_lang$core$Native_List.fromArray(
 							[
-								_elm_lang$html$Html_Attributes$class('col-sm-8')
+								_elm_lang$html$Html_Attributes$class('col-sm-12')
 							]),
 						_elm_lang$core$Native_List.fromArray(
 							[
@@ -13389,27 +13402,54 @@ var _user$project$Views$inputEdit = function (input) {
 								_elm_lang$html$Html$div,
 								_elm_lang$core$Native_List.fromArray(
 									[
-										_elm_lang$html$Html_Attributes$class('bd-example')
-									]),
-								_user$project$Form$view(htmlTree)),
-								A2(
-								_elm_lang$html$Html$div,
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html_Attributes$class('highlight')
+										_elm_lang$html$Html_Attributes$class('form-container form-sm')
 									]),
 								_elm_lang$core$Native_List.fromArray(
 									[
-										_user$project$Markup$view(htmlTree)
+										A2(
+										_elm_lang$html$Html$div,
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html_Attributes$class('form-controls')
+											]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												A2(
+												_elm_lang$html$Html$a,
+												_elm_lang$core$Native_List.fromArray(
+													[
+														_elm_lang$html$Html_Attributes$href('javascript:void(0)'),
+														_elm_lang$html$Html_Events$onClick(
+														_user$project$Messages$FormMessage(_user$project$Messages$StopEditing))
+													]),
+												_elm_lang$core$Native_List.fromArray(
+													[
+														_elm_lang$html$Html$text('Back to form')
+													]))
+											])),
+										A2(
+										_elm_lang$html$Html$div,
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html_Attributes$class('bd-example')
+											]),
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											_user$project$Form$view(htmlTree),
+											A2(
+												_elm_lang$core$Basics_ops['++'],
+												_elm_lang$core$Native_List.fromArray(
+													[
+														A2(
+														_elm_lang$html$Html$hr,
+														_elm_lang$core$Native_List.fromArray(
+															[]),
+														_elm_lang$core$Native_List.fromArray(
+															[]))
+													]),
+												_user$project$InputOptions$view(input))))
 									]))
-							])),
-						A2(
-						_elm_lang$html$Html$div,
-						_elm_lang$core$Native_List.fromArray(
-							[
-								_elm_lang$html$Html_Attributes$class('col-sm-4')
-							]),
-						_user$project$InputOptions$view(input))
+							]))
 					]))
 			]));
 };
