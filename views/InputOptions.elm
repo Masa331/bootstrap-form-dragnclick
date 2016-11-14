@@ -91,13 +91,17 @@ selectEdit label msg options selected =
 
 rowNumberEdit : Input -> List (Html Msg)
 rowNumberEdit input =
-  numberEdit "Number of rows" (InputMessage << RowNumberEdit input.id) input.rowNumber
+  numberEdit "Rows" (InputMessage << RowNumberEdit input.id) input.rowNumber
 
 numberEdit : String -> (String -> Msg) -> String -> List (Html Msg)
 numberEdit label msg value =
-  [ b [] [ text label ]
-  , hr [] []
-  , div [ class "form-group" ] [ Html.input [ type_ "number", class "form-control", onInput msg, Html.Attributes.value value ] [] ]
+  [ div
+    [ class "form-group row" ]
+    [ Html.label [ class "col-sm-3 col-form-label col-form-label-sm" ] [ text label ]
+    , div
+      [ class "col-sm-9" ]
+      [ Html.input [ type_ "number", class "form-control form-control-sm", onInput msg, Html.Attributes.value value ] [] ]
+    ]
   ]
 
 optionsEdit : Input -> List (Html Msg)

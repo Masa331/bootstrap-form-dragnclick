@@ -13229,134 +13229,75 @@ var _user$project$InputOptions$numberEdit = F3(
 		return {
 			ctor: '::',
 			_0: A2(
-				_elm_lang$html$Html$b,
-				{ctor: '[]'},
+				_elm_lang$html$Html$div,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html$text(label),
+					_0: _elm_lang$html$Html_Attributes$class('form-group row'),
 					_1: {ctor: '[]'}
-				}),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$hr,
-					{ctor: '[]'},
-					{ctor: '[]'}),
-				_1: {
+				},
+				{
 					ctor: '::',
 					_0: A2(
-						_elm_lang$html$Html$div,
+						_elm_lang$html$Html$label,
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('form-group'),
+							_0: _elm_lang$html$Html_Attributes$class('col-sm-3 col-form-label col-form-label-sm'),
 							_1: {ctor: '[]'}
 						},
 						{
 							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$input,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$type_('number'),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$class('form-control'),
-										_1: {
-											ctor: '::',
-											_0: _elm_lang$html$Html_Events$onInput(msg),
-											_1: {
-												ctor: '::',
-												_0: _elm_lang$html$Html_Attributes$value(value),
-												_1: {ctor: '[]'}
-											}
-										}
-									}
-								},
-								{ctor: '[]'}),
+							_0: _elm_lang$html$Html$text(label),
 							_1: {ctor: '[]'}
 						}),
-					_1: {ctor: '[]'}
-				}
-			}
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$div,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('col-sm-9'),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$input,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$type_('number'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$class('form-control form-control-sm'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Events$onInput(msg),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$value(value),
+													_1: {ctor: '[]'}
+												}
+											}
+										}
+									},
+									{ctor: '[]'}),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: {ctor: '[]'}
 		};
 	});
 var _user$project$InputOptions$rowNumberEdit = function (input) {
 	return A3(
 		_user$project$InputOptions$numberEdit,
-		'Number of rows',
+		'Rows',
 		function (_p1) {
 			return _user$project$Messages$InputMessage(
 				A2(_user$project$Messages$RowNumberEdit, input.id, _p1));
 		},
 		input.rowNumber);
 };
-var _user$project$InputOptions$boolEdit = F3(
-	function (label, msg, value) {
-		return {
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$b,
-				{ctor: '[]'},
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html$text(label),
-					_1: {ctor: '[]'}
-				}),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$hr,
-					{ctor: '[]'},
-					{ctor: '[]'}),
-				_1: {
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$div,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('form-group'),
-							_1: {ctor: '[]'}
-						},
-						{
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$label,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('form-check-label'),
-									_1: {ctor: '[]'}
-								},
-								{
-									ctor: '::',
-									_0: A2(
-										_elm_lang$html$Html$input,
-										{
-											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$type_('checkbox'),
-											_1: {
-												ctor: '::',
-												_0: _elm_lang$html$Html_Attributes$class('form-check-input'),
-												_1: {
-													ctor: '::',
-													_0: _elm_lang$html$Html_Events$onCheck(msg),
-													_1: {
-														ctor: '::',
-														_0: _elm_lang$html$Html_Attributes$checked(value),
-														_1: {ctor: '[]'}
-													}
-												}
-											}
-										},
-										{ctor: '[]'}),
-									_1: {ctor: '[]'}
-								}),
-							_1: {ctor: '[]'}
-						}),
-					_1: {ctor: '[]'}
-				}
-			}
-		};
-	});
 var _user$project$InputOptions$selectEdit = F4(
 	function (label, msg, options, selected) {
 		var os = A2(
