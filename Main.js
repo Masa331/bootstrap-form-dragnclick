@@ -12056,6 +12056,14 @@ var _user$project$WithControlElements$sizeClass = function (size) {
 	}
 };
 var _user$project$WithControlElements$toLinks = function (value) {
+	var divider = A5(
+		_user$project$HtmlTree$Element,
+		'span',
+		{ctor: '[]'},
+		_user$project$HtmlTree$Children(
+			{ctor: '[]'}),
+		' ',
+		{ctor: '[]'});
 	var i7 = A5(
 		_user$project$HtmlTree$Element,
 		'i',
@@ -12272,23 +12280,47 @@ var _user$project$WithControlElements$toLinks = function (value) {
 			_0: l1,
 			_1: {
 				ctor: '::',
-				_0: l2,
+				_0: divider,
 				_1: {
 					ctor: '::',
-					_0: l3,
+					_0: l2,
 					_1: {
 						ctor: '::',
-						_0: l4,
+						_0: divider,
 						_1: {
 							ctor: '::',
-							_0: l5,
+							_0: l3,
 							_1: {
 								ctor: '::',
-								_0: l6,
+								_0: divider,
 								_1: {
 									ctor: '::',
-									_0: l7,
-									_1: {ctor: '[]'}
+									_0: l4,
+									_1: {
+										ctor: '::',
+										_0: divider,
+										_1: {
+											ctor: '::',
+											_0: l5,
+											_1: {
+												ctor: '::',
+												_0: divider,
+												_1: {
+													ctor: '::',
+													_0: l6,
+													_1: {
+														ctor: '::',
+														_0: divider,
+														_1: {
+															ctor: '::',
+															_0: l7,
+															_1: {ctor: '[]'}
+														}
+													}
+												}
+											}
+										}
+									}
 								}
 							}
 						}

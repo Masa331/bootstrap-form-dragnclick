@@ -298,8 +298,9 @@ toLinks value =
     l6 = Element "span" [] (Children [i6]) "" [Html.Events.onClick ((Messages.InputMessage (Messages.ToggleDisabled value)))]
     i7 = Element "i" [Attribute "class" "fa fa-arrows control-element"] (Children []) "" []
     l7 = Element "span" [] (Children [i7]) "" [Html.Events.onMouseDown ((Messages.MouseMessage (Messages.MouseClick value)))]
+    divider = Element "span" [] (Children []) " " []
 
-    children = (Children [l1, l2, l3, l4, l5, l6, l7])
+    children = (Children [l1, divider, l2, divider, l3, divider, l4, divider, l5, divider, l6, divider, l7])
   in
     Just (Element "div" [Attribute "class" "control-container hidden-block"] children "" [])
 
