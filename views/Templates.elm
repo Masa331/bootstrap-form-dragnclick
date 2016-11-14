@@ -89,7 +89,7 @@ textarea =
 fileUpload =
   div
     [ class "form-group" ]
-    [ input [type' "file", class "form-control-file", Html.Attributes.attribute "aria-describedby" "fileHelp"] [] ]
+    [ input [type_ "file", class "form-control-file", Html.Attributes.attribute "aria-describedby" "fileHelp"] [] ]
 
 radioButtons =
   fieldset
@@ -99,7 +99,7 @@ radioButtons =
         [ label
           [ class "form-check-label"]
           [ input
-            [type' "radio", class "form-check-input", name "optionsRadio", id "optionsRadio1", value "option1", checked True]
+            [type_ "radio", class "form-check-input", name "optionsRadio", id "optionsRadio1", value "option1", checked True]
             []
           , text "Option 1"
           ]
@@ -109,7 +109,7 @@ radioButtons =
         [ label
           [ class "form-check-label"]
           [ input
-            [type' "radio", class "form-check-input", name "optionsRadio", id "optionsRadio2", value "option2"]
+            [type_ "radio", class "form-check-input", name "optionsRadio", id "optionsRadio2", value "option2"]
             []
           , text "Option 2"
           ]
@@ -119,7 +119,7 @@ radioButtons =
         [ label
           [ class "form-check-label"]
           [ input
-            [type' "radio", class "form-check-input", name "optionsRadio", id "optionsRadio3", value "option3"]
+            [type_ "radio", class "form-check-input", name "optionsRadio", id "optionsRadio3", value "option3"]
             []
           , text "Option 3"
           ]
@@ -131,7 +131,7 @@ checkbox =
     [ class "form-check" ]
     [ label
         [ class "form-check-label"]
-        [ input [type' "checkbox", class "form-check-input"] []
+        [ input [type_ "checkbox", class "form-check-input"] []
         , text "Check me out" ]
     ]
 

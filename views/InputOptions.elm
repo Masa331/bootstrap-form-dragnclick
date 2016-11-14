@@ -12,7 +12,7 @@ view : Input -> List (Html Msg)
 view inp =
   let
     options =
-      case inp.type' of
+      case inp.type_ of
         Text -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit ]
         Select -> [ typeEdit, labelEdit, smallUnderEdit, optionsEdit ]
         TextArea -> [ typeEdit, rowNumberEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit ]
@@ -60,7 +60,7 @@ addon2Edit input =
 
 typeEdit : Input -> List (Html Msg)
 typeEdit input =
-  selectEdit "Type" (InputMessage << TypeEdit input.id) stringInputTypes (inputTypeToString input.type')
+  selectEdit "Type" (InputMessage << TypeEdit input.id) stringInputTypes (inputTypeToString input.type_)
 
 textEdit : String -> (String -> Msg) -> String -> List (Html Msg)
 textEdit label msg value =
@@ -93,7 +93,7 @@ boolEdit : String -> (Bool -> Msg) -> Bool -> List (Html Msg)
 boolEdit label msg value =
   [ b [] [ text label ]
   , hr [] []
-  , div [ class "form-group" ] [ Html.label [ class "form-check-label" ] [ Html.input [ type' "checkbox", class "form-check-input", onCheck msg, Html.Attributes.checked value ] [] ] ]
+  , div [ class "form-group" ] [ Html.label [ class "form-check-label" ] [ Html.input [ type_ "checkbox", class "form-check-input", onCheck msg, Html.Attributes.checked value ] [] ] ]
   ]
 
 rowNumberEdit : Input -> List (Html Msg)
@@ -104,7 +104,7 @@ numberEdit : String -> (String -> Msg) -> String -> List (Html Msg)
 numberEdit label msg value =
   [ b [] [ text label ]
   , hr [] []
-  , div [ class "form-group" ] [ Html.input [ type' "number", class "form-control", onInput msg, Html.Attributes.value value ] [] ]
+  , div [ class "form-group" ] [ Html.input [ type_ "number", class "form-control", onInput msg, Html.Attributes.value value ] [] ]
   ]
 
 optionsEdit : Input -> List (Html Msg)
@@ -132,7 +132,7 @@ optionsEdit input =
             [ class "input-group-btn" ]
             [ Html.button
               [class "btn btn-sm btn-secondary"
-              , type' "button"
+              , type_ "button"
               , onClick (InputMessage (SaveNewOption input.id))] [text "Add"]
               ]
           ]

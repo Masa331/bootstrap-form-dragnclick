@@ -65,7 +65,7 @@ updateRowNumber newRowNumber input =
 
 updateType : String -> Input -> Input
 updateType newType input =
-  { input | type' = textToType newType }
+  { input | type_ = textToType newType }
 
 updateFirstAddon : String -> Input -> Input
 updateFirstAddon newAddon inp =

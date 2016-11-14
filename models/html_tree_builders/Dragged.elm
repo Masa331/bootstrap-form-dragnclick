@@ -10,7 +10,7 @@ import Models
 
 build : Input -> HtmlTree.Element
 build input =
-  case input.type' of
+  case input.type_ of
     Text -> textInputToHtmlTree input
     TextArea -> textAreaToHtmlTree input
     Select -> selectToHtmlTree input
@@ -33,7 +33,7 @@ textInputToHtmlTree inp =
       , toPlaceholder inp.placeholder
       , toDisabled inp.disabled
       , toClasses ((sizeClass inp.size) :: ([ "form-control" ] ++ inp.classList))
-      , toType inp.type'
+      , toType inp.type_
       ] |> List.filterMap identity
 
     containerClass =
@@ -59,7 +59,7 @@ colorToHtmlTree inp =
       , toPlaceholder inp.placeholder
       , toDisabled inp.disabled
       , toClasses ((sizeClass inp.size) :: [ "form-control" ])
-      , toType inp.type'
+      , toType inp.type_
       ] |> List.filterMap identity
 
     children =
@@ -267,7 +267,7 @@ wrapInAddons inputAttrs input =
     add1 = toAddon input.addon1
     add2 = toAddon input.addon2
     inputType =
-      case input.type' of
+      case input.type_ of
         TextArea -> "textarea"
         _ -> "input"
     input1 = Just (Element inputType inputAttrs (Children []) "" [])

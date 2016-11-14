@@ -12,7 +12,7 @@ type Size = Small | Normal | Large
 type InputType = Text | TextArea | Select | Multiselect | FileUpload | Radio | Checkbox | Button | Search | Email | Url | Tel | Password | Number | DatetimeLocal | Date | Month | Week | Time | Color
 
 type alias Input =
-  { type': InputType
+  { type_: InputType
   , id: Id
   , classList: ClassList
   , placeholder: Placeholder
@@ -30,7 +30,7 @@ type alias Form = List Input
 
 blankInput : Input
 blankInput =
-  { type' = Text
+  { type_ = Text
   , id = 0
   , classList = []
   , placeholder = Nothing
@@ -46,41 +46,41 @@ blankInput =
 
 textInput : Input
 textInput =
-  { blankInput | type' = Text }
+  { blankInput | type_ = Text }
 
 textArea : Input
 textArea =
-  { blankInput | type' = TextArea, rowNumber = "3" }
+  { blankInput | type_ = TextArea, rowNumber = "3" }
 
 select : Input
 select =
-  { blankInput | type' = Select, options = [ "options1", "option2", "option3" ] }
+  { blankInput | type_ = Select, options = [ "options1", "option2", "option3" ] }
 
 multiselect : Input
 multiselect =
-  { blankInput | type' = Multiselect, options = [ "Option1", "Option2", "Option3" ] }
+  { blankInput | type_ = Multiselect, options = [ "Option1", "Option2", "Option3" ] }
 
 fileUpload : Input
 fileUpload =
-  { blankInput | type' = FileUpload, classList = [ "form-control-file" ] }
+  { blankInput | type_ = FileUpload, classList = [ "form-control-file" ] }
 
 radio : Input
 radio =
-  { blankInput | type' = Radio, options = [ "Option1", "Option2", "Option3" ] }
+  { blankInput | type_ = Radio, options = [ "Option1", "Option2", "Option3" ] }
 
 checkbox : Input
 checkbox =
-  { blankInput | type' = Checkbox, classList = [ "form-control" ] }
+  { blankInput | type_ = Checkbox, classList = [ "form-control" ] }
 
 button :Input
 button =
-  { blankInput | type' = Button }
+  { blankInput | type_ = Button }
 
 inputTypeToString : InputType -> String
-inputTypeToString type' =
-  case type' of
+inputTypeToString type_ =
+  case type_ of
     DatetimeLocal -> "datetime-local"
-    _ -> (toString >> String.toLower) type'
+    _ -> (toString >> String.toLower) type_
 
 sizeToString : Size -> String
 sizeToString =

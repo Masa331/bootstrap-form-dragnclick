@@ -1,7 +1,6 @@
 module Main exposing (..)
 
 import Html exposing (div)
-import Html.App
 import Mouse
 
 import Views
@@ -36,7 +35,7 @@ subscriptions model =
     Utils.determinedFormMap Messages.MapDetermined
 
 main =
-  Html.App.program
+  Html.program
   { init = init
   , view = view
   , update = update
