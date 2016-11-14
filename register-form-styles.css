@@ -83,7 +83,6 @@ div.dragged i.control-icon {
 .form-controls {
   text-align: right;
 }
-
 /* ------------------------------- */
 /* New styles - Styles for my control elements  */
 /* ------------------------------- */
@@ -97,11 +96,31 @@ div.dragged i.control-icon {
   right: 0px;
 }
 
+.relative-position {
+  position: relative;
+}
+
+.absolute-position {
+  position: absolute;
+}
+
 .hidden-block {
   display: none;
 }
 .show-hidden-on-hover:hover .hidden-block {
   display: block;
+}
+.hidden-inline-block {
+  display: none;
+}
+.show-hidden-on-hover:hover .hidden-inline-block {
+  display: inline-block;
+}
+.hidden-table-cell {
+  display: none;
+}
+.show-hidden-on-hover:hover .hidden-table-cell {
+  display: table-cell;
 }
 
 .control-element {
@@ -112,6 +131,18 @@ div.dragged i.control-icon {
   color: grey;
 }
 
+input {
+  /* So the input looks like placeholder */
+  color: #999;
+}
+.form-control {
+  color: #999;
+}
+.form-control:focus {
+  color: #999;
+}
+
+
 .fa-small {
   font-size: 15px !important;
 }
@@ -121,3 +152,68 @@ div.dragged i.control-icon {
 .fa-big {
   font-size: 20px !important;
 }
+
+.input-group div.input-group-addon:not(.hidden-table-cell) + .form-control {
+  border-bottom-left-radius: 0rem;
+  border-top-left-radius: 0rem;
+  /* I have a problem on inputs followed by an addon - i can't select them and make the borders without radius corners */
+}
+
+
+.input-group .form-control:not(:first-child):not(:last-child) {
+  border-bottom-right-radius: .25rem;
+  border-top-right-radius: .25rem;
+  border-bottom-left-radius: .25rem;
+  border-top-left-radius: .25rem;
+}
+
+.form-group:hover .form-control:not(:first-child):not(:last-child) {
+  border-bottom-right-radius: 0rem;
+  border-top-right-radius: 0rem;
+  border-bottom-left-radius: 0rem;
+  border-top-left-radius: 0rem;
+}
+
+
+.no-margin {
+  margin: 0px;
+}
+
+.negative-top-margin {
+  margin-top: -7px;
+}
+
+/* --- */
+/* WIP */
+/* --- */
+
+.inline-edit {
+}
+
+.inline-edit input {
+  border: dotted 1px #66afe9;
+
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 8px;
+  margin-left: 0px;
+
+  width: 50%;
+  color: #373a3c;
+}
+
+.inline-edit .edit-control {
+  float: right;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+/* --- */
+/* ENDWIP */
+/* --- */

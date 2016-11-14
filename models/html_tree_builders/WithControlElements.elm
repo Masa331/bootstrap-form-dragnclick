@@ -40,7 +40,7 @@ textInputToHtmlTree inp =
       [ toLabel inp.label
       , toLinks inp.id
       , wrapInAddons inp
-      , Just (toSmall inp)
+      , Maybe.map toSmall inp.small
       ] |> List.filterMap identity
   in
     Element "div" [containerClass, Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
@@ -65,7 +65,7 @@ colorToHtmlTree inp =
     children =
       [ toLabel inp.label
       , Just (Element "input" inputAttrs (Children []) "" [])
-      , Just (toSmall inp)
+      , Maybe.map toSmall inp.small
       , toLinks inp.id
       ] |> List.filterMap identity
   in
@@ -90,7 +90,7 @@ selectToHtmlTree inp =
     children =
       [ toLabel inp.label
       , Just (Element "select" inputAttrs (Children options) "" [])
-      , Just (toSmall inp)
+      , Maybe.map toSmall inp.small
       , toLinks inp.id
       ] |> List.filterMap identity
   in
@@ -98,14 +98,6 @@ selectToHtmlTree inp =
 
 textAreaToHtmlTree inp =
   let
-    -- inputAttrs =
-    --   [ toId inp.id
-    --   , toPlaceholder inp.placeholder
-    --   , toDisabled inp.disabled
-    --   , toClasses [ "form-control" ]
-    --   , Just (Attribute "rows" (inp.rowNumber))
-    --   ] |> List.filterMap identity
-
     containerClass =
       [ Just "form-group"
       , if inp.dragged then Just "hidden" else Nothing
@@ -141,7 +133,7 @@ multiselectToHtmlTree inp =
     children =
       [ toLabel inp.label
       , Just (Element "select" inputAttrs (Children options) "" [])
-      , Just (toSmall inp)
+      , Maybe.map toSmall inp.small
       , toLinks inp.id
       ] |> List.filterMap identity
   in
@@ -166,7 +158,7 @@ fileUploadToHtmlTree inp =
     children =
       [ toLabel inp.label
       , Just (Element "input" inputAttrs (Children []) "" [])
-      , Just (toSmall inp)
+      , Maybe.map toSmall inp.small
       , toLinks inp.id
       ] |> List.filterMap identity
   in
@@ -178,7 +170,7 @@ radioToHtmlTree inp =
     children =
       [ toLegend inp.label ]
       ++ options
-      ++ [ Just (toSmall inp) ]
+      ++ [ Maybe.map toSmall inp.small ]
       ++ [ toLinks inp.id ]
       |> List.filterMap identity
 
@@ -262,40 +254,23 @@ toDisabled : Bool -> Maybe Attribute
 toDisabled value =
   if value then Just (Attribute "disabled" "disabled") else Nothing
 
-toAddon : Maybe String -> Element
-toAddon value =
-  let
-    editLink = Element "small" [Attribute "class" "control-element hidden-inline-block"] (Children []) "Edit" []
-  in
-    case value of
-      Just text ->
-        Element "div" [Attribute "class" "input-group-addon"] (Children [Element "span" [] (Children []) text [], editLink]) "" []
-      Nothing ->
-        Element "div" [Attribute "class" "input-group-addon hidden-table-cell"] (Children [editLink]) "" []
+toAddon : String -> Element
+toAddon text =
+  Element "div" [Attribute "class" "input-group-addon"] (Children [Element "span" [] (Children []) text []]) "" []
 
-toSmall : Input -> Element
-toSmall input =
-  case input.small of
-    Just text ->
-      -- Element "small" [Attribute "class" "form-text text-muted"] (Children []) text []
-      let
-        smallText = Element "span" [Attribute "class" "text-muted"] (Children []) text []
-        editLink = Element "span" [Attribute "class" "control-element hidden-inline-block"] (Children []) " Edit" []
-      in
-        Element "small" [Attribute "class" "form-text"] (Children [smallText, editLink]) "" []
-    Nothing ->
-      let
-        editLink = Element "small" [Attribute "class" "form-text control-element no-margin"] (Children []) "Click here to edit small text under." []
-      in
-        Element "div" [Attribute "class" "hidden-block absolute-position"] (Children [editLink]) "" []
+toSmall : String -> Element
+toSmall text =
+  let
+    smallText = Element "span" [Attribute "class" "text-muted"] (Children []) text []
+  in
+    Element "small" [Attribute "class" "form-text"] (Children [smallText]) "" []
 
 toLabel : Maybe String -> Maybe Element
 toLabel value =
   let
-    innerSpan = Element "span" [] (Children []) (Maybe.withDefault "" value) []
-    editControl = Element "small" [ Attribute "class" "control-element hidden-inline-block" ] (Children []) " Edit" []
+    labelSpan = Element "span" [] (Children []) (Maybe.withDefault "" value) []
   in
-    Just (Element "label" [Attribute "for" "input1"] (Children [innerSpan, editControl]) "" [])
+    Just (Element "label" [Attribute "for" "input1"] (Children [labelSpan]) "" [])
 
 toLegend : Maybe String -> Maybe Element
 toLegend value =
@@ -357,14 +332,14 @@ wrapInAddons input =
       , toType input.type_
       ] |> List.filterMap identity
 
-    add1 = toAddon input.addon1
-    add2 = toAddon input.addon2
+    add1 = Maybe.map toAddon input.addon1
+    add2 = Maybe.map toAddon input.addon2
     inputType =
       case input.type_ of
         TextArea -> "textarea"
         _ -> "input"
 
-    input1 = Element inputType inputAttrs (Children []) "" []
+    input1 = Just (Element inputType inputAttrs (Children []) "" [])
     inputClasses =
       case input.size of
         Small ->
@@ -374,4 +349,4 @@ wrapInAddons input =
         Large ->
           "input-group input-group-lg"
   in
-    Just (Element "div" [Attribute "class" inputClasses] (Children ([add1, input1, add2])) "" [])
+    Just (Element "div" [Attribute "class" inputClasses] (Children ([add1, input1, add2] |> List.filterMap identity)) "" [])
