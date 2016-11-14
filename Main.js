@@ -9624,26 +9624,26 @@ var _user$project$Dragged$sizeClass = function (size) {
 	}
 };
 var _user$project$Dragged$toLinks = function (value) {
-	var i3 = A5(
+	var i1 = A5(
 		_user$project$HtmlTree$Element,
 		'i',
 		{
 			ctor: '::',
-			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-arrows control'),
+			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-arrows control-element'),
 			_1: {ctor: '[]'}
 		},
 		_user$project$HtmlTree$Children(
 			{ctor: '[]'}),
 		'',
 		{ctor: '[]'});
-	var l3 = A5(
+	var l1 = A5(
 		_user$project$HtmlTree$Element,
 		'span',
 		{ctor: '[]'},
 		_user$project$HtmlTree$Children(
 			{
 				ctor: '::',
-				_0: i3,
+				_0: i1,
 				_1: {ctor: '[]'}
 			}),
 		'',
@@ -9657,7 +9657,7 @@ var _user$project$Dragged$toLinks = function (value) {
 	var children = _user$project$HtmlTree$Children(
 		{
 			ctor: '::',
-			_0: l3,
+			_0: l1,
 			_1: {ctor: '[]'}
 		});
 	return _elm_lang$core$Maybe$Just(
@@ -9666,7 +9666,7 @@ var _user$project$Dragged$toLinks = function (value) {
 			'div',
 			{
 				ctor: '::',
-				_0: A2(_user$project$HtmlTree$Attribute, 'class', 'edit-and-remove-link'),
+				_0: A2(_user$project$HtmlTree$Attribute, 'class', 'control-container'),
 				_1: {ctor: '[]'}
 			},
 			children,
@@ -9696,124 +9696,87 @@ var _user$project$Dragged$toLegend = function (value) {
 		value);
 };
 var _user$project$Dragged$toLabel = function (value) {
-	return A2(
-		_elm_lang$core$Maybe$map,
-		function (value) {
-			return A5(
-				_user$project$HtmlTree$Element,
-				'label',
+	var labelSpan = A5(
+		_user$project$HtmlTree$Element,
+		'span',
+		{ctor: '[]'},
+		_user$project$HtmlTree$Children(
+			{ctor: '[]'}),
+		A2(_elm_lang$core$Maybe$withDefault, '', value),
+		{ctor: '[]'});
+	return _elm_lang$core$Maybe$Just(
+		A5(
+			_user$project$HtmlTree$Element,
+			'label',
+			{
+				ctor: '::',
+				_0: A2(_user$project$HtmlTree$Attribute, 'for', 'input1'),
+				_1: {ctor: '[]'}
+			},
+			_user$project$HtmlTree$Children(
 				{
 					ctor: '::',
-					_0: A2(_user$project$HtmlTree$Attribute, 'for', 'input1'),
+					_0: labelSpan,
 					_1: {ctor: '[]'}
-				},
-				_user$project$HtmlTree$Children(
-					{ctor: '[]'}),
-				value,
-				{ctor: '[]'});
-		},
-		value);
+				}),
+			'',
+			{ctor: '[]'}));
 };
-var _user$project$Dragged$toSmall = function (value) {
-	return A2(
-		_elm_lang$core$Maybe$map,
-		function (value) {
-			return A5(
-				_user$project$HtmlTree$Element,
-				'small',
-				{
-					ctor: '::',
-					_0: A2(_user$project$HtmlTree$Attribute, 'class', 'form-text text-muted'),
-					_1: {ctor: '[]'}
-				},
-				_user$project$HtmlTree$Children(
-					{ctor: '[]'}),
-				value,
-				{ctor: '[]'});
+var _user$project$Dragged$toSmall = function (text) {
+	var smallText = A5(
+		_user$project$HtmlTree$Element,
+		'span',
+		{
+			ctor: '::',
+			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'text-muted'),
+			_1: {ctor: '[]'}
 		},
-		value);
-};
-var _user$project$Dragged$toAddon = function (value) {
-	return A2(
-		_elm_lang$core$Maybe$map,
-		function (value) {
-			return A5(
-				_user$project$HtmlTree$Element,
-				'div',
-				{
-					ctor: '::',
-					_0: A2(_user$project$HtmlTree$Attribute, 'class', 'input-group-addon'),
-					_1: {ctor: '[]'}
-				},
-				_user$project$HtmlTree$Children(
-					{ctor: '[]'}),
-				value,
-				{ctor: '[]'});
+		_user$project$HtmlTree$Children(
+			{ctor: '[]'}),
+		text,
+		{ctor: '[]'});
+	return A5(
+		_user$project$HtmlTree$Element,
+		'small',
+		{
+			ctor: '::',
+			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'form-text'),
+			_1: {ctor: '[]'}
 		},
-		value);
+		_user$project$HtmlTree$Children(
+			{
+				ctor: '::',
+				_0: smallText,
+				_1: {ctor: '[]'}
+			}),
+		'',
+		{ctor: '[]'});
 };
-var _user$project$Dragged$wrapInAddons = F2(
-	function (inputAttrs, input) {
-		var inputType = function () {
-			var _p1 = input.type_;
-			if (_p1.ctor === 'TextArea') {
-				return 'textarea';
-			} else {
-				return 'input';
-			}
-		}();
-		var input1 = _elm_lang$core$Maybe$Just(
-			A5(
-				_user$project$HtmlTree$Element,
-				inputType,
-				inputAttrs,
-				_user$project$HtmlTree$Children(
+var _user$project$Dragged$toAddon = function (text) {
+	return A5(
+		_user$project$HtmlTree$Element,
+		'div',
+		{
+			ctor: '::',
+			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'input-group-addon'),
+			_1: {ctor: '[]'}
+		},
+		_user$project$HtmlTree$Children(
+			{
+				ctor: '::',
+				_0: A5(
+					_user$project$HtmlTree$Element,
+					'span',
+					{ctor: '[]'},
+					_user$project$HtmlTree$Children(
+						{ctor: '[]'}),
+					text,
 					{ctor: '[]'}),
-				'',
-				{ctor: '[]'}));
-		var add2 = _user$project$Dragged$toAddon(input.addon2);
-		var add1 = _user$project$Dragged$toAddon(input.addon1);
-		return _elm_lang$core$List$isEmpty(
-			A2(
-				_elm_lang$core$List$filterMap,
-				_elm_lang$core$Basics$identity,
-				{
-					ctor: '::',
-					_0: add1,
-					_1: {
-						ctor: '::',
-						_0: add2,
-						_1: {ctor: '[]'}
-					}
-				})) ? input1 : _elm_lang$core$Maybe$Just(
-			A5(
-				_user$project$HtmlTree$Element,
-				'div',
-				{
-					ctor: '::',
-					_0: A2(_user$project$HtmlTree$Attribute, 'class', 'input-group'),
-					_1: {ctor: '[]'}
-				},
-				_user$project$HtmlTree$Children(
-					A2(
-						_elm_lang$core$List$filterMap,
-						_elm_lang$core$Basics$identity,
-						{
-							ctor: '::',
-							_0: add1,
-							_1: {
-								ctor: '::',
-								_0: input1,
-								_1: {
-									ctor: '::',
-									_0: add2,
-									_1: {ctor: '[]'}
-								}
-							}
-						})),
-				'',
-				{ctor: '[]'}));
-	});
+				_1: {ctor: '[]'}
+			}),
+		'',
+		{ctor: '[]'});
+};
 var _user$project$Dragged$toDisabled = function (value) {
 	return value ? _elm_lang$core$Maybe$Just(
 		A2(_user$project$HtmlTree$Attribute, 'disabled', 'disabled')) : _elm_lang$core$Maybe$Nothing;
@@ -9834,7 +9797,104 @@ var _user$project$Dragged$toPlaceholder = function (value) {
 		_user$project$HtmlTree$Attribute('placeholder'),
 		value);
 };
+var _user$project$Dragged$wrapInAddons = function (input) {
+	var inputClasses = function () {
+		var _p1 = input.size;
+		switch (_p1.ctor) {
+			case 'Small':
+				return 'input-group input-group-sm';
+			case 'Normal':
+				return 'input-group';
+			default:
+				return 'input-group input-group-lg';
+		}
+	}();
+	var inputType = function () {
+		var _p2 = input.type_;
+		if (_p2.ctor === 'TextArea') {
+			return 'textarea';
+		} else {
+			return 'input';
+		}
+	}();
+	var add2 = A2(_elm_lang$core$Maybe$map, _user$project$Dragged$toAddon, input.addon2);
+	var add1 = A2(_elm_lang$core$Maybe$map, _user$project$Dragged$toAddon, input.addon1);
+	var inputAttrs = A2(
+		_elm_lang$core$List$filterMap,
+		_elm_lang$core$Basics$identity,
+		{
+			ctor: '::',
+			_0: _user$project$Dragged$toId(input.id),
+			_1: {
+				ctor: '::',
+				_0: _user$project$Dragged$toPlaceholder(input.placeholder),
+				_1: {
+					ctor: '::',
+					_0: _user$project$Dragged$toDisabled(input.disabled),
+					_1: {
+						ctor: '::',
+						_0: _user$project$Dragged$toClasses(
+							{
+								ctor: '::',
+								_0: _user$project$Dragged$sizeClass(input.size),
+								_1: A2(
+									_elm_lang$core$Basics_ops['++'],
+									{
+										ctor: '::',
+										_0: 'form-control',
+										_1: {ctor: '[]'}
+									},
+									input.classList)
+							}),
+						_1: {
+							ctor: '::',
+							_0: _user$project$Dragged$toType(input.type_),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		});
+	var input1 = _elm_lang$core$Maybe$Just(
+		A5(
+			_user$project$HtmlTree$Element,
+			inputType,
+			inputAttrs,
+			_user$project$HtmlTree$Children(
+				{ctor: '[]'}),
+			'',
+			{ctor: '[]'}));
+	return _elm_lang$core$Maybe$Just(
+		A5(
+			_user$project$HtmlTree$Element,
+			'div',
+			{
+				ctor: '::',
+				_0: A2(_user$project$HtmlTree$Attribute, 'class', inputClasses),
+				_1: {ctor: '[]'}
+			},
+			_user$project$HtmlTree$Children(
+				A2(
+					_elm_lang$core$List$filterMap,
+					_elm_lang$core$Basics$identity,
+					{
+						ctor: '::',
+						_0: add1,
+						_1: {
+							ctor: '::',
+							_0: input1,
+							_1: {
+								ctor: '::',
+								_0: add2,
+								_1: {ctor: '[]'}
+							}
+						}
+					})),
+			'',
+			{ctor: '[]'}));
+};
 var _user$project$Dragged$buttonToHtmlTree = function (inp) {
+	var containerClass = A2(_user$project$HtmlTree$Attribute, 'class', 'my-container dragged');
 	var children = A2(
 		_elm_lang$core$List$filterMap,
 		_elm_lang$core$Basics$identity,
@@ -9868,7 +9928,7 @@ var _user$project$Dragged$buttonToHtmlTree = function (inp) {
 		'div',
 		{
 			ctor: '::',
-			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'my-container'),
+			_0: containerClass,
 			_1: {
 				ctor: '::',
 				_0: A2(
@@ -9883,6 +9943,7 @@ var _user$project$Dragged$buttonToHtmlTree = function (inp) {
 		{ctor: '[]'});
 };
 var _user$project$Dragged$checkboxToHtmlTree = function (inp) {
+	var containerClass = A2(_user$project$HtmlTree$Attribute, 'class', 'form-check dragged');
 	var links = _user$project$Dragged$toLinks(inp.id);
 	var input = A5(
 		_user$project$HtmlTree$Element,
@@ -9901,8 +9962,8 @@ var _user$project$Dragged$checkboxToHtmlTree = function (inp) {
 		'',
 		{ctor: '[]'});
 	var label = function () {
-		var _p2 = inp.label;
-		if (_p2.ctor === 'Nothing') {
+		var _p3 = inp.label;
+		if (_p3.ctor === 'Nothing') {
 			return _elm_lang$core$Maybe$Just(
 				A5(
 					_user$project$HtmlTree$Element,
@@ -9936,7 +9997,7 @@ var _user$project$Dragged$checkboxToHtmlTree = function (inp) {
 							_0: input,
 							_1: {ctor: '[]'}
 						}),
-					_p2._0,
+					_p3._0,
 					{ctor: '[]'}));
 		}
 	}();
@@ -9957,7 +10018,7 @@ var _user$project$Dragged$checkboxToHtmlTree = function (inp) {
 		'div',
 		{
 			ctor: '::',
-			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'form-check'),
+			_0: containerClass,
 			_1: {
 				ctor: '::',
 				_0: A2(
@@ -10054,6 +10115,7 @@ var _user$project$Dragged$toRadioOption = F4(
 			{ctor: '[]'});
 	});
 var _user$project$Dragged$radioToHtmlTree = function (inp) {
+	var containerClass = A2(_user$project$HtmlTree$Attribute, 'class', 'form-group dragged');
 	var options = A2(
 		_elm_lang$core$List$map,
 		function (value) {
@@ -10083,7 +10145,7 @@ var _user$project$Dragged$radioToHtmlTree = function (inp) {
 					_elm_lang$core$Basics_ops['++'],
 					{
 						ctor: '::',
-						_0: _user$project$Dragged$toSmall(inp.small),
+						_0: A2(_elm_lang$core$Maybe$map, _user$project$Dragged$toSmall, inp.small),
 						_1: {ctor: '[]'}
 					},
 					{
@@ -10096,7 +10158,7 @@ var _user$project$Dragged$radioToHtmlTree = function (inp) {
 		'fieldset',
 		{
 			ctor: '::',
-			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'form-group'),
+			_0: containerClass,
 			_1: {
 				ctor: '::',
 				_0: A2(
@@ -10111,6 +10173,7 @@ var _user$project$Dragged$radioToHtmlTree = function (inp) {
 		{ctor: '[]'});
 };
 var _user$project$Dragged$fileUploadToHtmlTree = function (inp) {
+	var containerClass = A2(_user$project$HtmlTree$Attribute, 'class', 'form-group dragged');
 	var inputAttrs = A2(
 		_elm_lang$core$List$filterMap,
 		_elm_lang$core$Basics$identity,
@@ -10156,7 +10219,7 @@ var _user$project$Dragged$fileUploadToHtmlTree = function (inp) {
 						{ctor: '[]'})),
 				_1: {
 					ctor: '::',
-					_0: _user$project$Dragged$toSmall(inp.small),
+					_0: A2(_elm_lang$core$Maybe$map, _user$project$Dragged$toSmall, inp.small),
 					_1: {
 						ctor: '::',
 						_0: _user$project$Dragged$toLinks(inp.id),
@@ -10170,7 +10233,7 @@ var _user$project$Dragged$fileUploadToHtmlTree = function (inp) {
 		'div',
 		{
 			ctor: '::',
-			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'form-group'),
+			_0: containerClass,
 			_1: {
 				ctor: '::',
 				_0: A2(
@@ -10198,6 +10261,7 @@ var _user$project$Dragged$multiselectToHtmlTree = function (inp) {
 				{ctor: '[]'});
 		},
 		inp.options);
+	var containerClass = A2(_user$project$HtmlTree$Attribute, 'class', 'form-group dragged');
 	var inputAttrs = A2(
 		_elm_lang$core$List$filterMap,
 		_elm_lang$core$Basics$identity,
@@ -10246,7 +10310,7 @@ var _user$project$Dragged$multiselectToHtmlTree = function (inp) {
 						{ctor: '[]'})),
 				_1: {
 					ctor: '::',
-					_0: _user$project$Dragged$toSmall(inp.small),
+					_0: A2(_elm_lang$core$Maybe$map, _user$project$Dragged$toSmall, inp.small),
 					_1: {
 						ctor: '::',
 						_0: _user$project$Dragged$toLinks(inp.id),
@@ -10260,7 +10324,7 @@ var _user$project$Dragged$multiselectToHtmlTree = function (inp) {
 		'div',
 		{
 			ctor: '::',
-			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'form-group'),
+			_0: containerClass,
 			_1: {
 				ctor: '::',
 				_0: A2(
@@ -10275,36 +10339,6 @@ var _user$project$Dragged$multiselectToHtmlTree = function (inp) {
 		{ctor: '[]'});
 };
 var _user$project$Dragged$textAreaToHtmlTree = function (inp) {
-	var inputAttrs = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		{
-			ctor: '::',
-			_0: _user$project$Dragged$toId(inp.id),
-			_1: {
-				ctor: '::',
-				_0: _user$project$Dragged$toPlaceholder(inp.placeholder),
-				_1: {
-					ctor: '::',
-					_0: _user$project$Dragged$toDisabled(inp.disabled),
-					_1: {
-						ctor: '::',
-						_0: _user$project$Dragged$toClasses(
-							{
-								ctor: '::',
-								_0: 'form-control',
-								_1: {ctor: '[]'}
-							}),
-						_1: {
-							ctor: '::',
-							_0: _elm_lang$core$Maybe$Just(
-								A2(_user$project$HtmlTree$Attribute, 'rows', inp.rowNumber)),
-							_1: {ctor: '[]'}
-						}
-					}
-				}
-			}
-		});
 	var children = A2(
 		_elm_lang$core$List$filterMap,
 		_elm_lang$core$Basics$identity,
@@ -10313,7 +10347,7 @@ var _user$project$Dragged$textAreaToHtmlTree = function (inp) {
 			_0: _user$project$Dragged$toLabel(inp.label),
 			_1: {
 				ctor: '::',
-				_0: A2(_user$project$Dragged$wrapInAddons, inputAttrs, inp),
+				_0: _user$project$Dragged$wrapInAddons(inp),
 				_1: {
 					ctor: '::',
 					_0: _user$project$Dragged$toLinks(inp.id),
@@ -10321,12 +10355,13 @@ var _user$project$Dragged$textAreaToHtmlTree = function (inp) {
 				}
 			}
 		});
+	var containerClass = A2(_user$project$HtmlTree$Attribute, 'class', 'form-group dragged');
 	return A5(
 		_user$project$HtmlTree$Element,
 		'div',
 		{
 			ctor: '::',
-			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'form-group'),
+			_0: containerClass,
 			_1: {ctor: '[]'}
 		},
 		_user$project$HtmlTree$Children(children),
@@ -10347,6 +10382,7 @@ var _user$project$Dragged$selectToHtmlTree = function (inp) {
 				{ctor: '[]'});
 		},
 		inp.options);
+	var containerClass = A2(_user$project$HtmlTree$Attribute, 'class', 'form-group dragged');
 	var inputAttrs = A2(
 		_elm_lang$core$List$filterMap,
 		_elm_lang$core$Basics$identity,
@@ -10390,7 +10426,7 @@ var _user$project$Dragged$selectToHtmlTree = function (inp) {
 						{ctor: '[]'})),
 				_1: {
 					ctor: '::',
-					_0: _user$project$Dragged$toSmall(inp.small),
+					_0: A2(_elm_lang$core$Maybe$map, _user$project$Dragged$toSmall, inp.small),
 					_1: {
 						ctor: '::',
 						_0: _user$project$Dragged$toLinks(inp.id),
@@ -10404,7 +10440,7 @@ var _user$project$Dragged$selectToHtmlTree = function (inp) {
 		'div',
 		{
 			ctor: '::',
-			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'form-group'),
+			_0: containerClass,
 			_1: {
 				ctor: '::',
 				_0: A2(
@@ -10419,6 +10455,7 @@ var _user$project$Dragged$selectToHtmlTree = function (inp) {
 		{ctor: '[]'});
 };
 var _user$project$Dragged$colorToHtmlTree = function (inp) {
+	var containerClass = A2(_user$project$HtmlTree$Attribute, 'class', 'form-group dragged');
 	var inputAttrs = A2(
 		_elm_lang$core$List$filterMap,
 		_elm_lang$core$Basics$identity,
@@ -10471,101 +10508,7 @@ var _user$project$Dragged$colorToHtmlTree = function (inp) {
 						{ctor: '[]'})),
 				_1: {
 					ctor: '::',
-					_0: _user$project$Dragged$toSmall(inp.small),
-					_1: {
-						ctor: '::',
-						_0: _user$project$Dragged$toLinks(inp.id),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		});
-	return A5(
-		_user$project$HtmlTree$Element,
-		'div',
-		{
-			ctor: '::',
-			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'form-group'),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_user$project$HtmlTree$Attribute,
-					'data-input-id',
-					_elm_lang$core$Basics$toString(inp.id)),
-				_1: {ctor: '[]'}
-			}
-		},
-		_user$project$HtmlTree$Children(children),
-		'',
-		{ctor: '[]'});
-};
-var _user$project$Dragged$textInputToHtmlTree = function (inp) {
-	var containerClass = A2(
-		_user$project$HtmlTree$Attribute,
-		'class',
-		A2(
-			_elm_lang$core$String$join,
-			' ',
-			A2(
-				_elm_lang$core$List$filterMap,
-				_elm_lang$core$Basics$identity,
-				{
-					ctor: '::',
-					_0: _elm_lang$core$Maybe$Just('form-group'),
-					_1: {
-						ctor: '::',
-						_0: inp.dragged ? _elm_lang$core$Maybe$Just('dragged') : _elm_lang$core$Maybe$Nothing,
-						_1: {ctor: '[]'}
-					}
-				})));
-	var inputAttrs = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		{
-			ctor: '::',
-			_0: _user$project$Dragged$toId(inp.id),
-			_1: {
-				ctor: '::',
-				_0: _user$project$Dragged$toPlaceholder(inp.placeholder),
-				_1: {
-					ctor: '::',
-					_0: _user$project$Dragged$toDisabled(inp.disabled),
-					_1: {
-						ctor: '::',
-						_0: _user$project$Dragged$toClasses(
-							{
-								ctor: '::',
-								_0: _user$project$Dragged$sizeClass(inp.size),
-								_1: A2(
-									_elm_lang$core$Basics_ops['++'],
-									{
-										ctor: '::',
-										_0: 'form-control',
-										_1: {ctor: '[]'}
-									},
-									inp.classList)
-							}),
-						_1: {
-							ctor: '::',
-							_0: _user$project$Dragged$toType(inp.type_),
-							_1: {ctor: '[]'}
-						}
-					}
-				}
-			}
-		});
-	var children = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		{
-			ctor: '::',
-			_0: _user$project$Dragged$toLabel(inp.label),
-			_1: {
-				ctor: '::',
-				_0: A2(_user$project$Dragged$wrapInAddons, inputAttrs, inp),
-				_1: {
-					ctor: '::',
-					_0: _user$project$Dragged$toSmall(inp.small),
+					_0: A2(_elm_lang$core$Maybe$map, _user$project$Dragged$toSmall, inp.small),
 					_1: {
 						ctor: '::',
 						_0: _user$project$Dragged$toLinks(inp.id),
@@ -10593,9 +10536,50 @@ var _user$project$Dragged$textInputToHtmlTree = function (inp) {
 		'',
 		{ctor: '[]'});
 };
+var _user$project$Dragged$textInputToHtmlTree = function (inp) {
+	var children = A2(
+		_elm_lang$core$List$filterMap,
+		_elm_lang$core$Basics$identity,
+		{
+			ctor: '::',
+			_0: _user$project$Dragged$toLabel(inp.label),
+			_1: {
+				ctor: '::',
+				_0: _user$project$Dragged$toLinks(inp.id),
+				_1: {
+					ctor: '::',
+					_0: _user$project$Dragged$wrapInAddons(inp),
+					_1: {
+						ctor: '::',
+						_0: A2(_elm_lang$core$Maybe$map, _user$project$Dragged$toSmall, inp.small),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
+	var containerClass = A2(_user$project$HtmlTree$Attribute, 'class', 'form-group dragged');
+	return A5(
+		_user$project$HtmlTree$Element,
+		'div',
+		{
+			ctor: '::',
+			_0: containerClass,
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_user$project$HtmlTree$Attribute,
+					'data-input-id',
+					_elm_lang$core$Basics$toString(inp.id)),
+				_1: {ctor: '[]'}
+			}
+		},
+		_user$project$HtmlTree$Children(children),
+		'',
+		{ctor: '[]'});
+};
 var _user$project$Dragged$build = function (input) {
-	var _p3 = input.type_;
-	switch (_p3.ctor) {
+	var _p4 = input.type_;
+	switch (_p4.ctor) {
 		case 'Text':
 			return _user$project$Dragged$textInputToHtmlTree(input);
 		case 'TextArea':

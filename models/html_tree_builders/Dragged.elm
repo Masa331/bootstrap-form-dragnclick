@@ -28,26 +28,13 @@ build input =
 
 textInputToHtmlTree inp =
   let
-    inputAttrs =
-      [ toId inp.id
-      , toPlaceholder inp.placeholder
-      , toDisabled inp.disabled
-      , toClasses ((sizeClass inp.size) :: ([ "form-control" ] ++ inp.classList))
-      , toType inp.type_
-      ] |> List.filterMap identity
-
-    containerClass =
-      [ Just "form-group"
-      , if inp.dragged then Just "dragged" else Nothing
-      ] |> List.filterMap identity
-        |> String.join " "
-        |> Attribute "class"
+    containerClass = Attribute "class" "form-group dragged"
 
     children =
       [ toLabel inp.label
-      , wrapInAddons inputAttrs inp
-      , toSmall inp.small
       , toLinks inp.id
+      , wrapInAddons inp
+      , Maybe.map toSmall inp.small
       ] |> List.filterMap identity
   in
     Element "div" [containerClass, Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
@@ -62,14 +49,16 @@ colorToHtmlTree inp =
       , toType inp.type_
       ] |> List.filterMap identity
 
+    containerClass = Attribute "class" "form-group dragged"
+
     children =
       [ toLabel inp.label
       , Just (Element "input" inputAttrs (Children []) "" [])
-      , toSmall inp.small
+      , Maybe.map toSmall inp.small
       , toLinks inp.id
       ] |> List.filterMap identity
   in
-    Element "div" [Attribute "class" "form-group", Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
+    Element "div" [containerClass, Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
 
 selectToHtmlTree inp =
   let
@@ -79,33 +68,29 @@ selectToHtmlTree inp =
       , toClasses ((sizeClass inp.size) :: [ "form-control" ])
       ] |> List.filterMap identity
 
+    containerClass = Attribute "class" "form-group dragged"
+
     options = List.map (\value -> Element "option" [] (Children []) value []) inp.options
     children =
       [ toLabel inp.label
       , Just (Element "select" inputAttrs (Children options) "" [])
-      , toSmall inp.small
+      , Maybe.map toSmall inp.small
       , toLinks inp.id
       ] |> List.filterMap identity
   in
-    Element "div" [Attribute "class" "form-group", Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
+    Element "div" [containerClass, Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
 
 textAreaToHtmlTree inp =
   let
-    inputAttrs =
-      [ toId inp.id
-      , toPlaceholder inp.placeholder
-      , toDisabled inp.disabled
-      , toClasses [ "form-control" ]
-      , Just (Attribute "rows" (inp.rowNumber))
-      ] |> List.filterMap identity
+    containerClass = Attribute "class" "form-group dragged"
 
     children =
       [ toLabel inp.label
-      , wrapInAddons inputAttrs inp
+      , wrapInAddons inp
       , toLinks inp.id
       ] |> List.filterMap identity
   in
-    Element "div" [Attribute "class" "form-group"] (Children (children)) "" []
+    Element "div" [containerClass] (Children (children)) "" []
 
 multiselectToHtmlTree inp =
   let
@@ -116,15 +101,17 @@ multiselectToHtmlTree inp =
       , Just (Attribute "multiple" "multiple")
       ] |> List.filterMap identity
 
+    containerClass = Attribute "class" "form-group dragged"
+
     options = List.map (\value -> Element "option" [] (Children []) value []) inp.options
     children =
       [ toLabel inp.label
       , Just (Element "select" inputAttrs (Children options) "" [])
-      , toSmall inp.small
+      , Maybe.map toSmall inp.small
       , toLinks inp.id
       ] |> List.filterMap identity
   in
-    Element "div" [Attribute "class" "form-group", Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
+    Element "div" [containerClass, Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
 
 fileUploadToHtmlTree inp =
   let
@@ -135,14 +122,16 @@ fileUploadToHtmlTree inp =
       , Just (Attribute "type" "file")
       ] |> List.filterMap identity
 
+    containerClass = Attribute "class" "form-group dragged"
+
     children =
       [ toLabel inp.label
       , Just (Element "input" inputAttrs (Children []) "" [])
-      , toSmall inp.small
+      , Maybe.map toSmall inp.small
       , toLinks inp.id
       ] |> List.filterMap identity
   in
-    Element "div" [Attribute "class" "form-group", Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
+    Element "div" [containerClass, Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
 
 radioToHtmlTree inp =
   let
@@ -150,11 +139,13 @@ radioToHtmlTree inp =
     children =
       [ toLegend inp.label ]
       ++ options
-      ++ [ toSmall inp.small ]
+      ++ [ Maybe.map toSmall inp.small ]
       ++ [ toLinks inp.id ]
       |> List.filterMap identity
+
+    containerClass = Attribute "class" "form-group dragged"
   in
-    Element "fieldset" [Attribute "class" "form-group", Attribute "data-input-id" (toString inp.id) ] (Children children ) "" []
+    Element "fieldset" [containerClass, Attribute "data-input-id" (toString inp.id) ] (Children children ) "" []
 
 toRadioOption id index value disabled =
   let
@@ -185,8 +176,11 @@ checkboxToHtmlTree inp =
 
     links = toLinks inp.id
     children = [label, links] |> List.filterMap identity
+
+    containerClass = Attribute "class" "form-check dragged"
+
   in
-    Element "div" [Attribute "class" "form-check", Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
+    Element "div" [containerClass, Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
 
 buttonToHtmlTree inp =
   let
@@ -194,8 +188,10 @@ buttonToHtmlTree inp =
       [ Just (Element "button" [Attribute "type" "submit", Attribute "class" "btn btn-primary"] (Children []) (Maybe.withDefault "Submit" inp.label) [])
       , toLinks inp.id
       ] |> List.filterMap identity
+
+    containerClass = Attribute "class" "my-container dragged"
   in
-    Element "div" [Attribute "class" "my-container", Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
+    Element "div" [containerClass, Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
 
 -------------
 -- Helpers --
@@ -213,17 +209,23 @@ toDisabled : Bool -> Maybe Attribute
 toDisabled value =
   if value then Just (Attribute "disabled" "disabled") else Nothing
 
-toAddon : Maybe String -> Maybe Element
-toAddon value =
-  Maybe.map (\value -> Element "div" [Attribute "class" "input-group-addon"] (Children []) value []) value
+toAddon : String -> Element
+toAddon text =
+  Element "div" [Attribute "class" "input-group-addon"] (Children [Element "span" [] (Children []) text []]) "" []
 
-toSmall : Maybe String -> Maybe Element
-toSmall value =
-  Maybe.map (\value -> Element "small" [Attribute "class" "form-text text-muted"] (Children []) value []) value
+toSmall : String -> Element
+toSmall text =
+  let
+    smallText = Element "span" [Attribute "class" "text-muted"] (Children []) text []
+  in
+    Element "small" [Attribute "class" "form-text"] (Children [smallText]) "" []
 
 toLabel : Maybe String -> Maybe Element
 toLabel value =
-  Maybe.map (\value -> Element "label" [Attribute "for" "input1"] (Children []) value []) value
+  let
+    labelSpan = Element "span" [] (Children []) (Maybe.withDefault "" value) []
+  in
+    Just (Element "label" [Attribute "for" "input1"] (Children [labelSpan]) "" [])
 
 toLegend : Maybe String -> Maybe Element
 toLegend value =
@@ -236,12 +238,12 @@ toType value =
 toLinks : Id -> Maybe Element
 toLinks value =
   let
-    i3 = Element "i" [Attribute "class" "fa fa-arrows control"] (Children []) "" []
-    l3 = Element "span" [] (Children [i3]) "" [Html.Events.onMouseDown ((Messages.MouseMessage (Messages.MouseClick value)))]
+    i1 = Element "i" [Attribute "class" "fa fa-arrows control-element"] (Children []) "" []
+    l1 = Element "span" [] (Children [i1]) "" [Html.Events.onMouseDown ((Messages.MouseMessage (Messages.MouseClick value)))]
 
-    children = (Children [l3])
+    children = (Children [l1])
   in
-    Just (Element "div" [Attribute "class" "edit-and-remove-link"] children "" [])
+    Just (Element "div" [Attribute "class" "control-container"] children "" [])
 
 sizeClass : Size -> String
 sizeClass size =
@@ -262,17 +264,31 @@ toClasses classList =
   in
     Just (Attribute "class" value)
 
-wrapInAddons inputAttrs input =
+wrapInAddons input =
   let
-    add1 = toAddon input.addon1
-    add2 = toAddon input.addon2
+    inputAttrs =
+      [ toId input.id
+      , toPlaceholder input.placeholder
+      , toDisabled input.disabled
+      , toClasses ((sizeClass input.size) :: ([ "form-control" ] ++ input.classList))
+      , toType input.type_
+      ] |> List.filterMap identity
+
+    add1 = Maybe.map toAddon input.addon1
+    add2 = Maybe.map toAddon input.addon2
     inputType =
       case input.type_ of
         TextArea -> "textarea"
         _ -> "input"
+
     input1 = Just (Element inputType inputAttrs (Children []) "" [])
+    inputClasses =
+      case input.size of
+        Small ->
+          "input-group input-group-sm"
+        Normal ->
+          "input-group"
+        Large ->
+          "input-group input-group-lg"
   in
-    if List.isEmpty (List.filterMap identity [add1, add2]) then
-      input1
-    else
-      Just (Element "div" [Attribute "class" "input-group"] (Children ([add1, input1, add2] |> List.filterMap identity)) "" [])
+    Just (Element "div" [Attribute "class" inputClasses] (Children ([add1, input1, add2] |> List.filterMap identity)) "" [])
