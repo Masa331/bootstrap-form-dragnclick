@@ -82,6 +82,7 @@ selectToHtmlTree inp =
 
     containerClass =
       [ Just "form-group"
+      , Just "show-hidden-on-hover"
       , if inp.dragged then Just "hidden" else Nothing
       ] |> List.filterMap identity
         |> String.join " "
