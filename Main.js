@@ -11121,6 +11121,17 @@ var _user$project$ForInputEdit$buttonToHtmlTree = function (inp) {
 						}
 					}
 				})));
+	var sizeClass = function () {
+		var _p4 = inp.size;
+		switch (_p4.ctor) {
+			case 'Small':
+				return ' btn-sm';
+			case 'Normal':
+				return '';
+			default:
+				return ' btn-lg';
+		}
+	}();
 	var children = A2(
 		_elm_lang$core$List$filterMap,
 		_elm_lang$core$Basics$identity,
@@ -11135,7 +11146,10 @@ var _user$project$ForInputEdit$buttonToHtmlTree = function (inp) {
 						_0: A2(_user$project$HtmlTree$Attribute, 'type', 'submit'),
 						_1: {
 							ctor: '::',
-							_0: A2(_user$project$HtmlTree$Attribute, 'class', 'btn btn-primary'),
+							_0: A2(
+								_user$project$HtmlTree$Attribute,
+								'class',
+								A2(_elm_lang$core$Basics_ops['++'], 'btn btn-primary', sizeClass)),
 							_1: {ctor: '[]'}
 						}
 					},
@@ -11210,8 +11224,8 @@ var _user$project$ForInputEdit$checkboxToHtmlTree = function (inp) {
 		'',
 		{ctor: '[]'});
 	var label = function () {
-		var _p4 = inp.label;
-		if (_p4.ctor === 'Nothing') {
+		var _p5 = inp.label;
+		if (_p5.ctor === 'Nothing') {
 			return _elm_lang$core$Maybe$Just(
 				A5(
 					_user$project$HtmlTree$Element,
@@ -11245,7 +11259,7 @@ var _user$project$ForInputEdit$checkboxToHtmlTree = function (inp) {
 							_0: input,
 							_1: {ctor: '[]'}
 						}),
-					A2(_elm_lang$core$Basics_ops['++'], ' ', _p4._0),
+					A2(_elm_lang$core$Basics_ops['++'], ' ', _p5._0),
 					{ctor: '[]'}));
 		}
 	}();
@@ -11975,8 +11989,8 @@ var _user$project$ForInputEdit$textInputToHtmlTree = function (inp) {
 		{ctor: '[]'});
 };
 var _user$project$ForInputEdit$build = function (input) {
-	var _p5 = input.type_;
-	switch (_p5.ctor) {
+	var _p6 = input.type_;
+	switch (_p6.ctor) {
 		case 'Text':
 			return _user$project$ForInputEdit$textInputToHtmlTree(input);
 		case 'TextArea':
@@ -12875,6 +12889,17 @@ var _user$project$WithControlElements$buttonToHtmlTree = function (inp) {
 						}
 					}
 				})));
+	var sizeClass = function () {
+		var _p4 = inp.size;
+		switch (_p4.ctor) {
+			case 'Small':
+				return ' btn-sm';
+			case 'Normal':
+				return '';
+			default:
+				return ' btn-lg';
+		}
+	}();
 	var children = A2(
 		_elm_lang$core$List$filterMap,
 		_elm_lang$core$Basics$identity,
@@ -12889,7 +12914,10 @@ var _user$project$WithControlElements$buttonToHtmlTree = function (inp) {
 						_0: A2(_user$project$HtmlTree$Attribute, 'type', 'submit'),
 						_1: {
 							ctor: '::',
-							_0: A2(_user$project$HtmlTree$Attribute, 'class', 'btn btn-primary'),
+							_0: A2(
+								_user$project$HtmlTree$Attribute,
+								'class',
+								A2(_elm_lang$core$Basics_ops['++'], 'btn btn-primary', sizeClass)),
 							_1: {ctor: '[]'}
 						}
 					},
@@ -12964,8 +12992,8 @@ var _user$project$WithControlElements$checkboxToHtmlTree = function (inp) {
 		'',
 		{ctor: '[]'});
 	var label = function () {
-		var _p4 = inp.label;
-		if (_p4.ctor === 'Nothing') {
+		var _p5 = inp.label;
+		if (_p5.ctor === 'Nothing') {
 			return _elm_lang$core$Maybe$Just(
 				A5(
 					_user$project$HtmlTree$Element,
@@ -12999,7 +13027,7 @@ var _user$project$WithControlElements$checkboxToHtmlTree = function (inp) {
 							_0: input,
 							_1: {ctor: '[]'}
 						}),
-					A2(_elm_lang$core$Basics_ops['++'], ' ', _p4._0),
+					A2(_elm_lang$core$Basics_ops['++'], ' ', _p5._0),
 					{ctor: '[]'}));
 		}
 	}();
@@ -13729,8 +13757,8 @@ var _user$project$WithControlElements$textInputToHtmlTree = function (inp) {
 		{ctor: '[]'});
 };
 var _user$project$WithControlElements$build = function (input) {
-	var _p5 = input.type_;
-	switch (_p5.ctor) {
+	var _p6 = input.type_;
+	switch (_p6.ctor) {
 		case 'Text':
 			return _user$project$WithControlElements$textInputToHtmlTree(input);
 		case 'TextArea':

@@ -238,8 +238,14 @@ checkboxToHtmlTree inp =
 
 buttonToHtmlTree inp =
   let
+    sizeClass =
+      case inp.size of
+        Small -> " btn-sm"
+        Normal -> ""
+        Large -> " btn-lg"
+
     children =
-      [ Just (Element "button" [Attribute "type" "submit", Attribute "class" "btn btn-primary"] (Children []) (Maybe.withDefault "Submit" inp.label) [])
+      [ Just (Element "button" [Attribute "type" "submit", Attribute "class" ("btn btn-primary" ++ sizeClass)] (Children []) (Maybe.withDefault "Submit" inp.label) [])
       , toLinks inp.id
       ] |> List.filterMap identity
 
