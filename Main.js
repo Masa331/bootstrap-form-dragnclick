@@ -11293,8 +11293,12 @@ var _user$project$ForInputEdit$checkboxToHtmlTree = function (inp) {
 					_0: _elm_lang$core$Maybe$Just('form-check'),
 					_1: {
 						ctor: '::',
-						_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
-						_1: {ctor: '[]'}
+						_0: _elm_lang$core$Maybe$Just('show-hidden-on-hover'),
+						_1: {
+							ctor: '::',
+							_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
+							_1: {ctor: '[]'}
+						}
 					}
 				})));
 	var links = _user$project$ForInputEdit$toLinks(inp.id);
@@ -13072,8 +13076,12 @@ var _user$project$WithControlElements$checkboxToHtmlTree = function (inp) {
 					_0: _elm_lang$core$Maybe$Just('form-check'),
 					_1: {
 						ctor: '::',
-						_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
-						_1: {ctor: '[]'}
+						_0: _elm_lang$core$Maybe$Just('show-hidden-on-hover'),
+						_1: {
+							ctor: '::',
+							_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
+							_1: {ctor: '[]'}
+						}
 					}
 				})));
 	var links = _user$project$WithControlElements$toLinks(inp.id);

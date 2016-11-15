@@ -221,6 +221,7 @@ checkboxToHtmlTree inp =
 
     containerClass =
       [ Just "form-check"
+      , Just "show-hidden-on-hover"
       , if inp.dragged then Just "hidden" else Nothing
       ] |> List.filterMap identity
         |> String.join " "
@@ -294,8 +295,6 @@ toLegend input =
 
     children = (Children [ l1, divider, l2, divider, l3, divider, l4 ])
     links = Element "span" [Attribute "class" "hidden-inherit float-right"] children "" []
-
-    -- label = Element "span" [] (Children []) value []
     label = Element "span" [] (Children []) (Maybe.withDefault "" input.label) []
   in
     Element "legend" [] (Children [label, links]) "" []
