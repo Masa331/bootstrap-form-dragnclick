@@ -100,6 +100,7 @@ textAreaToHtmlTree inp =
   let
     containerClass =
       [ Just "form-group"
+      , Just "show-hidden-on-hover"
       , if inp.dragged then Just "hidden" else Nothing
       ] |> List.filterMap identity
         |> String.join " "
@@ -109,6 +110,7 @@ textAreaToHtmlTree inp =
       [ toLabel inp.label
       , wrapInAddons inp
       , toLinks inp.id
+      , Maybe.map toSmall inp.small
       ] |> List.filterMap identity
   in
     Element "div" [containerClass] (Children (children)) "" []
@@ -323,11 +325,20 @@ toClasses classList =
   in
     Just (Attribute "class" value)
 
+toRowNumber : Input -> Maybe Attribute
+toRowNumber input =
+  case input.type_ of
+    TextArea ->
+      Just (Attribute "rows" input.rowNumber)
+    _ ->
+      Nothing
+
 wrapInAddons input =
   let
     inputAttrs =
       [ toId input.id
       , toPlaceholder input.placeholder
+      , toRowNumber input
       , toDisabled input.disabled
       , toClasses ((sizeClass input.size) :: ([ "form-control" ] ++ input.classList))
       , toType input.type_
