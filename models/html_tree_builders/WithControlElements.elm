@@ -174,14 +174,14 @@ radioToHtmlTree inp =
   let
     options = List.map (\value -> Just (toRadioOption inp.id 1 value (toDisabled inp.disabled))) inp.options
     children =
-      [ toLegend inp.label ]
+      [ Just (toLegend inp) ]
       ++ options
       ++ [ Maybe.map toSmall inp.small ]
-      ++ [ toLinks inp.id ]
       |> List.filterMap identity
 
     containerClass =
       [ Just "form-group"
+      , Just "show-hidden-on-hover"
       , if inp.dragged then Just "hidden" else Nothing
       ] |> List.filterMap identity
         |> String.join " "
@@ -278,9 +278,27 @@ toLabel value =
   in
     Just (Element "label" [Attribute "for" "input1"] (Children [labelSpan]) "" [])
 
-toLegend : Maybe String -> Maybe Element
-toLegend value =
-  Maybe.map (\value -> Element "legend" [] (Children []) value []) value
+toLegend : Input -> Element
+toLegend input =
+  let
+
+    i1 = Element "i" [Attribute "class" "fa fa-edit control-element"] (Children []) "" []
+    l1 = Element "span" [] (Children [i1]) "" [Html.Events.onClick (Messages.FormMessage (Messages.EditInput input.id))]
+    i2 = Element "i" [Attribute "class" "fa fa-trash control-element"] (Children []) "" []
+    l2 = Element "span" [] (Children [i2]) "" [Html.Events.onClick (Messages.FormMessage (Messages.RemoveInput input.id))]
+    i3 = Element "i" [Attribute "class" "fa fa-check control-element"] (Children []) "" []
+    l3 = Element "span" [] (Children [i3]) "" [Html.Events.onClick ((Messages.InputMessage (Messages.ToggleDisabled input.id)))]
+    i4 = Element "i" [Attribute "class" "fa fa-arrows control-element"] (Children []) "" []
+    l4 = Element "span" [] (Children [i4]) "" [Html.Events.onMouseDown ((Messages.MouseMessage (Messages.MouseClick input.id)))]
+    i5 = Element "i" [Attribute "class" "fa fa-check control-element"] (Children []) "" []
+    l5 = Element "span" [] (Children [i5]) "" [Html.Events.onClick ((Messages.InputMessage (Messages.ToggleDisabled input.id)))]
+    divider = Element "span" [] (Children []) " " []
+
+    children = (Children [ l1, divider, l2, divider, l3, divider, l4, divider, l5 ])
+    links = Element "span" [Attribute "class" "hidden-inherit float-right"] children "" []
+    label = Element "span" [] (Children []) (Maybe.withDefault "" input.label) []
+  in
+    Element "legend" [] (Children [label, links]) "" []
 
 toType : InputType -> Maybe Attribute
 toType value =

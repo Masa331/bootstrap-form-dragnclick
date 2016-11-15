@@ -10815,20 +10815,200 @@ var _user$project$ForInputEdit$toType = function (value) {
 			'type',
 			_user$project$FormModel$inputTypeToString(value)));
 };
-var _user$project$ForInputEdit$toLegend = function (value) {
-	return A2(
-		_elm_lang$core$Maybe$map,
-		function (value) {
-			return A5(
-				_user$project$HtmlTree$Element,
-				'legend',
-				{ctor: '[]'},
-				_user$project$HtmlTree$Children(
-					{ctor: '[]'}),
-				value,
-				{ctor: '[]'});
+var _user$project$ForInputEdit$toLegend = function (input) {
+	var label = A5(
+		_user$project$HtmlTree$Element,
+		'span',
+		{ctor: '[]'},
+		_user$project$HtmlTree$Children(
+			{ctor: '[]'}),
+		A2(_elm_lang$core$Maybe$withDefault, '', input.label),
+		{ctor: '[]'});
+	var divider = A5(
+		_user$project$HtmlTree$Element,
+		'span',
+		{ctor: '[]'},
+		_user$project$HtmlTree$Children(
+			{ctor: '[]'}),
+		' ',
+		{ctor: '[]'});
+	var i4 = A5(
+		_user$project$HtmlTree$Element,
+		'i',
+		{
+			ctor: '::',
+			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-check control-element'),
+			_1: {ctor: '[]'}
 		},
-		value);
+		_user$project$HtmlTree$Children(
+			{ctor: '[]'}),
+		'',
+		{ctor: '[]'});
+	var l4 = A5(
+		_user$project$HtmlTree$Element,
+		'span',
+		{ctor: '[]'},
+		_user$project$HtmlTree$Children(
+			{
+				ctor: '::',
+				_0: i4,
+				_1: {ctor: '[]'}
+			}),
+		'',
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$InputMessage(
+					_user$project$Messages$ToggleDisabled(input.id))),
+			_1: {ctor: '[]'}
+		});
+	var i3 = A5(
+		_user$project$HtmlTree$Element,
+		'i',
+		{
+			ctor: '::',
+			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-font fa-big control-element'),
+			_1: {ctor: '[]'}
+		},
+		_user$project$HtmlTree$Children(
+			{ctor: '[]'}),
+		'',
+		{ctor: '[]'});
+	var l3 = A5(
+		_user$project$HtmlTree$Element,
+		'span',
+		{ctor: '[]'},
+		_user$project$HtmlTree$Children(
+			{
+				ctor: '::',
+				_0: i3,
+				_1: {ctor: '[]'}
+			}),
+		'',
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$InputMessage(
+					A2(_user$project$Messages$SizeEdit, input.id, 'large'))),
+			_1: {ctor: '[]'}
+		});
+	var i2 = A5(
+		_user$project$HtmlTree$Element,
+		'i',
+		{
+			ctor: '::',
+			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-font fa-normal control-element'),
+			_1: {ctor: '[]'}
+		},
+		_user$project$HtmlTree$Children(
+			{ctor: '[]'}),
+		'',
+		{ctor: '[]'});
+	var l2 = A5(
+		_user$project$HtmlTree$Element,
+		'span',
+		{ctor: '[]'},
+		_user$project$HtmlTree$Children(
+			{
+				ctor: '::',
+				_0: i2,
+				_1: {ctor: '[]'}
+			}),
+		'',
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$InputMessage(
+					A2(_user$project$Messages$SizeEdit, input.id, 'normal'))),
+			_1: {ctor: '[]'}
+		});
+	var i1 = A5(
+		_user$project$HtmlTree$Element,
+		'i',
+		{
+			ctor: '::',
+			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-font fa-small control-element'),
+			_1: {ctor: '[]'}
+		},
+		_user$project$HtmlTree$Children(
+			{ctor: '[]'}),
+		'',
+		{ctor: '[]'});
+	var l1 = A5(
+		_user$project$HtmlTree$Element,
+		'span',
+		{ctor: '[]'},
+		_user$project$HtmlTree$Children(
+			{
+				ctor: '::',
+				_0: i1,
+				_1: {ctor: '[]'}
+			}),
+		'',
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$InputMessage(
+					A2(_user$project$Messages$SizeEdit, input.id, 'small'))),
+			_1: {ctor: '[]'}
+		});
+	var children = _user$project$HtmlTree$Children(
+		{
+			ctor: '::',
+			_0: l1,
+			_1: {
+				ctor: '::',
+				_0: divider,
+				_1: {
+					ctor: '::',
+					_0: l2,
+					_1: {
+						ctor: '::',
+						_0: divider,
+						_1: {
+							ctor: '::',
+							_0: l3,
+							_1: {
+								ctor: '::',
+								_0: divider,
+								_1: {
+									ctor: '::',
+									_0: l4,
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
+				}
+			}
+		});
+	var links = A5(
+		_user$project$HtmlTree$Element,
+		'span',
+		{
+			ctor: '::',
+			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'hidden-inherit float-right'),
+			_1: {ctor: '[]'}
+		},
+		children,
+		'',
+		{ctor: '[]'});
+	return A5(
+		_user$project$HtmlTree$Element,
+		'legend',
+		{ctor: '[]'},
+		_user$project$HtmlTree$Children(
+			{
+				ctor: '::',
+				_0: label,
+				_1: {
+					ctor: '::',
+					_0: links,
+					_1: {ctor: '[]'}
+				}
+			}),
+		'',
+		{ctor: '[]'});
 };
 var _user$project$ForInputEdit$toLabel = function (value) {
 	var labelSpan = A5(
@@ -11302,8 +11482,12 @@ var _user$project$ForInputEdit$radioToHtmlTree = function (inp) {
 					_0: _elm_lang$core$Maybe$Just('form-group'),
 					_1: {
 						ctor: '::',
-						_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
-						_1: {ctor: '[]'}
+						_0: _elm_lang$core$Maybe$Just('show-hidden-on-hover'),
+						_1: {
+							ctor: '::',
+							_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
+							_1: {ctor: '[]'}
+						}
 					}
 				})));
 	var options = A2(
@@ -11325,24 +11509,18 @@ var _user$project$ForInputEdit$radioToHtmlTree = function (inp) {
 			_elm_lang$core$Basics_ops['++'],
 			{
 				ctor: '::',
-				_0: _user$project$ForInputEdit$toLegend(inp.label),
+				_0: _elm_lang$core$Maybe$Just(
+					_user$project$ForInputEdit$toLegend(inp)),
 				_1: {ctor: '[]'}
 			},
 			A2(
 				_elm_lang$core$Basics_ops['++'],
 				options,
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					{
-						ctor: '::',
-						_0: A2(_elm_lang$core$Maybe$map, _user$project$ForInputEdit$toSmall, inp.small),
-						_1: {ctor: '[]'}
-					},
-					{
-						ctor: '::',
-						_0: _user$project$ForInputEdit$toLinks(inp.id),
-						_1: {ctor: '[]'}
-					}))));
+				{
+					ctor: '::',
+					_0: A2(_elm_lang$core$Maybe$map, _user$project$ForInputEdit$toSmall, inp.small),
+					_1: {ctor: '[]'}
+				})));
 	return A5(
 		_user$project$HtmlTree$Element,
 		'fieldset',
@@ -12378,20 +12556,238 @@ var _user$project$WithControlElements$toType = function (value) {
 			'type',
 			_user$project$FormModel$inputTypeToString(value)));
 };
-var _user$project$WithControlElements$toLegend = function (value) {
-	return A2(
-		_elm_lang$core$Maybe$map,
-		function (value) {
-			return A5(
-				_user$project$HtmlTree$Element,
-				'legend',
-				{ctor: '[]'},
-				_user$project$HtmlTree$Children(
-					{ctor: '[]'}),
-				value,
-				{ctor: '[]'});
+var _user$project$WithControlElements$toLegend = function (input) {
+	var label = A5(
+		_user$project$HtmlTree$Element,
+		'span',
+		{ctor: '[]'},
+		_user$project$HtmlTree$Children(
+			{ctor: '[]'}),
+		A2(_elm_lang$core$Maybe$withDefault, '', input.label),
+		{ctor: '[]'});
+	var divider = A5(
+		_user$project$HtmlTree$Element,
+		'span',
+		{ctor: '[]'},
+		_user$project$HtmlTree$Children(
+			{ctor: '[]'}),
+		' ',
+		{ctor: '[]'});
+	var i5 = A5(
+		_user$project$HtmlTree$Element,
+		'i',
+		{
+			ctor: '::',
+			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-check control-element'),
+			_1: {ctor: '[]'}
 		},
-		value);
+		_user$project$HtmlTree$Children(
+			{ctor: '[]'}),
+		'',
+		{ctor: '[]'});
+	var l5 = A5(
+		_user$project$HtmlTree$Element,
+		'span',
+		{ctor: '[]'},
+		_user$project$HtmlTree$Children(
+			{
+				ctor: '::',
+				_0: i5,
+				_1: {ctor: '[]'}
+			}),
+		'',
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$InputMessage(
+					_user$project$Messages$ToggleDisabled(input.id))),
+			_1: {ctor: '[]'}
+		});
+	var i4 = A5(
+		_user$project$HtmlTree$Element,
+		'i',
+		{
+			ctor: '::',
+			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-arrows control-element'),
+			_1: {ctor: '[]'}
+		},
+		_user$project$HtmlTree$Children(
+			{ctor: '[]'}),
+		'',
+		{ctor: '[]'});
+	var l4 = A5(
+		_user$project$HtmlTree$Element,
+		'span',
+		{ctor: '[]'},
+		_user$project$HtmlTree$Children(
+			{
+				ctor: '::',
+				_0: i4,
+				_1: {ctor: '[]'}
+			}),
+		'',
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Events$onMouseDown(
+				_user$project$Messages$MouseMessage(
+					_user$project$Messages$MouseClick(input.id))),
+			_1: {ctor: '[]'}
+		});
+	var i3 = A5(
+		_user$project$HtmlTree$Element,
+		'i',
+		{
+			ctor: '::',
+			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-check control-element'),
+			_1: {ctor: '[]'}
+		},
+		_user$project$HtmlTree$Children(
+			{ctor: '[]'}),
+		'',
+		{ctor: '[]'});
+	var l3 = A5(
+		_user$project$HtmlTree$Element,
+		'span',
+		{ctor: '[]'},
+		_user$project$HtmlTree$Children(
+			{
+				ctor: '::',
+				_0: i3,
+				_1: {ctor: '[]'}
+			}),
+		'',
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$InputMessage(
+					_user$project$Messages$ToggleDisabled(input.id))),
+			_1: {ctor: '[]'}
+		});
+	var i2 = A5(
+		_user$project$HtmlTree$Element,
+		'i',
+		{
+			ctor: '::',
+			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-trash control-element'),
+			_1: {ctor: '[]'}
+		},
+		_user$project$HtmlTree$Children(
+			{ctor: '[]'}),
+		'',
+		{ctor: '[]'});
+	var l2 = A5(
+		_user$project$HtmlTree$Element,
+		'span',
+		{ctor: '[]'},
+		_user$project$HtmlTree$Children(
+			{
+				ctor: '::',
+				_0: i2,
+				_1: {ctor: '[]'}
+			}),
+		'',
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$FormMessage(
+					_user$project$Messages$RemoveInput(input.id))),
+			_1: {ctor: '[]'}
+		});
+	var i1 = A5(
+		_user$project$HtmlTree$Element,
+		'i',
+		{
+			ctor: '::',
+			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-edit control-element'),
+			_1: {ctor: '[]'}
+		},
+		_user$project$HtmlTree$Children(
+			{ctor: '[]'}),
+		'',
+		{ctor: '[]'});
+	var l1 = A5(
+		_user$project$HtmlTree$Element,
+		'span',
+		{ctor: '[]'},
+		_user$project$HtmlTree$Children(
+			{
+				ctor: '::',
+				_0: i1,
+				_1: {ctor: '[]'}
+			}),
+		'',
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Events$onClick(
+				_user$project$Messages$FormMessage(
+					_user$project$Messages$EditInput(input.id))),
+			_1: {ctor: '[]'}
+		});
+	var children = _user$project$HtmlTree$Children(
+		{
+			ctor: '::',
+			_0: l1,
+			_1: {
+				ctor: '::',
+				_0: divider,
+				_1: {
+					ctor: '::',
+					_0: l2,
+					_1: {
+						ctor: '::',
+						_0: divider,
+						_1: {
+							ctor: '::',
+							_0: l3,
+							_1: {
+								ctor: '::',
+								_0: divider,
+								_1: {
+									ctor: '::',
+									_0: l4,
+									_1: {
+										ctor: '::',
+										_0: divider,
+										_1: {
+											ctor: '::',
+											_0: l5,
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		});
+	var links = A5(
+		_user$project$HtmlTree$Element,
+		'span',
+		{
+			ctor: '::',
+			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'hidden-inherit float-right'),
+			_1: {ctor: '[]'}
+		},
+		children,
+		'',
+		{ctor: '[]'});
+	return A5(
+		_user$project$HtmlTree$Element,
+		'legend',
+		{ctor: '[]'},
+		_user$project$HtmlTree$Children(
+			{
+				ctor: '::',
+				_0: label,
+				_1: {
+					ctor: '::',
+					_0: links,
+					_1: {ctor: '[]'}
+				}
+			}),
+		'',
+		{ctor: '[]'});
 };
 var _user$project$WithControlElements$toLabel = function (value) {
 	var labelSpan = A5(
@@ -12865,8 +13261,12 @@ var _user$project$WithControlElements$radioToHtmlTree = function (inp) {
 					_0: _elm_lang$core$Maybe$Just('form-group'),
 					_1: {
 						ctor: '::',
-						_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
-						_1: {ctor: '[]'}
+						_0: _elm_lang$core$Maybe$Just('show-hidden-on-hover'),
+						_1: {
+							ctor: '::',
+							_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
+							_1: {ctor: '[]'}
+						}
 					}
 				})));
 	var options = A2(
@@ -12888,24 +13288,18 @@ var _user$project$WithControlElements$radioToHtmlTree = function (inp) {
 			_elm_lang$core$Basics_ops['++'],
 			{
 				ctor: '::',
-				_0: _user$project$WithControlElements$toLegend(inp.label),
+				_0: _elm_lang$core$Maybe$Just(
+					_user$project$WithControlElements$toLegend(inp)),
 				_1: {ctor: '[]'}
 			},
 			A2(
 				_elm_lang$core$Basics_ops['++'],
 				options,
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					{
-						ctor: '::',
-						_0: A2(_elm_lang$core$Maybe$map, _user$project$WithControlElements$toSmall, inp.small),
-						_1: {ctor: '[]'}
-					},
-					{
-						ctor: '::',
-						_0: _user$project$WithControlElements$toLinks(inp.id),
-						_1: {ctor: '[]'}
-					}))));
+				{
+					ctor: '::',
+					_0: A2(_elm_lang$core$Maybe$map, _user$project$WithControlElements$toSmall, inp.small),
+					_1: {ctor: '[]'}
+				})));
 	return A5(
 		_user$project$HtmlTree$Element,
 		'fieldset',

@@ -103,6 +103,12 @@ div.dragged i.control-icon {
 .show-hidden-on-hover:hover .hidden-block {
   display: block;
 }
+.hidden-inherit {
+  display: none;
+}
+.show-hidden-on-hover:hover .hidden-inherit {
+  display: initial;
+}
 
 .control-element {
   color: lightgrey;
@@ -120,4 +126,8 @@ div.dragged i.control-icon {
 }
 .fa-big {
   font-size: 20px !important;
+}
+
+.float-right {
+  float: right;
 }
