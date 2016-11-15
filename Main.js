@@ -11377,8 +11377,12 @@ var _user$project$ForInputEdit$fileUploadToHtmlTree = function (inp) {
 					_0: _elm_lang$core$Maybe$Just('form-group'),
 					_1: {
 						ctor: '::',
-						_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
-						_1: {ctor: '[]'}
+						_0: _elm_lang$core$Maybe$Just('show-hidden-on-hover'),
+						_1: {
+							ctor: '::',
+							_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
+							_1: {ctor: '[]'}
+						}
 					}
 				})));
 	var inputAttrs = A2(
@@ -12936,8 +12940,12 @@ var _user$project$WithControlElements$fileUploadToHtmlTree = function (inp) {
 					_0: _elm_lang$core$Maybe$Just('form-group'),
 					_1: {
 						ctor: '::',
-						_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
-						_1: {ctor: '[]'}
+						_0: _elm_lang$core$Maybe$Just('show-hidden-on-hover'),
+						_1: {
+							ctor: '::',
+							_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
+							_1: {ctor: '[]'}
+						}
 					}
 				})));
 	var inputAttrs = A2(
