@@ -8,29 +8,31 @@ update : InputMsg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
     PlaceholderEdit id newPlaceholder ->
-      updateInput model id (updatePlaceholder newPlaceholder)
+      ({ model | form = updateInputs model.form id (updatePlaceholder newPlaceholder) }, Cmd.none)
     LabelEdit id newLabel ->
-      updateInput model id (updateLabel newLabel)
+      ({ model | form = updateInputs model.form id (updateLabel newLabel) }, Cmd.none)
     SmallEdit id newSmall ->
-      updateInput model id (updateSmall newSmall)
+      ({ model | form = updateInputs model.form id (updateSmall newSmall) }, Cmd.none)
     ToggleDisabled id ->
-      updateInput model id (toggleDisabled)
+      ({ model | form = updateInputs model.form id (toggleDisabled) }, Cmd.none)
     FirstAddonEdit id newAddon ->
-      updateInput model id (updateFirstAddon newAddon)
+      ({ model | form = updateInputs model.form id (updateFirstAddon newAddon) }, Cmd.none)
     SecondAddonEdit id newAddon ->
-      updateInput model id (updateSecondAddon newAddon)
+      ({ model | form = updateInputs model.form id (updateSecondAddon newAddon) }, Cmd.none)
     SizeEdit id newSize ->
-      updateInput model id (updateSize newSize)
+      ({ model | form = updateInputs model.form id (updateSize newSize) }, Cmd.none)
     TypeEdit id newType ->
-      updateInput model id (updateType newType)
+      ({ model | form = updateInputs model.form id (updateType newType) }, Cmd.none)
     RowNumberEdit id newRowNumber ->
-      updateInput model id (updateRowNumber newRowNumber)
+      ({ model | form = updateInputs model.form id (updateRowNumber newRowNumber) }, Cmd.none)
     NewOptionEdit value ->
       ({ model | newOption = value }, Cmd.none)
     SaveNewOption id ->
-      updateInput model id (addNewOption model.newOption)
+      ({ model | form = updateInputs model.form id (addNewOption model.newOption)
+               , newOption = Debug.log "WAT" "" }
+      , Cmd.none)
     RemoveOption id value ->
-      updateInput model id (removeOption value)
+      ({ model | form = updateInputs model.form id (removeOption value) }, Cmd.none)
 
 -------------
 -- Private --
@@ -53,7 +55,7 @@ removeOption newOption inp =
 
 addNewOption : String -> Input -> Input
 addNewOption newOption input =
-  { input | options = newOption::input.options }
+  { input | options = input.options ++ [newOption] }
 
 updateSize : String -> Input -> Input
 updateSize newSize input =

@@ -147,9 +147,12 @@ stringInputTypes =
   , "time"
   , "color"
   ]
+--
+-- updateInput model id updateFunc =
+--   let
+--     updatedInputs = List.map (\inp -> if inp.id == id then updateFunc inp else inp) model.form
+--   in
+--     ({ model | form = updatedInputs }, Cmd.none)
 
-updateInput model id updateFunc =
-  let
-    updatedInputs = List.map (\inp -> if inp.id == id then updateFunc inp else inp) model.form
-  in
-    ({ model | form = updatedInputs }, Cmd.none)
+updateInputs inputs targetId updateFunc =
+  List.map (\inp -> if inp.id == targetId then updateFunc inp else inp) inputs

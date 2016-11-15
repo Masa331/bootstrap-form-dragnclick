@@ -120,6 +120,8 @@ optionsEdit input =
         [ div
           [ class "input-group" ]
           [ Html.input
+          -- I need to set the value here so everytime user submits new option the input gets cleared however
+          --    i would need to have model here.. https://github.com/elm-lang/html/issues/2
             [class "form-control form-control-sm", onInput (InputMessage << NewOptionEdit) ]
             []
           , span

@@ -9149,21 +9149,14 @@ var _user$project$HtmlTree$Children = function (a) {
 	return {ctor: 'Children', _0: a};
 };
 
-var _user$project$FormModel$updateInput = F3(
-	function (model, id, updateFunc) {
-		var updatedInputs = A2(
+var _user$project$FormModel$updateInputs = F3(
+	function (inputs, targetId, updateFunc) {
+		return A2(
 			_elm_lang$core$List$map,
 			function (inp) {
-				return _elm_lang$core$Native_Utils.eq(inp.id, id) ? updateFunc(inp) : inp;
+				return _elm_lang$core$Native_Utils.eq(inp.id, targetId) ? updateFunc(inp) : inp;
 			},
-			model.form);
-		return {
-			ctor: '_Tuple2',
-			_0: _elm_lang$core$Native_Utils.update(
-				model,
-				{form: updatedInputs}),
-			_1: _elm_lang$core$Platform_Cmd$none
-		};
+			inputs);
 	});
 var _user$project$FormModel$stringInputTypes = {
 	ctor: '::',
@@ -14725,15 +14718,19 @@ var _user$project$InputOptions$optionsEdit = function (input) {
 										_elm_lang$html$Html$input,
 										{
 											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$class('form-control form-control-sm'),
+											_0: _elm_lang$html$Html_Attributes$value('hoho'),
 											_1: {
 												ctor: '::',
-												_0: _elm_lang$html$Html_Events$onInput(
-													function (_p0) {
-														return _user$project$Messages$InputMessage(
-															_user$project$Messages$NewOptionEdit(_p0));
-													}),
-												_1: {ctor: '[]'}
+												_0: _elm_lang$html$Html_Attributes$class('form-control form-control-sm'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html_Events$onInput(
+														function (_p0) {
+															return _user$project$Messages$InputMessage(
+																_user$project$Messages$NewOptionEdit(_p0));
+														}),
+													_1: {ctor: '[]'}
+												}
 											}
 										},
 										{ctor: '[]'}),
@@ -15579,7 +15576,14 @@ var _user$project$InputUpdate$addNewOption = F2(
 		return _elm_lang$core$Native_Utils.update(
 			input,
 			{
-				options: {ctor: '::', _0: newOption, _1: input.options}
+				options: A2(
+					_elm_lang$core$Basics_ops['++'],
+					input.options,
+					{
+						ctor: '::',
+						_0: newOption,
+						_1: {ctor: '[]'}
+					})
 			});
 	});
 var _user$project$InputUpdate$removeOption = F2(
@@ -15617,55 +15621,127 @@ var _user$project$InputUpdate$update = F2(
 		var _p0 = msg;
 		switch (_p0.ctor) {
 			case 'PlaceholderEdit':
-				return A3(
-					_user$project$FormModel$updateInput,
-					model,
-					_p0._0,
-					_user$project$InputUpdate$updatePlaceholder(_p0._1));
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							form: A3(
+								_user$project$FormModel$updateInputs,
+								model.form,
+								_p0._0,
+								_user$project$InputUpdate$updatePlaceholder(_p0._1))
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			case 'LabelEdit':
-				return A3(
-					_user$project$FormModel$updateInput,
-					model,
-					_p0._0,
-					_user$project$InputUpdate$updateLabel(_p0._1));
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							form: A3(
+								_user$project$FormModel$updateInputs,
+								model.form,
+								_p0._0,
+								_user$project$InputUpdate$updateLabel(_p0._1))
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			case 'SmallEdit':
-				return A3(
-					_user$project$FormModel$updateInput,
-					model,
-					_p0._0,
-					_user$project$InputUpdate$updateSmall(_p0._1));
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							form: A3(
+								_user$project$FormModel$updateInputs,
+								model.form,
+								_p0._0,
+								_user$project$InputUpdate$updateSmall(_p0._1))
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			case 'ToggleDisabled':
-				return A3(_user$project$FormModel$updateInput, model, _p0._0, _user$project$InputUpdate$toggleDisabled);
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							form: A3(_user$project$FormModel$updateInputs, model.form, _p0._0, _user$project$InputUpdate$toggleDisabled)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			case 'FirstAddonEdit':
-				return A3(
-					_user$project$FormModel$updateInput,
-					model,
-					_p0._0,
-					_user$project$InputUpdate$updateFirstAddon(_p0._1));
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							form: A3(
+								_user$project$FormModel$updateInputs,
+								model.form,
+								_p0._0,
+								_user$project$InputUpdate$updateFirstAddon(_p0._1))
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			case 'SecondAddonEdit':
-				return A3(
-					_user$project$FormModel$updateInput,
-					model,
-					_p0._0,
-					_user$project$InputUpdate$updateSecondAddon(_p0._1));
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							form: A3(
+								_user$project$FormModel$updateInputs,
+								model.form,
+								_p0._0,
+								_user$project$InputUpdate$updateSecondAddon(_p0._1))
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			case 'SizeEdit':
-				return A3(
-					_user$project$FormModel$updateInput,
-					model,
-					_p0._0,
-					_user$project$InputUpdate$updateSize(_p0._1));
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							form: A3(
+								_user$project$FormModel$updateInputs,
+								model.form,
+								_p0._0,
+								_user$project$InputUpdate$updateSize(_p0._1))
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			case 'TypeEdit':
-				return A3(
-					_user$project$FormModel$updateInput,
-					model,
-					_p0._0,
-					_user$project$InputUpdate$updateType(_p0._1));
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							form: A3(
+								_user$project$FormModel$updateInputs,
+								model.form,
+								_p0._0,
+								_user$project$InputUpdate$updateType(_p0._1))
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			case 'RowNumberEdit':
-				return A3(
-					_user$project$FormModel$updateInput,
-					model,
-					_p0._0,
-					_user$project$InputUpdate$updateRowNumber(_p0._1));
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							form: A3(
+								_user$project$FormModel$updateInputs,
+								model.form,
+								_p0._0,
+								_user$project$InputUpdate$updateRowNumber(_p0._1))
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			case 'NewOptionEdit':
 				return {
 					ctor: '_Tuple2',
@@ -15675,17 +15751,34 @@ var _user$project$InputUpdate$update = F2(
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'SaveNewOption':
-				return A3(
-					_user$project$FormModel$updateInput,
-					model,
-					_p0._0,
-					_user$project$InputUpdate$addNewOption(model.newOption));
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							form: A3(
+								_user$project$FormModel$updateInputs,
+								model.form,
+								_p0._0,
+								_user$project$InputUpdate$addNewOption(model.newOption)),
+							newOption: A2(_elm_lang$core$Debug$log, 'WAT', '')
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			default:
-				return A3(
-					_user$project$FormModel$updateInput,
-					model,
-					_p0._0,
-					_user$project$InputUpdate$removeOption(_p0._1));
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							form: A3(
+								_user$project$FormModel$updateInputs,
+								model.form,
+								_p0._0,
+								_user$project$InputUpdate$removeOption(_p0._1))
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 		}
 	});
 
