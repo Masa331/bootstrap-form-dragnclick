@@ -1,14 +1,17 @@
-# Bootstrap 4 visual form builder[WIP]
+# Bootstrap 4 visual form builder
 
-Forms are essential for every web app. This tool quickly shows what's possible in Bootstrap.
+Forms are essential for every web app. This tool shows what kind of form is possible to build with bootstrap.
 
-**This is work-in-progress and it doesn't cover everything from Bootstrap. For full info please check original [docs](http://v4-alpha.getbootstrap.com/getting-started/introduction/).**
+**This is work-in-progress and it covers only basics now. For full info check original [Bootstrap docs](http://v4-alpha.getbootstrap.com/getting-started/introduction/).**
 
-## How to
+## Road to 1.0.0
 
-Just visit here: <https://masa331.github.io/bootstrap-form-dragnclick/> and play :)
+- [x] All input attributes edit working
+- [ ] Input add
+- [ ] Valid html generated
+- [ ] Better and simpler drag
 
-## Development
+## Why
 
 I Started this because:
 
