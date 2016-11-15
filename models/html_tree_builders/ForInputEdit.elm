@@ -238,6 +238,7 @@ buttonToHtmlTree inp =
 
     containerClass =
       [ Just "my-container"
+      , Just "show-hidden-on-hover"
       , if inp.dragged then Just "hidden" else Nothing
       ] |> List.filterMap identity
         |> String.join " "

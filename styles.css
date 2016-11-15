@@ -91,6 +91,9 @@ div.dragged i.control-icon {
 .form-group {
   position: relative;
 }
+.my-container {
+  position: relative;
+}
 .control-container {
   position: absolute;
   top: 0px;

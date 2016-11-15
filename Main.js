@@ -11227,8 +11227,12 @@ var _user$project$ForInputEdit$buttonToHtmlTree = function (inp) {
 					_0: _elm_lang$core$Maybe$Just('my-container'),
 					_1: {
 						ctor: '::',
-						_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
-						_1: {ctor: '[]'}
+						_0: _elm_lang$core$Maybe$Just('show-hidden-on-hover'),
+						_1: {
+							ctor: '::',
+							_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
+							_1: {ctor: '[]'}
+						}
 					}
 				})));
 	var children = A2(
@@ -13010,8 +13014,12 @@ var _user$project$WithControlElements$buttonToHtmlTree = function (inp) {
 					_0: _elm_lang$core$Maybe$Just('my-container'),
 					_1: {
 						ctor: '::',
-						_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
-						_1: {ctor: '[]'}
+						_0: _elm_lang$core$Maybe$Just('show-hidden-on-hover'),
+						_1: {
+							ctor: '::',
+							_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
+							_1: {ctor: '[]'}
+						}
 					}
 				})));
 	var children = A2(
