@@ -223,7 +223,8 @@ checkboxToHtmlTree inp =
           Just (Element "label" [Attribute "class" "form-check-label"] (Children [input]) (" " ++ value) [])
 
     links = toLinks inp.id
-    children = [label, links] |> List.filterMap identity
+    small = Maybe.map toSmall inp.small
+    children = [label, links, small] |> List.filterMap identity
 
     containerClass =
       [ Just "form-check"

@@ -11191,6 +11191,7 @@ var _user$project$ForInputEdit$checkboxToHtmlTree = function (inp) {
 						}
 					}
 				})));
+	var small = A2(_elm_lang$core$Maybe$map, _user$project$ForInputEdit$toSmall, inp.small);
 	var links = _user$project$ForInputEdit$toLinks(inp.id);
 	var input = A5(
 		_user$project$HtmlTree$Element,
@@ -11257,7 +11258,11 @@ var _user$project$ForInputEdit$checkboxToHtmlTree = function (inp) {
 			_1: {
 				ctor: '::',
 				_0: links,
-				_1: {ctor: '[]'}
+				_1: {
+					ctor: '::',
+					_0: small,
+					_1: {ctor: '[]'}
+				}
 			}
 		});
 	return A5(
@@ -12940,6 +12945,7 @@ var _user$project$WithControlElements$checkboxToHtmlTree = function (inp) {
 						}
 					}
 				})));
+	var small = A2(_elm_lang$core$Maybe$map, _user$project$WithControlElements$toSmall, inp.small);
 	var links = _user$project$WithControlElements$toLinks(inp.id);
 	var input = A5(
 		_user$project$HtmlTree$Element,
@@ -13006,7 +13012,11 @@ var _user$project$WithControlElements$checkboxToHtmlTree = function (inp) {
 			_1: {
 				ctor: '::',
 				_0: links,
-				_1: {ctor: '[]'}
+				_1: {
+					ctor: '::',
+					_0: small,
+					_1: {ctor: '[]'}
+				}
 			}
 		});
 	return A5(
