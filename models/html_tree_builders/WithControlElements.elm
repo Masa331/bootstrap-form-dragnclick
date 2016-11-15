@@ -201,7 +201,10 @@ toRadioOption id index value disabled =
       ] |> List.filterMap identity
 
     input = Element "input" inputAttrs (Children []) "" []
-    children = Element "label" [Attribute "class" "form-check-label"] (Children [input]) value []
+    -- This (" " ++ value) is nasty hack. I don't know what to do but elm generated fonts miss tiny space
+    --   between actuall input and label although the markup is same with static html - remove the space
+    --   to see it
+    children = Element "label" [Attribute "class" "form-check-label"] (Children [input]) (" " ++ value) []
   in
     Element "div" [ Attribute "class" "form-check" ] (Children [children]) "" []
 
@@ -214,7 +217,10 @@ checkboxToHtmlTree inp =
         Nothing ->
           Just (Element "label" [Attribute "class" "form-check-label"] (Children [input]) "" [])
         Just value ->
-          Just (Element "label" [Attribute "class" "form-check-label"] (Children [input]) value [])
+          -- This (" " ++ value) is nasty hack. I don't know what to do but elm generated fonts miss tiny space
+          --   between actuall input and label although the markup is same with static html - remove the space
+          --   to see it
+          Just (Element "label" [Attribute "class" "form-check-label"] (Children [input]) (" " ++ value) [])
 
     links = toLinks inp.id
     children = [label, links] |> List.filterMap identity
@@ -283,7 +289,6 @@ toLabel value =
 toLegend : Input -> Element
 toLegend input =
   let
-
     i1 = Element "i" [Attribute "class" "fa fa-edit control-element"] (Children []) "" []
     l1 = Element "span" [] (Children [i1]) "" [Html.Events.onClick (Messages.FormMessage (Messages.EditInput input.id))]
     i2 = Element "i" [Attribute "class" "fa fa-trash control-element"] (Children []) "" []
@@ -292,12 +297,10 @@ toLegend input =
     l3 = Element "span" [] (Children [i3]) "" [Html.Events.onClick ((Messages.InputMessage (Messages.ToggleDisabled input.id)))]
     i4 = Element "i" [Attribute "class" "fa fa-arrows control-element"] (Children []) "" []
     l4 = Element "span" [] (Children [i4]) "" [Html.Events.onMouseDown ((Messages.MouseMessage (Messages.MouseClick input.id)))]
-    i5 = Element "i" [Attribute "class" "fa fa-check control-element"] (Children []) "" []
-    l5 = Element "span" [] (Children [i5]) "" [Html.Events.onClick ((Messages.InputMessage (Messages.ToggleDisabled input.id)))]
     divider = Element "span" [] (Children []) " " []
 
-    children = (Children [ l1, divider, l2, divider, l3, divider, l4, divider, l5 ])
-    links = Element "span" [Attribute "class" "hidden-inherit float-right"] children "" []
+    children = (Children [ l1, divider, l2, divider, l3, divider, l4 ])
+    links = Element "span" [Attribute "class" "hidden-inherit float-right one-rem-size"] children "" []
     label = Element "span" [] (Children []) (Maybe.withDefault "" input.label) []
   in
     Element "legend" [] (Children [label, links]) "" []

@@ -10862,132 +10862,18 @@ var _user$project$ForInputEdit$toLegend = function (input) {
 					_user$project$Messages$ToggleDisabled(input.id))),
 			_1: {ctor: '[]'}
 		});
-	var i3 = A5(
-		_user$project$HtmlTree$Element,
-		'i',
-		{
-			ctor: '::',
-			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-font fa-big control-element'),
-			_1: {ctor: '[]'}
-		},
-		_user$project$HtmlTree$Children(
-			{ctor: '[]'}),
-		'',
-		{ctor: '[]'});
-	var l3 = A5(
-		_user$project$HtmlTree$Element,
-		'span',
-		{ctor: '[]'},
-		_user$project$HtmlTree$Children(
-			{
-				ctor: '::',
-				_0: i3,
-				_1: {ctor: '[]'}
-			}),
-		'',
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$InputMessage(
-					A2(_user$project$Messages$SizeEdit, input.id, 'large'))),
-			_1: {ctor: '[]'}
-		});
-	var i2 = A5(
-		_user$project$HtmlTree$Element,
-		'i',
-		{
-			ctor: '::',
-			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-font fa-normal control-element'),
-			_1: {ctor: '[]'}
-		},
-		_user$project$HtmlTree$Children(
-			{ctor: '[]'}),
-		'',
-		{ctor: '[]'});
-	var l2 = A5(
-		_user$project$HtmlTree$Element,
-		'span',
-		{ctor: '[]'},
-		_user$project$HtmlTree$Children(
-			{
-				ctor: '::',
-				_0: i2,
-				_1: {ctor: '[]'}
-			}),
-		'',
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$InputMessage(
-					A2(_user$project$Messages$SizeEdit, input.id, 'normal'))),
-			_1: {ctor: '[]'}
-		});
-	var i1 = A5(
-		_user$project$HtmlTree$Element,
-		'i',
-		{
-			ctor: '::',
-			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-font fa-small control-element'),
-			_1: {ctor: '[]'}
-		},
-		_user$project$HtmlTree$Children(
-			{ctor: '[]'}),
-		'',
-		{ctor: '[]'});
-	var l1 = A5(
-		_user$project$HtmlTree$Element,
-		'span',
-		{ctor: '[]'},
-		_user$project$HtmlTree$Children(
-			{
-				ctor: '::',
-				_0: i1,
-				_1: {ctor: '[]'}
-			}),
-		'',
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$InputMessage(
-					A2(_user$project$Messages$SizeEdit, input.id, 'small'))),
-			_1: {ctor: '[]'}
-		});
 	var children = _user$project$HtmlTree$Children(
 		{
 			ctor: '::',
-			_0: l1,
-			_1: {
-				ctor: '::',
-				_0: divider,
-				_1: {
-					ctor: '::',
-					_0: l2,
-					_1: {
-						ctor: '::',
-						_0: divider,
-						_1: {
-							ctor: '::',
-							_0: l3,
-							_1: {
-								ctor: '::',
-								_0: divider,
-								_1: {
-									ctor: '::',
-									_0: l4,
-									_1: {ctor: '[]'}
-								}
-							}
-						}
-					}
-				}
-			}
+			_0: l4,
+			_1: {ctor: '[]'}
 		});
 	var links = A5(
 		_user$project$HtmlTree$Element,
 		'span',
 		{
 			ctor: '::',
-			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'hidden-inherit float-right'),
+			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'hidden-inherit float-right one-rem-size'),
 			_1: {ctor: '[]'}
 		},
 		children,
@@ -11358,7 +11244,7 @@ var _user$project$ForInputEdit$checkboxToHtmlTree = function (inp) {
 							_0: input,
 							_1: {ctor: '[]'}
 						}),
-					_p4._0,
+					A2(_elm_lang$core$Basics_ops['++'], ' ', _p4._0),
 					{ctor: '[]'}));
 		}
 	}();
@@ -11456,7 +11342,7 @@ var _user$project$ForInputEdit$toRadioOption = F4(
 					_0: input,
 					_1: {ctor: '[]'}
 				}),
-			value,
+			A2(_elm_lang$core$Basics_ops['++'], ' ', value),
 			{ctor: '[]'});
 		return A5(
 			_user$project$HtmlTree$Element,
@@ -12581,36 +12467,6 @@ var _user$project$WithControlElements$toLegend = function (input) {
 			{ctor: '[]'}),
 		' ',
 		{ctor: '[]'});
-	var i5 = A5(
-		_user$project$HtmlTree$Element,
-		'i',
-		{
-			ctor: '::',
-			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'fa fa-check control-element'),
-			_1: {ctor: '[]'}
-		},
-		_user$project$HtmlTree$Children(
-			{ctor: '[]'}),
-		'',
-		{ctor: '[]'});
-	var l5 = A5(
-		_user$project$HtmlTree$Element,
-		'span',
-		{ctor: '[]'},
-		_user$project$HtmlTree$Children(
-			{
-				ctor: '::',
-				_0: i5,
-				_1: {ctor: '[]'}
-			}),
-		'',
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$InputMessage(
-					_user$project$Messages$ToggleDisabled(input.id))),
-			_1: {ctor: '[]'}
-		});
 	var i4 = A5(
 		_user$project$HtmlTree$Element,
 		'i',
@@ -12753,15 +12609,7 @@ var _user$project$WithControlElements$toLegend = function (input) {
 								_1: {
 									ctor: '::',
 									_0: l4,
-									_1: {
-										ctor: '::',
-										_0: divider,
-										_1: {
-											ctor: '::',
-											_0: l5,
-											_1: {ctor: '[]'}
-										}
-									}
+									_1: {ctor: '[]'}
 								}
 							}
 						}
@@ -12774,7 +12622,7 @@ var _user$project$WithControlElements$toLegend = function (input) {
 		'span',
 		{
 			ctor: '::',
-			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'hidden-inherit float-right'),
+			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'hidden-inherit float-right one-rem-size'),
 			_1: {ctor: '[]'}
 		},
 		children,
@@ -13145,7 +12993,7 @@ var _user$project$WithControlElements$checkboxToHtmlTree = function (inp) {
 							_0: input,
 							_1: {ctor: '[]'}
 						}),
-					_p4._0,
+					A2(_elm_lang$core$Basics_ops['++'], ' ', _p4._0),
 					{ctor: '[]'}));
 		}
 	}();
@@ -13243,7 +13091,7 @@ var _user$project$WithControlElements$toRadioOption = F4(
 					_0: input,
 					_1: {ctor: '[]'}
 				}),
-			value,
+			A2(_elm_lang$core$Basics_ops['++'], ' ', value),
 			{ctor: '[]'});
 		return A5(
 			_user$project$HtmlTree$Element,

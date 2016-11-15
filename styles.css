@@ -134,3 +134,7 @@ div.dragged i.control-icon {
 .float-right {
   float: right;
 }
+
+.one-rem-size {
+  font-size: 1rem;
+}
