@@ -4,14 +4,7 @@ import Mouse
 import ElementMap
 
 type FormMsg =
-  AddTextInput
-  | AddSelect
-  | AddMultiselect
-  | AddTextarea
-  | AddFileUpload
-  | AddRadio
-  | AddCheckbox
-  | AddButton
+  AddInput
   | RemoveInput Int
   | EditInput Int
   | StopEditing

@@ -8,22 +8,8 @@ import FormModel exposing (..)
 
 update msg model =
   case msg of
-    AddTextInput ->
+    AddInput ->
       addNewInput textInput model
-    AddTextarea ->
-      addNewInput textArea model
-    AddSelect ->
-      addNewInput select model
-    AddMultiselect ->
-      addNewInput multiselect model
-    AddFileUpload ->
-      addNewInput fileUpload model
-    AddRadio ->
-      addNewInput radio model
-    AddCheckbox ->
-      addNewInput checkbox model
-    AddButton ->
-      addNewInput button model
     RemoveInput id ->
       removeInput model id
     EditInput id ->

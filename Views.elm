@@ -4,7 +4,6 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 
-import Templates exposing (..)
 import Markup exposing (view)
 import Form exposing (view)
 import InputOptions exposing (..)
@@ -43,7 +42,7 @@ formEdit model =
              [ class "form-container form-sm" ]
              [ div
                [ class "form-controls" ]
-               [ a [href "javascript:void(0);"] [ text "Add field" ]
+               [ a [href "javascript:void(0);", onClick (FormMessage AddInput)] [ text "Add field" ]
                , a [href "javascript:void(0);"] [ text "Show source code"]]
              , div
                [ class "bd-example" ]
