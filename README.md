@@ -7,7 +7,7 @@ Forms are essential for every web app. This tool shows what kind of form is poss
 ## Road to 1.0.0
 
 - [x] All input attributes edit working
-- [ ] Input add
+- [x] Input add
 - [ ] Valid html generated
 - [ ] Better and simpler drag
 
