@@ -12872,6 +12872,31 @@ var _user$project$WithControlElements$buttonToHtmlTree = function (inp) {
 				return ' btn-lg';
 		}
 	}();
+	var inputAttrs = A2(
+		_elm_lang$core$List$filterMap,
+		_elm_lang$core$Basics$identity,
+		{
+			ctor: '::',
+			_0: _user$project$WithControlElements$toId(inp.id),
+			_1: {
+				ctor: '::',
+				_0: _user$project$WithControlElements$toDisabled(inp.disabled),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$core$Maybe$Just(
+						A2(
+							_user$project$HtmlTree$Attribute,
+							'class',
+							A2(_elm_lang$core$Basics_ops['++'], 'btn btn-primary', sizeClass))),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$core$Maybe$Just(
+							A2(_user$project$HtmlTree$Attribute, 'type', 'submit')),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
 	var children = A2(
 		_elm_lang$core$List$filterMap,
 		_elm_lang$core$Basics$identity,
@@ -12881,18 +12906,7 @@ var _user$project$WithControlElements$buttonToHtmlTree = function (inp) {
 				A5(
 					_user$project$HtmlTree$Element,
 					'button',
-					{
-						ctor: '::',
-						_0: A2(_user$project$HtmlTree$Attribute, 'type', 'submit'),
-						_1: {
-							ctor: '::',
-							_0: A2(
-								_user$project$HtmlTree$Attribute,
-								'class',
-								A2(_elm_lang$core$Basics_ops['++'], 'btn btn-primary', sizeClass)),
-							_1: {ctor: '[]'}
-						}
-					},
+					inputAttrs,
 					_user$project$HtmlTree$Children(
 						{ctor: '[]'}),
 					A2(_elm_lang$core$Maybe$withDefault, 'Submit', inp.label),
@@ -12947,18 +12961,31 @@ var _user$project$WithControlElements$checkboxToHtmlTree = function (inp) {
 				})));
 	var small = A2(_elm_lang$core$Maybe$map, _user$project$WithControlElements$toSmall, inp.small);
 	var links = _user$project$WithControlElements$toLinks(inp.id);
+	var inputAttrs = A2(
+		_elm_lang$core$List$filterMap,
+		_elm_lang$core$Basics$identity,
+		{
+			ctor: '::',
+			_0: _user$project$WithControlElements$toId(inp.id),
+			_1: {
+				ctor: '::',
+				_0: _user$project$WithControlElements$toDisabled(inp.disabled),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$core$Maybe$Just(
+						A2(_user$project$HtmlTree$Attribute, 'class', 'form-check-input')),
+					_1: {
+						ctor: '::',
+						_0: _user$project$WithControlElements$toType(inp.type_),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
 	var input = A5(
 		_user$project$HtmlTree$Element,
 		'input',
-		{
-			ctor: '::',
-			_0: A2(_user$project$HtmlTree$Attribute, 'type', 'checkbox'),
-			_1: {
-				ctor: '::',
-				_0: A2(_user$project$HtmlTree$Attribute, 'class', 'form-check-input'),
-				_1: {ctor: '[]'}
-			}
-		},
+		inputAttrs,
 		_user$project$HtmlTree$Children(
 			{ctor: '[]'}),
 		'',

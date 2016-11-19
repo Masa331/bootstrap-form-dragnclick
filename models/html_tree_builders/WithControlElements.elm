@@ -211,7 +211,14 @@ toRadioOption id index value disabled =
 
 checkboxToHtmlTree inp =
   let
-    input = Element "input" [Attribute "type" "checkbox", Attribute "class" "form-check-input"] (Children []) "" []
+    inputAttrs =
+      [ toId inp.id
+      , toDisabled inp.disabled
+      , Just (Attribute "class" "form-check-input")
+      , toType inp.type_
+      ] |> List.filterMap identity
+
+    input = Element "input" inputAttrs (Children []) "" []
     label =
       case inp.label of
         Nothing ->
@@ -244,8 +251,15 @@ buttonToHtmlTree inp =
         Normal -> ""
         Large -> " btn-lg"
 
+    inputAttrs =
+      [ toId inp.id
+      , toDisabled inp.disabled
+      , Just (Attribute "class" ("btn btn-primary" ++ sizeClass))
+      , Just (Attribute "type" "submit")
+      ] |> List.filterMap identity
+
     children =
-      [ Just (Element "button" [Attribute "type" "submit", Attribute "class" ("btn btn-primary" ++ sizeClass)] (Children []) (Maybe.withDefault "Submit" inp.label) [])
+      [ Just (Element "button" inputAttrs (Children []) (Maybe.withDefault "Submit" inp.label) [])
       , toLinks inp.id
       ] |> List.filterMap identity
 
