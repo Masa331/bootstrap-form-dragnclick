@@ -8,8 +8,10 @@ import Models
 import Messages
 import Updates
 import Utils
+import Navigation
 
-init = (Models.initial, Cmd.none)
+init location =
+  (Models.initial, Cmd.none)
 
 view model =
   Views.view model
@@ -24,7 +26,9 @@ update msg model =
       Updates.mouseUpdate mouseMsg model
     Messages.MapDetermined map ->
       ({ model | elementMap = map }, Cmd.none)
-
+    Messages.UrlChange location ->
+      ({ model | history = location :: model.history }
+      , Cmd.none)
 
 subscriptions model =
   if List.any .dragged model.form then
@@ -35,7 +39,7 @@ subscriptions model =
     Utils.determinedFormMap Messages.MapDetermined
 
 main =
-  Html.program
+  Navigation.program Messages.UrlChange
   { init = init
   , view = view
   , update = update

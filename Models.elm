@@ -1,17 +1,23 @@
-module Models exposing (Model, initial, currentlyEdditedInput, maxInputId, currentlyDraggedInputs, currentlyDraggedInput)
+module Models exposing (..)
 
 import Mouse
 
 import HtmlTree
 import ElementMap
+import Navigation
+import UrlParser exposing ((</>))
 import FormModel exposing (blankInput, textInput, textArea, select, checkbox, button)
 
+type Route = Form
+           | Source
+           | InputEdit Int
+
 type alias Model = { form: FormModel.Form
-                   , currentlyEdditedInputId: Maybe Int
                    , newOption: String
                    , mousePosition : Mouse.Position
                    , initialMousePosition : Mouse.Position
                    , elementMap : ElementMap.ElementMap
+                   , history : List Navigation.Location
                    }
 
 initial : Model
@@ -25,15 +31,7 @@ initial =
              , { button | id = 6, label = Just "Register!" }
              ]
   in
-    Model inputs Nothing "" { x = 0, y = 0 } { x = 0, y = 0 } [[]]
-
-currentlyEdditedInput : Model -> Maybe FormModel.Input
-currentlyEdditedInput model =
-  case model.currentlyEdditedInputId of
-    Nothing ->
-      Nothing
-    Just id ->
-      List.head (List.filter (\el -> el.id == id) model.form)
+    Model inputs "" { x = 0, y = 0 } { x = 0, y = 0 } [[]] []
 
 maxInputId : Model -> Int
 maxInputId model =
@@ -47,3 +45,17 @@ currentlyDraggedInputs model =
 currentlyDraggedInput model =
   List.filter .dragged model.form
     |> List.head
+
+route =
+  UrlParser.oneOf
+   [ UrlParser.map Form (UrlParser.s "form")
+   , UrlParser.map Source (UrlParser.s "source")
+   , UrlParser.map InputEdit (UrlParser.s "input" </> UrlParser.int)
+   ]
+
+currentPage model =
+  case List.head model.history of
+    Just location ->
+      UrlParser.parseHash route (Debug.log "location" location)
+    Nothing ->
+      Nothing

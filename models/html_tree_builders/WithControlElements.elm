@@ -311,7 +311,8 @@ toLegend : Input -> Element
 toLegend input =
   let
     i1 = Element "i" [Attribute "class" "fa fa-edit control-element"] (Children []) "" []
-    l1 = Element "span" [] (Children [i1]) "" [Html.Events.onClick (Messages.FormMessage (Messages.EditInput input.id))]
+    l1 = Element "a" [Attribute "href" ("#input/" ++ toString input.id)] (Children [i1]) "" []
+
     i2 = Element "i" [Attribute "class" "fa fa-trash control-element"] (Children []) "" []
     l2 = Element "span" [] (Children [i2]) "" [Html.Events.onClick (Messages.FormMessage (Messages.RemoveInput input.id))]
     i3 = Element "i" [Attribute "class" "fa fa-check control-element"] (Children []) "" []
@@ -341,13 +342,16 @@ toLinks value =
     l3 = Element "span" [] (Children [i3]) "" [Html.Events.onClick ((Messages.InputMessage (Messages.SizeEdit value "large")))]
 
     i4 = Element "i" [Attribute "class" "fa fa-edit control-element"] (Children []) "" []
-    l4 = Element "span" [] (Children [i4]) "" [Html.Events.onClick (Messages.FormMessage (Messages.EditInput value))]
+    l4 = Element "a" [Attribute "href" ("#input/" ++ toString value)] (Children [i4]) "" []
+
     i5 = Element "i" [Attribute "class" "fa fa-trash control-element"] (Children []) "" []
     l5 = Element "span" [] (Children [i5]) "" [Html.Events.onClick (Messages.FormMessage (Messages.RemoveInput value))]
     i6 = Element "i" [Attribute "class" "fa fa-check control-element"] (Children []) "" []
     l6 = Element "span" [] (Children [i6]) "" [Html.Events.onClick ((Messages.InputMessage (Messages.ToggleDisabled value)))]
     i7 = Element "i" [Attribute "class" "fa fa-arrows control-element"] (Children []) "" []
     l7 = Element "span" [] (Children [i7]) "" [Html.Events.onMouseDown ((Messages.MouseMessage (Messages.MouseClick value)))]
+
+
     divider = Element "span" [] (Children []) " " []
 
     children = (Children [l1, divider, l2, divider, l3, divider, l4, divider, l5, divider, l6, divider, l7])

@@ -12,10 +12,6 @@ update msg model =
       addNewInput textInput model
     RemoveInput id ->
       removeInput model id
-    EditInput id ->
-      ({ model | currentlyEdditedInputId = Just id }, Cmd.none)
-    StopEditing ->
-      ({ model | currentlyEdditedInputId = Nothing }, Cmd.none)
 
 addNewInput : Input -> Model -> (Model, Cmd Msg)
 addNewInput input model =

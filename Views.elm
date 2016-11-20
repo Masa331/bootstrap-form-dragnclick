@@ -16,11 +16,24 @@ import FormModel exposing (..)
 import HtmlTreeBuilder exposing (..)
 
 view model =
-  case currentlyEdditedInput model of
+  case currentPage model of
+    Just location ->
+      case location of
+        Form ->
+          formEdit model
+        Source ->
+          source model
+        InputEdit id ->
+          let
+            input = List.head (List.filter (\el -> el.id == id) model.form)
+          in
+            case input of
+              Nothing ->
+                formEdit model
+              Just input ->
+                inputEdit input
     Nothing ->
       formEdit model
-    Just input ->
-      inputEdit input
 
 -------------
 -- Private --
@@ -43,7 +56,7 @@ formEdit model =
              [ div
                [ class "form-controls" ]
                [ a [href "javascript:void(0);", onClick (FormMessage AddInput)] [ text "Add field" ]
-               , a [href "javascript:void(0);"] [ text "Show source code"]]
+               , a [href "#source"] [ text "Show source code"]]
              , div
                [ class "bd-example" ]
                ([h1 [] [text "The Form"]] ++ (Form.view htmlTreeWithControlElements))
@@ -69,10 +82,35 @@ inputEdit input =
              [ class "form-container form-sm" ]
              [ div
                  [ class "form-controls" ]
-                 [ a [ href "javascript:void(0)", onClick (FormMessage StopEditing) ] [text "Back to form" ] ]
+                 [ a [ href "#form" ] [ text "Back to form" ] ]
              , div
                [ class "bd-example" ]
                ((Form.view htmlTree) ++ [hr [] []] ++ ((InputOptions.view input)))
+             ]
+           ]
+        ]
+      ]
+
+source : Model -> Html Msg
+source model =
+  let
+    inputs1 = List.map HtmlTreeBuilder.buildRaw model.form
+    htmlRaw = HtmlTree.Element "form" [] (HtmlTree.Children inputs1) "" []
+  in
+    div
+      []
+      [ div
+        [ class "row" ]
+        [ div
+           [ class "col-sm-12" ]
+           [ div
+             [ class "form-container form-sm" ]
+             [ div
+               [ class "form-controls" ]
+               [ a [href "#form"] [ text "Back to form"]]
+             , div
+               [ class "bd-example" ]
+               [(Markup.view htmlRaw)]
              ]
            ]
         ]

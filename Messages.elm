@@ -2,12 +2,11 @@ module Messages exposing (..)
 
 import Mouse
 import ElementMap
+import Navigation
 
 type FormMsg =
   AddInput
   | RemoveInput Int
-  | EditInput Int
-  | StopEditing
 
 type InputMsg
   = PlaceholderEdit Int String
@@ -33,3 +32,4 @@ type Msg =
   | InputMessage InputMsg
   | MouseMessage MouseMsg
   | MapDetermined ElementMap.ElementMap
+  | UrlChange Navigation.Location
