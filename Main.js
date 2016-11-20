@@ -10389,14 +10389,6 @@ var _user$project$Models$currentlyDraggedInput = function (model) {
 			},
 			model.form));
 };
-var _user$project$Models$currentlyDraggedInputs = function (model) {
-	return A2(
-		_elm_lang$core$List$filter,
-		function (_) {
-			return _.dragged;
-		},
-		model.form);
-};
 var _user$project$Models$maxInputId = function (model) {
 	return A2(
 		_elm_lang$core$Maybe$withDefault,
@@ -16719,6 +16711,11 @@ var _user$project$InputUpdate$update = F2(
 		}
 	});
 
+var _user$project$Utils$find = F2(
+	function (findFunc, list) {
+		return _elm_lang$core$List$head(
+			A2(_elm_lang$core$List$filter, findFunc, list));
+	});
 var _user$project$Utils$compact = function (list) {
 	return A2(
 		_elm_lang$core$List$filter,
@@ -17288,7 +17285,7 @@ var _user$project$Views$formEdit = function (model) {
 						_elm_lang$html$Html$div,
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('col-sm-12'),
+							_0: _elm_lang$html$Html_Attributes$class('col-sm-6'),
 							_1: {ctor: '[]'}
 						},
 						{
@@ -17378,7 +17375,48 @@ var _user$project$Views$formEdit = function (model) {
 								}),
 							_1: {ctor: '[]'}
 						}),
-					_1: {ctor: '[]'}
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$div,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('col-sm-6'),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$div,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text(
+											_elm_lang$core$Basics$toString(model.mousePosition)),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$div,
+										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html$text(
+												_elm_lang$core$Basics$toString(
+													A2(
+														_elm_lang$core$List$map,
+														function (a) {
+															return {top: a.top, height: a.height};
+														},
+														_elm_lang$core$List$concat(model.elementMap)))),
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {ctor: '[]'}
+					}
 				}),
 			_1: {ctor: '[]'}
 		});
@@ -17412,54 +17450,60 @@ var _user$project$Views$view = function (model) {
 	}
 };
 
-var _user$project$MouseUpdate$moveInputs = F2(
-	function (model, mousePosition) {
-		var mapInputFunc = function (id) {
-			return _elm_lang$core$List$head(
-				A2(
-					_elm_lang$core$List$filter,
-					function (input) {
-						return _elm_lang$core$Native_Utils.eq(
-							_elm_lang$core$Basics$toString(input.id),
-							id);
-					},
-					model.form));
-		};
-		var draggedElementsIds = A2(
-			_elm_lang$core$List$map,
-			function (el) {
-				return _elm_lang$core$Basics$toString(el.id);
-			},
-			A2(
-				_elm_lang$core$List$filter,
-				function (el) {
-					return el.dragged;
-				},
-				model.form));
-		var mapFunc = function (y) {
-			return A2(_elm_lang$core$List$member, y.id, draggedElementsIds) ? {
-				id: y.id,
-				yMiddle: _elm_lang$core$Basics$toFloat(mousePosition.y) + (y.height / 2)
-			} : {id: y.id, yMiddle: y.top + (y.height / 2)};
-		};
-		var dimensions = _elm_lang$core$List$concat(model.elementMap);
-		var ysWithMove = A2(_elm_lang$core$List$map, mapFunc, dimensions);
-		var sorted = A2(
+var _user$project$MouseUpdate$moveInputs = function (model) {
+	var draggedElementsIds = A2(
+		_elm_lang$core$List$map,
+		_elm_lang$core$Basics$toString,
+		A2(
 			_elm_lang$core$List$map,
 			function (_) {
 				return _.id;
 			},
 			A2(
-				_elm_lang$core$List$sortBy,
+				_elm_lang$core$List$filter,
 				function (_) {
-					return _.yMiddle;
+					return _.dragged;
 				},
-				ysWithMove));
-		var sortedInputs = A2(_elm_lang$core$List$filterMap, mapInputFunc, sorted);
-		return _elm_lang$core$Native_Utils.update(
-			model,
-			{form: sortedInputs});
-	});
+				model.form)));
+	var mapFunc = function (y) {
+		return A2(_elm_lang$core$List$member, y.id, draggedElementsIds) ? {
+			id: y.id,
+			yMiddle: (y.top + (y.height / 2)) + (_elm_lang$core$Basics$toFloat(model.mousePosition.y) - _elm_lang$core$Basics$toFloat(model.initialMousePosition.y))
+		} : {id: y.id, yMiddle: y.top + (y.height / 2)};
+	};
+	var sortedInputs = A2(
+		_elm_lang$core$List$filterMap,
+		_elm_lang$core$Basics$identity,
+		A2(
+			_elm_lang$core$List$map,
+			function (id) {
+				return A2(
+					_user$project$Utils$find,
+					function (input) {
+						return _elm_lang$core$Native_Utils.eq(
+							id,
+							_elm_lang$core$Basics$toString(input.id));
+					},
+					model.form);
+			},
+			A2(
+				_elm_lang$core$List$map,
+				function (_) {
+					return _.id;
+				},
+				A2(
+					_elm_lang$core$List$sortBy,
+					function (_) {
+						return _.yMiddle;
+					},
+					A2(
+						_elm_lang$core$List$map,
+						mapFunc,
+						_elm_lang$core$List$concat(model.elementMap))))));
+	return _elm_lang$core$Native_Utils.update(
+		model,
+		{form: sortedInputs});
+};
 var _user$project$MouseUpdate$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
@@ -17519,7 +17563,7 @@ var _user$project$MouseUpdate$update = F2(
 					{mousePosition: _p2, initialMousePosition: initialPosition});
 				return {
 					ctor: '_Tuple2',
-					_0: A2(_user$project$MouseUpdate$moveInputs, newModel, _p2),
+					_0: _user$project$MouseUpdate$moveInputs(newModel),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 		}

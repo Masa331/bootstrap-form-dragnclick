@@ -32,21 +32,26 @@ update msg model =
 
         newModel = { model | mousePosition = position, initialMousePosition = initialPosition }
       in
-        (moveInputs newModel position, Cmd.none)
+        (moveInputs newModel, Cmd.none)
 
-moveInputs model mousePosition =
+moveInputs model =
   let
-    dimensions = List.concat model.elementMap
-    draggedElementsIds = List.filter (\el -> el.dragged) model.form
-      |> List.map (\el -> toString el.id)
-
-    mapFunc = (\y -> if List.member y.id draggedElementsIds then { id = y.id, yMiddle = ((toFloat mousePosition.y) + (y.height / 2))} else { id = y.id, yMiddle = (y.top + (y.height / 2))})
-
-    ysWithMove = List.map mapFunc dimensions
-    sorted = List.sortBy .yMiddle ysWithMove
+    draggedElementsIds =
+      List.filter .dragged model.form
       |> List.map .id
+      |> List.map toString
 
-    mapInputFunc = (\id -> List.filter (\input -> toString input.id == id) model.form |> List.head)
-    sortedInputs = List.filterMap mapInputFunc sorted
+    mapFunc =
+      (\y -> if List.member y.id draggedElementsIds
+                then { id = y.id, yMiddle = (y.top + y.height / 2 + ((toFloat model.mousePosition.y) - (toFloat model.initialMousePosition.y))) }
+                else { id = y.id, yMiddle = (y.top + y.height / 2) })
+
+    sortedInputs =
+      List.concat model.elementMap
+      |> List.map mapFunc
+      |> List.sortBy .yMiddle
+      |> List.map .id
+      |> List.map (\id -> Utils.find (\input -> id == toString input.id ) model.form)
+      |> List.filterMap identity
   in
     { model | form = sortedInputs }

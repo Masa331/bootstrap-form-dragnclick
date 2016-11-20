@@ -39,9 +39,6 @@ maxInputId model =
   <| List.maximum
   <| List.map .id model.form
 
-currentlyDraggedInputs model =
-  List.filter .dragged model.form
-
 currentlyDraggedInput model =
   List.filter .dragged model.form
     |> List.head
