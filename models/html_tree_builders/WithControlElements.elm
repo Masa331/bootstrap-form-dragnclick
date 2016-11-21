@@ -26,24 +26,47 @@ build input =
 -- Private --
 -------------
 
-textInputToHtmlTree inp =
+textInputToHtmlTree input =
   let
     containerClass =
       [ Just "form-group"
       , Just "show-hidden-on-hover"
-      , if inp.dragged then Just "hidden" else Nothing
+      , if input.dragged then Just "hidden" else Nothing
       ] |> List.filterMap identity
         |> String.join " "
         |> Attribute "class"
 
+    inputAttrs =
+      [ toId input.id
+      , toPlaceholder input.placeholder
+      , toDisabled input.disabled
+      , Just (Attribute "class" (String.trim ((sizeClass input.size) ++ " form-control")))
+      , toType input.type_
+      ] |> List.filterMap identity
+
+    add1 = Maybe.map toAddon input.addon1
+    add2 = Maybe.map toAddon input.addon2
+
+    input1 = Just (Element "input" inputAttrs (Children []) "" [])
+    inputClasses =
+      case input.size of
+        Small ->
+          "input-group input-group-sm"
+        Normal ->
+          "input-group"
+        Large ->
+          "input-group input-group-lg"
+
+    inputGroup = Just (Element "div" [Attribute "class" inputClasses] (Children ([add1, input1, add2] |> List.filterMap identity)) "" [])
+
     children =
-      [ toLabel inp.label
-      , toLinks inp.id
-      , wrapInAddons inp
-      , Maybe.map toSmall inp.small
+      [ toLabel input.label
+      , toLinks input.id
+      , inputGroup
+      , Maybe.map toSmall input.small
       ] |> List.filterMap identity
   in
-    Element "div" [containerClass, Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
+    Element "div" [containerClass, Attribute "data-input-id" (toString input.id) ] (Children children) "" []
 
 colorToHtmlTree inp =
   let
@@ -98,21 +121,45 @@ selectToHtmlTree inp =
   in
     Element "div" [containerClass, Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
 
-textAreaToHtmlTree inp =
+textAreaToHtmlTree input =
   let
     containerClass =
       [ Just "form-group"
       , Just "show-hidden-on-hover"
-      , if inp.dragged then Just "hidden" else Nothing
+      , if input.dragged then Just "hidden" else Nothing
       ] |> List.filterMap identity
         |> String.join " "
         |> Attribute "class"
 
+    inputAttrs =
+      [ toId input.id
+      , toPlaceholder input.placeholder
+      , Just (Attribute "rows" input.rowNumber)
+      , toDisabled input.disabled
+      , Just (Attribute "class" (String.trim ((sizeClass input.size) ++ " form-control")))
+      , toType input.type_
+      ] |> List.filterMap identity
+
+    add1 = Maybe.map toAddon input.addon1
+    add2 = Maybe.map toAddon input.addon2
+    inputType = "textarea"
+
+    input1 = Just (Element "textarea" inputAttrs (Children []) "" [])
+    inputClasses =
+      case input.size of
+        Small ->
+          "input-group input-group-sm"
+        Normal ->
+          "input-group"
+        Large ->
+          "input-group input-group-lg"
+    inputGroup = Just (Element "div" [Attribute "class" inputClasses] (Children ([add1, input1, add2] |> List.filterMap identity)) "" [])
+
     children =
-      [ toLabel inp.label
-      , wrapInAddons inp
-      , toLinks inp.id
-      , Maybe.map toSmall inp.small
+      [ toLabel input.label
+      , inputGroup
+      , toLinks input.id
+      , Maybe.map toSmall input.small
       ] |> List.filterMap identity
   in
     Element "div" [containerClass] (Children (children)) "" []
@@ -367,41 +414,3 @@ sizeClass size =
       ""
     Large ->
       "form-control-lg"
-
-toRowNumber : Input -> Maybe Attribute
-toRowNumber input =
-  case input.type_ of
-    TextArea ->
-      Just (Attribute "rows" input.rowNumber)
-    _ ->
-      Nothing
-
-wrapInAddons input =
-  let
-    inputAttrs =
-      [ toId input.id
-      , toPlaceholder input.placeholder
-      , toRowNumber input
-      , toDisabled input.disabled
-      , Just (Attribute "class" (String.trim ((sizeClass input.size) ++ " form-control")))
-      , toType input.type_
-      ] |> List.filterMap identity
-
-    add1 = Maybe.map toAddon input.addon1
-    add2 = Maybe.map toAddon input.addon2
-    inputType =
-      case input.type_ of
-        TextArea -> "textarea"
-        _ -> "input"
-
-    input1 = Just (Element inputType inputAttrs (Children []) "" [])
-    inputClasses =
-      case input.size of
-        Small ->
-          "input-group input-group-sm"
-        Normal ->
-          "input-group"
-        Large ->
-          "input-group input-group-lg"
-  in
-    Just (Element "div" [Attribute "class" inputClasses] (Children ([add1, input1, add2] |> List.filterMap identity)) "" [])
