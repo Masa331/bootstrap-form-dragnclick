@@ -10183,9 +10183,7 @@ var _user$project$FormModel$Input = function (a) {
 									return function (j) {
 										return function (k) {
 											return function (l) {
-												return function (m) {
-													return {type_: a, id: b, classList: c, placeholder: d, label: e, disabled: f, size: g, addon1: h, addon2: i, small: j, rowNumber: k, dragged: l, options: m};
-												};
+												return {type_: a, id: b, placeholder: c, label: d, disabled: e, size: f, addon1: g, addon2: h, small: i, rowNumber: j, dragged: k, options: l};
 											};
 										};
 									};
@@ -10237,7 +10235,6 @@ var _user$project$FormModel$Text = {ctor: 'Text'};
 var _user$project$FormModel$blankInput = {
 	type_: _user$project$FormModel$Text,
 	id: 0,
-	classList: {ctor: '[]'},
 	placeholder: _elm_lang$core$Maybe$Nothing,
 	label: _elm_lang$core$Maybe$Just('Some label..'),
 	disabled: false,
@@ -10290,14 +10287,7 @@ var _user$project$FormModel$multiselect = _elm_lang$core$Native_Utils.update(
 	});
 var _user$project$FormModel$fileUpload = _elm_lang$core$Native_Utils.update(
 	_user$project$FormModel$blankInput,
-	{
-		type_: _user$project$FormModel$FileUpload,
-		classList: {
-			ctor: '::',
-			_0: 'form-control-file',
-			_1: {ctor: '[]'}
-		}
-	});
+	{type_: _user$project$FormModel$FileUpload});
 var _user$project$FormModel$radio = _elm_lang$core$Native_Utils.update(
 	_user$project$FormModel$blankInput,
 	{
@@ -10318,14 +10308,7 @@ var _user$project$FormModel$radio = _elm_lang$core$Native_Utils.update(
 	});
 var _user$project$FormModel$checkbox = _elm_lang$core$Native_Utils.update(
 	_user$project$FormModel$blankInput,
-	{
-		type_: _user$project$FormModel$Checkbox,
-		classList: {
-			ctor: '::',
-			_0: 'form-control',
-			_1: {ctor: '[]'}
-		}
-	});
+	{type_: _user$project$FormModel$Checkbox});
 var _user$project$FormModel$button = _elm_lang$core$Native_Utils.update(
 	_user$project$FormModel$blankInput,
 	{type_: _user$project$FormModel$Button});
@@ -10523,19 +10506,6 @@ var _user$project$Models$currentPage = function (model) {
 	}
 };
 
-var _user$project$Dragged$toClasses = function (classList) {
-	var value = A2(
-		_elm_lang$core$String$join,
-		' ',
-		A2(
-			_elm_lang$core$List$filter,
-			function ($class) {
-				return !_elm_lang$core$Native_Utils.eq($class, '');
-			},
-			classList));
-	return _elm_lang$core$Maybe$Just(
-		A2(_user$project$HtmlTree$Attribute, 'class', value));
-};
 var _user$project$Dragged$sizeClass = function (size) {
 	var _p0 = size;
 	switch (_p0.ctor) {
@@ -10757,19 +10727,15 @@ var _user$project$Dragged$wrapInAddons = function (input) {
 					_0: _user$project$Dragged$toDisabled(input.disabled),
 					_1: {
 						ctor: '::',
-						_0: _user$project$Dragged$toClasses(
-							{
-								ctor: '::',
-								_0: _user$project$Dragged$sizeClass(input.size),
-								_1: A2(
-									_elm_lang$core$Basics_ops['++'],
-									{
-										ctor: '::',
-										_0: 'form-control',
-										_1: {ctor: '[]'}
-									},
-									input.classList)
-							}),
+						_0: _elm_lang$core$Maybe$Just(
+							A2(
+								_user$project$HtmlTree$Attribute,
+								'class',
+								_elm_lang$core$String$trim(
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										_user$project$Dragged$sizeClass(input.size),
+										' form-control')))),
 						_1: {
 							ctor: '::',
 							_0: _user$project$Dragged$toType(input.type_),
@@ -11109,12 +11075,15 @@ var _user$project$Dragged$fileUploadToHtmlTree = function (inp) {
 				_0: _user$project$Dragged$toDisabled(inp.disabled),
 				_1: {
 					ctor: '::',
-					_0: _user$project$Dragged$toClasses(
-						{
-							ctor: '::',
-							_0: _user$project$Dragged$sizeClass(inp.size),
-							_1: inp.classList
-						}),
+					_0: _elm_lang$core$Maybe$Just(
+						A2(
+							_user$project$HtmlTree$Attribute,
+							'class',
+							_elm_lang$core$String$trim(
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									_user$project$Dragged$sizeClass(inp.size),
+									' form-control-file')))),
 					_1: {
 						ctor: '::',
 						_0: _elm_lang$core$Maybe$Just(
@@ -11197,16 +11166,15 @@ var _user$project$Dragged$multiselectToHtmlTree = function (inp) {
 				_0: _user$project$Dragged$toDisabled(inp.disabled),
 				_1: {
 					ctor: '::',
-					_0: _user$project$Dragged$toClasses(
-						{
-							ctor: '::',
-							_0: _user$project$Dragged$sizeClass(inp.size),
-							_1: {
-								ctor: '::',
-								_0: 'form-control',
-								_1: {ctor: '[]'}
-							}
-						}),
+					_0: _elm_lang$core$Maybe$Just(
+						A2(
+							_user$project$HtmlTree$Attribute,
+							'class',
+							_elm_lang$core$String$trim(
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									_user$project$Dragged$sizeClass(inp.size),
+									' form-control')))),
 					_1: {
 						ctor: '::',
 						_0: _elm_lang$core$Maybe$Just(
@@ -11318,16 +11286,15 @@ var _user$project$Dragged$selectToHtmlTree = function (inp) {
 				_0: _user$project$Dragged$toDisabled(inp.disabled),
 				_1: {
 					ctor: '::',
-					_0: _user$project$Dragged$toClasses(
-						{
-							ctor: '::',
-							_0: _user$project$Dragged$sizeClass(inp.size),
-							_1: {
-								ctor: '::',
-								_0: 'form-control',
-								_1: {ctor: '[]'}
-							}
-						}),
+					_0: _elm_lang$core$Maybe$Just(
+						A2(
+							_user$project$HtmlTree$Attribute,
+							'class',
+							_elm_lang$core$String$trim(
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									_user$project$Dragged$sizeClass(inp.size),
+									' form-control')))),
 					_1: {ctor: '[]'}
 				}
 			}
@@ -11394,16 +11361,15 @@ var _user$project$Dragged$colorToHtmlTree = function (inp) {
 					_0: _user$project$Dragged$toDisabled(inp.disabled),
 					_1: {
 						ctor: '::',
-						_0: _user$project$Dragged$toClasses(
-							{
-								ctor: '::',
-								_0: _user$project$Dragged$sizeClass(inp.size),
-								_1: {
-									ctor: '::',
-									_0: 'form-control',
-									_1: {ctor: '[]'}
-								}
-							}),
+						_0: _elm_lang$core$Maybe$Just(
+							A2(
+								_user$project$HtmlTree$Attribute,
+								'class',
+								_elm_lang$core$String$trim(
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										_user$project$Dragged$sizeClass(inp.size),
+										' form-control')))),
 						_1: {
 							ctor: '::',
 							_0: _user$project$Dragged$toType(inp.type_),
@@ -11535,19 +11501,6 @@ var _user$project$ForInputEdit$toRowNumber = function (input) {
 	} else {
 		return _elm_lang$core$Maybe$Nothing;
 	}
-};
-var _user$project$ForInputEdit$toClasses = function (classList) {
-	var value = A2(
-		_elm_lang$core$String$join,
-		' ',
-		A2(
-			_elm_lang$core$List$filter,
-			function ($class) {
-				return !_elm_lang$core$Native_Utils.eq($class, '');
-			},
-			classList));
-	return _elm_lang$core$Maybe$Just(
-		A2(_user$project$HtmlTree$Attribute, 'class', value));
 };
 var _user$project$ForInputEdit$sizeClass = function (size) {
 	var _p1 = size;
@@ -11961,19 +11914,15 @@ var _user$project$ForInputEdit$wrapInAddons = function (input) {
 						_0: _user$project$ForInputEdit$toDisabled(input.disabled),
 						_1: {
 							ctor: '::',
-							_0: _user$project$ForInputEdit$toClasses(
-								{
-									ctor: '::',
-									_0: _user$project$ForInputEdit$sizeClass(input.size),
-									_1: A2(
-										_elm_lang$core$Basics_ops['++'],
-										{
-											ctor: '::',
-											_0: 'form-control',
-											_1: {ctor: '[]'}
-										},
-										input.classList)
-								}),
+							_0: _elm_lang$core$Maybe$Just(
+								A2(
+									_user$project$HtmlTree$Attribute,
+									'class',
+									_elm_lang$core$String$trim(
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											_user$project$ForInputEdit$sizeClass(input.size),
+											' form-control')))),
 							_1: {
 								ctor: '::',
 								_0: _user$project$ForInputEdit$toType(input.type_),
@@ -12411,12 +12360,15 @@ var _user$project$ForInputEdit$fileUploadToHtmlTree = function (inp) {
 				_0: _user$project$ForInputEdit$toDisabled(inp.disabled),
 				_1: {
 					ctor: '::',
-					_0: _user$project$ForInputEdit$toClasses(
-						{
-							ctor: '::',
-							_0: _user$project$ForInputEdit$sizeClass(inp.size),
-							_1: inp.classList
-						}),
+					_0: _elm_lang$core$Maybe$Just(
+						A2(
+							_user$project$HtmlTree$Attribute,
+							'class',
+							_elm_lang$core$String$trim(
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									_user$project$ForInputEdit$sizeClass(inp.size),
+									' form-control-file')))),
 					_1: {
 						ctor: '::',
 						_0: _elm_lang$core$Maybe$Just(
@@ -12520,16 +12472,15 @@ var _user$project$ForInputEdit$multiselectToHtmlTree = function (inp) {
 				_0: _user$project$ForInputEdit$toDisabled(inp.disabled),
 				_1: {
 					ctor: '::',
-					_0: _user$project$ForInputEdit$toClasses(
-						{
-							ctor: '::',
-							_0: _user$project$ForInputEdit$sizeClass(inp.size),
-							_1: {
-								ctor: '::',
-								_0: 'form-control',
-								_1: {ctor: '[]'}
-							}
-						}),
+					_0: _elm_lang$core$Maybe$Just(
+						A2(
+							_user$project$HtmlTree$Attribute,
+							'class',
+							_elm_lang$core$String$trim(
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									_user$project$ForInputEdit$sizeClass(inp.size),
+									' form-control')))),
 					_1: {
 						ctor: '::',
 						_0: _elm_lang$core$Maybe$Just(
@@ -12687,16 +12638,15 @@ var _user$project$ForInputEdit$selectToHtmlTree = function (inp) {
 				_0: _user$project$ForInputEdit$toDisabled(inp.disabled),
 				_1: {
 					ctor: '::',
-					_0: _user$project$ForInputEdit$toClasses(
-						{
-							ctor: '::',
-							_0: _user$project$ForInputEdit$sizeClass(inp.size),
-							_1: {
-								ctor: '::',
-								_0: 'form-control',
-								_1: {ctor: '[]'}
-							}
-						}),
+					_0: _elm_lang$core$Maybe$Just(
+						A2(
+							_user$project$HtmlTree$Attribute,
+							'class',
+							_elm_lang$core$String$trim(
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									_user$project$ForInputEdit$sizeClass(inp.size),
+									' form-control')))),
 					_1: {ctor: '[]'}
 				}
 			}
@@ -12784,16 +12734,15 @@ var _user$project$ForInputEdit$colorToHtmlTree = function (inp) {
 					_0: _user$project$ForInputEdit$toDisabled(inp.disabled),
 					_1: {
 						ctor: '::',
-						_0: _user$project$ForInputEdit$toClasses(
-							{
-								ctor: '::',
-								_0: _user$project$ForInputEdit$sizeClass(inp.size),
-								_1: {
-									ctor: '::',
-									_0: 'form-control',
-									_1: {ctor: '[]'}
-								}
-							}),
+						_0: _elm_lang$core$Maybe$Just(
+							A2(
+								_user$project$HtmlTree$Attribute,
+								'class',
+								_elm_lang$core$String$trim(
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										_user$project$ForInputEdit$sizeClass(inp.size),
+										' form-control')))),
 						_1: {
 							ctor: '::',
 							_0: _user$project$ForInputEdit$toType(inp.type_),
@@ -13042,19 +12991,6 @@ var _user$project$WithControlElements$toRowNumber = function (input) {
 	} else {
 		return _elm_lang$core$Maybe$Nothing;
 	}
-};
-var _user$project$WithControlElements$toClasses = function (classList) {
-	var value = A2(
-		_elm_lang$core$String$join,
-		' ',
-		A2(
-			_elm_lang$core$List$filter,
-			function ($class) {
-				return !_elm_lang$core$Native_Utils.eq($class, '');
-			},
-			classList));
-	return _elm_lang$core$Maybe$Just(
-		A2(_user$project$HtmlTree$Attribute, 'class', value));
 };
 var _user$project$WithControlElements$sizeClass = function (size) {
 	var _p1 = size;
@@ -13704,19 +13640,15 @@ var _user$project$WithControlElements$wrapInAddons = function (input) {
 						_0: _user$project$WithControlElements$toDisabled(input.disabled),
 						_1: {
 							ctor: '::',
-							_0: _user$project$WithControlElements$toClasses(
-								{
-									ctor: '::',
-									_0: _user$project$WithControlElements$sizeClass(input.size),
-									_1: A2(
-										_elm_lang$core$Basics_ops['++'],
-										{
-											ctor: '::',
-											_0: 'form-control',
-											_1: {ctor: '[]'}
-										},
-										input.classList)
-								}),
+							_0: _elm_lang$core$Maybe$Just(
+								A2(
+									_user$project$HtmlTree$Attribute,
+									'class',
+									_elm_lang$core$String$trim(
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											_user$project$WithControlElements$sizeClass(input.size),
+											' form-control')))),
 							_1: {
 								ctor: '::',
 								_0: _user$project$WithControlElements$toType(input.type_),
@@ -13814,7 +13746,8 @@ var _user$project$WithControlElements$buttonToHtmlTree = function (inp) {
 						A2(
 							_user$project$HtmlTree$Attribute,
 							'class',
-							A2(_elm_lang$core$Basics_ops['++'], 'btn btn-primary', sizeClass))),
+							_elm_lang$core$String$trim(
+								A2(_elm_lang$core$Basics_ops['++'], 'btn btn-primary', sizeClass)))),
 					_1: {
 						ctor: '::',
 						_0: _elm_lang$core$Maybe$Just(
@@ -14181,12 +14114,15 @@ var _user$project$WithControlElements$fileUploadToHtmlTree = function (inp) {
 				_0: _user$project$WithControlElements$toDisabled(inp.disabled),
 				_1: {
 					ctor: '::',
-					_0: _user$project$WithControlElements$toClasses(
-						{
-							ctor: '::',
-							_0: _user$project$WithControlElements$sizeClass(inp.size),
-							_1: inp.classList
-						}),
+					_0: _elm_lang$core$Maybe$Just(
+						A2(
+							_user$project$HtmlTree$Attribute,
+							'class',
+							_elm_lang$core$String$trim(
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									_user$project$WithControlElements$sizeClass(inp.size),
+									' form-control-file')))),
 					_1: {
 						ctor: '::',
 						_0: _elm_lang$core$Maybe$Just(
@@ -14290,16 +14226,15 @@ var _user$project$WithControlElements$multiselectToHtmlTree = function (inp) {
 				_0: _user$project$WithControlElements$toDisabled(inp.disabled),
 				_1: {
 					ctor: '::',
-					_0: _user$project$WithControlElements$toClasses(
-						{
-							ctor: '::',
-							_0: _user$project$WithControlElements$sizeClass(inp.size),
-							_1: {
-								ctor: '::',
-								_0: 'form-control',
-								_1: {ctor: '[]'}
-							}
-						}),
+					_0: _elm_lang$core$Maybe$Just(
+						A2(
+							_user$project$HtmlTree$Attribute,
+							'class',
+							_elm_lang$core$String$trim(
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									_user$project$WithControlElements$sizeClass(inp.size),
+									' form-control')))),
 					_1: {
 						ctor: '::',
 						_0: _elm_lang$core$Maybe$Just(
@@ -14457,16 +14392,15 @@ var _user$project$WithControlElements$selectToHtmlTree = function (inp) {
 				_0: _user$project$WithControlElements$toDisabled(inp.disabled),
 				_1: {
 					ctor: '::',
-					_0: _user$project$WithControlElements$toClasses(
-						{
-							ctor: '::',
-							_0: _user$project$WithControlElements$sizeClass(inp.size),
-							_1: {
-								ctor: '::',
-								_0: 'form-control',
-								_1: {ctor: '[]'}
-							}
-						}),
+					_0: _elm_lang$core$Maybe$Just(
+						A2(
+							_user$project$HtmlTree$Attribute,
+							'class',
+							_elm_lang$core$String$trim(
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									_user$project$WithControlElements$sizeClass(inp.size),
+									' form-control')))),
 					_1: {ctor: '[]'}
 				}
 			}
@@ -14554,16 +14488,15 @@ var _user$project$WithControlElements$colorToHtmlTree = function (inp) {
 					_0: _user$project$WithControlElements$toDisabled(inp.disabled),
 					_1: {
 						ctor: '::',
-						_0: _user$project$WithControlElements$toClasses(
-							{
-								ctor: '::',
-								_0: _user$project$WithControlElements$sizeClass(inp.size),
-								_1: {
-									ctor: '::',
-									_0: 'form-control',
-									_1: {ctor: '[]'}
-								}
-							}),
+						_0: _elm_lang$core$Maybe$Just(
+							A2(
+								_user$project$HtmlTree$Attribute,
+								'class',
+								_elm_lang$core$String$trim(
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										_user$project$WithControlElements$sizeClass(inp.size),
+										' form-control')))),
 						_1: {
 							ctor: '::',
 							_0: _user$project$WithControlElements$toType(inp.type_),
@@ -14708,19 +14641,6 @@ var _user$project$WithControlElements$build = function (input) {
 	}
 };
 
-var _user$project$Raw$toClasses = function (classList) {
-	var value = A2(
-		_elm_lang$core$String$join,
-		' ',
-		A2(
-			_elm_lang$core$List$filter,
-			function ($class) {
-				return !_elm_lang$core$Native_Utils.eq($class, '');
-			},
-			classList));
-	return _elm_lang$core$Maybe$Just(
-		A2(_user$project$HtmlTree$Attribute, 'class', value));
-};
 var _user$project$Raw$sizeClass = function (size) {
 	var _p0 = size;
 	switch (_p0.ctor) {
@@ -15125,12 +15045,15 @@ var _user$project$Raw$fileUploadToHtmlTree = function (inp) {
 				_0: _user$project$Raw$toDisabled(inp.disabled),
 				_1: {
 					ctor: '::',
-					_0: _user$project$Raw$toClasses(
-						{
-							ctor: '::',
-							_0: _user$project$Raw$sizeClass(inp.size),
-							_1: inp.classList
-						}),
+					_0: _elm_lang$core$Maybe$Just(
+						A2(
+							_user$project$HtmlTree$Attribute,
+							'class',
+							_elm_lang$core$String$trim(
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									_user$project$Raw$sizeClass(inp.size),
+									' form-control-file')))),
 					_1: {
 						ctor: '::',
 						_0: _elm_lang$core$Maybe$Just(
@@ -15201,16 +15124,15 @@ var _user$project$Raw$multiselectToHtmlTree = function (inp) {
 				_0: _user$project$Raw$toDisabled(inp.disabled),
 				_1: {
 					ctor: '::',
-					_0: _user$project$Raw$toClasses(
-						{
-							ctor: '::',
-							_0: _user$project$Raw$sizeClass(inp.size),
-							_1: {
-								ctor: '::',
-								_0: 'form-control',
-								_1: {ctor: '[]'}
-							}
-						}),
+					_0: _elm_lang$core$Maybe$Just(
+						A2(
+							_user$project$HtmlTree$Attribute,
+							'class',
+							_elm_lang$core$String$trim(
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									_user$project$Raw$sizeClass(inp.size),
+									' form-control')))),
 					_1: {
 						ctor: '::',
 						_0: _elm_lang$core$Maybe$Just(
@@ -15270,12 +15192,8 @@ var _user$project$Raw$textAreaToHtmlTree = function (inp) {
 					_0: _user$project$Raw$toDisabled(inp.disabled),
 					_1: {
 						ctor: '::',
-						_0: _user$project$Raw$toClasses(
-							{
-								ctor: '::',
-								_0: 'form-control',
-								_1: {ctor: '[]'}
-							}),
+						_0: _elm_lang$core$Maybe$Just(
+							A2(_user$project$HtmlTree$Attribute, 'class', 'form-control')),
 						_1: {
 							ctor: '::',
 							_0: _elm_lang$core$Maybe$Just(
@@ -15335,16 +15253,15 @@ var _user$project$Raw$selectToHtmlTree = function (inp) {
 				_0: _user$project$Raw$toDisabled(inp.disabled),
 				_1: {
 					ctor: '::',
-					_0: _user$project$Raw$toClasses(
-						{
-							ctor: '::',
-							_0: _user$project$Raw$sizeClass(inp.size),
-							_1: {
-								ctor: '::',
-								_0: 'form-control',
-								_1: {ctor: '[]'}
-							}
-						}),
+					_0: _elm_lang$core$Maybe$Just(
+						A2(
+							_user$project$HtmlTree$Attribute,
+							'class',
+							_elm_lang$core$String$trim(
+								A2(
+									_elm_lang$core$Basics_ops['++'],
+									_user$project$Raw$sizeClass(inp.size),
+									' form-control')))),
 					_1: {ctor: '[]'}
 				}
 			}
@@ -15399,16 +15316,15 @@ var _user$project$Raw$colorToHtmlTree = function (inp) {
 					_0: _user$project$Raw$toDisabled(inp.disabled),
 					_1: {
 						ctor: '::',
-						_0: _user$project$Raw$toClasses(
-							{
-								ctor: '::',
-								_0: _user$project$Raw$sizeClass(inp.size),
-								_1: {
-									ctor: '::',
-									_0: 'form-control',
-									_1: {ctor: '[]'}
-								}
-							}),
+						_0: _elm_lang$core$Maybe$Just(
+							A2(
+								_user$project$HtmlTree$Attribute,
+								'class',
+								_elm_lang$core$String$trim(
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										_user$project$Raw$sizeClass(inp.size),
+										' form-control')))),
 						_1: {
 							ctor: '::',
 							_0: _user$project$Raw$toType(inp.type_),
@@ -15470,19 +15386,15 @@ var _user$project$Raw$textInputToHtmlTree = function (inp) {
 					_0: _user$project$Raw$toDisabled(inp.disabled),
 					_1: {
 						ctor: '::',
-						_0: _user$project$Raw$toClasses(
-							{
-								ctor: '::',
-								_0: _user$project$Raw$sizeClass(inp.size),
-								_1: A2(
-									_elm_lang$core$Basics_ops['++'],
-									{
-										ctor: '::',
-										_0: 'form-control',
-										_1: {ctor: '[]'}
-									},
-									inp.classList)
-							}),
+						_0: _elm_lang$core$Maybe$Just(
+							A2(
+								_user$project$HtmlTree$Attribute,
+								'class',
+								_elm_lang$core$String$trim(
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										_user$project$Raw$sizeClass(inp.size),
+										' form-control')))),
 						_1: {
 							ctor: '::',
 							_0: _user$project$Raw$toType(inp.type_),

@@ -45,7 +45,7 @@ colorToHtmlTree inp =
       [ toId inp.id
       , toPlaceholder inp.placeholder
       , toDisabled inp.disabled
-      , toClasses ((sizeClass inp.size) :: [ "form-control" ])
+      , Just (Attribute "class" (String.trim ((sizeClass inp.size) ++ " form-control")))
       , toType inp.type_
       ] |> List.filterMap identity
 
@@ -65,7 +65,7 @@ selectToHtmlTree inp =
     inputAttrs =
       [ toId inp.id
       , toDisabled inp.disabled
-      , toClasses ((sizeClass inp.size) :: [ "form-control" ])
+      , Just (Attribute "class" (String.trim ((sizeClass inp.size) ++ " form-control")))
       ] |> List.filterMap identity
 
     containerClass = Attribute "class" "form-group dragged"
@@ -97,7 +97,7 @@ multiselectToHtmlTree inp =
     inputAttrs =
       [ toId inp.id
       , toDisabled inp.disabled
-      , toClasses ((sizeClass inp.size) :: [ "form-control" ])
+      , Just (Attribute "class" (String.trim ((sizeClass inp.size) ++ " form-control")))
       , Just (Attribute "multiple" "multiple")
       ] |> List.filterMap identity
 
@@ -118,7 +118,7 @@ fileUploadToHtmlTree inp =
     inputAttrs =
       [ toId inp.id
       , toDisabled inp.disabled
-      , toClasses ((sizeClass inp.size) :: inp.classList)
+      , Just (Attribute "class" (String.trim ((sizeClass inp.size) ++ " form-control-file")))
       , Just (Attribute "type" "file")
       ] |> List.filterMap identity
 
@@ -255,22 +255,13 @@ sizeClass size =
     Large ->
       "form-control-lg"
 
-toClasses : List String -> Maybe Attribute
-toClasses classList =
-  let
-    value =
-      List.filter (\class -> class /= "") classList
-        |> String.join " "
-  in
-    Just (Attribute "class" value)
-
 wrapInAddons input =
   let
     inputAttrs =
       [ toId input.id
       , toPlaceholder input.placeholder
       , toDisabled input.disabled
-      , toClasses ((sizeClass input.size) :: ([ "form-control" ] ++ input.classList))
+      , Just (Attribute "class" (String.trim ((sizeClass input.size) ++ " form-control")))
       , toType input.type_
       ] |> List.filterMap identity
 

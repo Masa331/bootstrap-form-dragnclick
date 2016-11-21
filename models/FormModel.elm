@@ -2,7 +2,6 @@ module FormModel exposing (..)
 
 import String
 
-type alias ClassList = List String
 type alias Id = Int
 type alias Placeholder = Maybe String
 type alias RowNumber = String
@@ -14,7 +13,6 @@ type InputType = Text | TextArea | Select | Multiselect | FileUpload | Radio | C
 type alias Input =
   { type_: InputType
   , id: Id
-  , classList: ClassList
   , placeholder: Placeholder
   , label: Label
   , disabled: Bool
@@ -32,7 +30,6 @@ blankInput : Input
 blankInput =
   { type_ = Text
   , id = 0
-  , classList = []
   , placeholder = Nothing
   , label = Just "Some label.."
   , disabled = False
@@ -62,7 +59,7 @@ multiselect =
 
 fileUpload : Input
 fileUpload =
-  { blankInput | type_ = FileUpload, classList = [ "form-control-file" ] }
+  { blankInput | type_ = FileUpload }
 
 radio : Input
 radio =
@@ -70,7 +67,7 @@ radio =
 
 checkbox : Input
 checkbox =
-  { blankInput | type_ = Checkbox, classList = [ "form-control" ] }
+  { blankInput | type_ = Checkbox }
 
 button :Input
 button =

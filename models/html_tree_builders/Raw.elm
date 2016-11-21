@@ -33,7 +33,7 @@ textInputToHtmlTree inp =
       [ toId inp.id
       , toPlaceholder inp.placeholder
       , toDisabled inp.disabled
-      , toClasses ((sizeClass inp.size) :: ([ "form-control" ] ++ inp.classList))
+      , Just (Attribute "class" (String.trim ((sizeClass inp.size) ++ " form-control")))
       , toType inp.type_
       ] |> List.filterMap identity
 
@@ -53,7 +53,7 @@ colorToHtmlTree inp =
       [ toId inp.id
       , toPlaceholder inp.placeholder
       , toDisabled inp.disabled
-      , toClasses ((sizeClass inp.size) :: [ "form-control" ])
+      , Just (Attribute "class" (String.trim ((sizeClass inp.size) ++ " form-control")))
       , toType inp.type_
       ] |> List.filterMap identity
 
@@ -70,7 +70,7 @@ selectToHtmlTree inp =
     inputAttrs =
       [ toId inp.id
       , toDisabled inp.disabled
-      , toClasses ((sizeClass inp.size) :: [ "form-control" ])
+      , Just (Attribute "class" (String.trim ((sizeClass inp.size) ++ " form-control")))
       ] |> List.filterMap identity
 
     options = List.map (\value -> Element "option" [] (Children []) value []) inp.options
@@ -88,7 +88,7 @@ textAreaToHtmlTree inp =
       [ toId inp.id
       , toPlaceholder inp.placeholder
       , toDisabled inp.disabled
-      , toClasses [ "form-control" ]
+      , Just (Attribute "class" "form-control")
       , Just (Attribute "rows" (inp.rowNumber))
       ] |> List.filterMap identity
 
@@ -104,7 +104,7 @@ multiselectToHtmlTree inp =
     inputAttrs =
       [ toId inp.id
       , toDisabled inp.disabled
-      , toClasses ((sizeClass inp.size) :: [ "form-control" ])
+      , Just (Attribute "class" (String.trim ((sizeClass inp.size) ++ " form-control")))
       , Just (Attribute "multiple" "multiple")
       ] |> List.filterMap identity
 
@@ -122,7 +122,7 @@ fileUploadToHtmlTree inp =
     inputAttrs =
       [ toId inp.id
       , toDisabled inp.disabled
-      , toClasses ((sizeClass inp.size) :: inp.classList)
+      , Just (Attribute "class" (String.trim ((sizeClass inp.size) ++ " form-control-file")))
       , Just (Attribute "type" "file")
       ] |> List.filterMap identity
 
@@ -224,15 +224,6 @@ sizeClass size =
       ""
     Large ->
       "form-control-lg"
-
-toClasses : List String -> Maybe Attribute
-toClasses classList =
-  let
-    value =
-      List.filter (\class -> class /= "") classList
-        |> String.join " "
-  in
-    Just (Attribute "class" value)
 
 wrapInAddons inputAttrs input =
   let
