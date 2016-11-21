@@ -27,120 +27,120 @@ build input =
 -- Private --
 -------------
 
-textInputToHtmlTree inp =
+textInputToHtmlTree input =
   let
     inputAttrs =
-      [ toId inp.id
-      , toPlaceholder inp.placeholder
-      , toDisabled inp.disabled
-      , Just (Attribute "class" (String.trim ((sizeClass inp.size) ++ " form-control")))
-      , toType inp.type_
+      [ Just (Attribute "id" ("input" ++ toString input.id))
+      , Maybe.map (Attribute "placeholder") input.placeholder
+      , if input.disabled then Just (Attribute "disabled" "disabled") else Nothing
+      , Just (Attribute "class" (String.trim ((sizeClass input.size) ++ " form-control")))
+      , Just (Attribute "type" (inputTypeToString input.type_))
       ] |> List.filterMap identity
 
     containerClass = Attribute "class" "form-group"
 
     children =
-      [ toLabel inp.label
-      , wrapInAddons inputAttrs inp
-      , toSmall inp.small
+      [ Maybe.map (\value -> Element "label" [Attribute "for" "input1"] (Children []) value []) input.label
+      , wrapInAddons inputAttrs input
+      , Maybe.map (\value -> Element "small" [Attribute "class" "form-text text-muted"] (Children []) value []) input.small
       ] |> List.filterMap identity
   in
     Element "div" [containerClass] (Children children) "" []
 
-colorToHtmlTree inp =
+colorToHtmlTree input =
   let
     inputAttrs =
-      [ toId inp.id
-      , toPlaceholder inp.placeholder
-      , toDisabled inp.disabled
-      , Just (Attribute "class" (String.trim ((sizeClass inp.size) ++ " form-control")))
-      , toType inp.type_
+      [ Just (Attribute "id" ("input" ++ toString input.id))
+      , Maybe.map (Attribute "placeholder") input.placeholder
+      , if input.disabled then Just (Attribute "disabled" "disabled") else Nothing
+      , Just (Attribute "class" (String.trim ((sizeClass input.size) ++ " form-control")))
+      , Just (Attribute "type" (inputTypeToString input.type_))
       ] |> List.filterMap identity
 
     children =
-      [ toLabel inp.label
+      [ Maybe.map (\value -> Element "label" [Attribute "for" "input1"] (Children []) value []) input.label
       , Just (Element "input" inputAttrs (Children []) "" [])
-      , toSmall inp.small
+      , Maybe.map (\value -> Element "small" [Attribute "class" "form-text text-muted"] (Children []) value []) input.small
       ] |> List.filterMap identity
   in
     Element "div" [Attribute "class" "form-group"] (Children children) "" []
 
-selectToHtmlTree inp =
+selectToHtmlTree input =
   let
     inputAttrs =
-      [ toId inp.id
-      , toDisabled inp.disabled
-      , Just (Attribute "class" (String.trim ((sizeClass inp.size) ++ " form-control")))
+      [ Just (Attribute "id" ("input" ++ toString input.id))
+      , if input.disabled then Just (Attribute "disabled" "disabled") else Nothing
+      , Just (Attribute "class" (String.trim ((sizeClass input.size) ++ " form-control")))
       ] |> List.filterMap identity
 
-    options = List.map (\value -> Element "option" [] (Children []) value []) inp.options
+    options = List.map (\value -> Element "option" [] (Children []) value []) input.options
     children =
-      [ toLabel inp.label
+      [ Maybe.map (\value -> Element "label" [Attribute "for" "input1"] (Children []) value []) input.label
       , Just (Element "select" inputAttrs (Children options) "" [])
-      , toSmall inp.small
+      , Maybe.map (\value -> Element "small" [Attribute "class" "form-text text-muted"] (Children []) value []) input.small
       ] |> List.filterMap identity
   in
     Element "div" [Attribute "class" "form-group"] (Children children) "" []
 
-textAreaToHtmlTree inp =
+textAreaToHtmlTree input =
   let
     inputAttrs =
-      [ toId inp.id
-      , toPlaceholder inp.placeholder
-      , toDisabled inp.disabled
+      [ Just (Attribute "id" ("input" ++ toString input.id))
+      , Maybe.map (Attribute "placeholder") input.placeholder
+      , if input.disabled then Just (Attribute "disabled" "disabled") else Nothing
       , Just (Attribute "class" "form-control")
-      , Just (Attribute "rows" (inp.rowNumber))
+      , Just (Attribute "rows" (input.rowNumber))
       ] |> List.filterMap identity
 
     children =
-      [ toLabel inp.label
-      , wrapInAddons inputAttrs inp
+      [ Maybe.map (\value -> Element "label" [Attribute "for" "input1"] (Children []) value []) input.label
+      , wrapInAddons inputAttrs input
       ] |> List.filterMap identity
   in
     Element "div" [Attribute "class" "form-group"] (Children (children)) "" []
 
-multiselectToHtmlTree inp =
+multiselectToHtmlTree input =
   let
     inputAttrs =
-      [ toId inp.id
-      , toDisabled inp.disabled
-      , Just (Attribute "class" (String.trim ((sizeClass inp.size) ++ " form-control")))
+      [ Just (Attribute "id" ("input" ++ toString input.id))
+      , if input.disabled then Just (Attribute "disabled" "disabled") else Nothing
+      , Just (Attribute "class" (String.trim ((sizeClass input.size) ++ " form-control")))
       , Just (Attribute "multiple" "multiple")
       ] |> List.filterMap identity
 
-    options = List.map (\value -> Element "option" [] (Children []) value []) inp.options
+    options = List.map (\value -> Element "option" [] (Children []) value []) input.options
     children =
-      [ toLabel inp.label
+      [ Maybe.map (\value -> Element "label" [Attribute "for" "input1"] (Children []) value []) input.label
       , Just (Element "select" inputAttrs (Children options) "" [])
-      , toSmall inp.small
+      , Maybe.map (\value -> Element "small" [Attribute "class" "form-text text-muted"] (Children []) value []) input.small
       ] |> List.filterMap identity
   in
     Element "div" [Attribute "class" "form-group"] (Children children) "" []
 
-fileUploadToHtmlTree inp =
+fileUploadToHtmlTree input =
   let
     inputAttrs =
-      [ toId inp.id
-      , toDisabled inp.disabled
-      , Just (Attribute "class" (String.trim ((sizeClass inp.size) ++ " form-control-file")))
+      [ Just (Attribute "id" ("input" ++ toString input.id))
+      , if input.disabled then Just (Attribute "disabled" "disabled") else Nothing
+      , Just (Attribute "class" (String.trim ((sizeClass input.size) ++ " form-control-file")))
       , Just (Attribute "type" "file")
       ] |> List.filterMap identity
 
     children =
-      [ toLabel inp.label
+      [ Maybe.map (\value -> Element "label" [Attribute "for" "input1"] (Children []) value []) input.label
       , Just (Element "input" inputAttrs (Children []) "" [])
-      , toSmall inp.small
+      , Maybe.map (\value -> Element "small" [Attribute "class" "form-text text-muted"] (Children []) value []) input.small
       ] |> List.filterMap identity
   in
     Element "div" [Attribute "class" "form-group"] (Children children) "" []
 
-radioToHtmlTree inp =
+radioToHtmlTree input =
   let
-    options = List.map (\value -> Just (toRadioOption inp.id 1 value (toDisabled inp.disabled))) inp.options
+    options = List.map (\value -> Just (toRadioOption input.id 1 value (if input.disabled then Just (Attribute "disabled" "disabled") else Nothing))) input.options
     children =
-      [ toLegend inp.label ]
+      [ Maybe.map (\value -> Element "legend" [] (Children []) value []) input.label ]
       ++ options
-      ++ [ toSmall inp.small ]
+      ++ [ Maybe.map (\value -> Element "small" [Attribute "class" "form-text text-muted"] (Children []) value []) input.small ]
       |> List.filterMap identity
   in
     Element "fieldset" [Attribute "class" "form-group"] (Children children ) "" []
@@ -162,58 +162,30 @@ toRadioOption id index value disabled =
     Element "div" [ Attribute "class" "form-check" ] (Children [children]) "" []
 
 
-checkboxToHtmlTree inp =
+checkboxToHtmlTree input =
   let
-    input = Element "input" [Attribute "type" "checkbox", Attribute "class" "form-check-input"] (Children []) "" []
+    element = Element "input" [Attribute "type" "checkbox", Attribute "class" "form-check-input"] (Children []) "" []
     label =
-      case inp.label of
+      case input.label of
         Nothing ->
-          Just (Element "label" [Attribute "class" "form-check-label"] (Children [input]) "" [])
+          Just (Element "label" [Attribute "class" "form-check-label"] (Children [element]) "" [])
         Just value ->
-          Just (Element "label" [Attribute "class" "form-check-label"] (Children [input]) value [])
+          Just (Element "label" [Attribute "class" "form-check-label"] (Children [element]) value [])
 
     children = [label] |> List.filterMap identity
   in
     Element "div" [Attribute "class" "form-check"] (Children children) "" []
 
-buttonToHtmlTree inp =
-  Element "button" [Attribute "type" "submit", Attribute "class" "btn btn-primary"] (Children []) (Maybe.withDefault "Submit" inp.label) []
+buttonToHtmlTree input =
+  Element "button" [Attribute "type" "submit", Attribute "class" "btn btn-primary"] (Children []) (Maybe.withDefault "Submit" input.label) []
 
 -------------
 -- Helpers --
 -------------
 
-toPlaceholder : Maybe String -> Maybe Attribute
-toPlaceholder value =
-  Maybe.map (Attribute "placeholder") value
-
-toId : Int -> Maybe Attribute
-toId value =
-  Just (Attribute "id" ("input" ++ toString value))
-
-toDisabled : Bool -> Maybe Attribute
-toDisabled value =
-  if value then Just (Attribute "disabled" "disabled") else Nothing
-
 toAddon : Maybe String -> Maybe Element
 toAddon value =
   Maybe.map (\value -> Element "div" [Attribute "class" "input-group-addon"] (Children []) value []) value
-
-toSmall : Maybe String -> Maybe Element
-toSmall value =
-  Maybe.map (\value -> Element "small" [Attribute "class" "form-text text-muted"] (Children []) value []) value
-
-toLabel : Maybe String -> Maybe Element
-toLabel value =
-  Maybe.map (\value -> Element "label" [Attribute "for" "input1"] (Children []) value []) value
-
-toLegend : Maybe String -> Maybe Element
-toLegend value =
-  Maybe.map (\value -> Element "legend" [] (Children []) value []) value
-
-toType : InputType -> Maybe Attribute
-toType value =
-  Just (Attribute "type" (inputTypeToString value))
 
 sizeClass : Size -> String
 sizeClass size =

@@ -14240,7 +14240,7 @@ var _user$project$WithControlElements$textAreaToHtmlTree = function (input) {
 	var input1 = _elm_lang$core$Maybe$Just(
 		A5(
 			_user$project$HtmlTree$Element,
-			inputType,
+			'textarea',
 			inputAttrs,
 			_user$project$HtmlTree$Children(
 				{ctor: '[]'}),
@@ -14548,7 +14548,6 @@ var _user$project$WithControlElements$textInputToHtmlTree = function (input) {
 				return 'input-group input-group-lg';
 		}
 	}();
-	var inputType = 'input';
 	var add2 = A2(_elm_lang$core$Maybe$map, _user$project$WithControlElements$toAddon, input.addon2);
 	var add1 = A2(_elm_lang$core$Maybe$map, _user$project$WithControlElements$toAddon, input.addon1);
 	var inputAttrs = A2(
@@ -14586,7 +14585,7 @@ var _user$project$WithControlElements$textInputToHtmlTree = function (input) {
 	var input1 = _elm_lang$core$Maybe$Just(
 		A5(
 			_user$project$HtmlTree$Element,
-			inputType,
+			'input',
 			inputAttrs,
 			_user$project$HtmlTree$Children(
 				{ctor: '[]'}),
@@ -14718,66 +14717,6 @@ var _user$project$Raw$sizeClass = function (size) {
 			return 'form-control-lg';
 	}
 };
-var _user$project$Raw$toType = function (value) {
-	return _elm_lang$core$Maybe$Just(
-		A2(
-			_user$project$HtmlTree$Attribute,
-			'type',
-			_user$project$FormModel$inputTypeToString(value)));
-};
-var _user$project$Raw$toLegend = function (value) {
-	return A2(
-		_elm_lang$core$Maybe$map,
-		function (value) {
-			return A5(
-				_user$project$HtmlTree$Element,
-				'legend',
-				{ctor: '[]'},
-				_user$project$HtmlTree$Children(
-					{ctor: '[]'}),
-				value,
-				{ctor: '[]'});
-		},
-		value);
-};
-var _user$project$Raw$toLabel = function (value) {
-	return A2(
-		_elm_lang$core$Maybe$map,
-		function (value) {
-			return A5(
-				_user$project$HtmlTree$Element,
-				'label',
-				{
-					ctor: '::',
-					_0: A2(_user$project$HtmlTree$Attribute, 'for', 'input1'),
-					_1: {ctor: '[]'}
-				},
-				_user$project$HtmlTree$Children(
-					{ctor: '[]'}),
-				value,
-				{ctor: '[]'});
-		},
-		value);
-};
-var _user$project$Raw$toSmall = function (value) {
-	return A2(
-		_elm_lang$core$Maybe$map,
-		function (value) {
-			return A5(
-				_user$project$HtmlTree$Element,
-				'small',
-				{
-					ctor: '::',
-					_0: A2(_user$project$HtmlTree$Attribute, 'class', 'form-text text-muted'),
-					_1: {ctor: '[]'}
-				},
-				_user$project$HtmlTree$Children(
-					{ctor: '[]'}),
-				value,
-				{ctor: '[]'});
-		},
-		value);
-};
 var _user$project$Raw$toAddon = function (value) {
 	return A2(
 		_elm_lang$core$Maybe$map,
@@ -14859,27 +14798,7 @@ var _user$project$Raw$wrapInAddons = F2(
 				'',
 				{ctor: '[]'}));
 	});
-var _user$project$Raw$toDisabled = function (value) {
-	return value ? _elm_lang$core$Maybe$Just(
-		A2(_user$project$HtmlTree$Attribute, 'disabled', 'disabled')) : _elm_lang$core$Maybe$Nothing;
-};
-var _user$project$Raw$toId = function (value) {
-	return _elm_lang$core$Maybe$Just(
-		A2(
-			_user$project$HtmlTree$Attribute,
-			'id',
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				'input',
-				_elm_lang$core$Basics$toString(value))));
-};
-var _user$project$Raw$toPlaceholder = function (value) {
-	return A2(
-		_elm_lang$core$Maybe$map,
-		_user$project$HtmlTree$Attribute('placeholder'),
-		value);
-};
-var _user$project$Raw$buttonToHtmlTree = function (inp) {
+var _user$project$Raw$buttonToHtmlTree = function (input) {
 	return A5(
 		_user$project$HtmlTree$Element,
 		'button',
@@ -14894,11 +14813,11 @@ var _user$project$Raw$buttonToHtmlTree = function (inp) {
 		},
 		_user$project$HtmlTree$Children(
 			{ctor: '[]'}),
-		A2(_elm_lang$core$Maybe$withDefault, 'Submit', inp.label),
+		A2(_elm_lang$core$Maybe$withDefault, 'Submit', input.label),
 		{ctor: '[]'});
 };
-var _user$project$Raw$checkboxToHtmlTree = function (inp) {
-	var input = A5(
+var _user$project$Raw$checkboxToHtmlTree = function (input) {
+	var element = A5(
 		_user$project$HtmlTree$Element,
 		'input',
 		{
@@ -14915,7 +14834,7 @@ var _user$project$Raw$checkboxToHtmlTree = function (inp) {
 		'',
 		{ctor: '[]'});
 	var label = function () {
-		var _p2 = inp.label;
+		var _p2 = input.label;
 		if (_p2.ctor === 'Nothing') {
 			return _elm_lang$core$Maybe$Just(
 				A5(
@@ -14929,7 +14848,7 @@ var _user$project$Raw$checkboxToHtmlTree = function (inp) {
 					_user$project$HtmlTree$Children(
 						{
 							ctor: '::',
-							_0: input,
+							_0: element,
 							_1: {ctor: '[]'}
 						}),
 					'',
@@ -14947,7 +14866,7 @@ var _user$project$Raw$checkboxToHtmlTree = function (inp) {
 					_user$project$HtmlTree$Children(
 						{
 							ctor: '::',
-							_0: input,
+							_0: element,
 							_1: {ctor: '[]'}
 						}),
 					_p2._0,
@@ -15056,19 +14975,20 @@ var _user$project$Raw$toRadioOption = F4(
 			'',
 			{ctor: '[]'});
 	});
-var _user$project$Raw$radioToHtmlTree = function (inp) {
+var _user$project$Raw$radioToHtmlTree = function (input) {
 	var options = A2(
 		_elm_lang$core$List$map,
 		function (value) {
 			return _elm_lang$core$Maybe$Just(
 				A4(
 					_user$project$Raw$toRadioOption,
-					inp.id,
+					input.id,
 					1,
 					value,
-					_user$project$Raw$toDisabled(inp.disabled)));
+					input.disabled ? _elm_lang$core$Maybe$Just(
+						A2(_user$project$HtmlTree$Attribute, 'disabled', 'disabled')) : _elm_lang$core$Maybe$Nothing));
 		},
-		inp.options);
+		input.options);
 	var children = A2(
 		_elm_lang$core$List$filterMap,
 		_elm_lang$core$Basics$identity,
@@ -15076,7 +14996,19 @@ var _user$project$Raw$radioToHtmlTree = function (inp) {
 			_elm_lang$core$Basics_ops['++'],
 			{
 				ctor: '::',
-				_0: _user$project$Raw$toLegend(inp.label),
+				_0: A2(
+					_elm_lang$core$Maybe$map,
+					function (value) {
+						return A5(
+							_user$project$HtmlTree$Element,
+							'legend',
+							{ctor: '[]'},
+							_user$project$HtmlTree$Children(
+								{ctor: '[]'}),
+							value,
+							{ctor: '[]'});
+					},
+					input.label),
 				_1: {ctor: '[]'}
 			},
 			A2(
@@ -15084,7 +15016,23 @@ var _user$project$Raw$radioToHtmlTree = function (inp) {
 				options,
 				{
 					ctor: '::',
-					_0: _user$project$Raw$toSmall(inp.small),
+					_0: A2(
+						_elm_lang$core$Maybe$map,
+						function (value) {
+							return A5(
+								_user$project$HtmlTree$Element,
+								'small',
+								{
+									ctor: '::',
+									_0: A2(_user$project$HtmlTree$Attribute, 'class', 'form-text text-muted'),
+									_1: {ctor: '[]'}
+								},
+								_user$project$HtmlTree$Children(
+									{ctor: '[]'}),
+								value,
+								{ctor: '[]'});
+						},
+						input.small),
 					_1: {ctor: '[]'}
 				})));
 	return A5(
@@ -15099,16 +15047,24 @@ var _user$project$Raw$radioToHtmlTree = function (inp) {
 		'',
 		{ctor: '[]'});
 };
-var _user$project$Raw$fileUploadToHtmlTree = function (inp) {
+var _user$project$Raw$fileUploadToHtmlTree = function (input) {
 	var inputAttrs = A2(
 		_elm_lang$core$List$filterMap,
 		_elm_lang$core$Basics$identity,
 		{
 			ctor: '::',
-			_0: _user$project$Raw$toId(inp.id),
+			_0: _elm_lang$core$Maybe$Just(
+				A2(
+					_user$project$HtmlTree$Attribute,
+					'id',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'input',
+						_elm_lang$core$Basics$toString(input.id)))),
 			_1: {
 				ctor: '::',
-				_0: _user$project$Raw$toDisabled(inp.disabled),
+				_0: input.disabled ? _elm_lang$core$Maybe$Just(
+					A2(_user$project$HtmlTree$Attribute, 'disabled', 'disabled')) : _elm_lang$core$Maybe$Nothing,
 				_1: {
 					ctor: '::',
 					_0: _elm_lang$core$Maybe$Just(
@@ -15118,7 +15074,7 @@ var _user$project$Raw$fileUploadToHtmlTree = function (inp) {
 							_elm_lang$core$String$trim(
 								A2(
 									_elm_lang$core$Basics_ops['++'],
-									_user$project$Raw$sizeClass(inp.size),
+									_user$project$Raw$sizeClass(input.size),
 									' form-control-file')))),
 					_1: {
 						ctor: '::',
@@ -15134,7 +15090,23 @@ var _user$project$Raw$fileUploadToHtmlTree = function (inp) {
 		_elm_lang$core$Basics$identity,
 		{
 			ctor: '::',
-			_0: _user$project$Raw$toLabel(inp.label),
+			_0: A2(
+				_elm_lang$core$Maybe$map,
+				function (value) {
+					return A5(
+						_user$project$HtmlTree$Element,
+						'label',
+						{
+							ctor: '::',
+							_0: A2(_user$project$HtmlTree$Attribute, 'for', 'input1'),
+							_1: {ctor: '[]'}
+						},
+						_user$project$HtmlTree$Children(
+							{ctor: '[]'}),
+						value,
+						{ctor: '[]'});
+				},
+				input.label),
 			_1: {
 				ctor: '::',
 				_0: _elm_lang$core$Maybe$Just(
@@ -15148,7 +15120,23 @@ var _user$project$Raw$fileUploadToHtmlTree = function (inp) {
 						{ctor: '[]'})),
 				_1: {
 					ctor: '::',
-					_0: _user$project$Raw$toSmall(inp.small),
+					_0: A2(
+						_elm_lang$core$Maybe$map,
+						function (value) {
+							return A5(
+								_user$project$HtmlTree$Element,
+								'small',
+								{
+									ctor: '::',
+									_0: A2(_user$project$HtmlTree$Attribute, 'class', 'form-text text-muted'),
+									_1: {ctor: '[]'}
+								},
+								_user$project$HtmlTree$Children(
+									{ctor: '[]'}),
+								value,
+								{ctor: '[]'});
+						},
+						input.small),
 					_1: {ctor: '[]'}
 				}
 			}
@@ -15165,7 +15153,7 @@ var _user$project$Raw$fileUploadToHtmlTree = function (inp) {
 		'',
 		{ctor: '[]'});
 };
-var _user$project$Raw$multiselectToHtmlTree = function (inp) {
+var _user$project$Raw$multiselectToHtmlTree = function (input) {
 	var options = A2(
 		_elm_lang$core$List$map,
 		function (value) {
@@ -15178,16 +15166,24 @@ var _user$project$Raw$multiselectToHtmlTree = function (inp) {
 				value,
 				{ctor: '[]'});
 		},
-		inp.options);
+		input.options);
 	var inputAttrs = A2(
 		_elm_lang$core$List$filterMap,
 		_elm_lang$core$Basics$identity,
 		{
 			ctor: '::',
-			_0: _user$project$Raw$toId(inp.id),
+			_0: _elm_lang$core$Maybe$Just(
+				A2(
+					_user$project$HtmlTree$Attribute,
+					'id',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'input',
+						_elm_lang$core$Basics$toString(input.id)))),
 			_1: {
 				ctor: '::',
-				_0: _user$project$Raw$toDisabled(inp.disabled),
+				_0: input.disabled ? _elm_lang$core$Maybe$Just(
+					A2(_user$project$HtmlTree$Attribute, 'disabled', 'disabled')) : _elm_lang$core$Maybe$Nothing,
 				_1: {
 					ctor: '::',
 					_0: _elm_lang$core$Maybe$Just(
@@ -15197,7 +15193,7 @@ var _user$project$Raw$multiselectToHtmlTree = function (inp) {
 							_elm_lang$core$String$trim(
 								A2(
 									_elm_lang$core$Basics_ops['++'],
-									_user$project$Raw$sizeClass(inp.size),
+									_user$project$Raw$sizeClass(input.size),
 									' form-control')))),
 					_1: {
 						ctor: '::',
@@ -15213,7 +15209,23 @@ var _user$project$Raw$multiselectToHtmlTree = function (inp) {
 		_elm_lang$core$Basics$identity,
 		{
 			ctor: '::',
-			_0: _user$project$Raw$toLabel(inp.label),
+			_0: A2(
+				_elm_lang$core$Maybe$map,
+				function (value) {
+					return A5(
+						_user$project$HtmlTree$Element,
+						'label',
+						{
+							ctor: '::',
+							_0: A2(_user$project$HtmlTree$Attribute, 'for', 'input1'),
+							_1: {ctor: '[]'}
+						},
+						_user$project$HtmlTree$Children(
+							{ctor: '[]'}),
+						value,
+						{ctor: '[]'});
+				},
+				input.label),
 			_1: {
 				ctor: '::',
 				_0: _elm_lang$core$Maybe$Just(
@@ -15226,7 +15238,23 @@ var _user$project$Raw$multiselectToHtmlTree = function (inp) {
 						{ctor: '[]'})),
 				_1: {
 					ctor: '::',
-					_0: _user$project$Raw$toSmall(inp.small),
+					_0: A2(
+						_elm_lang$core$Maybe$map,
+						function (value) {
+							return A5(
+								_user$project$HtmlTree$Element,
+								'small',
+								{
+									ctor: '::',
+									_0: A2(_user$project$HtmlTree$Attribute, 'class', 'form-text text-muted'),
+									_1: {ctor: '[]'}
+								},
+								_user$project$HtmlTree$Children(
+									{ctor: '[]'}),
+								value,
+								{ctor: '[]'});
+						},
+						input.small),
 					_1: {ctor: '[]'}
 				}
 			}
@@ -15243,19 +15271,30 @@ var _user$project$Raw$multiselectToHtmlTree = function (inp) {
 		'',
 		{ctor: '[]'});
 };
-var _user$project$Raw$textAreaToHtmlTree = function (inp) {
+var _user$project$Raw$textAreaToHtmlTree = function (input) {
 	var inputAttrs = A2(
 		_elm_lang$core$List$filterMap,
 		_elm_lang$core$Basics$identity,
 		{
 			ctor: '::',
-			_0: _user$project$Raw$toId(inp.id),
+			_0: _elm_lang$core$Maybe$Just(
+				A2(
+					_user$project$HtmlTree$Attribute,
+					'id',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'input',
+						_elm_lang$core$Basics$toString(input.id)))),
 			_1: {
 				ctor: '::',
-				_0: _user$project$Raw$toPlaceholder(inp.placeholder),
+				_0: A2(
+					_elm_lang$core$Maybe$map,
+					_user$project$HtmlTree$Attribute('placeholder'),
+					input.placeholder),
 				_1: {
 					ctor: '::',
-					_0: _user$project$Raw$toDisabled(inp.disabled),
+					_0: input.disabled ? _elm_lang$core$Maybe$Just(
+						A2(_user$project$HtmlTree$Attribute, 'disabled', 'disabled')) : _elm_lang$core$Maybe$Nothing,
 					_1: {
 						ctor: '::',
 						_0: _elm_lang$core$Maybe$Just(
@@ -15263,7 +15302,7 @@ var _user$project$Raw$textAreaToHtmlTree = function (inp) {
 						_1: {
 							ctor: '::',
 							_0: _elm_lang$core$Maybe$Just(
-								A2(_user$project$HtmlTree$Attribute, 'rows', inp.rowNumber)),
+								A2(_user$project$HtmlTree$Attribute, 'rows', input.rowNumber)),
 							_1: {ctor: '[]'}
 						}
 					}
@@ -15275,10 +15314,26 @@ var _user$project$Raw$textAreaToHtmlTree = function (inp) {
 		_elm_lang$core$Basics$identity,
 		{
 			ctor: '::',
-			_0: _user$project$Raw$toLabel(inp.label),
+			_0: A2(
+				_elm_lang$core$Maybe$map,
+				function (value) {
+					return A5(
+						_user$project$HtmlTree$Element,
+						'label',
+						{
+							ctor: '::',
+							_0: A2(_user$project$HtmlTree$Attribute, 'for', 'input1'),
+							_1: {ctor: '[]'}
+						},
+						_user$project$HtmlTree$Children(
+							{ctor: '[]'}),
+						value,
+						{ctor: '[]'});
+				},
+				input.label),
 			_1: {
 				ctor: '::',
-				_0: A2(_user$project$Raw$wrapInAddons, inputAttrs, inp),
+				_0: A2(_user$project$Raw$wrapInAddons, inputAttrs, input),
 				_1: {ctor: '[]'}
 			}
 		});
@@ -15294,7 +15349,7 @@ var _user$project$Raw$textAreaToHtmlTree = function (inp) {
 		'',
 		{ctor: '[]'});
 };
-var _user$project$Raw$selectToHtmlTree = function (inp) {
+var _user$project$Raw$selectToHtmlTree = function (input) {
 	var options = A2(
 		_elm_lang$core$List$map,
 		function (value) {
@@ -15307,16 +15362,24 @@ var _user$project$Raw$selectToHtmlTree = function (inp) {
 				value,
 				{ctor: '[]'});
 		},
-		inp.options);
+		input.options);
 	var inputAttrs = A2(
 		_elm_lang$core$List$filterMap,
 		_elm_lang$core$Basics$identity,
 		{
 			ctor: '::',
-			_0: _user$project$Raw$toId(inp.id),
+			_0: _elm_lang$core$Maybe$Just(
+				A2(
+					_user$project$HtmlTree$Attribute,
+					'id',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'input',
+						_elm_lang$core$Basics$toString(input.id)))),
 			_1: {
 				ctor: '::',
-				_0: _user$project$Raw$toDisabled(inp.disabled),
+				_0: input.disabled ? _elm_lang$core$Maybe$Just(
+					A2(_user$project$HtmlTree$Attribute, 'disabled', 'disabled')) : _elm_lang$core$Maybe$Nothing,
 				_1: {
 					ctor: '::',
 					_0: _elm_lang$core$Maybe$Just(
@@ -15326,7 +15389,7 @@ var _user$project$Raw$selectToHtmlTree = function (inp) {
 							_elm_lang$core$String$trim(
 								A2(
 									_elm_lang$core$Basics_ops['++'],
-									_user$project$Raw$sizeClass(inp.size),
+									_user$project$Raw$sizeClass(input.size),
 									' form-control')))),
 					_1: {ctor: '[]'}
 				}
@@ -15337,7 +15400,23 @@ var _user$project$Raw$selectToHtmlTree = function (inp) {
 		_elm_lang$core$Basics$identity,
 		{
 			ctor: '::',
-			_0: _user$project$Raw$toLabel(inp.label),
+			_0: A2(
+				_elm_lang$core$Maybe$map,
+				function (value) {
+					return A5(
+						_user$project$HtmlTree$Element,
+						'label',
+						{
+							ctor: '::',
+							_0: A2(_user$project$HtmlTree$Attribute, 'for', 'input1'),
+							_1: {ctor: '[]'}
+						},
+						_user$project$HtmlTree$Children(
+							{ctor: '[]'}),
+						value,
+						{ctor: '[]'});
+				},
+				input.label),
 			_1: {
 				ctor: '::',
 				_0: _elm_lang$core$Maybe$Just(
@@ -15350,7 +15429,23 @@ var _user$project$Raw$selectToHtmlTree = function (inp) {
 						{ctor: '[]'})),
 				_1: {
 					ctor: '::',
-					_0: _user$project$Raw$toSmall(inp.small),
+					_0: A2(
+						_elm_lang$core$Maybe$map,
+						function (value) {
+							return A5(
+								_user$project$HtmlTree$Element,
+								'small',
+								{
+									ctor: '::',
+									_0: A2(_user$project$HtmlTree$Attribute, 'class', 'form-text text-muted'),
+									_1: {ctor: '[]'}
+								},
+								_user$project$HtmlTree$Children(
+									{ctor: '[]'}),
+								value,
+								{ctor: '[]'});
+						},
+						input.small),
 					_1: {ctor: '[]'}
 				}
 			}
@@ -15367,19 +15462,30 @@ var _user$project$Raw$selectToHtmlTree = function (inp) {
 		'',
 		{ctor: '[]'});
 };
-var _user$project$Raw$colorToHtmlTree = function (inp) {
+var _user$project$Raw$colorToHtmlTree = function (input) {
 	var inputAttrs = A2(
 		_elm_lang$core$List$filterMap,
 		_elm_lang$core$Basics$identity,
 		{
 			ctor: '::',
-			_0: _user$project$Raw$toId(inp.id),
+			_0: _elm_lang$core$Maybe$Just(
+				A2(
+					_user$project$HtmlTree$Attribute,
+					'id',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'input',
+						_elm_lang$core$Basics$toString(input.id)))),
 			_1: {
 				ctor: '::',
-				_0: _user$project$Raw$toPlaceholder(inp.placeholder),
+				_0: A2(
+					_elm_lang$core$Maybe$map,
+					_user$project$HtmlTree$Attribute('placeholder'),
+					input.placeholder),
 				_1: {
 					ctor: '::',
-					_0: _user$project$Raw$toDisabled(inp.disabled),
+					_0: input.disabled ? _elm_lang$core$Maybe$Just(
+						A2(_user$project$HtmlTree$Attribute, 'disabled', 'disabled')) : _elm_lang$core$Maybe$Nothing,
 					_1: {
 						ctor: '::',
 						_0: _elm_lang$core$Maybe$Just(
@@ -15389,11 +15495,15 @@ var _user$project$Raw$colorToHtmlTree = function (inp) {
 								_elm_lang$core$String$trim(
 									A2(
 										_elm_lang$core$Basics_ops['++'],
-										_user$project$Raw$sizeClass(inp.size),
+										_user$project$Raw$sizeClass(input.size),
 										' form-control')))),
 						_1: {
 							ctor: '::',
-							_0: _user$project$Raw$toType(inp.type_),
+							_0: _elm_lang$core$Maybe$Just(
+								A2(
+									_user$project$HtmlTree$Attribute,
+									'type',
+									_user$project$FormModel$inputTypeToString(input.type_))),
 							_1: {ctor: '[]'}
 						}
 					}
@@ -15405,7 +15515,23 @@ var _user$project$Raw$colorToHtmlTree = function (inp) {
 		_elm_lang$core$Basics$identity,
 		{
 			ctor: '::',
-			_0: _user$project$Raw$toLabel(inp.label),
+			_0: A2(
+				_elm_lang$core$Maybe$map,
+				function (value) {
+					return A5(
+						_user$project$HtmlTree$Element,
+						'label',
+						{
+							ctor: '::',
+							_0: A2(_user$project$HtmlTree$Attribute, 'for', 'input1'),
+							_1: {ctor: '[]'}
+						},
+						_user$project$HtmlTree$Children(
+							{ctor: '[]'}),
+						value,
+						{ctor: '[]'});
+				},
+				input.label),
 			_1: {
 				ctor: '::',
 				_0: _elm_lang$core$Maybe$Just(
@@ -15419,7 +15545,23 @@ var _user$project$Raw$colorToHtmlTree = function (inp) {
 						{ctor: '[]'})),
 				_1: {
 					ctor: '::',
-					_0: _user$project$Raw$toSmall(inp.small),
+					_0: A2(
+						_elm_lang$core$Maybe$map,
+						function (value) {
+							return A5(
+								_user$project$HtmlTree$Element,
+								'small',
+								{
+									ctor: '::',
+									_0: A2(_user$project$HtmlTree$Attribute, 'class', 'form-text text-muted'),
+									_1: {ctor: '[]'}
+								},
+								_user$project$HtmlTree$Children(
+									{ctor: '[]'}),
+								value,
+								{ctor: '[]'});
+						},
+						input.small),
 					_1: {ctor: '[]'}
 				}
 			}
@@ -15436,20 +15578,31 @@ var _user$project$Raw$colorToHtmlTree = function (inp) {
 		'',
 		{ctor: '[]'});
 };
-var _user$project$Raw$textInputToHtmlTree = function (inp) {
+var _user$project$Raw$textInputToHtmlTree = function (input) {
 	var containerClass = A2(_user$project$HtmlTree$Attribute, 'class', 'form-group');
 	var inputAttrs = A2(
 		_elm_lang$core$List$filterMap,
 		_elm_lang$core$Basics$identity,
 		{
 			ctor: '::',
-			_0: _user$project$Raw$toId(inp.id),
+			_0: _elm_lang$core$Maybe$Just(
+				A2(
+					_user$project$HtmlTree$Attribute,
+					'id',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'input',
+						_elm_lang$core$Basics$toString(input.id)))),
 			_1: {
 				ctor: '::',
-				_0: _user$project$Raw$toPlaceholder(inp.placeholder),
+				_0: A2(
+					_elm_lang$core$Maybe$map,
+					_user$project$HtmlTree$Attribute('placeholder'),
+					input.placeholder),
 				_1: {
 					ctor: '::',
-					_0: _user$project$Raw$toDisabled(inp.disabled),
+					_0: input.disabled ? _elm_lang$core$Maybe$Just(
+						A2(_user$project$HtmlTree$Attribute, 'disabled', 'disabled')) : _elm_lang$core$Maybe$Nothing,
 					_1: {
 						ctor: '::',
 						_0: _elm_lang$core$Maybe$Just(
@@ -15459,11 +15612,15 @@ var _user$project$Raw$textInputToHtmlTree = function (inp) {
 								_elm_lang$core$String$trim(
 									A2(
 										_elm_lang$core$Basics_ops['++'],
-										_user$project$Raw$sizeClass(inp.size),
+										_user$project$Raw$sizeClass(input.size),
 										' form-control')))),
 						_1: {
 							ctor: '::',
-							_0: _user$project$Raw$toType(inp.type_),
+							_0: _elm_lang$core$Maybe$Just(
+								A2(
+									_user$project$HtmlTree$Attribute,
+									'type',
+									_user$project$FormModel$inputTypeToString(input.type_))),
 							_1: {ctor: '[]'}
 						}
 					}
@@ -15475,13 +15632,45 @@ var _user$project$Raw$textInputToHtmlTree = function (inp) {
 		_elm_lang$core$Basics$identity,
 		{
 			ctor: '::',
-			_0: _user$project$Raw$toLabel(inp.label),
+			_0: A2(
+				_elm_lang$core$Maybe$map,
+				function (value) {
+					return A5(
+						_user$project$HtmlTree$Element,
+						'label',
+						{
+							ctor: '::',
+							_0: A2(_user$project$HtmlTree$Attribute, 'for', 'input1'),
+							_1: {ctor: '[]'}
+						},
+						_user$project$HtmlTree$Children(
+							{ctor: '[]'}),
+						value,
+						{ctor: '[]'});
+				},
+				input.label),
 			_1: {
 				ctor: '::',
-				_0: A2(_user$project$Raw$wrapInAddons, inputAttrs, inp),
+				_0: A2(_user$project$Raw$wrapInAddons, inputAttrs, input),
 				_1: {
 					ctor: '::',
-					_0: _user$project$Raw$toSmall(inp.small),
+					_0: A2(
+						_elm_lang$core$Maybe$map,
+						function (value) {
+							return A5(
+								_user$project$HtmlTree$Element,
+								'small',
+								{
+									ctor: '::',
+									_0: A2(_user$project$HtmlTree$Attribute, 'class', 'form-text text-muted'),
+									_1: {ctor: '[]'}
+								},
+								_user$project$HtmlTree$Children(
+									{ctor: '[]'}),
+								value,
+								{ctor: '[]'});
+						},
+						input.small),
 					_1: {ctor: '[]'}
 				}
 			}
