@@ -15520,11 +15520,6 @@ var _user$project$Raw$textInputToHtmlTree = function (inp) {
 		'',
 		{ctor: '[]'});
 };
-var _user$project$Raw$onMouseDown = function (id) {
-	return _elm_lang$html$Html_Events$onMouseDown(
-		_user$project$Messages$MouseMessage(
-			_user$project$Messages$MouseClick(id)));
-};
 var _user$project$Raw$build = function (input) {
 	var _p3 = input.type_;
 	switch (_p3.ctor) {

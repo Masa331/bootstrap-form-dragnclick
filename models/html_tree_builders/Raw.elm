@@ -27,9 +27,6 @@ build input =
 -- Private --
 -------------
 
-onMouseDown id =
-  Html.Events.onMouseDown ((Messages.MouseMessage (Messages.MouseClick id)))
-
 textInputToHtmlTree inp =
   let
     inputAttrs =
