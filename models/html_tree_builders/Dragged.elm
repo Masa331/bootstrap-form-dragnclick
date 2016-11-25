@@ -235,7 +235,7 @@ toType : InputType -> Maybe Attribute
 toType value =
   Just (Attribute "type" (inputTypeToString value))
 
-toLinks : Id -> Maybe Element
+toLinks : Int -> Maybe Element
 toLinks value =
   let
     i1 = Element "i" [Attribute "class" "fa fa-arrows control-element"] (Children []) "" []

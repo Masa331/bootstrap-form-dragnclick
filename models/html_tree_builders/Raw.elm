@@ -30,20 +30,17 @@ build input =
 textInputToHtmlTree input =
   let
     inputAttrs =
-      [ Just (Attribute "id" ("input" ++ toString input.id))
+      [ Just (Attribute "id" (toString input.id))
       , Maybe.map (Attribute "placeholder") input.placeholder
       , if input.disabled then Just (Attribute "disabled" "disabled") else Nothing
       , Just (Attribute "class" (String.trim ((sizeClass input.size) ++ " form-control")))
       , Just (Attribute "type" (inputTypeToString input.type_))
       ] |> List.filterMap identity
 
-    containerClass = Attribute "class" "form-group"
-
     add1 = toAddon input.addon1
     add2 = toAddon input.addon2
-    inputType = "input"
 
-    input1 = Just (Element inputType inputAttrs (Children []) "" [])
+    input1 = Just (Element "input" inputAttrs (Children []) "" [])
 
     inputWithAddons =
       if List.isEmpty (List.filterMap identity [add1, add2]) then
@@ -51,14 +48,13 @@ textInputToHtmlTree input =
       else
         Just (Element "div" [Attribute "class" "input-group"] (Children ([add1, input1, add2] |> List.filterMap identity)) "" [])
 
-
     children =
-      [ Maybe.map (\value -> Element "label" [Attribute "for" "input1"] (Children []) value []) input.label
+      [ Maybe.map (\value -> Element "label" [Attribute "for" (toString input.id)] (Children []) value []) input.label
       , inputWithAddons
       , Maybe.map (\value -> Element "small" [Attribute "class" "form-text text-muted"] (Children []) value []) input.small
       ] |> List.filterMap identity
   in
-    Element "div" [containerClass] (Children children) "" []
+    Element "div" [Attribute "class" "form-group"] (Children children) "" []
 
 colorToHtmlTree input =
   let
@@ -107,8 +103,7 @@ textAreaToHtmlTree input =
 
     add1 = toAddon input.addon1
     add2 = toAddon input.addon2
-    inputType = "textarea"
-    input1 = Just (Element inputType inputAttrs (Children []) "" [])
+    input1 = Just (Element "textarea" inputAttrs (Children []) "" [])
     inputWithAddons =
       if List.isEmpty (List.filterMap identity [add1, add2]) then
         input1

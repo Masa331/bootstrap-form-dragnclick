@@ -2,25 +2,21 @@ module FormModel exposing (..)
 
 import String
 
-type alias Id = Int
-type alias Placeholder = Maybe String
-type alias RowNumber = String
-type alias Label = Maybe String
 type Size = Small | Normal | Large
 
 type InputType = Text | TextArea | Select | Multiselect | FileUpload | Radio | Checkbox | Button | Search | Email | Url | Tel | Password | Number | DatetimeLocal | Date | Month | Week | Time | Color
 
 type alias Input =
   { type_: InputType
-  , id: Id
-  , placeholder: Placeholder
-  , label: Label
+  , id: Int
+  , placeholder: Maybe String
+  , label: Maybe String
   , disabled: Bool
   , size: Size
   , addon1: Maybe String
   , addon2: Maybe String
   , small: Maybe String
-  , rowNumber: RowNumber
+  , rowNumber: String
   , dragged: Bool
   , options: List String }
 
@@ -45,31 +41,11 @@ textInput : Input
 textInput =
   { blankInput | type_ = Text }
 
-textArea : Input
-textArea =
-  { blankInput | type_ = TextArea, rowNumber = "3" }
-
-select : Input
-select =
-  { blankInput | type_ = Select, options = [ "options1", "option2", "option3" ] }
-
-multiselect : Input
-multiselect =
-  { blankInput | type_ = Multiselect, options = [ "Option1", "Option2", "Option3" ] }
-
-fileUpload : Input
-fileUpload =
-  { blankInput | type_ = FileUpload }
-
-radio : Input
-radio =
-  { blankInput | type_ = Radio, options = [ "Option1", "Option2", "Option3" ] }
-
 checkbox : Input
 checkbox =
   { blankInput | type_ = Checkbox }
 
-button :Input
+button : Input
 button =
   { blankInput | type_ = Button }
 
@@ -79,11 +55,7 @@ inputTypeToString type_ =
     DatetimeLocal -> "datetime-local"
     _ -> (toString >> String.toLower) type_
 
-sizeToString : Size -> String
-sizeToString =
-  toString >> String.toLower
-
-rowsToNumber : RowNumber -> Int
+rowsToNumber : String -> Int
 rowsToNumber rowNumber =
   String.toInt rowNumber
     |> Result.withDefault 3
@@ -144,12 +116,6 @@ stringInputTypes =
   , "time"
   , "color"
   ]
---
--- updateInput model id updateFunc =
---   let
---     updatedInputs = List.map (\inp -> if inp.id == id then updateFunc inp else inp) model.form
---   in
---     ({ model | form = updatedInputs }, Cmd.none)
 
 updateInputs inputs targetId updateFunc =
   List.map (\inp -> if inp.id == targetId then updateFunc inp else inp) inputs

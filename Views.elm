@@ -25,7 +25,7 @@ view model =
           source model
         InputEdit id ->
           let
-            input = List.head (List.filter (\el -> el.id == id) model.form)
+            input = List.head (List.filter (\el -> el.id == id) model.inputs)
           in
             case input of
               Nothing ->
@@ -42,7 +42,7 @@ view model =
 formEdit : Model -> Html Msg
 formEdit model =
   let
-    inputs1 = List.map HtmlTreeBuilder.buildWithControlElements model.form
+    inputs1 = List.map HtmlTreeBuilder.buildWithControlElements model.inputs
     htmlTreeWithControlElements = HtmlTree.Element "form" [] (HtmlTree.Children inputs1) "" []
   in
     div
@@ -94,7 +94,7 @@ inputEdit input =
 source : Model -> Html Msg
 source model =
   let
-    inputs1 = List.map HtmlTreeBuilder.buildRaw model.form
+    inputs1 = List.map HtmlTreeBuilder.buildRaw model.inputs
     htmlRaw = HtmlTree.Element "form" [] (HtmlTree.Children inputs1) "" []
   in
     div

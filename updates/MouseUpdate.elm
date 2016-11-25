@@ -8,16 +8,16 @@ update msg model =
     MouseClick id ->
       let
         updateFunc = (\input -> { input | dragged = True })
-        updatedInputs = List.map (\inp -> if inp.id == id then updateFunc inp else inp) model.form
-        newModel = { model | form = updatedInputs  }
+        updatedInputs = List.map (\inp -> if inp.id == id then updateFunc inp else inp) model.inputs
+        newModel = { model | inputs = updatedInputs  }
       in
 -- This coulds be easily improved to call for new map only on first down(no dragged element..)
         (newModel, Utils.getFormMap "unused_nonsense")
     MouseUp _ ->
       let
-        updatedInputs = List.map (\input -> { input | dragged = False }) model.form
+        updatedInputs = List.map (\input -> { input | dragged = False }) model.inputs
       in
-       ({ model | form = updatedInputs
+       ({ model | inputs = updatedInputs
                 , mousePosition = { x = 0, y = 0 }
                 , initialMousePosition = { x = 0, y = 0 } }
        , Cmd.none)
@@ -37,7 +37,7 @@ update msg model =
 moveInputs model =
   let
     draggedElementsIds =
-      List.filter .dragged model.form
+      List.filter .dragged model.inputs
       |> List.map .id
       |> List.map toString
 
@@ -51,7 +51,7 @@ moveInputs model =
       |> List.map mapFunc
       |> List.sortBy .yMiddle
       |> List.map .id
-      |> List.map (\id -> Utils.find (\input -> id == toString input.id ) model.form)
+      |> List.map (\id -> Utils.find (\input -> id == toString input.id ) model.inputs)
       |> List.filterMap identity
   in
-    { model | form = sortedInputs }
+    { model | inputs = sortedInputs }

@@ -10156,18 +10156,14 @@ var _user$project$FormModel$rowsToNumber = function (rowNumber) {
 		3,
 		_elm_lang$core$String$toInt(rowNumber));
 };
-var _user$project$FormModel$sizeToString = function (_p0) {
-	return _elm_lang$core$String$toLower(
-		_elm_lang$core$Basics$toString(_p0));
-};
 var _user$project$FormModel$inputTypeToString = function (type_) {
-	var _p1 = type_;
-	if (_p1.ctor === 'DatetimeLocal') {
+	var _p0 = type_;
+	if (_p0.ctor === 'DatetimeLocal') {
 		return 'datetime-local';
 	} else {
-		return function (_p2) {
+		return function (_p1) {
 			return _elm_lang$core$String$toLower(
-				_elm_lang$core$Basics$toString(_p2));
+				_elm_lang$core$Basics$toString(_p1));
 		}(type_);
 	}
 };
@@ -10200,8 +10196,8 @@ var _user$project$FormModel$Large = {ctor: 'Large'};
 var _user$project$FormModel$Normal = {ctor: 'Normal'};
 var _user$project$FormModel$Small = {ctor: 'Small'};
 var _user$project$FormModel$textToSize = function (text) {
-	var _p3 = text;
-	switch (_p3) {
+	var _p2 = text;
+	switch (_p2) {
 		case 'small':
 			return _user$project$FormModel$Small;
 		case 'normal':
@@ -10246,66 +10242,6 @@ var _user$project$FormModel$blankInput = {
 	dragged: false,
 	options: {ctor: '[]'}
 };
-var _user$project$FormModel$textArea = _elm_lang$core$Native_Utils.update(
-	_user$project$FormModel$blankInput,
-	{type_: _user$project$FormModel$TextArea, rowNumber: '3'});
-var _user$project$FormModel$select = _elm_lang$core$Native_Utils.update(
-	_user$project$FormModel$blankInput,
-	{
-		type_: _user$project$FormModel$Select,
-		options: {
-			ctor: '::',
-			_0: 'options1',
-			_1: {
-				ctor: '::',
-				_0: 'option2',
-				_1: {
-					ctor: '::',
-					_0: 'option3',
-					_1: {ctor: '[]'}
-				}
-			}
-		}
-	});
-var _user$project$FormModel$multiselect = _elm_lang$core$Native_Utils.update(
-	_user$project$FormModel$blankInput,
-	{
-		type_: _user$project$FormModel$Multiselect,
-		options: {
-			ctor: '::',
-			_0: 'Option1',
-			_1: {
-				ctor: '::',
-				_0: 'Option2',
-				_1: {
-					ctor: '::',
-					_0: 'Option3',
-					_1: {ctor: '[]'}
-				}
-			}
-		}
-	});
-var _user$project$FormModel$fileUpload = _elm_lang$core$Native_Utils.update(
-	_user$project$FormModel$blankInput,
-	{type_: _user$project$FormModel$FileUpload});
-var _user$project$FormModel$radio = _elm_lang$core$Native_Utils.update(
-	_user$project$FormModel$blankInput,
-	{
-		type_: _user$project$FormModel$Radio,
-		options: {
-			ctor: '::',
-			_0: 'Option1',
-			_1: {
-				ctor: '::',
-				_0: 'Option2',
-				_1: {
-					ctor: '::',
-					_0: 'Option3',
-					_1: {ctor: '[]'}
-				}
-			}
-		}
-	});
 var _user$project$FormModel$checkbox = _elm_lang$core$Native_Utils.update(
 	_user$project$FormModel$blankInput,
 	{type_: _user$project$FormModel$Checkbox});
@@ -10316,8 +10252,8 @@ var _user$project$FormModel$textInput = _elm_lang$core$Native_Utils.update(
 	_user$project$FormModel$blankInput,
 	{type_: _user$project$FormModel$Text});
 var _user$project$FormModel$textToType = function (text) {
-	var _p4 = text;
-	switch (_p4) {
+	var _p3 = text;
+	switch (_p3) {
 		case 'text':
 			return _user$project$FormModel$Text;
 		case 'textarea':
@@ -10370,7 +10306,7 @@ var _user$project$Models$currentlyDraggedInput = function (model) {
 			function (_) {
 				return _.dragged;
 			},
-			model.form));
+			model.inputs));
 };
 var _user$project$Models$maxInputId = function (model) {
 	return A2(
@@ -10382,14 +10318,10 @@ var _user$project$Models$maxInputId = function (model) {
 				function (_) {
 					return _.id;
 				},
-				model.form)));
+				model.inputs)));
 };
-var _user$project$Models$Model = F6(
-	function (a, b, c, d, e, f) {
-		return {form: a, newOption: b, mousePosition: c, initialMousePosition: d, elementMap: e, history: f};
-	});
-var _user$project$Models$initial = function () {
-	var inputs = {
+var _user$project$Models$initial = {
+	inputs: {
 		ctor: '::',
 		_0: _elm_lang$core$Native_Utils.update(
 			_user$project$FormModel$textInput,
@@ -10449,20 +10381,21 @@ var _user$project$Models$initial = function () {
 				}
 			}
 		}
-	};
-	return A6(
-		_user$project$Models$Model,
-		inputs,
-		'',
-		{x: 0, y: 0},
-		{x: 0, y: 0},
-		{
-			ctor: '::',
-			_0: {ctor: '[]'},
-			_1: {ctor: '[]'}
-		},
-		{ctor: '[]'});
-}();
+	},
+	newOption: '',
+	mousePosition: {x: 0, y: 0},
+	initialMousePosition: {x: 0, y: 0},
+	elementMap: {
+		ctor: '::',
+		_0: {ctor: '[]'},
+		_1: {ctor: '[]'}
+	},
+	history: {ctor: '[]'}
+};
+var _user$project$Models$Model = F6(
+	function (a, b, c, d, e, f) {
+		return {inputs: a, newOption: b, mousePosition: c, initialMousePosition: d, elementMap: e, history: f};
+	});
 var _user$project$Models$InputEdit = function (a) {
 	return {ctor: 'InputEdit', _0: a};
 };
@@ -12940,12 +12873,12 @@ var _user$project$FormUpdate$removeInput = F2(
 			function (input) {
 				return !_elm_lang$core$Native_Utils.eq(input.id, id);
 			},
-			model.form);
+			model.inputs);
 		return {
 			ctor: '_Tuple2',
 			_0: _elm_lang$core$Native_Utils.update(
 				model,
-				{form: filteredForm}),
+				{inputs: filteredForm}),
 			_1: _elm_lang$core$Platform_Cmd$none
 		};
 	});
@@ -12961,9 +12894,9 @@ var _user$project$FormUpdate$addNewInput = F2(
 			_0: _elm_lang$core$Native_Utils.update(
 				model,
 				{
-					form: A2(
+					inputs: A2(
 						_elm_lang$core$Basics_ops['++'],
-						model.form,
+						model.inputs,
 						{
 							ctor: '::',
 							_0: newInput,
@@ -15210,7 +15143,6 @@ var _user$project$Raw$multiselectToHtmlTree = function (input) {
 		{ctor: '[]'});
 };
 var _user$project$Raw$textAreaToHtmlTree = function (input) {
-	var inputType = 'textarea';
 	var add2 = _user$project$Raw$toAddon(input.addon2);
 	var add1 = _user$project$Raw$toAddon(input.addon1);
 	var inputAttrs = A2(
@@ -15253,7 +15185,7 @@ var _user$project$Raw$textAreaToHtmlTree = function (input) {
 	var input1 = _elm_lang$core$Maybe$Just(
 		A5(
 			_user$project$HtmlTree$Element,
-			inputType,
+			'textarea',
 			inputAttrs,
 			_user$project$HtmlTree$Children(
 				{ctor: '[]'}),
@@ -15569,10 +15501,8 @@ var _user$project$Raw$colorToHtmlTree = function (input) {
 		{ctor: '[]'});
 };
 var _user$project$Raw$textInputToHtmlTree = function (input) {
-	var inputType = 'input';
 	var add2 = _user$project$Raw$toAddon(input.addon2);
 	var add1 = _user$project$Raw$toAddon(input.addon1);
-	var containerClass = A2(_user$project$HtmlTree$Attribute, 'class', 'form-group');
 	var inputAttrs = A2(
 		_elm_lang$core$List$filterMap,
 		_elm_lang$core$Basics$identity,
@@ -15582,10 +15512,7 @@ var _user$project$Raw$textInputToHtmlTree = function (input) {
 				A2(
 					_user$project$HtmlTree$Attribute,
 					'id',
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						'input',
-						_elm_lang$core$Basics$toString(input.id)))),
+					_elm_lang$core$Basics$toString(input.id))),
 			_1: {
 				ctor: '::',
 				_0: A2(
@@ -15623,7 +15550,7 @@ var _user$project$Raw$textInputToHtmlTree = function (input) {
 	var input1 = _elm_lang$core$Maybe$Just(
 		A5(
 			_user$project$HtmlTree$Element,
-			inputType,
+			'input',
 			inputAttrs,
 			_user$project$HtmlTree$Children(
 				{ctor: '[]'}),
@@ -15682,7 +15609,10 @@ var _user$project$Raw$textInputToHtmlTree = function (input) {
 						'label',
 						{
 							ctor: '::',
-							_0: A2(_user$project$HtmlTree$Attribute, 'for', 'input1'),
+							_0: A2(
+								_user$project$HtmlTree$Attribute,
+								'for',
+								_elm_lang$core$Basics$toString(input.id)),
 							_1: {ctor: '[]'}
 						},
 						_user$project$HtmlTree$Children(
@@ -15722,7 +15652,7 @@ var _user$project$Raw$textInputToHtmlTree = function (input) {
 		'div',
 		{
 			ctor: '::',
-			_0: containerClass,
+			_0: A2(_user$project$HtmlTree$Attribute, 'class', 'form-group'),
 			_1: {ctor: '[]'}
 		},
 		_user$project$HtmlTree$Children(children),
@@ -16759,9 +16689,9 @@ var _user$project$InputUpdate$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							form: A3(
+							inputs: A3(
 								_user$project$FormModel$updateInputs,
-								model.form,
+								model.inputs,
 								_p0._0,
 								_user$project$InputUpdate$updatePlaceholder(_p0._1))
 						}),
@@ -16773,9 +16703,9 @@ var _user$project$InputUpdate$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							form: A3(
+							inputs: A3(
 								_user$project$FormModel$updateInputs,
-								model.form,
+								model.inputs,
 								_p0._0,
 								_user$project$InputUpdate$updateLabel(_p0._1))
 						}),
@@ -16787,9 +16717,9 @@ var _user$project$InputUpdate$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							form: A3(
+							inputs: A3(
 								_user$project$FormModel$updateInputs,
-								model.form,
+								model.inputs,
 								_p0._0,
 								_user$project$InputUpdate$updateSmall(_p0._1))
 						}),
@@ -16801,7 +16731,7 @@ var _user$project$InputUpdate$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							form: A3(_user$project$FormModel$updateInputs, model.form, _p0._0, _user$project$InputUpdate$toggleDisabled)
+							inputs: A3(_user$project$FormModel$updateInputs, model.inputs, _p0._0, _user$project$InputUpdate$toggleDisabled)
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
@@ -16811,9 +16741,9 @@ var _user$project$InputUpdate$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							form: A3(
+							inputs: A3(
 								_user$project$FormModel$updateInputs,
-								model.form,
+								model.inputs,
 								_p0._0,
 								_user$project$InputUpdate$updateFirstAddon(_p0._1))
 						}),
@@ -16825,9 +16755,9 @@ var _user$project$InputUpdate$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							form: A3(
+							inputs: A3(
 								_user$project$FormModel$updateInputs,
-								model.form,
+								model.inputs,
 								_p0._0,
 								_user$project$InputUpdate$updateSecondAddon(_p0._1))
 						}),
@@ -16839,9 +16769,9 @@ var _user$project$InputUpdate$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							form: A3(
+							inputs: A3(
 								_user$project$FormModel$updateInputs,
-								model.form,
+								model.inputs,
 								_p0._0,
 								_user$project$InputUpdate$updateSize(_p0._1))
 						}),
@@ -16853,9 +16783,9 @@ var _user$project$InputUpdate$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							form: A3(
+							inputs: A3(
 								_user$project$FormModel$updateInputs,
-								model.form,
+								model.inputs,
 								_p0._0,
 								_user$project$InputUpdate$updateType(_p0._1))
 						}),
@@ -16867,9 +16797,9 @@ var _user$project$InputUpdate$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							form: A3(
+							inputs: A3(
 								_user$project$FormModel$updateInputs,
-								model.form,
+								model.inputs,
 								_p0._0,
 								_user$project$InputUpdate$updateRowNumber(_p0._1))
 						}),
@@ -16889,9 +16819,9 @@ var _user$project$InputUpdate$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							form: A3(
+							inputs: A3(
 								_user$project$FormModel$updateInputs,
-								model.form,
+								model.inputs,
 								_p0._0,
 								_user$project$InputUpdate$addNewOption(model.newOption)),
 							newOption: A2(_elm_lang$core$Debug$log, 'WAT', '')
@@ -16904,9 +16834,9 @@ var _user$project$InputUpdate$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							form: A3(
+							inputs: A3(
 								_user$project$FormModel$updateInputs,
-								model.form,
+								model.inputs,
 								_p0._0,
 								_user$project$InputUpdate$removeOption(_p0._1))
 						}),
@@ -17274,7 +17204,7 @@ var _user$project$Views$draggedElement = function (model) {
 	}
 };
 var _user$project$Views$source = function (model) {
-	var inputs1 = A2(_elm_lang$core$List$map, _user$project$HtmlTreeBuilder$buildRaw, model.form);
+	var inputs1 = A2(_elm_lang$core$List$map, _user$project$HtmlTreeBuilder$buildRaw, model.inputs);
 	var htmlRaw = A5(
 		_user$project$HtmlTree$Element,
 		'form',
@@ -17463,7 +17393,7 @@ var _user$project$Views$inputEdit = function (input) {
 		});
 };
 var _user$project$Views$formEdit = function (model) {
-	var inputs1 = A2(_elm_lang$core$List$map, _user$project$HtmlTreeBuilder$buildWithControlElements, model.form);
+	var inputs1 = A2(_elm_lang$core$List$map, _user$project$HtmlTreeBuilder$buildWithControlElements, model.inputs);
 	var htmlTreeWithControlElements = A5(
 		_user$project$HtmlTree$Element,
 		'form',
@@ -17600,7 +17530,7 @@ var _user$project$Views$view = function (model) {
 						function (el) {
 							return _elm_lang$core$Native_Utils.eq(el.id, _p6._0);
 						},
-						model.form));
+						model.inputs));
 				var _p7 = input;
 				if (_p7.ctor === 'Nothing') {
 					return _user$project$Views$formEdit(model);
@@ -17627,7 +17557,7 @@ var _user$project$MouseUpdate$moveInputs = function (model) {
 				function (_) {
 					return _.dragged;
 				},
-				model.form)));
+				model.inputs)));
 	var mapFunc = function (y) {
 		return A2(_elm_lang$core$List$member, y.id, draggedElementsIds) ? {
 			id: y.id,
@@ -17647,7 +17577,7 @@ var _user$project$MouseUpdate$moveInputs = function (model) {
 							id,
 							_elm_lang$core$Basics$toString(input.id));
 					},
-					model.form);
+					model.inputs);
 			},
 			A2(
 				_elm_lang$core$List$map,
@@ -17665,7 +17595,7 @@ var _user$project$MouseUpdate$moveInputs = function (model) {
 						_elm_lang$core$List$concat(model.elementMap))))));
 	return _elm_lang$core$Native_Utils.update(
 		model,
-		{form: sortedInputs});
+		{inputs: sortedInputs});
 };
 var _user$project$MouseUpdate$update = F2(
 	function (msg, model) {
@@ -17682,10 +17612,10 @@ var _user$project$MouseUpdate$update = F2(
 					function (inp) {
 						return _elm_lang$core$Native_Utils.eq(inp.id, _p0._0) ? updateFunc(inp) : inp;
 					},
-					model.form);
+					model.inputs);
 				var newModel = _elm_lang$core$Native_Utils.update(
 					model,
-					{form: updatedInputs});
+					{inputs: updatedInputs});
 				return {
 					ctor: '_Tuple2',
 					_0: newModel,
@@ -17699,13 +17629,13 @@ var _user$project$MouseUpdate$update = F2(
 							input,
 							{dragged: false});
 					},
-					model.form);
+					model.inputs);
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							form: updatedInputs,
+							inputs: updatedInputs,
 							mousePosition: {x: 0, y: 0},
 							initialMousePosition: {x: 0, y: 0}
 						}),
@@ -17751,7 +17681,7 @@ var _user$project$Main$subscriptions = function (model) {
 		function (_) {
 			return _.dragged;
 		},
-		model.form) ? _elm_lang$core$Platform_Sub$batch(
+		model.inputs) ? _elm_lang$core$Platform_Sub$batch(
 		{
 			ctor: '::',
 			_0: _elm_lang$mouse$Mouse$moves(

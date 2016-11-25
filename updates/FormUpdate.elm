@@ -18,11 +18,11 @@ addNewInput input model =
   let
     newInput = { input | id = maxInputId model + 1 }
   in
-    ({ model | form = model.form ++ [newInput] }, Cmd.none)
+    ({ model | inputs = model.inputs ++ [newInput] }, Cmd.none)
 
-removeInput : Model -> Id -> (Model, Cmd Msg)
+removeInput : Model -> Int -> (Model, Cmd Msg)
 removeInput model id =
   let
-    filteredForm = List.filter (\input -> input.id /= id) model.form
+    filteredForm = List.filter (\input -> input.id /= id) model.inputs
   in
-    ({ model | form = filteredForm }, Cmd.none)
+    ({ model | inputs = filteredForm }, Cmd.none)

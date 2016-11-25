@@ -31,7 +31,7 @@ update msg model =
       , Cmd.none)
 
 subscriptions model =
-  if List.any .dragged model.form then
+  if List.any .dragged model.inputs then
     Sub.batch [ Mouse.moves (Messages.MouseMessage << Messages.MouseMove)
               , Mouse.ups (Messages.MouseMessage << Messages.MouseUp)
               ]
