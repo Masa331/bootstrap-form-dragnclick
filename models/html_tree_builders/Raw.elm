@@ -39,9 +39,22 @@ textInputToHtmlTree input =
 
     containerClass = Attribute "class" "form-group"
 
+    add1 = toAddon input.addon1
+    add2 = toAddon input.addon2
+    inputType = "input"
+
+    input1 = Just (Element inputType inputAttrs (Children []) "" [])
+
+    inputWithAddons =
+      if List.isEmpty (List.filterMap identity [add1, add2]) then
+        input1
+      else
+        Just (Element "div" [Attribute "class" "input-group"] (Children ([add1, input1, add2] |> List.filterMap identity)) "" [])
+
+
     children =
       [ Maybe.map (\value -> Element "label" [Attribute "for" "input1"] (Children []) value []) input.label
-      , wrapInAddons inputAttrs input
+      , inputWithAddons
       , Maybe.map (\value -> Element "small" [Attribute "class" "form-text text-muted"] (Children []) value []) input.small
       ] |> List.filterMap identity
   in
@@ -92,9 +105,19 @@ textAreaToHtmlTree input =
       , Just (Attribute "rows" (input.rowNumber))
       ] |> List.filterMap identity
 
+    add1 = toAddon input.addon1
+    add2 = toAddon input.addon2
+    inputType = "textarea"
+    input1 = Just (Element inputType inputAttrs (Children []) "" [])
+    inputWithAddons =
+      if List.isEmpty (List.filterMap identity [add1, add2]) then
+        input1
+      else
+        Just (Element "div" [Attribute "class" "input-group"] (Children ([add1, input1, add2] |> List.filterMap identity)) "" [])
+
     children =
       [ Maybe.map (\value -> Element "label" [Attribute "for" "input1"] (Children []) value []) input.label
-      , wrapInAddons inputAttrs input
+      , inputWithAddons
       ] |> List.filterMap identity
   in
     Element "div" [Attribute "class" "form-group"] (Children (children)) "" []
@@ -196,18 +219,3 @@ sizeClass size =
       ""
     Large ->
       "form-control-lg"
-
-wrapInAddons inputAttrs input =
-  let
-    add1 = toAddon input.addon1
-    add2 = toAddon input.addon2
-    inputType =
-      case input.type_ of
-        TextArea -> "textarea"
-        _ -> "input"
-    input1 = Just (Element inputType inputAttrs (Children []) "" [])
-  in
-    if List.isEmpty (List.filterMap identity [add1, add2]) then
-      input1
-    else
-      Just (Element "div" [Attribute "class" "input-group"] (Children ([add1, input1, add2] |> List.filterMap identity)) "" [])

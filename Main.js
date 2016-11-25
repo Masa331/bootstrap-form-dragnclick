@@ -14736,68 +14736,6 @@ var _user$project$Raw$toAddon = function (value) {
 		},
 		value);
 };
-var _user$project$Raw$wrapInAddons = F2(
-	function (inputAttrs, input) {
-		var inputType = function () {
-			var _p1 = input.type_;
-			if (_p1.ctor === 'TextArea') {
-				return 'textarea';
-			} else {
-				return 'input';
-			}
-		}();
-		var input1 = _elm_lang$core$Maybe$Just(
-			A5(
-				_user$project$HtmlTree$Element,
-				inputType,
-				inputAttrs,
-				_user$project$HtmlTree$Children(
-					{ctor: '[]'}),
-				'',
-				{ctor: '[]'}));
-		var add2 = _user$project$Raw$toAddon(input.addon2);
-		var add1 = _user$project$Raw$toAddon(input.addon1);
-		return _elm_lang$core$List$isEmpty(
-			A2(
-				_elm_lang$core$List$filterMap,
-				_elm_lang$core$Basics$identity,
-				{
-					ctor: '::',
-					_0: add1,
-					_1: {
-						ctor: '::',
-						_0: add2,
-						_1: {ctor: '[]'}
-					}
-				})) ? input1 : _elm_lang$core$Maybe$Just(
-			A5(
-				_user$project$HtmlTree$Element,
-				'div',
-				{
-					ctor: '::',
-					_0: A2(_user$project$HtmlTree$Attribute, 'class', 'input-group'),
-					_1: {ctor: '[]'}
-				},
-				_user$project$HtmlTree$Children(
-					A2(
-						_elm_lang$core$List$filterMap,
-						_elm_lang$core$Basics$identity,
-						{
-							ctor: '::',
-							_0: add1,
-							_1: {
-								ctor: '::',
-								_0: input1,
-								_1: {
-									ctor: '::',
-									_0: add2,
-									_1: {ctor: '[]'}
-								}
-							}
-						})),
-				'',
-				{ctor: '[]'}));
-	});
 var _user$project$Raw$buttonToHtmlTree = function (input) {
 	return A5(
 		_user$project$HtmlTree$Element,
@@ -14834,8 +14772,8 @@ var _user$project$Raw$checkboxToHtmlTree = function (input) {
 		'',
 		{ctor: '[]'});
 	var label = function () {
-		var _p2 = input.label;
-		if (_p2.ctor === 'Nothing') {
+		var _p1 = input.label;
+		if (_p1.ctor === 'Nothing') {
 			return _elm_lang$core$Maybe$Just(
 				A5(
 					_user$project$HtmlTree$Element,
@@ -14869,7 +14807,7 @@ var _user$project$Raw$checkboxToHtmlTree = function (input) {
 							_0: element,
 							_1: {ctor: '[]'}
 						}),
-					_p2._0,
+					_p1._0,
 					{ctor: '[]'}));
 		}
 	}();
@@ -15272,6 +15210,9 @@ var _user$project$Raw$multiselectToHtmlTree = function (input) {
 		{ctor: '[]'});
 };
 var _user$project$Raw$textAreaToHtmlTree = function (input) {
+	var inputType = 'textarea';
+	var add2 = _user$project$Raw$toAddon(input.addon2);
+	var add1 = _user$project$Raw$toAddon(input.addon1);
 	var inputAttrs = A2(
 		_elm_lang$core$List$filterMap,
 		_elm_lang$core$Basics$identity,
@@ -15309,6 +15250,55 @@ var _user$project$Raw$textAreaToHtmlTree = function (input) {
 				}
 			}
 		});
+	var input1 = _elm_lang$core$Maybe$Just(
+		A5(
+			_user$project$HtmlTree$Element,
+			inputType,
+			inputAttrs,
+			_user$project$HtmlTree$Children(
+				{ctor: '[]'}),
+			'',
+			{ctor: '[]'}));
+	var inputWithAddons = _elm_lang$core$List$isEmpty(
+		A2(
+			_elm_lang$core$List$filterMap,
+			_elm_lang$core$Basics$identity,
+			{
+				ctor: '::',
+				_0: add1,
+				_1: {
+					ctor: '::',
+					_0: add2,
+					_1: {ctor: '[]'}
+				}
+			})) ? input1 : _elm_lang$core$Maybe$Just(
+		A5(
+			_user$project$HtmlTree$Element,
+			'div',
+			{
+				ctor: '::',
+				_0: A2(_user$project$HtmlTree$Attribute, 'class', 'input-group'),
+				_1: {ctor: '[]'}
+			},
+			_user$project$HtmlTree$Children(
+				A2(
+					_elm_lang$core$List$filterMap,
+					_elm_lang$core$Basics$identity,
+					{
+						ctor: '::',
+						_0: add1,
+						_1: {
+							ctor: '::',
+							_0: input1,
+							_1: {
+								ctor: '::',
+								_0: add2,
+								_1: {ctor: '[]'}
+							}
+						}
+					})),
+			'',
+			{ctor: '[]'}));
 	var children = A2(
 		_elm_lang$core$List$filterMap,
 		_elm_lang$core$Basics$identity,
@@ -15333,7 +15323,7 @@ var _user$project$Raw$textAreaToHtmlTree = function (input) {
 				input.label),
 			_1: {
 				ctor: '::',
-				_0: A2(_user$project$Raw$wrapInAddons, inputAttrs, input),
+				_0: inputWithAddons,
 				_1: {ctor: '[]'}
 			}
 		});
@@ -15579,6 +15569,9 @@ var _user$project$Raw$colorToHtmlTree = function (input) {
 		{ctor: '[]'});
 };
 var _user$project$Raw$textInputToHtmlTree = function (input) {
+	var inputType = 'input';
+	var add2 = _user$project$Raw$toAddon(input.addon2);
+	var add1 = _user$project$Raw$toAddon(input.addon1);
 	var containerClass = A2(_user$project$HtmlTree$Attribute, 'class', 'form-group');
 	var inputAttrs = A2(
 		_elm_lang$core$List$filterMap,
@@ -15627,6 +15620,55 @@ var _user$project$Raw$textInputToHtmlTree = function (input) {
 				}
 			}
 		});
+	var input1 = _elm_lang$core$Maybe$Just(
+		A5(
+			_user$project$HtmlTree$Element,
+			inputType,
+			inputAttrs,
+			_user$project$HtmlTree$Children(
+				{ctor: '[]'}),
+			'',
+			{ctor: '[]'}));
+	var inputWithAddons = _elm_lang$core$List$isEmpty(
+		A2(
+			_elm_lang$core$List$filterMap,
+			_elm_lang$core$Basics$identity,
+			{
+				ctor: '::',
+				_0: add1,
+				_1: {
+					ctor: '::',
+					_0: add2,
+					_1: {ctor: '[]'}
+				}
+			})) ? input1 : _elm_lang$core$Maybe$Just(
+		A5(
+			_user$project$HtmlTree$Element,
+			'div',
+			{
+				ctor: '::',
+				_0: A2(_user$project$HtmlTree$Attribute, 'class', 'input-group'),
+				_1: {ctor: '[]'}
+			},
+			_user$project$HtmlTree$Children(
+				A2(
+					_elm_lang$core$List$filterMap,
+					_elm_lang$core$Basics$identity,
+					{
+						ctor: '::',
+						_0: add1,
+						_1: {
+							ctor: '::',
+							_0: input1,
+							_1: {
+								ctor: '::',
+								_0: add2,
+								_1: {ctor: '[]'}
+							}
+						}
+					})),
+			'',
+			{ctor: '[]'}));
 	var children = A2(
 		_elm_lang$core$List$filterMap,
 		_elm_lang$core$Basics$identity,
@@ -15651,7 +15693,7 @@ var _user$project$Raw$textInputToHtmlTree = function (input) {
 				input.label),
 			_1: {
 				ctor: '::',
-				_0: A2(_user$project$Raw$wrapInAddons, inputAttrs, input),
+				_0: inputWithAddons,
 				_1: {
 					ctor: '::',
 					_0: A2(
@@ -15688,8 +15730,8 @@ var _user$project$Raw$textInputToHtmlTree = function (input) {
 		{ctor: '[]'});
 };
 var _user$project$Raw$build = function (input) {
-	var _p3 = input.type_;
-	switch (_p3.ctor) {
+	var _p2 = input.type_;
+	switch (_p2.ctor) {
 		case 'Text':
 			return _user$project$Raw$textInputToHtmlTree(input);
 		case 'TextArea':
