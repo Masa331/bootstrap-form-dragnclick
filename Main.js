@@ -10210,16 +10210,12 @@ var _user$project$FormModel$textToSize = function (text) {
 };
 var _user$project$FormModel$Color = {ctor: 'Color'};
 var _user$project$FormModel$Time = {ctor: 'Time'};
-var _user$project$FormModel$Week = {ctor: 'Week'};
-var _user$project$FormModel$Month = {ctor: 'Month'};
 var _user$project$FormModel$Date = {ctor: 'Date'};
 var _user$project$FormModel$DatetimeLocal = {ctor: 'DatetimeLocal'};
 var _user$project$FormModel$Number = {ctor: 'Number'};
 var _user$project$FormModel$Password = {ctor: 'Password'};
-var _user$project$FormModel$Tel = {ctor: 'Tel'};
 var _user$project$FormModel$Url = {ctor: 'Url'};
 var _user$project$FormModel$Email = {ctor: 'Email'};
-var _user$project$FormModel$Search = {ctor: 'Search'};
 var _user$project$FormModel$Button = {ctor: 'Button'};
 var _user$project$FormModel$Checkbox = {ctor: 'Checkbox'};
 var _user$project$FormModel$Radio = {ctor: 'Radio'};
@@ -10270,14 +10266,10 @@ var _user$project$FormModel$textToType = function (text) {
 			return _user$project$FormModel$Checkbox;
 		case 'button':
 			return _user$project$FormModel$Button;
-		case 'search':
-			return _user$project$FormModel$Search;
 		case 'email':
 			return _user$project$FormModel$Email;
 		case 'url':
 			return _user$project$FormModel$Url;
-		case 'tel':
-			return _user$project$FormModel$Tel;
 		case 'password':
 			return _user$project$FormModel$Password;
 		case 'number':
@@ -10286,10 +10278,6 @@ var _user$project$FormModel$textToType = function (text) {
 			return _user$project$FormModel$DatetimeLocal;
 		case 'date':
 			return _user$project$FormModel$Date;
-		case 'month':
-			return _user$project$FormModel$Month;
-		case 'week':
-			return _user$project$FormModel$Week;
 		case 'time':
 			return _user$project$FormModel$Time;
 		case 'color':
@@ -16274,32 +16262,6 @@ var _user$project$InputOptions$view = function (input) {
 						_1: {ctor: '[]'}
 					}
 				};
-			case 'Search':
-				return {
-					ctor: '::',
-					_0: _user$project$InputOptions$typeEdit,
-					_1: {
-						ctor: '::',
-						_0: _user$project$InputOptions$placeholderEdit,
-						_1: {
-							ctor: '::',
-							_0: _user$project$InputOptions$labelEdit,
-							_1: {
-								ctor: '::',
-								_0: _user$project$InputOptions$smallUnderEdit,
-								_1: {
-									ctor: '::',
-									_0: _user$project$InputOptions$addon1Edit,
-									_1: {
-										ctor: '::',
-										_0: _user$project$InputOptions$addon2Edit,
-										_1: {ctor: '[]'}
-									}
-								}
-							}
-						}
-					}
-				};
 			case 'Email':
 				return {
 					ctor: '::',
@@ -16327,32 +16289,6 @@ var _user$project$InputOptions$view = function (input) {
 					}
 				};
 			case 'Url':
-				return {
-					ctor: '::',
-					_0: _user$project$InputOptions$typeEdit,
-					_1: {
-						ctor: '::',
-						_0: _user$project$InputOptions$placeholderEdit,
-						_1: {
-							ctor: '::',
-							_0: _user$project$InputOptions$labelEdit,
-							_1: {
-								ctor: '::',
-								_0: _user$project$InputOptions$smallUnderEdit,
-								_1: {
-									ctor: '::',
-									_0: _user$project$InputOptions$addon1Edit,
-									_1: {
-										ctor: '::',
-										_0: _user$project$InputOptions$addon2Edit,
-										_1: {ctor: '[]'}
-									}
-								}
-							}
-						}
-					}
-				};
-			case 'Tel':
 				return {
 					ctor: '::',
 					_0: _user$project$InputOptions$typeEdit,
@@ -16457,58 +16393,6 @@ var _user$project$InputOptions$view = function (input) {
 					}
 				};
 			case 'Date':
-				return {
-					ctor: '::',
-					_0: _user$project$InputOptions$typeEdit,
-					_1: {
-						ctor: '::',
-						_0: _user$project$InputOptions$placeholderEdit,
-						_1: {
-							ctor: '::',
-							_0: _user$project$InputOptions$labelEdit,
-							_1: {
-								ctor: '::',
-								_0: _user$project$InputOptions$smallUnderEdit,
-								_1: {
-									ctor: '::',
-									_0: _user$project$InputOptions$addon1Edit,
-									_1: {
-										ctor: '::',
-										_0: _user$project$InputOptions$addon2Edit,
-										_1: {ctor: '[]'}
-									}
-								}
-							}
-						}
-					}
-				};
-			case 'Month':
-				return {
-					ctor: '::',
-					_0: _user$project$InputOptions$typeEdit,
-					_1: {
-						ctor: '::',
-						_0: _user$project$InputOptions$placeholderEdit,
-						_1: {
-							ctor: '::',
-							_0: _user$project$InputOptions$labelEdit,
-							_1: {
-								ctor: '::',
-								_0: _user$project$InputOptions$smallUnderEdit,
-								_1: {
-									ctor: '::',
-									_0: _user$project$InputOptions$addon1Edit,
-									_1: {
-										ctor: '::',
-										_0: _user$project$InputOptions$addon2Edit,
-										_1: {ctor: '[]'}
-									}
-								}
-							}
-						}
-					}
-				};
-			case 'Week':
 				return {
 					ctor: '::',
 					_0: _user$project$InputOptions$typeEdit,

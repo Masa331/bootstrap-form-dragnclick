@@ -4,7 +4,7 @@ import String
 
 type Size = Small | Normal | Large
 
-type InputType = Text | TextArea | Select | Multiselect | FileUpload | Radio | Checkbox | Button | Search | Email | Url | Tel | Password | Number | DatetimeLocal | Date | Month | Week | Time | Color
+type InputType = Text | TextArea | Select | Multiselect | FileUpload | Radio | Checkbox | Button | Email | Url | Password | Number | DatetimeLocal | Date | Time | Color
 
 type alias Input =
   { type_: InputType
@@ -71,16 +71,12 @@ textToType text =
     "radio" -> Radio
     "checkbox" -> Checkbox
     "button" -> Button
-    "search" -> Search
     "email" -> Email
     "url" -> Url
-    "tel" -> Tel
     "password" -> Password
     "number" -> Number
     "datetime-local" -> DatetimeLocal
     "date" -> Date
-    "month" -> Month
-    "week" -> Week
     "time" -> Time
     "color" -> Color
     _ -> Text
