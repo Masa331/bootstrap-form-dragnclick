@@ -18,7 +18,6 @@ type InputMsg
   | SizeEdit Int String
   | TypeEdit Int String
   | RowNumberEdit Int String
-  | NewOptionEdit String
   | SaveNewOption Int
   | RemoveOption Int String
 
@@ -33,3 +32,4 @@ type Msg =
   | MouseMessage MouseMsg
   | MapDetermined ElementMap.ElementMap
   | UrlChange Navigation.Location
+  | NewOptionEdit String

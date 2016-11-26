@@ -17,18 +17,7 @@ view model =
   Views.view model
 
 update msg model =
-  case msg of
-    Messages.InputMessage inputMsg ->
-      Updates.inputUpdate inputMsg model
-    Messages.FormMessage formMsg ->
-      Updates.formUpdate formMsg model
-    Messages.MouseMessage mouseMsg ->
-      Updates.mouseUpdate mouseMsg model
-    Messages.MapDetermined map ->
-      (updateInputsDimensions model map, Cmd.none)
-    Messages.UrlChange location ->
-      ({ model | history = location :: model.history }
-      , Cmd.none)
+  Updates.update msg model
 
 subscriptions model =
   if List.any .dragged model.inputs then
@@ -45,17 +34,3 @@ main =
   , update = update
   , subscriptions = subscriptions
   }
-
--------------
--- Private --
--------------
-
-updateInputsDimensions model map =
-  let
-    flatMap = List.concat map
-    updateFunction = (\input -> { input | dimensions = (List.filter (\e -> e.id == toString input.id) flatMap) |> List.head })
-
-    inputsWithUpdatedDimesnions =
-      List.map updateFunction model.inputs
-  in
-    { model | inputs = inputsWithUpdatedDimesnions }

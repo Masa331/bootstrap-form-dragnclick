@@ -1,19 +1,36 @@
 module Updates exposing (..)
 
-import Messages exposing (..)
-import Models exposing (..)
-import ElementMap exposing (..)
-import Utils
-
 import InputUpdate exposing (..)
 import FormUpdate exposing (..)
 import MouseUpdate exposing (..)
 
-formUpdate msg model =
-  FormUpdate.update msg model
+import Messages
 
-inputUpdate msg model =
-  InputUpdate.update msg model
+update msg model =
+  case msg of
+    Messages.InputMessage inputMsg ->
+      InputUpdate.update inputMsg model
+    Messages.FormMessage formMsg ->
+      FormUpdate.update formMsg model
+    Messages.MouseMessage mouseMsg ->
+      MouseUpdate.update mouseMsg model
+    Messages.MapDetermined map ->
+      (updateInputsDimensions model map, Cmd.none)
+    Messages.UrlChange location ->
+      ({ model | history = location :: model.history }, Cmd.none)
+    Messages.NewOptionEdit value ->
+      ({ model | newOption = value }, Cmd.none)
 
-mouseUpdate msg model =
-  MouseUpdate.update msg model
+-------------
+-- Private --
+-------------
+
+updateInputsDimensions model map =
+  let
+    flatMap = List.concat map
+    updateFunction = (\input -> { input | dimensions = (List.filter (\e -> e.id == toString input.id) flatMap) |> List.head })
+
+    inputsWithUpdatedDimesnions =
+      List.map updateFunction model.inputs
+  in
+    { model | inputs = inputsWithUpdatedDimesnions }
