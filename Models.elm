@@ -16,7 +16,6 @@ type alias Model = { inputs: FormModel.Form
                    , newOption: String
                    , mousePosition : Mouse.Position
                    , initialMousePosition : Mouse.Position
-                   , elementMap : ElementMap.ElementMap
                    , history : List Navigation.Location
                    }
 
@@ -32,7 +31,6 @@ initial =
   , newOption = ""
   , mousePosition = { x = 0, y = 0 }
   , initialMousePosition = { x = 0, y = 0 }
-  , elementMap = [[]]
   , history = []
   }
 

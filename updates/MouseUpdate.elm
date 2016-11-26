@@ -9,7 +9,7 @@ update msg model =
       let
         updateFunc = (\input -> { input | dragged = True })
         updatedInputs = List.map (\inp -> if inp.id == id then updateFunc inp else inp) model.inputs
-        newModel = { model | inputs = updatedInputs  }
+        newModel = { model | inputs = updatedInputs }
       in
 -- This coulds be easily improved to call for new map only on first down(no dragged element..)
         (newModel, Utils.getFormMap "unused_nonsense")
@@ -36,22 +36,23 @@ update msg model =
 
 moveInputs model =
   let
-    draggedElementsIds =
-      List.filter .dragged model.inputs
-      |> List.map .id
-      |> List.map toString
-
-    mapFunc =
-      (\y -> if List.member y.id draggedElementsIds
-                then { id = y.id, yMiddle = (y.top + y.height / 2 + ((toFloat model.mousePosition.y) - (toFloat model.initialMousePosition.y))) }
-                else { id = y.id, yMiddle = (y.top + y.height / 2) })
-
     sortedInputs =
-      List.concat model.elementMap
-      |> List.map mapFunc
-      |> List.sortBy .yMiddle
-      |> List.map .id
-      |> List.map (\id -> Utils.find (\input -> id == toString input.id ) model.inputs)
-      |> List.filterMap identity
+      List.map (\input -> (countYMiddle input model, input)) model.inputs
+      |> List.sortBy Tuple.first
+      |> List.map Tuple.second
   in
     { model | inputs = sortedInputs }
+
+countYMiddle input model =
+  case input.dimensions of
+    Nothing ->
+      0
+    Just dimensions ->
+      if input.dragged
+        then
+          (dimensions.top + dimensions.height / 2 + ((toFloat model.mousePosition.y) - (toFloat model.initialMousePosition.y)))
+        else
+          (dimensions.top + dimensions.height / 2)
+
+
+

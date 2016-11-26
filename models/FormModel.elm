@@ -1,9 +1,9 @@
 module FormModel exposing (..)
 
 import String
+import ElementMap
 
 type Size = Small | Normal | Large
-
 type InputType = Text | TextArea | Select | Multiselect | FileUpload | Radio | Checkbox | Button | Email | Url | Password | Number | DatetimeLocal | Date | Time | Color
 
 type alias Input =
@@ -18,6 +18,7 @@ type alias Input =
   , small: Maybe String
   , rowNumber: String
   , dragged: Bool
+  , dimensions: Maybe ElementMap.ElementDimensions
   , options: List String }
 
 type alias Form = List Input
@@ -35,6 +36,7 @@ blankInput =
   , small = Nothing
   , rowNumber = "1"
   , dragged = False
+  , dimensions = Nothing
   , options = [] }
 
 textInput : Input

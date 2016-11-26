@@ -64,6 +64,7 @@ formEdit model =
              ]
            ]
         ]
+      , div [] [ text (toString model)]
       ]
 
 inputEdit : Input -> Html Msg
@@ -124,14 +125,14 @@ draggedElement model =
   case Models.currentlyDraggedInput model of
     Nothing ->
       div [] []
-    Just element ->
+    Just input ->
       let
-        input = HtmlTreeBuilder.buildDragged element
-        htmlTree = HtmlTree.Element "form" [] (HtmlTree.Children [input]) "" []
+        element = HtmlTreeBuilder.buildDragged input
+        htmlTree = HtmlTree.Element "form" [] (HtmlTree.Children [element]) "" []
         content = Form.view htmlTree
 
         dimensions =
-          case dimensionsById model.elementMap (toString element.id) of
+          case input.dimensions of
             Nothing ->
               (0, 0, 0, 0)
             Just dims ->

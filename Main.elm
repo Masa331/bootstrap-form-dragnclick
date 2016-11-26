@@ -25,7 +25,7 @@ update msg model =
     Messages.MouseMessage mouseMsg ->
       Updates.mouseUpdate mouseMsg model
     Messages.MapDetermined map ->
-      ({ model | elementMap = map }, Cmd.none)
+      (updateInputsDimensions model map, Cmd.none)
     Messages.UrlChange location ->
       ({ model | history = location :: model.history }
       , Cmd.none)
@@ -45,3 +45,17 @@ main =
   , update = update
   , subscriptions = subscriptions
   }
+
+-------------
+-- Private --
+-------------
+
+updateInputsDimensions model map =
+  let
+    flatMap = List.concat map
+    updateFunction = (\input -> { input | dimensions = (List.filter (\e -> e.id == toString input.id) flatMap) |> List.head })
+
+    inputsWithUpdatedDimesnions =
+      List.map updateFunction model.inputs
+  in
+    { model | inputs = inputsWithUpdatedDimesnions }

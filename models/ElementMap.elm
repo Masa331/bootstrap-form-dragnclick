@@ -11,10 +11,6 @@ type alias ElementDimensions =
   , bottom: Float
   , left: Float
   }
+
 type alias ElementMap
   = List (List ElementDimensions)
-
-dimensionsById dimensions id =
-  List.concat dimensions
-    |> List.filter (\a -> a.id == id)
-    |> List.head
