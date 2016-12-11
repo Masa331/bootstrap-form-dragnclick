@@ -29,11 +29,7 @@ build input =
 textInputToHtmlTree input =
   let
     containerClass =
-      [ Just "form-group show-hidden-on-hover"
-      , if input.dragged then Just "hidden" else Nothing
-      ] |> List.filterMap identity
-        |> String.join " "
-        |> Attribute "class"
+      Attribute "class" ("form-group show-hidden-on-hover" ++ if input.dragged then " hidden" else "")
 
     inputAttrs =
       [ Just (Attribute "id" ("input" ++ toString input.id))
@@ -56,7 +52,8 @@ textInputToHtmlTree input =
         Large ->
           "input-group input-group-lg"
 
-    inputGroup = Just (Element "div" [Attribute "class" inputClasses] (Children ([add1, input1, add2] |> List.filterMap identity)) "" [])
+    inputGroup =
+      Just (Element "div" [Attribute "class" inputClasses] (Children ([add1, input1, add2] |> List.filterMap identity)) "" [])
 
     children =
       [ toLabel input.label
