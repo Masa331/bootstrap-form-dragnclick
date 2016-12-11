@@ -29,19 +29,18 @@ build input =
 textInputToHtmlTree input =
   let
     containerClass =
-      [ Just "form-group"
-      , Just "show-hidden-on-hover"
+      [ Just "form-group show-hidden-on-hover"
       , if input.dragged then Just "hidden" else Nothing
       ] |> List.filterMap identity
         |> String.join " "
         |> Attribute "class"
 
     inputAttrs =
-      [ toId input.id
-      , toPlaceholder input.placeholder
+      [ Just (Attribute "id" ("input" ++ toString input.id))
+      , Maybe.map (Attribute "placeholder") input.placeholder
       , toDisabled input.disabled
       , Just (Attribute "class" (String.trim ((sizeClass input.size) ++ " form-control")))
-      , toType input.type_
+      , Just (Attribute "type" (inputTypeToString input.type_))
       ] |> List.filterMap identity
 
     add1 = Maybe.map toAddon input.addon1
@@ -71,16 +70,15 @@ textInputToHtmlTree input =
 colorToHtmlTree inp =
   let
     inputAttrs =
-      [ toId inp.id
-      , toPlaceholder inp.placeholder
+      [ Just (Attribute "id" ("input" ++ toString inp.id))
+      , Maybe.map (Attribute "placeholder") inp.placeholder
       , toDisabled inp.disabled
       , Just (Attribute "class" (String.trim ((sizeClass inp.size) ++ " form-control")))
-      , toType inp.type_
+      , Just (Attribute "type" (inputTypeToString inp.type_))
       ] |> List.filterMap identity
 
     containerClass =
-      [ Just "form-group"
-      , Just "show-hidden-on-hover"
+      [ Just "form-group show-hidden-on-hover"
       , if inp.dragged then Just "hidden" else Nothing
       ] |> List.filterMap identity
         |> String.join " "
@@ -98,7 +96,7 @@ colorToHtmlTree inp =
 selectToHtmlTree inp =
   let
     inputAttrs =
-      [ toId inp.id
+      [ Just (Attribute "id" ("input" ++ toString inp.id))
       , toDisabled inp.disabled
       , Just (Attribute "class" (String.trim ((sizeClass inp.size) ++ " form-control")))
       ] |> List.filterMap identity
@@ -132,12 +130,12 @@ textAreaToHtmlTree input =
         |> Attribute "class"
 
     inputAttrs =
-      [ toId input.id
-      , toPlaceholder input.placeholder
+      [ Just (Attribute "id" ("input" ++ toString input.id))
+      , Maybe.map (Attribute "placeholder") input.placeholder
       , Just (Attribute "rows" input.rowNumber)
       , toDisabled input.disabled
       , Just (Attribute "class" (String.trim ((sizeClass input.size) ++ " form-control")))
-      , toType input.type_
+      , Just (Attribute "type" (inputTypeToString input.type_))
       ] |> List.filterMap identity
 
     add1 = Maybe.map toAddon input.addon1
@@ -167,7 +165,7 @@ textAreaToHtmlTree input =
 multiselectToHtmlTree inp =
   let
     inputAttrs =
-      [ toId inp.id
+      [ Just (Attribute "id" ("input" ++ toString inp.id))
       , toDisabled inp.disabled
       , Just (Attribute "class" (String.trim ((sizeClass inp.size) ++ " form-control")))
       , Just (Attribute "multiple" "multiple")
@@ -194,7 +192,7 @@ multiselectToHtmlTree inp =
 fileUploadToHtmlTree inp =
   let
     inputAttrs =
-      [ toId inp.id
+      [ Just (Attribute "id" ("input" ++ toString inp.id))
       , toDisabled inp.disabled
       , Just (Attribute "class" (String.trim ((sizeClass inp.size) ++ " form-control-file")))
       , Just (Attribute "type" "file")
@@ -259,10 +257,10 @@ toRadioOption id index value disabled =
 checkboxToHtmlTree inp =
   let
     inputAttrs =
-      [ toId inp.id
+      [ Just (Attribute "id" ("input" ++ toString inp.id))
       , toDisabled inp.disabled
       , Just (Attribute "class" "form-check-input")
-      , toType inp.type_
+      , Just (Attribute "type" (inputTypeToString inp.type_))
       ] |> List.filterMap identity
 
     input = Element "input" inputAttrs (Children []) "" []
@@ -299,7 +297,7 @@ buttonToHtmlTree inp =
         Large -> " btn-lg"
 
     inputAttrs =
-      [ toId inp.id
+      [ Just (Attribute "id" ("input" ++ toString inp.id))
       , toDisabled inp.disabled
       , Just (Attribute "class" (String.trim ("btn btn-primary" ++ sizeClass)))
       , Just (Attribute "type" "submit")
@@ -323,14 +321,6 @@ buttonToHtmlTree inp =
 -------------
 -- Helpers --
 -------------
-
-toPlaceholder : Maybe String -> Maybe Attribute
-toPlaceholder value =
-  Maybe.map (Attribute "placeholder") value
-
-toId : Int -> Maybe Attribute
-toId value =
-  Just (Attribute "id" ("input" ++ toString value))
 
 toDisabled : Bool -> Maybe Attribute
 toDisabled value =
@@ -373,10 +363,6 @@ toLegend input =
     label = Element "span" [] (Children []) (Maybe.withDefault "" input.label) []
   in
     Element "legend" [] (Children [label, links]) "" []
-
-toType : InputType -> Maybe Attribute
-toType value =
-  Just (Attribute "type" (inputTypeToString value))
 
 toLinks : Int -> Maybe Element
 toLinks value =

@@ -12842,53 +12842,45 @@ var _user$project$Form$view = function (htmlTree) {
 	return _user$project$Form$toElmHtmlNode(htmlTree);
 };
 
-var _user$project$FormUpdate$removeInput = F2(
-	function (model, id) {
-		var filteredForm = A2(
-			_elm_lang$core$List$filter,
-			function (input) {
-				return !_elm_lang$core$Native_Utils.eq(input.id, id);
-			},
-			model.inputs);
-		return {
-			ctor: '_Tuple2',
-			_0: _elm_lang$core$Native_Utils.update(
-				model,
-				{inputs: filteredForm}),
-			_1: _elm_lang$core$Platform_Cmd$none
-		};
-	});
-var _user$project$FormUpdate$addNewInput = F2(
-	function (input, model) {
-		var newInput = _elm_lang$core$Native_Utils.update(
-			input,
-			{
-				id: _user$project$Models$maxInputId(model) + 1
-			});
-		return {
-			ctor: '_Tuple2',
-			_0: _elm_lang$core$Native_Utils.update(
-				model,
-				{
-					inputs: A2(
-						_elm_lang$core$Basics_ops['++'],
-						model.inputs,
-						{
-							ctor: '::',
-							_0: newInput,
-							_1: {ctor: '[]'}
-						})
-				}),
-			_1: _elm_lang$core$Platform_Cmd$none
-		};
-	});
 var _user$project$FormUpdate$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
 		if (_p0.ctor === 'AddInput') {
-			return A2(_user$project$FormUpdate$addNewInput, _user$project$FormModel$textInput, model);
+			return {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						inputs: A2(
+							_elm_lang$core$Basics_ops['++'],
+							model.inputs,
+							{
+								ctor: '::',
+								_0: _elm_lang$core$Native_Utils.update(
+									_user$project$FormModel$textInput,
+									{
+										id: _user$project$Models$maxInputId(model) + 1
+									}),
+								_1: {ctor: '[]'}
+							})
+					}),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
 		} else {
-			return A2(_user$project$FormUpdate$removeInput, model, _p0._0);
+			return {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						inputs: A2(
+							_elm_lang$core$List$filter,
+							function (input) {
+								return !_elm_lang$core$Native_Utils.eq(input.id, _p0._0);
+							},
+							model.inputs)
+					}),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
 		}
 	});
 
@@ -13193,13 +13185,6 @@ var _user$project$WithControlElements$toLinks = function (value) {
 			'',
 			{ctor: '[]'}));
 };
-var _user$project$WithControlElements$toType = function (value) {
-	return _elm_lang$core$Maybe$Just(
-		A2(
-			_user$project$HtmlTree$Attribute,
-			'type',
-			_user$project$FormModel$inputTypeToString(value)));
-};
 var _user$project$WithControlElements$toLegend = function (input) {
 	var label = A5(
 		_user$project$HtmlTree$Element,
@@ -13485,22 +13470,6 @@ var _user$project$WithControlElements$toDisabled = function (value) {
 	return value ? _elm_lang$core$Maybe$Just(
 		A2(_user$project$HtmlTree$Attribute, 'disabled', 'disabled')) : _elm_lang$core$Maybe$Nothing;
 };
-var _user$project$WithControlElements$toId = function (value) {
-	return _elm_lang$core$Maybe$Just(
-		A2(
-			_user$project$HtmlTree$Attribute,
-			'id',
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				'input',
-				_elm_lang$core$Basics$toString(value))));
-};
-var _user$project$WithControlElements$toPlaceholder = function (value) {
-	return A2(
-		_elm_lang$core$Maybe$map,
-		_user$project$HtmlTree$Attribute('placeholder'),
-		value);
-};
 var _user$project$WithControlElements$buttonToHtmlTree = function (inp) {
 	var containerClass = A2(
 		_user$project$HtmlTree$Attribute,
@@ -13540,7 +13509,14 @@ var _user$project$WithControlElements$buttonToHtmlTree = function (inp) {
 		_elm_lang$core$Basics$identity,
 		{
 			ctor: '::',
-			_0: _user$project$WithControlElements$toId(inp.id),
+			_0: _elm_lang$core$Maybe$Just(
+				A2(
+					_user$project$HtmlTree$Attribute,
+					'id',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'input',
+						_elm_lang$core$Basics$toString(inp.id)))),
 			_1: {
 				ctor: '::',
 				_0: _user$project$WithControlElements$toDisabled(inp.disabled),
@@ -13630,7 +13606,14 @@ var _user$project$WithControlElements$checkboxToHtmlTree = function (inp) {
 		_elm_lang$core$Basics$identity,
 		{
 			ctor: '::',
-			_0: _user$project$WithControlElements$toId(inp.id),
+			_0: _elm_lang$core$Maybe$Just(
+				A2(
+					_user$project$HtmlTree$Attribute,
+					'id',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'input',
+						_elm_lang$core$Basics$toString(inp.id)))),
 			_1: {
 				ctor: '::',
 				_0: _user$project$WithControlElements$toDisabled(inp.disabled),
@@ -13640,7 +13623,11 @@ var _user$project$WithControlElements$checkboxToHtmlTree = function (inp) {
 						A2(_user$project$HtmlTree$Attribute, 'class', 'form-check-input')),
 					_1: {
 						ctor: '::',
-						_0: _user$project$WithControlElements$toType(inp.type_),
+						_0: _elm_lang$core$Maybe$Just(
+							A2(
+								_user$project$HtmlTree$Attribute,
+								'type',
+								_user$project$FormModel$inputTypeToString(inp.type_))),
 						_1: {ctor: '[]'}
 					}
 				}
@@ -13912,7 +13899,14 @@ var _user$project$WithControlElements$fileUploadToHtmlTree = function (inp) {
 		_elm_lang$core$Basics$identity,
 		{
 			ctor: '::',
-			_0: _user$project$WithControlElements$toId(inp.id),
+			_0: _elm_lang$core$Maybe$Just(
+				A2(
+					_user$project$HtmlTree$Attribute,
+					'id',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'input',
+						_elm_lang$core$Basics$toString(inp.id)))),
 			_1: {
 				ctor: '::',
 				_0: _user$project$WithControlElements$toDisabled(inp.disabled),
@@ -14024,7 +14018,14 @@ var _user$project$WithControlElements$multiselectToHtmlTree = function (inp) {
 		_elm_lang$core$Basics$identity,
 		{
 			ctor: '::',
-			_0: _user$project$WithControlElements$toId(inp.id),
+			_0: _elm_lang$core$Maybe$Just(
+				A2(
+					_user$project$HtmlTree$Attribute,
+					'id',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'input',
+						_elm_lang$core$Basics$toString(inp.id)))),
 			_1: {
 				ctor: '::',
 				_0: _user$project$WithControlElements$toDisabled(inp.disabled),
@@ -14114,10 +14115,20 @@ var _user$project$WithControlElements$textAreaToHtmlTree = function (input) {
 		_elm_lang$core$Basics$identity,
 		{
 			ctor: '::',
-			_0: _user$project$WithControlElements$toId(input.id),
+			_0: _elm_lang$core$Maybe$Just(
+				A2(
+					_user$project$HtmlTree$Attribute,
+					'id',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'input',
+						_elm_lang$core$Basics$toString(input.id)))),
 			_1: {
 				ctor: '::',
-				_0: _user$project$WithControlElements$toPlaceholder(input.placeholder),
+				_0: A2(
+					_elm_lang$core$Maybe$map,
+					_user$project$HtmlTree$Attribute('placeholder'),
+					input.placeholder),
 				_1: {
 					ctor: '::',
 					_0: _elm_lang$core$Maybe$Just(
@@ -14138,7 +14149,11 @@ var _user$project$WithControlElements$textAreaToHtmlTree = function (input) {
 											' form-control')))),
 							_1: {
 								ctor: '::',
-								_0: _user$project$WithControlElements$toType(input.type_),
+								_0: _elm_lang$core$Maybe$Just(
+									A2(
+										_user$project$HtmlTree$Attribute,
+										'type',
+										_user$project$FormModel$inputTypeToString(input.type_))),
 								_1: {ctor: '[]'}
 							}
 						}
@@ -14278,7 +14293,14 @@ var _user$project$WithControlElements$selectToHtmlTree = function (inp) {
 		_elm_lang$core$Basics$identity,
 		{
 			ctor: '::',
-			_0: _user$project$WithControlElements$toId(inp.id),
+			_0: _elm_lang$core$Maybe$Just(
+				A2(
+					_user$project$HtmlTree$Attribute,
+					'id',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'input',
+						_elm_lang$core$Basics$toString(inp.id)))),
 			_1: {
 				ctor: '::',
 				_0: _user$project$WithControlElements$toDisabled(inp.disabled),
@@ -14355,15 +14377,11 @@ var _user$project$WithControlElements$colorToHtmlTree = function (inp) {
 				_elm_lang$core$Basics$identity,
 				{
 					ctor: '::',
-					_0: _elm_lang$core$Maybe$Just('form-group'),
+					_0: _elm_lang$core$Maybe$Just('form-group show-hidden-on-hover'),
 					_1: {
 						ctor: '::',
-						_0: _elm_lang$core$Maybe$Just('show-hidden-on-hover'),
-						_1: {
-							ctor: '::',
-							_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
-							_1: {ctor: '[]'}
-						}
+						_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
+						_1: {ctor: '[]'}
 					}
 				})));
 	var inputAttrs = A2(
@@ -14371,10 +14389,20 @@ var _user$project$WithControlElements$colorToHtmlTree = function (inp) {
 		_elm_lang$core$Basics$identity,
 		{
 			ctor: '::',
-			_0: _user$project$WithControlElements$toId(inp.id),
+			_0: _elm_lang$core$Maybe$Just(
+				A2(
+					_user$project$HtmlTree$Attribute,
+					'id',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'input',
+						_elm_lang$core$Basics$toString(inp.id)))),
 			_1: {
 				ctor: '::',
-				_0: _user$project$WithControlElements$toPlaceholder(inp.placeholder),
+				_0: A2(
+					_elm_lang$core$Maybe$map,
+					_user$project$HtmlTree$Attribute('placeholder'),
+					inp.placeholder),
 				_1: {
 					ctor: '::',
 					_0: _user$project$WithControlElements$toDisabled(inp.disabled),
@@ -14391,7 +14419,11 @@ var _user$project$WithControlElements$colorToHtmlTree = function (inp) {
 										' form-control')))),
 						_1: {
 							ctor: '::',
-							_0: _user$project$WithControlElements$toType(inp.type_),
+							_0: _elm_lang$core$Maybe$Just(
+								A2(
+									_user$project$HtmlTree$Attribute,
+									'type',
+									_user$project$FormModel$inputTypeToString(inp.type_))),
 							_1: {ctor: '[]'}
 						}
 					}
@@ -14464,10 +14496,20 @@ var _user$project$WithControlElements$textInputToHtmlTree = function (input) {
 		_elm_lang$core$Basics$identity,
 		{
 			ctor: '::',
-			_0: _user$project$WithControlElements$toId(input.id),
+			_0: _elm_lang$core$Maybe$Just(
+				A2(
+					_user$project$HtmlTree$Attribute,
+					'id',
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'input',
+						_elm_lang$core$Basics$toString(input.id)))),
 			_1: {
 				ctor: '::',
-				_0: _user$project$WithControlElements$toPlaceholder(input.placeholder),
+				_0: A2(
+					_elm_lang$core$Maybe$map,
+					_user$project$HtmlTree$Attribute('placeholder'),
+					input.placeholder),
 				_1: {
 					ctor: '::',
 					_0: _user$project$WithControlElements$toDisabled(input.disabled),
@@ -14484,7 +14526,11 @@ var _user$project$WithControlElements$textInputToHtmlTree = function (input) {
 										' form-control')))),
 						_1: {
 							ctor: '::',
-							_0: _user$project$WithControlElements$toType(input.type_),
+							_0: _elm_lang$core$Maybe$Just(
+								A2(
+									_user$project$HtmlTree$Attribute,
+									'type',
+									_user$project$FormModel$inputTypeToString(input.type_))),
 							_1: {ctor: '[]'}
 						}
 					}
@@ -14559,15 +14605,11 @@ var _user$project$WithControlElements$textInputToHtmlTree = function (input) {
 				_elm_lang$core$Basics$identity,
 				{
 					ctor: '::',
-					_0: _elm_lang$core$Maybe$Just('form-group'),
+					_0: _elm_lang$core$Maybe$Just('form-group show-hidden-on-hover'),
 					_1: {
 						ctor: '::',
-						_0: _elm_lang$core$Maybe$Just('show-hidden-on-hover'),
-						_1: {
-							ctor: '::',
-							_0: input.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
-							_1: {ctor: '[]'}
-						}
+						_0: input.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
+						_1: {ctor: '[]'}
 					}
 				})));
 	return A5(
@@ -16453,19 +16495,6 @@ var _user$project$InputOptions$view = function (input) {
 			options));
 };
 
-var _user$project$InputUpdate$removeOption = F2(
-	function (newOption, input) {
-		return _elm_lang$core$Native_Utils.update(
-			input,
-			{
-				options: A2(
-					_elm_lang$core$List$filter,
-					function (option) {
-						return !_elm_lang$core$Native_Utils.eq(option, newOption);
-					},
-					input.options)
-			});
-	});
 var _user$project$InputUpdate$update = F2(
 	function (msg, model) {
 		var updatedInputs = function () {

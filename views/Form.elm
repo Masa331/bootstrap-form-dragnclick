@@ -2,10 +2,7 @@ module Form exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.Events exposing (..)
-import String exposing (..)
 
-import Models exposing (..)
 import HtmlTree exposing (..)
 import FormModel exposing (..)
 import Messages exposing (..)

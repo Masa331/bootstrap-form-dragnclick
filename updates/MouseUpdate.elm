@@ -1,8 +1,10 @@
 module MouseUpdate exposing (..)
 
 import Messages exposing (..)
+import Models exposing (..)
 import Utils exposing (..)
 
+update : MouseMsg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
     MouseClick id ->
