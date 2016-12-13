@@ -4,7 +4,9 @@ import Html.Events
 import Html.Attributes
 
 import HtmlTree exposing (..)
-import FormModel exposing (..)
+-- import FormModel exposing (..)
+import Form exposing (..)
+import Inputs exposing (..)
 import Messages
 import Models
 

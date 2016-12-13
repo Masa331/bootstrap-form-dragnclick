@@ -6,13 +6,15 @@ import HtmlTree
 import ElementMap
 import Navigation
 import UrlParser exposing ((</>))
-import FormModel exposing (textInput, checkbox, button)
+import Inputs exposing (textInput, checkbox, button)
+import Form
+import Inputs exposing (textInput, checkbox, button)
 
 type Route = Form
            | Source
            | InputEdit Int
 
-type alias Model = { inputs: FormModel.Form
+type alias Model = { inputs: Form.Form
                    , newOption: String
                    , mousePosition : Mouse.Position
                    , initialMousePosition : Mouse.Position
@@ -24,7 +26,7 @@ initial =
   { inputs = [ { textInput | id = 1, label = Just "Name", placeholder = Just "Max Rockatansky" }
              , { textInput | id = 2, label = Just "Job title", placeholder = Just "Sheep herder", small = Just "Please tell us what do you do for living for statistical purposes." }
              , { textInput | id = 3, label = Just "Email address", placeholder = Just "rockatansky@wastelands.com", addon1 = Just "@" }
-             , { textInput | id = 4, label = Just "Password", type_ = FormModel.Password }
+             , { textInput | id = 4, label = Just "Password", type_ = Inputs.Password }
              , { checkbox | id = 5, label = Just "I Accept all terms and agreements" }
              , { button | id = 6, label = Just "Register!" }
              ]

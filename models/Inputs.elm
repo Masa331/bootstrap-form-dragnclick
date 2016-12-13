@@ -1,4 +1,4 @@
-module FormModel exposing (..)
+module Inputs exposing (..)
 
 import String
 import ElementMap
@@ -20,8 +20,6 @@ type alias Input =
   , dragged: Bool
   , dimensions: Maybe ElementMap.ElementDimensions
   , options: List String }
-
-type alias Form = List Input
 
 blankInput : Input
 blankInput =

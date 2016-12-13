@@ -1,10 +1,11 @@
-module Form exposing (view)
+module FormView exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
 
 import HtmlTree exposing (..)
-import FormModel exposing (..)
+import Form exposing (..)
+import Inputs exposing (..)
 import Messages exposing (..)
 
 view : Element -> List (Html Msg)

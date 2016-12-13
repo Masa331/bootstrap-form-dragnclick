@@ -2,7 +2,8 @@ module InputUpdate exposing (..)
 
 import Messages exposing (..)
 import Models exposing (..)
-import FormModel exposing (..)
+import Form exposing (..)
+import Inputs exposing (..)
 
 update : InputMsg -> Model -> (Model, Cmd Msg)
 update msg model =

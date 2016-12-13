@@ -1,11 +1,12 @@
-module InputOptions exposing (view)
+module InputEditView exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 
 import Models exposing (..)
-import FormModel exposing (..)
+import Form exposing (..)
+import Inputs exposing (..)
 import Messages exposing (..)
 
 view : Input -> List (Html Msg)

@@ -10050,7 +10050,7 @@ var _user$project$HtmlTree$Children = function (a) {
 	return {ctor: 'Children', _0: a};
 };
 
-var _user$project$FormModel$updateInputs = F3(
+var _user$project$Inputs$updateInputs = F3(
 	function (inputs, targetId, updateFunc) {
 		return A2(
 			_elm_lang$core$List$map,
@@ -10059,7 +10059,7 @@ var _user$project$FormModel$updateInputs = F3(
 			},
 			inputs);
 	});
-var _user$project$FormModel$stringInputTypes = {
+var _user$project$Inputs$stringInputTypes = {
 	ctor: '::',
 	_0: 'text',
 	_1: {
@@ -10140,13 +10140,13 @@ var _user$project$FormModel$stringInputTypes = {
 		}
 	}
 };
-var _user$project$FormModel$rowsToNumber = function (rowNumber) {
+var _user$project$Inputs$rowsToNumber = function (rowNumber) {
 	return A2(
 		_elm_lang$core$Result$withDefault,
 		3,
 		_elm_lang$core$String$toInt(rowNumber));
 };
-var _user$project$FormModel$inputTypeToString = function (type_) {
+var _user$project$Inputs$inputTypeToString = function (type_) {
 	var _p0 = type_;
 	if (_p0.ctor === 'DatetimeLocal') {
 		return 'datetime-local';
@@ -10157,7 +10157,7 @@ var _user$project$FormModel$inputTypeToString = function (type_) {
 		}(type_);
 	}
 };
-var _user$project$FormModel$Input = function (a) {
+var _user$project$Inputs$Input = function (a) {
 	return function (b) {
 		return function (c) {
 			return function (d) {
@@ -10184,45 +10184,45 @@ var _user$project$FormModel$Input = function (a) {
 		};
 	};
 };
-var _user$project$FormModel$Large = {ctor: 'Large'};
-var _user$project$FormModel$Normal = {ctor: 'Normal'};
-var _user$project$FormModel$Small = {ctor: 'Small'};
-var _user$project$FormModel$textToSize = function (text) {
+var _user$project$Inputs$Large = {ctor: 'Large'};
+var _user$project$Inputs$Normal = {ctor: 'Normal'};
+var _user$project$Inputs$Small = {ctor: 'Small'};
+var _user$project$Inputs$textToSize = function (text) {
 	var _p2 = text;
 	switch (_p2) {
 		case 'small':
-			return _user$project$FormModel$Small;
+			return _user$project$Inputs$Small;
 		case 'normal':
-			return _user$project$FormModel$Normal;
+			return _user$project$Inputs$Normal;
 		case 'large':
-			return _user$project$FormModel$Large;
+			return _user$project$Inputs$Large;
 		default:
-			return _user$project$FormModel$Normal;
+			return _user$project$Inputs$Normal;
 	}
 };
-var _user$project$FormModel$Color = {ctor: 'Color'};
-var _user$project$FormModel$Time = {ctor: 'Time'};
-var _user$project$FormModel$Date = {ctor: 'Date'};
-var _user$project$FormModel$DatetimeLocal = {ctor: 'DatetimeLocal'};
-var _user$project$FormModel$Number = {ctor: 'Number'};
-var _user$project$FormModel$Password = {ctor: 'Password'};
-var _user$project$FormModel$Url = {ctor: 'Url'};
-var _user$project$FormModel$Email = {ctor: 'Email'};
-var _user$project$FormModel$Button = {ctor: 'Button'};
-var _user$project$FormModel$Checkbox = {ctor: 'Checkbox'};
-var _user$project$FormModel$Radio = {ctor: 'Radio'};
-var _user$project$FormModel$FileUpload = {ctor: 'FileUpload'};
-var _user$project$FormModel$Multiselect = {ctor: 'Multiselect'};
-var _user$project$FormModel$Select = {ctor: 'Select'};
-var _user$project$FormModel$TextArea = {ctor: 'TextArea'};
-var _user$project$FormModel$Text = {ctor: 'Text'};
-var _user$project$FormModel$blankInput = {
-	type_: _user$project$FormModel$Text,
+var _user$project$Inputs$Color = {ctor: 'Color'};
+var _user$project$Inputs$Time = {ctor: 'Time'};
+var _user$project$Inputs$Date = {ctor: 'Date'};
+var _user$project$Inputs$DatetimeLocal = {ctor: 'DatetimeLocal'};
+var _user$project$Inputs$Number = {ctor: 'Number'};
+var _user$project$Inputs$Password = {ctor: 'Password'};
+var _user$project$Inputs$Url = {ctor: 'Url'};
+var _user$project$Inputs$Email = {ctor: 'Email'};
+var _user$project$Inputs$Button = {ctor: 'Button'};
+var _user$project$Inputs$Checkbox = {ctor: 'Checkbox'};
+var _user$project$Inputs$Radio = {ctor: 'Radio'};
+var _user$project$Inputs$FileUpload = {ctor: 'FileUpload'};
+var _user$project$Inputs$Multiselect = {ctor: 'Multiselect'};
+var _user$project$Inputs$Select = {ctor: 'Select'};
+var _user$project$Inputs$TextArea = {ctor: 'TextArea'};
+var _user$project$Inputs$Text = {ctor: 'Text'};
+var _user$project$Inputs$blankInput = {
+	type_: _user$project$Inputs$Text,
 	id: 0,
 	placeholder: _elm_lang$core$Maybe$Nothing,
 	label: _elm_lang$core$Maybe$Just('Some label..'),
 	disabled: false,
-	size: _user$project$FormModel$Normal,
+	size: _user$project$Inputs$Normal,
 	addon1: _elm_lang$core$Maybe$Nothing,
 	addon2: _elm_lang$core$Maybe$Nothing,
 	small: _elm_lang$core$Maybe$Nothing,
@@ -10231,54 +10231,55 @@ var _user$project$FormModel$blankInput = {
 	dimensions: _elm_lang$core$Maybe$Nothing,
 	options: {ctor: '[]'}
 };
-var _user$project$FormModel$checkbox = _elm_lang$core$Native_Utils.update(
-	_user$project$FormModel$blankInput,
-	{type_: _user$project$FormModel$Checkbox});
-var _user$project$FormModel$button = _elm_lang$core$Native_Utils.update(
-	_user$project$FormModel$blankInput,
-	{type_: _user$project$FormModel$Button});
-var _user$project$FormModel$textInput = _elm_lang$core$Native_Utils.update(
-	_user$project$FormModel$blankInput,
-	{type_: _user$project$FormModel$Text});
-var _user$project$FormModel$textToType = function (text) {
+var _user$project$Inputs$checkbox = _elm_lang$core$Native_Utils.update(
+	_user$project$Inputs$blankInput,
+	{type_: _user$project$Inputs$Checkbox});
+var _user$project$Inputs$button = _elm_lang$core$Native_Utils.update(
+	_user$project$Inputs$blankInput,
+	{type_: _user$project$Inputs$Button});
+var _user$project$Inputs$textInput = _elm_lang$core$Native_Utils.update(
+	_user$project$Inputs$blankInput,
+	{type_: _user$project$Inputs$Text});
+var _user$project$Inputs$textToType = function (text) {
 	var _p3 = text;
 	switch (_p3) {
 		case 'text':
-			return _user$project$FormModel$Text;
+			return _user$project$Inputs$Text;
 		case 'textarea':
-			return _user$project$FormModel$TextArea;
+			return _user$project$Inputs$TextArea;
 		case 'select':
-			return _user$project$FormModel$Select;
+			return _user$project$Inputs$Select;
 		case 'multiselect':
-			return _user$project$FormModel$Multiselect;
+			return _user$project$Inputs$Multiselect;
 		case 'fileupload':
-			return _user$project$FormModel$FileUpload;
+			return _user$project$Inputs$FileUpload;
 		case 'radio':
-			return _user$project$FormModel$Radio;
+			return _user$project$Inputs$Radio;
 		case 'checkbox':
-			return _user$project$FormModel$Checkbox;
+			return _user$project$Inputs$Checkbox;
 		case 'button':
-			return _user$project$FormModel$Button;
+			return _user$project$Inputs$Button;
 		case 'email':
-			return _user$project$FormModel$Email;
+			return _user$project$Inputs$Email;
 		case 'url':
-			return _user$project$FormModel$Url;
+			return _user$project$Inputs$Url;
 		case 'password':
-			return _user$project$FormModel$Password;
+			return _user$project$Inputs$Password;
 		case 'number':
-			return _user$project$FormModel$Number;
+			return _user$project$Inputs$Number;
 		case 'datetime-local':
-			return _user$project$FormModel$DatetimeLocal;
+			return _user$project$Inputs$DatetimeLocal;
 		case 'date':
-			return _user$project$FormModel$Date;
+			return _user$project$Inputs$Date;
 		case 'time':
-			return _user$project$FormModel$Time;
+			return _user$project$Inputs$Time;
 		case 'color':
-			return _user$project$FormModel$Color;
+			return _user$project$Inputs$Color;
 		default:
-			return _user$project$FormModel$Text;
+			return _user$project$Inputs$Text;
 	}
 };
+
 
 var _user$project$Models$currentlyDraggedInput = function (model) {
 	return _elm_lang$core$List$head(
@@ -10305,7 +10306,7 @@ var _user$project$Models$initial = {
 	inputs: {
 		ctor: '::',
 		_0: _elm_lang$core$Native_Utils.update(
-			_user$project$FormModel$textInput,
+			_user$project$Inputs$textInput,
 			{
 				id: 1,
 				label: _elm_lang$core$Maybe$Just('Name'),
@@ -10314,7 +10315,7 @@ var _user$project$Models$initial = {
 		_1: {
 			ctor: '::',
 			_0: _elm_lang$core$Native_Utils.update(
-				_user$project$FormModel$textInput,
+				_user$project$Inputs$textInput,
 				{
 					id: 2,
 					label: _elm_lang$core$Maybe$Just('Job title'),
@@ -10324,7 +10325,7 @@ var _user$project$Models$initial = {
 			_1: {
 				ctor: '::',
 				_0: _elm_lang$core$Native_Utils.update(
-					_user$project$FormModel$textInput,
+					_user$project$Inputs$textInput,
 					{
 						id: 3,
 						label: _elm_lang$core$Maybe$Just('Email address'),
@@ -10334,16 +10335,16 @@ var _user$project$Models$initial = {
 				_1: {
 					ctor: '::',
 					_0: _elm_lang$core$Native_Utils.update(
-						_user$project$FormModel$textInput,
+						_user$project$Inputs$textInput,
 						{
 							id: 4,
 							label: _elm_lang$core$Maybe$Just('Password'),
-							type_: _user$project$FormModel$Password
+							type_: _user$project$Inputs$Password
 						}),
 					_1: {
 						ctor: '::',
 						_0: _elm_lang$core$Native_Utils.update(
-							_user$project$FormModel$checkbox,
+							_user$project$Inputs$checkbox,
 							{
 								id: 5,
 								label: _elm_lang$core$Maybe$Just('I Accept all terms and agreements')
@@ -10351,7 +10352,7 @@ var _user$project$Models$initial = {
 						_1: {
 							ctor: '::',
 							_0: _elm_lang$core$Native_Utils.update(
-								_user$project$FormModel$button,
+								_user$project$Inputs$button,
 								{
 									id: 6,
 									label: _elm_lang$core$Maybe$Just('Register!')
@@ -10481,7 +10482,7 @@ var _user$project$Dragged$toType = function (value) {
 		A2(
 			_user$project$HtmlTree$Attribute,
 			'type',
-			_user$project$FormModel$inputTypeToString(value)));
+			_user$project$Inputs$inputTypeToString(value)));
 };
 var _user$project$Dragged$toLegend = function (value) {
 	return A2(
@@ -11378,7 +11379,7 @@ var _user$project$Dragged$textInputToHtmlTree = function (input) {
 								A2(
 									_user$project$HtmlTree$Attribute,
 									'type',
-									_user$project$FormModel$inputTypeToString(input.type_))),
+									_user$project$Inputs$inputTypeToString(input.type_))),
 							_1: {ctor: '[]'}
 						}
 					}
@@ -11685,7 +11686,7 @@ var _user$project$ForInputEdit$toType = function (value) {
 		A2(
 			_user$project$HtmlTree$Attribute,
 			'type',
-			_user$project$FormModel$inputTypeToString(value)));
+			_user$project$Inputs$inputTypeToString(value)));
 };
 var _user$project$ForInputEdit$toLegend = function (input) {
 	var label = A5(
@@ -12882,52 +12883,6 @@ var _user$project$ForInputEdit$build = function (input) {
 	}
 };
 
-var _user$project$Form$createAttribute = function (attribute) {
-	return _elm_lang$core$Native_Utils.eq(attribute.name, 'rows') ? _elm_lang$html$Html_Attributes$rows(
-		_user$project$FormModel$rowsToNumber(attribute.value)) : A2(_elm_lang$html$Html_Attributes$attribute, attribute.name, attribute.value);
-};
-var _user$project$Form$createAttributes = function (model) {
-	return A2(_elm_lang$core$List$map, _user$project$Form$createAttribute, model.attributes);
-};
-var _user$project$Form$toElmHtmlNode = function (htmlTree) {
-	var value = _elm_lang$core$Native_Utils.eq(htmlTree.value, '') ? {ctor: '[]'} : {
-		ctor: '::',
-		_0: _elm_lang$html$Html$text(htmlTree.value),
-		_1: {ctor: '[]'}
-	};
-	var childs = function (_p0) {
-		var _p1 = _p0;
-		return _p1._0;
-	}(htmlTree.children);
-	var attributes = _user$project$Form$createAttributes(htmlTree);
-	var node = A2(
-		_elm_lang$html$Html$node,
-		htmlTree.tag,
-		A2(_elm_lang$core$Basics_ops['++'], attributes, htmlTree.events));
-	var _p2 = childs;
-	if (_p2.ctor === '[]') {
-		return {
-			ctor: '::',
-			_0: node(value),
-			_1: {ctor: '[]'}
-		};
-	} else {
-		return {
-			ctor: '::',
-			_0: node(
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					_elm_lang$core$List$concat(
-						A2(_elm_lang$core$List$map, _user$project$Form$toElmHtmlNode, childs)),
-					value)),
-			_1: {ctor: '[]'}
-		};
-	}
-};
-var _user$project$Form$view = function (htmlTree) {
-	return _user$project$Form$toElmHtmlNode(htmlTree);
-};
-
 var _user$project$FormUpdate$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
@@ -12943,7 +12898,7 @@ var _user$project$FormUpdate$update = F2(
 							{
 								ctor: '::',
 								_0: _elm_lang$core$Native_Utils.update(
-									_user$project$FormModel$textInput,
+									_user$project$Inputs$textInput,
 									{
 										id: _user$project$Models$maxInputId(model) + 1
 									}),
@@ -12969,6 +12924,52 @@ var _user$project$FormUpdate$update = F2(
 			};
 		}
 	});
+
+var _user$project$FormView$createAttribute = function (attribute) {
+	return _elm_lang$core$Native_Utils.eq(attribute.name, 'rows') ? _elm_lang$html$Html_Attributes$rows(
+		_user$project$Inputs$rowsToNumber(attribute.value)) : A2(_elm_lang$html$Html_Attributes$attribute, attribute.name, attribute.value);
+};
+var _user$project$FormView$createAttributes = function (model) {
+	return A2(_elm_lang$core$List$map, _user$project$FormView$createAttribute, model.attributes);
+};
+var _user$project$FormView$toElmHtmlNode = function (htmlTree) {
+	var value = _elm_lang$core$Native_Utils.eq(htmlTree.value, '') ? {ctor: '[]'} : {
+		ctor: '::',
+		_0: _elm_lang$html$Html$text(htmlTree.value),
+		_1: {ctor: '[]'}
+	};
+	var childs = function (_p0) {
+		var _p1 = _p0;
+		return _p1._0;
+	}(htmlTree.children);
+	var attributes = _user$project$FormView$createAttributes(htmlTree);
+	var node = A2(
+		_elm_lang$html$Html$node,
+		htmlTree.tag,
+		A2(_elm_lang$core$Basics_ops['++'], attributes, htmlTree.events));
+	var _p2 = childs;
+	if (_p2.ctor === '[]') {
+		return {
+			ctor: '::',
+			_0: node(value),
+			_1: {ctor: '[]'}
+		};
+	} else {
+		return {
+			ctor: '::',
+			_0: node(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$List$concat(
+						A2(_elm_lang$core$List$map, _user$project$FormView$toElmHtmlNode, childs)),
+					value)),
+			_1: {ctor: '[]'}
+		};
+	}
+};
+var _user$project$FormView$view = function (htmlTree) {
+	return _user$project$FormView$toElmHtmlNode(htmlTree);
+};
 
 var _user$project$WithControlElements$sizeClass = function (size) {
 	var _p0 = size;
@@ -13713,7 +13714,7 @@ var _user$project$WithControlElements$checkboxToHtmlTree = function (inp) {
 							A2(
 								_user$project$HtmlTree$Attribute,
 								'type',
-								_user$project$FormModel$inputTypeToString(inp.type_))),
+								_user$project$Inputs$inputTypeToString(inp.type_))),
 						_1: {ctor: '[]'}
 					}
 				}
@@ -14239,7 +14240,7 @@ var _user$project$WithControlElements$textAreaToHtmlTree = function (input) {
 									A2(
 										_user$project$HtmlTree$Attribute,
 										'type',
-										_user$project$FormModel$inputTypeToString(input.type_))),
+										_user$project$Inputs$inputTypeToString(input.type_))),
 								_1: {ctor: '[]'}
 							}
 						}
@@ -14509,7 +14510,7 @@ var _user$project$WithControlElements$colorToHtmlTree = function (inp) {
 								A2(
 									_user$project$HtmlTree$Attribute,
 									'type',
-									_user$project$FormModel$inputTypeToString(inp.type_))),
+									_user$project$Inputs$inputTypeToString(inp.type_))),
 							_1: {ctor: '[]'}
 						}
 					}
@@ -14616,7 +14617,7 @@ var _user$project$WithControlElements$textInputToHtmlTree = function (input) {
 								A2(
 									_user$project$HtmlTree$Attribute,
 									'type',
-									_user$project$FormModel$inputTypeToString(input.type_))),
+									_user$project$Inputs$inputTypeToString(input.type_))),
 							_1: {ctor: '[]'}
 						}
 					}
@@ -15518,7 +15519,7 @@ var _user$project$Raw$colorToHtmlTree = function (input) {
 								A2(
 									_user$project$HtmlTree$Attribute,
 									'type',
-									_user$project$FormModel$inputTypeToString(input.type_))),
+									_user$project$Inputs$inputTypeToString(input.type_))),
 							_1: {ctor: '[]'}
 						}
 					}
@@ -15633,7 +15634,7 @@ var _user$project$Raw$textInputToHtmlTree = function (input) {
 								A2(
 									_user$project$HtmlTree$Attribute,
 									'type',
-									_user$project$FormModel$inputTypeToString(input.type_))),
+									_user$project$Inputs$inputTypeToString(input.type_))),
 							_1: {ctor: '[]'}
 						}
 					}
@@ -15791,7 +15792,7 @@ var _user$project$HtmlTreeBuilder$buildWithControlElements = function (input) {
 	return _user$project$WithControlElements$build(input);
 };
 
-var _user$project$InputOptions$optionsEdit = function (input) {
+var _user$project$InputEditView$optionsEdit = function (input) {
 	var lifunc = function (value) {
 		return A2(
 			_elm_lang$html$Html$li,
@@ -15943,7 +15944,7 @@ var _user$project$InputOptions$optionsEdit = function (input) {
 		_1: {ctor: '[]'}
 	};
 };
-var _user$project$InputOptions$numberEdit = F3(
+var _user$project$InputEditView$numberEdit = F3(
 	function (label, msg, value) {
 		return {
 			ctor: '::',
@@ -16007,7 +16008,7 @@ var _user$project$InputOptions$numberEdit = F3(
 			_1: {ctor: '[]'}
 		};
 	});
-var _user$project$InputOptions$selectEdit = F4(
+var _user$project$InputEditView$selectEdit = F4(
 	function (label, msg, options, selected) {
 		return {
 			ctor: '::',
@@ -16080,7 +16081,7 @@ var _user$project$InputOptions$selectEdit = F4(
 			_1: {ctor: '[]'}
 		};
 	});
-var _user$project$InputOptions$textEdit = F3(
+var _user$project$InputEditView$textEdit = F3(
 	function (label, msg, value) {
 		return {
 			ctor: '::',
@@ -16140,9 +16141,9 @@ var _user$project$InputOptions$textEdit = F3(
 			_1: {ctor: '[]'}
 		};
 	});
-var _user$project$InputOptions$rowNumberEdit = function (input) {
+var _user$project$InputEditView$rowNumberEdit = function (input) {
 	return A3(
-		_user$project$InputOptions$numberEdit,
+		_user$project$InputEditView$numberEdit,
 		'Rows',
 		function (_p0) {
 			return _user$project$Messages$InputMessage(
@@ -16150,20 +16151,20 @@ var _user$project$InputOptions$rowNumberEdit = function (input) {
 		},
 		input.rowNumber);
 };
-var _user$project$InputOptions$typeEdit = function (input) {
+var _user$project$InputEditView$typeEdit = function (input) {
 	return A4(
-		_user$project$InputOptions$selectEdit,
+		_user$project$InputEditView$selectEdit,
 		'Type',
 		function (_p1) {
 			return _user$project$Messages$InputMessage(
 				A2(_user$project$Messages$TypeEdit, input.id, _p1));
 		},
-		_user$project$FormModel$stringInputTypes,
-		_user$project$FormModel$inputTypeToString(input.type_));
+		_user$project$Inputs$stringInputTypes,
+		_user$project$Inputs$inputTypeToString(input.type_));
 };
-var _user$project$InputOptions$addon2Edit = function (input) {
+var _user$project$InputEditView$addon2Edit = function (input) {
 	return A3(
-		_user$project$InputOptions$textEdit,
+		_user$project$InputEditView$textEdit,
 		'2 addon',
 		function (_p2) {
 			return _user$project$Messages$InputMessage(
@@ -16171,9 +16172,9 @@ var _user$project$InputOptions$addon2Edit = function (input) {
 		},
 		A2(_elm_lang$core$Maybe$withDefault, '', input.addon2));
 };
-var _user$project$InputOptions$addon1Edit = function (input) {
+var _user$project$InputEditView$addon1Edit = function (input) {
 	return A3(
-		_user$project$InputOptions$textEdit,
+		_user$project$InputEditView$textEdit,
 		'1 addon',
 		function (_p3) {
 			return _user$project$Messages$InputMessage(
@@ -16181,9 +16182,9 @@ var _user$project$InputOptions$addon1Edit = function (input) {
 		},
 		A2(_elm_lang$core$Maybe$withDefault, '', input.addon1));
 };
-var _user$project$InputOptions$smallUnderEdit = function (input) {
+var _user$project$InputEditView$smallUnderEdit = function (input) {
 	return A3(
-		_user$project$InputOptions$textEdit,
+		_user$project$InputEditView$textEdit,
 		'Description',
 		function (_p4) {
 			return _user$project$Messages$InputMessage(
@@ -16191,9 +16192,9 @@ var _user$project$InputOptions$smallUnderEdit = function (input) {
 		},
 		A2(_elm_lang$core$Maybe$withDefault, '', input.small));
 };
-var _user$project$InputOptions$labelEdit = function (input) {
+var _user$project$InputEditView$labelEdit = function (input) {
 	return A3(
-		_user$project$InputOptions$textEdit,
+		_user$project$InputEditView$textEdit,
 		'Label',
 		function (_p5) {
 			return _user$project$Messages$InputMessage(
@@ -16201,9 +16202,9 @@ var _user$project$InputOptions$labelEdit = function (input) {
 		},
 		A2(_elm_lang$core$Maybe$withDefault, '', input.label));
 };
-var _user$project$InputOptions$placeholderEdit = function (input) {
+var _user$project$InputEditView$placeholderEdit = function (input) {
 	return A3(
-		_user$project$InputOptions$textEdit,
+		_user$project$InputEditView$textEdit,
 		'Placeholder',
 		function (_p6) {
 			return _user$project$Messages$InputMessage(
@@ -16211,29 +16212,29 @@ var _user$project$InputOptions$placeholderEdit = function (input) {
 		},
 		A2(_elm_lang$core$Maybe$withDefault, '', input.placeholder));
 };
-var _user$project$InputOptions$view = function (input) {
+var _user$project$InputEditView$view = function (input) {
 	var options = function () {
 		var _p7 = input.type_;
 		switch (_p7.ctor) {
 			case 'Text':
 				return {
 					ctor: '::',
-					_0: _user$project$InputOptions$typeEdit,
+					_0: _user$project$InputEditView$typeEdit,
 					_1: {
 						ctor: '::',
-						_0: _user$project$InputOptions$placeholderEdit,
+						_0: _user$project$InputEditView$placeholderEdit,
 						_1: {
 							ctor: '::',
-							_0: _user$project$InputOptions$labelEdit,
+							_0: _user$project$InputEditView$labelEdit,
 							_1: {
 								ctor: '::',
-								_0: _user$project$InputOptions$smallUnderEdit,
+								_0: _user$project$InputEditView$smallUnderEdit,
 								_1: {
 									ctor: '::',
-									_0: _user$project$InputOptions$addon1Edit,
+									_0: _user$project$InputEditView$addon1Edit,
 									_1: {
 										ctor: '::',
-										_0: _user$project$InputOptions$addon2Edit,
+										_0: _user$project$InputEditView$addon2Edit,
 										_1: {ctor: '[]'}
 									}
 								}
@@ -16244,16 +16245,16 @@ var _user$project$InputOptions$view = function (input) {
 			case 'Select':
 				return {
 					ctor: '::',
-					_0: _user$project$InputOptions$typeEdit,
+					_0: _user$project$InputEditView$typeEdit,
 					_1: {
 						ctor: '::',
-						_0: _user$project$InputOptions$labelEdit,
+						_0: _user$project$InputEditView$labelEdit,
 						_1: {
 							ctor: '::',
-							_0: _user$project$InputOptions$smallUnderEdit,
+							_0: _user$project$InputEditView$smallUnderEdit,
 							_1: {
 								ctor: '::',
-								_0: _user$project$InputOptions$optionsEdit,
+								_0: _user$project$InputEditView$optionsEdit,
 								_1: {ctor: '[]'}
 							}
 						}
@@ -16262,25 +16263,25 @@ var _user$project$InputOptions$view = function (input) {
 			case 'TextArea':
 				return {
 					ctor: '::',
-					_0: _user$project$InputOptions$typeEdit,
+					_0: _user$project$InputEditView$typeEdit,
 					_1: {
 						ctor: '::',
-						_0: _user$project$InputOptions$rowNumberEdit,
+						_0: _user$project$InputEditView$rowNumberEdit,
 						_1: {
 							ctor: '::',
-							_0: _user$project$InputOptions$placeholderEdit,
+							_0: _user$project$InputEditView$placeholderEdit,
 							_1: {
 								ctor: '::',
-								_0: _user$project$InputOptions$labelEdit,
+								_0: _user$project$InputEditView$labelEdit,
 								_1: {
 									ctor: '::',
-									_0: _user$project$InputOptions$smallUnderEdit,
+									_0: _user$project$InputEditView$smallUnderEdit,
 									_1: {
 										ctor: '::',
-										_0: _user$project$InputOptions$addon1Edit,
+										_0: _user$project$InputEditView$addon1Edit,
 										_1: {
 											ctor: '::',
-											_0: _user$project$InputOptions$addon2Edit,
+											_0: _user$project$InputEditView$addon2Edit,
 											_1: {ctor: '[]'}
 										}
 									}
@@ -16292,16 +16293,16 @@ var _user$project$InputOptions$view = function (input) {
 			case 'Multiselect':
 				return {
 					ctor: '::',
-					_0: _user$project$InputOptions$typeEdit,
+					_0: _user$project$InputEditView$typeEdit,
 					_1: {
 						ctor: '::',
-						_0: _user$project$InputOptions$labelEdit,
+						_0: _user$project$InputEditView$labelEdit,
 						_1: {
 							ctor: '::',
-							_0: _user$project$InputOptions$smallUnderEdit,
+							_0: _user$project$InputEditView$smallUnderEdit,
 							_1: {
 								ctor: '::',
-								_0: _user$project$InputOptions$optionsEdit,
+								_0: _user$project$InputEditView$optionsEdit,
 								_1: {ctor: '[]'}
 							}
 						}
@@ -16310,13 +16311,13 @@ var _user$project$InputOptions$view = function (input) {
 			case 'FileUpload':
 				return {
 					ctor: '::',
-					_0: _user$project$InputOptions$typeEdit,
+					_0: _user$project$InputEditView$typeEdit,
 					_1: {
 						ctor: '::',
-						_0: _user$project$InputOptions$labelEdit,
+						_0: _user$project$InputEditView$labelEdit,
 						_1: {
 							ctor: '::',
-							_0: _user$project$InputOptions$smallUnderEdit,
+							_0: _user$project$InputEditView$smallUnderEdit,
 							_1: {ctor: '[]'}
 						}
 					}
@@ -16324,16 +16325,16 @@ var _user$project$InputOptions$view = function (input) {
 			case 'Radio':
 				return {
 					ctor: '::',
-					_0: _user$project$InputOptions$typeEdit,
+					_0: _user$project$InputEditView$typeEdit,
 					_1: {
 						ctor: '::',
-						_0: _user$project$InputOptions$labelEdit,
+						_0: _user$project$InputEditView$labelEdit,
 						_1: {
 							ctor: '::',
-							_0: _user$project$InputOptions$smallUnderEdit,
+							_0: _user$project$InputEditView$smallUnderEdit,
 							_1: {
 								ctor: '::',
-								_0: _user$project$InputOptions$optionsEdit,
+								_0: _user$project$InputEditView$optionsEdit,
 								_1: {ctor: '[]'}
 							}
 						}
@@ -16342,13 +16343,13 @@ var _user$project$InputOptions$view = function (input) {
 			case 'Checkbox':
 				return {
 					ctor: '::',
-					_0: _user$project$InputOptions$typeEdit,
+					_0: _user$project$InputEditView$typeEdit,
 					_1: {
 						ctor: '::',
-						_0: _user$project$InputOptions$labelEdit,
+						_0: _user$project$InputEditView$labelEdit,
 						_1: {
 							ctor: '::',
-							_0: _user$project$InputOptions$smallUnderEdit,
+							_0: _user$project$InputEditView$smallUnderEdit,
 							_1: {ctor: '[]'}
 						}
 					}
@@ -16356,32 +16357,32 @@ var _user$project$InputOptions$view = function (input) {
 			case 'Button':
 				return {
 					ctor: '::',
-					_0: _user$project$InputOptions$typeEdit,
+					_0: _user$project$InputEditView$typeEdit,
 					_1: {
 						ctor: '::',
-						_0: _user$project$InputOptions$labelEdit,
+						_0: _user$project$InputEditView$labelEdit,
 						_1: {ctor: '[]'}
 					}
 				};
 			case 'Email':
 				return {
 					ctor: '::',
-					_0: _user$project$InputOptions$typeEdit,
+					_0: _user$project$InputEditView$typeEdit,
 					_1: {
 						ctor: '::',
-						_0: _user$project$InputOptions$placeholderEdit,
+						_0: _user$project$InputEditView$placeholderEdit,
 						_1: {
 							ctor: '::',
-							_0: _user$project$InputOptions$labelEdit,
+							_0: _user$project$InputEditView$labelEdit,
 							_1: {
 								ctor: '::',
-								_0: _user$project$InputOptions$smallUnderEdit,
+								_0: _user$project$InputEditView$smallUnderEdit,
 								_1: {
 									ctor: '::',
-									_0: _user$project$InputOptions$addon1Edit,
+									_0: _user$project$InputEditView$addon1Edit,
 									_1: {
 										ctor: '::',
-										_0: _user$project$InputOptions$addon2Edit,
+										_0: _user$project$InputEditView$addon2Edit,
 										_1: {ctor: '[]'}
 									}
 								}
@@ -16392,22 +16393,22 @@ var _user$project$InputOptions$view = function (input) {
 			case 'Url':
 				return {
 					ctor: '::',
-					_0: _user$project$InputOptions$typeEdit,
+					_0: _user$project$InputEditView$typeEdit,
 					_1: {
 						ctor: '::',
-						_0: _user$project$InputOptions$placeholderEdit,
+						_0: _user$project$InputEditView$placeholderEdit,
 						_1: {
 							ctor: '::',
-							_0: _user$project$InputOptions$labelEdit,
+							_0: _user$project$InputEditView$labelEdit,
 							_1: {
 								ctor: '::',
-								_0: _user$project$InputOptions$smallUnderEdit,
+								_0: _user$project$InputEditView$smallUnderEdit,
 								_1: {
 									ctor: '::',
-									_0: _user$project$InputOptions$addon1Edit,
+									_0: _user$project$InputEditView$addon1Edit,
 									_1: {
 										ctor: '::',
-										_0: _user$project$InputOptions$addon2Edit,
+										_0: _user$project$InputEditView$addon2Edit,
 										_1: {ctor: '[]'}
 									}
 								}
@@ -16418,22 +16419,22 @@ var _user$project$InputOptions$view = function (input) {
 			case 'Password':
 				return {
 					ctor: '::',
-					_0: _user$project$InputOptions$typeEdit,
+					_0: _user$project$InputEditView$typeEdit,
 					_1: {
 						ctor: '::',
-						_0: _user$project$InputOptions$placeholderEdit,
+						_0: _user$project$InputEditView$placeholderEdit,
 						_1: {
 							ctor: '::',
-							_0: _user$project$InputOptions$labelEdit,
+							_0: _user$project$InputEditView$labelEdit,
 							_1: {
 								ctor: '::',
-								_0: _user$project$InputOptions$smallUnderEdit,
+								_0: _user$project$InputEditView$smallUnderEdit,
 								_1: {
 									ctor: '::',
-									_0: _user$project$InputOptions$addon1Edit,
+									_0: _user$project$InputEditView$addon1Edit,
 									_1: {
 										ctor: '::',
-										_0: _user$project$InputOptions$addon2Edit,
+										_0: _user$project$InputEditView$addon2Edit,
 										_1: {ctor: '[]'}
 									}
 								}
@@ -16444,22 +16445,22 @@ var _user$project$InputOptions$view = function (input) {
 			case 'Number':
 				return {
 					ctor: '::',
-					_0: _user$project$InputOptions$typeEdit,
+					_0: _user$project$InputEditView$typeEdit,
 					_1: {
 						ctor: '::',
-						_0: _user$project$InputOptions$placeholderEdit,
+						_0: _user$project$InputEditView$placeholderEdit,
 						_1: {
 							ctor: '::',
-							_0: _user$project$InputOptions$labelEdit,
+							_0: _user$project$InputEditView$labelEdit,
 							_1: {
 								ctor: '::',
-								_0: _user$project$InputOptions$smallUnderEdit,
+								_0: _user$project$InputEditView$smallUnderEdit,
 								_1: {
 									ctor: '::',
-									_0: _user$project$InputOptions$addon1Edit,
+									_0: _user$project$InputEditView$addon1Edit,
 									_1: {
 										ctor: '::',
-										_0: _user$project$InputOptions$addon2Edit,
+										_0: _user$project$InputEditView$addon2Edit,
 										_1: {ctor: '[]'}
 									}
 								}
@@ -16470,22 +16471,22 @@ var _user$project$InputOptions$view = function (input) {
 			case 'DatetimeLocal':
 				return {
 					ctor: '::',
-					_0: _user$project$InputOptions$typeEdit,
+					_0: _user$project$InputEditView$typeEdit,
 					_1: {
 						ctor: '::',
-						_0: _user$project$InputOptions$placeholderEdit,
+						_0: _user$project$InputEditView$placeholderEdit,
 						_1: {
 							ctor: '::',
-							_0: _user$project$InputOptions$labelEdit,
+							_0: _user$project$InputEditView$labelEdit,
 							_1: {
 								ctor: '::',
-								_0: _user$project$InputOptions$smallUnderEdit,
+								_0: _user$project$InputEditView$smallUnderEdit,
 								_1: {
 									ctor: '::',
-									_0: _user$project$InputOptions$addon1Edit,
+									_0: _user$project$InputEditView$addon1Edit,
 									_1: {
 										ctor: '::',
-										_0: _user$project$InputOptions$addon2Edit,
+										_0: _user$project$InputEditView$addon2Edit,
 										_1: {ctor: '[]'}
 									}
 								}
@@ -16496,22 +16497,22 @@ var _user$project$InputOptions$view = function (input) {
 			case 'Date':
 				return {
 					ctor: '::',
-					_0: _user$project$InputOptions$typeEdit,
+					_0: _user$project$InputEditView$typeEdit,
 					_1: {
 						ctor: '::',
-						_0: _user$project$InputOptions$placeholderEdit,
+						_0: _user$project$InputEditView$placeholderEdit,
 						_1: {
 							ctor: '::',
-							_0: _user$project$InputOptions$labelEdit,
+							_0: _user$project$InputEditView$labelEdit,
 							_1: {
 								ctor: '::',
-								_0: _user$project$InputOptions$smallUnderEdit,
+								_0: _user$project$InputEditView$smallUnderEdit,
 								_1: {
 									ctor: '::',
-									_0: _user$project$InputOptions$addon1Edit,
+									_0: _user$project$InputEditView$addon1Edit,
 									_1: {
 										ctor: '::',
-										_0: _user$project$InputOptions$addon2Edit,
+										_0: _user$project$InputEditView$addon2Edit,
 										_1: {ctor: '[]'}
 									}
 								}
@@ -16522,22 +16523,22 @@ var _user$project$InputOptions$view = function (input) {
 			case 'Time':
 				return {
 					ctor: '::',
-					_0: _user$project$InputOptions$typeEdit,
+					_0: _user$project$InputEditView$typeEdit,
 					_1: {
 						ctor: '::',
-						_0: _user$project$InputOptions$placeholderEdit,
+						_0: _user$project$InputEditView$placeholderEdit,
 						_1: {
 							ctor: '::',
-							_0: _user$project$InputOptions$labelEdit,
+							_0: _user$project$InputEditView$labelEdit,
 							_1: {
 								ctor: '::',
-								_0: _user$project$InputOptions$smallUnderEdit,
+								_0: _user$project$InputEditView$smallUnderEdit,
 								_1: {
 									ctor: '::',
-									_0: _user$project$InputOptions$addon1Edit,
+									_0: _user$project$InputEditView$addon1Edit,
 									_1: {
 										ctor: '::',
-										_0: _user$project$InputOptions$addon2Edit,
+										_0: _user$project$InputEditView$addon2Edit,
 										_1: {ctor: '[]'}
 									}
 								}
@@ -16548,13 +16549,13 @@ var _user$project$InputOptions$view = function (input) {
 			default:
 				return {
 					ctor: '::',
-					_0: _user$project$InputOptions$typeEdit,
+					_0: _user$project$InputEditView$typeEdit,
 					_1: {
 						ctor: '::',
-						_0: _user$project$InputOptions$labelEdit,
+						_0: _user$project$InputEditView$labelEdit,
 						_1: {
 							ctor: '::',
-							_0: _user$project$InputOptions$smallUnderEdit,
+							_0: _user$project$InputEditView$smallUnderEdit,
 							_1: {ctor: '[]'}
 						}
 					}
@@ -16648,7 +16649,7 @@ var _user$project$InputUpdate$update = F2(
 							return _elm_lang$core$Native_Utils.eq(input.id, _p0._0) ? _elm_lang$core$Native_Utils.update(
 								input,
 								{
-									size: _user$project$FormModel$textToSize(_p0._1)
+									size: _user$project$Inputs$textToSize(_p0._1)
 								}) : input;
 						},
 						model.inputs);
@@ -16659,7 +16660,7 @@ var _user$project$InputUpdate$update = F2(
 							return _elm_lang$core$Native_Utils.eq(input.id, _p0._0) ? _elm_lang$core$Native_Utils.update(
 								input,
 								{
-									type_: _user$project$FormModel$textToType(_p0._1)
+									type_: _user$project$Inputs$textToType(_p0._1)
 								}) : input;
 						},
 						model.inputs);
@@ -17068,7 +17069,7 @@ var _user$project$Views$draggedElement = function (model) {
 				}),
 			'',
 			{ctor: '[]'});
-		var content = _user$project$Form$view(htmlTree);
+		var content = _user$project$FormView$view(htmlTree);
 		return A2(_elm_lang$html$Html$div, attrs, content);
 	}
 };
@@ -17239,7 +17240,7 @@ var _user$project$Views$inputEdit = function (input) {
 											},
 											A2(
 												_elm_lang$core$Basics_ops['++'],
-												_user$project$Form$view(htmlTree),
+												_user$project$FormView$view(htmlTree),
 												A2(
 													_elm_lang$core$Basics_ops['++'],
 													{
@@ -17250,7 +17251,7 @@ var _user$project$Views$inputEdit = function (input) {
 															{ctor: '[]'}),
 														_1: {ctor: '[]'}
 													},
-													_user$project$InputOptions$view(input)))),
+													_user$project$InputEditView$view(input)))),
 										_1: {ctor: '[]'}
 									}
 								}),
@@ -17368,7 +17369,7 @@ var _user$project$Views$formEdit = function (model) {
 														}),
 													_1: {ctor: '[]'}
 												},
-												_user$project$Form$view(htmlTreeWithControlElements))),
+												_user$project$FormView$view(htmlTreeWithControlElements))),
 										_1: {
 											ctor: '::',
 											_0: _user$project$Views$draggedElement(model),

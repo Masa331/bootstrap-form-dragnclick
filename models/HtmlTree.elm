@@ -6,6 +6,7 @@ import Html
 import Messages
 
 type alias Attribute = { name: String, value: String }
+-- type AttributeOrEvent = Attribute | Html.Attribute Messages.Msg
 
 type Children = Children (List Element)
 -- value should be refactored to Maybe String

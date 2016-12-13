@@ -5,13 +5,14 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 
 import Markup exposing (view)
-import Form exposing (view)
-import InputOptions exposing (..)
+import FormView exposing (view)
+import InputEditView exposing (..)
 import Messages exposing (..)
 import Models exposing (..)
 import ElementMap exposing (..)
 import HtmlTree exposing (..)
-import FormModel exposing (..)
+import Form exposing (..)
+import Inputs exposing (..)
 
 import HtmlTreeBuilder exposing (..)
 
@@ -59,7 +60,7 @@ formEdit model =
                , a [href "#source"] [ text "Show source code"]]
              , div
                [ class "bd-example" ]
-               ([h1 [] [text "The Form"]] ++ (Form.view htmlTreeWithControlElements))
+               ([h1 [] [text "The Form"]] ++ (FormView.view htmlTreeWithControlElements))
              , draggedElement model
              ]
            ]
@@ -86,7 +87,7 @@ inputEdit input =
                  [ a [ href "#form" ] [ text "Back to form" ] ]
              , div
                [ class "bd-example" ]
-               ((Form.view htmlTree) ++ [hr [] []] ++ ((InputOptions.view input)))
+               ((FormView.view htmlTree) ++ [hr [] []] ++ ((InputEditView.view input)))
              ]
            ]
         ]
@@ -129,7 +130,7 @@ draggedElement model =
       let
         element = HtmlTreeBuilder.buildDragged input
         htmlTree = HtmlTree.Element "form" [] (HtmlTree.Children [element]) "" []
-        content = Form.view htmlTree
+        content = FormView.view htmlTree
 
         dimensions =
           case input.dimensions of
