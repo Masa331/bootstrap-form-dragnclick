@@ -2,7 +2,7 @@ module Models exposing (..)
 
 import Mouse
 
-import HtmlTree
+import HtmlNode
 import ElementMap
 import Navigation
 import UrlParser exposing ((</>))

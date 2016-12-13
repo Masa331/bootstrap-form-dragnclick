@@ -4,13 +4,13 @@ import String
 import Html.Events
 import Html.Attributes
 
-import HtmlTree exposing (..)
+import HtmlNode exposing (..)
 import Form exposing (..)
 import Inputs exposing (..)
 import Messages
 import Models
 
-build : Input -> HtmlTree.Element
+build : Input -> HtmlNode.Node
 build input =
   case input.type_ of
     Text -> textInputToHtmlTree input
@@ -41,21 +41,21 @@ textInputToHtmlTree input =
     add1 = toAddon input.addon1
     add2 = toAddon input.addon2
 
-    input1 = Just (Element "input" inputAttrs (Children []) "" [])
+    input1 = Just (HtmlNode.input "" inputAttrs [] [])
 
     inputWithAddons =
       if List.isEmpty (List.filterMap identity [add1, add2]) then
         input1
       else
-        Just (Element "div" [Attribute "class" "input-group"] (Children ([add1, input1, add2] |> List.filterMap identity)) "" [])
+        Just (div "" [Attribute "class" "input-group"] [] ([add1, input1, add2] |> List.filterMap identity))
 
     children =
-      [ Maybe.map (\value -> Element "label" [Attribute "for" (toString input.id)] (Children []) value []) input.label
+      [ Maybe.map (\value -> label value [Attribute "for" (toString input.id)] [] []) input.label
       , inputWithAddons
-      , Maybe.map (\value -> Element "small" [Attribute "class" "form-text text-muted"] (Children []) value []) input.small
+      , Maybe.map (\value -> small value [Attribute "class" "form-text text-muted"] [] []) input.small
       ] |> List.filterMap identity
   in
-    Element "div" [Attribute "class" "form-group"] (Children children) "" []
+    div "" [Attribute "class" "form-group"] [] children
 
 colorToHtmlTree input =
   let
@@ -68,12 +68,12 @@ colorToHtmlTree input =
       ] |> List.filterMap identity
 
     children =
-      [ Maybe.map (\value -> Element "label" [Attribute "for" "input1"] (Children []) value []) input.label
-      , Just (Element "input" inputAttrs (Children []) "" [])
-      , Maybe.map (\value -> Element "small" [Attribute "class" "form-text text-muted"] (Children []) value []) input.small
+      [ Maybe.map (\value -> label value [Attribute "for" "input1"] [] []) input.label
+      , Just (HtmlNode.input "" inputAttrs [] [])
+      , Maybe.map (\value -> small value [Attribute "class" "form-text text-muted"] [] []) input.small
       ] |> List.filterMap identity
   in
-    Element "div" [Attribute "class" "form-group"] (Children children) "" []
+    div "" [Attribute "class" "form-group"] [] children
 
 selectToHtmlTree input =
   let
@@ -83,14 +83,14 @@ selectToHtmlTree input =
       , Just (Attribute "class" (String.trim ((sizeClass input.size) ++ " form-control")))
       ] |> List.filterMap identity
 
-    options = List.map (\value -> Element "option" [] (Children []) value []) input.options
+    options = List.map (\value -> option value [] [] []) input.options
     children =
-      [ Maybe.map (\value -> Element "label" [Attribute "for" "input1"] (Children []) value []) input.label
-      , Just (Element "select" inputAttrs (Children options) "" [])
-      , Maybe.map (\value -> Element "small" [Attribute "class" "form-text text-muted"] (Children []) value []) input.small
+      [ Maybe.map (\value -> label value [Attribute "for" "input1"] [] []) input.label
+      , Just (select "" inputAttrs [] options)
+      , Maybe.map (\value -> small value [Attribute "class" "form-text text-muted"] [] []) input.small
       ] |> List.filterMap identity
   in
-    Element "div" [Attribute "class" "form-group"] (Children children) "" []
+    div "" [Attribute "class" "form-group"] [] children
 
 textAreaToHtmlTree input =
   let
@@ -104,19 +104,19 @@ textAreaToHtmlTree input =
 
     add1 = toAddon input.addon1
     add2 = toAddon input.addon2
-    input1 = Just (Element "textarea" inputAttrs (Children []) "" [])
+    input1 = Just (textarea "" inputAttrs [] [])
     inputWithAddons =
       if List.isEmpty (List.filterMap identity [add1, add2]) then
         input1
       else
-        Just (Element "div" [Attribute "class" "input-group"] (Children ([add1, input1, add2] |> List.filterMap identity)) "" [])
+        Just (div "" [Attribute "class" "input-group"] [] ([add1, input1, add2] |> List.filterMap identity))
 
     children =
-      [ Maybe.map (\value -> Element "label" [Attribute "for" "input1"] (Children []) value []) input.label
+      [ Maybe.map (\value -> label value [Attribute "for" "input1"] [] []) input.label
       , inputWithAddons
       ] |> List.filterMap identity
   in
-    Element "div" [Attribute "class" "form-group"] (Children (children)) "" []
+    div "" [Attribute "class" "form-group"] [] children
 
 multiselectToHtmlTree input =
   let
@@ -127,14 +127,14 @@ multiselectToHtmlTree input =
       , Just (Attribute "multiple" "multiple")
       ] |> List.filterMap identity
 
-    options = List.map (\value -> Element "option" [] (Children []) value []) input.options
+    options = List.map (\value -> option value [] [] []) input.options
     children =
-      [ Maybe.map (\value -> Element "label" [Attribute "for" "input1"] (Children []) value []) input.label
-      , Just (Element "select" inputAttrs (Children options) "" [])
-      , Maybe.map (\value -> Element "small" [Attribute "class" "form-text text-muted"] (Children []) value []) input.small
+      [ Maybe.map (\value -> label value [Attribute "for" "input1"] [] []) input.label
+      , Just (select "" inputAttrs [] options)
+      , Maybe.map (\value -> small value [Attribute "class" "form-text text-muted"] [] []) input.small
       ] |> List.filterMap identity
   in
-    Element "div" [Attribute "class" "form-group"] (Children children) "" []
+    div "" [Attribute "class" "form-group"] [] children
 
 fileUploadToHtmlTree input =
   let
@@ -146,23 +146,23 @@ fileUploadToHtmlTree input =
       ] |> List.filterMap identity
 
     children =
-      [ Maybe.map (\value -> Element "label" [Attribute "for" "input1"] (Children []) value []) input.label
-      , Just (Element "input" inputAttrs (Children []) "" [])
-      , Maybe.map (\value -> Element "small" [Attribute "class" "form-text text-muted"] (Children []) value []) input.small
+      [ Maybe.map (\value -> label value [Attribute "for" "input1"] [] []) input.label
+      , Just (HtmlNode.input "" inputAttrs [] [])
+      , Maybe.map (\value -> small value [Attribute "class" "form-text text-muted"] [] []) input.small
       ] |> List.filterMap identity
   in
-    Element "div" [Attribute "class" "form-group"] (Children children) "" []
+    div "" [Attribute "class" "form-group"] [] children
 
 radioToHtmlTree input =
   let
     options = List.map (\value -> Just (toRadioOption input.id 1 value (if input.disabled then Just (Attribute "disabled" "disabled") else Nothing))) input.options
     children =
-      [ Maybe.map (\value -> Element "legend" [] (Children []) value []) input.label ]
+      [ Maybe.map (\value -> legend value [] [] []) input.label ]
       ++ options
-      ++ [ Maybe.map (\value -> Element "small" [Attribute "class" "form-text text-muted"] (Children []) value []) input.small ]
+      ++ [ Maybe.map (\value -> small value [Attribute "class" "form-text text-muted"] [] []) input.small ]
       |> List.filterMap identity
   in
-    Element "fieldset" [Attribute "class" "form-group"] (Children children ) "" []
+    fieldset "" [Attribute "class" "form-group"] [] children
 
 toRadioOption id index value disabled =
   let
@@ -175,36 +175,36 @@ toRadioOption id index value disabled =
       , disabled
       ] |> List.filterMap identity
 
-    input = Element "input" inputAttrs (Children []) "" []
-    children = Element "label" [Attribute "class" "form-check-label"] (Children [input]) value []
+    input = HtmlNode.input "" inputAttrs [] []
+    children = label value [Attribute "class" "form-check-label"] [] [input]
   in
-    Element "div" [ Attribute "class" "form-check" ] (Children [children]) "" []
+    div "" [ Attribute "class" "form-check" ] [] [children]
 
 
-checkboxToHtmlTree input =
+checkboxToHtmlTree box =
   let
-    element = Element "input" [Attribute "type" "checkbox", Attribute "class" "form-check-input"] (Children []) "" []
+    element = input "" [Attribute "type" "checkbox", Attribute "class" "form-check-input"] [] []
     label =
-      case input.label of
+      case box.label of
         Nothing ->
-          Just (Element "label" [Attribute "class" "form-check-label"] (Children [element]) "" [])
+          Just (HtmlNode.label "" [Attribute "class" "form-check-label"] [] [element])
         Just value ->
-          Just (Element "label" [Attribute "class" "form-check-label"] (Children [element]) value [])
+          Just (HtmlNode.label value [Attribute "class" "form-check-label"] [] [element])
 
     children = [label] |> List.filterMap identity
   in
-    Element "div" [Attribute "class" "form-check"] (Children children) "" []
+    div "" [Attribute "class" "form-check"] [] children
 
 buttonToHtmlTree input =
-  Element "button" [Attribute "type" "submit", Attribute "class" "btn btn-primary"] (Children []) (Maybe.withDefault "Submit" input.label) []
+  HtmlNode.button (Maybe.withDefault "Submit" input.label) [Attribute "type" "submit", Attribute "class" "btn btn-primary"] []  []
 
 -------------
 -- Helpers --
 -------------
 
-toAddon : Maybe String -> Maybe Element
+toAddon : Maybe String -> Maybe Node
 toAddon value =
-  Maybe.map (\value -> Element "div" [Attribute "class" "input-group-addon"] (Children []) value []) value
+  Maybe.map (\value -> div value [Attribute "class" "input-group-addon"] [] []) value
 
 sizeClass : Size -> String
 sizeClass size =

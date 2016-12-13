@@ -3,12 +3,12 @@ module FormView exposing (view)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 
-import HtmlTree exposing (..)
+import HtmlNode exposing (..)
 import Form exposing (..)
 import Inputs exposing (..)
 import Messages exposing (..)
 
-view : Element -> List (Html Msg)
+view : Node -> List (Html Msg)
 view htmlTree =
   toElmHtmlNode htmlTree
 
@@ -16,25 +16,21 @@ view htmlTree =
 -- Private --
 -------------
 
-toElmHtmlNode : HtmlTree.Element -> List (Html Msg)
-toElmHtmlNode htmlTree =
+toElmHtmlNode : HtmlNode.Node -> List (Html Msg)
+toElmHtmlNode (Node node) =
   let
-    attributes = createAttributes htmlTree
-    childs = (\ (HtmlTree.Children childs) -> childs) htmlTree.children
-    value = if htmlTree.value == "" then [] else [Html.text htmlTree.value]
-    node = Html.node htmlTree.tag (attributes ++ htmlTree.events)
+    attributes = List.map createAttribute node.attributes
+    childs = node.children
+    value = if node.value == "" then [] else [Html.text node.value]
+    htmlNode = Html.node node.tag (attributes ++ node.events)
   in
     case childs of
       [] ->
-        [node value]
+        [htmlNode value]
       x::xs ->
-        [node ((List.concat (List.map toElmHtmlNode childs)) ++ value)]
+        [htmlNode ((List.concat (List.map toElmHtmlNode childs)) ++ value)]
 
-createAttributes : HtmlTree.Element -> List (Html.Attribute a)
-createAttributes model =
-  List.map createAttribute model.attributes
-
-createAttribute : HtmlTree.Attribute -> Html.Attribute a
+createAttribute : HtmlNode.Attribute -> Html.Attribute a
 createAttribute attribute =
   if attribute.name == "rows" then
     Html.Attributes.rows (rowsToNumber attribute.value)

@@ -3,14 +3,13 @@ import String
 import Html.Events
 import Html.Attributes
 
-import HtmlTree exposing (..)
--- import FormModel exposing (..)
+import HtmlNode exposing (..)
 import Form exposing (..)
 import Inputs exposing (..)
 import Messages
 import Models
 
-build : Input -> HtmlTree.Element
+build : Input -> HtmlNode.Node
 build input =
   case input.type_ of
     Text -> textInputToHtmlTree input
@@ -44,7 +43,7 @@ textInputToHtmlTree input =
     add1 = Maybe.map toAddon input.addon1
     add2 = Maybe.map toAddon input.addon2
 
-    input1 = Just (Element "input" inputAttrs (Children []) "" [])
+    input1 = Just (HtmlNode.input "" inputAttrs [] [])
     inputClasses =
       case input.size of
         Small ->
@@ -55,7 +54,7 @@ textInputToHtmlTree input =
           "input-group input-group-lg"
 
     inputGroup =
-      Just (Element "div" [Attribute "class" inputClasses] (Children ([add1, input1, add2] |> List.filterMap identity)) "" [])
+      Just (div "" [Attribute "class" inputClasses] [] ([add1, input1, add2] |> List.filterMap identity))
 
     children =
       [ toLabel input.label
@@ -64,7 +63,7 @@ textInputToHtmlTree input =
       , Maybe.map toSmall input.small
       ] |> List.filterMap identity
   in
-    Element "div" [containerClass, Attribute "data-input-id" (toString input.id) ] (Children children) "" []
+    div "" [containerClass, Attribute "data-input-id" (toString input.id) ] [] children
 
 colorToHtmlTree inp =
   let
@@ -85,12 +84,12 @@ colorToHtmlTree inp =
 
     children =
       [ toLabel inp.label
-      , Just (Element "input" inputAttrs (Children []) "" [])
+      , Just (input "" inputAttrs [] [])
       , Maybe.map toSmall inp.small
       , toLinks inp.id
       ] |> List.filterMap identity
   in
-    Element "div" [containerClass, Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
+    div "" [containerClass, Attribute "data-input-id" (toString inp.id) ] [] children
 
 selectToHtmlTree inp =
   let
@@ -108,15 +107,15 @@ selectToHtmlTree inp =
         |> String.join " "
         |> Attribute "class"
 
-    options = List.map (\value -> Element "option" [] (Children []) value []) inp.options
+    options = List.map (\value -> option value [] [] []) inp.options
     children =
       [ toLabel inp.label
-      , Just (Element "select" inputAttrs (Children options) "" [])
+      , Just (select "" inputAttrs [] options)
       , Maybe.map toSmall inp.small
       , toLinks inp.id
       ] |> List.filterMap identity
   in
-    Element "div" [containerClass, Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
+    div "" [containerClass, Attribute "data-input-id" (toString inp.id) ] [] children
 
 textAreaToHtmlTree input =
   let
@@ -141,7 +140,7 @@ textAreaToHtmlTree input =
     add2 = Maybe.map toAddon input.addon2
     inputType = "textarea"
 
-    input1 = Just (Element "textarea" inputAttrs (Children []) "" [])
+    input1 = Just (textarea "" inputAttrs [] [])
     inputClasses =
       case input.size of
         Small ->
@@ -150,7 +149,7 @@ textAreaToHtmlTree input =
           "input-group"
         Large ->
           "input-group input-group-lg"
-    inputGroup = Just (Element "div" [Attribute "class" inputClasses] (Children ([add1, input1, add2] |> List.filterMap identity)) "" [])
+    inputGroup = Just (div "" [Attribute "class" inputClasses] [] ([add1, input1, add2] |> List.filterMap identity))
 
     children =
       [ toLabel input.label
@@ -159,7 +158,7 @@ textAreaToHtmlTree input =
       , Maybe.map toSmall input.small
       ] |> List.filterMap identity
   in
-    Element "div" [containerClass] (Children (children)) "" []
+    div "" [containerClass] [] children
 
 multiselectToHtmlTree inp =
   let
@@ -178,15 +177,15 @@ multiselectToHtmlTree inp =
         |> String.join " "
         |> Attribute "class"
 
-    options = List.map (\value -> Element "option" [] (Children []) value []) inp.options
+    options = List.map (\value -> option value [] [] []) inp.options
     children =
       [ toLabel inp.label
-      , Just (Element "select" inputAttrs (Children options) "" [])
+      , Just (select "" inputAttrs [] options)
       , Maybe.map toSmall inp.small
       , toLinks inp.id
       ] |> List.filterMap identity
   in
-    Element "div" [containerClass, Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
+    div "" [containerClass, Attribute "data-input-id" (toString inp.id) ] [] children
 
 fileUploadToHtmlTree inp =
   let
@@ -207,12 +206,12 @@ fileUploadToHtmlTree inp =
 
     children =
       [ toLabel inp.label
-      , Just (Element "input" inputAttrs (Children []) "" [])
+      , Just (input "" inputAttrs [] [])
       , Maybe.map toSmall inp.small
       , toLinks inp.id
       ] |> List.filterMap identity
   in
-    Element "div" [containerClass, Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
+    div "" [containerClass, Attribute "data-input-id" (toString inp.id) ] [] children
 
 radioToHtmlTree inp =
   let
@@ -231,7 +230,7 @@ radioToHtmlTree inp =
         |> String.join " "
         |> Attribute "class"
   in
-    Element "fieldset" [containerClass, Attribute "data-input-id" (toString inp.id) ] (Children children ) "" []
+    fieldset "" [containerClass, Attribute "data-input-id" (toString inp.id) ] [] children
 
 toRadioOption id index value disabled =
   let
@@ -244,13 +243,13 @@ toRadioOption id index value disabled =
       , disabled
       ] |> List.filterMap identity
 
-    input = Element "input" inputAttrs (Children []) "" []
+    input = HtmlNode.input "" inputAttrs [] []
     -- This (" " ++ value) is nasty hack. I don't know what to do but elm generated fonts miss tiny space
     --   between actuall input and label although the markup is same with static html - remove the space
     --   to see it
-    children = Element "label" [Attribute "class" "form-check-label"] (Children [input]) (" " ++ value) []
+    children = label (" " ++ value) [Attribute "class" "form-check-label"] [] [input]
   in
-    Element "div" [ Attribute "class" "form-check" ] (Children [children]) "" []
+    div "" [ Attribute "class" "form-check" ] [] [children]
 
 
 checkboxToHtmlTree inp =
@@ -262,16 +261,16 @@ checkboxToHtmlTree inp =
       , Just (Attribute "type" (inputTypeToString inp.type_))
       ] |> List.filterMap identity
 
-    input = Element "input" inputAttrs (Children []) "" []
+    input = HtmlNode.input "" inputAttrs [] []
     label =
       case inp.label of
         Nothing ->
-          Just (Element "label" [Attribute "class" "form-check-label"] (Children [input]) "" [])
+          Just (HtmlNode.label "" [Attribute "class" "form-check-label"] [] [input])
         Just value ->
           -- This (" " ++ value) is nasty hack. I don't know what to do but elm generated fonts miss tiny space
           --   between actuall input and label although the markup is same with static html - remove the space
           --   to see it
-          Just (Element "label" [Attribute "class" "form-check-label"] (Children [input]) (" " ++ value) [])
+          Just (HtmlNode.label (" " ++ value) [Attribute "class" "form-check-label"] [] [input])
 
     links = toLinks inp.id
     small = Maybe.map toSmall inp.small
@@ -285,7 +284,8 @@ checkboxToHtmlTree inp =
         |> String.join " "
         |> Attribute "class"
   in
-    Element "div" [containerClass, Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
+    div "" [containerClass, Attribute "data-input-id" (toString inp.id) ] [] children
+
 
 buttonToHtmlTree inp =
   let
@@ -303,7 +303,7 @@ buttonToHtmlTree inp =
       ] |> List.filterMap identity
 
     children =
-      [ Just (Element "button" inputAttrs (Children []) (Maybe.withDefault "Submit" inp.label) [])
+      [ Just (HtmlNode.button (Maybe.withDefault "Submit" inp.label) inputAttrs [] [])
       , toLinks inp.id
       ] |> List.filterMap identity
 
@@ -315,7 +315,7 @@ buttonToHtmlTree inp =
         |> String.join " "
         |> Attribute "class"
   in
-    Element "div" [containerClass, Attribute "data-input-id" (toString inp.id) ] (Children children) "" []
+    div "" [containerClass, Attribute "data-input-id" (toString inp.id) ] [] children
 
 -------------
 -- Helpers --
@@ -325,70 +325,69 @@ toDisabled : Bool -> Maybe Attribute
 toDisabled value =
   if value then Just (Attribute "disabled" "disabled") else Nothing
 
-toAddon : String -> Element
+toAddon : String -> Node
 toAddon text =
-  Element "div" [Attribute "class" "input-group-addon"] (Children [Element "span" [] (Children []) text []]) "" []
+  div "" [Attribute "class" "input-group-addon"] [] [span text [] [] []]
 
-toSmall : String -> Element
+toSmall : String -> Node
 toSmall text =
   let
-    smallText = Element "span" [Attribute "class" "text-muted"] (Children []) text []
+    smallText = span text [Attribute "class" "text-muted"] [] []
   in
-    Element "small" [Attribute "class" "form-text"] (Children [smallText]) "" []
+    small "" [Attribute "class" "form-text"] [] [smallText]
 
-toLabel : Maybe String -> Maybe Element
+toLabel : Maybe String -> Maybe Node
 toLabel value =
   let
-    labelSpan = Element "span" [] (Children []) (Maybe.withDefault "" value) []
+    labelSpan = span (Maybe.withDefault "" value) [] [] []
   in
-    Just (Element "label" [Attribute "for" "input1"] (Children [labelSpan]) "" [])
+    Just (label "" [Attribute "for" "input1"] [] [labelSpan])
 
-toLegend : Input -> Element
+toLegend : Input -> Node
 toLegend input =
   let
-    i1 = Element "i" [Attribute "class" "fa fa-edit control-element"] (Children []) "" []
-    l1 = Element "a" [Attribute "href" ("#input/" ++ toString input.id)] (Children [i1]) "" []
+    i1 = i "" [Attribute "class" "fa fa-edit control-element"] [] []
+    l1 = a "" [Attribute "href" ("#input/" ++ toString input.id)] [] [i1]
 
-    i2 = Element "i" [Attribute "class" "fa fa-trash control-element"] (Children []) "" []
-    l2 = Element "span" [] (Children [i2]) "" [Html.Events.onClick (Messages.FormMessage (Messages.RemoveInput input.id))]
-    i3 = Element "i" [Attribute "class" "fa fa-check control-element"] (Children []) "" []
-    l3 = Element "span" [] (Children [i3]) "" [Html.Events.onClick ((Messages.InputMessage (Messages.ToggleDisabled input.id)))]
-    i4 = Element "i" [Attribute "class" "fa fa-arrows control-element"] (Children []) "" []
-    l4 = Element "span" [] (Children [i4]) "" [Html.Events.onMouseDown ((Messages.MouseMessage (Messages.MouseClick input.id)))]
-    divider = Element "span" [] (Children []) " " []
+    i2 = i "" [Attribute "class" "fa fa-trash control-element"] [] []
+    l2 = span "" [] [Html.Events.onClick (Messages.FormMessage (Messages.RemoveInput input.id))] [i2]
+    i3 = i "" [Attribute "class" "fa fa-check control-element"] [] []
+    l3 = span "" [] [Html.Events.onClick ((Messages.InputMessage (Messages.ToggleDisabled input.id)))] [i3]
+    i4 = i "" [Attribute "class" "fa fa-arrows control-element"] [] []
+    l4 = span "" [] [Html.Events.onMouseDown ((Messages.MouseMessage (Messages.MouseClick input.id)))] [i4]
+    divider = span " " [] [] []
 
-    children = (Children [ l1, divider, l2, divider, l3, divider, l4 ])
-    links = Element "span" [Attribute "class" "hidden-inherit float-right one-rem-size"] children "" []
-    label = Element "span" [] (Children []) (Maybe.withDefault "" input.label) []
+    children = [ l1, divider, l2, divider, l3, divider, l4 ]
+    links = span "" [Attribute "class" "hidden-inherit float-right one-rem-size"] [] children
+    label = span (Maybe.withDefault "" input.label) [] [] []
   in
-    Element "legend" [] (Children [label, links]) "" []
+    legend "" [] [] [label, links]
 
-toLinks : Int -> Maybe Element
+toLinks : Int -> Maybe Node
 toLinks value =
   let
-    i1 = Element "i" [Attribute "class" "fa fa-font fa-small control-element"] (Children []) "" []
-    l1 = Element "span" [] (Children [i1]) "" [Html.Events.onClick ((Messages.InputMessage (Messages.SizeEdit value "small")))]
-    i2 = Element "i" [Attribute "class" "fa fa-font fa-normal control-element"] (Children []) "" []
-    l2 = Element "span" [] (Children [i2]) "" [Html.Events.onClick ((Messages.InputMessage (Messages.SizeEdit value "normal")))]
-    i3 = Element "i" [Attribute "class" "fa fa-font fa-big control-element"] (Children []) "" []
-    l3 = Element "span" [] (Children [i3]) "" [Html.Events.onClick ((Messages.InputMessage (Messages.SizeEdit value "large")))]
+    i1 = i "" [Attribute "class" "fa fa-font fa-small control-element"] [] []
+    l1 = span "" [] [Html.Events.onClick ((Messages.InputMessage (Messages.SizeEdit value "small")))] [i1]
+    i2 = i "" [Attribute "class" "fa fa-font fa-normal control-element"] [] []
+    l2 = span "" [] [Html.Events.onClick ((Messages.InputMessage (Messages.SizeEdit value "normal")))] [i2]
+    i3 = i "" [Attribute "class" "fa fa-font fa-big control-element"] [] []
+    l3 = span "" [] [Html.Events.onClick ((Messages.InputMessage (Messages.SizeEdit value "large")))] [i3]
 
-    i4 = Element "i" [Attribute "class" "fa fa-edit control-element"] (Children []) "" []
-    l4 = Element "a" [Attribute "href" ("#input/" ++ toString value)] (Children [i4]) "" []
+    i4 = i "" [Attribute "class" "fa fa-edit control-element"] [] []
+    l4 = a "" [Attribute "href" ("#input/" ++ toString value)] [] [i4]
 
-    i5 = Element "i" [Attribute "class" "fa fa-trash control-element"] (Children []) "" []
-    l5 = Element "span" [] (Children [i5]) "" [Html.Events.onClick (Messages.FormMessage (Messages.RemoveInput value))]
-    i6 = Element "i" [Attribute "class" "fa fa-check control-element"] (Children []) "" []
-    l6 = Element "span" [] (Children [i6]) "" [Html.Events.onClick ((Messages.InputMessage (Messages.ToggleDisabled value)))]
-    i7 = Element "i" [Attribute "class" "fa fa-arrows control-element"] (Children []) "" []
-    l7 = Element "span" [] (Children [i7]) "" [Html.Events.onMouseDown ((Messages.MouseMessage (Messages.MouseClick value)))]
+    i5 = i "" [Attribute "class" "fa fa-trash control-element"] [] []
+    l5 = span "" [] [Html.Events.onClick (Messages.FormMessage (Messages.RemoveInput value))] [i5]
+    i6 = i "" [Attribute "class" "fa fa-check control-element"] [] []
+    l6 = span "" [] [Html.Events.onClick ((Messages.InputMessage (Messages.ToggleDisabled value)))] [i6]
+    i7 = i "" [Attribute "class" "fa fa-arrows control-element"] [] []
+    l7 = span "" [] [Html.Events.onMouseDown ((Messages.MouseMessage (Messages.MouseClick value)))] [i7]
 
+    divider = span " " [] [] []
 
-    divider = Element "span" [] (Children []) " " []
-
-    children = (Children [l1, divider, l2, divider, l3, divider, l4, divider, l5, divider, l6, divider, l7])
+    children = [l1, divider, l2, divider, l3, divider, l4, divider, l5, divider, l6, divider, l7]
   in
-    Just (Element "div" [Attribute "class" "control-container hidden-block"] children "" [])
+    Just (div "" [Attribute "class" "control-container hidden-block"] [] children)
 
 sizeClass : Size -> String
 sizeClass size =

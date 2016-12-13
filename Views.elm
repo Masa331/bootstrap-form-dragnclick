@@ -4,13 +4,13 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 
-import Markup exposing (view)
+import MarkupView exposing (view)
 import FormView exposing (view)
 import InputEditView exposing (..)
 import Messages exposing (..)
 import Models exposing (..)
 import ElementMap exposing (..)
-import HtmlTree exposing (..)
+import HtmlNode exposing (..)
 import Form exposing (..)
 import Inputs exposing (..)
 
@@ -44,48 +44,48 @@ formEdit : Model -> Html Msg
 formEdit model =
   let
     inputs1 = List.map HtmlTreeBuilder.buildWithControlElements model.inputs
-    htmlTreeWithControlElements = HtmlTree.Element "form" [] (HtmlTree.Children inputs1) "" []
+    htmlTreeWithControlElements = HtmlNode.form "" [] [] inputs1
   in
-    div
+    Html.div
       []
-      [ div
+      [ Html.div
         [ class "row" ]
-        [ div
+        [ Html.div
            [ class "col-sm-12" ]
-           [ div
+           [ Html.div
              [ class "form-container form-sm" ]
-             [ div
+             [ Html.div
                [ class "form-controls" ]
-               [ a [href "javascript:void(0);", onClick (FormMessage AddInput)] [ text "Add field" ]
-               , a [href "#source"] [ text "Show source code"]]
-             , div
+               [ Html.a [href "javascript:void(0);", onClick (FormMessage AddInput)] [ text "Add field" ]
+               , Html.a [href "#source"] [ text "Show source code"]]
+             , Html.div
                [ class "bd-example" ]
                ([h1 [] [text "The Form"]] ++ (FormView.view htmlTreeWithControlElements))
              , draggedElement model
              ]
            ]
         ]
-      , div [] [ text (toString model)]
+      , Html.div [] [ text (toString model)]
       ]
 
 inputEdit : Input -> Html Msg
 inputEdit input =
   let
     inputs = [HtmlTreeBuilder.forInputEdit input]
-    htmlTree = HtmlTree.Element "form" [] (HtmlTree.Children inputs) "" []
+    htmlTree = HtmlNode.form "" [] [] inputs
   in
-    div
+    Html.div
       []
-      [ div
+      [ Html.div
         [ class "row" ]
-        [ div
+        [ Html.div
            [ class "col-sm-12" ]
-           [ div
+           [ Html.div
              [ class "form-container form-sm" ]
-             [ div
+             [ Html.div
                  [ class "form-controls" ]
-                 [ a [ href "#form" ] [ text "Back to form" ] ]
-             , div
+                 [ Html.a [ href "#form" ] [ text "Back to form" ] ]
+             , Html.div
                [ class "bd-example" ]
                ((FormView.view htmlTree) ++ [hr [] []] ++ ((InputEditView.view input)))
              ]
@@ -97,22 +97,22 @@ source : Model -> Html Msg
 source model =
   let
     inputs1 = List.map HtmlTreeBuilder.buildRaw model.inputs
-    htmlRaw = HtmlTree.Element "form" [] (HtmlTree.Children inputs1) "" []
+    htmlRaw = HtmlNode.form "" [] [] inputs1
   in
-    div
+    Html.div
       []
-      [ div
+      [ Html.div
         [ class "row" ]
-        [ div
+        [ Html.div
            [ class "col-sm-12" ]
-           [ div
+           [ Html.div
              [ class "form-container form-sm" ]
-             [ div
+             [ Html.div
                [ class "form-controls" ]
-               [ a [href "#form"] [ text "Back to form"]]
-             , div
+               [ Html.a [href "#form"] [ text "Back to form"]]
+             , Html.div
                [ class "bd-example" ]
-               [(Markup.view htmlRaw)]
+               [(MarkupView.view htmlRaw)]
              ]
            ]
         ]
@@ -125,11 +125,11 @@ source model =
 draggedElement model =
   case Models.currentlyDraggedInput model of
     Nothing ->
-      div [] []
+      Html.div [] []
     Just input ->
       let
         element = HtmlTreeBuilder.buildDragged input
-        htmlTree = HtmlTree.Element "form" [] (HtmlTree.Children [element]) "" []
+        htmlTree = HtmlNode.form "" [] [] [element]
         content = FormView.view htmlTree
 
         dimensions =
@@ -149,4 +149,4 @@ draggedElement model =
         height = ("height", (toString heightx) ++ "px")
         attrs = [style [("position", "fixed"), top, left, width, height]]
       in
-        div attrs content
+        Html.div attrs content
