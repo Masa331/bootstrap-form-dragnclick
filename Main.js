@@ -10486,6 +10486,334 @@ var _user$project$Models$currentPage = function (model) {
 	}
 };
 
+var _user$project$Bootstrap$sizeClass = function (size) {
+	var _p0 = size;
+	switch (_p0.ctor) {
+		case 'Small':
+			return 'form-control-sm';
+		case 'Normal':
+			return '';
+		default:
+			return 'form-control-lg';
+	}
+};
+var _user$project$Bootstrap$toLabel = function (value) {
+	var labelSpan = A4(
+		_user$project$HtmlNode$span,
+		A2(_elm_lang$core$Maybe$withDefault, '', value),
+		{ctor: '[]'},
+		{ctor: '[]'},
+		{ctor: '[]'});
+	return _elm_lang$core$Maybe$Just(
+		A4(
+			_user$project$HtmlNode$label,
+			'',
+			{
+				ctor: '::',
+				_0: A2(_user$project$HtmlNode$Attribute, 'for', 'input1'),
+				_1: {ctor: '[]'}
+			},
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: labelSpan,
+				_1: {ctor: '[]'}
+			}));
+};
+var _user$project$Bootstrap$toSmall = function (text) {
+	var smallText = A4(
+		_user$project$HtmlNode$span,
+		text,
+		{
+			ctor: '::',
+			_0: A2(_user$project$HtmlNode$Attribute, 'class', 'text-muted'),
+			_1: {ctor: '[]'}
+		},
+		{ctor: '[]'},
+		{ctor: '[]'});
+	return A4(
+		_user$project$HtmlNode$small,
+		'',
+		{
+			ctor: '::',
+			_0: A2(_user$project$HtmlNode$Attribute, 'class', 'form-text'),
+			_1: {ctor: '[]'}
+		},
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: smallText,
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$Bootstrap$fileUploadToHtmlNode = F3(
+	function (input, containerClass, links) {
+		var inputAttrs = A2(
+			_elm_lang$core$List$filterMap,
+			_elm_lang$core$Basics$identity,
+			{
+				ctor: '::',
+				_0: _elm_lang$core$Maybe$Just(
+					A2(
+						_user$project$HtmlNode$Attribute,
+						'id',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'input',
+							_elm_lang$core$Basics$toString(input.id)))),
+				_1: {
+					ctor: '::',
+					_0: input.disabled ? _elm_lang$core$Maybe$Just(
+						A2(_user$project$HtmlNode$Attribute, 'disabled', 'disabled')) : _elm_lang$core$Maybe$Nothing,
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$core$Maybe$Just(
+							A2(
+								_user$project$HtmlNode$Attribute,
+								'class',
+								_elm_lang$core$String$trim(
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										_user$project$Bootstrap$sizeClass(input.size),
+										' form-control-file')))),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$core$Maybe$Just(
+								A2(_user$project$HtmlNode$Attribute, 'type', 'file')),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			});
+		return A4(
+			_user$project$HtmlNode$div,
+			'',
+			{
+				ctor: '::',
+				_0: containerClass,
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_user$project$HtmlNode$Attribute,
+						'data-input-id',
+						_elm_lang$core$Basics$toString(input.id)),
+					_1: {ctor: '[]'}
+				}
+			},
+			{ctor: '[]'},
+			A2(
+				_elm_lang$core$List$filterMap,
+				_elm_lang$core$Basics$identity,
+				{
+					ctor: '::',
+					_0: _user$project$Bootstrap$toLabel(input.label),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$core$Maybe$Just(
+							A4(
+								_user$project$HtmlNode$input,
+								'',
+								inputAttrs,
+								{ctor: '[]'},
+								{ctor: '[]'})),
+						_1: {
+							ctor: '::',
+							_0: A2(_elm_lang$core$Maybe$map, _user$project$Bootstrap$toSmall, input.small),
+							_1: {
+								ctor: '::',
+								_0: links,
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}));
+	});
+var _user$project$Bootstrap$multiselectToHtmlNode = F3(
+	function (input, containerClass, links) {
+		var options = A2(
+			_elm_lang$core$List$map,
+			function (value) {
+				return A4(
+					_user$project$HtmlNode$option,
+					value,
+					{ctor: '[]'},
+					{ctor: '[]'},
+					{ctor: '[]'});
+			},
+			input.options);
+		var inputAttrs = A2(
+			_elm_lang$core$List$filterMap,
+			_elm_lang$core$Basics$identity,
+			{
+				ctor: '::',
+				_0: _elm_lang$core$Maybe$Just(
+					A2(
+						_user$project$HtmlNode$Attribute,
+						'id',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'input',
+							_elm_lang$core$Basics$toString(input.id)))),
+				_1: {
+					ctor: '::',
+					_0: input.disabled ? _elm_lang$core$Maybe$Just(
+						A2(_user$project$HtmlNode$Attribute, 'disabled', 'disabled')) : _elm_lang$core$Maybe$Nothing,
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$core$Maybe$Just(
+							A2(
+								_user$project$HtmlNode$Attribute,
+								'class',
+								_elm_lang$core$String$trim(
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										_user$project$Bootstrap$sizeClass(input.size),
+										' form-control')))),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$core$Maybe$Just(
+								A2(_user$project$HtmlNode$Attribute, 'multiple', 'multiple')),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			});
+		return A4(
+			_user$project$HtmlNode$div,
+			'',
+			{
+				ctor: '::',
+				_0: containerClass,
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_user$project$HtmlNode$Attribute,
+						'data-input-id',
+						_elm_lang$core$Basics$toString(input.id)),
+					_1: {ctor: '[]'}
+				}
+			},
+			{ctor: '[]'},
+			A2(
+				_elm_lang$core$List$filterMap,
+				_elm_lang$core$Basics$identity,
+				{
+					ctor: '::',
+					_0: _user$project$Bootstrap$toLabel(input.label),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$core$Maybe$Just(
+							A4(
+								_user$project$HtmlNode$select,
+								'',
+								inputAttrs,
+								{ctor: '[]'},
+								options)),
+						_1: {
+							ctor: '::',
+							_0: A2(_elm_lang$core$Maybe$map, _user$project$Bootstrap$toSmall, input.small),
+							_1: {
+								ctor: '::',
+								_0: links,
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}));
+	});
+var _user$project$Bootstrap$colorToHtmlNode = F3(
+	function (input, containerClass, links) {
+		var inputAttrs = A2(
+			_elm_lang$core$List$filterMap,
+			_elm_lang$core$Basics$identity,
+			{
+				ctor: '::',
+				_0: _elm_lang$core$Maybe$Just(
+					A2(
+						_user$project$HtmlNode$Attribute,
+						'id',
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'input',
+							_elm_lang$core$Basics$toString(input.id)))),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$core$Maybe$map,
+						_user$project$HtmlNode$Attribute('placeholder'),
+						input.placeholder),
+					_1: {
+						ctor: '::',
+						_0: input.disabled ? _elm_lang$core$Maybe$Just(
+							A2(_user$project$HtmlNode$Attribute, 'disabled', 'disabled')) : _elm_lang$core$Maybe$Nothing,
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$core$Maybe$Just(
+								A2(
+									_user$project$HtmlNode$Attribute,
+									'class',
+									_elm_lang$core$String$trim(
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											_user$project$Bootstrap$sizeClass(input.size),
+											' form-control')))),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$core$Maybe$Just(
+									A2(
+										_user$project$HtmlNode$Attribute,
+										'type',
+										_user$project$Inputs$inputTypeToString(input.type_))),
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			});
+		return A4(
+			_user$project$HtmlNode$div,
+			'',
+			{
+				ctor: '::',
+				_0: containerClass,
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_user$project$HtmlNode$Attribute,
+						'data-input-id',
+						_elm_lang$core$Basics$toString(input.id)),
+					_1: {ctor: '[]'}
+				}
+			},
+			{ctor: '[]'},
+			A2(
+				_elm_lang$core$List$filterMap,
+				_elm_lang$core$Basics$identity,
+				{
+					ctor: '::',
+					_0: _user$project$Bootstrap$toLabel(input.label),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$core$Maybe$Just(
+							A4(
+								_user$project$HtmlNode$input,
+								'',
+								inputAttrs,
+								{ctor: '[]'},
+								{ctor: '[]'})),
+						_1: {
+							ctor: '::',
+							_0: A2(_elm_lang$core$Maybe$map, _user$project$Bootstrap$toSmall, input.small),
+							_1: {
+								ctor: '::',
+								_0: links,
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}));
+	});
+
 var _user$project$Dragged$sizeClass = function (size) {
 	var _p0 = size;
 	switch (_p0.ctor) {
@@ -10913,166 +11241,15 @@ var _user$project$Dragged$radioToHtmlTree = function (inp) {
 		{ctor: '[]'},
 		children);
 };
-var _user$project$Dragged$fileUploadToHtmlTree = function (inp) {
+var _user$project$Dragged$fileUploadToHtmlTree = function (input) {
+	var links = _user$project$Dragged$toLinks(input.id);
 	var containerClass = A2(_user$project$HtmlNode$Attribute, 'class', 'form-group dragged');
-	var inputAttrs = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		{
-			ctor: '::',
-			_0: _user$project$Dragged$toId(inp.id),
-			_1: {
-				ctor: '::',
-				_0: _user$project$Dragged$toDisabled(inp.disabled),
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$core$Maybe$Just(
-						A2(
-							_user$project$HtmlNode$Attribute,
-							'class',
-							_elm_lang$core$String$trim(
-								A2(
-									_elm_lang$core$Basics_ops['++'],
-									_user$project$Dragged$sizeClass(inp.size),
-									' form-control-file')))),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$core$Maybe$Just(
-							A2(_user$project$HtmlNode$Attribute, 'type', 'file')),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		});
-	var children = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		{
-			ctor: '::',
-			_0: _user$project$Dragged$toLabel(inp.label),
-			_1: {
-				ctor: '::',
-				_0: _elm_lang$core$Maybe$Just(
-					A4(
-						_user$project$HtmlNode$input,
-						'',
-						inputAttrs,
-						{ctor: '[]'},
-						{ctor: '[]'})),
-				_1: {
-					ctor: '::',
-					_0: A2(_elm_lang$core$Maybe$map, _user$project$Dragged$toSmall, inp.small),
-					_1: {
-						ctor: '::',
-						_0: _user$project$Dragged$toLinks(inp.id),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		});
-	return A4(
-		_user$project$HtmlNode$div,
-		'',
-		{
-			ctor: '::',
-			_0: containerClass,
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_user$project$HtmlNode$Attribute,
-					'data-input-id',
-					_elm_lang$core$Basics$toString(inp.id)),
-				_1: {ctor: '[]'}
-			}
-		},
-		{ctor: '[]'},
-		children);
+	return A3(_user$project$Bootstrap$fileUploadToHtmlNode, input, containerClass, links);
 };
-var _user$project$Dragged$multiselectToHtmlTree = function (inp) {
-	var options = A2(
-		_elm_lang$core$List$map,
-		function (value) {
-			return A4(
-				_user$project$HtmlNode$option,
-				value,
-				{ctor: '[]'},
-				{ctor: '[]'},
-				{ctor: '[]'});
-		},
-		inp.options);
+var _user$project$Dragged$multiselectToHtmlTree = function (input) {
+	var links = _user$project$Dragged$toLinks(input.id);
 	var containerClass = A2(_user$project$HtmlNode$Attribute, 'class', 'form-group dragged');
-	var inputAttrs = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		{
-			ctor: '::',
-			_0: _user$project$Dragged$toId(inp.id),
-			_1: {
-				ctor: '::',
-				_0: _user$project$Dragged$toDisabled(inp.disabled),
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$core$Maybe$Just(
-						A2(
-							_user$project$HtmlNode$Attribute,
-							'class',
-							_elm_lang$core$String$trim(
-								A2(
-									_elm_lang$core$Basics_ops['++'],
-									_user$project$Dragged$sizeClass(inp.size),
-									' form-control')))),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$core$Maybe$Just(
-							A2(_user$project$HtmlNode$Attribute, 'multiple', 'multiple')),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		});
-	var children = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		{
-			ctor: '::',
-			_0: _user$project$Dragged$toLabel(inp.label),
-			_1: {
-				ctor: '::',
-				_0: _elm_lang$core$Maybe$Just(
-					A4(
-						_user$project$HtmlNode$select,
-						'',
-						inputAttrs,
-						{ctor: '[]'},
-						options)),
-				_1: {
-					ctor: '::',
-					_0: A2(_elm_lang$core$Maybe$map, _user$project$Dragged$toSmall, inp.small),
-					_1: {
-						ctor: '::',
-						_0: _user$project$Dragged$toLinks(inp.id),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		});
-	return A4(
-		_user$project$HtmlNode$div,
-		'',
-		{
-			ctor: '::',
-			_0: containerClass,
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_user$project$HtmlNode$Attribute,
-					'data-input-id',
-					_elm_lang$core$Basics$toString(inp.id)),
-				_1: {ctor: '[]'}
-			}
-		},
-		{ctor: '[]'},
-		children);
+	return A3(_user$project$Bootstrap$multiselectToHtmlNode, input, containerClass, links);
 };
 var _user$project$Dragged$textAreaToHtmlTree = function (inp) {
 	var inputClasses = function () {
@@ -11262,83 +11439,10 @@ var _user$project$Dragged$selectToHtmlTree = function (inp) {
 		{ctor: '[]'},
 		children);
 };
-var _user$project$Dragged$colorToHtmlTree = function (inp) {
+var _user$project$Dragged$colorToHtmlTree = function (input) {
+	var links = _user$project$Dragged$toLinks(input.id);
 	var containerClass = A2(_user$project$HtmlNode$Attribute, 'class', 'form-group dragged');
-	var inputAttrs = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		{
-			ctor: '::',
-			_0: _user$project$Dragged$toId(inp.id),
-			_1: {
-				ctor: '::',
-				_0: _user$project$Dragged$toPlaceholder(inp.placeholder),
-				_1: {
-					ctor: '::',
-					_0: _user$project$Dragged$toDisabled(inp.disabled),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$core$Maybe$Just(
-							A2(
-								_user$project$HtmlNode$Attribute,
-								'class',
-								_elm_lang$core$String$trim(
-									A2(
-										_elm_lang$core$Basics_ops['++'],
-										_user$project$Dragged$sizeClass(inp.size),
-										' form-control')))),
-						_1: {
-							ctor: '::',
-							_0: _user$project$Dragged$toType(inp.type_),
-							_1: {ctor: '[]'}
-						}
-					}
-				}
-			}
-		});
-	var children = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		{
-			ctor: '::',
-			_0: _user$project$Dragged$toLabel(inp.label),
-			_1: {
-				ctor: '::',
-				_0: _elm_lang$core$Maybe$Just(
-					A4(
-						_user$project$HtmlNode$input,
-						'',
-						inputAttrs,
-						{ctor: '[]'},
-						{ctor: '[]'})),
-				_1: {
-					ctor: '::',
-					_0: A2(_elm_lang$core$Maybe$map, _user$project$Dragged$toSmall, inp.small),
-					_1: {
-						ctor: '::',
-						_0: _user$project$Dragged$toLinks(inp.id),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		});
-	return A4(
-		_user$project$HtmlNode$div,
-		'',
-		{
-			ctor: '::',
-			_0: containerClass,
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_user$project$HtmlNode$Attribute,
-					'data-input-id',
-					_elm_lang$core$Basics$toString(inp.id)),
-				_1: {ctor: '[]'}
-			}
-		},
-		{ctor: '[]'},
-		children);
+	return A3(_user$project$Bootstrap$colorToHtmlNode, input, containerClass, links);
 };
 var _user$project$Dragged$textInputToHtmlTree = function (input) {
 	var inputClasses = function () {
@@ -12271,208 +12375,15 @@ var _user$project$ForInputEdit$radioToHtmlTree = function (inp) {
 		{ctor: '[]'},
 		children);
 };
-var _user$project$ForInputEdit$fileUploadToHtmlTree = function (inp) {
-	var containerClass = A2(
-		_user$project$HtmlNode$Attribute,
-		'class',
-		A2(
-			_elm_lang$core$String$join,
-			' ',
-			A2(
-				_elm_lang$core$List$filterMap,
-				_elm_lang$core$Basics$identity,
-				{
-					ctor: '::',
-					_0: _elm_lang$core$Maybe$Just('form-group'),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$core$Maybe$Just('show-hidden-on-hover'),
-						_1: {
-							ctor: '::',
-							_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
-							_1: {ctor: '[]'}
-						}
-					}
-				})));
-	var inputAttrs = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		{
-			ctor: '::',
-			_0: _user$project$ForInputEdit$toId(inp.id),
-			_1: {
-				ctor: '::',
-				_0: _user$project$ForInputEdit$toDisabled(inp.disabled),
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$core$Maybe$Just(
-						A2(
-							_user$project$HtmlNode$Attribute,
-							'class',
-							_elm_lang$core$String$trim(
-								A2(
-									_elm_lang$core$Basics_ops['++'],
-									_user$project$ForInputEdit$sizeClass(inp.size),
-									' form-control-file')))),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$core$Maybe$Just(
-							A2(_user$project$HtmlNode$Attribute, 'type', 'file')),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		});
-	var children = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		{
-			ctor: '::',
-			_0: _user$project$ForInputEdit$toLabel(inp.label),
-			_1: {
-				ctor: '::',
-				_0: _elm_lang$core$Maybe$Just(
-					A4(
-						_user$project$HtmlNode$input,
-						'',
-						inputAttrs,
-						{ctor: '[]'},
-						{ctor: '[]'})),
-				_1: {
-					ctor: '::',
-					_0: A2(_elm_lang$core$Maybe$map, _user$project$ForInputEdit$toSmall, inp.small),
-					_1: {
-						ctor: '::',
-						_0: _user$project$ForInputEdit$toLinks(inp.id),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		});
-	return A4(
-		_user$project$HtmlNode$div,
-		'',
-		{
-			ctor: '::',
-			_0: containerClass,
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_user$project$HtmlNode$Attribute,
-					'data-input-id',
-					_elm_lang$core$Basics$toString(inp.id)),
-				_1: {ctor: '[]'}
-			}
-		},
-		{ctor: '[]'},
-		children);
+var _user$project$ForInputEdit$fileUploadToHtmlTree = function (input) {
+	var links = _user$project$ForInputEdit$toLinks(input.id);
+	var containerClass = A2(_user$project$HtmlNode$Attribute, 'class', 'form-group show-hidden-on-hover');
+	return A3(_user$project$Bootstrap$fileUploadToHtmlNode, input, containerClass, links);
 };
-var _user$project$ForInputEdit$multiselectToHtmlTree = function (inp) {
-	var options = A2(
-		_elm_lang$core$List$map,
-		function (value) {
-			return A4(
-				_user$project$HtmlNode$option,
-				value,
-				{ctor: '[]'},
-				{ctor: '[]'},
-				{ctor: '[]'});
-		},
-		inp.options);
-	var containerClass = A2(
-		_user$project$HtmlNode$Attribute,
-		'class',
-		A2(
-			_elm_lang$core$String$join,
-			' ',
-			A2(
-				_elm_lang$core$List$filterMap,
-				_elm_lang$core$Basics$identity,
-				{
-					ctor: '::',
-					_0: _elm_lang$core$Maybe$Just('form-group'),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$core$Maybe$Just('show-hidden-on-hover'),
-						_1: {
-							ctor: '::',
-							_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
-							_1: {ctor: '[]'}
-						}
-					}
-				})));
-	var inputAttrs = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		{
-			ctor: '::',
-			_0: _user$project$ForInputEdit$toId(inp.id),
-			_1: {
-				ctor: '::',
-				_0: _user$project$ForInputEdit$toDisabled(inp.disabled),
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$core$Maybe$Just(
-						A2(
-							_user$project$HtmlNode$Attribute,
-							'class',
-							_elm_lang$core$String$trim(
-								A2(
-									_elm_lang$core$Basics_ops['++'],
-									_user$project$ForInputEdit$sizeClass(inp.size),
-									' form-control')))),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$core$Maybe$Just(
-							A2(_user$project$HtmlNode$Attribute, 'multiple', 'multiple')),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		});
-	var children = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		{
-			ctor: '::',
-			_0: _user$project$ForInputEdit$toLabel(inp.label),
-			_1: {
-				ctor: '::',
-				_0: _elm_lang$core$Maybe$Just(
-					A4(
-						_user$project$HtmlNode$select,
-						'',
-						inputAttrs,
-						{ctor: '[]'},
-						options)),
-				_1: {
-					ctor: '::',
-					_0: A2(_elm_lang$core$Maybe$map, _user$project$ForInputEdit$toSmall, inp.small),
-					_1: {
-						ctor: '::',
-						_0: _user$project$ForInputEdit$toLinks(inp.id),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		});
-	return A4(
-		_user$project$HtmlNode$div,
-		'',
-		{
-			ctor: '::',
-			_0: containerClass,
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_user$project$HtmlNode$Attribute,
-					'data-input-id',
-					_elm_lang$core$Basics$toString(inp.id)),
-				_1: {ctor: '[]'}
-			}
-		},
-		{ctor: '[]'},
-		children);
+var _user$project$ForInputEdit$multiselectToHtmlTree = function (input) {
+	var links = _user$project$ForInputEdit$toLinks(input.id);
+	var containerClass = A2(_user$project$HtmlNode$Attribute, 'class', 'form-group show-hidden-on-hover');
+	return A3(_user$project$Bootstrap$multiselectToHtmlNode, input, containerClass, links);
 };
 var _user$project$ForInputEdit$textAreaToHtmlTree = function (inp) {
 	var children = A2(
@@ -12630,104 +12541,10 @@ var _user$project$ForInputEdit$selectToHtmlTree = function (inp) {
 		{ctor: '[]'},
 		children);
 };
-var _user$project$ForInputEdit$colorToHtmlTree = function (inp) {
-	var containerClass = A2(
-		_user$project$HtmlNode$Attribute,
-		'class',
-		A2(
-			_elm_lang$core$String$join,
-			' ',
-			A2(
-				_elm_lang$core$List$filterMap,
-				_elm_lang$core$Basics$identity,
-				{
-					ctor: '::',
-					_0: _elm_lang$core$Maybe$Just('form-group'),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$core$Maybe$Just('show-hidden-on-hover'),
-						_1: {
-							ctor: '::',
-							_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
-							_1: {ctor: '[]'}
-						}
-					}
-				})));
-	var inputAttrs = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		{
-			ctor: '::',
-			_0: _user$project$ForInputEdit$toId(inp.id),
-			_1: {
-				ctor: '::',
-				_0: _user$project$ForInputEdit$toPlaceholder(inp.placeholder),
-				_1: {
-					ctor: '::',
-					_0: _user$project$ForInputEdit$toDisabled(inp.disabled),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$core$Maybe$Just(
-							A2(
-								_user$project$HtmlNode$Attribute,
-								'class',
-								_elm_lang$core$String$trim(
-									A2(
-										_elm_lang$core$Basics_ops['++'],
-										_user$project$ForInputEdit$sizeClass(inp.size),
-										' form-control')))),
-						_1: {
-							ctor: '::',
-							_0: _user$project$ForInputEdit$toType(inp.type_),
-							_1: {ctor: '[]'}
-						}
-					}
-				}
-			}
-		});
-	var children = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		{
-			ctor: '::',
-			_0: _user$project$ForInputEdit$toLabel(inp.label),
-			_1: {
-				ctor: '::',
-				_0: _elm_lang$core$Maybe$Just(
-					A4(
-						_user$project$HtmlNode$input,
-						'',
-						inputAttrs,
-						{ctor: '[]'},
-						{ctor: '[]'})),
-				_1: {
-					ctor: '::',
-					_0: A2(_elm_lang$core$Maybe$map, _user$project$ForInputEdit$toSmall, inp.small),
-					_1: {
-						ctor: '::',
-						_0: _user$project$ForInputEdit$toLinks(inp.id),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		});
-	return A4(
-		_user$project$HtmlNode$div,
-		'',
-		{
-			ctor: '::',
-			_0: containerClass,
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_user$project$HtmlNode$Attribute,
-					'data-input-id',
-					_elm_lang$core$Basics$toString(inp.id)),
-				_1: {ctor: '[]'}
-			}
-		},
-		{ctor: '[]'},
-		children);
+var _user$project$ForInputEdit$colorToHtmlTree = function (input) {
+	var links = _user$project$ForInputEdit$toLinks(input.id);
+	var containerClass = A2(_user$project$HtmlNode$Attribute, 'class', 'form-group show-hidden-on-hover');
+	return A3(_user$project$Bootstrap$colorToHtmlNode, input, containerClass, links);
 };
 var _user$project$ForInputEdit$textInputToHtmlTree = function (inp) {
 	var children = A2(
@@ -13802,222 +13619,27 @@ var _user$project$WithControlElements$radioToHtmlTree = function (inp) {
 		{ctor: '[]'},
 		children);
 };
-var _user$project$WithControlElements$fileUploadToHtmlTree = function (inp) {
+var _user$project$WithControlElements$fileUploadToHtmlTree = function (input) {
+	var links = _user$project$WithControlElements$toLinks(input.id);
 	var containerClass = A2(
 		_user$project$HtmlNode$Attribute,
 		'class',
 		A2(
-			_elm_lang$core$String$join,
-			' ',
-			A2(
-				_elm_lang$core$List$filterMap,
-				_elm_lang$core$Basics$identity,
-				{
-					ctor: '::',
-					_0: _elm_lang$core$Maybe$Just('form-group'),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$core$Maybe$Just('show-hidden-on-hover'),
-						_1: {
-							ctor: '::',
-							_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
-							_1: {ctor: '[]'}
-						}
-					}
-				})));
-	var inputAttrs = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		{
-			ctor: '::',
-			_0: _elm_lang$core$Maybe$Just(
-				A2(
-					_user$project$HtmlNode$Attribute,
-					'id',
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						'input',
-						_elm_lang$core$Basics$toString(inp.id)))),
-			_1: {
-				ctor: '::',
-				_0: _user$project$WithControlElements$toDisabled(inp.disabled),
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$core$Maybe$Just(
-						A2(
-							_user$project$HtmlNode$Attribute,
-							'class',
-							_elm_lang$core$String$trim(
-								A2(
-									_elm_lang$core$Basics_ops['++'],
-									_user$project$WithControlElements$sizeClass(inp.size),
-									' form-control-file')))),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$core$Maybe$Just(
-							A2(_user$project$HtmlNode$Attribute, 'type', 'file')),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		});
-	var children = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		{
-			ctor: '::',
-			_0: _user$project$WithControlElements$toLabel(inp.label),
-			_1: {
-				ctor: '::',
-				_0: _elm_lang$core$Maybe$Just(
-					A4(
-						_user$project$HtmlNode$input,
-						'',
-						inputAttrs,
-						{ctor: '[]'},
-						{ctor: '[]'})),
-				_1: {
-					ctor: '::',
-					_0: A2(_elm_lang$core$Maybe$map, _user$project$WithControlElements$toSmall, inp.small),
-					_1: {
-						ctor: '::',
-						_0: _user$project$WithControlElements$toLinks(inp.id),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		});
-	return A4(
-		_user$project$HtmlNode$div,
-		'',
-		{
-			ctor: '::',
-			_0: containerClass,
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_user$project$HtmlNode$Attribute,
-					'data-input-id',
-					_elm_lang$core$Basics$toString(inp.id)),
-				_1: {ctor: '[]'}
-			}
-		},
-		{ctor: '[]'},
-		children);
+			_elm_lang$core$Basics_ops['++'],
+			'form-group show-hidden-on-hover',
+			input.dragged ? ' hidden' : ''));
+	return A3(_user$project$Bootstrap$fileUploadToHtmlNode, input, containerClass, links);
 };
-var _user$project$WithControlElements$multiselectToHtmlTree = function (inp) {
-	var options = A2(
-		_elm_lang$core$List$map,
-		function (value) {
-			return A4(
-				_user$project$HtmlNode$option,
-				value,
-				{ctor: '[]'},
-				{ctor: '[]'},
-				{ctor: '[]'});
-		},
-		inp.options);
+var _user$project$WithControlElements$multiselectToHtmlTree = function (input) {
+	var links = _user$project$WithControlElements$toLinks(input.id);
 	var containerClass = A2(
 		_user$project$HtmlNode$Attribute,
 		'class',
 		A2(
-			_elm_lang$core$String$join,
-			' ',
-			A2(
-				_elm_lang$core$List$filterMap,
-				_elm_lang$core$Basics$identity,
-				{
-					ctor: '::',
-					_0: _elm_lang$core$Maybe$Just('form-group'),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$core$Maybe$Just('show-hidden-on-hover'),
-						_1: {
-							ctor: '::',
-							_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
-							_1: {ctor: '[]'}
-						}
-					}
-				})));
-	var inputAttrs = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		{
-			ctor: '::',
-			_0: _elm_lang$core$Maybe$Just(
-				A2(
-					_user$project$HtmlNode$Attribute,
-					'id',
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						'input',
-						_elm_lang$core$Basics$toString(inp.id)))),
-			_1: {
-				ctor: '::',
-				_0: _user$project$WithControlElements$toDisabled(inp.disabled),
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$core$Maybe$Just(
-						A2(
-							_user$project$HtmlNode$Attribute,
-							'class',
-							_elm_lang$core$String$trim(
-								A2(
-									_elm_lang$core$Basics_ops['++'],
-									_user$project$WithControlElements$sizeClass(inp.size),
-									' form-control')))),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$core$Maybe$Just(
-							A2(_user$project$HtmlNode$Attribute, 'multiple', 'multiple')),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		});
-	var children = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		{
-			ctor: '::',
-			_0: _user$project$WithControlElements$toLabel(inp.label),
-			_1: {
-				ctor: '::',
-				_0: _elm_lang$core$Maybe$Just(
-					A4(
-						_user$project$HtmlNode$select,
-						'',
-						inputAttrs,
-						{ctor: '[]'},
-						options)),
-				_1: {
-					ctor: '::',
-					_0: A2(_elm_lang$core$Maybe$map, _user$project$WithControlElements$toSmall, inp.small),
-					_1: {
-						ctor: '::',
-						_0: _user$project$WithControlElements$toLinks(inp.id),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		});
-	return A4(
-		_user$project$HtmlNode$div,
-		'',
-		{
-			ctor: '::',
-			_0: containerClass,
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_user$project$HtmlNode$Attribute,
-					'data-input-id',
-					_elm_lang$core$Basics$toString(inp.id)),
-				_1: {ctor: '[]'}
-			}
-		},
-		{ctor: '[]'},
-		children);
+			_elm_lang$core$Basics_ops['++'],
+			'form-group show-hidden-on-hover',
+			input.dragged ? ' hidden' : ''));
+	return A3(_user$project$Bootstrap$multiselectToHtmlNode, input, containerClass, links);
 };
 var _user$project$WithControlElements$textAreaToHtmlTree = function (input) {
 	var inputClasses = function () {
@@ -14280,114 +13902,16 @@ var _user$project$WithControlElements$selectToHtmlTree = function (inp) {
 		{ctor: '[]'},
 		children);
 };
-var _user$project$WithControlElements$colorToHtmlTree = function (inp) {
+var _user$project$WithControlElements$colorToHtmlTree = function (input) {
+	var links = _user$project$WithControlElements$toLinks(input.id);
 	var containerClass = A2(
 		_user$project$HtmlNode$Attribute,
 		'class',
 		A2(
-			_elm_lang$core$String$join,
-			' ',
-			A2(
-				_elm_lang$core$List$filterMap,
-				_elm_lang$core$Basics$identity,
-				{
-					ctor: '::',
-					_0: _elm_lang$core$Maybe$Just('form-group show-hidden-on-hover'),
-					_1: {
-						ctor: '::',
-						_0: inp.dragged ? _elm_lang$core$Maybe$Just('hidden') : _elm_lang$core$Maybe$Nothing,
-						_1: {ctor: '[]'}
-					}
-				})));
-	var inputAttrs = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		{
-			ctor: '::',
-			_0: _elm_lang$core$Maybe$Just(
-				A2(
-					_user$project$HtmlNode$Attribute,
-					'id',
-					A2(
-						_elm_lang$core$Basics_ops['++'],
-						'input',
-						_elm_lang$core$Basics$toString(inp.id)))),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_elm_lang$core$Maybe$map,
-					_user$project$HtmlNode$Attribute('placeholder'),
-					inp.placeholder),
-				_1: {
-					ctor: '::',
-					_0: _user$project$WithControlElements$toDisabled(inp.disabled),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$core$Maybe$Just(
-							A2(
-								_user$project$HtmlNode$Attribute,
-								'class',
-								_elm_lang$core$String$trim(
-									A2(
-										_elm_lang$core$Basics_ops['++'],
-										_user$project$WithControlElements$sizeClass(inp.size),
-										' form-control')))),
-						_1: {
-							ctor: '::',
-							_0: _elm_lang$core$Maybe$Just(
-								A2(
-									_user$project$HtmlNode$Attribute,
-									'type',
-									_user$project$Inputs$inputTypeToString(inp.type_))),
-							_1: {ctor: '[]'}
-						}
-					}
-				}
-			}
-		});
-	var children = A2(
-		_elm_lang$core$List$filterMap,
-		_elm_lang$core$Basics$identity,
-		{
-			ctor: '::',
-			_0: _user$project$WithControlElements$toLabel(inp.label),
-			_1: {
-				ctor: '::',
-				_0: _elm_lang$core$Maybe$Just(
-					A4(
-						_user$project$HtmlNode$input,
-						'',
-						inputAttrs,
-						{ctor: '[]'},
-						{ctor: '[]'})),
-				_1: {
-					ctor: '::',
-					_0: A2(_elm_lang$core$Maybe$map, _user$project$WithControlElements$toSmall, inp.small),
-					_1: {
-						ctor: '::',
-						_0: _user$project$WithControlElements$toLinks(inp.id),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		});
-	return A4(
-		_user$project$HtmlNode$div,
-		'',
-		{
-			ctor: '::',
-			_0: containerClass,
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_user$project$HtmlNode$Attribute,
-					'data-input-id',
-					_elm_lang$core$Basics$toString(inp.id)),
-				_1: {ctor: '[]'}
-			}
-		},
-		{ctor: '[]'},
-		children);
+			_elm_lang$core$Basics_ops['++'],
+			'form-group show-hidden-on-hover',
+			input.dragged ? ' hidden' : ''));
+	return A3(_user$project$Bootstrap$colorToHtmlNode, input, containerClass, links);
 };
 var _user$project$WithControlElements$textInputToHtmlTree = function (input) {
 	var inputClasses = function () {

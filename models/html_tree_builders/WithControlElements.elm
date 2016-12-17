@@ -9,6 +9,8 @@ import Inputs exposing (..)
 import Messages
 import Models
 
+import Bootstrap
+
 build : Input -> HtmlNode.Node
 build input =
   case input.type_ of
@@ -65,31 +67,14 @@ textInputToHtmlTree input =
   in
     div "" [containerClass, Attribute "data-input-id" (toString input.id) ] [] children
 
-colorToHtmlTree inp =
+colorToHtmlTree input =
   let
-    inputAttrs =
-      [ Just (Attribute "id" ("input" ++ toString inp.id))
-      , Maybe.map (Attribute "placeholder") inp.placeholder
-      , toDisabled inp.disabled
-      , Just (Attribute "class" (String.trim ((sizeClass inp.size) ++ " form-control")))
-      , Just (Attribute "type" (inputTypeToString inp.type_))
-      ] |> List.filterMap identity
-
     containerClass =
-      [ Just "form-group show-hidden-on-hover"
-      , if inp.dragged then Just "hidden" else Nothing
-      ] |> List.filterMap identity
-        |> String.join " "
-        |> Attribute "class"
-
-    children =
-      [ toLabel inp.label
-      , Just (input "" inputAttrs [] [])
-      , Maybe.map toSmall inp.small
-      , toLinks inp.id
-      ] |> List.filterMap identity
+      Attribute "class" ("form-group show-hidden-on-hover" ++ if input.dragged then " hidden" else "")
+    links =
+      toLinks input.id
   in
-    div "" [containerClass, Attribute "data-input-id" (toString inp.id) ] [] children
+    Bootstrap.colorToHtmlNode input containerClass links
 
 selectToHtmlTree inp =
   let
@@ -160,58 +145,21 @@ textAreaToHtmlTree input =
   in
     div "" [containerClass] [] children
 
-multiselectToHtmlTree inp =
+multiselectToHtmlTree input =
   let
-    inputAttrs =
-      [ Just (Attribute "id" ("input" ++ toString inp.id))
-      , toDisabled inp.disabled
-      , Just (Attribute "class" (String.trim ((sizeClass inp.size) ++ " form-control")))
-      , Just (Attribute "multiple" "multiple")
-      ] |> List.filterMap identity
-
     containerClass =
-      [ Just "form-group"
-      , Just "show-hidden-on-hover"
-      , if inp.dragged then Just "hidden" else Nothing
-      ] |> List.filterMap identity
-        |> String.join " "
-        |> Attribute "class"
-
-    options = List.map (\value -> option value [] [] []) inp.options
-    children =
-      [ toLabel inp.label
-      , Just (select "" inputAttrs [] options)
-      , Maybe.map toSmall inp.small
-      , toLinks inp.id
-      ] |> List.filterMap identity
+      Attribute "class" ("form-group show-hidden-on-hover" ++ if input.dragged then " hidden" else "")
+    links = toLinks input.id
   in
-    div "" [containerClass, Attribute "data-input-id" (toString inp.id) ] [] children
+    Bootstrap.multiselectToHtmlNode input containerClass links
 
-fileUploadToHtmlTree inp =
+fileUploadToHtmlTree input =
   let
-    inputAttrs =
-      [ Just (Attribute "id" ("input" ++ toString inp.id))
-      , toDisabled inp.disabled
-      , Just (Attribute "class" (String.trim ((sizeClass inp.size) ++ " form-control-file")))
-      , Just (Attribute "type" "file")
-      ] |> List.filterMap identity
-
     containerClass =
-      [ Just "form-group"
-      , Just "show-hidden-on-hover"
-      , if inp.dragged then Just "hidden" else Nothing
-      ] |> List.filterMap identity
-        |> String.join " "
-        |> Attribute "class"
-
-    children =
-      [ toLabel inp.label
-      , Just (input "" inputAttrs [] [])
-      , Maybe.map toSmall inp.small
-      , toLinks inp.id
-      ] |> List.filterMap identity
+      Attribute "class" ("form-group show-hidden-on-hover" ++ if input.dragged then " hidden" else "")
+    links = toLinks input.id
   in
-    div "" [containerClass, Attribute "data-input-id" (toString inp.id) ] [] children
+    Bootstrap.fileUploadToHtmlNode input containerClass links
 
 radioToHtmlTree inp =
   let

@@ -6,12 +6,12 @@ import Html
 import Messages
 
 type alias Attribute = { name: String, value: String }
-type alias NodeAttrs ={ tag: String
-                      , value: String
-                      , attributes: List Attribute
-                      , events: List (Html.Attribute Messages.Msg)
-                      , children: List Node
-                      }
+type alias NodeAttrs = { tag: String
+                       , value: String
+                       , attributes: List Attribute
+                       , events: List (Html.Attribute Messages.Msg)
+                       , children: List Node
+                       }
 type Node = Node NodeAttrs
 
 div value attributes events children =
