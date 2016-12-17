@@ -54,9 +54,174 @@ fileUploadToHtmlNode input containerClass links =
        , links
        ] |> List.filterMap identity)
 
+buttonToHtmlNode input containerClass links =
+  let
+    sizeClass =
+      case input.size of
+        Small -> " btn-sm"
+        Normal -> ""
+        Large -> " btn-lg"
+
+    inputAttrs =
+      [ Just (Attribute "id" ("input" ++ toString input.id))
+      , if input.disabled then Just (Attribute "disabled" "disabled") else Nothing
+      , Just (Attribute "class" (String.trim ("btn btn-primary" ++ sizeClass)))
+      , Just (Attribute "type" "submit")
+      ] |> List.filterMap identity
+  in
+    div "" [containerClass, Attribute "data-input-id" (toString input.id) ] []
+      ([ Just (HtmlNode.button (Maybe.withDefault "Submit" input.label) inputAttrs [] [])
+       , links
+       ] |> List.filterMap identity)
+
+checkboxToHtmlNode input containerClass links =
+  let
+    inputAttrs =
+      [ Just (Attribute "id" ("input" ++ toString input.id))
+      , if input.disabled then Just (Attribute "disabled" "disabled") else Nothing
+      , Just (Attribute "class" "form-check-input")
+      , Just (Attribute "type" (inputTypeToString input.type_))
+      ] |> List.filterMap identity
+
+    inputNode = HtmlNode.input "" inputAttrs [] []
+    label =
+      case input.label of
+        Nothing ->
+          Just (HtmlNode.label "" [Attribute "class" "form-check-label"] [] [inputNode])
+        Just value ->
+          -- This (" " ++ value) is nasty hack. I don't know what to do but elm generated fonts miss tiny space
+          --   between actuall input and label although the markup is same with static html - remove the space
+          --   to see it
+          Just (HtmlNode.label (" " ++ value) [Attribute "class" "form-check-label"] [] [inputNode])
+
+    small = Maybe.map toSmall input.small
+  in
+    div "" [containerClass, Attribute "data-input-id" (toString input.id) ] []
+      ([ label
+       , links
+       , small ] |> List.filterMap identity)
+
+radioToHtmlNode input containerClass legend =
+  let
+    disabled = if input.disabled then Just (Attribute "disabled" "disabled") else Nothing
+    options = List.map (\value -> Just (toRadioOption input.id 1 value disabled)) input.options
+  in
+    fieldset "" [containerClass, Attribute "data-input-id" (toString input.id) ] []
+      ([ legend ]
+        ++ options
+        ++ [ Maybe.map toSmall input.small ]
+        |> List.filterMap identity)
+
+textAreaToHtmlNode input containerClass links =
+  let
+    inputAttrs =
+      [ Just (Attribute "id" ("input" ++ toString input.id))
+      , Maybe.map (Attribute "placeholder") input.placeholder
+      , Just (Attribute "rows" input.rowNumber)
+      , if input.disabled then Just (Attribute "disabled" "disabled") else Nothing
+      , Just (Attribute "class" (String.trim ((sizeClass input.size) ++ " form-control")))
+      , Just (Attribute "type" (inputTypeToString input.type_))
+      ] |> List.filterMap identity
+
+    add1 = Maybe.map toAddon input.addon1
+    add2 = Maybe.map toAddon input.addon2
+    inputType = "textarea"
+
+    input1 = Just (textarea "" inputAttrs [] [])
+    inputClasses =
+      case input.size of
+        Small ->
+          "input-group input-group-sm"
+        Normal ->
+          "input-group"
+        Large ->
+          "input-group input-group-lg"
+    inputGroup = Just (div "" [Attribute "class" inputClasses] [] ([add1, input1, add2] |> List.filterMap identity))
+
+    children =
+      [ toLabel input.label
+      , inputGroup
+      , links
+      , Maybe.map toSmall input.small
+      ] |> List.filterMap identity
+  in
+    div "" [containerClass] [] children
+
+selectToHtmlNode input containerClass links =
+  let
+    inputAttrs =
+      [ Just (Attribute "id" ("input" ++ toString input.id))
+      , if input.disabled then Just (Attribute "disabled" "disabled") else Nothing
+      , Just (Attribute "class" (String.trim ((sizeClass input.size) ++ " form-control")))
+      ] |> List.filterMap identity
+
+    options = List.map (\value -> option value [] [] []) input.options
+    children =
+      [ toLabel input.label
+      , Just (select "" inputAttrs [] options)
+      , Maybe.map toSmall input.small
+      , links
+      ] |> List.filterMap identity
+  in
+    div "" [containerClass, Attribute "data-input-id" (toString input.id) ] [] children
+
+textInputToHtmlNode input containerClass links =
+  let
+    inputAttrs =
+      [ Just (Attribute "id" ("input" ++ toString input.id))
+      , Maybe.map (Attribute "placeholder") input.placeholder
+      , if input.disabled then Just (Attribute "disabled" "disabled") else Nothing
+      , Just (Attribute "class" (String.trim ((sizeClass input.size) ++ " form-control")))
+      , Just (Attribute "type" (inputTypeToString input.type_))
+      ] |> List.filterMap identity
+
+    add1 = Maybe.map toAddon input.addon1
+    add2 = Maybe.map toAddon input.addon2
+
+    input1 = Just (HtmlNode.input "" inputAttrs [] [])
+    inputClasses =
+      case input.size of
+        Small ->
+          "input-group input-group-sm"
+        Normal ->
+          "input-group"
+        Large ->
+          "input-group input-group-lg"
+
+    inputGroup =
+      Just (div "" [Attribute "class" inputClasses] [] ([add1, input1, add2] |> List.filterMap identity))
+
+    children =
+      [ toLabel input.label
+      , links
+      , inputGroup
+      , Maybe.map toSmall input.small
+      ] |> List.filterMap identity
+  in
+    div "" [containerClass, Attribute "data-input-id" (toString input.id) ] [] children
+
 -------------
 -- Helpers --
 -------------
+
+toRadioOption id index value disabled =
+  let
+    inputAttrs =
+      [ Just (Attribute "type" "radio")
+      , Just (Attribute "class" "form-check-input")
+      , Just (Attribute "name" (toString id))
+      , Just (Attribute "id" (toString id))
+      , Just (Attribute "value" value)
+      , disabled
+      ] |> List.filterMap identity
+
+    input = HtmlNode.input "" inputAttrs [] []
+    -- This (" " ++ value) is nasty hack. I don't know what to do but elm generated fonts miss tiny space
+    --   between actuall input and label although the markup is same with static html - remove the space
+    --   to see it
+    children = label (" " ++ value) [Attribute "class" "form-check-label"] [] [input]
+  in
+    div "" [ Attribute "class" "form-check" ] [] [children]
 
 toSmall : String -> Node
 toSmall text =
@@ -81,3 +246,7 @@ sizeClass size =
       ""
     Large ->
       "form-control-lg"
+
+toAddon : String -> Node
+toAddon text =
+  div "" [Attribute "class" "input-group-addon"] [] [span text [] [] []]
