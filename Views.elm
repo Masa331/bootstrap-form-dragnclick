@@ -65,7 +65,6 @@ formEdit model =
              ]
            ]
         ]
-      , Html.div [] [ text (toString model)]
       ]
 
 inputEdit : Input -> Html Msg
