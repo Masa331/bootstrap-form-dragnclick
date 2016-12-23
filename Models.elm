@@ -42,10 +42,12 @@ maxInputId model =
   <| List.maximum
   <| List.map .id model.inputs
 
+currentlyDraggedInput : Model -> Maybe Inputs.Input
 currentlyDraggedInput model =
   List.filter .dragged model.inputs
     |> List.head
 
+route : UrlParser.Parser (Route -> a) a
 route =
   UrlParser.oneOf
    [ UrlParser.map Form (UrlParser.s "form")
@@ -53,9 +55,10 @@ route =
    , UrlParser.map InputEdit (UrlParser.s "input" </> UrlParser.int)
    ]
 
+currentPage : Model -> Maybe Route
 currentPage model =
   case List.head model.history of
     Just location ->
-      UrlParser.parseHash route (Debug.log "location" location)
+      UrlParser.parseHash route location
     Nothing ->
       Nothing

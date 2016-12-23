@@ -1,6 +1,7 @@
 module WithControlElements exposing (build)
 
-import Html.Events
+import Html
+import Html.Events exposing (onClick, onMouseDown)
 import HtmlNode exposing (..)
 import Inputs exposing (..)
 import Messages
@@ -49,12 +50,10 @@ toLegend input =
     i1 = i "" [Attribute "class" "fa fa-edit control-element"] [] []
     l1 = a "" [Attribute "href" ("#input/" ++ toString input.id)] [] [i1]
 
-    i2 = i "" [Attribute "class" "fa fa-trash control-element"] [] []
-    l2 = span "" [] [Html.Events.onClick (Messages.FormMessage (Messages.RemoveInput input.id))] [i2]
-    i3 = i "" [Attribute "class" "fa fa-check control-element"] [] []
-    l3 = span "" [] [Html.Events.onClick ((Messages.InputMessage (Messages.ToggleDisabled input.id)))] [i3]
-    i4 = i "" [Attribute "class" "fa fa-arrows control-element"] [] []
-    l4 = span "" [] [Html.Events.onMouseDown ((Messages.MouseMessage (Messages.MouseClick input.id)))] [i4]
+    l2 = iconLink "fa-trash" (Html.Events.onClick (Messages.FormMessage (Messages.RemoveInput input.id)))
+    l3 = iconLink "fa-check" (Html.Events.onClick ((Messages.InputMessage (Messages.ToggleDisabled input.id))))
+    l4 = iconLink "fa-arrows" (Html.Events.onMouseDown (Messages.MouseMessage (Messages.MouseClick input.id)))
+
     divider = span " " [] [] []
 
     children = [ l1, divider, l2, divider, l3, divider, l4 ]
@@ -63,28 +62,26 @@ toLegend input =
   in
     legend "" [] [] [label, links]
 
-toLinks : Int -> Maybe Node
+toLinks : Int -> Node
 toLinks value =
   let
-    i1 = i "" [Attribute "class" "fa fa-font fa-small control-element"] [] []
-    l1 = span "" [] [Html.Events.onClick ((Messages.InputMessage (Messages.SizeEdit value "small")))] [i1]
-    i2 = i "" [Attribute "class" "fa fa-font fa-normal control-element"] [] []
-    l2 = span "" [] [Html.Events.onClick ((Messages.InputMessage (Messages.SizeEdit value "normal")))] [i2]
-    i3 = i "" [Attribute "class" "fa fa-font fa-big control-element"] [] []
-    l3 = span "" [] [Html.Events.onClick ((Messages.InputMessage (Messages.SizeEdit value "large")))] [i3]
-
-    i4 = i "" [Attribute "class" "fa fa-edit control-element"] [] []
-    l4 = a "" [Attribute "href" ("#input/" ++ toString value)] [] [i4]
-
-    i5 = i "" [Attribute "class" "fa fa-trash control-element"] [] []
-    l5 = span "" [] [Html.Events.onClick (Messages.FormMessage (Messages.RemoveInput value))] [i5]
-    i6 = i "" [Attribute "class" "fa fa-check control-element"] [] []
-    l6 = span "" [] [Html.Events.onClick ((Messages.InputMessage (Messages.ToggleDisabled value)))] [i6]
-    i7 = i "" [Attribute "class" "fa fa-arrows control-element"] [] []
-    l7 = span "" [] [Html.Events.onMouseDown ((Messages.MouseMessage (Messages.MouseClick value)))] [i7]
-
     divider = span " " [] [] []
-
-    children = [l1, divider, l2, divider, l3, divider, l4, divider, l5, divider, l6, divider, l7]
+    links =
+      [ iconLink "fa-font fa-small" (onClick (Messages.InputMessage (Messages.SizeEdit value "small")))
+      , iconLink "fa-font fa-normal" (onClick (Messages.InputMessage (Messages.SizeEdit value "normal")))
+      , iconLink "fa-font fa-big" (onClick (Messages.InputMessage (Messages.SizeEdit value "large")))
+      , a "" [Attribute "href" ("#input/" ++ toString value)] []
+        [ i "" [Attribute "class" "fa fa-edit control-element"] [] [] ]
+      , iconLink "fa-trash" (onClick (Messages.FormMessage (Messages.RemoveInput value)))
+      , iconLink "fa-check" (onClick (Messages.InputMessage (Messages.ToggleDisabled value)))
+      , iconLink "fa-arrows" (onMouseDown (Messages.MouseMessage (Messages.MouseClick value)))
+      ] |> List.intersperse divider
   in
-    Just (div "" [Attribute "class" "control-container hidden-block"] [] children)
+    div "" [Attribute "class" "control-container hidden-block"] [] links
+
+iconLink : String -> (Html.Attribute Messages.Msg) -> Node
+iconLink class event =
+  let
+    icon = i "" [Attribute "class" ("fa control-element " ++ class)] [] []
+  in
+    span "" [] [event] [icon]

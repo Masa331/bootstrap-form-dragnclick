@@ -10477,10 +10477,7 @@ var _user$project$Models$route = _evancz$url_parser$UrlParser$oneOf(
 var _user$project$Models$currentPage = function (model) {
 	var _p0 = _elm_lang$core$List$head(model.history);
 	if (_p0.ctor === 'Just') {
-		return A2(
-			_evancz$url_parser$UrlParser$parseHash,
-			_user$project$Models$route,
-			A2(_elm_lang$core$Debug$log, 'location', _p0._0));
+		return A2(_evancz$url_parser$UrlParser$parseHash, _user$project$Models$route, _p0._0);
 	} else {
 		return _elm_lang$core$Maybe$Nothing;
 	}
@@ -10746,7 +10743,7 @@ var _user$project$Bootstrap$textInputToHtmlNode = F3(
 				_0: _user$project$Bootstrap$toLabel(input.label),
 				_1: {
 					ctor: '::',
-					_0: links,
+					_0: _elm_lang$core$Maybe$Just(links),
 					_1: {
 						ctor: '::',
 						_0: inputGroup,
@@ -10841,7 +10838,7 @@ var _user$project$Bootstrap$selectToHtmlNode = F3(
 						_0: A2(_elm_lang$core$Maybe$map, _user$project$Bootstrap$toSmall, input.small),
 						_1: {
 							ctor: '::',
-							_0: links,
+							_0: _elm_lang$core$Maybe$Just(links),
 							_1: {ctor: '[]'}
 						}
 					}
@@ -10977,7 +10974,7 @@ var _user$project$Bootstrap$textAreaToHtmlNode = F3(
 					_0: inputGroup,
 					_1: {
 						ctor: '::',
-						_0: links,
+						_0: _elm_lang$core$Maybe$Just(links),
 						_1: {
 							ctor: '::',
 							_0: A2(_elm_lang$core$Maybe$map, _user$project$Bootstrap$toSmall, input.small),
@@ -11145,7 +11142,7 @@ var _user$project$Bootstrap$checkboxToHtmlNode = F3(
 					_0: label,
 					_1: {
 						ctor: '::',
-						_0: links,
+						_0: _elm_lang$core$Maybe$Just(links),
 						_1: {
 							ctor: '::',
 							_0: small,
@@ -11231,7 +11228,7 @@ var _user$project$Bootstrap$buttonToHtmlNode = F3(
 							{ctor: '[]'})),
 					_1: {
 						ctor: '::',
-						_0: links,
+						_0: _elm_lang$core$Maybe$Just(links),
 						_1: {ctor: '[]'}
 					}
 				}));
@@ -11311,7 +11308,7 @@ var _user$project$Bootstrap$fileUploadToHtmlNode = F3(
 							_0: A2(_elm_lang$core$Maybe$map, _user$project$Bootstrap$toSmall, input.small),
 							_1: {
 								ctor: '::',
-								_0: links,
+								_0: _elm_lang$core$Maybe$Just(links),
 								_1: {ctor: '[]'}
 							}
 						}
@@ -11404,7 +11401,7 @@ var _user$project$Bootstrap$multiselectToHtmlNode = F3(
 							_0: A2(_elm_lang$core$Maybe$map, _user$project$Bootstrap$toSmall, input.small),
 							_1: {
 								ctor: '::',
-								_0: links,
+								_0: _elm_lang$core$Maybe$Just(links),
 								_1: {ctor: '[]'}
 							}
 						}
@@ -11496,7 +11493,7 @@ var _user$project$Bootstrap$colorToHtmlNode = F3(
 							_0: A2(_elm_lang$core$Maybe$map, _user$project$Bootstrap$toSmall, input.small),
 							_1: {
 								ctor: '::',
-								_0: links,
+								_0: _elm_lang$core$Maybe$Just(links),
 								_1: {ctor: '[]'}
 							}
 						}
@@ -11505,48 +11502,29 @@ var _user$project$Bootstrap$colorToHtmlNode = F3(
 	});
 
 var _user$project$Dragged$toLinks = function (value) {
-	var i1 = A4(
-		_user$project$HtmlNode$i,
+	return A4(
+		_user$project$HtmlNode$div,
 		'',
 		{
 			ctor: '::',
-			_0: A2(_user$project$HtmlNode$Attribute, 'class', 'fa fa-arrows control-element'),
+			_0: A2(_user$project$HtmlNode$Attribute, 'class', 'control-container'),
 			_1: {ctor: '[]'}
 		},
 		{ctor: '[]'},
-		{ctor: '[]'});
-	var l1 = A4(
-		_user$project$HtmlNode$span,
-		'',
-		{ctor: '[]'},
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html_Events$onMouseDown(
-				_user$project$Messages$MouseMessage(
-					_user$project$Messages$MouseClick(value))),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: i1,
+			_0: A4(
+				_user$project$HtmlNode$i,
+				'',
+				{
+					ctor: '::',
+					_0: A2(_user$project$HtmlNode$Attribute, 'class', 'fa fa-arrows control-element'),
+					_1: {ctor: '[]'}
+				},
+				{ctor: '[]'},
+				{ctor: '[]'}),
 			_1: {ctor: '[]'}
 		});
-	var children = {
-		ctor: '::',
-		_0: l1,
-		_1: {ctor: '[]'}
-	};
-	return _elm_lang$core$Maybe$Just(
-		A4(
-			_user$project$HtmlNode$div,
-			'',
-			{
-				ctor: '::',
-				_0: A2(_user$project$HtmlNode$Attribute, 'class', 'control-container'),
-				_1: {ctor: '[]'}
-			},
-			{ctor: '[]'},
-			children));
 };
 var _user$project$Dragged$toLegend = function (value) {
 	return A2(
@@ -11632,6 +11610,36 @@ var _user$project$Dragged$build = function (input) {
 	}
 };
 
+var _user$project$ForInputEdit$iconLink = F2(
+	function ($class, msg) {
+		var icon = A4(
+			_user$project$HtmlNode$i,
+			'',
+			{
+				ctor: '::',
+				_0: A2(
+					_user$project$HtmlNode$Attribute,
+					'class',
+					A2(_elm_lang$core$Basics_ops['++'], 'fa control-element ', $class)),
+				_1: {ctor: '[]'}
+			},
+			{ctor: '[]'},
+			{ctor: '[]'});
+		return A4(
+			_user$project$HtmlNode$span,
+			'',
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Events$onClick(msg),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: icon,
+				_1: {ctor: '[]'}
+			});
+	});
 var _user$project$ForInputEdit$toLinks = function (value) {
 	var divider = A4(
 		_user$project$HtmlNode$span,
@@ -11639,110 +11647,26 @@ var _user$project$ForInputEdit$toLinks = function (value) {
 		{ctor: '[]'},
 		{ctor: '[]'},
 		{ctor: '[]'});
-	var i4 = A4(
-		_user$project$HtmlNode$i,
-		'',
-		{
-			ctor: '::',
-			_0: A2(_user$project$HtmlNode$Attribute, 'class', 'fa fa-check control-element'),
-			_1: {ctor: '[]'}
-		},
-		{ctor: '[]'},
-		{ctor: '[]'});
-	var l4 = A4(
-		_user$project$HtmlNode$span,
-		'',
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$InputMessage(
-					_user$project$Messages$ToggleDisabled(value))),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: i4,
-			_1: {ctor: '[]'}
-		});
-	var i3 = A4(
-		_user$project$HtmlNode$i,
-		'',
-		{
-			ctor: '::',
-			_0: A2(_user$project$HtmlNode$Attribute, 'class', 'fa fa-font fa-big control-element'),
-			_1: {ctor: '[]'}
-		},
-		{ctor: '[]'},
-		{ctor: '[]'});
-	var l3 = A4(
-		_user$project$HtmlNode$span,
-		'',
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$InputMessage(
-					A2(_user$project$Messages$SizeEdit, value, 'large'))),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: i3,
-			_1: {ctor: '[]'}
-		});
-	var i2 = A4(
-		_user$project$HtmlNode$i,
-		'',
-		{
-			ctor: '::',
-			_0: A2(_user$project$HtmlNode$Attribute, 'class', 'fa fa-font fa-normal control-element'),
-			_1: {ctor: '[]'}
-		},
-		{ctor: '[]'},
-		{ctor: '[]'});
-	var l2 = A4(
-		_user$project$HtmlNode$span,
-		'',
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$InputMessage(
-					A2(_user$project$Messages$SizeEdit, value, 'normal'))),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: i2,
-			_1: {ctor: '[]'}
-		});
-	var i1 = A4(
-		_user$project$HtmlNode$i,
-		'',
-		{
-			ctor: '::',
-			_0: A2(_user$project$HtmlNode$Attribute, 'class', 'fa fa-font fa-small control-element'),
-			_1: {ctor: '[]'}
-		},
-		{ctor: '[]'},
-		{ctor: '[]'});
-	var l1 = A4(
-		_user$project$HtmlNode$span,
-		'',
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$InputMessage(
-					A2(_user$project$Messages$SizeEdit, value, 'small'))),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: i1,
-			_1: {ctor: '[]'}
-		});
+	var l4 = A2(
+		_user$project$ForInputEdit$iconLink,
+		'fa-check',
+		_user$project$Messages$InputMessage(
+			_user$project$Messages$ToggleDisabled(value)));
+	var l3 = A2(
+		_user$project$ForInputEdit$iconLink,
+		'fa-font fa-big',
+		_user$project$Messages$InputMessage(
+			A2(_user$project$Messages$SizeEdit, value, 'large')));
+	var l2 = A2(
+		_user$project$ForInputEdit$iconLink,
+		'fa-font fa-normal',
+		_user$project$Messages$InputMessage(
+			A2(_user$project$Messages$SizeEdit, value, 'normal')));
+	var l1 = A2(
+		_user$project$ForInputEdit$iconLink,
+		'fa-font fa-small',
+		_user$project$Messages$InputMessage(
+			A2(_user$project$Messages$SizeEdit, value, 'small')));
 	var children = {
 		ctor: '::',
 		_0: l1,
@@ -11772,28 +11696,21 @@ var _user$project$ForInputEdit$toLinks = function (value) {
 			}
 		}
 	};
-	return _elm_lang$core$Maybe$Just(
-		A4(
-			_user$project$HtmlNode$div,
-			'',
-			{
-				ctor: '::',
-				_0: A2(_user$project$HtmlNode$Attribute, 'class', 'control-container hidden-block'),
-				_1: {ctor: '[]'}
-			},
-			{ctor: '[]'},
-			children));
+	return A4(
+		_user$project$HtmlNode$div,
+		'',
+		{
+			ctor: '::',
+			_0: A2(_user$project$HtmlNode$Attribute, 'class', 'control-container hidden-block'),
+			_1: {ctor: '[]'}
+		},
+		{ctor: '[]'},
+		children);
 };
 var _user$project$ForInputEdit$toLegend = function (input) {
 	var label = A4(
 		_user$project$HtmlNode$span,
 		A2(_elm_lang$core$Maybe$withDefault, '', input.label),
-		{ctor: '[]'},
-		{ctor: '[]'},
-		{ctor: '[]'});
-	var divider = A4(
-		_user$project$HtmlNode$span,
-		' ',
 		{ctor: '[]'},
 		{ctor: '[]'},
 		{ctor: '[]'});
@@ -12009,6 +11926,36 @@ var _user$project$FormView$view = function (htmlTree) {
 	return _user$project$FormView$toElmHtmlNode(htmlTree);
 };
 
+var _user$project$WithControlElements$iconLink = F2(
+	function ($class, event) {
+		var icon = A4(
+			_user$project$HtmlNode$i,
+			'',
+			{
+				ctor: '::',
+				_0: A2(
+					_user$project$HtmlNode$Attribute,
+					'class',
+					A2(_elm_lang$core$Basics_ops['++'], 'fa control-element ', $class)),
+				_1: {ctor: '[]'}
+			},
+			{ctor: '[]'},
+			{ctor: '[]'});
+		return A4(
+			_user$project$HtmlNode$span,
+			'',
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: event,
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: icon,
+				_1: {ctor: '[]'}
+			});
+	});
 var _user$project$WithControlElements$toLinks = function (value) {
 	var divider = A4(
 		_user$project$HtmlNode$span,
@@ -12016,256 +11963,106 @@ var _user$project$WithControlElements$toLinks = function (value) {
 		{ctor: '[]'},
 		{ctor: '[]'},
 		{ctor: '[]'});
-	var i7 = A4(
-		_user$project$HtmlNode$i,
-		'',
-		{
-			ctor: '::',
-			_0: A2(_user$project$HtmlNode$Attribute, 'class', 'fa fa-arrows control-element'),
-			_1: {ctor: '[]'}
-		},
-		{ctor: '[]'},
-		{ctor: '[]'});
-	var l7 = A4(
-		_user$project$HtmlNode$span,
-		'',
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Events$onMouseDown(
-				_user$project$Messages$MouseMessage(
-					_user$project$Messages$MouseClick(value))),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: i7,
-			_1: {ctor: '[]'}
-		});
-	var i6 = A4(
-		_user$project$HtmlNode$i,
-		'',
-		{
-			ctor: '::',
-			_0: A2(_user$project$HtmlNode$Attribute, 'class', 'fa fa-check control-element'),
-			_1: {ctor: '[]'}
-		},
-		{ctor: '[]'},
-		{ctor: '[]'});
-	var l6 = A4(
-		_user$project$HtmlNode$span,
-		'',
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$InputMessage(
-					_user$project$Messages$ToggleDisabled(value))),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: i6,
-			_1: {ctor: '[]'}
-		});
-	var i5 = A4(
-		_user$project$HtmlNode$i,
-		'',
-		{
-			ctor: '::',
-			_0: A2(_user$project$HtmlNode$Attribute, 'class', 'fa fa-trash control-element'),
-			_1: {ctor: '[]'}
-		},
-		{ctor: '[]'},
-		{ctor: '[]'});
-	var l5 = A4(
-		_user$project$HtmlNode$span,
-		'',
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$FormMessage(
-					_user$project$Messages$RemoveInput(value))),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: i5,
-			_1: {ctor: '[]'}
-		});
-	var i4 = A4(
-		_user$project$HtmlNode$i,
-		'',
-		{
-			ctor: '::',
-			_0: A2(_user$project$HtmlNode$Attribute, 'class', 'fa fa-edit control-element'),
-			_1: {ctor: '[]'}
-		},
-		{ctor: '[]'},
-		{ctor: '[]'});
-	var l4 = A4(
-		_user$project$HtmlNode$a,
-		'',
+	var links = A2(
+		_elm_lang$core$List$intersperse,
+		divider,
 		{
 			ctor: '::',
 			_0: A2(
-				_user$project$HtmlNode$Attribute,
-				'href',
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'#input/',
-					_elm_lang$core$Basics$toString(value))),
-			_1: {ctor: '[]'}
-		},
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: i4,
-			_1: {ctor: '[]'}
-		});
-	var i3 = A4(
-		_user$project$HtmlNode$i,
-		'',
-		{
-			ctor: '::',
-			_0: A2(_user$project$HtmlNode$Attribute, 'class', 'fa fa-font fa-big control-element'),
-			_1: {ctor: '[]'}
-		},
-		{ctor: '[]'},
-		{ctor: '[]'});
-	var l3 = A4(
-		_user$project$HtmlNode$span,
-		'',
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$InputMessage(
-					A2(_user$project$Messages$SizeEdit, value, 'large'))),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: i3,
-			_1: {ctor: '[]'}
-		});
-	var i2 = A4(
-		_user$project$HtmlNode$i,
-		'',
-		{
-			ctor: '::',
-			_0: A2(_user$project$HtmlNode$Attribute, 'class', 'fa fa-font fa-normal control-element'),
-			_1: {ctor: '[]'}
-		},
-		{ctor: '[]'},
-		{ctor: '[]'});
-	var l2 = A4(
-		_user$project$HtmlNode$span,
-		'',
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$InputMessage(
-					A2(_user$project$Messages$SizeEdit, value, 'normal'))),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: i2,
-			_1: {ctor: '[]'}
-		});
-	var i1 = A4(
-		_user$project$HtmlNode$i,
-		'',
-		{
-			ctor: '::',
-			_0: A2(_user$project$HtmlNode$Attribute, 'class', 'fa fa-font fa-small control-element'),
-			_1: {ctor: '[]'}
-		},
-		{ctor: '[]'},
-		{ctor: '[]'});
-	var l1 = A4(
-		_user$project$HtmlNode$span,
-		'',
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$InputMessage(
-					A2(_user$project$Messages$SizeEdit, value, 'small'))),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: i1,
-			_1: {ctor: '[]'}
-		});
-	var children = {
-		ctor: '::',
-		_0: l1,
-		_1: {
-			ctor: '::',
-			_0: divider,
+				_user$project$WithControlElements$iconLink,
+				'fa-font fa-small',
+				_elm_lang$html$Html_Events$onClick(
+					_user$project$Messages$InputMessage(
+						A2(_user$project$Messages$SizeEdit, value, 'small')))),
 			_1: {
 				ctor: '::',
-				_0: l2,
+				_0: A2(
+					_user$project$WithControlElements$iconLink,
+					'fa-font fa-normal',
+					_elm_lang$html$Html_Events$onClick(
+						_user$project$Messages$InputMessage(
+							A2(_user$project$Messages$SizeEdit, value, 'normal')))),
 				_1: {
 					ctor: '::',
-					_0: divider,
+					_0: A2(
+						_user$project$WithControlElements$iconLink,
+						'fa-font fa-big',
+						_elm_lang$html$Html_Events$onClick(
+							_user$project$Messages$InputMessage(
+								A2(_user$project$Messages$SizeEdit, value, 'large')))),
 					_1: {
 						ctor: '::',
-						_0: l3,
+						_0: A4(
+							_user$project$HtmlNode$a,
+							'',
+							{
+								ctor: '::',
+								_0: A2(
+									_user$project$HtmlNode$Attribute,
+									'href',
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										'#input/',
+										_elm_lang$core$Basics$toString(value))),
+								_1: {ctor: '[]'}
+							},
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: A4(
+									_user$project$HtmlNode$i,
+									'',
+									{
+										ctor: '::',
+										_0: A2(_user$project$HtmlNode$Attribute, 'class', 'fa fa-edit control-element'),
+										_1: {ctor: '[]'}
+									},
+									{ctor: '[]'},
+									{ctor: '[]'}),
+								_1: {ctor: '[]'}
+							}),
 						_1: {
 							ctor: '::',
-							_0: divider,
+							_0: A2(
+								_user$project$WithControlElements$iconLink,
+								'fa-trash',
+								_elm_lang$html$Html_Events$onClick(
+									_user$project$Messages$FormMessage(
+										_user$project$Messages$RemoveInput(value)))),
 							_1: {
 								ctor: '::',
-								_0: l4,
+								_0: A2(
+									_user$project$WithControlElements$iconLink,
+									'fa-check',
+									_elm_lang$html$Html_Events$onClick(
+										_user$project$Messages$InputMessage(
+											_user$project$Messages$ToggleDisabled(value)))),
 								_1: {
 									ctor: '::',
-									_0: divider,
-									_1: {
-										ctor: '::',
-										_0: l5,
-										_1: {
-											ctor: '::',
-											_0: divider,
-											_1: {
-												ctor: '::',
-												_0: l6,
-												_1: {
-													ctor: '::',
-													_0: divider,
-													_1: {
-														ctor: '::',
-														_0: l7,
-														_1: {ctor: '[]'}
-													}
-												}
-											}
-										}
-									}
+									_0: A2(
+										_user$project$WithControlElements$iconLink,
+										'fa-arrows',
+										_elm_lang$html$Html_Events$onMouseDown(
+											_user$project$Messages$MouseMessage(
+												_user$project$Messages$MouseClick(value)))),
+									_1: {ctor: '[]'}
 								}
 							}
 						}
 					}
 				}
 			}
-		}
-	};
-	return _elm_lang$core$Maybe$Just(
-		A4(
-			_user$project$HtmlNode$div,
-			'',
-			{
-				ctor: '::',
-				_0: A2(_user$project$HtmlNode$Attribute, 'class', 'control-container hidden-block'),
-				_1: {ctor: '[]'}
-			},
-			{ctor: '[]'},
-			children));
+		});
+	return A4(
+		_user$project$HtmlNode$div,
+		'',
+		{
+			ctor: '::',
+			_0: A2(_user$project$HtmlNode$Attribute, 'class', 'control-container hidden-block'),
+			_1: {ctor: '[]'}
+		},
+		{ctor: '[]'},
+		links);
 };
 var _user$project$WithControlElements$toLegend = function (input) {
 	var label = A4(
@@ -12280,84 +12077,24 @@ var _user$project$WithControlElements$toLegend = function (input) {
 		{ctor: '[]'},
 		{ctor: '[]'},
 		{ctor: '[]'});
-	var i4 = A4(
-		_user$project$HtmlNode$i,
-		'',
-		{
-			ctor: '::',
-			_0: A2(_user$project$HtmlNode$Attribute, 'class', 'fa fa-arrows control-element'),
-			_1: {ctor: '[]'}
-		},
-		{ctor: '[]'},
-		{ctor: '[]'});
-	var l4 = A4(
-		_user$project$HtmlNode$span,
-		'',
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Events$onMouseDown(
-				_user$project$Messages$MouseMessage(
-					_user$project$Messages$MouseClick(input.id))),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: i4,
-			_1: {ctor: '[]'}
-		});
-	var i3 = A4(
-		_user$project$HtmlNode$i,
-		'',
-		{
-			ctor: '::',
-			_0: A2(_user$project$HtmlNode$Attribute, 'class', 'fa fa-check control-element'),
-			_1: {ctor: '[]'}
-		},
-		{ctor: '[]'},
-		{ctor: '[]'});
-	var l3 = A4(
-		_user$project$HtmlNode$span,
-		'',
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$InputMessage(
-					_user$project$Messages$ToggleDisabled(input.id))),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: i3,
-			_1: {ctor: '[]'}
-		});
-	var i2 = A4(
-		_user$project$HtmlNode$i,
-		'',
-		{
-			ctor: '::',
-			_0: A2(_user$project$HtmlNode$Attribute, 'class', 'fa fa-trash control-element'),
-			_1: {ctor: '[]'}
-		},
-		{ctor: '[]'},
-		{ctor: '[]'});
-	var l2 = A4(
-		_user$project$HtmlNode$span,
-		'',
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Events$onClick(
-				_user$project$Messages$FormMessage(
-					_user$project$Messages$RemoveInput(input.id))),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: i2,
-			_1: {ctor: '[]'}
-		});
+	var l4 = A2(
+		_user$project$WithControlElements$iconLink,
+		'fa-arrows',
+		_elm_lang$html$Html_Events$onMouseDown(
+			_user$project$Messages$MouseMessage(
+				_user$project$Messages$MouseClick(input.id))));
+	var l3 = A2(
+		_user$project$WithControlElements$iconLink,
+		'fa-check',
+		_elm_lang$html$Html_Events$onClick(
+			_user$project$Messages$InputMessage(
+				_user$project$Messages$ToggleDisabled(input.id))));
+	var l2 = A2(
+		_user$project$WithControlElements$iconLink,
+		'fa-trash',
+		_elm_lang$html$Html_Events$onClick(
+			_user$project$Messages$FormMessage(
+				_user$project$Messages$RemoveInput(input.id))));
 	var i1 = A4(
 		_user$project$HtmlNode$i,
 		'',
@@ -14771,13 +14508,13 @@ var _user$project$Views$draggedElement = function (model) {
 	}
 };
 var _user$project$Views$source = function (model) {
-	var inputs1 = A2(_elm_lang$core$List$map, _user$project$HtmlTreeBuilder$buildRaw, model.inputs);
+	var markup = A2(_elm_lang$core$List$map, _user$project$HtmlTreeBuilder$buildRaw, model.inputs);
 	var htmlRaw = A4(
 		_user$project$HtmlNode$form,
 		'',
 		{ctor: '[]'},
 		{ctor: '[]'},
-		inputs1);
+		markup);
 	return A2(
 		_elm_lang$html$Html$div,
 		{ctor: '[]'},
@@ -14958,13 +14695,13 @@ var _user$project$Views$inputEdit = function (input) {
 		});
 };
 var _user$project$Views$formEdit = function (model) {
-	var inputs1 = A2(_elm_lang$core$List$map, _user$project$HtmlTreeBuilder$buildWithControlElements, model.inputs);
+	var inputs = A2(_elm_lang$core$List$map, _user$project$HtmlTreeBuilder$buildWithControlElements, model.inputs);
 	var htmlTreeWithControlElements = A4(
 		_user$project$HtmlNode$form,
 		'',
 		{ctor: '[]'},
 		{ctor: '[]'},
-		inputs1);
+		inputs);
 	return A2(
 		_elm_lang$html$Html$div,
 		{ctor: '[]'},

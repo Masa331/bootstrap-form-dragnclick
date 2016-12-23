@@ -96,7 +96,6 @@ toLegend input =
   let
     i4 = i "" [Attribute "class" "fa fa-check control-element"] [] []
     l4 = span "" [] [Html.Events.onClick ((Messages.InputMessage (Messages.ToggleDisabled input.id)))] [i4]
-    divider = span " " [] [] []
 
     children = [ l4 ]
     links = span "" [Attribute "class" "hidden-inherit float-right one-rem-size"] [] children
@@ -104,20 +103,22 @@ toLegend input =
   in
     legend "" [] [] [label, links]
 
-toLinks : Int -> Maybe Node
+toLinks : Int -> Node
 toLinks value =
   let
-    i1 = i "" [Attribute "class" "fa fa-font fa-small control-element"] [] []
-    l1 = span "" [] [Html.Events.onClick ((Messages.InputMessage (Messages.SizeEdit value "small")))] [i1]
-    i2 = i "" [Attribute "class" "fa fa-font fa-normal control-element"] [] []
-    l2 = span "" [] [Html.Events.onClick ((Messages.InputMessage (Messages.SizeEdit value "normal")))] [i2]
-    i3 = i "" [Attribute "class" "fa fa-font fa-big control-element"] [] []
-    l3 = span "" [] [Html.Events.onClick ((Messages.InputMessage (Messages.SizeEdit value "large")))] [i3]
-
-    i4 = i "" [Attribute "class" "fa fa-check control-element"] [] []
-    l4 = span "" [] [Html.Events.onClick ((Messages.InputMessage (Messages.ToggleDisabled value)))] [i4]
+    l1 = iconLink "fa-font fa-small" (Messages.InputMessage (Messages.SizeEdit value "small"))
+    l2 = iconLink "fa-font fa-normal" (Messages.InputMessage (Messages.SizeEdit value "normal"))
+    l3 = iconLink "fa-font fa-big" (Messages.InputMessage (Messages.SizeEdit value "large"))
+    l4 = iconLink "fa-check" (Messages.InputMessage (Messages.ToggleDisabled value))
     divider = span " " [] [] []
 
     children = [ l1, divider, l2, divider, l3, divider, l4 ]
   in
-    Just (div "" [Attribute "class" "control-container hidden-block"] [] children)
+    div "" [Attribute "class" "control-container hidden-block"] [] children
+
+iconLink : String -> Messages.Msg -> Node
+iconLink class msg =
+  let
+    icon = i "" [Attribute "class" ("fa control-element " ++ class)] [] []
+  in
+    span "" [] [Html.Events.onClick (msg)] [icon]

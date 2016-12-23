@@ -17,7 +17,7 @@ colorToHtmlNode input containerClass links =
       ([ toLabel input.label
       , Just (HtmlNode.input "" inputAttrs [] [])
       , Maybe.map toSmall input.small
-      , links
+      , Just links
       ] |> List.filterMap identity)
 
 multiselectToHtmlNode input containerClass links =
@@ -35,7 +35,7 @@ multiselectToHtmlNode input containerClass links =
       ([ toLabel input.label
        , Just (select "" inputAttrs [] options)
        , Maybe.map toSmall input.small
-       , links
+       , Just links
        ] |> List.filterMap identity)
 
 fileUploadToHtmlNode input containerClass links =
@@ -51,7 +51,7 @@ fileUploadToHtmlNode input containerClass links =
       ([ toLabel input.label
        , Just (HtmlNode.input "" inputAttrs [] [])
        , Maybe.map toSmall input.small
-       , links
+       , Just links
        ] |> List.filterMap identity)
 
 buttonToHtmlNode input containerClass links =
@@ -71,7 +71,7 @@ buttonToHtmlNode input containerClass links =
   in
     div "" [containerClass, Attribute "data-input-id" (toString input.id) ] []
       ([ Just (HtmlNode.button (Maybe.withDefault "Submit" input.label) inputAttrs [] [])
-       , links
+       , Just links
        ] |> List.filterMap identity)
 
 checkboxToHtmlNode input containerClass links =
@@ -98,7 +98,7 @@ checkboxToHtmlNode input containerClass links =
   in
     div "" [containerClass, Attribute "data-input-id" (toString input.id) ] []
       ([ label
-       , links
+       , Just links
        , small ] |> List.filterMap identity)
 
 radioToHtmlNode input containerClass legend =
@@ -141,7 +141,7 @@ textAreaToHtmlNode input containerClass links =
     children =
       [ toLabel input.label
       , inputGroup
-      , links
+      , Just links
       , Maybe.map toSmall input.small
       ] |> List.filterMap identity
   in
@@ -160,7 +160,7 @@ selectToHtmlNode input containerClass links =
       [ toLabel input.label
       , Just (select "" inputAttrs [] options)
       , Maybe.map toSmall input.small
-      , links
+      , Just links
       ] |> List.filterMap identity
   in
     div "" [containerClass, Attribute "data-input-id" (toString input.id) ] [] children
@@ -193,7 +193,7 @@ textInputToHtmlNode input containerClass links =
 
     children =
       [ toLabel input.label
-      , links
+      , Just links
       , inputGroup
       , Maybe.map toSmall input.small
       ] |> List.filterMap identity

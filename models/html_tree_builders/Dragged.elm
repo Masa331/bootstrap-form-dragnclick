@@ -95,12 +95,7 @@ toLegend : Maybe String -> Maybe Node
 toLegend value =
   Maybe.map (\value -> legend value [] [] []) value
 
-toLinks : Int -> Maybe Node
+toLinks : Int -> Node
 toLinks value =
-  let
-    i1 = i "" [Attribute "class" "fa fa-arrows control-element"] [] []
-    l1 = span "" [] [Html.Events.onMouseDown ((Messages.MouseMessage (Messages.MouseClick value)))] [i1]
-
-    children = [l1]
-  in
-    Just (div "" [Attribute "class" "control-container"] [] children)
+  div "" [Attribute "class" "control-container"] []
+    [i "" [Attribute "class" "fa fa-arrows control-element"] [] []]

@@ -16,6 +16,8 @@ import Inputs exposing (..)
 
 import HtmlTreeBuilder exposing (..)
 
+
+view : Model -> Html Msg
 view model =
   case currentPage model of
     Just location ->
@@ -43,8 +45,8 @@ view model =
 formEdit : Model -> Html Msg
 formEdit model =
   let
-    inputs1 = List.map HtmlTreeBuilder.buildWithControlElements model.inputs
-    htmlTreeWithControlElements = HtmlNode.form "" [] [] inputs1
+    inputs = List.map HtmlTreeBuilder.buildWithControlElements model.inputs
+    htmlTreeWithControlElements = HtmlNode.form "" [] [] inputs
   in
     Html.div
       []
@@ -70,7 +72,7 @@ formEdit model =
 inputEdit : Input -> Html Msg
 inputEdit input =
   let
-    inputs = [HtmlTreeBuilder.forInputEdit input]
+    inputs = [ HtmlTreeBuilder.forInputEdit input ]
     htmlTree = HtmlNode.form "" [] [] inputs
   in
     Html.div
@@ -95,8 +97,8 @@ inputEdit input =
 source : Model -> Html Msg
 source model =
   let
-    inputs1 = List.map HtmlTreeBuilder.buildRaw model.inputs
-    htmlRaw = HtmlNode.form "" [] [] inputs1
+    markup = List.map HtmlTreeBuilder.buildRaw model.inputs
+    htmlRaw = HtmlNode.form "" [] [] markup
   in
     Html.div
       []
@@ -121,6 +123,7 @@ source model =
 -- Helpers --
 -------------
 
+draggedElement : Model -> Html Msg
 draggedElement model =
   case Models.currentlyDraggedInput model of
     Nothing ->
