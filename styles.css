@@ -40,7 +40,7 @@ body {
   }
   /* Space out the masthead */
   .header {
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
   }
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
@@ -76,12 +76,18 @@ div.dragged i.control-icon {
   background-color: #f7f7f9;
 }
 
-.form-sm {
+.inner-container {
   width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .form-controls {
   text-align: right;
+  padding-bottom: 1rem;
+  /* border-bottom: .05rem solid #e5e5e5; */
+  /* margin-top: 10px; */
+  margin-bottom: 2rem;
 }
 
 /* ------------------------------- */

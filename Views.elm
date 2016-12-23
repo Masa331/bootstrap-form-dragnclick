@@ -55,17 +55,17 @@ formEdit model =
         [ Html.div
            [ class "col-sm-12" ]
            [ Html.div
-             [ class "form-container form-sm" ]
+             [ class "form-container" ]
              [ Html.div
                [ class "form-controls" ]
                [ Html.a [href "javascript:void(0);", onClick (FormMessage AddInput)] [ text "Add field" ]
-               , Html.a [href "#source"] [ text "Show source code"]]
+               , Html.a [href "#source"] [ text "Show source code"]
+               ]
              , Html.div
-               [ class "bd-example" ]
-               ([h1 [] [text "The Form"]] ++ (FormView.view htmlTreeWithControlElements))
-             , draggedElement model
+               [ class "inner-container" ]
+               ([ h1 [] [text "The Form"] ] ++ (FormView.view htmlTreeWithControlElements) ++ [draggedElement model])
              ]
-           ]
+          ]
         ]
       ]
 
@@ -107,7 +107,7 @@ source model =
         [ Html.div
            [ class "col-sm-12" ]
            [ Html.div
-             [ class "form-container form-sm" ]
+             [ class "form-container" ]
              [ Html.div
                [ class "form-controls" ]
                [ Html.a [href "#form"] [ text "Back to form"]]

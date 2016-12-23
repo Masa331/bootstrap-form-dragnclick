@@ -14542,7 +14542,7 @@ var _user$project$Views$source = function (model) {
 								_elm_lang$html$Html$div,
 								{
 									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('form-container form-sm'),
+									_0: _elm_lang$html$Html_Attributes$class('form-container'),
 									_1: {ctor: '[]'}
 								},
 								{
@@ -14729,7 +14729,7 @@ var _user$project$Views$formEdit = function (model) {
 								_elm_lang$html$Html$div,
 								{
 									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('form-container form-sm'),
+									_0: _elm_lang$html$Html_Attributes$class('form-container'),
 									_1: {ctor: '[]'}
 								},
 								{
@@ -14783,7 +14783,7 @@ var _user$project$Views$formEdit = function (model) {
 											_elm_lang$html$Html$div,
 											{
 												ctor: '::',
-												_0: _elm_lang$html$Html_Attributes$class('bd-example'),
+												_0: _elm_lang$html$Html_Attributes$class('inner-container'),
 												_1: {ctor: '[]'}
 											},
 											A2(
@@ -14800,12 +14800,15 @@ var _user$project$Views$formEdit = function (model) {
 														}),
 													_1: {ctor: '[]'}
 												},
-												_user$project$FormView$view(htmlTreeWithControlElements))),
-										_1: {
-											ctor: '::',
-											_0: _user$project$Views$draggedElement(model),
-											_1: {ctor: '[]'}
-										}
+												A2(
+													_elm_lang$core$Basics_ops['++'],
+													_user$project$FormView$view(htmlTreeWithControlElements),
+													{
+														ctor: '::',
+														_0: _user$project$Views$draggedElement(model),
+														_1: {ctor: '[]'}
+													}))),
+										_1: {ctor: '[]'}
 									}
 								}),
 							_1: {ctor: '[]'}
