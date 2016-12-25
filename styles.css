@@ -11,7 +11,7 @@ body {
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .footer {
-  margin-top: 10px;
+  margin-top: 40px;
   padding-right: 1rem;
   padding-left: 1rem;
 }
@@ -85,9 +85,6 @@ div.dragged i.control-icon {
 .form-controls {
   text-align: right;
   padding-bottom: 1rem;
-  /* border-bottom: .05rem solid #e5e5e5; */
-  /* margin-top: 10px; */
-  margin-bottom: 2rem;
 }
 
 /* ------------------------------- */

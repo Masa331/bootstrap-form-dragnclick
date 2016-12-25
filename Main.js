@@ -14517,14 +14517,18 @@ var _user$project$Views$source = function (model) {
 		markup);
 	return A2(
 		_elm_lang$html$Html$div,
-		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('row'),
+			_1: {ctor: '[]'}
+		},
 		{
 			ctor: '::',
 			_0: A2(
 				_elm_lang$html$Html$div,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('row'),
+					_0: _elm_lang$html$Html_Attributes$class('col-sm-12'),
 					_1: {ctor: '[]'}
 				},
 				{
@@ -14533,7 +14537,7 @@ var _user$project$Views$source = function (model) {
 						_elm_lang$html$Html$div,
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('col-sm-12'),
+							_0: _elm_lang$html$Html_Attributes$class('form-container'),
 							_1: {ctor: '[]'}
 						},
 						{
@@ -14542,52 +14546,37 @@ var _user$project$Views$source = function (model) {
 								_elm_lang$html$Html$div,
 								{
 									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('form-container'),
+									_0: _elm_lang$html$Html_Attributes$class('form-controls'),
 									_1: {ctor: '[]'}
 								},
 								{
 									ctor: '::',
 									_0: A2(
-										_elm_lang$html$Html$div,
+										_elm_lang$html$Html$a,
 										{
 											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$class('form-controls'),
+											_0: _elm_lang$html$Html_Attributes$href('#form'),
 											_1: {ctor: '[]'}
 										},
 										{
 											ctor: '::',
-											_0: A2(
-												_elm_lang$html$Html$a,
-												{
-													ctor: '::',
-													_0: _elm_lang$html$Html_Attributes$href('#form'),
-													_1: {ctor: '[]'}
-												},
-												{
-													ctor: '::',
-													_0: _elm_lang$html$Html$text('Back to form'),
-													_1: {ctor: '[]'}
-												}),
+											_0: _elm_lang$html$Html$text('Back to form'),
 											_1: {ctor: '[]'}
 										}),
-									_1: {
-										ctor: '::',
-										_0: A2(
-											_elm_lang$html$Html$div,
-											{
-												ctor: '::',
-												_0: _elm_lang$html$Html_Attributes$class('bd-example'),
-												_1: {ctor: '[]'}
-											},
-											{
-												ctor: '::',
-												_0: _user$project$MarkupView$view(htmlRaw),
-												_1: {ctor: '[]'}
-											}),
-										_1: {ctor: '[]'}
-									}
+									_1: {ctor: '[]'}
 								}),
-							_1: {ctor: '[]'}
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$div,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _user$project$MarkupView$view(htmlRaw),
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							}
 						}),
 					_1: {ctor: '[]'}
 				}),
@@ -14608,14 +14597,18 @@ var _user$project$Views$inputEdit = function (input) {
 		inputs);
 	return A2(
 		_elm_lang$html$Html$div,
-		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('row'),
+			_1: {ctor: '[]'}
+		},
 		{
 			ctor: '::',
 			_0: A2(
 				_elm_lang$html$Html$div,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('row'),
+					_0: _elm_lang$html$Html_Attributes$class('col-sm-12'),
 					_1: {ctor: '[]'}
 				},
 				{
@@ -14624,7 +14617,7 @@ var _user$project$Views$inputEdit = function (input) {
 						_elm_lang$html$Html$div,
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('col-sm-12'),
+							_0: _elm_lang$html$Html_Attributes$class('form-container form-sm'),
 							_1: {ctor: '[]'}
 						},
 						{
@@ -14633,61 +14626,50 @@ var _user$project$Views$inputEdit = function (input) {
 								_elm_lang$html$Html$div,
 								{
 									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('form-container form-sm'),
+									_0: _elm_lang$html$Html_Attributes$class('form-controls'),
 									_1: {ctor: '[]'}
 								},
 								{
 									ctor: '::',
 									_0: A2(
-										_elm_lang$html$Html$div,
+										_elm_lang$html$Html$a,
 										{
 											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$class('form-controls'),
+											_0: _elm_lang$html$Html_Attributes$href('#form'),
 											_1: {ctor: '[]'}
 										},
 										{
 											ctor: '::',
-											_0: A2(
-												_elm_lang$html$Html$a,
-												{
-													ctor: '::',
-													_0: _elm_lang$html$Html_Attributes$href('#form'),
-													_1: {ctor: '[]'}
-												},
-												{
-													ctor: '::',
-													_0: _elm_lang$html$Html$text('Back to form'),
-													_1: {ctor: '[]'}
-												}),
+											_0: _elm_lang$html$Html$text('Back to form'),
 											_1: {ctor: '[]'}
 										}),
-									_1: {
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$div,
+									{
 										ctor: '::',
-										_0: A2(
-											_elm_lang$html$Html$div,
+										_0: _elm_lang$html$Html_Attributes$class('inner-container'),
+										_1: {ctor: '[]'}
+									},
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										_user$project$FormView$view(htmlTree),
+										A2(
+											_elm_lang$core$Basics_ops['++'],
 											{
 												ctor: '::',
-												_0: _elm_lang$html$Html_Attributes$class('bd-example'),
+												_0: A2(
+													_elm_lang$html$Html$hr,
+													{ctor: '[]'},
+													{ctor: '[]'}),
 												_1: {ctor: '[]'}
 											},
-											A2(
-												_elm_lang$core$Basics_ops['++'],
-												_user$project$FormView$view(htmlTree),
-												A2(
-													_elm_lang$core$Basics_ops['++'],
-													{
-														ctor: '::',
-														_0: A2(
-															_elm_lang$html$Html$hr,
-															{ctor: '[]'},
-															{ctor: '[]'}),
-														_1: {ctor: '[]'}
-													},
-													_user$project$InputEditView$view(input)))),
-										_1: {ctor: '[]'}
-									}
-								}),
-							_1: {ctor: '[]'}
+											_user$project$InputEditView$view(input)))),
+								_1: {ctor: '[]'}
+							}
 						}),
 					_1: {ctor: '[]'}
 				}),
@@ -14704,14 +14686,18 @@ var _user$project$Views$formEdit = function (model) {
 		inputs);
 	return A2(
 		_elm_lang$html$Html$div,
-		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('row'),
+			_1: {ctor: '[]'}
+		},
 		{
 			ctor: '::',
 			_0: A2(
 				_elm_lang$html$Html$div,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('row'),
+					_0: _elm_lang$html$Html_Attributes$class('col-sm-12'),
 					_1: {ctor: '[]'}
 				},
 				{
@@ -14720,7 +14706,7 @@ var _user$project$Views$formEdit = function (model) {
 						_elm_lang$html$Html$div,
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('col-sm-12'),
+							_0: _elm_lang$html$Html_Attributes$class('form-container'),
 							_1: {ctor: '[]'}
 						},
 						{
@@ -14729,89 +14715,78 @@ var _user$project$Views$formEdit = function (model) {
 								_elm_lang$html$Html$div,
 								{
 									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('form-container'),
+									_0: _elm_lang$html$Html_Attributes$class('form-controls'),
 									_1: {ctor: '[]'}
 								},
 								{
 									ctor: '::',
 									_0: A2(
-										_elm_lang$html$Html$div,
+										_elm_lang$html$Html$a,
 										{
 											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$class('form-controls'),
-											_1: {ctor: '[]'}
+											_0: _elm_lang$html$Html_Attributes$href('javascript:void(0);'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Events$onClick(
+													_user$project$Messages$FormMessage(_user$project$Messages$AddInput)),
+												_1: {ctor: '[]'}
+											}
 										},
 										{
 											ctor: '::',
-											_0: A2(
-												_elm_lang$html$Html$a,
-												{
-													ctor: '::',
-													_0: _elm_lang$html$Html_Attributes$href('javascript:void(0);'),
-													_1: {
-														ctor: '::',
-														_0: _elm_lang$html$Html_Events$onClick(
-															_user$project$Messages$FormMessage(_user$project$Messages$AddInput)),
-														_1: {ctor: '[]'}
-													}
-												},
-												{
-													ctor: '::',
-													_0: _elm_lang$html$Html$text('Add field'),
-													_1: {ctor: '[]'}
-												}),
-											_1: {
-												ctor: '::',
-												_0: A2(
-													_elm_lang$html$Html$a,
-													{
-														ctor: '::',
-														_0: _elm_lang$html$Html_Attributes$href('#source'),
-														_1: {ctor: '[]'}
-													},
-													{
-														ctor: '::',
-														_0: _elm_lang$html$Html$text('Show source code'),
-														_1: {ctor: '[]'}
-													}),
-												_1: {ctor: '[]'}
-											}
+											_0: _elm_lang$html$Html$text('Add field'),
+											_1: {ctor: '[]'}
 										}),
 									_1: {
 										ctor: '::',
 										_0: A2(
-											_elm_lang$html$Html$div,
+											_elm_lang$html$Html$a,
 											{
 												ctor: '::',
-												_0: _elm_lang$html$Html_Attributes$class('inner-container'),
+												_0: _elm_lang$html$Html_Attributes$href('#source'),
 												_1: {ctor: '[]'}
 											},
-											A2(
-												_elm_lang$core$Basics_ops['++'],
-												{
-													ctor: '::',
-													_0: A2(
-														_elm_lang$html$Html$h1,
-														{ctor: '[]'},
-														{
-															ctor: '::',
-															_0: _elm_lang$html$Html$text('The Form'),
-															_1: {ctor: '[]'}
-														}),
-													_1: {ctor: '[]'}
-												},
-												A2(
-													_elm_lang$core$Basics_ops['++'],
-													_user$project$FormView$view(htmlTreeWithControlElements),
-													{
-														ctor: '::',
-														_0: _user$project$Views$draggedElement(model),
-														_1: {ctor: '[]'}
-													}))),
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text('Show source code'),
+												_1: {ctor: '[]'}
+											}),
 										_1: {ctor: '[]'}
 									}
 								}),
-							_1: {ctor: '[]'}
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$div,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$class('inner-container'),
+										_1: {ctor: '[]'}
+									},
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										{
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$h1,
+												{ctor: '[]'},
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html$text('The Form'),
+													_1: {ctor: '[]'}
+												}),
+											_1: {ctor: '[]'}
+										},
+										A2(
+											_elm_lang$core$Basics_ops['++'],
+											_user$project$FormView$view(htmlTreeWithControlElements),
+											{
+												ctor: '::',
+												_0: _user$project$Views$draggedElement(model),
+												_1: {ctor: '[]'}
+											}))),
+								_1: {ctor: '[]'}
+							}
 						}),
 					_1: {ctor: '[]'}
 				}),

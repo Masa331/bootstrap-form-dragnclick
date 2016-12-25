@@ -49,23 +49,20 @@ formEdit model =
     htmlTreeWithControlElements = HtmlNode.form "" [] [] inputs
   in
     Html.div
-      []
+      [ class "row" ]
       [ Html.div
-        [ class "row" ]
-        [ Html.div
-           [ class "col-sm-12" ]
+         [ class "col-sm-12" ]
+         [ Html.div
+           [ class "form-container" ]
            [ Html.div
-             [ class "form-container" ]
-             [ Html.div
-               [ class "form-controls" ]
-               [ Html.a [href "javascript:void(0);", onClick (FormMessage AddInput)] [ text "Add field" ]
-               , Html.a [href "#source"] [ text "Show source code"]
-               ]
-             , Html.div
-               [ class "inner-container" ]
-               ([ h1 [] [text "The Form"] ] ++ (FormView.view htmlTreeWithControlElements) ++ [draggedElement model])
+             [ class "form-controls" ]
+             [ Html.a [href "javascript:void(0);", onClick (FormMessage AddInput)] [ text "Add field" ]
+             , Html.a [href "#source"] [ text "Show source code"]
              ]
-          ]
+           , Html.div
+             [ class "inner-container" ]
+             ([ h1 [] [text "The Form"] ] ++ (FormView.view htmlTreeWithControlElements) ++ [draggedElement model])
+           ]
         ]
       ]
 
@@ -76,22 +73,19 @@ inputEdit input =
     htmlTree = HtmlNode.form "" [] [] inputs
   in
     Html.div
-      []
+      [ class "row" ]
       [ Html.div
-        [ class "row" ]
-        [ Html.div
-           [ class "col-sm-12" ]
+         [ class "col-sm-12" ]
+         [ Html.div
+           [ class "form-container form-sm" ]
            [ Html.div
-             [ class "form-container form-sm" ]
-             [ Html.div
-                 [ class "form-controls" ]
-                 [ Html.a [ href "#form" ] [ text "Back to form" ] ]
-             , Html.div
-               [ class "bd-example" ]
-               ((FormView.view htmlTree) ++ [hr [] []] ++ ((InputEditView.view input)))
-             ]
+               [ class "form-controls" ]
+               [ Html.a [ href "#form" ] [ text "Back to form" ] ]
+           , Html.div
+             [ class "inner-container" ]
+             ((FormView.view htmlTree) ++ [hr [] []] ++ ((InputEditView.view input)))
            ]
-        ]
+         ]
       ]
 
 source : Model -> Html Msg
@@ -101,22 +95,19 @@ source model =
     htmlRaw = HtmlNode.form "" [] [] markup
   in
     Html.div
-      []
+      [ class "row" ]
       [ Html.div
-        [ class "row" ]
-        [ Html.div
-           [ class "col-sm-12" ]
+         [ class "col-sm-12" ]
+         [ Html.div
+           [ class "form-container" ]
            [ Html.div
-             [ class "form-container" ]
-             [ Html.div
-               [ class "form-controls" ]
-               [ Html.a [href "#form"] [ text "Back to form"]]
-             , Html.div
-               [ class "bd-example" ]
-               [(MarkupView.view htmlRaw)]
-             ]
+             [ class "form-controls" ]
+             [ Html.a [href "#form"] [ text "Back to form"] ]
+           , Html.div
+             []
+             [(MarkupView.view htmlRaw)]
            ]
-        ]
+         ]
       ]
 
 -------------
