@@ -4,7 +4,7 @@ import String
 import ElementMap
 
 type Size = Small | Normal | Large
-type InputType = Text | TextArea | Select | Multiselect | FileUpload | Radio | Checkbox | Button | Email | Url | Password | Number | DatetimeLocal | Date | Time | Color
+type InputType = Text | TextArea | Select | Multiselect | FileUpload | Radio | Checkbox | Button | Password | Number | DatetimeLocal | Date | Time | Color
 
 type alias Input =
   { type_: InputType
@@ -71,8 +71,6 @@ textToType text =
     "radio" -> Radio
     "checkbox" -> Checkbox
     "button" -> Button
-    "email" -> Email
-    "url" -> Url
     "password" -> Password
     "number" -> Number
     "datetime-local" -> DatetimeLocal
@@ -99,16 +97,10 @@ stringInputTypes =
   , "radio"
   , "checkbox"
   , "button"
-  , "search"
-  , "email"
-  , "url"
-  , "tel"
   , "password"
   , "number"
   , "datetime-local"
   , "date"
-  , "month"
-  , "week"
   , "time"
   , "color"
   ]

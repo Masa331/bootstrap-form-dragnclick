@@ -43,7 +43,15 @@ build input =
           Bootstrap.buttonToHtmlNode input buttonContainerClass links
       Color ->
         Bootstrap.colorToHtmlNode input containerClass links
-      _ ->
+      Password ->
+        Bootstrap.textInputToHtmlNode input containerClass links
+      Number ->
+        Bootstrap.textInputToHtmlNode input containerClass links
+      DatetimeLocal ->
+        Bootstrap.textInputToHtmlNode input containerClass links
+      Date ->
+        Bootstrap.textInputToHtmlNode input containerClass links
+      Time ->
         Bootstrap.textInputToHtmlNode input containerClass links
 
 -------------

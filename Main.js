@@ -10155,47 +10155,23 @@ var _user$project$Inputs$stringInputTypes = {
 								_0: 'button',
 								_1: {
 									ctor: '::',
-									_0: 'search',
+									_0: 'password',
 									_1: {
 										ctor: '::',
-										_0: 'email',
+										_0: 'number',
 										_1: {
 											ctor: '::',
-											_0: 'url',
+											_0: 'datetime-local',
 											_1: {
 												ctor: '::',
-												_0: 'tel',
+												_0: 'date',
 												_1: {
 													ctor: '::',
-													_0: 'password',
+													_0: 'time',
 													_1: {
 														ctor: '::',
-														_0: 'number',
-														_1: {
-															ctor: '::',
-															_0: 'datetime-local',
-															_1: {
-																ctor: '::',
-																_0: 'date',
-																_1: {
-																	ctor: '::',
-																	_0: 'month',
-																	_1: {
-																		ctor: '::',
-																		_0: 'week',
-																		_1: {
-																			ctor: '::',
-																			_0: 'time',
-																			_1: {
-																				ctor: '::',
-																				_0: 'color',
-																				_1: {ctor: '[]'}
-																			}
-																		}
-																	}
-																}
-															}
-														}
+														_0: 'color',
+														_1: {ctor: '[]'}
 													}
 												}
 											}
@@ -10276,8 +10252,6 @@ var _user$project$Inputs$Date = {ctor: 'Date'};
 var _user$project$Inputs$DatetimeLocal = {ctor: 'DatetimeLocal'};
 var _user$project$Inputs$Number = {ctor: 'Number'};
 var _user$project$Inputs$Password = {ctor: 'Password'};
-var _user$project$Inputs$Url = {ctor: 'Url'};
-var _user$project$Inputs$Email = {ctor: 'Email'};
 var _user$project$Inputs$Button = {ctor: 'Button'};
 var _user$project$Inputs$Checkbox = {ctor: 'Checkbox'};
 var _user$project$Inputs$Radio = {ctor: 'Radio'};
@@ -10329,10 +10303,6 @@ var _user$project$Inputs$textToType = function (text) {
 			return _user$project$Inputs$Checkbox;
 		case 'button':
 			return _user$project$Inputs$Button;
-		case 'email':
-			return _user$project$Inputs$Email;
-		case 'url':
-			return _user$project$Inputs$Url;
 		case 'password':
 			return _user$project$Inputs$Password;
 		case 'number':
@@ -10387,20 +10357,19 @@ var _user$project$Models$initial = {
 			_0: _elm_lang$core$Native_Utils.update(
 				_user$project$Inputs$textInput,
 				{
-					id: 2,
-					label: _elm_lang$core$Maybe$Just('Job title'),
-					placeholder: _elm_lang$core$Maybe$Just('Sheep herder'),
-					small: _elm_lang$core$Maybe$Just('Please tell us what do you do for living for statistical purposes.')
+					id: 3,
+					label: _elm_lang$core$Maybe$Just('Email address'),
+					placeholder: _elm_lang$core$Maybe$Just('rockatansky@wastelands.com'),
+					addon1: _elm_lang$core$Maybe$Just('@')
 				}),
 			_1: {
 				ctor: '::',
 				_0: _elm_lang$core$Native_Utils.update(
 					_user$project$Inputs$textInput,
 					{
-						id: 3,
-						label: _elm_lang$core$Maybe$Just('Email address'),
-						placeholder: _elm_lang$core$Maybe$Just('rockatansky@wastelands.com'),
-						addon1: _elm_lang$core$Maybe$Just('@')
+						id: 2,
+						label: _elm_lang$core$Maybe$Just('Job title'),
+						small: _elm_lang$core$Maybe$Just('Please tell us what do you do for living for statistical purposes.')
 					}),
 				_1: {
 					ctor: '::',
@@ -11720,6 +11689,14 @@ var _user$project$Dragged$build = function (input) {
 			return _user$project$Dragged$buttonToHtmlTree(input);
 		case 'Color':
 			return _user$project$Dragged$colorToHtmlTree(input);
+		case 'Password':
+			return _user$project$Dragged$textInputToHtmlTree(input);
+		case 'Number':
+			return _user$project$Dragged$textInputToHtmlTree(input);
+		case 'DatetimeLocal':
+			return _user$project$Dragged$textInputToHtmlTree(input);
+		case 'Date':
+			return _user$project$Dragged$textInputToHtmlTree(input);
 		default:
 			return _user$project$Dragged$textInputToHtmlTree(input);
 	}
@@ -11874,6 +11851,14 @@ var _user$project$ForInputEdit$build = function (input) {
 			return _user$project$ForInputEdit$buttonToHtmlTree(input);
 		case 'Color':
 			return _user$project$ForInputEdit$colorToHtmlTree(input);
+		case 'Password':
+			return _user$project$ForInputEdit$textInputToHtmlTree(input);
+		case 'Number':
+			return _user$project$ForInputEdit$textInputToHtmlTree(input);
+		case 'DatetimeLocal':
+			return _user$project$ForInputEdit$textInputToHtmlTree(input);
+		case 'Date':
+			return _user$project$ForInputEdit$textInputToHtmlTree(input);
 		default:
 			return _user$project$ForInputEdit$textInputToHtmlTree(input);
 	}
@@ -12136,6 +12121,14 @@ var _user$project$WithControlElements$build = function (input) {
 			return A3(_user$project$Bootstrap$buttonToHtmlNode, input, buttonContainerClass, links);
 		case 'Color':
 			return A3(_user$project$Bootstrap$colorToHtmlNode, input, containerClass, links);
+		case 'Password':
+			return A3(_user$project$Bootstrap$textInputToHtmlNode, input, containerClass, links);
+		case 'Number':
+			return A3(_user$project$Bootstrap$textInputToHtmlNode, input, containerClass, links);
+		case 'DatetimeLocal':
+			return A3(_user$project$Bootstrap$textInputToHtmlNode, input, containerClass, links);
+		case 'Date':
+			return A3(_user$project$Bootstrap$textInputToHtmlNode, input, containerClass, links);
 		default:
 			return A3(_user$project$Bootstrap$textInputToHtmlNode, input, containerClass, links);
 	}
@@ -13114,6 +13107,14 @@ var _user$project$Raw$build = function (input) {
 			return _user$project$Raw$buttonToHtmlTree(input);
 		case 'Color':
 			return _user$project$Raw$colorToHtmlTree(input);
+		case 'Password':
+			return _user$project$Raw$textInputToHtmlTree(input);
+		case 'Number':
+			return _user$project$Raw$textInputToHtmlTree(input);
+		case 'DatetimeLocal':
+			return _user$project$Raw$textInputToHtmlTree(input);
+		case 'Date':
+			return _user$project$Raw$textInputToHtmlTree(input);
 		default:
 			return _user$project$Raw$textInputToHtmlTree(input);
 	}
@@ -13702,58 +13703,6 @@ var _user$project$InputEditView$view = function (input) {
 						ctor: '::',
 						_0: _user$project$InputEditView$labelEdit,
 						_1: {ctor: '[]'}
-					}
-				};
-			case 'Email':
-				return {
-					ctor: '::',
-					_0: _user$project$InputEditView$typeEdit,
-					_1: {
-						ctor: '::',
-						_0: _user$project$InputEditView$placeholderEdit,
-						_1: {
-							ctor: '::',
-							_0: _user$project$InputEditView$labelEdit,
-							_1: {
-								ctor: '::',
-								_0: _user$project$InputEditView$smallUnderEdit,
-								_1: {
-									ctor: '::',
-									_0: _user$project$InputEditView$addon1Edit,
-									_1: {
-										ctor: '::',
-										_0: _user$project$InputEditView$addon2Edit,
-										_1: {ctor: '[]'}
-									}
-								}
-							}
-						}
-					}
-				};
-			case 'Url':
-				return {
-					ctor: '::',
-					_0: _user$project$InputEditView$typeEdit,
-					_1: {
-						ctor: '::',
-						_0: _user$project$InputEditView$placeholderEdit,
-						_1: {
-							ctor: '::',
-							_0: _user$project$InputEditView$labelEdit,
-							_1: {
-								ctor: '::',
-								_0: _user$project$InputEditView$smallUnderEdit,
-								_1: {
-									ctor: '::',
-									_0: _user$project$InputEditView$addon1Edit,
-									_1: {
-										ctor: '::',
-										_0: _user$project$InputEditView$addon2Edit,
-										_1: {ctor: '[]'}
-									}
-								}
-							}
-						}
 					}
 				};
 			case 'Password':

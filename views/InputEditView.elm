@@ -22,8 +22,6 @@ view input =
         Radio -> [ typeEdit, labelEdit, smallUnderEdit, optionsEdit ]
         Checkbox -> [ typeEdit, labelEdit, smallUnderEdit ]
         Button -> [ typeEdit, labelEdit ]
-        Email -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit ]
-        Url -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit ]
         Password -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit ]
         Number -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit ]
         DatetimeLocal -> [ typeEdit, placeholderEdit, labelEdit, smallUnderEdit, addon1Edit, addon2Edit ]

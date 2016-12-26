@@ -22,7 +22,11 @@ build input =
     Checkbox -> checkboxToHtmlTree input
     Button -> buttonToHtmlTree input
     Color -> colorToHtmlTree input
-    _ -> textInputToHtmlTree input
+    Password -> textInputToHtmlTree input
+    Number -> textInputToHtmlTree input
+    DatetimeLocal -> textInputToHtmlTree input
+    Date -> textInputToHtmlTree input
+    Time -> textInputToHtmlTree input
 
 -------------
 -- Private --
