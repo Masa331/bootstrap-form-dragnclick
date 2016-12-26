@@ -18,6 +18,7 @@ body {
 
 /* Custom page header */
 .header {
+  margin-bottom: 20px;
   padding-bottom: 1rem;
   border-bottom: .05rem solid #e5e5e5;
 }
@@ -41,40 +42,12 @@ body {
   }
   /* Space out the masthead */
   .header {
-    margin-bottom: 0.5rem;
+    margin-bottom: 2rem;
   }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
-}
-
-div.dragged i.control-icon {
-  cursor: move;
 }
 
 .hidden {
   visibility: hidden;
-}
-
-.bd-example {
-  padding: 1rem;
-  margin: 1rem 0rem;
-  border: solid #f7f7f9;
-  padding: 1.5rem;
-  border-width: .2rem;
-
-  margin-bottom: 5px;
-  margin-top: 0px;
-}
-
-.highlight {
-  padding: 1.5rem;
-  margin-right: 0;
-  margin-left: 0;
-  margin-top 0;
-  padding: 1rem;
-  background-color: #f7f7f9;
 }
 
 .inner-container {
@@ -93,9 +66,6 @@ div.dragged i.control-icon {
 /* ------------------------------- */
 
 .form-group {
-  position: relative;
-}
-.my-container {
   position: relative;
 }
 .control-container {
@@ -139,6 +109,27 @@ div.dragged i.control-icon {
   float: right;
 }
 
-.one-rem-size {
-  font-size: 1rem;
+.inline-block {
+  /* display: inline-block; */
+}
+
+.red-bg {
+  /* background-color: red; */
+  /* display: inline-block; */
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.hidden-overflow {
+  overflow: hidden;
+}
+
+.drag-handle:hover {
+  cursor: grab;
 }
