@@ -130,8 +130,8 @@ draggedElement model =
             Nothing ->
               (0, 0, 0, 0)
             Just dims ->
-              ((round dims.x) + (model.mousePosition.x - model.initialMousePosition.x)
-              , (round dims.y) + (model.mousePosition.y - model.initialMousePosition.y)
+              ((round dims.left) + (model.mousePosition.x - model.initialMousePosition.x)
+              , (round dims.top) + (model.mousePosition.y - model.initialMousePosition.y)
               , round dims.width
               , round dims.height)
 

@@ -1,9 +1,7 @@
 module ForInputEdit exposing (build)
 
-import Html.Events
 import HtmlNode exposing (..)
 import Inputs exposing (..)
-import Messages
 import Bootstrap
 
 build : Input -> HtmlNode.Node
@@ -27,42 +25,42 @@ build input =
 textInputToHtmlTree input =
   let
     containerClass = Attribute "class" "form-group show-hidden-on-hover"
-    links = toLinks input.id
+    links = toLinks input
   in
     Bootstrap.textInputToHtmlNode input containerClass links
 
 colorToHtmlTree input =
   let
     containerClass = Attribute "class" "form-group show-hidden-on-hover"
-    links = toLinks input.id
+    links = toLinks input
   in
     Bootstrap.colorToHtmlNode input containerClass links
 
 selectToHtmlTree input =
   let
     containerClass = Attribute "class" "form-group show-hidden-on-hover"
-    links = toLinks input.id
+    links = toLinks input
   in
     Bootstrap.selectToHtmlNode input containerClass links
 
 textAreaToHtmlTree input =
   let
     containerClass = Attribute "class" "form-group show-hidden-on-hover"
-    links = toLinks input.id
+    links = toLinks input
   in
     Bootstrap.textAreaToHtmlNode input containerClass links
 
 multiselectToHtmlTree input =
   let
     containerClass = Attribute "class" "form-group show-hidden-on-hover"
-    links = toLinks input.id
+    links = toLinks input
   in
     Bootstrap.multiselectToHtmlNode input containerClass links
 
 fileUploadToHtmlTree input =
   let
     containerClass = Attribute "class" "form-group show-hidden-on-hover"
-    links = toLinks input.id
+    links = toLinks input
   in
     Bootstrap.fileUploadToHtmlNode input containerClass links
 
@@ -75,14 +73,15 @@ radioToHtmlTree input =
 
 checkboxToHtmlTree input =
   let
-    links = toLinks input.id
     containerClass = Attribute "class" "form-check show-hidden-on-hover"
+    checkboxLinks =
+      div "" [Attribute "class" "control-container hidden-block"] [] [ Bootstrap.disabledLink input ]
   in
-    Bootstrap.checkboxToHtmlNode input containerClass links
+    Bootstrap.checkboxToHtmlNode input containerClass checkboxLinks
 
 buttonToHtmlTree input =
   let
-    links = toLinks input.id
+    links = toLinks input
     containerClass = Attribute "class" "form-group show-hidden-on-hover"
   in
     Bootstrap.buttonToHtmlNode input containerClass links
@@ -94,31 +93,20 @@ buttonToHtmlTree input =
 toLegend : Input -> Node
 toLegend input =
   let
-    i4 = i "" [Attribute "class" "fa fa-check control-element"] [] []
-    l4 = span "" [] [Html.Events.onClick ((Messages.InputMessage (Messages.ToggleDisabled input.id)))] [i4]
-
-    children = [ l4 ]
+    children = [ Bootstrap.disabledLink input ]
     links = span "" [Attribute "class" "hidden-inherit float-right one-rem-size"] [] children
     label = span (Maybe.withDefault "" input.label) [] [] []
   in
     legend "" [] [] [label, links]
 
-toLinks : Int -> Node
-toLinks value =
+toLinks : Input -> Node
+toLinks input =
   let
-    l1 = iconLink "fa-font fa-small" (Messages.InputMessage (Messages.SizeEdit value "small"))
-    l2 = iconLink "fa-font fa-normal" (Messages.InputMessage (Messages.SizeEdit value "normal"))
-    l3 = iconLink "fa-font fa-big" (Messages.InputMessage (Messages.SizeEdit value "large"))
-    l4 = iconLink "fa-check" (Messages.InputMessage (Messages.ToggleDisabled value))
-    divider = span " " [] [] []
-
-    children = [ l1, divider, l2, divider, l3, divider, l4 ]
+    links =
+      [ Bootstrap.sizeLinkSmall input
+      , Bootstrap.sizeLinkNormal input
+      , Bootstrap.sizeLinkLarge input
+      , Bootstrap.disabledLink input
+      ] |> List.intersperse Bootstrap.linksDivider
   in
-    div "" [Attribute "class" "control-container hidden-block"] [] children
-
-iconLink : String -> Messages.Msg -> Node
-iconLink class msg =
-  let
-    icon = i "" [Attribute "class" ("fa control-element " ++ class)] [] []
-  in
-    span "" [] [Html.Events.onClick (msg)] [icon]
+    div "" [Attribute "class" "control-container hidden-block"] [] links

@@ -2,8 +2,6 @@ module ElementMap exposing (..)
 
 type alias ElementDimensions =
   { id: String
-  , x: Float
-  , y: Float
   , width: Float
   , height: Float
   , top: Float

@@ -3,6 +3,10 @@ import HtmlNode exposing (..)
 import Models
 import Inputs exposing (..)
 
+import Html
+import Messages
+import Html.Events exposing (onClick, onMouseDown)
+
 colorToHtmlNode input containerClass links =
   let
     inputAttrs =
@@ -250,3 +254,43 @@ sizeClass size =
 toAddon : String -> Node
 toAddon text =
   div "" [Attribute "class" "input-group-addon"] [] [span text [] [] []]
+
+linksDivider : Node
+linksDivider =
+  span " " [] [] []
+
+editLink : Input -> Node
+editLink input =
+  a "" [Attribute "href" ("#input/" ++ toString input.id)] []
+    [ i "" [Attribute "class" "fa fa-edit control-element"] [] [] ]
+
+sizeLinkSmall : Input -> Node
+sizeLinkSmall input =
+  iconLink "fa-font fa-small" (onClick (Messages.InputMessage (Messages.SizeEdit input.id "small")))
+
+sizeLinkNormal : Input -> Node
+sizeLinkNormal input =
+  iconLink "fa-font fa-normal" (onClick (Messages.InputMessage (Messages.SizeEdit input.id "normal")))
+
+sizeLinkLarge : Input -> Node
+sizeLinkLarge input =
+  iconLink "fa-font fa-big" (onClick (Messages.InputMessage (Messages.SizeEdit input.id "large")))
+
+deleteLink : Input -> Node
+deleteLink input =
+  iconLink "fa-trash" (onClick (Messages.FormMessage (Messages.RemoveInput input.id)))
+
+disabledLink : Input -> Node
+disabledLink input =
+  iconLink "fa-check" (onClick (Messages.InputMessage (Messages.ToggleDisabled input.id)))
+
+dragLink : Input -> Node
+dragLink input =
+  iconLink "fa-arrows" (onMouseDown (Messages.MouseMessage (Messages.MouseClick input.id)))
+
+iconLink : String -> (Html.Attribute Messages.Msg) -> Node
+iconLink class event =
+  let
+    icon = i "" [Attribute "class" ("fa control-element " ++ class)] [] []
+  in
+    span "" [] [event] [icon]
