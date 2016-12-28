@@ -12170,39 +12170,76 @@ var _user$project$Raw$toAddon = function (value) {
 		value);
 };
 var _user$project$Raw$buttonToHtmlTree = function (input) {
+	var sizeClass = function () {
+		var _p1 = input.size;
+		switch (_p1.ctor) {
+			case 'Small':
+				return ' btn-sm';
+			case 'Normal':
+				return '';
+			default:
+				return ' btn-lg';
+		}
+	}();
+	var inputAttrs = A2(
+		_elm_lang$core$List$filterMap,
+		_elm_lang$core$Basics$identity,
+		{
+			ctor: '::',
+			_0: _elm_lang$core$Maybe$Just(
+				A2(_user$project$HtmlNode$Attribute, 'type', 'submit')),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$core$Maybe$Just(
+					A2(
+						_user$project$HtmlNode$Attribute,
+						'class',
+						_elm_lang$core$String$trim(
+							A2(_elm_lang$core$Basics_ops['++'], 'btn btn-primary', sizeClass)))),
+				_1: {
+					ctor: '::',
+					_0: input.disabled ? _elm_lang$core$Maybe$Just(
+						A2(_user$project$HtmlNode$Attribute, 'disabled', 'disabled')) : _elm_lang$core$Maybe$Nothing,
+					_1: {ctor: '[]'}
+				}
+			}
+		});
 	return A4(
 		_user$project$HtmlNode$button,
 		A2(_elm_lang$core$Maybe$withDefault, 'Submit', input.label),
-		{
-			ctor: '::',
-			_0: A2(_user$project$HtmlNode$Attribute, 'type', 'submit'),
-			_1: {
-				ctor: '::',
-				_0: A2(_user$project$HtmlNode$Attribute, 'class', 'btn btn-primary'),
-				_1: {ctor: '[]'}
-			}
-		},
+		inputAttrs,
 		{ctor: '[]'},
 		{ctor: '[]'});
 };
 var _user$project$Raw$checkboxToHtmlTree = function (box) {
+	var inputAttrs = A2(
+		_elm_lang$core$List$filterMap,
+		_elm_lang$core$Basics$identity,
+		{
+			ctor: '::',
+			_0: _elm_lang$core$Maybe$Just(
+				A2(_user$project$HtmlNode$Attribute, 'type', 'checkbox')),
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$core$Maybe$Just(
+					A2(_user$project$HtmlNode$Attribute, 'class', 'form-check-input')),
+				_1: {
+					ctor: '::',
+					_0: box.disabled ? _elm_lang$core$Maybe$Just(
+						A2(_user$project$HtmlNode$Attribute, 'disabled', 'disabled')) : _elm_lang$core$Maybe$Nothing,
+					_1: {ctor: '[]'}
+				}
+			}
+		});
 	var element = A4(
 		_user$project$HtmlNode$input,
 		'',
-		{
-			ctor: '::',
-			_0: A2(_user$project$HtmlNode$Attribute, 'type', 'checkbox'),
-			_1: {
-				ctor: '::',
-				_0: A2(_user$project$HtmlNode$Attribute, 'class', 'form-check-input'),
-				_1: {ctor: '[]'}
-			}
-		},
+		inputAttrs,
 		{ctor: '[]'},
 		{ctor: '[]'});
 	var label = function () {
-		var _p1 = box.label;
-		if (_p1.ctor === 'Nothing') {
+		var _p2 = box.label;
+		if (_p2.ctor === 'Nothing') {
 			return _elm_lang$core$Maybe$Just(
 				A4(
 					_user$project$HtmlNode$label,
@@ -12222,7 +12259,7 @@ var _user$project$Raw$checkboxToHtmlTree = function (box) {
 			return _elm_lang$core$Maybe$Just(
 				A4(
 					_user$project$HtmlNode$label,
-					_p1._0,
+					_p2._0,
 					{
 						ctor: '::',
 						_0: A2(_user$project$HtmlNode$Attribute, 'class', 'form-check-label'),
@@ -13119,8 +13156,8 @@ var _user$project$Raw$textInputToHtmlTree = function (input) {
 		children);
 };
 var _user$project$Raw$build = function (input) {
-	var _p2 = input.type_;
-	switch (_p2.ctor) {
+	var _p3 = input.type_;
+	switch (_p3.ctor) {
 		case 'Text':
 			return _user$project$Raw$textInputToHtmlTree(input);
 		case 'TextArea':
