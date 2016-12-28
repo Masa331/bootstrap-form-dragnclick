@@ -40,7 +40,10 @@ inputToMarkup nestingLevel node value =
 
    ++ value
 
-   ++ if isVoid node then "" else "\n" ++ indent nestingLevel ++ closingTag node
+   ++
+     if isVoid node then ""
+     else if noIndentNode node then closingTag node
+     else "\n" ++ indent nestingLevel ++ closingTag node
 
 indent : Int -> String
 indent level =
@@ -73,6 +76,14 @@ closingTag node =
 isVoid : NodeAttrs -> Bool
 isVoid node =
   List.member node.tag voidNodesList
+
+noIndentNode : NodeAttrs -> Bool
+noIndentNode node =
+  List.member node.tag noIndentNodesList
+
+noIndentNodesList : List String
+noIndentNodesList =
+  [ "textarea"]
 
 voidNodesList : List String
 voidNodesList =

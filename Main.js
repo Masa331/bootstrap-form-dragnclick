@@ -12636,7 +12636,14 @@ var _user$project$Raw$textAreaToHtmlTree = function (input) {
 					_1: {
 						ctor: '::',
 						_0: _elm_lang$core$Maybe$Just(
-							A2(_user$project$HtmlNode$Attribute, 'class', 'form-control')),
+							A2(
+								_user$project$HtmlNode$Attribute,
+								'class',
+								_elm_lang$core$String$trim(
+									A2(
+										_elm_lang$core$Basics_ops['++'],
+										_user$project$Raw$sizeClass(input.size),
+										' form-control')))),
 						_1: {
 							ctor: '::',
 							_0: _elm_lang$core$Maybe$Just(
@@ -12715,7 +12722,25 @@ var _user$project$Raw$textAreaToHtmlTree = function (input) {
 			_1: {
 				ctor: '::',
 				_0: inputWithAddons,
-				_1: {ctor: '[]'}
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$core$Maybe$map,
+						function (value) {
+							return A4(
+								_user$project$HtmlNode$small,
+								value,
+								{
+									ctor: '::',
+									_0: A2(_user$project$HtmlNode$Attribute, 'class', 'form-text text-muted'),
+									_1: {ctor: '[]'}
+								},
+								{ctor: '[]'},
+								{ctor: '[]'});
+						},
+						input.small),
+					_1: {ctor: '[]'}
+				}
 			}
 		});
 	return A4(
@@ -14139,6 +14164,14 @@ var _user$project$MarkupView$voidNodesList = {
 		}
 	}
 };
+var _user$project$MarkupView$noIndentNodesList = {
+	ctor: '::',
+	_0: 'textarea',
+	_1: {ctor: '[]'}
+};
+var _user$project$MarkupView$noIndentNode = function (node) {
+	return A2(_elm_lang$core$List$member, node.tag, _user$project$MarkupView$noIndentNodesList);
+};
 var _user$project$MarkupView$isVoid = function (node) {
 	return A2(_elm_lang$core$List$member, node.tag, _user$project$MarkupView$voidNodesList);
 };
@@ -14204,13 +14237,13 @@ var _user$project$MarkupView$inputToMarkup = F3(
 					A2(
 						_elm_lang$core$Basics_ops['++'],
 						value,
-						_user$project$MarkupView$isVoid(node) ? '' : A2(
+						_user$project$MarkupView$isVoid(node) ? '' : (_user$project$MarkupView$noIndentNode(node) ? _user$project$MarkupView$closingTag(node) : A2(
 							_elm_lang$core$Basics_ops['++'],
 							'\n',
 							A2(
 								_elm_lang$core$Basics_ops['++'],
 								_user$project$MarkupView$indent(nestingLevel),
-								_user$project$MarkupView$closingTag(node)))))));
+								_user$project$MarkupView$closingTag(node))))))));
 	});
 var _user$project$MarkupView$toElmHtmlNode = F2(
 	function (nestingLevel, _p0) {

@@ -102,7 +102,7 @@ textAreaToHtmlTree input =
       [ Just (Attribute "id" ("input" ++ toString input.id))
       , Maybe.map (Attribute "placeholder") input.placeholder
       , if input.disabled then Just (Attribute "disabled" "disabled") else Nothing
-      , Just (Attribute "class" "form-control")
+      , Just (Attribute "class" (String.trim ((sizeClass input.size) ++ " form-control")))
       , Just (Attribute "rows" (input.rowNumber))
       ] |> List.filterMap identity
 
@@ -118,6 +118,7 @@ textAreaToHtmlTree input =
     children =
       [ Maybe.map (\value -> label value [Attribute "for" "input1"] [] []) input.label
       , inputWithAddons
+      , Maybe.map (\value -> small value [Attribute "class" "form-text text-muted"] [] []) input.small
       ] |> List.filterMap identity
   in
     div "" [Attribute "class" "form-group"] [] children
