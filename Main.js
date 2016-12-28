@@ -11073,7 +11073,14 @@ var _user$project$Bootstrap$textAreaToHtmlNode = F3(
 			{
 				ctor: '::',
 				_0: containerClass,
-				_1: {ctor: '[]'}
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_user$project$HtmlNode$Attribute,
+						'data-input-id',
+						_elm_lang$core$Basics$toString(input.id)),
+					_1: {ctor: '[]'}
+				}
 			},
 			{ctor: '[]'},
 			children);

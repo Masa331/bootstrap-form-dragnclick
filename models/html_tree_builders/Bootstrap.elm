@@ -149,7 +149,7 @@ textAreaToHtmlNode input containerClass links =
       , Maybe.map toSmall input.small
       ] |> List.filterMap identity
   in
-    div "" [containerClass] [] children
+    div "" [containerClass, Attribute "data-input-id" (toString input.id) ] [] children
 
 selectToHtmlNode input containerClass links =
   let
