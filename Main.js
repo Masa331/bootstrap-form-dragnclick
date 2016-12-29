@@ -13006,6 +13006,17 @@ var _user$project$Raw$colorToHtmlTree = function (input) {
 		children);
 };
 var _user$project$Raw$textInputToHtmlTree = function (input) {
+	var groupClasses = function () {
+		var _p3 = input.size;
+		switch (_p3.ctor) {
+			case 'Small':
+				return 'input-group input-group-sm';
+			case 'Normal':
+				return 'input-group';
+			default:
+				return 'input-group input-group-lg';
+		}
+	}();
 	var add2 = _user$project$Raw$toAddon(input.addon2);
 	var add1 = _user$project$Raw$toAddon(input.addon1);
 	var inputAttrs = A2(
@@ -13077,7 +13088,7 @@ var _user$project$Raw$textInputToHtmlTree = function (input) {
 			'',
 			{
 				ctor: '::',
-				_0: A2(_user$project$HtmlNode$Attribute, 'class', 'input-group'),
+				_0: A2(_user$project$HtmlNode$Attribute, 'class', groupClasses),
 				_1: {ctor: '[]'}
 			},
 			{ctor: '[]'},
@@ -13156,8 +13167,8 @@ var _user$project$Raw$textInputToHtmlTree = function (input) {
 		children);
 };
 var _user$project$Raw$build = function (input) {
-	var _p3 = input.type_;
-	switch (_p3.ctor) {
+	var _p4 = input.type_;
+	switch (_p4.ctor) {
 		case 'Text':
 			return _user$project$Raw$textInputToHtmlTree(input);
 		case 'TextArea':

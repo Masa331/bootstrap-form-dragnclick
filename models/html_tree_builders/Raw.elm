@@ -46,12 +46,20 @@ textInputToHtmlTree input =
     add2 = toAddon input.addon2
 
     input1 = Just (HtmlNode.input "" inputAttrs [] [])
+    groupClasses =
+      case input.size of
+        Small ->
+          "input-group input-group-sm"
+        Normal ->
+          "input-group"
+        Large ->
+          "input-group input-group-lg"
 
     inputWithAddons =
       if List.isEmpty (List.filterMap identity [add1, add2]) then
         input1
       else
-        Just (div "" [Attribute "class" "input-group"] [] ([add1, input1, add2] |> List.filterMap identity))
+        Just (div "" [Attribute "class" groupClasses] [] ([add1, input1, add2] |> List.filterMap identity))
 
     children =
       [ Maybe.map (\value -> label value [Attribute "for" (toString input.id)] [] []) input.label
