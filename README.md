@@ -4,11 +4,9 @@ Forms are essential for every web app. This tool shows what kind of form is poss
 
 **This is work-in-progress and it covers only basics now. For full info check original [Bootstrap docs](http://v4-alpha.getbootstrap.com/getting-started/introduction/).**
 
-## Road to 1.0.0
+## Road to 2.0.0
 
-- [x] All input attributes edit working
-- [x] Input add
-- [x] Valid html generated
+- [] Horizontal forms
 
 ## What's not included
 
