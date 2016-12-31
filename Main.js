@@ -10420,6 +10420,11 @@ var _user$project$Inputs$textToType = function (text) {
 	}
 };
 
+var _user$project$Form$List = function (a) {
+	return {ctor: 'List', _0: a};
+};
+var _user$project$Form$GroupOfInputs = {ctor: 'GroupOfInputs'};
+var _user$project$Form$Inputs.Input = {ctor: 'Inputs.Input'};
 
 var _user$project$Models$currentlyDraggedInput = function (model) {
 	return _elm_lang$core$List$head(

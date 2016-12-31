@@ -1,5 +1,9 @@
 module Form exposing (..)
 
-import Inputs
+import Inputs exposing (..)
 
-type alias Form = List Inputs.Input
+-- type GroupOfInputs = List Inputs.Input
+type Row = SingleInput Inputs.Input | GroupOfInputs (List Inputs.Input)
+
+-- type alias Form = List Inputs.Input
+type alias Form = List Row
