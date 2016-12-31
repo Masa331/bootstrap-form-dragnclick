@@ -6,7 +6,7 @@ Forms are essential for every web app. This tool shows what kind of form is poss
 
 ## Road to 2.0.0
 
-- [] Horizontal forms
+- [ ] Horizontal forms
 
 ## What's not included
 
