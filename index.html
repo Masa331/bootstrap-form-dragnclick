@@ -6,8 +6,26 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css">
-    <script src="https://use.fontawesome.com/e644783d7f.js"></script>
     <link rel="stylesheet" href="styles.css">
+
+    <script src="https://use.fontawesome.com/e644783d7f.js"></script>
+    <script>window.twttr = (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+
+      t._e = [];
+      t.ready = function(f) {
+        t._e.push(f);
+      };
+
+      return t;
+    }(document, "script", "twitter-wjs"));</script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
   </head>
   <body>
     <div class="container">
@@ -19,7 +37,14 @@
       </div>
 
       <footer class="footer">
-        <p>Created by <a href="https://github.com/Masa331">Premysl Donat</a> in <a href="http://elm-lang.org/">Elm</a>. Code is here: <a href="https://github.com/Masa331/bootstrap-form-dragnclick">https://github.com/Masa331/bootstrap-form-dragnclick</a></p>
+        <p>
+          Follow me on
+          <a class="twitter-follow-button" href="https://twitter.com/DonatP" data-show-count="false">Follow @DonatP</a>
+          or
+          <a class="github-button" href="https://github.com/Masa331" aria-label="Follow @Masa331 on GitHub">Follow @Masa331</a> 
+          if you like this. Also please fill out an issue if you find one 
+          <a class="github-button" href="https://github.com/Masa331/bootstrap_form_examples/issues" data-icon="octicon-issue-opened" aria-label="Issue Masa331/bootstrap_form_examples on GitHub">Issue</a>
+        </p>
       </footer>
     </div>
 
