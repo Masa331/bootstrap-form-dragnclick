@@ -28,7 +28,10 @@ view model =
           source model
         InputEdit id ->
           let
-            input = List.head (List.filter (\el -> el.id == id) model.inputs)
+            input =
+              List.concat model.inputs
+                |> List.filter (\el -> el.id == id)
+                |> List.head
           in
             case input of
               Nothing ->
@@ -46,6 +49,7 @@ formEdit : Model -> Html Msg
 formEdit model =
   let
     inputs = List.map HtmlTreeBuilder.buildWithControlElements model.inputs
+      |> List.concat
     htmlTreeWithControlElements = HtmlNode.form "" [] [] inputs
   in
     Html.div
@@ -92,6 +96,7 @@ source : Model -> Html Msg
 source model =
   let
     markup = List.map HtmlTreeBuilder.buildRaw model.inputs
+      |> List.concat
     htmlRaw = HtmlNode.form "" [] [] markup
   in
     Html.div

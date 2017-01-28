@@ -10420,11 +10420,20 @@ var _user$project$Inputs$textToType = function (text) {
 	}
 };
 
-var _user$project$Form$List = function (a) {
-	return {ctor: 'List', _0: a};
-};
-var _user$project$Form$GroupOfInputs = {ctor: 'GroupOfInputs'};
-var _user$project$Form$Inputs.Input = {ctor: 'Inputs.Input'};
+var _user$project$Form$mapInputs = F2(
+	function (func, rows) {
+		return A2(
+			_elm_lang$core$List$map,
+			function (row) {
+				return A2(
+					_elm_lang$core$List$map,
+					function (input) {
+						return func(input);
+					},
+					row);
+			},
+			rows);
+	});
 
 var _user$project$Models$currentlyDraggedInput = function (model) {
 	return _elm_lang$core$List$head(
@@ -10433,7 +10442,7 @@ var _user$project$Models$currentlyDraggedInput = function (model) {
 			function (_) {
 				return _.dragged;
 			},
-			model.inputs));
+			_elm_lang$core$List$concat(model.inputs)));
 };
 var _user$project$Models$maxInputId = function (model) {
 	return A2(
@@ -10445,62 +10454,86 @@ var _user$project$Models$maxInputId = function (model) {
 				function (_) {
 					return _.id;
 				},
-				model.inputs)));
+				_elm_lang$core$List$concat(model.inputs))));
 };
 var _user$project$Models$initial = {
 	inputs: {
 		ctor: '::',
-		_0: _elm_lang$core$Native_Utils.update(
-			_user$project$Inputs$textInput,
-			{
-				id: 1,
-				label: _elm_lang$core$Maybe$Just('Name'),
-				placeholder: _elm_lang$core$Maybe$Just('Max Rockatansky')
-			}),
-		_1: {
+		_0: {
 			ctor: '::',
 			_0: _elm_lang$core$Native_Utils.update(
 				_user$project$Inputs$textInput,
 				{
-					id: 3,
-					label: _elm_lang$core$Maybe$Just('Email address'),
-					placeholder: _elm_lang$core$Maybe$Just('rockatansky@wastelands.com'),
-					addon1: _elm_lang$core$Maybe$Just('@')
+					id: 1,
+					label: _elm_lang$core$Maybe$Just('Name'),
+					placeholder: _elm_lang$core$Maybe$Just('Max Rockatansky')
 				}),
-			_1: {
+			_1: {ctor: '[]'}
+		},
+		_1: {
+			ctor: '::',
+			_0: {
 				ctor: '::',
 				_0: _elm_lang$core$Native_Utils.update(
 					_user$project$Inputs$textInput,
 					{
-						id: 2,
-						label: _elm_lang$core$Maybe$Just('Job title'),
-						small: _elm_lang$core$Maybe$Just('Please tell us what do you do for living for statistical purposes.')
+						id: 3,
+						label: _elm_lang$core$Maybe$Just('Email address'),
+						placeholder: _elm_lang$core$Maybe$Just('rockatansky@wastelands.com'),
+						addon1: _elm_lang$core$Maybe$Just('@')
 					}),
-				_1: {
+				_1: {ctor: '[]'}
+			},
+			_1: {
+				ctor: '::',
+				_0: {
 					ctor: '::',
 					_0: _elm_lang$core$Native_Utils.update(
 						_user$project$Inputs$textInput,
 						{
-							id: 4,
-							label: _elm_lang$core$Maybe$Just('Password'),
-							type_: _user$project$Inputs$Password
+							id: 2,
+							label: _elm_lang$core$Maybe$Just('Job title'),
+							small: _elm_lang$core$Maybe$Just('Please tell us what do you do for living for statistical purposes.')
 						}),
-					_1: {
+					_1: {ctor: '[]'}
+				},
+				_1: {
+					ctor: '::',
+					_0: {
 						ctor: '::',
 						_0: _elm_lang$core$Native_Utils.update(
-							_user$project$Inputs$checkbox,
+							_user$project$Inputs$textInput,
 							{
-								id: 5,
-								label: _elm_lang$core$Maybe$Just('I Accept all terms and agreements')
+								id: 4,
+								label: _elm_lang$core$Maybe$Just('Password'),
+								type_: _user$project$Inputs$Password
 							}),
-						_1: {
+						_1: {ctor: '[]'}
+					},
+					_1: {
+						ctor: '::',
+						_0: {
 							ctor: '::',
 							_0: _elm_lang$core$Native_Utils.update(
-								_user$project$Inputs$button,
+								_user$project$Inputs$checkbox,
 								{
-									id: 6,
-									label: _elm_lang$core$Maybe$Just('Register!')
+									id: 5,
+									label: _elm_lang$core$Maybe$Just('I Accept all terms and agreements')
 								}),
+							_1: {ctor: '[]'}
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '::',
+								_0: _elm_lang$core$Native_Utils.update(
+									_user$project$Inputs$button,
+									{
+										id: 6,
+										label: _elm_lang$core$Maybe$Just('Register!')
+									}),
+								_1: {ctor: '[]'}
+							},
 							_1: {ctor: '[]'}
 						}
 					}
@@ -11990,29 +12023,37 @@ var _user$project$FormUpdate$update = F2(
 							model.inputs,
 							{
 								ctor: '::',
-								_0: _elm_lang$core$Native_Utils.update(
-									_user$project$Inputs$textInput,
-									{
-										id: _user$project$Models$maxInputId(model) + 1
-									}),
+								_0: {
+									ctor: '::',
+									_0: _elm_lang$core$Native_Utils.update(
+										_user$project$Inputs$textInput,
+										{
+											id: _user$project$Models$maxInputId(model) + 1
+										}),
+									_1: {ctor: '[]'}
+								},
 								_1: {ctor: '[]'}
 							})
 					}),
 				_1: _elm_lang$core$Platform_Cmd$none
 			};
 		} else {
+			var newInputs = A2(
+				_elm_lang$core$List$filter,
+				function (row) {
+					return A2(
+						_elm_lang$core$List$all,
+						function (input) {
+							return !_elm_lang$core$Native_Utils.eq(input.id, _p0._0);
+						},
+						row);
+				},
+				model.inputs);
 			return {
 				ctor: '_Tuple2',
 				_0: _elm_lang$core$Native_Utils.update(
 					model,
-					{
-						inputs: A2(
-							_elm_lang$core$List$filter,
-							function (input) {
-								return !_elm_lang$core$Native_Utils.eq(input.id, _p0._0);
-							},
-							model.inputs)
-					}),
+					{inputs: newInputs}),
 				_1: _elm_lang$core$Platform_Cmd$none
 			};
 		}
@@ -12156,7 +12197,7 @@ var _user$project$WithControlElements$toLegend = function (input) {
 			}
 		});
 };
-var _user$project$WithControlElements$build = function (input) {
+var _user$project$WithControlElements$buildInput = function (input) {
 	var containerClass = A2(
 		_user$project$HtmlNode$Attribute,
 		'class',
@@ -12244,6 +12285,9 @@ var _user$project$WithControlElements$build = function (input) {
 		default:
 			return A3(_user$project$Bootstrap$textInputToHtmlNode, input, containerClass, links);
 	}
+};
+var _user$project$WithControlElements$build = function (row) {
+	return A2(_elm_lang$core$List$map, _user$project$WithControlElements$buildInput, row);
 };
 
 var _user$project$Raw$sizeClass = function (size) {
@@ -13271,7 +13315,7 @@ var _user$project$Raw$textInputToHtmlTree = function (input) {
 		{ctor: '[]'},
 		children);
 };
-var _user$project$Raw$build = function (input) {
+var _user$project$Raw$buildInput = function (input) {
 	var _p4 = input.type_;
 	switch (_p4.ctor) {
 		case 'Text':
@@ -13304,6 +13348,9 @@ var _user$project$Raw$build = function (input) {
 			return _user$project$Raw$textInputToHtmlTree(input);
 	}
 };
+var _user$project$Raw$build = function (row) {
+	return A2(_elm_lang$core$List$map, _user$project$Raw$buildInput, row);
+};
 
 var _user$project$HtmlTreeBuilder$forInputEdit = function (input) {
 	return _user$project$ForInputEdit$build(input);
@@ -13311,11 +13358,11 @@ var _user$project$HtmlTreeBuilder$forInputEdit = function (input) {
 var _user$project$HtmlTreeBuilder$buildDragged = function (input) {
 	return _user$project$Dragged$build(input);
 };
-var _user$project$HtmlTreeBuilder$buildRaw = function (input) {
-	return _user$project$Raw$build(input);
+var _user$project$HtmlTreeBuilder$buildRaw = function (row) {
+	return _user$project$Raw$build(row);
 };
-var _user$project$HtmlTreeBuilder$buildWithControlElements = function (input) {
-	return _user$project$WithControlElements$build(input);
+var _user$project$HtmlTreeBuilder$buildWithControlElements = function (row) {
+	return _user$project$WithControlElements$build(row);
 };
 
 var _user$project$InputEditView$optionsEdit = function (input) {
@@ -14052,7 +14099,7 @@ var _user$project$InputUpdate$update = F2(
 			switch (_p0.ctor) {
 				case 'PlaceholderEdit':
 					return A2(
-						_elm_lang$core$List$map,
+						_user$project$Form$mapInputs,
 						function (input) {
 							return _elm_lang$core$Native_Utils.eq(input.id, _p0._0) ? _elm_lang$core$Native_Utils.update(
 								input,
@@ -14063,7 +14110,7 @@ var _user$project$InputUpdate$update = F2(
 						model.inputs);
 				case 'LabelEdit':
 					return A2(
-						_elm_lang$core$List$map,
+						_user$project$Form$mapInputs,
 						function (input) {
 							return _elm_lang$core$Native_Utils.eq(input.id, _p0._0) ? _elm_lang$core$Native_Utils.update(
 								input,
@@ -14074,7 +14121,7 @@ var _user$project$InputUpdate$update = F2(
 						model.inputs);
 				case 'SmallEdit':
 					return A2(
-						_elm_lang$core$List$map,
+						_user$project$Form$mapInputs,
 						function (input) {
 							return _elm_lang$core$Native_Utils.eq(input.id, _p0._0) ? _elm_lang$core$Native_Utils.update(
 								input,
@@ -14085,7 +14132,7 @@ var _user$project$InputUpdate$update = F2(
 						model.inputs);
 				case 'ToggleDisabled':
 					return A2(
-						_elm_lang$core$List$map,
+						_user$project$Form$mapInputs,
 						function (input) {
 							return _elm_lang$core$Native_Utils.eq(input.id, _p0._0) ? _elm_lang$core$Native_Utils.update(
 								input,
@@ -14095,7 +14142,7 @@ var _user$project$InputUpdate$update = F2(
 				case 'FirstAddonEdit':
 					var _p1 = _p0._1;
 					return A2(
-						_elm_lang$core$List$map,
+						_user$project$Form$mapInputs,
 						function (input) {
 							return _elm_lang$core$Native_Utils.eq(input.id, _p0._0) ? _elm_lang$core$Native_Utils.update(
 								input,
@@ -14107,7 +14154,7 @@ var _user$project$InputUpdate$update = F2(
 				case 'SecondAddonEdit':
 					var _p2 = _p0._1;
 					return A2(
-						_elm_lang$core$List$map,
+						_user$project$Form$mapInputs,
 						function (input) {
 							return _elm_lang$core$Native_Utils.eq(input.id, _p0._0) ? _elm_lang$core$Native_Utils.update(
 								input,
@@ -14118,7 +14165,7 @@ var _user$project$InputUpdate$update = F2(
 						model.inputs);
 				case 'SizeEdit':
 					return A2(
-						_elm_lang$core$List$map,
+						_user$project$Form$mapInputs,
 						function (input) {
 							return _elm_lang$core$Native_Utils.eq(input.id, _p0._0) ? _elm_lang$core$Native_Utils.update(
 								input,
@@ -14129,7 +14176,7 @@ var _user$project$InputUpdate$update = F2(
 						model.inputs);
 				case 'TypeEdit':
 					return A2(
-						_elm_lang$core$List$map,
+						_user$project$Form$mapInputs,
 						function (input) {
 							return _elm_lang$core$Native_Utils.eq(input.id, _p0._0) ? _elm_lang$core$Native_Utils.update(
 								input,
@@ -14140,7 +14187,7 @@ var _user$project$InputUpdate$update = F2(
 						model.inputs);
 				case 'RowNumberEdit':
 					return A2(
-						_elm_lang$core$List$map,
+						_user$project$Form$mapInputs,
 						function (input) {
 							return _elm_lang$core$Native_Utils.eq(input.id, _p0._0) ? _elm_lang$core$Native_Utils.update(
 								input,
@@ -14149,7 +14196,7 @@ var _user$project$InputUpdate$update = F2(
 						model.inputs);
 				case 'SaveNewOption':
 					return A2(
-						_elm_lang$core$List$map,
+						_user$project$Form$mapInputs,
 						function (input) {
 							return _elm_lang$core$Native_Utils.eq(input.id, _p0._0) ? _elm_lang$core$Native_Utils.update(
 								input,
@@ -14167,7 +14214,7 @@ var _user$project$InputUpdate$update = F2(
 						model.inputs);
 				default:
 					return A2(
-						_elm_lang$core$List$map,
+						_user$project$Form$mapInputs,
 						function (input) {
 							return _elm_lang$core$Native_Utils.eq(input.id, _p0._0) ? _elm_lang$core$Native_Utils.update(
 								input,
@@ -14543,7 +14590,8 @@ var _user$project$Views$draggedElement = function (model) {
 	}
 };
 var _user$project$Views$source = function (model) {
-	var markup = A2(_elm_lang$core$List$map, _user$project$HtmlTreeBuilder$buildRaw, model.inputs);
+	var markup = _elm_lang$core$List$concat(
+		A2(_elm_lang$core$List$map, _user$project$HtmlTreeBuilder$buildRaw, model.inputs));
 	var htmlRaw = A4(
 		_user$project$HtmlNode$form,
 		'',
@@ -14712,7 +14760,8 @@ var _user$project$Views$inputEdit = function (input) {
 		});
 };
 var _user$project$Views$formEdit = function (model) {
-	var inputs = A2(_elm_lang$core$List$map, _user$project$HtmlTreeBuilder$buildWithControlElements, model.inputs);
+	var inputs = _elm_lang$core$List$concat(
+		A2(_elm_lang$core$List$map, _user$project$HtmlTreeBuilder$buildWithControlElements, model.inputs));
 	var htmlTreeWithControlElements = A4(
 		_user$project$HtmlNode$form,
 		'',
@@ -14844,7 +14893,7 @@ var _user$project$Views$view = function (model) {
 						function (el) {
 							return _elm_lang$core$Native_Utils.eq(el.id, _p6._0);
 						},
-						model.inputs));
+						_elm_lang$core$List$concat(model.inputs)));
 				var _p7 = input;
 				if (_p7.ctor === 'Nothing') {
 					return _user$project$Views$formEdit(model);
@@ -14867,6 +14916,19 @@ var _user$project$MouseUpdate$countYMiddle = F2(
 			return input.dragged ? ((_p1.top + (_p1.height / 2)) + (_elm_lang$core$Basics$toFloat(model.mousePosition.y) - _elm_lang$core$Basics$toFloat(model.initialMousePosition.y))) : (_p1.top + (_p1.height / 2));
 		}
 	});
+var _user$project$MouseUpdate$countRowYMiddle = F2(
+	function (row, model) {
+		return A2(
+			_elm_lang$core$Maybe$withDefault,
+			0,
+			_elm_lang$core$List$maximum(
+				A2(
+					_elm_lang$core$List$map,
+					function (input) {
+						return A2(_user$project$MouseUpdate$countYMiddle, input, model);
+					},
+					row)));
+	});
 var _user$project$MouseUpdate$moveInputs = function (model) {
 	var sortedInputs = A2(
 		_elm_lang$core$List$map,
@@ -14876,11 +14938,11 @@ var _user$project$MouseUpdate$moveInputs = function (model) {
 			_elm_lang$core$Tuple$first,
 			A2(
 				_elm_lang$core$List$map,
-				function (input) {
+				function (row) {
 					return {
 						ctor: '_Tuple2',
-						_0: A2(_user$project$MouseUpdate$countYMiddle, input, model),
-						_1: input
+						_0: A2(_user$project$MouseUpdate$countRowYMiddle, row, model),
+						_1: row
 					};
 				},
 				model.inputs)));
@@ -14899,7 +14961,7 @@ var _user$project$MouseUpdate$update = F2(
 						{dragged: true});
 				};
 				var updatedInputs = A2(
-					_elm_lang$core$List$map,
+					_user$project$Form$mapInputs,
 					function (inp) {
 						return _elm_lang$core$Native_Utils.eq(inp.id, _p2._0) ? updateFunc(inp) : inp;
 					},
@@ -14914,7 +14976,7 @@ var _user$project$MouseUpdate$update = F2(
 				};
 			case 'MouseUp':
 				var updatedInputs = A2(
-					_elm_lang$core$List$map,
+					_user$project$Form$mapInputs,
 					function (input) {
 						return _elm_lang$core$Native_Utils.update(
 							input,
@@ -14971,7 +15033,7 @@ var _user$project$Updates$updateInputsDimensions = F2(
 							flatMap))
 				});
 		};
-		var inputsWithUpdatedDimesnions = A2(_elm_lang$core$List$map, updateFunction, model.inputs);
+		var inputsWithUpdatedDimesnions = A2(_user$project$Form$mapInputs, updateFunction, model.inputs);
 		return _elm_lang$core$Native_Utils.update(
 			model,
 			{inputs: inputsWithUpdatedDimesnions});
@@ -15019,7 +15081,7 @@ var _user$project$Main$subscriptions = function (model) {
 		function (_) {
 			return _.dragged;
 		},
-		model.inputs) ? _elm_lang$core$Platform_Sub$batch(
+		_elm_lang$core$List$concat(model.inputs)) ? _elm_lang$core$Platform_Sub$batch(
 		{
 			ctor: '::',
 			_0: _elm_lang$mouse$Mouse$moves(

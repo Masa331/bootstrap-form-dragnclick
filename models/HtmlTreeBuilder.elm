@@ -5,11 +5,11 @@ import Raw
 import Dragged
 import ForInputEdit
 
-buildWithControlElements input =
-  WithControlElements.build input
+buildWithControlElements row =
+  WithControlElements.build row
 
-buildRaw input =
-  Raw.build input
+buildRaw row =
+  Raw.build row
 
 buildDragged input =
   Dragged.build input

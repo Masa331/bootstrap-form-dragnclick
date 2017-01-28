@@ -20,7 +20,7 @@ update msg model =
   Updates.update msg model
 
 subscriptions model =
-  if List.any .dragged model.inputs then
+  if List.any .dragged (List.concat model.inputs) then
     Sub.batch [ Mouse.moves (Messages.MouseMessage << Messages.MouseMove)
               , Mouse.ups (Messages.MouseMessage << Messages.MouseUp)
               ]

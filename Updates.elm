@@ -4,6 +4,8 @@ import InputUpdate exposing (..)
 import FormUpdate exposing (..)
 import MouseUpdate exposing (..)
 
+import Form exposing (..)
+
 import Messages
 
 update msg model =
@@ -31,6 +33,7 @@ updateInputsDimensions model map =
     updateFunction = (\input -> { input | dimensions = (List.filter (\e -> e.id == toString input.id) flatMap) |> List.head })
 
     inputsWithUpdatedDimesnions =
-      List.map updateFunction model.inputs
+      -- List.map updateFunction model.inputs
+      Form.mapInputs updateFunction model.inputs
   in
     { model | inputs = inputsWithUpdatedDimesnions }

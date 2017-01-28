@@ -1,11 +1,16 @@
 module WithControlElements exposing (build)
 
 import HtmlNode exposing (..)
+import Form exposing (..)
 import Inputs exposing (..)
 import Bootstrap
 
-build : Input -> HtmlNode.Node
-build input =
+build : Form.Row -> List HtmlNode.Node
+build row =
+  List.map buildInput row
+
+buildInput : Input -> HtmlNode.Node
+buildInput input =
   let
     links = toLinks input
     containerClass =

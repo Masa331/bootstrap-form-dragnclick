@@ -10,8 +10,12 @@ import Inputs exposing (..)
 import Messages
 import Models
 
-build : Input -> HtmlNode.Node
-build input =
+build : Form.Row -> List HtmlNode.Node
+build row =
+  List.map buildInput row
+
+buildInput : Input -> HtmlNode.Node
+buildInput input =
   case input.type_ of
     Text -> textInputToHtmlTree input
     TextArea -> textAreaToHtmlTree input

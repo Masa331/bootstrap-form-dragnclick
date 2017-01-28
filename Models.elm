@@ -22,12 +22,12 @@ type alias Model = { inputs: Form.Form
 
 initial : Model
 initial =
-  { inputs = [ Form.SingleInput { textInput | id = 1, label = Just "Name", placeholder = Just "Max Rockatansky" }
-             , Form.SingleInput { textInput | id = 3, label = Just "Email address", placeholder = Just "rockatansky@wastelands.com", addon1 = Just "@" }
-             , Form.SingleInput { textInput | id = 2, label = Just "Job title", small = Just "Please tell us what do you do for living for statistical purposes." }
-             , Form.SingleInput { textInput | id = 4, label = Just "Password", type_ = Inputs.Password }
-             , Form.SingleInput { checkbox | id = 5, label = Just "I Accept all terms and agreements" }
-             , Form.SingleInput { button | id = 6, label = Just "Register!" }
+  { inputs = [ [ { textInput | id = 1, label = Just "Name", placeholder = Just "Max Rockatansky" } ]
+             , [ { textInput | id = 3, label = Just "Email address", placeholder = Just "rockatansky@wastelands.com", addon1 = Just "@" } ]
+             , [ { textInput | id = 2, label = Just "Job title", small = Just "Please tell us what do you do for living for statistical purposes." } ]
+             , [ { textInput | id = 4, label = Just "Password", type_ = Inputs.Password } ]
+             , [ { checkbox | id = 5, label = Just "I Accept all terms and agreements" } ]
+             , [ { button | id = 6, label = Just "Register!" } ]
              ]
   , newOption = ""
   , mousePosition = { x = 0, y = 0 }
@@ -41,20 +41,19 @@ maxInputId model =
   <| List.maximum
   <| List.map .id
   <| List.concat
-  <| List.map flattenInputs model.inputs
+  <| model.inputs
 
-flattenInputs : Form.Row -> List Inputs.Input
-flattenInputs rowOrInput =
-  case rowOrInput of
-    Form.GroupOfInputs a ->
-      a
-    Form.SingleInput b ->
-      [b]
+-- flattenInputs : Form.Row -> List Inputs.Input
+-- flattenInputs rowOrInput =
+--   case rowOrInput of
+--     Form.GroupOfInputs a ->
+--       a
+--     Form.SingleInput b ->
+--       [b]
 
 currentlyDraggedInput : Model -> Maybe Inputs.Input
 currentlyDraggedInput model =
-  List.map flattenInputs model.inputs
-    |> List.concat
+  List.concat model.inputs
     |> List.filter .dragged
     |> List.head
 
