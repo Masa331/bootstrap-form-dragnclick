@@ -10468,7 +10468,17 @@ var _user$project$Models$initial = {
 					label: _elm_lang$core$Maybe$Just('Name'),
 					placeholder: _elm_lang$core$Maybe$Just('Max Rockatansky')
 				}),
-			_1: {ctor: '[]'}
+			_1: {
+				ctor: '::',
+				_0: _elm_lang$core$Native_Utils.update(
+					_user$project$Inputs$textInput,
+					{
+						id: 1,
+						label: _elm_lang$core$Maybe$Just('Name'),
+						placeholder: _elm_lang$core$Maybe$Just('Max Rockatansky')
+					}),
+				_1: {ctor: '[]'}
+			}
 		},
 		_1: {
 			ctor: '::',

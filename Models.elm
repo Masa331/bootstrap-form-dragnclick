@@ -22,7 +22,8 @@ type alias Model = { inputs: Form.Form
 
 initial : Model
 initial =
-  { inputs = [ [ { textInput | id = 1, label = Just "Name", placeholder = Just "Max Rockatansky" } ]
+  { inputs = [ [ { textInput | id = 1, label = Just "Name", placeholder = Just "Max Rockatansky" }
+               , { textInput | id = 1, label = Just "Name", placeholder = Just "Max Rockatansky" } ]
              , [ { textInput | id = 3, label = Just "Email address", placeholder = Just "rockatansky@wastelands.com", addon1 = Just "@" } ]
              , [ { textInput | id = 2, label = Just "Job title", small = Just "Please tell us what do you do for living for statistical purposes." } ]
              , [ { textInput | id = 4, label = Just "Password", type_ = Inputs.Password } ]
@@ -42,14 +43,6 @@ maxInputId model =
   <| List.map .id
   <| List.concat
   <| model.inputs
-
--- flattenInputs : Form.Row -> List Inputs.Input
--- flattenInputs rowOrInput =
---   case rowOrInput of
---     Form.GroupOfInputs a ->
---       a
---     Form.SingleInput b ->
---       [b]
 
 currentlyDraggedInput : Model -> Maybe Inputs.Input
 currentlyDraggedInput model =
